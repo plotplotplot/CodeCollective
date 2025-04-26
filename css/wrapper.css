@@ -158,7 +158,8 @@
   /* background: #ade0ff;
   Ensures padding is included within the height/width */
 
-  background-image: url('/images/people_bg.jpg');
+  /*background-image: url('/images/people_bg.jpg');*/
+  background: #1a73e8;
   background-size: cover; /* Ensures the image covers the entire background */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents tiling */
