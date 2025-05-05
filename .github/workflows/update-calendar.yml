@@ -3,9 +3,10 @@ name: Update Calendar
 on:
   push:
     branches:
-      - main  # Runs on push to the main branch (adjust if needed)
+      - main  # Runs on push to the main branch
   schedule:
-    - cron: '0 * * * *'  # Runs every hour
+    - cron: '0 0 * * *'  # Runs daily at 00:00 UTC
+  workflow_dispatch:  # Allows manual trigger from the Actions tab
 
 jobs:
   update_calendar:
