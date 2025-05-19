@@ -31,28 +31,44 @@ class OurFooter extends HTMLElement {
         `
     }
 }
+
 class OurMatrixLink extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-            <aside id="slackButton" class="slack-social slack-social__container">
+            <aside id="socialButtons" class="slack-social slack-social__container">
                 <a
                     href="https://chat.whatsapp.com/JFlI9aRvNaGCTU2lOFXpOt"
                     target="_blank"
                     class="slack-social__link"
                 >
                     <button class="slack-social__button">
-                    <img
-                        src="/images/WhatsApp.svg.webp"
-                        alt="Matrix icon"
-                        class="slack-social__icon"
-                    />
-                    <p class="slack-social__cta">Join our WhatsApp!</p>
-                    </button></a
+                        <img
+                            src="/images/WhatsApp.svg.webp"
+                            alt="WhatsApp icon"
+                            class="slack-social__icon"
+                        />
+                        <p class="slack-social__cta">Join our WhatsApp!</p>
+                    </button>
+                </a>
+                <a
+                    href="https://github.com/juliancoy/codecollective"
+                    target="_blank"
+                    class="slack-social__link"
                 >
+                    <button class="slack-social__button">
+                        <img
+                            src="/images/github_icon.png"
+                            alt="GitHub icon"
+                            class="slack-social__icon"
+                        />
+                        <p class="slack-social__cta">View on GitHub</p>
+                    </button>
+                </a>
             </aside>
-         `
+        `;
     }
 }
+
 
 customElements.define('our-header', OurHeader)
 customElements.define('our-footer', OurFooter)
