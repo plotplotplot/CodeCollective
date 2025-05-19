@@ -1,7 +1,6 @@
 import scrape_meetup
 import scrape_eventbrite
-import json
-
+import scrape_jotform
 import json
 from ics import Calendar, Event
 import datetime
@@ -134,6 +133,10 @@ if __name__ == "__main__":
     for EVENTBRITE_URL in sources.get("Eventbrite", []):
         print(f"Fetching events from {EVENTBRITE_URL}")
         upcoming_events += [scrape_eventbrite.parse_eventbrite_event(EVENTBRITE_URL)]
+
+    for JOTFORM_URL in sources.get("Jotform", []):
+        print(f"Fetching events from {JOTFORM_URL}")
+        upcoming_events += [scrape_jotform.parse_jotform_event(JOTFORM_URL)]
 
     # Save upcoming events to a file
     with open("upcoming_events.json", "w+", encoding="utf-8") as f:

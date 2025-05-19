@@ -13,6 +13,10 @@ sources = {
         "https://www.meetup.com/dataworks/events/"
     ],
     "Eventbrite":[
-        "https://www.eventbrite.com/e/indie-game-fest-2025-tickets-1264402364509"
+        "https://www.eventbrite.com/e/indie-game-fest-2025-tickets-1264402364509",
+        "https://www.eventbrite.com/e/blk-tech-connect-tickets-1306134626829"
+    ],
+    "Jotform":[
+        "https://form.jotform.com/251063812795157"
     ],
 }
