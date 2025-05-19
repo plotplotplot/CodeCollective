@@ -1,0 +1,18 @@
+sources = {
+    "Meetup":[
+        "https://www.meetup.com/code-collective/events/",
+        "https://www.meetup.com/baltimore-tech/events/",
+        "https://www.meetup.com/devops-columbia/events/",
+        "https://www.meetup.com/baltimore-code-and-coffee/events/",
+        "https://www.meetup.com/baltimore-indie-game-developers-group/events/",
+        "https://www.meetup.com/baltimore-cryptomondays/events/",
+        "https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/",
+        "https://www.meetup.com/it-social-east-us-ca-data-technology-cybersecurity/events/",
+        "https://www.meetup.com/the-baltimore-wordpress-group/events/",
+        "https://www.meetup.com/baltimore-bayesians/events/",
+        "https://www.meetup.com/dataworks/events/"
+    ],
+    "Eventbrite":[
+        "https://www.eventbrite.com/e/indie-game-fest-2025-tickets-1264402364509"
+    ],
+}

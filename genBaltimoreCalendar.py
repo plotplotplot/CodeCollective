@@ -1,4 +1,5 @@
-import genCalendar
+import scrape_meetup
+import scrape_eventbrite
 import json
 
 import json
@@ -110,39 +111,29 @@ def events_to_ics(events_json, output_file="baltimore_tech_events.ics"):
     print(f"Calendar with {len(cal.events)} events saved to {output_file}")
     return output_file
 
+from event_sources import sources
 if __name__ == "__main__":
-    meetup_urls = [
-        "https://www.meetup.com/code-collective/events/",
-        "https://www.meetup.com/baltimore-tech/events/",
-        "https://www.meetup.com/devops-columbia/events/",
-        "https://www.meetup.com/baltimore-code-and-coffee/events/",
-        "https://www.meetup.com/baltimore-indie-game-developers-group/events/",
-        "https://www.meetup.com/baltimore-cryptomondays/events/",
-        "https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/",
-        "https://www.meetup.com/it-social-east-us-ca-data-technology-cybersecurity/events/",
-        "https://www.meetup.com/the-baltimore-wordpress-group/events/",
-        "https://www.meetup.com/baltimore-bayesians/events/",
-        "https://www.meetup.com/dataworks/events/"
-    ]
-
-
 
     with open("./manual_events.json", "r") as f:
         upcoming_events = json.loads(f.read())
 
     # Loop through each meetup URL
-    for MEETUP_URL in meetup_urls:
+    for MEETUP_URL in sources.get("Meetup", []):
         print(f"Fetching events from {MEETUP_URL}")
         # Fetch upcoming events
-        upcoming_page_content = genCalendar.fetch_meetup_page(MEETUP_URL)
+        upcoming_page_content = scrape_meetup.fetch_meetup_page(MEETUP_URL)
         with open("meetup_upcoming.html", "w+", encoding="utf-8") as f:
             f.write(upcoming_page_content)
 
         # Extract the __NEXT_DATA__ JSON for upcoming events
-        upcoming_next_data = genCalendar.extract_next_data(upcoming_page_content)
+        upcoming_next_data = scrape_meetup.extract_next_data(upcoming_page_content)
         
         # Parse upcoming events
-        upcoming_events += genCalendar.parse_meetup_events(upcoming_next_data, include_past=True)
+        upcoming_events += scrape_meetup.parse_meetup_events(upcoming_next_data, include_past=True)
+
+    for EVENTBRITE_URL in sources.get("Eventbrite", []):
+        print(f"Fetching events from {EVENTBRITE_URL}")
+        upcoming_events += [scrape_eventbrite.parse_eventbrite_event(EVENTBRITE_URL)]
 
     # Save upcoming events to a file
     with open("upcoming_events.json", "w+", encoding="utf-8") as f:
