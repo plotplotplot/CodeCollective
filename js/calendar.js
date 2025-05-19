@@ -65,8 +65,7 @@ function initializeCalendar(events) {
     },
     events: events,
     eventClick: function (info) {
-      showEventPopup(info.event);
-      info.jsEvent.preventDefault(); // Prevent default URL navigation
+      window.location.href = info.url;
     },
     eventTimeFormat: {
       hour: 'numeric',
@@ -312,13 +311,9 @@ function showEventPopup(event) {
   linkEl.href = event.url;
 
   // Show popup
-  document.getElementById('event-popup').style.display = 'flex';
+  window.location.href = event.url;
 }
 
-// Close event popup
-function closeEventPopup() {
-  document.getElementById('event-popup').style.display = 'none';
-}
 
 // Get a consistent color based on group name
 function getGroupColor(groupName) {
