@@ -121,17 +121,18 @@ if __name__ == "__main__":
         "https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/",
         "https://www.meetup.com/it-social-east-us-ca-data-technology-cybersecurity/events/",
         "https://www.meetup.com/the-baltimore-wordpress-group/events/",
-        "https://www.meetup.com/baltimore-bayesians/events/"
+        "https://www.meetup.com/baltimore-bayesians/events/",
         "https://www.meetup.com/dataworks/events/"
     ]
 
 
 
-    upcoming_events = []
+    with open("./manual_events.json", "r") as f:
+        upcoming_events = json.loads(f.read())
 
     # Loop through each meetup URL
     for MEETUP_URL in meetup_urls:
-
+        print(f"Fetching events from {MEETUP_URL}")
         # Fetch upcoming events
         upcoming_page_content = genCalendar.fetch_meetup_page(MEETUP_URL)
         with open("meetup_upcoming.html", "w+", encoding="utf-8") as f:
