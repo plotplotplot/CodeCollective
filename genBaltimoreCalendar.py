@@ -122,7 +122,10 @@ if __name__ == "__main__":
         "https://www.meetup.com/it-social-east-us-ca-data-technology-cybersecurity/events/",
         "https://www.meetup.com/the-baltimore-wordpress-group/events/",
         "https://www.meetup.com/baltimore-bayesians/events/"
+        "https://www.meetup.com/dataworks/events/"
     ]
+
+
 
     upcoming_events = []
 

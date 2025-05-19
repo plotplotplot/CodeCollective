@@ -53,6 +53,48 @@ function processEvents(eventsData) {
   });
 }
 
+// Format event time to display like "3PM"
+function formatEventTime(date) {
+  if (!date) return '';
+
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+
+  // Determine AM/PM
+  const period = hours >= 12 ? 'PM' : 'AM';
+
+  // Convert to 12-hour format
+  const displayHours = hours % 12 || 12; // 0 should be displayed as 12
+
+  // Only show minutes if not on the hour
+  const timeString = minutes === 0 ?
+    `${displayHours}${period}` :
+    `${displayHours}:${minutes.toString().padStart(2, '0')}${period}`;
+
+  return timeString;
+}
+
+// Get the latest event with an image for a specific day
+function getLatestEventWithImageForDay(events, date) {
+  // Format the date to YYYY-MM-DD for comparison
+  const dateStr = date.toISOString().split('T')[0];
+
+  // Filter events that are on this day and have an image
+  const dayEvents = events.filter(event => {
+    const eventDate = new Date(event.start).toISOString().split('T')[0];
+    return eventDate === dateStr && event.extendedProps.imageUrl;
+  });
+
+  // If no events with images for this day, return null
+  if (dayEvents.length === 0) return null;
+
+  // Sort events by start time, descending (latest first)
+  dayEvents.sort((a, b) => new Date(b.start) - new Date(a.start));
+
+  // Return the latest event
+  return dayEvents[0];
+}
+
 // Initialize the FullCalendar
 function initializeCalendar(events) {
   const calendarEl = document.getElementById('calendar');
@@ -74,57 +116,94 @@ function initializeCalendar(events) {
     },
     height: 'auto',
     dayMaxEvents: true, // Allow "more" link when too many events
-    eventContent: function(info) {
+    // Replace the existing code in the dayCellDidMount function
+    // Find this part in your code:
+    dayCellDidMount: function (info) {
+      // Get the latest event with an image for this day
+      const latestEvent = getLatestEventWithImageForDay(filteredEvents, info.date);
+
+      if (latestEvent && latestEvent.extendedProps.imageUrl) {
+        // Get the day cell element
+        const cellEl = info.el;
+
+        // Find the day frame element (this is the actual "day" content area)
+        const dayFrame = cellEl.querySelector('.fc-daygrid-day-frame');
+
+        if (dayFrame) {
+          // Add a class to help with styling
+          dayFrame.classList.add('has-event-background');
+
+          // Create a semi-transparent background with the event image
+          const bgDiv = document.createElement('div');
+          bgDiv.classList.add('fc-day-background');
+          bgDiv.style.position = 'absolute';
+          bgDiv.style.top = '0';
+          bgDiv.style.left = '0';
+          bgDiv.style.right = '0';
+          bgDiv.style.bottom = '0';
+          bgDiv.style.backgroundImage = `url(${latestEvent.extendedProps.imageUrl})`;
+          bgDiv.style.backgroundSize = 'cover';
+          bgDiv.style.backgroundPosition = 'center';
+          bgDiv.style.opacity = '1';
+          bgDiv.style.zIndex = '1'; // Place behind events but above day cell background
+
+          // Add the background div as the first child of the day frame
+          dayFrame.style.position = 'relative'; // Ensure positioning context
+          dayFrame.prepend(bgDiv);
+
+          // Make sure event content is above the background
+          const eventContent = dayFrame.querySelector('.fc-daygrid-day-events');
+          if (eventContent) {
+            eventContent.style.position = 'relative';
+            eventContent.style.zIndex = '2';
+          }
+        }
+      }
+    },
+    eventContent: function (info) {
       // Handle list view separately
       if (info.view.type.includes('list')) {
         return; // Use default list view rendering
       }
-      
+
       const eventEl = document.createElement('div');
       eventEl.classList.add('fc-event-content-wrapper');
-      
-      // Create image element if imageUrl exists
-      if (info.event.extendedProps.imageUrl) {
-        const imgWrapper = document.createElement('div');
-        imgWrapper.classList.add('event-image-preview');
-        
-        const img = document.createElement('img');
-        img.src = info.event.extendedProps.imageUrl;
-        img.alt = info.event.title;
-        img.style.width = '100%';
-        img.style.height = '40px';
-        img.style.objectFit = 'cover';
-        img.style.borderRadius = '4px 4px 0 0';
-        img.onerror = function() {
-          // If image fails to load, remove the image container
-          imgWrapper.style.display = 'none';
-        };
-        
-        imgWrapper.appendChild(img);
-        eventEl.appendChild(imgWrapper);
-      }
-      
-      // Add title
+
+      // Format the time
+      const eventTime = formatEventTime(info.event.start);
+
+      // Add title with time
       const titleEl = document.createElement('div');
       titleEl.classList.add('fc-event-title');
-      titleEl.innerHTML = `<strong>${info.event.title}</strong>`;
+      titleEl.innerHTML = `<strong>${eventTime} ${info.event.title}</strong>`;
       titleEl.style.padding = '4px';
       titleEl.style.overflow = 'hidden';
       titleEl.style.textOverflow = 'ellipsis';
       titleEl.style.whiteSpace = 'nowrap';
       eventEl.appendChild(titleEl);
-      
-      // Add time if in week or day view
-      if (info.view.type.includes('timeGrid')) {
-        const timeEl = document.createElement('div');
-        timeEl.classList.add('fc-event-time');
-        timeEl.innerHTML = info.timeText;
-        timeEl.style.padding = '0 4px 4px 4px';
-        timeEl.style.fontSize = '0.85em';
-        eventEl.appendChild(timeEl);
-      }
-      
+
       return { domNodes: [eventEl] };
+    },
+
+    // Format event time to display like "3PM"
+    formatEventTime: function (date) {
+      if (!date) return '';
+
+      const hours = date.getHours();
+      const minutes = date.getMinutes();
+
+      // Determine AM/PM
+      const period = hours >= 12 ? 'PM' : 'AM';
+
+      // Convert to 12-hour format
+      const displayHours = hours % 12 || 12; // 0 should be displayed as 12
+
+      // Only show minutes if not on the hour
+      const timeString = minutes === 0 ?
+        `${displayHours}${period}` :
+        `${displayHours}:${minutes.toString().padStart(2, '0')}${period}`;
+
+      return timeString;
     },
     eventDidMount: function (info) {
       // Add tooltips to events
@@ -151,6 +230,7 @@ function initializeCalendar(events) {
     }
   });
   calendar.render();
+
 }
 
 // Set up view selector buttons
@@ -235,6 +315,10 @@ function filterEventsByGroup(group) {
 
   calendar.removeAllEventSources();
   calendar.addEventSource(filteredEvents);
+
+  // Force redraw of the calendar to update day cell backgrounds
+  const currentDate = calendar.getDate();
+  calendar.gotoDate(currentDate);
 
   // If in "All Time" view, go to earliest date after filtering
   if (currentView === 'listAll' && filteredEvents.length > 0) {
