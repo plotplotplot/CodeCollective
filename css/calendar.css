@@ -353,15 +353,25 @@
 
 .fc-day-background {
     pointer-events: none;
-    /* Allow clicks to pass through to the cell */
     border-radius: 4px;
-    /* Add slight rounding to match the day cell */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    z-index: 1;
 }
 
 .fc-event-title {
     color: #000;
-    /* Default text color */
     background-color: rgba(255, 255, 255, 1);
-    /* Add semi-transparent background to event titles */
-    border-radius: 2px;
+    border-radius: 4px;
+    border-color: #d9ff00;
+    padding: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

@@ -13,15 +13,44 @@ document.addEventListener('DOMContentLoaded', function () {
       allEvents = processEvents(events);
       filteredEvents = [...allEvents]; // Make a copy for filtering
       initializeCalendar(allEvents);
-      setupFilters(allEvents);
       setupViewSelectors();
       document.getElementById('loading').style.display = 'none';
+      
+      // Add this: Style today's date after calendar is rendered
+      highlightToday();
     })
     .catch(error => {
       console.error('Error loading events:', error);
       document.getElementById('loading').innerHTML = '<i class="fas fa-exclamation-circle"></i> Error loading events. Please try again.';
     });
+    
+  // Add this: Add CSS for today's date styling
+  addTodayStyles();
 });
+
+// Add this: Function to add CSS styles for today's date
+function addTodayStyles() {
+  const style = document.createElement('style');
+  style.textContent = `
+    .fc .fc-day-today .fc-daygrid-day-number {
+      background-color: yellow !important;
+      color: black !important;
+      border-radius: 50%;
+      padding: 5px;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+// Add this: Function to ensure today's date is highlighted correctly
+function highlightToday() {
+  // This ensures the style is applied even after view changes
+  const todayEl = document.querySelector('.fc-day-today .fc-daygrid-day-number');
+  if (todayEl) {
+    todayEl.style.backgroundColor = 'yellow';
+    todayEl.style.color = 'black';
+  }
+}
 
 // Process the JSON event data into FullCalendar format
 function processEvents(eventsData) {
@@ -46,9 +75,9 @@ function processEvents(eventsData) {
         group: groupName,
         imageUrl: event.imageUrl
       },
-      backgroundColor: getGroupColor(groupName),
-      borderColor: getGroupColor(groupName),
-      textColor: getTextColor(getGroupColor(groupName))
+      backgroundColor: "#0f0f0f0",
+      borderColor: "#0f0f0f0",
+      textColor: "#000"
     };
   });
 }
@@ -136,16 +165,7 @@ function initializeCalendar(events) {
           // Create a semi-transparent background with the event image
           const bgDiv = document.createElement('div');
           bgDiv.classList.add('fc-day-background');
-          bgDiv.style.position = 'absolute';
-          bgDiv.style.top = '0';
-          bgDiv.style.left = '0';
-          bgDiv.style.right = '0';
-          bgDiv.style.bottom = '0';
           bgDiv.style.backgroundImage = `url(${latestEvent.extendedProps.imageUrl})`;
-          bgDiv.style.backgroundSize = 'cover';
-          bgDiv.style.backgroundPosition = 'center';
-          bgDiv.style.opacity = '1';
-          bgDiv.style.zIndex = '1'; // Place behind events but above day cell background
 
           // Add the background div as the first child of the day frame
           dayFrame.style.position = 'relative'; // Ensure positioning context
@@ -176,10 +196,6 @@ function initializeCalendar(events) {
       const titleEl = document.createElement('div');
       titleEl.classList.add('fc-event-title');
       titleEl.innerHTML = `<strong>${eventTime} ${info.event.title}</strong>`;
-      titleEl.style.padding = '4px';
-      titleEl.style.overflow = 'hidden';
-      titleEl.style.textOverflow = 'ellipsis';
-      titleEl.style.whiteSpace = 'nowrap';
       eventEl.appendChild(titleEl);
 
       return { domNodes: [eventEl] };
@@ -227,10 +243,19 @@ function initializeCalendar(events) {
         duration: { year: 1 },
         buttonText: 'Year'
       }
+    },
+    // Add this: Callback for when view is rendered
+    viewDidMount: function() {
+      // Apply today highlighting after view changes
+      highlightToday();
     }
   });
   calendar.render();
+}
 
+// Check if device is mobile
+function isMobileDevice() {
+  return window.matchMedia('(max-width: 768px)').matches;
 }
 
 // Set up view selector buttons
@@ -248,10 +273,20 @@ function setupViewSelectors() {
       // Change calendar view
       const view = this.dataset.view;
       currentView = view;
-      calendar.changeView(view);
+      
+      // Force card view for All Time or mobile
+      const effectiveView = (view === 'listAll' || isMobileDevice()) ? 'dayGridMonth' : view;
+      calendar.changeView(effectiveView);
 
       // Special handling for "All Time" view
       if (view === 'listAll') {
+        // Show notification about card view being forced
+        if (isMobileDevice()) {
+          alert('Card view is automatically shown on mobile devices for better readability');
+        } else {
+          alert('Card view is shown for "All Time" selection to improve performance');
+        }
+        
         // Set the date range to show all events (past and future)
         if (allEvents.length > 0) {
           const dates = allEvents.map(event => new Date(event.start));
@@ -259,73 +294,11 @@ function setupViewSelectors() {
           calendar.gotoDate(minDate);
         }
       }
+      
+      // Reapply today highlighting after view change
+      setTimeout(highlightToday, 100);
     });
   });
-}
-
-// Set up the filter buttons
-function setupFilters(events) {
-  const filterContainer = document.getElementById('filter-buttons');
-
-  // Add "All Groups" button
-  const allButton = document.createElement('button');
-  allButton.innerHTML = '<i class="fas fa-globe"></i> All Groups';
-  allButton.className = 'filter-button active';
-  allButton.dataset.group = 'all';
-  filterContainer.appendChild(allButton);
-
-  // Add a button for each group
-  eventGroups.forEach(group => {
-    const button = document.createElement('button');
-    button.innerHTML = `<i class="fas fa-users"></i> ${formatGroupName(group)}`;
-    button.className = 'filter-button';
-    button.dataset.group = group;
-    button.style.backgroundColor = getLighterColor(getGroupColor(group));
-    button.style.color = getTextColor(getLighterColor(getGroupColor(group)));
-    filterContainer.appendChild(button);
-  });
-
-  // Add click event to filter buttons
-  document.querySelectorAll('.filter-button').forEach(button => {
-    button.addEventListener('click', function () {
-      // Remove active class from all buttons
-      document.querySelectorAll('.filter-button').forEach(btn => {
-        btn.classList.remove('active');
-      });
-
-      // Add active class to clicked button
-      this.classList.add('active');
-
-      // Filter events
-      const group = this.dataset.group;
-      filterEventsByGroup(group);
-    });
-  });
-}
-
-// Filter events by group
-function filterEventsByGroup(group) {
-  if (group === 'all') {
-    filteredEvents = [...allEvents];
-  } else {
-    filteredEvents = allEvents.filter(event =>
-      event.extendedProps.group === group
-    );
-  }
-
-  calendar.removeAllEventSources();
-  calendar.addEventSource(filteredEvents);
-
-  // Force redraw of the calendar to update day cell backgrounds
-  const currentDate = calendar.getDate();
-  calendar.gotoDate(currentDate);
-
-  // If in "All Time" view, go to earliest date after filtering
-  if (currentView === 'listAll' && filteredEvents.length > 0) {
-    const dates = filteredEvents.map(event => new Date(event.start));
-    const minDate = new Date(Math.min(...dates));
-    calendar.gotoDate(minDate);
-  }
 }
 
 // Format event date for display
@@ -342,161 +315,6 @@ function formatEventDate(start, end) {
   };
 
   return startDate.toLocaleDateString('en-US', options);
-}
-
-// Show event details popup
-function showEventPopup(event) {
-  document.getElementById('popup-title').textContent = event.title;
-
-  // Set group info
-  const groupEl = document.getElementById('popup-group');
-  groupEl.textContent = formatGroupName(event.extendedProps.group);
-  groupEl.style.backgroundColor = getLighterColor(getGroupColor(event.extendedProps.group));
-  groupEl.style.color = getTextColor(getLighterColor(getGroupColor(event.extendedProps.group)));
-
-  // Set date/time info
-  const dateTimeEl = document.getElementById('popup-datetime');
-  if (event.start) {
-    dateTimeEl.innerHTML = `<i class="far fa-clock"></i> ${formatEventDate(event.start, event.end)}`;
-    dateTimeEl.style.display = 'flex';
-  } else {
-    dateTimeEl.style.display = 'none';
-  }
-
-  // Set image if available
-  const imageContainer = document.getElementById('popup-image');
-  if (event.extendedProps.imageUrl) {
-    imageContainer.innerHTML = `<img src="${event.extendedProps.imageUrl}" alt="${event.title}" class="event-image" style="max-width: 100%; border-radius: 8px; margin: 10px 0;">`;
-  } else {
-    imageContainer.innerHTML = '';
-  }
-
-  // Set description with markdown parsing
-  document.getElementById('popup-description').innerHTML = event.extendedProps.description || '';
-
-  // Set location information
-  const locationEl = document.getElementById('popup-location');
-  const location = event.extendedProps.location;
-  if (location) {
-    let locationHTML = '<i class="fas fa-map-marker-alt" style="color: var(--primary-color); margin-right: 8px;"></i>';
-    if (location.name) locationHTML += `<strong>${location.name}</strong><br>`;
-    if (location.address) locationHTML += `${location.address}<br>`;
-    if (location.city || location.state) {
-      locationHTML += `${location.city || ''}, ${location.state || ''} ${location.country || ''}`;
-    }
-    locationEl.innerHTML = locationHTML;
-    locationEl.style.display = 'block';
-  } else {
-    locationEl.style.display = 'none';
-  }
-
-  // Set link
-  const linkEl = document.getElementById('popup-link');
-  linkEl.href = event.url;
-
-  // Show popup
-  window.location.href = event.url;
-}
-
-
-// Get a consistent color based on group name
-function getGroupColor(groupName) {
-  // Color palette for events
-  const colors = [
-    '#3a86ff', // Blue
-    '#ff006e', // Pink
-    '#8338ec', // Purple
-    '#fb5607', // Orange
-    '#ffbe0b', // Yellow
-    '#06d6a0', // Teal
-    '#ef476f', // Red
-    '#118ab2', // Dark blue
-    '#073b4c', // Navy
-    '#7209b7'  // Violet
-  ];
-
-  // Simple hash function for consistent colors
-  const hash = groupName.split('').reduce((acc, char) => {
-    return char.charCodeAt(0) + ((acc << 5) - acc);
-  }, 0);
-
-  return colors[Math.abs(hash) % colors.length];
-}
-
-// Get appropriate text color (black or white) based on background color
-function getTextColor(backgroundColor) {
-  // For HSL colors
-  if (backgroundColor.startsWith('hsl')) {
-    const lightness = parseInt(backgroundColor.split(',')[2].replace('%)', ''));
-    return lightness > 60 ? '#333333' : '#ffffff';
-  }
-
-  // For hex colors - convert to RGB and check luminance
-  let color = backgroundColor;
-  if (color.startsWith('#')) {
-    color = color.substring(1); // Remove #
-  }
-
-  // Convert to RGB
-  const r = parseInt(color.substr(0, 2), 16);
-  const g = parseInt(color.substr(2, 2), 16);
-  const b = parseInt(color.substr(4, 2), 16);
-
-  // Calculate luminance
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-
-  return luminance > 0.5 ? '#333333' : '#ffffff';
-}
-
-// Get a lighter version of the color for buttons
-function getLighterColor(color) {
-  if (color.startsWith('hsl')) {
-    return color.replace('45%', '65%');
-  }
-
-  // For hex colors
-  if (color.startsWith('#')) {
-    // Convert hex to HSL, increase lightness, convert back
-    const r = parseInt(color.slice(1, 3), 16) / 255;
-    const g = parseInt(color.slice(3, 5), 16) / 255;
-    const b = parseInt(color.slice(5, 7), 16) / 255;
-
-    const max = Math.max(r, g, b);
-    const min = Math.min(r, g, b);
-    let h, s, l = (max + min) / 2;
-
-    if (max === min) {
-      h = s = 0; // achromatic
-    } else {
-      const d = max - min;
-      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-
-      switch (max) {
-        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-        case g: h = (b - r) / d + 2; break;
-        case b: h = (r - g) / d + 4; break;
-      }
-
-      h /= 6;
-    }
-
-    // Increase lightness
-    l = Math.min(0.9, l + 0.2);
-
-    // Convert back to hex (simplified)
-    return `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
-  }
-
-  return color;
-}
-
-// Format group name for display
-function formatGroupName(name) {
-  return name
-    .replace(/-/g, ' ')
-    .split(' ')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
 }
 
 // Close popup when clicking outside the content

@@ -1,6 +1,7 @@
 import scrape_meetup
 import scrape_eventbrite
 import scrape_jotform
+import scrape_equitech
 import json
 from ics import Calendar, Event
 import datetime
@@ -110,6 +111,54 @@ def events_to_ics(events_json, output_file="baltimore_tech_events.ics"):
     print(f"Calendar with {len(cal.events)} events saved to {output_file}")
     return output_file
 
+import os
+import requests
+
+
+def extract_proper_extension(url):
+    """Extract proper file extension from URL, handling complex URLs with query parameters"""
+    # First get the part before any query parameters
+    url_without_query = url.split('?')[0]
+    
+    # Look for common image extensions in the URL
+    import re
+    matches = re.search(r'\.(jpe?g|png|gif|webp|svg|bmp)$', url_without_query, re.IGNORECASE)
+    if matches:
+        return matches.group(1).lower()
+    
+    # If we can't find a standard extension, check if there's any extension
+    path_parts = url_without_query.split('.')
+    if len(path_parts) > 1:
+        last_part = path_parts[-1]
+        # Verify it's a reasonable length for an extension
+        if len(last_part) <= 5:
+            return last_part.lower()
+    
+    # Default fallback to jpg for Eventbrite images (which are typically JPEG)
+    return "jpg"
+
+def download_image(url, filename):
+    """Download image from URL and save to filename"""
+    try:
+        # Make sure the directory exists
+        import os
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
+        
+        # Download the image
+        import requests
+        response = requests.get(url, stream=True)
+        response.raise_for_status()
+        
+        # Save the image
+        with open(filename, 'wb') as file:
+            for chunk in response.iter_content(chunk_size=8192):
+                file.write(chunk)
+                
+        return True
+    except Exception as e:
+        print(f"Error downloading image from {url}: {e}")
+        return False
+    
 from event_sources import sources
 if __name__ == "__main__":
 
@@ -138,6 +187,18 @@ if __name__ == "__main__":
         print(f"Fetching events from {JOTFORM_URL}")
         upcoming_events += [scrape_jotform.parse_jotform_event(JOTFORM_URL)]
 
+    upcoming_events += scrape_equitech.scrape_equitech_tuesday()
+
+    for event in upcoming_events:
+        # Download images if available
+        if "imageUrl" in event and event["imageUrl"]:
+            image_url = event["imageUrl"]
+            extension = extract_proper_extension(image_url)
+            
+            # Create a valid filename with all spaces replaced by underscores
+            safe_event_name = event['name'].replace(' ', '_').replace('/', '_').replace('\\', '_')
+            image_filename = f"event_images/{safe_event_name}.{extension}"
+        
     # Save upcoming events to a file
     with open("upcoming_events.json", "w+", encoding="utf-8") as f:
         json.dump(upcoming_events, f, indent=4)
