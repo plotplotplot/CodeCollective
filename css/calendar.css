@@ -510,6 +510,14 @@ h1 {
     flex-shrink: 0;
 }
 
+.fc-header-toolbar {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
 .fc-daygrid-day-number {
     color: #fff !important;
     font-weight: bold !important;

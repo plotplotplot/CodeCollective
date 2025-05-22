@@ -28,15 +28,20 @@
   <!-- Add Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body, #main, .container, .calendar-container, #calendar {
+    body,
+    #main,
+    .container,
+    .calendar-container,
+    #calendar {
       width: 100% !important;
       max-width: 100% !important;
     }
+
     .container {
       padding: 0 15px !important;
     }
   </style>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <body id="body">
@@ -56,13 +61,24 @@
     </button>
   </nav>
 
+
+
   <button id="toggle-dark-mode">☀️</button>
   <section id="wrapper" class="longform dark-mode" style="padding: 0; margin: 0;">
     <section id="main" class="longform dark-mode" style="padding: 0; margin: 0;">
       <div class="header-container" style="text-align: center; padding: 20px 0;">
         <p style="margin-bottom: 8px; font-size: 1.2em;">Code Collective brings you</p>
         <h1 style="margin: 10px 0; font-size: 2.5em;">A Baltimore Tech Events Calendar</h1>
-        <p style="margin-top: 8px; font-size: 1.1em;">A unified calendar of tech events from Baltimore area meetup groups</p>
+        <p style="margin-top: 8px; font-size: 1.1em;">A unified calendar of tech events from Baltimore area meetup
+          groups</p>
+      </div>
+
+      <div class="download-section">
+        <a href="https://calendar.google.com/calendar/u/0/r?cid=https://codecollective.us/baltimore_tech_events.ics"
+          class="download-button" target="_blank">
+          <i class="fas fa-calendar-alt"></i>Add to Google Calendar
+        </a>
+
       </div>
       <div class="container">
 
@@ -75,38 +91,12 @@
         </div>
       </div>
 
-      <div class="download-section">
-        <a href="https://calendar.google.com/calendar/u/0/r?cid=https://codecollective.us/baltimore_tech_events.ics" class="download-button" target="_blank">
-          <i class="fas fa-calendar-alt"></i>Add to Google Calendar
-        </a>
-        
-      </div>
-
-      <div class="filter-section" id="filter-buttons">
-        <!-- Group filter buttons will be added here -->
-      </div>
-
-      <div class="event-popup" id="event-popup">
-        <div class="event-popup-content">
-          <button class="close-button" onclick="closeEventPopup()">&times;</button>
-          <h2 id="popup-title"></h2>
-          <div id="popup-group" class="event-group"></div>
-          <div id="popup-datetime" class="event-date-time"></div>
-          <div id="popup-image"></div>
-          <div id="popup-description"></div>
-          <div id="popup-location" class="event-location"></div>
-          <a id="popup-link" href="#" target="_blank" class="event-link">
-            <i class="fas fa-external-link-alt"></i> View Event on Meetup
-          </a>
-        </div>
-      </div>
-
       <!-- Import the external calendar.js script -->
       <script src="/js/calendar.js"></script>
     </section>
   </section>
 
-    <our-footer></our-footer>
+  <our-footer></our-footer>
 
   <our-slack-link></our-slack-link>
 
