@@ -148,6 +148,7 @@ def events_to_ics(events_json, output_file="baltimore_tech_events.ics"):
         
         # Then parse any remaining markdown
         plain_description = parse_markdown_to_plain_text(clean_description)
+        plain_description = plain_description[:200]
         
         # Add location and URL information to description
         location_info = event_data.get('location', {})
