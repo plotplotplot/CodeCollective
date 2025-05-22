@@ -102,7 +102,7 @@ function initializeMobileCards(events) {
 
 // Create individual event card with expandable description
 function toggleDescription(button) {
-  const card = button.closest('.event-card');
+  const card = button.closest('.card-content');
   const shortDesc = card.querySelector('.card-description-short');
   const fullDesc = card.querySelector('.card-description-full');
   const moreBtn = card.querySelector('.more-btn');
