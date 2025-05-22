@@ -138,6 +138,7 @@ def events_to_ics(events_json, output_file="baltimore_tech_events.ics"):
         
         # Set basic event properties
         event.name = event_data.get('name', 'Unnamed Event')
+        event.created = datetime.datetime.now(datetime.timezone.utc)
         
         # Process description - use BeautifulSoup for HTML extraction
         description = event_data.get('description', '')
@@ -320,4 +321,5 @@ if __name__ == "__main__":
     with open("upcoming_events.json", "w+", encoding="utf-8") as f:
         json.dump(upcoming_events, f, indent=4)
         print(f"Upcoming events saved to upcoming_events.json")
+
     events_to_ics(upcoming_events, output_file="baltimore_tech_events.ics")
