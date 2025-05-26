@@ -316,13 +316,18 @@ function formatEventTime(date) {
 function getLatestEventWithImageForDay(events, date) {
   if (isMobile) return null;
 
-  // Format the date to YYYY-MM-DD for comparison
-  const dateStr = date.toISOString().split('T')[0];
+  // Format the date to YYYY-MM-DD using local timezone
+  const dateStr = date.getFullYear() + '-' + 
+                  String(date.getMonth() + 1).padStart(2, '0') + '-' + 
+                  String(date.getDate()).padStart(2, '0');
 
   // Filter events that are on this day and have an image
   const dayEvents = events.filter(event => {
-    const eventDate = new Date(event.start).toISOString().split('T')[0];
-    return eventDate === dateStr && event.extendedProps.imageUrl;
+    const eventDate = new Date(event.start);
+    const eventDateStr = eventDate.getFullYear() + '-' + 
+                         String(eventDate.getMonth() + 1).padStart(2, '0') + '-' + 
+                         String(eventDate.getDate()).padStart(2, '0');
+    return eventDateStr === dateStr && event.extendedProps.imageUrl;
   });
 
   // If no events with images for this day, return null
