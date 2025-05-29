@@ -44,13 +44,6 @@ def extract_next_data(html_content):
 def parse_meetup_events(next_data, include_past=False):
     """
     Parses events from the __NEXT_DATA__ structure of the modern Meetup page.
-    
-    Args:
-        next_data (dict): The parsed __NEXT_DATA__ from the Meetup page
-        include_past (bool): Whether to include past events (status != 'ACTIVE')
-        
-    Returns:
-        list: List of event dictionaries containing event details
     """
     events = []
     
@@ -75,28 +68,30 @@ def parse_meetup_events(next_data, include_past=False):
                     "status": event_data.get('status'),
                 }
                 
-                # Get venue information
-                venue_ref = event_data.get('venue', {}).get('__ref')
-                if venue_ref and venue_ref in apollo_state:
-                    venue_data = apollo_state.get(venue_ref, {})
-                    event['location'] = {
-                        'name': venue_data.get('name', ''),
-                        'address': venue_data.get('address', ''),
-                        'city': venue_data.get('city', ''),
-                        'state': venue_data.get('state', ''),
-                        'country': venue_data.get('country', '')
-                    }
+                # Get venue information if available
+                if 'venue' in event_data and event_data['venue']:
+                    venue_ref = event_data['venue'].get('__ref')
+                    if venue_ref and venue_ref in apollo_state:
+                        venue_data = apollo_state.get(venue_ref, {})
+                        event['location'] = {
+                            'name': venue_data.get('name', ''),
+                            'address': venue_data.get('address', ''),
+                            'city': venue_data.get('city', ''),
+                            'state': venue_data.get('state', ''),
+                            'country': venue_data.get('country', '')
+                        }
                 
-                # Get image information
-                image_ref = event_data.get('featuredEventPhoto', {}).get('__ref')
-                if image_ref and image_ref in apollo_state:
-                    image_data = apollo_state.get(image_ref, {})
-                    event['imageUrl'] = image_data.get('highResUrl')
+                # Get image if available
+                if 'featuredEventPhoto' in event_data and event_data['featuredEventPhoto']:
+                    image_ref = event_data['featuredEventPhoto'].get('__ref')
+                    if image_ref and image_ref in apollo_state:
+                        image_data = apollo_state.get(image_ref, {})
+                        event['imageUrl'] = image_data.get('highResUrl')
                 
-                # Include all events if include_past is True, otherwise only active events
+                # Filter based on status if needed
                 if include_past or event_data.get('status') == 'ACTIVE':
                     events.append(event)
-        
+    
     except Exception as e:
         print(f"Error parsing events: {e}")
     

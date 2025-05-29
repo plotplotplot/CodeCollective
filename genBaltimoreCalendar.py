@@ -2,6 +2,7 @@ import scrape_meetup
 import scrape_eventbrite
 import scrape_jotform
 import scrape_equitech
+import scrape_luma
 import json
 from ics import Calendar, Event
 import datetime
@@ -305,6 +306,11 @@ if __name__ == "__main__":
     for JOTFORM_URL in sources.get("Jotform", []):
         print(f"Fetching events from {JOTFORM_URL}")
         upcoming_events += [scrape_jotform.parse_jotform_event(JOTFORM_URL)]
+
+
+    for LUMA_URL in sources.get("Luma", []):
+        print(f"Fetching events from {LUMA_URL}")
+        upcoming_events += [scrape_luma.parse_luma_event_page(LUMA_URL)]
 
     upcoming_events += scrape_equitech.scrape_equitech_tuesday()
 
