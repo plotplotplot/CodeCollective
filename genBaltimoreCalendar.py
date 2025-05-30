@@ -301,7 +301,7 @@ if __name__ == "__main__":
 
     for EVENTBRITE_URL in sources.get("Eventbrite", []):
         print(f"Fetching events from {EVENTBRITE_URL}")
-        upcoming_events += [scrape_eventbrite.parse_eventbrite_event(EVENTBRITE_URL)]
+        upcoming_events += scrape_eventbrite.parse_eventbrite_event(EVENTBRITE_URL)
 
     for JOTFORM_URL in sources.get("Jotform", []):
         print(f"Fetching events from {JOTFORM_URL}")

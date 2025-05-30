@@ -28,7 +28,11 @@ def parse_eventbrite_event(url):
         event_id = re.search(r'tickets-(\d+)', url).group(1)
     
     # Extract event name
-    event_name = soup.select_one('h1.event-title').text.strip()
+    try:
+        event_name = soup.select_one('h1.event-title').text.strip()
+    except:
+        print("Event Over")
+        return []
     
     # Extract event description
     try:
@@ -98,7 +102,7 @@ def parse_eventbrite_event(url):
         "imageUrl": image_url
     }
     
-    return event_data
+    return [event_data]
 
 # Example usage
 if __name__ == "__main__":
