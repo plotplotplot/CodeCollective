@@ -247,8 +247,6 @@ function addTodayStyles() {
   document.head.appendChild(style);
 }
 
-// All styles are now handled externally in CSS file
-
 // Function to ensure today's date is highlighted correctly (desktop only)
 function highlightToday() {
   if (isMobile) return;
@@ -317,16 +315,16 @@ function getLatestEventWithImageForDay(events, date) {
   if (isMobile) return null;
 
   // Format the date to YYYY-MM-DD using local timezone
-  const dateStr = date.getFullYear() + '-' + 
-                  String(date.getMonth() + 1).padStart(2, '0') + '-' + 
-                  String(date.getDate()).padStart(2, '0');
+  const dateStr = date.getFullYear() + '-' +
+    String(date.getMonth() + 1).padStart(2, '0') + '-' +
+    String(date.getDate()).padStart(2, '0');
 
   // Filter events that are on this day and have an image
   const dayEvents = events.filter(event => {
     const eventDate = new Date(event.start);
-    const eventDateStr = eventDate.getFullYear() + '-' + 
-                         String(eventDate.getMonth() + 1).padStart(2, '0') + '-' + 
-                         String(eventDate.getDate()).padStart(2, '0');
+    const eventDateStr = eventDate.getFullYear() + '-' +
+      String(eventDate.getMonth() + 1).padStart(2, '0') + '-' +
+      String(eventDate.getDate()).padStart(2, '0');
     return eventDateStr === dateStr && event.extendedProps.imageUrl;
   });
 
@@ -339,20 +337,56 @@ function getLatestEventWithImageForDay(events, date) {
   // Return the latest event
   return dayEvents[0];
 }
-
 // Initialize the FullCalendar (desktop only)
 function initializeCalendar(events) {
   if (isMobile) return;
 
+  // Filter events to show only next 4 weeks starting from today
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const fourWeeksFromNow = new Date(today);
+  fourWeeksFromNow.setDate(today.getDate() + 28); // 4 weeks = 28 days
+  fourWeeksFromNow.setHours(23, 59, 59, 999); // End of the day
+
+  const filteredEvents = events.filter(event => {
+    const eventDate = new Date(event.start);
+    return eventDate >= today && eventDate <= fourWeeksFromNow;
+  });
+
+  // Calculate the start of current week (Sunday)
+  const startOfWeek = new Date(today);
+  const dayOfWeek = startOfWeek.getDay(); // 0 = Sunday, 1 = Monday, etc.
+  startOfWeek.setDate(startOfWeek.getDate() - dayOfWeek);
+  startOfWeek.setHours(0, 0, 0, 0);
+
+  // Calculate end of 4th week (current week + 3 weeks after)
+  const endOf4Weeks = new Date(startOfWeek);
+  endOf4Weeks.setDate(startOfWeek.getDate() + 29); // 4 weeks + 1 day (since end is exclusive)
+
   const calendarEl = document.getElementById('calendar');
   calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: ''  // We're using our custom view selectors instead
+    initialView: 'dayGridFourWeek',
+    views: {
+      dayGridFourWeek: {
+        type: 'dayGrid',
+        duration: { weeks: 4 },
+        buttonText: '4 Weeks',
+        fixedWeekCount: true,     // Always show the same number of weeks (usually 6)
+        height: 'auto',           // Let calendar resize to fit, or use a fixed value (e.g., 600)
+
+      },
     },
-    events: events,
+    headerToolbar: {
+      left: 'prev',
+      center: 'title',
+      right: 'next'
+    },
+    validRange: {
+      start: today             // today's date (inclusive)
+    },
+
+    events: events, // Use all events (validRange will filter the display)
     eventClick: function (info) {
       window.location.href = info.url;
     },
@@ -364,8 +398,19 @@ function initializeCalendar(events) {
     height: 'auto',
     dayMaxEvents: true, // Allow "more" link when too many events
     dayCellDidMount: function (info) {
+      // Only show images for today and future dates
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const cellDate = new Date(info.date);
+      cellDate.setHours(0, 0, 0, 0);
+      
+      // Skip if this day is before today
+      if (cellDate < today) {
+        return;
+      }
+
       // Get the latest event with an image for this day
-      const latestEvent = getLatestEventWithImageForDay(filteredEvents, info.date);
+      const latestEvent = getLatestEventWithImageForDay(events, info.date);
 
       if (latestEvent && latestEvent.extendedProps.imageUrl) {
         // Get the day cell element
@@ -421,23 +466,12 @@ function initializeCalendar(events) {
       const tooltip = document.createElement('div');
       tooltip.classList.add('event-tooltip');
       tooltip.innerHTML = `
-        <strong>${info.event.title}</strong>
-        <div>${formatEventDate(info.event.start, info.event.end)}</div>
-      `;
-
-      info.el.setAttribute('title', info.event.title);
-    },
-    views: {
-      listAll: {
-        type: 'list',
-        duration: { years: 10 },
-        buttonText: 'Card View',
-      },
-      listYear: {
-        type: 'list',
-        duration: { year: 1 },
-        buttonText: 'Year'
-      }
+    <strong>${info.event.title}</strong>
+    <div>${formatEventDate(info.event.start, info.event.end)}</div>
+  `;
+      // Check both locations for description
+      const description = info.event.extendedProps.description || info.event.description || '';
+      info.el.setAttribute('title', `${description}`);
     },
     // Add this: Callback for when view is rendered
     viewDidMount: function () {
