@@ -1,15 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        /* Reset for email clients */
+        body, p, div {
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             color: #333333;
-            max-width: 600px;
+            background-color: #f4f4f4;
+        }
+        
+        /* Main container that centers everything */
+        .main-container {
+            width: 100%;
+            max-width: 100%;
+            padding: 20px 0;
+        }
+        
+        /* Content container with responsive margins */
+        .content {
+            width: 60%; /* 100% - 20% on each side = 60% */
+            max-width: 600px; /* Fallback for very wide screens */
             margin: 0 auto;
+            background-color: #ffffff;
             padding: 20px;
         }
+        
+        /* Media query for smaller screens */
+        @media screen and (max-width: 768px) {
+            .content {
+                width: 90%; /* More width on mobile */
+                max-width: 90%;
+            }
+        }
+        
+        /* Media query for very small screens */
+        @media screen and (max-width: 480px) {
+            .content {
+                width: 95%;
+                max-width: 95%;
+                padding: 15px;
+            }
+        }
+        
         .header {
             font-size: 18px;
             font-weight: bold;
@@ -20,6 +59,7 @@
             height: auto;
             margin: 15px 0;
             border-radius: 4px;
+            display: block;
         }
         .signature {
             margin-top: 30px;
@@ -42,35 +82,40 @@
     </style>
 </head>
 <body>
-    <div class="header">Dear Residents and Friends of Greenmount West,</div>
+    <!-- Centering wrapper -->
+    <div class="main-container">
+        <div class="content">
+            <div class="header">Dear Residents and Friends of Greenmount West,</div>
 
-    <p>It's been a pleasure and an honor to be part of the Greenmount West community as your Stoop Night DJ! Stoop Night has given me a special opportunity—not only to practice and fine-tune my sound system but also to connect with a vibrant, welcoming Baltimore neighborhood.</p>
+            <p>It's been a pleasure and an honor to be part of the Greenmount West community as your Stoop Night DJ! Stoop Night has given me a special opportunity—not only to practice and fine-tune my sound system but also to connect with a vibrant, welcoming Baltimore neighborhood.</p>
 
-    <img src="https://codecollective.us/images/greenmountwest.jpg" alt="Stoop Night Karaoke" class="image">
+            <img src="https://codecollective.us/images/greenmountwest.jpg" alt="Stoop Night Karaoke" class="image">
 
-    <p>I first debuted my unique karaoke setup at Stoop Night, and it's since become a holiday tradition at Nelson Kohl!</p>
+            <p>I first debuted my unique karaoke setup at Stoop Night, and it's since become a holiday tradition at Nelson Kohl!</p>
 
-    <p>Some of you may know that I am a computer programmer and community organizer. After co-organizing <span class="highlight">Baltimore Code & Coffee</span> for a while, I launched a new initiative last September: <span class="highlight">Code Collective</span>— with a greater focus on understanding and addressing economic concerns in technology. Code Collective is the closest thing Baltimore has to a tech labor union. We aim to improve the quality of local technology so as to be competitive with the rest of the world, working through social means.</p>
+            <p>Some of you may know that I am a computer programmer and community organizer. After co-organizing <span class="highlight">Baltimore Code & Coffee</span> for a while, I launched a new initiative last September: <span class="highlight"><a href="http://codecollective.us">Code Collective</a></span>— with a greater focus on understanding and addressing economic concerns in technology. Code Collective is the closest thing Baltimore has to a tech labor union. We aim to improve the quality of local technology so as to be competitive with the rest of the world, working through social means.</p>
 
-    <p>This spring, I've been focused on a new initiative: a one-time event aimed at bringing together organizers from Baltimore's various tech and affinity groups, many of which I have attended personally. With renewed interest in local manufacturing, I've also been connecting with manufacturing organizations, as well as nonprofits and government agencies, recognizing the political and economic importance of collaboration.</p>
+            <p>This spring, I've been focused on a new initiative: a one-time event aimed at bringing together organizers from Baltimore's various tech and affinity groups, many of which I have attended personally. With renewed interest in local manufacturing, I've also been connecting with manufacturing organizations, as well as nonprofits and government agencies, recognizing the political and economic importance of collaboration.</p>
 
-    <p>All of these groups are now part of a growing network I've been building—and I'm excited to invite you to the next step in collaboration with GWCA:</p>
+            <p>All of these groups are now part of a growing network I've been building—and I'm excited to invite you to the next step in collaboration with <span class="highlight">GWCA</span>:</p>
 
-    <h3>The Tech Unity Cookout at Wonderground!</h3>
+            <h3>The Tech Unity Cookout at Wonderground!</h3>
 
-    <img src="https://codecollective.us/images/techunity4_meetup.jpg" alt="Tech Unity Cookout" class="image">
+            <img src="https://codecollective.us/images/techunity4_meetup.jpg" alt="Tech Unity Cookout" class="image">
 
-    <p>We'll be serving tacos, and inviting community and tech leaders to briefly speak about their work and organizations. It will be an excellent opportunity to network and develop the relationships vital to Baltimore's economy -- ultimately to improve the lives of ourselves and our people.</p>
+            <p>We'll be serving tacos, and inviting community and tech leaders to briefly speak about their work and organizations. It will be an excellent opportunity to network and develop the relationships vital to Baltimore's economy -- ultimately to improve the lives of ourselves and our people.</p>
 
-    <p>The event is open to the public! If you'd like to join us, please RSVP on our Meetup page:</p>
+            <p>The event is open to the public! If you'd like to join us, please RSVP on our Meetup page:</p>
 
-    <a href="https://www.meetup.com/code-collective/events/307426667/" class="cta-button">RSVP Now</a>
-
-    Cheers to this amazing community,<br>
-    <p class="signature">
-        <strong>Julian Coy</strong><br>
-        Organizer, Code Collective<br>
-        <a href="https://codecollective.us">codecollective.us</a> (Baltimore Tech Events Calendar)
-    </p>
+            <a href="https://www.meetup.com/code-collective/events/307426667/" class="cta-button">RSVP Now</a>
+            
+            <p>Cheers to this amazing community,</p>
+            <p class="signature">
+                <strong>Julian Coy</strong><br>
+                Organizer, Code Collective<br>
+                <a href="https://codecollective.us">codecollective.us</a> (Baltimore Tech Events Calendar)
+            </p>
+        </div>
+    </div>
 </body>
 </html>
