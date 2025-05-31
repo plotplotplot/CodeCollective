@@ -257,6 +257,9 @@ def extract_proper_extension(url):
     # Default fallback to jpg for Eventbrite images (which are typically JPEG)
     return "jpg"
 
+from PIL import Image
+from io import BytesIO
+
 def download_image(url, filename):
     """Download image from URL and save to filename"""
     try:
@@ -313,16 +316,45 @@ if __name__ == "__main__":
         upcoming_events += [scrape_luma.parse_luma_event_page(LUMA_URL)]
 
     upcoming_events += scrape_equitech.scrape_equitech_tuesday()
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+    }
 
+    # Download images for each event
     for event in upcoming_events:
         # Download images if available
         if "imageUrl" in event and event["imageUrl"]:
             image_url = event["imageUrl"]
-            extension = extract_proper_extension(image_url)
-            
-            # Create a valid filename with all spaces replaced by underscores
-            safe_event_name = event['name'].replace(' ', '_').replace('/', '_').replace('\\', '_')
-            image_filename = f"event_images/{safe_event_name}.{extension}"
+            try:
+                # Create a valid filename with all spaces replaced by underscores
+                safe_event_name = event['name'].replace(' ', '_').replace('/', '_').replace('\\', '_').replace('\'', '_')
+
+                image_filename = f"event_images/{safe_event_name}.webp"
+                if os.path.exists(image_filename):
+                    print(f"Image already exists: {image_filename}, skipping download.")
+                    continue
+
+                extension = extract_proper_extension(image_url)
+
+                response = requests.get(image_url, headers=headers, timeout=10)
+                response.raise_for_status()
+
+                # Load image
+                img = Image.open(BytesIO(response.content))
+
+                # Resize while keeping aspect ratio
+                img.thumbnail((400, 400), Image.Resampling.LANCZOS)
+
+
+                # Save as WebP with high compression
+                img.save(image_filename, "WEBP", quality=80, method=6)
+
+                # Update event data with local path
+                event["imageUrl"] = "/" + image_filename
+
+                print(f"Saved image: {image_filename}")
+            except Exception as e:
+                print(f"Failed to process image for event {event['name']}: {e}")
         
     # Save upcoming events to a file
     with open("upcoming_events.json", "w+", encoding="utf-8") as f:

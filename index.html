@@ -1,32 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <title>Code Collective | Organizing Tech Labor.</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  <link rel="icon" href="/images/favicons/favicon.png" />
+  <title>Code Collective | Baltimore Tech Events Calendar & Tech Labor Organization</title>
 
-  <link rel="canonical" href="https://codecollective.us/" />
-  <meta property="og:type" content="Code Collective" />
-  <meta property="og:url" content="https://codecollective.us/" />
-  <meta property="og:site_name" content="Code Collective" />
-  <meta property="og:title" content="Code Collective" />
-  <meta property="og:description" content="Organizing Tech Labor." />
-  <meta name="description" content="Organizing Tech Labor." />
-
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Code Collective organizes tech labor in Baltimore and provides a unified calendar of local tech meetups, hackathons, and tech community events." />
   <meta name="robots" content="index, follow" />
   <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://codecollective.us/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://codecollective.us/" />
+  <meta property="og:site_name" content="Code Collective" />
+  <meta property="og:title" content="Code Collective | Baltimore Tech Events Calendar" />
+  <meta property="og:description" content="Organizing tech labor in Baltimore and sharing a community-wide tech events calendar." />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/favicons/favicon.png" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <link rel="stylesheet" href="/css/master.css" />
   <link rel="stylesheet" href="/css/calendar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/main.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Scripts -->
   <script type="module" src="/js/reusableComponents.js"></script>
   <script type="module" src="/js/header.js"></script>
-
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/main.min.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
-  <!-- Add Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- Inline Styles -->
   <style>
     body,
     #main,
@@ -40,68 +49,96 @@
     .container {
       padding: 0 15px !important;
     }
+
+    .download-button {
+      display: inline-block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #00796b;
+      color: #fff;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .download-button:hover {
+      background-color: #004d40;
+    }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Code Collective",
+    "url": "https://codecollective.us",
+    "description": "Organizing tech labor and maintaining a Baltimore tech events calendar.",
+    "location": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Baltimore",
+        "addressRegion": "MD",
+        "addressCountry": "US"
+      }
+    }
+  }
+  </script>
 </head>
 
 <body id="body">
-  <nav class="main-nav">
+  <nav class="main-nav" aria-label="Main Navigation">
     <div class="navbar dark-mode">
-      <a href="/index.html" target="_top">Home</a>
-      <a href="/calendar.html" target="_top">Calendar</a>
-      <a href="/curriculum.html" target="_top">Curriculum</a>
-      <a href="/getinvolved.html" target="_top">Get Involved!</a>
-      <a href="/sponsors.html" target="_top">Sponsors</a>
-      <a href="/about-us.html" target="_top">About Us</a>
+      <a href="/index.html">Home</a>
+      <a href="/calendar.html">Calendar</a>
+      <a href="/curriculum.html">Curriculum</a>
+      <a href="/getinvolved.html">Get Involved!</a>
+      <a href="/sponsors.html">Sponsors</a>
+      <a href="/about-us.html">About Us</a>
     </div>
-    <button class="mobile-nav-bars">
+    <button class="mobile-nav-bars" aria-label="Toggle mobile menu">
       <div class="top bar"></div>
       <div class="middle bar"></div>
       <div class="bottom bar"></div>
     </button>
   </nav>
 
+  <button id="toggle-dark-mode" aria-label="Toggle dark mode">☀️</button>
 
-
-  <button id="toggle-dark-mode">☀️</button>
-  <section id="wrapper" class="longform dark-mode" style="padding: 0; margin: 0;">
+  <main id="wrapper" class="longform dark-mode" style="padding: 0; margin: 0;">
     <section id="main" class="longform dark-mode" style="padding: 0; margin: 0;">
-      <div class="header-container" style="text-align: center; padding: 20px 0;">
+      <header class="header-container" style="text-align: center; padding: 20px 0;">
         <p style="margin-bottom: 8px; font-size: 1.2em;">Code Collective brings you</p>
         <h1 style="margin: 10px 0; font-size: 2.5em;">A Baltimore Tech Events Calendar</h1>
-        <p style="margin-top: 8px; font-size: 1.1em;">A unified calendar of tech events from Baltimore area meetup
-          groups</p>
-      </div>
+        <p style="margin-top: 8px; font-size: 1.1em;">A unified calendar of tech events from Baltimore area meetup groups</p>
+      </header>
 
-      <div class="download-section">
-        <a href="https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/baltimore_tech_events.ics"
-          class="download-button" target="_blank">
-          <i class="fas fa-calendar-alt"></i>Add to Google Calendar
-        </a>
-
-      </div>
       <div class="container">
-
-
-        <div class="calendar-container">
-          <div id="loading">
+        <section class="calendar-container" aria-label="Baltimore Tech Events Calendar">
+          <div id="loading" aria-live="polite">
             <i class="fas fa-spinner fa-spin"></i> Loading calendar events...
           </div>
           <div id="calendar"></div>
-        </div>
+        </section>
       </div>
 
-      <!-- Import the external calendar.js script -->
+      <section class="download-section" aria-label="Calendar download options">
+        <a href="https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/baltimore_tech_events.ics"
+          class="download-button" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-calendar-alt" aria-hidden="true"></i> Add to Google Calendar
+        </a>
+      </section>
+
+      
       <script src="/js/calendar.js"></script>
     </section>
-  </section>
+  </main>
 
   <our-footer></our-footer>
-
   <our-slack-link></our-slack-link>
 
   <!-- Scripts -->
-  <!-- Clicky Analytics -->
   <script src="./lightdark.js"></script>
   <script async data-id="101449400" src="//static.getclicky.com/js"></script>
 </body>

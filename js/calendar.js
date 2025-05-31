@@ -162,9 +162,7 @@ function createEventCard(event) {
     <i class="fas fa-map-marker-alt"></i> 
     <span class="location-address">
       ${[
-        event.location.address,
-        event.location.city,
-        event.location.state
+        event.location.address
       ].filter(Boolean).join(', ')}
     </span>
   </div>
@@ -471,7 +469,7 @@ function initializeCalendar(events) {
   `;
       // Check both locations for description
       const description = info.event.extendedProps.description || info.event.description || '';
-      info.el.setAttribute('title', `${description}`);
+      info.el.setAttribute('title', `${info.event.title}\n${info.event.extendedProps.location.address}\n${description}`);
     },
     // Add this: Callback for when view is rendered
     viewDidMount: function () {

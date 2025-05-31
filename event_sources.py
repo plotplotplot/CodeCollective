@@ -15,7 +15,15 @@ sources = {
     "Eventbrite":[
         "https://www.eventbrite.com/e/indie-game-fest-2025-tickets-1264402364509",
         "https://www.eventbrite.com/e/blk-tech-connect-tickets-1306134626829",
-        "https://www.eventbrite.com/e/canton-laughs-the-inaugural-comedy-showcase-tickets-1354002962309"
+        "https://www.eventbrite.com/e/canton-laughs-the-inaugural-comedy-showcase-tickets-1354002962309",
+        "https://www.eventbrite.com/e/people-make-games-developer-talk-tickets-1264411943159",
+        "https://www.eventbrite.com/e/county-executive-balls-5th-annual-stem-awards-tickets-1371704919339",
+        "https://www.eventbrite.com/e/rts-and-lets-go-networking-event-tickets-1355181978779",
+        "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
+        "https://www.eventbrite.com/e/weekly-meetings-no-labels-party-us-2028-tickets-1375290293289",
+        "https://www.eventbrite.com/e/know-your-local-leaders-tickets-1302421310199",
+        "https://www.eventbrite.com/e/weekly-meetings-no-labels-party-us-2028-tickets-1375290313349"
+        
     ],
     "Jotform":[
         "https://form.jotform.com/251063812795157"
