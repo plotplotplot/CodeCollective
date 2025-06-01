@@ -29,6 +29,7 @@ sources = {
         "https://form.jotform.com/251063812795157"
     ],
     "Luma":[
-        "https://lu.ma/k5mgdolz"
+        "https://lu.ma/k5mgdolz",
+        "https://lu.ma/wrqpk3v2"
     ],
 }
