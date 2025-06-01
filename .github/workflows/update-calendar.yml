@@ -25,9 +25,9 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Run genCalendar.py
+      - name: Run genBaltimoreCalendar.py
         run: |
-          python genCalendar.py
+          python genBaltimoreCalendar.py
 
       - name: Check for changes
         run: |
