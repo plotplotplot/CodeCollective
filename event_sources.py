@@ -10,7 +10,8 @@ sources = {
         "https://www.meetup.com/it-social-east-us-ca-data-technology-cybersecurity/events/",
         "https://www.meetup.com/the-baltimore-wordpress-group/events/",
         "https://www.meetup.com/baltimore-bayesians/events/",
-        "https://www.meetup.com/dataworks/events/"
+        "https://www.meetup.com/dataworks/events/",
+        "https://www.meetup.com/baltimorebitcoin/events/",
     ],
     "Eventbrite":[
         "https://www.eventbrite.com/e/indie-game-fest-2025-tickets-1264402364509",
