@@ -31,11 +31,11 @@ jobs:
 
       - name: Check for changes
         run: |
-          if git diff --exit-code calendar.html; then
-            echo "No changes in calendar.html"
+          if git diff --exit-code meetup_upcoming.html; then
+            echo "No changes in meetup_upcoming.html"
             exit 0
           else
-            echo "Changes detected in calendar.html"
+            echo "Changes detected in meetup_upcoming.html"
           fi
 
       - name: Commit and push changes
@@ -46,5 +46,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "Update calendar.html"
+          git commit -m "Update meetup_upcoming.html"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
