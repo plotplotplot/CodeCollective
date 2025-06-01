@@ -330,7 +330,7 @@ if __name__ == "__main__":
                 safe_event_name = event['name'].replace(' ', '_').replace('/', '_').replace('\\', '_').replace('\'', '_')
 
                 image_filename = f"event_images/{safe_event_name}.webp"
-                if os.path.exists(image_filename):
+                if os.path.exists(image_filename) and False:
                     print(f"Image already exists: {image_filename}, skipping download.")
                     continue
 

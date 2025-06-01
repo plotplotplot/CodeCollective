@@ -23,7 +23,8 @@ sources = {
         "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
         "https://www.eventbrite.com/e/weekly-meetings-no-labels-party-us-2028-tickets-1375290293289",
         "https://www.eventbrite.com/e/know-your-local-leaders-tickets-1302421310199",
-        "https://www.eventbrite.com/e/weekly-meetings-no-labels-party-us-2028-tickets-1375290313349"
+        "https://www.eventbrite.com/e/weekly-meetings-no-labels-party-us-2028-tickets-1375290313349",
+        "https://www.eventbrite.com/e/techspo-baltimore-2025-technology-expo-internet-adtech-martech-tickets-1114708064829"
         
     ],
     "Jotform":[
