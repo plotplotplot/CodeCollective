@@ -11,14 +11,44 @@ function isMobileDevice() {
   return window.matchMedia('(max-width: 768px)').matches;
 }
 
+// Generic image prefetching function
+function prefetchImages(urls) {
+  if (!window.Promise || !window.fetch) return; // Skip if browser doesn't support
+  
+  urls.forEach(url => {
+    // Create link preload for important above-the-fold images
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = url;
+    document.head.appendChild(link);
+    
+    // Fetch all images to cache them
+    fetch(url, {
+      mode: 'no-cors',
+      cache: 'force-cache'
+    }).catch(() => {}); // Silent fail is okay for prefetch
+  });
+}
+
 // Fetch and parse event data
 document.addEventListener('DOMContentLoaded', function () {
+
   isMobile = isMobileDevice();
 
   fetch('upcoming_events.json')
     .then(response => response.json())
     .then(events => {
       allEvents = processEvents(events);
+
+      // Extract all unique event image URLs
+      const eventImageUrls = allEvents
+        .map(event => event.extendedProps?.imageUrl)
+        .filter(url => url); // Remove null/undefined
+      
+      // Prefetch all event images in parallel
+      prefetchImages(eventImageUrls);
+
       filteredEvents = [...allEvents]; // Make a copy for filtering
 
       if (isMobile) {
@@ -43,14 +73,16 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!isMobile) {
     addTodayStyles();
   }
-
-  // Listen for window resize to switch between mobile/desktop views
-  window.addEventListener('resize', function () {
+  
+  // Debounce the resize event listener to avoid excessive re-rendering
+  let resizeTimeout;
+  window.addEventListener('resize', function() {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
     const wasMobile = isMobile;
     isMobile = isMobileDevice();
-
+    
     if (wasMobile !== isMobile) {
-      // View changed, reinitialize
       if (isMobile) {
         destroyCalendar();
         initializeMobileCards(allEvents);
@@ -60,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
         addTodayStyles();
       }
     }
+  }, 200); // Adjust debounce time as needed
   });
 });
 
@@ -177,10 +210,6 @@ function createEventCard(event) {
           ${needsMore ? '<button class="more-btn" onclick="toggleDescription(this)"><i class="fas fa-chevron-down"></i> More</button>' : ''}
         </div>
       ` : ''}
-      <div class="card-footer">
-        ${event.extendedProps?.group ? `<div class="card-group">${event.extendedProps.group}</div>` : ''}
-        ${event.url ? '<div class="card-link-indicator"><i class="fas fa-external-link-alt"></i></div>' : ''}
-      </div>
   `;
 
   // Process markdown for full description if needed
@@ -401,7 +430,7 @@ function initializeCalendar(events) {
       today.setHours(0, 0, 0, 0);
       const cellDate = new Date(info.date);
       cellDate.setHours(0, 0, 0, 0);
-      
+
       // Skip if this day is before today
       if (cellDate < today) {
         return;

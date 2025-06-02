@@ -7,7 +7,8 @@
   <title>Code Collective | Baltimore Tech Events Calendar & Tech Labor Organization</title>
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Code Collective organizes tech labor in Baltimore and provides a unified calendar of local tech meetups, hackathons, and tech community events." />
+  <meta name="description"
+    content="Code Collective organizes tech labor in Baltimore and provides a unified calendar of local tech meetups, hackathons, and tech community events." />
   <meta name="robots" content="index, follow" />
   <meta name="googlebot" content="index, follow" />
   <link rel="canonical" href="https://codecollective.us/" />
@@ -17,24 +18,49 @@
   <meta property="og:url" content="https://codecollective.us/" />
   <meta property="og:site_name" content="Code Collective" />
   <meta property="og:title" content="Code Collective | Baltimore Tech Events Calendar" />
-  <meta property="og:description" content="Organizing tech labor in Baltimore and sharing a community-wide tech events calendar." />
+  <meta property="og:description"
+    content="Organizing tech labor in Baltimore and sharing a community-wide tech events calendar." />
 
   <!-- Favicon -->
   <link rel="icon" href="/images/favicons/favicon.png" />
 
+  <link rel="preload" href="/css/master.css" as="style">
+  <link rel="preload" href="/css/calendar.css" as="style">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <link rel="stylesheet" href="/css/master.css" />
   <link rel="stylesheet" href="/css/calendar.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/main.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Scripts -->
-  <script type="module" src="/js/reusableComponents.js"></script>
-  <script type="module" src="/js/header.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    // First, prefetch all critical static images
+    prefetchImages([
+      '/images/favicons/favicon.png',
+      '/images/WhatsApp.svg.webp',
+      '/images/github_icon.png',
+      // Add other static images used by your UI
+    ]);
 
+    fetch('upcoming_events.json')
+      .then(response => response.json())
+      .then(events => {
+        allEvents = processEvents(events);
+
+        // Extract all unique event image URLs
+        const eventImageUrls = allEvents
+          .map(event => event.extendedProps?.imageUrl)
+          .filter(url => url); // Remove null/undefined
+
+        // Prefetch all event images in parallel
+        prefetchImages(eventImageUrls);
+      }
+      ).catch(error => {
+        console.error('Error fetching or processing events:', error);
+      });
+  </script>
   <!-- Inline Styles -->
   <style>
     body,
@@ -111,7 +137,8 @@
       <header class="header-container" style="text-align: center; padding: 20px 0;">
         <p style="margin-bottom: 8px; font-size: 1.2em;">Code Collective brings you</p>
         <h1 style="margin: 10px 0; font-size: 2.5em;">A Baltimore Tech Events Calendar</h1>
-        <p style="margin-top: 8px; font-size: 1.1em;">A unified calendar of tech events from Baltimore area meetup groups</p>
+        <p style="margin-top: 8px; font-size: 1.1em;">A unified calendar of tech events from Baltimore area meetup
+          groups</p>
       </header>
 
       <div class="container">
@@ -130,7 +157,7 @@
         </a>
       </section>
 
-      
+
       <script src="/js/calendar.js"></script>
     </section>
   </main>
@@ -140,7 +167,11 @@
 
   <!-- Scripts -->
   <script src="./lightdark.js"></script>
-  <script async data-id="101449400" src="//static.getclicky.com/js"></script>
 </body>
+
+  <script type="module" src="/js/reusableComponents.js"></script>
+  <script type="module" src="/js/header.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 </html>

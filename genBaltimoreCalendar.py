@@ -327,10 +327,10 @@ if __name__ == "__main__":
             image_url = event["imageUrl"]
             try:
                 # Create a valid filename with all spaces replaced by underscores
-                safe_event_name = event['name'].replace(' ', '_').replace('/', '_').replace('\\', '_').replace('\'', '_')
+                safe_event_name = event['name'].replace(' ', '_').replace('/', '_').replace('\\', '_').replace('\'', '_').replace(':', '_').replace('(', '_').replace(')', '_')
 
                 image_filename = f"event_images/{safe_event_name}.webp"
-                if os.path.exists(image_filename) and False:
+                if os.path.exists(image_filename):
                     print(f"Image already exists: {image_filename}, skipping download.")
                     continue
 
