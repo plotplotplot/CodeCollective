@@ -3,6 +3,7 @@ import scrape_eventbrite
 import scrape_jotform
 import scrape_equitech
 import scrape_luma
+import scrape_ics
 import json
 from ics import Calendar, Event
 import datetime
@@ -310,7 +311,6 @@ if __name__ == "__main__":
         print(f"Fetching events from {JOTFORM_URL}")
         upcoming_events += [scrape_jotform.parse_jotform_event(JOTFORM_URL)]
 
-
     for LUMA_URL in sources.get("Luma", []):
         print(f"Fetching events from {LUMA_URL}")
         upcoming_events += [scrape_luma.parse_luma_event_page(LUMA_URL)]
@@ -319,6 +319,20 @@ if __name__ == "__main__":
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
     }
+
+    try:
+        upcoming_events += scrape_ics.fetch_calendar_events(
+            existing_events=upcoming_events,
+            ICS_URL="https://calendar.google.com/calendar/ical/unallocatedspacehq@gmail.com/public/basic.ics")
+    except Exception as e:
+        print(f"Error fetching calendar events: {e}")
+
+    try:
+        upcoming_events += scrape_ics.fetch_calendar_events(
+            existing_events=upcoming_events,
+            ICS_URL='http://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics')
+    except Exception as e:
+        print(f"Error fetching calendar events: {e}")
 
     # Download images for each event
     for event in upcoming_events:
