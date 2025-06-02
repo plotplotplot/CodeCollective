@@ -325,15 +325,19 @@ if __name__ == "__main__":
         # Download images if available
         if "imageUrl" in event and event["imageUrl"]:
             image_url = event["imageUrl"]
+
+            # Create a valid filename with all spaces replaced by underscores
+            safe_event_name = event['name'].replace(' ', '_').replace('/', '_').replace('\\', '_').replace('\'', '_').replace(':', '_').replace('(', '_').replace(')', '_')
+            image_filename = f"event_images/{safe_event_name}.webp"
+
+            # Update event data with local path
+            event["imageUrl"] = "/" + image_filename
+
+            if os.path.exists(image_filename):
+                print(f"Image already exists: {image_filename}, skipping download.")
+                continue
+            
             try:
-                # Create a valid filename with all spaces replaced by underscores
-                safe_event_name = event['name'].replace(' ', '_').replace('/', '_').replace('\\', '_').replace('\'', '_').replace(':', '_').replace('(', '_').replace(')', '_')
-
-                image_filename = f"event_images/{safe_event_name}.webp"
-                if os.path.exists(image_filename):
-                    print(f"Image already exists: {image_filename}, skipping download.")
-                    continue
-
                 extension = extract_proper_extension(image_url)
 
                 response = requests.get(image_url, headers=headers, timeout=10)
@@ -345,16 +349,15 @@ if __name__ == "__main__":
                 # Resize while keeping aspect ratio
                 img.thumbnail((400, 400), Image.Resampling.LANCZOS)
 
-
                 # Save as WebP with high compression
                 img.save(image_filename, "WEBP", quality=80, method=6)
 
-                # Update event data with local path
-                event["imageUrl"] = "/" + image_filename
-
                 print(f"Saved image: {image_filename}")
+                
             except Exception as e:
                 print(f"Failed to process image for event {event['name']}: {e}")
+                # revert url
+                event["imageUrl"] = image_url
         
     # Save upcoming events to a file
     with open("upcoming_events.json", "w+", encoding="utf-8") as f:
