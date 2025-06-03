@@ -33,6 +33,7 @@ sources = {
     ],
     "Luma":[
         "https://lu.ma/k5mgdolz",
-        "https://lu.ma/wrqpk3v2"
+        "https://lu.ma/wrqpk3v2",
+        "https://lu.ma/02zv4one"
     ],
 }
