@@ -12,6 +12,7 @@ sources = {
         "https://www.meetup.com/baltimore-bayesians/events/",
         "https://www.meetup.com/dataworks/events/",
         "https://www.meetup.com/baltimorebitcoin/events/",
+        "https://www.meetup.com/python-frederick/events/"
     ],
     "Eventbrite":[
         "https://www.eventbrite.com/e/indie-game-fest-2025-tickets-1264402364509",
