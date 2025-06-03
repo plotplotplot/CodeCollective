@@ -689,7 +689,7 @@
         "status": "ACTIVE",
         "location": {
             "name": "Silks",
-            "address": "2641 Hudson Street Baltimore, MD 21224",
+            "address": "2641 Hudson Street Baltimore, MD 21224 United States",
             "city": "2641 Hudson Street Baltimore",
             "state": "MD",
             "country": "US"
@@ -905,7 +905,7 @@
                 }
             ]
         },
-        "guest_count": 306,
+        "guest_count": 322,
         "featured_guests": [
             {
                 "name": "Octavia Haysbert",
@@ -1055,24 +1055,58 @@
         ]
     },
     {
-        "id": "1a1a319d987749d9",
-        "name": "Content & Cocktails",
-        "startDate": "2025-05-27T18:00:00-04:00",
-        "endTime": "2025-05-27T20:00:00-04:00",
-        "description": "Equitech Tuesday event at Guilford Hall Brewery: Content & Cocktails. Join Baltimore's tech ecosystem for networking and innovation.",
-        "url": "https://upsurgebaltimore.com/equitech-tuesday/",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Guilford Hall Brewery",
-            "address": "Guilford Hall Brewery, Baltimore, MD 21202",
-            "city": "Baltimore",
-            "state": "MD",
-            "country": "US"
+        "name": "Web3 Maryland Blockchain Mixer",
+        "description": "Maryland, let\u2019s connect through blockchain! \ud83e\udde9\ud83d\ude80\n\nJoin Web3MD \u2014 a grassroots community & support network for founders, developers, and dreamers building in the Old Line State. Whether you're launching a protocol, writing your first smart contract, or exploring the space, you\u2019ve got a home here.\n\nPowered by:\ud83d\udee0\ufe0f Maryland Blockchain Association\ud83d\udee1\ufe0f Onyx Protocol\ud83c\udfdb\ufe0f Web3DC\n\nCome build with us.Come learn.Come connect.\n\n\ud83c\udf10 Web3 is happening in Maryland \u2014 don\u2019t miss it.",
+        "startDate": "2025-06-19T22:00:00.000Z",
+        "endTime": "2025-06-20T00:00:00.000Z",
+        "timezone": "America/New_York",
+        "visibility": "public",
+        "imageUrl": "/event_images/Web3_Maryland_Blockchain_Mixer.webp",
+        "url": "https://lu.ma/02zv4one",
+        "calendar": {
+            "name": "Web3 Maryland",
+            "description": "Community that powers us.",
+            "avatar": "https://images.lumacdn.com/calendars/cq/ffde340c-2888-436f-8e9f-24d13c1c4eab.png"
         },
-        "imageUrl": "/event_images/Content_&_Cocktails.webp"
+        "location": {
+            "name": "The Hideaway",
+            "full_address": "The Hideaway, 1439 Odenton Rd, Odenton, MD 21113, USA",
+            "description": "",
+            "coordinates": {
+                "latitude": "39.087590",
+                "longitude": "-76.711690"
+            }
+        },
+        "hosts": [
+            {
+                "name": "Web3 Maryland",
+                "avatar": "https://images.lumacdn.com/avatars/4g/431276ef-4081-4db7-a077-9a45da105826.png",
+                "profile_url": "https://lu.ma/user/web3maryland"
+            },
+            {
+                "name": "Gilberto Nazario",
+                "avatar": "https://cdn.lu.ma/avatars-default/avatar_14.png",
+                "profile_url": "https://lu.ma/user/None"
+            }
+        ],
+        "ticket_info": {
+            "is_free": true,
+            "spots_remaining": 100,
+            "types": [
+                {
+                    "name": "Standard",
+                    "price": 0,
+                    "currency": null,
+                    "description": null
+                }
+            ]
+        },
+        "guest_count": 0,
+        "featured_guests": [],
+        "registration_questions": []
     },
     {
-        "id": "d37cc70ee2674099",
+        "id": "ac84519ffb624b41",
         "name": "University of Baltimore AI Summit",
         "startDate": "2025-06-03T18:00:00-04:00",
         "endTime": "2025-06-03T20:00:00-04:00",
@@ -1089,7 +1123,7 @@
         "imageUrl": "/event_images/University_of_Baltimore_AI_Summit.webp"
     },
     {
-        "id": "738d163ab92c4700",
+        "id": "0509d67cf03b4908",
         "name": "Evening With ESOs",
         "startDate": "2025-06-10T18:00:00-04:00",
         "endTime": "2025-06-10T20:00:00-04:00",
