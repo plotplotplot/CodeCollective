@@ -32,36 +32,73 @@ class OurFooter extends HTMLElement {
     }
 }
 
-class OurMatrixLink extends HTMLElement {
+class OurSocials extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-            <aside id="socialButtons" class="slack-social slack-social__container">
+            <aside id="socialButtons" class="social__container">
+                <a
+                    href="https://matrix.to/#/#code-collective:matrix.org"
+                    target="_blank"
+                    class="social__link"
+                >
+                    <button class="social__button">
+                        <img
+                            src="/images/element_logo.svg"
+                            alt="Matrix icon"
+                            class="social__icon"
+                        />
+                    </button>
+                </a>
+                <a
+                    href="https://www.meetup.com/code-collective/"
+                    target="_blank"
+                    class="social__link"
+                >
+                    <button class="social__button">
+                        <img
+                            src="/images/meetup_icon.png"
+                            alt="Meetup icon"
+                            class="social__icon"
+                        />
+                    </button>
+                </a>
                 <a
                     href="https://chat.whatsapp.com/JFlI9aRvNaGCTU2lOFXpOt"
                     target="_blank"
-                    class="slack-social__link"
+                    class="social__link"
                 >
-                    <button class="slack-social__button">
+                    <button class="social__button">
                         <img
                             src="/images/WhatsApp.svg.webp"
                             alt="WhatsApp icon"
-                            class="slack-social__icon"
+                            class="social__icon"
                         />
-                        <p class="slack-social__cta">Join our WhatsApp!</p>
                     </button>
                 </a>
                 <a
                     href="https://github.com/juliancoy/codecollective"
                     target="_blank"
-                    class="slack-social__link"
+                    class="social__link"
                 >
-                    <button class="slack-social__button">
+                    <button class="social__button">
                         <img
                             src="/images/github_icon.png"
                             alt="GitHub icon"
-                            class="slack-social__icon"
+                            class="social__icon"
                         />
-                        <p class="slack-social__cta">View on GitHub</p>
+                    </button>
+                </a>
+                <a
+                    href="https://t.me/codecollective"
+                    target="_blank"
+                    class="social__link"
+                >
+                    <button class="social__button">
+                        <img
+                            src="/images/Telegram_logo.svg"
+                            alt="Telegram icon"
+                            class="social__icon"
+                        />
                     </button>
                 </a>
             </aside>
@@ -69,7 +106,6 @@ class OurMatrixLink extends HTMLElement {
     }
 }
 
-
 customElements.define('our-header', OurHeader)
 customElements.define('our-footer', OurFooter)
-customElements.define('our-slack-link', OurMatrixLink)
+customElements.define('our-slack-link', OurSocials)
