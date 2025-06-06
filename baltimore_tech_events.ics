@@ -2,633 +2,463 @@ BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:Baltimore Tech Events Calendar Generator
 BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Start your morning with innovation\, insight\, & meaningful connections. Join us for Montgomery College’s signature biotech networking event.\n\nEvent Link: https://www.eventbrite.com/e/community-connect-5-from-code-to-cure-a-biotech-networking-event-tickets-1349767273249?aff=ebdssbdestsearch
-DTEND:20250716T150000Z
-LOCATION:Montgomery College Germantown Campus\, 20200 Observation Drive #4067 Germantown\, MD 20876\, \,  
-DTSTART:20250716T123000Z
-SUMMARY:From Code to Cure - A Biotech Networking Event
-UID:161e9877-87d9-4e02-90e9-2d9b57c476fd@161e.org
-URL:https://www.eventbrite.com/e/community-connect-5-from-code-to-cure-a-biotech-networking-event-tickets-1349767273249?aff=ebdssbdestsearch
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhclbnc/
-DTEND:20250830T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20250830T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:242d5724-2cc7-4f84-b142-bd07b6bd9260@242d.org
-URL:https://www.meetup.com/python-frederick/events/jlzbrtyhclbnc/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Equitech Tuesday event at GBC Offices: Evening With ESOs. Join Baltimore's tech ecosystem for networking and innovation.\n\nEvent Link: https://upsurgebaltimore.com/equitech-tuesday/
-DTEND:20250611T000000Z
-LOCATION:GBC Offices\, GBC Offices\, Baltimore\, MD 21202\, Baltimore\, MD US
-DTSTART:20250610T220000Z
-SUMMARY:Evening With ESOs
-UID:8a0e37c7-ee4e-4a3a-8ebe-3182931645dc@8a0e.org
-URL:https://upsurgebaltimore.com/equitech-tuesday/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:2028 NO Labels Party Movement in the United States is to be a Home for Central and Middle America and for We the People who Aspire & Create.\n\nEvent Link: https://www.eventbrite.com/e/weekly-meetings-no-labels-party-us-2028-tickets-1375290313349
-DTEND:20250625T020000Z
-DTSTART:20250624T230000Z
-SUMMARY:Weekly Meetings: NO Labels Party (US) 2028
-UID:62a2031b-2d93-43b2-8e00-fba217f03601@62a2.org
-URL:https://www.eventbrite.com/e/weekly-meetings-no-labels-party-us-2028-tickets-1375290313349
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Privacy & Liberty in the Age of AI & Immersive Technologies.\n\nEvent Link: https://futurerealities.org/PLAITS2025/
-DTEND:20250616T210000Z
-LOCATION:Glass Pavilion\, Johns Hopkins U.\, \,  
-DTSTART:20250616T140000Z
-SUMMARY:PLAITS 2025
-UID:418e0ab8-5f3a-42df-bfcf-71c1d1aff2a7@418e.org
-URL:https://futurerealities.org/PLAITS2025/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
+DTSTAMP:20250606T020602Z
 DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcmbrb/
 DTEND:20250913T160000Z
 LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
 DTSTART:20250913T140000Z
 SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:c19b4ee1-bcfe-4241-8d01-a764f6aecc20@c19b.org
+UID:f6f0d1da-cc2b-446e-84ae-faab7cdd716b@f6f0.org
 URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcmbrb/
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Come join us for the Baltimore Indie Game Devs potluck picnic at BIG member Allen Lambert's house in Marriottsville just west of Baltimore. This picnic is for all local game devs in the Baltimore-Wash\n\nEvent Link: https://www.meetup.com/baltimore-indie-game-developers-group/events/307582133/
-DTEND:20250621T210000Z
-LOCATION:Crows Foot Road\, Crows Foot Rd\, Maryland\, MD us
-DTSTART:20250621T160000Z
-SUMMARY:[IN-PERSON] Summer Game Dev Picnic
-UID:2fe3ffd6-f8cd-4a34-acc5-6eede9a312af@2fe3.org
-URL:https://www.meetup.com/baltimore-indie-game-developers-group/events/307582133/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Our Demo Day is a chance for members of the local tech community to show off the cool projects they’ve been working on. Come and enjoy our participant’s ten minute demos with five minutes for question\n\nEvent Link: https://www.meetup.com/baltimore-code-and-coffee/events/307627099/
-DTEND:20250614T180000Z
-LOCATION:Digital Harbor Foundation Tech Center\, 1045 Light St\, Baltimore\, MD us
-DTSTART:20250614T150000Z
-SUMMARY:Baltimore Code & Coffee Demo Day
-UID:161f91a7-da64-439d-8c95-13e862e1394d@161f.org
-URL:https://www.meetup.com/baltimore-code-and-coffee/events/307627099/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:No description available
-DTEND:20251012T000000Z
-LOCATION:\,  
-DTSTART:20251011T000000Z
-SUMMARY:LAN Party!
-UID:adb8eecc-cdd9-4343-8ccc-ac40ec719a6a@adb8.org
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Come join us for a night of non-stop laughter at Canton Laughs: The Inaugural Comedy Showcase!\n\nEvent Link: https://www.eventbrite.com/e/canton-laughs-the-inaugural-comedy-showcase-tickets-1354002962309
-DTEND:20250608T020000Z
-LOCATION:Silks\, 2641 Hudson Street Baltimore\, MD 21224\, 2641 Hudson Street Baltimore\, MD US
-DTSTART:20250608T000000Z
-SUMMARY:Canton Laughs: The Inaugural Comedy Showcase
-UID:b32b2199-8248-4b27-bc21-034b3dfd7e16@b32b.org
-URL:https://www.eventbrite.com/e/canton-laughs-the-inaugural-comedy-showcase-tickets-1354002962309
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:TECHSPO Baltimore Technology Expo (Internet ~ Mobile ~ AdTech ~ MarTech ~ SaaS) - October 23 - 24\, 2025 - Baltimore\, MD\n\nEvent Link: https://www.eventbrite.com/e/techspo-baltimore-2025-technology-expo-internet-adtech-martech-tickets-1114708064829
-DTEND:20251024T200000Z
-LOCATION:Sheraton Inner Harbor Hotel\, 300 South Charles Street Baltimore\, MD 21201\, 300 South Charles Street Baltimore\, MD US
-DTSTART:20251023T130000Z
-SUMMARY:TECHSPO Baltimore 2025 Technology Expo (Internet ~ AdTech ~ MarTech)
-UID:cf7bb7e2-ff02-4673-ab98-e59ddff8458b@cf7b.org
-URL:https://www.eventbrite.com/e/techspo-baltimore-2025-technology-expo-internet-adtech-martech-tickets-1114708064829
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhclbvb/
-DTEND:20250816T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20250816T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:51a91d9d-06b2-4611-a592-df416fcaa2c2@51a9.org
-URL:https://www.meetup.com/python-frederick/events/jlzbrtyhclbvb/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join the Baltimore Climate Tech community for our June networking meetup at Union Brewery. Whether you're a climate veteran or looking to transition\, join us to meet new friends and colleagues to chat\n\nEvent Link: https://lu.ma/wrqpk3v2
-DTEND:20250627T000000Z
-LOCATION:Union Craft Brewing\, \,  
-DTSTART:20250626T213000Z
-SUMMARY:Baltimore Climate Tech Meetup June 2025
-UID:c3dd6ab0-d93c-4306-bd5b-dac0edf44cb2@c3dd.org
-URL:https://lu.ma/wrqpk3v2
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Glenn will start by providing an overview of Generative AI\, a groundbreaking technology that enables machines to produce human-like text\, images\, and even code. This innovation is transforming various\n\nEvent Link: https://www.meetup.com/python-frederick/events/308270497/
-DTEND:20250612T010000Z
-LOCATION:Cowork Frederick\, 122 E Patrick St\, Frederick\, MD us
-DTSTART:20250611T230000Z
-SUMMARY:Python AI Agents: Overview to Generative AI and intro to Agents (2nd Wed Talk)
-UID:0ebad463-16f1-4ec6-9024-924fd4fd8473@0eba.org
-URL:https://www.meetup.com/python-frederick/events/308270497/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Queers and Beers (and Other Delightful Drinks!)\n\nCalling all people of the rainbow! Want to learn more about our hacker/maker space while meeting new people? Come to Queers and Beers (and Other Deligh
-DTEND:20250910T020000Z
-LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
-DTSTART:20250909T220000Z
-SUMMARY:Queers and Beers (and Other Delightful Drinks!)
-UID:10d9b114-3b10-49d2-9e60-91b46f841d12@10d9.org
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcnbgb/
-DTEND:20251004T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20251004T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:6bfaf7f9-6834-41bf-952b-3e6103281353@6bfa.org
-URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcnbgb/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcnbpb/
-DTEND:20251011T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20251011T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:4c97c0b4-49c2-4fa3-81ac-37861f3810e2@4c97.org
-URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcnbpb/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/308186096/
-DTEND:20250726T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20250726T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:3d469b1e-f093-4b2b-b057-9225d064e891@3d46.org
-URL:https://www.meetup.com/python-frederick/events/308186096/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Casual meetup at a local bar to talk about Crypto\n\nEvent Link: https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/307622314/
-DTEND:20250614T003000Z
-LOCATION:Phoenix Upper Main\, 8308 Main St\, Ellicott City\, MD us
-DTSTART:20250613T223000Z
-SUMMARY:Ellicott City Cryptocurrency Monthly Meetup
-UID:8123fc64-c9d2-4c68-810c-d6d014f65d54@8123.org
-URL:https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/307622314/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:How pleasant it is when the people of tech come together in unity!\n\nAfter a year of talking about it\, we’re finally doing it: a chill summer cookout for everyone in Baltimore tech. No booths\, no buzzw\n\nEvent Link: https://www.meetup.com/code-collective/events/307426667/
-DTEND:20250628T190000Z
-LOCATION:Wonderground Park\, 409 E Lanvale St\, Baltimore\, MD 21202\, Baltimore\, MD us
-DTSTART:20250628T170000Z
-SUMMARY:Tech Unity Cookout
-UID:b2625ace-9b90-41b9-bd51-236dbd8757e2@b262.org
-URL:https://www.meetup.com/code-collective/events/307426667/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:We will be meeting upstairs at the big table\n\nEvent Link: https://www.meetup.com/baltimorebitcoin/events/307979231/
-DTEND:20250704T003000Z
-LOCATION:La Palapa Grill & Cantina\, 8307 Main St\, Ellicott City\, MD US
-DTSTART:20250703T223000Z
-SUMMARY:1st Thursday Bitcoin HoDL Hour
-UID:cea2871a-79e1-4aa9-bd3b-6f8fa54d624c@cea2.org
-URL:https://www.meetup.com/baltimorebitcoin/events/307979231/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Casual meetup at a local bar to talk about Crypto\n\nEvent Link: https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/307622513/
-DTEND:20250628T003000Z
-LOCATION:Phoenix Upper Main\, 8308 Main St\, Ellicott City\, MD us
-DTSTART:20250627T223000Z
-SUMMARY:Ellicott City Cryptocurrency Monthly Meetup
-UID:4746cb90-d523-456e-a826-49b42d10dcf9@4746.org
-URL:https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/307622513/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:We will be meeting upstairs at the big table\n\nEvent Link: https://www.meetup.com/baltimorebitcoin/events/307979235/
-DTEND:20250808T003000Z
-LOCATION:La Palapa Grill & Cantina\, 8307 Main St\, Ellicott City\, MD US
-DTSTART:20250807T223000Z
-SUMMARY:1st Thursday Bitcoin HoDL Hour
-UID:51dee657-3993-47dc-b601-894850491a22@51de.org
-URL:https://www.meetup.com/baltimorebitcoin/events/307979235/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Maker Faire is a gathering of fascinating\, curious people who enjoy learning and who love sharing what they can do. From engineers to artists to scientists to crafters\, Maker Faire is a venue for thes\n\nEvent Link: https://downtowncolumbia.makerfaire.com/
-DTEND:20250629T210000Z
-LOCATION:Merriweather Park at Symphony Woods\, 1000 Broken Land Parkway\, Columbia\, MD US
-DTSTART:20250629T140000Z
-SUMMARY:Maker Faire Downtown Columbia
-UID:59fdd461-6501-4003-a49f-833ede740acb@59fd.org
-URL:https://downtowncolumbia.makerfaire.com/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/308186085/
-DTEND:20250628T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20250628T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:389eeb81-9d38-4012-8ee5-6be3f1d65faa@389e.org
-URL:https://www.meetup.com/python-frederick/events/308186085/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join the Howard County Asian American & Pacific Islander (AAPI) Commission to meet and connect with your local elected officials.\n\nEvent Link: https://www.eventbrite.com/e/know-your-local-leaders-tickets-1302421310199
-DTEND:20250612T003000Z
-LOCATION:Howard Community College\, 10901 Little Patuxent Parkway Columbia\, MD 21044\, 10901 Little Patuxent Parkway Columbia\, MD US
-DTSTART:20250611T223000Z
-SUMMARY:Know Your Local Leaders
-UID:5f2ac633-4ca6-4c48-9759-a5cae7817876@5f2a.org
-URL:https://www.eventbrite.com/e/know-your-local-leaders-tickets-1302421310199
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Welcome to a curated\, curious\, and creative exhibition of Independent Games from the DMV area.\n\nEvent Link: https://www.eventbrite.com/e/indie-game-fest-2025-tickets-1264402364509
-DTEND:20250607T200000Z
-LOCATION:Enoch Pratt Free Library\, 400 Cathedral Street Baltimore\, MD 21201\, 400 Cathedral Street Baltimore\, MD US
-DTSTART:20250607T150000Z
-SUMMARY:Indie Game Fest 2025
-UID:60c1b7ab-6b18-4134-89a2-f8de2d87f0c1@60c1.org
-URL:https://www.eventbrite.com/e/indie-game-fest-2025-tickets-1264402364509
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Dreams and Nightmares in Sam Altman's OpenAI - with Bina Venkataraman — at Conn Ave. When AI expert and investigative journalist Karen Hao first began covering OpenAI in 2019\, she thought they were th\n\nEvent Link: https://politics-prose.com/karen-hao
-DTEND:20250531T233000Z
-LOCATION:Politics and Prose\, 5015 Connecticut Avenue NW\, Washington\, DC USA
-DTSTART:20250531T210000Z
-SUMMARY:Karen Hao — Empire of AI
-UID:7f2a3887-1132-4a06-84c8-e3e7ed8253cf@7f2a.org
-URL:https://politics-prose.com/karen-hao
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhclbmb/
-DTEND:20250809T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20250809T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:b06c6598-598e-4a04-8548-ae6a945de79a@b06c.org
-URL:https://www.meetup.com/python-frederick/events/jlzbrtyhclbmb/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcnbxb/
-DTEND:20251018T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20251018T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:91b49134-81ed-475b-bf31-0664166052a8@91b4.org
-URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcnbxb/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:It's the economy\, stupid!\n\nThis is the place to discuss the BIG picture of the modern tech economy. Anything goes! California Capitalism\, Military Keynesianism\, the United States Dollar\, Bitcoin and E\n\nEvent Link: https://www.meetup.com/code-collective/events/308198642/
-DTEND:20250608T220000Z
-LOCATION:Online event\, \,  
-DTSTART:20250608T200000Z
-SUMMARY:The Economy - Open Discussion [VIRTUAL]
-UID:5d87c467-2fa6-418c-a2b3-4144b823b31c@5d87.org
-URL:https://www.meetup.com/code-collective/events/308198642/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:IN-PERSON + ONLINE\n\nIn-person is at the Elkridge Branch Library in the Grist Mill Room.\n\nJoin us IN-PERSON or ONLINE. Anyone with an interest in game design and development is welcome\, from beginners \n\nEvent Link: https://www.meetup.com/baltimore-indie-game-developers-group/events/308309875/
-DTEND:20250719T153000Z
-LOCATION:Howard County Library Elkridge Branch\, 6540 Washington Blvd\, Elkridge\, MD us
-DTSTART:20250719T140000Z
-SUMMARY:[IN-PERSON/ONLINE] Game Dev Meetup (Elkridge Branch!)
-UID:342afb12-33d4-4d8a-ac13-8d026e9ae80c@342a.org
-URL:https://www.meetup.com/baltimore-indie-game-developers-group/events/308309875/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:The County Executive is looking forward to honoring our students who competed in various STEM competitions this school year.\n\nEvent Link: https://www.eventbrite.com/e/county-executive-balls-5th-annual-stem-awards-tickets-1371704919339
-DTEND:20250617T233000Z
-LOCATION:Merriweather Post Pavilion\, 10475 Little Patuxent Parkway Columbia\, MD 21044\, 10475 Little Patuxent Parkway Columbia\, MD US
-DTSTART:20250617T213000Z
-SUMMARY:County Executive Ball's 5th Annual STEM Awards
-UID:8abe1eff-0ba7-49ee-a6b8-3dfa19ea3a9b@8abe.org
-URL:https://www.eventbrite.com/e/county-executive-balls-5th-annual-stem-awards-tickets-1371704919339
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Queers and Beers (and Other Delightful Drinks!)\n\nCalling all people of the rainbow! Want to learn more about our hacker/maker space while meeting new people? Come to Queers and Beers (and Other Deligh
-DTEND:20250813T020000Z
-LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
-DTSTART:20250812T220000Z
-SUMMARY:Queers and Beers (and Other Delightful Drinks!)
-UID:86a173e4-6077-4910-93ff-b6108c1650cf@86a1.org
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:ONLINE MEETUP USING DISCORD. (Discord link visible after RSVPing.)\n\nWe're meeting on Discord! The link to join the Baltimore Indie Game Devs discord server will be in your RSVP message.\n\nJoin us to di\n\nEvent Link: https://www.meetup.com/baltimore-indie-game-developers-group/events/308309865/
-DTEND:20250705T153000Z
-LOCATION:Online event\, \,  
-DTSTART:20250705T140000Z
-SUMMARY:[ONLINE] Game Dev Meetup (Monthly Meetup)
-UID:31150d10-9f7c-44a7-9f65-7e90581af801@3115.org
-URL:https://www.meetup.com/baltimore-indie-game-developers-group/events/308309865/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/308186081/
-DTEND:20250621T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20250621T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:56be8298-e9d0-45ff-be2a-9980f8242a8b@56be.org
-URL:https://www.meetup.com/python-frederick/events/308186081/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/308186088/
-DTEND:20250705T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20250705T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:f8a61f63-fdbc-48b8-8c46-abf81a39aa70@f8a6.org
-URL:https://www.meetup.com/python-frederick/events/308186088/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhckbqb/
-DTEND:20250712T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20250712T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:c7021a3c-7b87-45cb-9043-f4608ee10889@c702.org
-URL:https://www.meetup.com/python-frederick/events/jlzbrtyhckbqb/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Ask Us Anything WordPress!\n\nRegister for it by filling out this form: https://forms.gle/Th6AZUbS2GoiCEJz5\n\nThis is a virtual meetup on Zoom for you to ask your WordPress questions and help you fix pro\n\nEvent Link: https://www.meetup.com/the-baltimore-wordpress-group/events/307401517/
-DTEND:20250611T160000Z
-LOCATION:Online event\, \,  
-DTSTART:20250611T150000Z
-SUMMARY:All Levels: Online Ask Me Anything WordPress!
-UID:50deece1-6c14-46f9-8e16-0ba613e42bf6@50de.org
-URL:https://www.meetup.com/the-baltimore-wordpress-group/events/307401517/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhclbfc/
-DTEND:20250823T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20250823T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:262860ae-1635-406e-b156-7beeabfcfd9a@2628.org
-URL:https://www.meetup.com/python-frederick/events/jlzbrtyhclbfc/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for the 2nd annual Maryland Makerspace Meetup!\n\nEvent Link: https://www.eventbrite.com/e/2025-md-makerspace-meetup-tickets-1345760890049
-DTEND:20250606T210000Z
-LOCATION:A. James Clark School of Engineering\, 4298 Campus Drive College Park\, MD 20742\, 4298 Campus Drive College Park\, MD US
-DTSTART:20250606T123000Z
-SUMMARY:2025 MD Makerspace Meetup
-UID:3e431460-c31a-4826-9605-78912c40a282@3e43.org
-URL:https://www.eventbrite.com/e/2025-md-makerspace-meetup-tickets-1345760890049
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcmbkc/
-DTEND:20250927T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20250927T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:c7158744-608d-4242-af8d-d731e6b031f4@c715.org
-URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcmbkc/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/307896095/
-DTEND:20250607T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20250607T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:97b17e74-0b7e-4daa-ac0b-4b82cfaaa821@97b1.org
-URL:https://www.meetup.com/python-frederick/events/307896095/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhclbdb/
-DTEND:20250802T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20250802T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:298cab4f-080b-4736-a53a-72ae323e8678@298c.org
-URL:https://www.meetup.com/python-frederick/events/jlzbrtyhclbdb/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:2028 NO Labels Party Movement in the United States is to be a Home for Central and Middle America and for We the People who Aspire & Create.\n\nEvent Link: https://www.eventbrite.com/e/weekly-meetings-no-labels-party-us-2028-tickets-1375290293289
-DTEND:20250611T020000Z
-DTSTART:20250610T230000Z
-SUMMARY:Weekly Meetings: NO Labels Party (US) 2028
-UID:66825ff2-1bb3-4d42-9029-e9a9dfc78a5f@6682.org
-URL:https://www.eventbrite.com/e/weekly-meetings-no-labels-party-us-2028-tickets-1375290293289
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Stand Up was established on May 11\, 2019 by twenty students who were inspired to continue to fight against gun violence after raising awareness about its negative effects for a school project. We even\n\nEvent Link: https://www.wemuststandup.org/
-DTEND:20250607T203000Z
-LOCATION:Enoch Pratt Library: Edmonson Branch\, 4330 Edmonson Ave\, \,  
-DTSTART:20250607T180000Z
-SUMMARY:Orange Table Talk
-UID:a0b74e34-e84d-4b14-81bb-0fae2fee5a36@a0b7.org
-URL:https://www.wemuststandup.org/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Event Location: M&T Bank Stadium. Enter the venue at Gate F located near the corner of Russel St. and W. Hamburg St. \n\nParking Location: Free parking in Lot N at M&T Bank Stadium. The event map is lin\n\nEvent Link: https://lu.ma/k5mgdolz
-DTEND:20250606T000000Z
-LOCATION:660 W West St lot n\, \,  
-DTSTART:20250605T213000Z
-SUMMARY:Techstars AI Health Baltimore Demo Day
-UID:2904f75a-6004-4cad-86d8-47403d20a66a@2904.org
-URL:https://lu.ma/k5mgdolz
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Maryland\, let’s connect through blockchain! 🧩🚀\n\nJoin Web3MD — a grassroots community & support network for founders\, developers\, and dreamers building in the Old Line State. Whether you're launching a\n\nEvent Link: https://lu.ma/02zv4one
-DTEND:20250620T000000Z
-LOCATION:The Hideaway\, \,  
-DTSTART:20250619T220000Z
-SUMMARY:Web3 Maryland Blockchain Mixer
-UID:c943ea56-0692-4857-aafa-a56fa082814f@c943.org
-URL:https://lu.ma/02zv4one
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:No description available
-DTEND:20251207T000000Z
-LOCATION:Unallocated Space\, Unallocated Space\, \,  
-DTSTART:20251206T000000Z
-SUMMARY:LAN Party!
-UID:44c086ff-93b7-4fe3-bff0-16006a93d349@44c0.org
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Stand Up was established on May 11\, 2019 by twenty students who were inspired to continue to fight against gun violence after raising awareness about its negative effects for a school project. We even\n\nEvent Link: https://www.wemuststandup.org/
-DTEND:20250621T203000Z
-LOCATION:Enoch Pratt Library: Wallbrook Branch\, 3203 W North Ave\, Baltimore\, MD USA
-DTSTART:20250621T180000Z
-SUMMARY:The Art of Advocacy
-UID:7732f722-7c00-4635-bd85-be3bc283ffed@7732.org
-URL:https://www.wemuststandup.org/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Queers and Beers (and Other Delightful Drinks!)\n\nCalling all people of the rainbow! Want to learn more about our hacker/maker space while meeting new people? Come to Queers and Beers (and Other Deligh
-DTEND:20251210T030000Z
-LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
-DTSTART:20251209T230000Z
-SUMMARY:Queers and Beers (and Other Delightful Drinks!)
-UID:aa3948cf-e765-4f9a-9357-03670424a95f@aa39.org
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/307673118/
-DTEND:20250614T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20250614T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:12ab1aa3-e7b9-463b-af54-56441bacc70a@12ab.org
-URL:https://www.meetup.com/python-frederick/events/307673118/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Meet the eleven startups reimagining the future of capitalism in cohort 13 of the CVL Accelerator Program! We’ve been working with 11 purpose driven founders since March in industries including health\n\nEvent Link: https://www.eventbrite.com/e/nce-conscious-venture-lab-accelerator-program-cohort-13-demo-day-tickets-1381181042679
-DTEND:20250614T003000Z
-LOCATION:Parkway Theater\, 5 W North Ave\, Baltimore\, MD 21201\, \,  
-DTSTART:20250613T213000Z
-SUMMARY:Conscious Venture Lab Accelerator Program Cohort 13 Demo Day
-UID:4fa28510-52fc-41ac-9d6e-95672bb9fd17@4fa2.org
-URL:https://www.eventbrite.com/e/nce-conscious-venture-lab-accelerator-program-cohort-13-demo-day-tickets-1381181042679
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for a candid conversation about the excitement of setting out to build your own video game studio!\n\nEvent Link: https://www.eventbrite.com/e/people-make-games-developer-talk-tickets-1264411943159
-DTEND:20250607T190000Z
-LOCATION:Enoch Pratt Free Library\, 400 Cathedral Street Baltimore\, MD 21201\, 400 Cathedral Street Baltimore\, MD US
-DTSTART:20250607T180000Z
-SUMMARY:People Make Games - Developer Talk
-UID:b65fafd4-2dae-40d6-896d-16ae5eb24e17@b65f.org
-URL:https://www.eventbrite.com/e/people-make-games-developer-talk-tickets-1264411943159
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcmbbc/
-DTEND:20250920T160000Z
-LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20250920T140000Z
-SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:dc7346db-5cc6-4271-913c-46b7b1fc2e88@dc73.org
-URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcmbbc/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
+DTSTAMP:20250606T020602Z
 DESCRIPTION:The Crossroad Applications of Blockchain 101 (intersections of Blockchain\, Crypto\, and AI)\n\nEvent Link: https://members.mdtechcouncil.com/calendar/Details/webinar-web2-to-web3-the-crossroad-applications-of-blockchain-101-intersections-of-blockchain-crypto-and-ai-1378956?sourceTypeId=Website
 DTEND:20250605T173000Z
 LOCATION:Online\, \,  
 DTSTART:20250605T160000Z
 SUMMARY:Webinar - Web2 to Web3
-UID:0d25edd8-6947-4f65-bf5d-e5ccad853b49@0d25.org
+UID:f174513a-7fb0-4457-9fdc-765a014b229b@f174.org
 URL:https://members.mdtechcouncil.com/calendar/Details/webinar-web2-to-web3-the-crossroad-applications-of-blockchain-101-intersections-of-blockchain-crypto-and-ai-1378956?sourceTypeId=Website
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/308186097/
-DTEND:20250719T160000Z
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/308186088/
+DTEND:20250705T160000Z
 LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20250719T140000Z
+DTSTART:20250705T140000Z
 SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:6d6b1ca3-6af3-4cbe-86d5-83dad49bbf98@6d6b.org
-URL:https://www.meetup.com/python-frederick/events/308186097/
+UID:50995f52-19fb-407a-92a4-4dbe7ee4a810@5099.org
+URL:https://www.meetup.com/python-frederick/events/308186088/
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Join us for Tential Tech Tuesday\, where we dive into all things tech-related in a fun and interactive way!\n\nEvent Link: https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519
-DTEND:20250617T233000Z
-LOCATION:912 Commerce Rd\, 912 Commerce Road Annapolis\, MD 21401\, 912 Commerce Road Annapolis\, MD US
-DTSTART:20250617T220000Z
-SUMMARY:Tential Tech Tuesday
-UID:6146a205-45db-4f3d-ac55-bed37802ca45@6146.org
-URL:https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcnbpb/
+DTEND:20251011T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20251011T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:51ea7fdb-ab2f-466f-9ca5-e6fc8a9a403f@51ea.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcnbpb/
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Queers and Beers (and Other Delightful Drinks!)\n\nCalling all people of the rainbow! Want to learn more about our hacker/maker space while meeting new people? Come to Queers and Beers (and Other Deligh
-DTEND:20250709T020000Z
-LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
-DTSTART:20250708T220000Z
-SUMMARY:Queers and Beers (and Other Delightful Drinks!)
-UID:af060289-4eb1-44b9-b866-7d6957b1b61f@af06.org
+DTSTAMP:20250606T020602Z
+DESCRIPTION:We will be meeting upstairs at the big table\n\nEvent Link: https://www.meetup.com/baltimorebitcoin/events/307979231/
+DTEND:20250704T003000Z
+LOCATION:La Palapa Grill & Cantina\, 8307 Main St\, Ellicott City\, MD US
+DTSTART:20250703T223000Z
+SUMMARY:1st Thursday Bitcoin HoDL Hour
+UID:ea14c5d7-e8c9-4f3b-907c-0d621b85f95d@ea14.org
+URL:https://www.meetup.com/baltimorebitcoin/events/307979231/
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Queers and Beers (and Other Delightful Drinks!)\n\nCalling all people of the rainbow! Want to learn more about our hacker/maker space while meeting new people? Come to Queers and Beers (and Other Deligh
-DTEND:20251112T030000Z
-LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
-DTSTART:20251111T230000Z
-SUMMARY:Queers and Beers (and Other Delightful Drinks!)
-UID:dae3f414-3325-426b-bff4-6def85c841d9@dae3.org
+DTSTAMP:20250606T020602Z
+DESCRIPTION:It's the economy\, stupid!\n\nThis is the place to discuss the BIG picture of the modern tech economy. Anything goes! California Capitalism\, Military Keynesianism\, the United States Dollar\, Bitcoin and E\n\nEvent Link: https://www.meetup.com/code-collective/events/308198642/
+DTEND:20250608T220000Z
+LOCATION:Online event\, \,  
+DTSTART:20250608T200000Z
+SUMMARY:The Economy - Open Discussion [VIRTUAL]
+UID:f9b18624-3417-4450-bece-876d52492e5e@f9b1.org
+URL:https://www.meetup.com/code-collective/events/308198642/
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
+DTSTAMP:20250606T020602Z
 DESCRIPTION:Casual meetup to talk about crypto\n\nEvent Link: https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/307622485/
 DTEND:20250712T003000Z
 LOCATION:Phoenix Upper Main\, 8308 Main St\, Ellicott City\, MD us
 DTSTART:20250711T223000Z
 SUMMARY:Ellicott City Cryptocurrency Bar Meetup
-UID:c010e82f-6327-4ceb-87d3-8f0b7b2247e4@c010.org
+UID:52e461ec-a2c7-451b-88d4-e6cb4d138e24@52e4.org
 URL:https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/307622485/
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
-DESCRIPTION:Queers and Beers (and Other Delightful Drinks!)\n\nCalling all people of the rainbow! Want to learn more about our hacker/maker space while meeting new people? Come to Queers and Beers (and Other Deligh
-DTEND:20251015T020000Z
-LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
-DTSTART:20251014T220000Z
-SUMMARY:Queers and Beers (and Other Delightful Drinks!)
-UID:fca89bef-203d-4493-9d12-fac7bae8420b@fca8.org
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/308186096/
+DTEND:20250726T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250726T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:cb8f27b9-8a80-4896-beb7-f630383e4a51@cb8f.org
+URL:https://www.meetup.com/python-frederick/events/308186096/
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
+DTSTAMP:20250606T020602Z
 DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcmbjb/
 DTEND:20250906T160000Z
 LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
 DTSTART:20250906T140000Z
 SUMMARY:Casual Coding\, Chat\, & Coffee
-UID:e88a2638-5366-4187-8b1f-df99df0455bc@e88a.org
+UID:36908ba6-815b-447e-8045-4318b482ca27@3690.org
 URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcmbjb/
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20250606T020437Z
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcnbgb/
+DTEND:20251004T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20251004T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:0c0a6b95-e23a-4b43-bdda-3d50f73d467a@0c0a.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcnbgb/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/308186085/
+DTEND:20250628T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250628T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:ef643016-f3b8-4363-9b23-27f1c0c0e863@ef64.org
+URL:https://www.meetup.com/python-frederick/events/308186085/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
 DESCRIPTION:Casual meetup to talk about crypto\n\nEvent Link: https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/307622522/
 DTEND:20250726T003000Z
 LOCATION:Phoenix Upper Main\, 8308 Main St\, Ellicott City\, MD us
 DTSTART:20250725T223000Z
 SUMMARY:Ellicott City Cryptocurrency Bar Meetup
-UID:e43a5ff8-202c-446d-a72c-1dca1a9f4d45@e43a.org
+UID:192c9b19-b17e-4345-8c73-062aa9473cb3@192c.org
 URL:https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/307622522/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Ask Us Anything WordPress!\n\nRegister for it by filling out this form: https://forms.gle/Th6AZUbS2GoiCEJz5\n\nThis is a virtual meetup on Zoom for you to ask your WordPress questions and help you fix pro\n\nEvent Link: https://www.meetup.com/the-baltimore-wordpress-group/events/307401517/
+DTEND:20250611T160000Z
+LOCATION:Online event\, \,  
+DTSTART:20250611T150000Z
+SUMMARY:All Levels: Online Ask Me Anything WordPress!
+UID:51e03cd9-fb46-46ca-a35c-17ad166e790a@51e0.org
+URL:https://www.meetup.com/the-baltimore-wordpress-group/events/307401517/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Stand Up was established on May 11\, 2019 by twenty students who were inspired to continue to fight against gun violence after raising awareness about its negative effects for a school project. We even\n\nEvent Link: https://www.wemuststandup.org/
+DTEND:20250607T203000Z
+LOCATION:Enoch Pratt Library: Edmonson Branch\, 4330 Edmonson Ave\, \,  
+DTSTART:20250607T180000Z
+SUMMARY:Orange Table Talk
+UID:78151575-77f5-454f-ade2-d8dd9fd0858e@7815.org
+URL:https://www.wemuststandup.org/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/308186097/
+DTEND:20250719T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250719T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:afa88ba5-9bbf-4b87-a4ca-4e4e17ba505b@afa8.org
+URL:https://www.meetup.com/python-frederick/events/308186097/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Casual meetup at a local bar to talk about Crypto\n\nEvent Link: https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/307622314/
+DTEND:20250614T003000Z
+LOCATION:Phoenix Upper Main\, 8308 Main St\, Ellicott City\, MD us
+DTSTART:20250613T223000Z
+SUMMARY:Ellicott City Cryptocurrency Monthly Meetup
+UID:a967002c-4bc0-4426-bbfe-ac7f2979b972@a967.org
+URL:https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/307622314/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhclbmb/
+DTEND:20250809T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250809T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:612519ab-4773-44b2-93b7-53630e1b998d@6125.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhclbmb/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:IN-PERSON + ONLINE\n\nIn-person is at the Elkridge Branch Library in the Grist Mill Room.\n\nJoin us IN-PERSON or ONLINE. Anyone with an interest in game design and development is welcome\, from beginners \n\nEvent Link: https://www.meetup.com/baltimore-indie-game-developers-group/events/308309875/
+DTEND:20250719T153000Z
+LOCATION:Howard County Library Elkridge Branch\, 6540 Washington Blvd\, Elkridge\, MD us
+DTSTART:20250719T140000Z
+SUMMARY:[IN-PERSON/ONLINE] Game Dev Meetup (Elkridge Branch!)
+UID:bc8158a5-39b3-4bd2-87d5-fa5b94b8e3e8@bc81.org
+URL:https://www.meetup.com/baltimore-indie-game-developers-group/events/308309875/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcmbbc/
+DTEND:20250920T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250920T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:9944af78-ff32-457d-bf60-115aeb3f6b6a@9944.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcmbbc/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Our Demo Day is a chance for members of the local tech community to show off the cool projects they’ve been working on. Come and enjoy our participant’s ten minute demos with five minutes for question\n\nEvent Link: https://www.meetup.com/baltimore-code-and-coffee/events/307627099/
+DTEND:20250614T180000Z
+LOCATION:Digital Harbor Foundation Tech Center\, 1045 Light St\, Baltimore\, MD us
+DTSTART:20250614T150000Z
+SUMMARY:Baltimore Code & Coffee Demo Day
+UID:fbd91014-a7fa-43fa-9c69-b56c6948525f@fbd9.org
+URL:https://www.meetup.com/baltimore-code-and-coffee/events/307627099/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhckbqb/
+DTEND:20250712T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250712T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:0c44b1c0-033b-4b45-ac76-0ff7997613f5@0c44.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhckbqb/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Privacy & Liberty in the Age of AI & Immersive Technologies.\n\nEvent Link: https://futurerealities.org/PLAITS2025/
+DTEND:20250616T210000Z
+LOCATION:Glass Pavilion\, Johns Hopkins U.\, \,  
+DTSTART:20250616T140000Z
+SUMMARY:PLAITS 2025
+UID:f6096238-eac1-4b75-ac00-1945dc51f92b@f609.org
+URL:https://futurerealities.org/PLAITS2025/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Stand Up was established on May 11\, 2019 by twenty students who were inspired to continue to fight against gun violence after raising awareness about its negative effects for a school project. We even\n\nEvent Link: https://www.wemuststandup.org/
+DTEND:20250621T203000Z
+LOCATION:Enoch Pratt Library: Wallbrook Branch\, 3203 W North Ave\, Baltimore\, MD USA
+DTSTART:20250621T180000Z
+SUMMARY:The Art of Advocacy
+UID:439f47e8-54a7-4776-a29b-19b86cc786a5@439f.org
+URL:https://www.wemuststandup.org/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Event Location: M&T Bank Stadium. Enter the venue at Gate F located near the corner of Russel St. and W. Hamburg St. \n\nParking Location: Free parking in Lot N at M&T Bank Stadium. The event map is lin\n\nEvent Link: https://lu.ma/k5mgdolz
+DTEND:20250606T000000Z
+LOCATION:660 W West St lot n\, \,  
+DTSTART:20250605T213000Z
+SUMMARY:Techstars AI Health Baltimore Demo Day
+UID:a8612aa6-2ec8-448a-bc9a-19fccccec3e3@a861.org
+URL:https://lu.ma/k5mgdolz
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/307896095/
+DTEND:20250607T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250607T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:4a666029-8181-48c9-a6f6-e1068e93f18e@4a66.org
+URL:https://www.meetup.com/python-frederick/events/307896095/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Come join us for the Baltimore Indie Game Devs potluck picnic at BIG member Allen Lambert's house in Marriottsville just west of Baltimore. This picnic is for all local game devs in the Baltimore-Wash\n\nEvent Link: https://www.meetup.com/baltimore-indie-game-developers-group/events/307582133/
+DTEND:20250621T210000Z
+LOCATION:Crows Foot Road\, Crows Foot Rd\, Maryland\, MD us
+DTSTART:20250621T160000Z
+SUMMARY:[IN-PERSON] Summer Game Dev Picnic
+UID:7f71386b-1a78-4c6a-a280-88987d3fec87@7f71.org
+URL:https://www.meetup.com/baltimore-indie-game-developers-group/events/307582133/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcnbxb/
+DTEND:20251018T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20251018T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:d3fdf390-f39a-4152-ae1c-5dbef7eb9cea@d3fd.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcnbxb/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join the Baltimore Climate Tech community for our June networking meetup at Union Brewery. Whether you're a climate veteran or looking to transition\, join us to meet new friends and colleagues to chat\n\nEvent Link: https://lu.ma/wrqpk3v2
+DTEND:20250627T000000Z
+LOCATION:Union Craft Brewing\, \,  
+DTSTART:20250626T213000Z
+SUMMARY:Baltimore Climate Tech Meetup June 2025
+UID:8b4ba89b-5ec2-4690-8584-4c9e500cac9e@8b4b.org
+URL:https://lu.ma/wrqpk3v2
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Equitech Tuesday event at GBC Offices: Evening With ESOs. Join Baltimore's tech ecosystem for networking and innovation.\n\nEvent Link: https://upsurgebaltimore.com/equitech-tuesday/
+DTEND:20250611T000000Z
+LOCATION:GBC Offices\, GBC Offices\, Baltimore\, MD 21202\, Baltimore\, MD US
+DTSTART:20250610T220000Z
+SUMMARY:Evening With ESOs
+UID:e37aef1b-7568-4dc9-85fb-f1fc1030ac81@e37a.org
+URL:https://upsurgebaltimore.com/equitech-tuesday/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:How pleasant it is when the people of tech come together in unity!\n\nAfter a year of talking about it\, we’re finally doing it: a chill summer cookout for everyone in Baltimore tech. No booths\, no buzzw\n\nEvent Link: https://www.meetup.com/code-collective/events/307426667/
+DTEND:20250628T190000Z
+LOCATION:Wonderground Park\, 409 E Lanvale St\, Baltimore\, MD 21202\, Baltimore\, MD us
+DTSTART:20250628T170000Z
+SUMMARY:Tech Unity Cookout
+UID:0a1b8310-298c-4927-ac4d-fbc335ec5b4c@0a1b.org
+URL:https://www.meetup.com/code-collective/events/307426667/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Glenn will start by providing an overview of Generative AI\, a groundbreaking technology that enables machines to produce human-like text\, images\, and even code. This innovation is transforming various\n\nEvent Link: https://www.meetup.com/python-frederick/events/308270497/
+DTEND:20250612T010000Z
+LOCATION:Cowork Frederick\, 122 E Patrick St\, Frederick\, MD us
+DTSTART:20250611T230000Z
+SUMMARY:Python AI Agents: Overview to Generative AI and intro to Agents (2nd Wed Talk)
+UID:b8e55461-ff3f-45a4-8d7d-7b106e81a3bf@b8e5.org
+URL:https://www.meetup.com/python-frederick/events/308270497/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:ONLINE MEETUP USING DISCORD. (Discord link visible after RSVPing.)\n\nWe're meeting on Discord! The link to join the Baltimore Indie Game Devs discord server will be in your RSVP message.\n\nJoin us to di\n\nEvent Link: https://www.meetup.com/baltimore-indie-game-developers-group/events/308309865/
+DTEND:20250705T153000Z
+LOCATION:Online event\, \,  
+DTSTART:20250705T140000Z
+SUMMARY:[ONLINE] Game Dev Meetup (Monthly Meetup)
+UID:e366c09f-f562-4a84-b3a7-4d2850bf2037@e366.org
+URL:https://www.meetup.com/baltimore-indie-game-developers-group/events/308309865/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhclbfc/
+DTEND:20250823T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250823T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:0a2cda3d-4924-4d7c-bc25-1c11f182785f@0a2c.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhclbfc/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Meet the eleven startups reimagining the future of capitalism in cohort 13 of the CVL Accelerator Program! We’ve been working with 11 purpose driven founders since March in industries including health\n\nEvent Link: https://www.eventbrite.com/e/nce-conscious-venture-lab-accelerator-program-cohort-13-demo-day-tickets-1381181042679
+DTEND:20250614T003000Z
+LOCATION:Parkway Theater\, 5 W North Ave\, Baltimore\, MD 21201\, \,  
+DTSTART:20250613T213000Z
+SUMMARY:Conscious Venture Lab Accelerator Program Cohort 13 Demo Day
+UID:c20066d1-c102-4c14-9c91-8ed0174f1d7a@c200.org
+URL:https://www.eventbrite.com/e/nce-conscious-venture-lab-accelerator-program-cohort-13-demo-day-tickets-1381181042679
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcmbkc/
+DTEND:20250927T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250927T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:621427a6-af5f-4c3e-8197-502099997edb@6214.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcmbkc/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:We will be meeting upstairs at the big table\n\nEvent Link: https://www.meetup.com/baltimorebitcoin/events/307979235/
+DTEND:20250808T003000Z
+LOCATION:La Palapa Grill & Cantina\, 8307 Main St\, Ellicott City\, MD US
+DTSTART:20250807T223000Z
+SUMMARY:1st Thursday Bitcoin HoDL Hour
+UID:80076758-0a05-4a0b-bade-b8c052280f95@8007.org
+URL:https://www.meetup.com/baltimorebitcoin/events/307979235/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/307673118/
+DTEND:20250614T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250614T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:2c38da96-bff8-4c15-aff1-ea68f2127f59@2c38.org
+URL:https://www.meetup.com/python-frederick/events/307673118/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Casual meetup at a local bar to talk about Crypto\n\nEvent Link: https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/307622513/
+DTEND:20250628T003000Z
+LOCATION:Phoenix Upper Main\, 8308 Main St\, Ellicott City\, MD us
+DTSTART:20250627T223000Z
+SUMMARY:Ellicott City Cryptocurrency Monthly Meetup
+UID:9bad6069-6a74-4715-993a-9271ddcbfab8@9bad.org
+URL:https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/307622513/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Start your morning with innovation\, insight\, & meaningful connections. Join us for Montgomery College’s signature biotech networking event.\n\nEvent Link: https://www.eventbrite.com/e/community-connect-5-from-code-to-cure-a-biotech-networking-event-tickets-1349767273249?aff=ebdssbdestsearch
+DTEND:20250716T150000Z
+LOCATION:Montgomery College Germantown Campus\, 20200 Observation Drive #4067 Germantown\, MD 20876\, \,  
+DTSTART:20250716T123000Z
+SUMMARY:From Code to Cure - A Biotech Networking Event
+UID:003087b5-3bec-4585-88da-6c1f3b1e0b13@0030.org
+URL:https://www.eventbrite.com/e/community-connect-5-from-code-to-cure-a-biotech-networking-event-tickets-1349767273249?aff=ebdssbdestsearch
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhclbnc/
+DTEND:20250830T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250830T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:9867993d-0ffd-447b-9191-e9d7e63320cf@9867.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhclbnc/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/308186081/
+DTEND:20250621T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250621T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:bfb01795-538f-4968-bb09-5daf8feef63f@bfb0.org
+URL:https://www.meetup.com/python-frederick/events/308186081/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Maker Faire is a gathering of fascinating\, curious people who enjoy learning and who love sharing what they can do. From engineers to artists to scientists to crafters\, Maker Faire is a venue for thes\n\nEvent Link: https://downtowncolumbia.makerfaire.com/
+DTEND:20250629T210000Z
+LOCATION:Merriweather Park at Symphony Woods\, 1000 Broken Land Parkway\, Columbia\, MD US
+DTSTART:20250629T140000Z
+SUMMARY:Maker Faire Downtown Columbia
+UID:d69e48c1-3e0d-4d08-9885-fed16fa2a6a3@d69e.org
+URL:https://downtowncolumbia.makerfaire.com/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhclbdb/
+DTEND:20250802T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250802T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:84b0bde4-c5c8-4d87-9c07-e1d4ae3725a9@84b0.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhclbdb/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Dreams and Nightmares in Sam Altman's OpenAI - with Bina Venkataraman — at Conn Ave. When AI expert and investigative journalist Karen Hao first began covering OpenAI in 2019\, she thought they were th\n\nEvent Link: https://politics-prose.com/karen-hao
+DTEND:20250531T233000Z
+LOCATION:Politics and Prose\, 5015 Connecticut Avenue NW\, Washington\, DC USA
+DTSTART:20250531T210000Z
+SUMMARY:Karen Hao — Empire of AI
+UID:8e63adab-5aea-489a-a405-7a4a03f3a753@8e63.org
+URL:https://politics-prose.com/karen-hao
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Maryland\, let’s connect through blockchain! 🧩🚀\n\nJoin Web3MD — a grassroots community & support network for founders\, developers\, and dreamers building in the Old Line State. Whether you're launching a\n\nEvent Link: https://lu.ma/02zv4one
+DTEND:20250620T000000Z
+LOCATION:The Hideaway\, \,  
+DTSTART:20250619T220000Z
+SUMMARY:Web3 Maryland Blockchain Mixer
+UID:cde00b83-967b-483f-bd1a-6e9e97438caf@cde0.org
+URL:https://lu.ma/02zv4one
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250606T020602Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhclbvb/
+DTEND:20250816T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250816T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:fc2b53c8-0e75-4565-82f4-ba1158982c04@fc2b.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhclbvb/
 END:VEVENT
 END:VCALENDAR
