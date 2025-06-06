@@ -36,9 +36,6 @@ def scrape_equitech_tuesday():
         # Extract event details
         event = {}
         
-        # Generate a unique ID
-        event["id"] = str(uuid.uuid4()).replace("-", "")[:16]
-        
         # Extract event name (h2 text)
         name_element = event_section.find('h2', class_='title h2 fade-up')
         if name_element:
