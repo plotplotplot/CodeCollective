@@ -286,7 +286,8 @@ def download_image(url, filename):
 from event_sources import sources
 
 if __name__ == "__main__":
-    with open("./manual_events.json", "r") as f:
+    # read existing events from file
+    with open("./upcoming_events.json", "r") as f:
         upcoming_events = json.loads(f.read())
 
     # Loop through each meetup URL
@@ -377,9 +378,23 @@ if __name__ == "__main__":
                 event["imageUrl"] = image_url
         
     nonerror_upcoming_events = []
+    midnight_today = datetime.datetime.now(est_timezone).replace(hour=0, minute=0, second=0, microsecond=0)
+
     for event in upcoming_events:
         if event != "error":
-            nonerror_upcoming_events += [event]
+            startDate = event.get("startDate")
+            if startDate:
+                if datetime.datetime.fromisoformat(event["startDate"]) > midnight_today:
+                    nonerror_upcoming_events += [event]
+
+    # Convert each dict to a JSON string (with sorted keys for consistency)
+    unique_events = {
+        json.dumps(event, sort_keys=True): event 
+        for event in nonerror_upcoming_events
+    }.values()
+
+    # Convert back to a list
+    nonerror_upcoming_events = list(unique_events)
 
     # Save upcoming events to a file
     with open("upcoming_events.json", "w+", encoding="utf-8") as f:
