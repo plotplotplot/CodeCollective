@@ -373,9 +373,14 @@ if __name__ == "__main__":
                 # revert url
                 event["imageUrl"] = image_url
         
+    nonerror_upcoming_events = []
+    for event in upcoming_events:
+        if event != "error":
+            nonerror_upcoming_events += [event]
+
     # Save upcoming events to a file
     with open("upcoming_events.json", "w+", encoding="utf-8") as f:
-        json.dump(upcoming_events, f, indent=4)
+        json.dump(nonerror_upcoming_events, f, indent=4)
         print(f"Upcoming events saved to upcoming_events.json")
 
-    events_to_ics(upcoming_events, output_file="baltimore_tech_events.ics")
+    events_to_ics(nonerror_upcoming_events, output_file="baltimore_tech_events.ics")

@@ -36,6 +36,27 @@
 
   <!-- Scripts -->
   <script>
+
+    // Generic image prefetching function
+    function prefetchImages(urls) {
+      if (!window.Promise || !window.fetch) return; // Skip if browser doesn't support
+
+      urls.forEach(url => {
+        // Create link preload for important above-the-fold images
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = url;
+        document.head.appendChild(link);
+
+        // Fetch all images to cache them
+        fetch(url, {
+          mode: 'no-cors',
+          cache: 'force-cache'
+        }).catch(() => { }); // Silent fail is okay for prefetch
+      });
+    }
+
     // First, prefetch all critical static images
     prefetchImages([
       '/images/favicons/favicon.png',
@@ -169,9 +190,9 @@
   <script src="./lightdark.js"></script>
 </body>
 
-  <script type="module" src="/js/reusableComponents.js"></script>
-  <script type="module" src="/js/header.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script type="module" src="/js/reusableComponents.js"></script>
+<script type="module" src="/js/header.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 </html>
