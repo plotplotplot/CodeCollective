@@ -69,6 +69,7 @@
       .then(response => response.json())
       .then(events => {
         allEvents = processEvents(events);
+        populateCodeCollectiveEvents(events);
 
         // Extract all unique event image URLs
         const eventImageUrls = allEvents
@@ -82,37 +83,6 @@
         console.error('Error fetching or processing events:', error);
       });
   </script>
-  <!-- Inline Styles -->
-  <style>
-    body,
-    #main,
-    .container,
-    .calendar-container,
-    #calendar {
-      width: 100% !important;
-      max-width: 100% !important;
-    }
-
-    .container {
-      padding: 0 15px !important;
-    }
-
-    .download-button {
-      display: inline-block;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #00796b;
-      color: #fff;
-      border-radius: 5px;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .download-button:hover {
-      background-color: #004d40;
-    }
-  </style>
-
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
@@ -137,12 +107,10 @@
 <body id="body">
   <nav class="main-nav" aria-label="Main Navigation">
     <div class="navbar dark-mode">
-      <a href="/index.html">Home</a>
-      <a href="/calendar.html">Calendar</a>
-      <a href="/curriculum.html">Curriculum</a>
-      <a href="/getinvolved.html">Get Involved!</a>
-      <a href="/sponsors.html">Sponsors</a>
-      <a href="/about-us.html">About Us</a>
+      <a href="#main">Home</a>
+      <a href="#calendar">Calendar</a>
+      <a href="#get-involved">Get Involved!</a>
+      <a href="#about-us">About Us</a>
     </div>
     <button class="mobile-nav-bars" aria-label="Toggle mobile menu">
       <div class="top bar"></div>
@@ -150,8 +118,6 @@
       <div class="bottom bar"></div>
     </button>
   </nav>
-
-  <button id="toggle-dark-mode" aria-label="Toggle dark mode">☀️</button>
 
   <main id="wrapper" class="longform dark-mode" style="padding: 0; margin: 0;">
     <section id="main" class="longform dark-mode" style="padding: 0; margin: 0;">
@@ -178,16 +144,116 @@
         </a>
       </section>
 
+      <h1 style="margin: 10px 0; font-size: 2.5em; text-align: center">Code Collective Events</h1>
+      <section class="code-collective-events" aria-label="Code Collective Events">
+        <div id="code-collective-events-container">
+          <!-- Events will be populated by JavaScript -->
+        </div>
+      </section>
 
-      <script src="/js/calendar.js"></script>
+      <section class="about-us" id="about-us"  aria-label="About Code Collective">
+
+        <h1>About Us</h1>
+        <div class="logo" , class="dark-mode">
+          <img src="images/codecollective.png" alt="Code Colletive" class="img-fluid" />
+        </div>
+        <h1>A Call to Virtue</h1>
+        <p>
+          Technology is essential in the current economy. Collective exists to empower
+          virtuous technologists to create a better economy.
+        </p>
+        <h1 align="right">The Voice of Baltimore's Best Technologists</h1>
+        <p>
+          Code Collective empowers local technologists through
+          educational workshops, community-driven meetups, and advocacy
+          for change in the economy. By reforming labor and incentive systems,
+          we strengthen the institutions around us.
+          Our approach combines necessary skills teaching with collective decision making,
+          thereby creating an economy that works for the people.
+        </p>
+        <h1>Empowered Tech Labor</h1>
+        <p>
+          The hiring process of today is broken. Companies spend significant
+          resources finding employees, but still seem to hire the wrong
+          people. Code Collective aims to improve the hiring pipeline
+          by evaluating candidates in real development environments
+          before recommending them to employers. With a deeper
+          understanding of the current tech landscape, we offer a practical approach to hiring where others have failed.
+        </p>
+        <h1 align="right">Influential Projects</h1>
+        <p>
+          At Code Collective, we tackle a diverse range of projects that
+          bridge technology and real-world impact. There are two major
+          projects underway; the Arkavo Secure Communications platform and Baltimore ASI
+          (Artificial Super Intelligence). These projects are both
+          a means to develop local technologists and of monumental importance
+          in themselves.
+        </p>
+        <br />
+        <p>
+          Code Collective is a cybernetic syncretism emphasizing professionalism
+          in Computer Science. The org is currently guided by the unofficial
+          <a href="/constitution.html">Constitution and Bylaws</a>
+        </p>
+        <br />
+      </section>
+
+      <h1>Organizers</h1>
+      <div class="row">
+        <div class="card">
+          <div class="imageBox">
+            <div class="imageInn">
+              <img src="images/julian_happy_headshot.jpeg" alt="Default Image" class="circle-image" />
+            </div>
+            <div class="hoverImg">
+              <img src="images/julian4.jpg" alt="Profile Image" class="circle-image" />
+            </div>
+          </div>
+          <div class="card-content">
+            <p>
+              <b><a href="/personnel/juliancoy.html">Julian Coy</a></b>
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="longform dark-mode" id="get-involved" style="margin: 0 auto; max-width: 960px; padding: 0 20px;">
+
+
+      <h1>Volunteer Organizer - Code Collective</h1>
+
+      <p>Join Code Collective as a Volunteer Organizer and help us bring Baltimore's tech community together for
+        positive social change.</p>
+
+      <img src="/images/people_wide.jpg" alt="Volunteer Organizer"
+        style="width: 100%; height: auto; border-radius: 15px; margin-bottom: 20px;" />
+
+      <h2>What You'll Do:</h2>
+      <ul>
+        <li>Assist in planning and coordinating our regular meetups and special events</li>
+        <li>Welcome and connect with attendees, helping to build our inclusive community</li>
+        <li>Work alongside Baltimore's most innovative technologists committed to social good</li>
+        <li>Contribute creative ideas for events that inspire collective action</li>
+        <li>Help with practical logistics like venue setup, communications, and follow-up</li>
+      </ul>
+
+      <p>This is a perfect opportunity for someone who believes in the power of technology to create meaningful change
+        and enjoys bringing people together around shared values.</p>
+
+      <h2>How to apply:</h2>
+      <a href="mailto:julian@codecollective.us">Send us an email expressing your interest</a>
+      <p>We look forward to hearing from you!</p>
+    </section>
+
+    <script src="/js/calendar.js"></script>
     </section>
   </main>
 
   <our-footer></our-footer>
   <our-slack-link></our-slack-link>
 
-  <!-- Scripts -->
-  <script src="./lightdark.js"></script>
 </body>
 
 <script type="module" src="/js/reusableComponents.js"></script>

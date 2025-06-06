@@ -579,3 +579,106 @@ window.onclick = function (event) {
     closeEventPopup();
   }
 };
+function populateCodeCollectiveEvents(events) {
+  const container = document.getElementById('code-collective-events-container');
+  if (!container) return;
+
+  // Filter events that have "code-collective" in the URL
+  const codeCollectiveEvents = events.filter(event =>
+    event.url && event.url.includes('code-collective')
+  );
+
+  if (codeCollectiveEvents.length === 0) {
+    container.innerHTML = '<p style="text-align: center; color: #999; padding: 20px;">No upcoming Code Collective events at this time.</p>';
+    return;
+  }
+
+  // Sort events by start date
+  codeCollectiveEvents.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+
+  // Generate HTML for each event
+  const eventsHTML = codeCollectiveEvents.map((event, index) => {
+    const startDate = new Date(event.startDate);
+    const formattedDate = startDate.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+    const formattedTime = startDate.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    });
+
+    // Convert markdown description to HTML if marked library is available
+    let description = event.description || '';
+    if (window.marked && description) {
+      description = marked.parse(description);
+    } else {
+      // Simple fallback for basic markdown
+      description = description
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/\n/g, '<br>');
+    }
+
+    // Create truncated version (first 2-3 lines approximately)
+    const words = description.split(' ');
+    const truncateLength = 30; // Adjust as needed
+    const truncatedDescription = words.length > truncateLength 
+      ? words.slice(0, truncateLength).join(' ') + '...'
+      : description;
+    
+    const needsTruncation = words.length > truncateLength;
+    const eventId = `event-${index}`;
+
+    const locationText = event.location?.name || 'Location TBD';
+
+    return `
+      <div class="cc-event-card">
+        ${event.imageUrl ? `<img src="${event.imageUrl}" alt="${event.name}" class="event-card-image" loading="lazy">` : ''}
+        <div class="cc-event-card-content">
+          <h3 class="cc-event-card-title">${event.name}</h3>
+          <div class="cc-event-card-date">${formattedDate} at ${formattedTime}</div>
+          <div class="cc-event-card-location">${locationText}</div>
+          <div class="cc-event-card-description">
+            <div id="${eventId}-short" ${needsTruncation ? '' : 'style="display: block;"'}>
+              ${truncatedDescription}
+            </div>
+            ${needsTruncation ? `
+              <div id="${eventId}-full" style="display: none;">
+                ${description}
+              </div>
+              <button type="button" class="cc-show-more-btn" onclick="toggleDescription('${eventId}')" id="${eventId}-btn">
+                Show more
+              </button>
+            ` : ''}
+          </div>
+          <a href="${event.url}" class="cc-event-card-link" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-external-link-alt" aria-hidden="true"></i> View Event Details
+          </a>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  container.innerHTML = eventsHTML;
+}
+
+// Toggle function for show more/less
+function toggleDescription(eventId) {
+  const shortDiv = document.getElementById(`${eventId}-short`);
+  const fullDiv = document.getElementById(`${eventId}-full`);
+  const btn = document.getElementById(`${eventId}-btn`);
+  
+  if (fullDiv.style.display === 'none') {
+    shortDiv.style.display = 'none';
+    fullDiv.style.display = 'block';
+    btn.textContent = 'Show less';
+  } else {
+    shortDiv.style.display = 'block';
+    fullDiv.style.display = 'none';
+    btn.textContent = 'Show more';
+  }
+}

@@ -2,6 +2,7 @@ import scrape_meetup
 import scrape_eventbrite
 import scrape_jotform
 import scrape_equitech
+import scrape_gbc
 import scrape_luma
 import scrape_ics
 import json
@@ -319,7 +320,10 @@ if __name__ == "__main__":
         print(f"Fetching events from {LUMA_URL}")
         upcoming_events += [scrape_luma.parse_luma_event_page(LUMA_URL)]
 
-    upcoming_events += scrape_equitech.scrape_equitech_tuesday()
+    gbc_events = scrape_gbc.scrape_gbc_events()
+    upcoming_events += gbc_events
+    
+    #upcoming_events += scrape_equitech.scrape_equitech_tuesday()
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
     }
@@ -381,12 +385,21 @@ if __name__ == "__main__":
     midnight_today = datetime.datetime.now(est_timezone).replace(hour=0, minute=0, second=0, microsecond=0)
 
     for event in upcoming_events:
-        if event != "error":
-            startDate = event.get("startDate")
-            if startDate:
-                if datetime.datetime.fromisoformat(event["startDate"]) > midnight_today:
-                    nonerror_upcoming_events += [event]
+        if event == "error":
+            continue
 
+        startDate = event.get("startDate")
+        if not startDate:
+            continue
+        
+        startDateTime = datetime.datetime.fromisoformat(event["startDate"])
+
+        if startDateTime.date() == datetime.date(2025, 6, 28) and "unity" not in event.get("name", "").lower():
+            print(f"Skipping event on June 28, 2025: {event['name']}")
+            continue
+
+        if startDateTime > midnight_today:
+            nonerror_upcoming_events += [event]
     # Convert each dict to a JSON string (with sorted keys for consistency)
     unique_events = {
         json.dumps(event, sort_keys=True): event 

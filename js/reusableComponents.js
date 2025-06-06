@@ -114,19 +114,6 @@ class OurSocials extends HTMLElement {
                         />
                     </button>
                 </a>
-                <a
-                    href="https://www.facebook.com/groups/687416533909466/"
-                    target="_blank"
-                    class="social__link"
-                >
-                    <button class="social__button">
-                        <img
-                            src="/images/Facebook_f_logo.svg"
-                            alt="Facebook icon"
-                            class="social__icon"
-                        />
-                    </button>
-                </a>
             </aside>
         `;
     }
