@@ -304,8 +304,11 @@ if __name__ == "__main__":
         upcoming_events += scrape_meetup.parse_meetup_events(upcoming_next_data, include_past=True)
 
     for EVENTBRITE_URL in sources.get("Eventbrite", []):
-        print(f"Fetching events from {EVENTBRITE_URL}")
-        upcoming_events += scrape_eventbrite.parse_eventbrite_event(EVENTBRITE_URL)
+        try:
+            print(f"Fetching events from {EVENTBRITE_URL}")
+            upcoming_events += scrape_eventbrite.parse_eventbrite_event(EVENTBRITE_URL)
+        except Exception as e:
+            print(e)
 
     for JOTFORM_URL in sources.get("Jotform", []):
         print(f"Fetching events from {JOTFORM_URL}")

@@ -17,7 +17,8 @@ def parse_eventbrite_event(url):
     # Make request to the event page
     response = requests.get(url)
     if response.status_code != 200:
-        return {"error": f"Failed to retrieve page: {response.status_code}"}
+        print(f"Failed to retrieve page: {response.status_code}")
+        return []
     
     html_content = response.text
     soup = BeautifulSoup(html_content, 'html.parser')
