@@ -349,7 +349,7 @@ if __name__ == "__main__":
             image_url = event["imageUrl"]
 
             # Create a valid filename with all spaces replaced by underscores
-            safe_event_name = event['name'].replace(' ', '_').replace('/', '_').replace('\\', '_').replace('\'', '_').replace(':', '_').replace('(', '_').replace(')', '_')
+            safe_event_name = event['name'].replace(' ', '_').replace('/', '_').replace('\\', '_').replace('\'', '_').replace(':', '_').replace('(', '_').replace(')', '_').replace('#', '_')
             image_filename = f"event_images/{safe_event_name}.webp"
 
             # Update event data with local path
