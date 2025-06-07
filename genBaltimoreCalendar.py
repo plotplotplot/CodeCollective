@@ -400,18 +400,23 @@ if __name__ == "__main__":
 
         if startDateTime > midnight_today:
             nonerror_upcoming_events += [event]
-    # Convert each dict to a JSON string (with sorted keys for consistency)
-    unique_events = {
-        json.dumps(event, sort_keys=True): event 
-        for event in nonerror_upcoming_events
-    }.values()
 
-    # Convert back to a list
-    nonerror_upcoming_events = list(unique_events)
+    unique_events = []
+    fields_to_compare = ['name', 'description', 'url', 'imageUrl', 'startDate', 'endTime']
+
+    for event in nonerror_upcoming_events:
+        is_duplicate = False
+        for unique_event in unique_events:
+            if all(event.get(field) == unique_event.get(field) for field in fields_to_compare):
+                is_duplicate = True
+                break
+        if not is_duplicate:
+            unique_events.append(event)
+
 
     # Save upcoming events to a file
     with open("upcoming_events.json", "w+", encoding="utf-8") as f:
-        json.dump(nonerror_upcoming_events, f, indent=4)
+        json.dump(unique_events, f, indent=4)
         print(f"Upcoming events saved to upcoming_events.json")
 
-    events_to_ics(nonerror_upcoming_events, output_file="baltimore_tech_events.ics")
+    events_to_ics(unique_events, output_file="baltimore_tech_events.ics")

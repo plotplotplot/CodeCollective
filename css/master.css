@@ -292,7 +292,7 @@
 }
 
 .main-nav {
-  height: 80px;
+  height: auto;
   background-color: #002a61;
   color: #002a61;
   display: flex;
@@ -302,7 +302,7 @@
 
 /* Navbar container */
 .navbar {
-  padding: 0;
+  padding: 0 1em;
   margin: 0;
   background-color: #002a61;
   color: #002a61;
@@ -313,6 +313,7 @@
   font-size: clamp(1rem, 2vw, 4.4rem);
   font-family: NectoMono;
   width: 100vw;
+  height: auto;
 }
 
 
@@ -325,7 +326,9 @@
   color: #0000;
   padding: .5em .5em;
   text-align: center;
-  padding-bottom: var(--s);
+  padding-bottom: .5em;
+  padding-left: 0em;
+  padding-right: 0em;
   background:
     linear-gradient(90deg, var(--c) 50%, #000 0) calc(100% - var(--_p, 0%))/200% 100%,
     linear-gradient(var(--c) 0 0) 0% 100%/var(--_p, 0%) var(--s) no-repeat;
