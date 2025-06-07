@@ -867,24 +867,11 @@ button:focus {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background-color: #FFF;
 	text-align: center;
 	padding: 5px;
-	margin: 0px;
-}
 
-.card-image {
-	position: relative;
-	width: 300px;
-	/* Ensure square dimensions */
-	height: 300px;
-	/* Ensure square dimensions */
-	margin-bottom: 15px;
-	/* Space between image and text */
-	overflow: hidden;
-	/* Ensure the image does not overflow */
-	border-radius: 50%;
-	/* Ensures the container is circular */
+	background-color: #002a61;
+	margin: 0px;
 }
 
 .circle-image {
@@ -894,21 +881,6 @@ button:focus {
 	object-fit: cover;
 	/* Ensures the image covers the container */
 	display: block;
-}
-
-.card {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	background-color: #FFF;
-	text-align: left;
-	padding: 5px;
-	margin: 0px 0px;
-}
-
-
-.card.dark-mode {
-	background-color: #002a61;
 }
 
 .card-image {
@@ -948,20 +920,6 @@ button:focus {
 .card-image:hover img:not(.hover-image) {
 	opacity: 0;
 }
-
-.card-content {
-	padding: 0px 0px;
-	margin: 0px 0px;
-	line-height: 1.2;
-	text-align: left;
-	background-color: #fff;
-}
-
-.card-content.dark-mode {
-	color: #fff;
-	background-color: #002a61;
-}
-
 
 .imageBox {
 	position: relative;
@@ -1051,8 +1009,8 @@ button:focus {
 
 .download-button {
   display: inline-block;
-  margin: 20px auto;
-  padding: 10px 20px;
+  margin: 2px auto;
+  padding: 2px 2px;
   background-color: #00796b;
   color: #fff;
   border-radius: 5px;
@@ -1109,7 +1067,7 @@ button:focus {
 }
 
 .cc-event-card-date {
-  color: #00796b;
+  color: #fff200;
   font-weight: bold;
   font-size: 1.1em;
   margin-bottom: 15px;
@@ -1130,7 +1088,7 @@ button:focus {
 .cc-event-card-link {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #00796b;
+  background-color: #000000;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;

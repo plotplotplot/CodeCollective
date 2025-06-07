@@ -65,23 +65,6 @@
       // Add other static images used by your UI
     ]);
 
-    fetch('upcoming_events.json')
-      .then(response => response.json())
-      .then(events => {
-        allEvents = processEvents(events);
-        populateCodeCollectiveEvents(events);
-
-        // Extract all unique event image URLs
-        const eventImageUrls = allEvents
-          .map(event => event.extendedProps?.imageUrl)
-          .filter(url => url); // Remove null/undefined
-
-        // Prefetch all event images in parallel
-        prefetchImages(eventImageUrls);
-      }
-      ).catch(error => {
-        console.error('Error fetching or processing events:', error);
-      });
   </script>
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -118,9 +101,13 @@
     <section id="main" class="longform dark-mode" style="padding: 0; margin: 0;">
       <header class="header-container" style="text-align: center; padding: 20px 0;">
         <p style="margin-bottom: 8px; font-size: 1.2em;">Code Collective brings you</p>
-        <h1 style="margin: 10px 0; font-size: 2.5em;">A Baltimore Tech Events Calendar</h1>
+        <h1 style="margin: 10px 0; font-size: 2.5em;">A Baltimore Techonomics Calendar</h1>
         <p style="margin-top: 8px; font-size: 1.1em;">A unified calendar of tech events from Baltimore area meetup
           groups</p>
+          <a href="https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/baltimore_tech_events.ics"
+          class="download-button" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-calendar-alt" aria-hidden="true"></i> Add to Google Calendar
+        </a>
       </header>
 
       <div class="container">
@@ -132,12 +119,6 @@
         </section>
       </div>
 
-      <section class="download-section" aria-label="Calendar download options">
-        <a href="https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/baltimore_tech_events.ics"
-          class="download-button" target="_blank" rel="noopener noreferrer">
-          <i class="fas fa-calendar-alt" aria-hidden="true"></i> Add to Google Calendar
-        </a>
-      </section>
 
       <h1 style="margin: 10px 0; font-size: 2.5em; text-align: center">Code Collective Events</h1>
       <section class="code-collective-events" aria-label="Code Collective Events">
@@ -192,28 +173,24 @@
         </p>
         <br />
         <h1>Organizers</h1>
-        <div class="row">
-          <div class="card">
-            <div class="imageBox">
-              <div class="imageInn">
-                <img src="images/julian_happy_headshot.jpeg" alt="Default Image" class="circle-image" />
-              </div>
-              <div class="hoverImg">
-                <img src="images/julian4.jpg" alt="Profile Image" class="circle-image" />
-              </div>
+        <div class="card">
+          <div class="imageBox">
+            <div class="imageInn">
+              <img src="images/julian_happy_headshot.jpeg" alt="Default Image" class="circle-image" />
             </div>
-            <div class="card-content">
-              <p>
-                <b><a href="/personnel/juliancoy.html">Julian Coy</a></b>
-              </p>
+            <div class="hoverImg">
+              <img src="images/julian4.jpg" alt="Profile Image" class="circle-image" />
             </div>
           </div>
+          <p>
+            <b><a href="juliancoy.us">Julian Coy</a></b>
+          </p>
         </div>
 
         <section class="longform dark-mode" id="get-involved">
 
 
-          <h1>Volunteer Organizer - Code Collective</h1>
+          <h1>We're "hiring"!</h1>
 
           <p>Join Code Collective as a Volunteer Organizer and help us bring Baltimore's tech community together for
             positive social change.</p>

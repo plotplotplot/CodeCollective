@@ -57,6 +57,8 @@ document.addEventListener('DOMContentLoaded', function () {
         initializeCalendar(allEvents);
       }
 
+      populateCodeCollectiveEvents(events);
+
       setupViewSelectors();
       document.getElementById('loading').style.display = 'none';
 
@@ -637,6 +639,8 @@ function populateCodeCollectiveEvents(events) {
 
     return `
       <div class="cc-event-card">
+        <a href="${event.url}" class="cc-event-card-link" target="_blank" rel="noopener noreferrer">
+
         ${event.imageUrl ? `<img src="${event.imageUrl}" alt="${event.name}" class="event-card-image" loading="lazy">` : ''}
         <div class="cc-event-card-content">
           <h3 class="cc-event-card-title">${event.name}</h3>
@@ -655,10 +659,8 @@ function populateCodeCollectiveEvents(events) {
               </button>
             ` : ''}
           </div>
-          <a href="${event.url}" class="cc-event-card-link" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-external-link-alt" aria-hidden="true"></i> View Event Details
-          </a>
         </div>
+      </a>
       </div>
     `;
   }).join('');
