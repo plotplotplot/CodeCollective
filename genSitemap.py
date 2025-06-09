@@ -34,6 +34,23 @@ def extract_local_links(base_url, html_file):
     
     return local_links
 
+def include_base_directory_html(base_url, base_dir="."):
+    """Add all HTML files in the base directory to the links"""
+    base_html_links = set()
+    
+    # Find all HTML files in the base directory (not subdirectories)
+    for file in os.listdir(base_dir):
+        if file.endswith('.html') and os.path.isfile(os.path.join(base_dir, file)):
+            if file == 'index.html':
+                # Root index.html maps to the base URL
+                base_html_links.add(base_url)
+            else:
+                # Other HTML files get their filename as the URL
+                file_url = urljoin(base_url, file)
+                base_html_links.add(file_url)
+    
+    return base_html_links
+
 def include_subdirectories(base_url, subdirs):
     """Add subdirectory URLs to the list of links"""
     subdir_links = set()
@@ -53,7 +70,7 @@ def include_subdirectories(base_url, subdirs):
                         # Create relative path
                         rel_path = os.path.join(root, file)
                         # Convert to URL and add to links
-                        file_url = urljoin(base_url, rel_path)
+                        file_url = urljoin(base_url, rel_path.replace(os.sep, '/'))
                         subdir_links.add(file_url)
     
     return subdir_links
@@ -69,7 +86,7 @@ def generate_sitemap(links, output_file):
     
     # Generate URL entries
     url_entries = ""
-    for link in links:
+    for link in sorted(links):  # Sort for consistent output
         url_entries += f"""  <url>
     <loc>{link}</loc>
     <lastmod>{current_date}</lastmod>
@@ -92,18 +109,24 @@ def generate_sitemap(links, output_file):
 
 # Main process
 if __name__ == "__main__":
-    # Step 1: Extract all local links from index.html
-    local_links = extract_local_links(BASE_URL, HTML_FILE)
+    # Step 1: Include all HTML files in the base directory
+    all_links = include_base_directory_html(BASE_URL)
     
-    # Step 2: Include subdirectory links
+    # Step 2: Extract all local links from index.html (if it exists)
+    if os.path.isfile(HTML_FILE):
+        local_links = extract_local_links(BASE_URL, HTML_FILE)
+        all_links.update(local_links)
+    
+    # Step 3: Include subdirectory links
     subdir_links = include_subdirectories(BASE_URL, SUBDIRS)
-    
-    # Step 3: Combine all links
-    all_links = local_links.union(subdir_links)
+    all_links.update(subdir_links)
     
     # Step 4: Generate the sitemap.xml file
     if all_links:
         generate_sitemap(all_links, SITEMAP_FILE)
         print(f"Total URLs in sitemap: {len(all_links)}")
+        print("URLs included:")
+        for url in sorted(all_links):
+            print(f"  - {url}")
     else:
         print("No links found.")
