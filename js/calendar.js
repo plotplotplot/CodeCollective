@@ -14,7 +14,7 @@ function isMobileDevice() {
 // Generic image prefetching function
 function prefetchImages(urls) {
   if (!window.Promise || !window.fetch) return; // Skip if browser doesn't support
-  
+
   urls.forEach(url => {
     // Create link preload for important above-the-fold images
     const link = document.createElement('link');
@@ -22,12 +22,12 @@ function prefetchImages(urls) {
     link.as = 'image';
     link.href = url;
     document.head.appendChild(link);
-    
+
     // Fetch all images to cache them
     fetch(url, {
       mode: 'no-cors',
       cache: 'force-cache'
-    }).catch(() => {}); // Silent fail is okay for prefetch
+    }).catch(() => { }); // Silent fail is okay for prefetch
   });
 }
 
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const eventImageUrls = allEvents
         .map(event => event.extendedProps?.imageUrl)
         .filter(url => url); // Remove null/undefined
-      
+
       // Prefetch all event images in parallel
       prefetchImages(eventImageUrls);
 
@@ -75,26 +75,26 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!isMobile) {
     addTodayStyles();
   }
-  
+
   // Debounce the resize event listener to avoid excessive re-rendering
   let resizeTimeout;
-  window.addEventListener('resize', function() {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    const wasMobile = isMobile;
-    isMobile = isMobileDevice();
-    
-    if (wasMobile !== isMobile) {
-      if (isMobile) {
-        destroyCalendar();
-        initializeMobileCards(allEvents);
-      } else {
-        destroyMobileCards();
-        initializeCalendar(allEvents);
-        addTodayStyles();
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      const wasMobile = isMobile;
+      isMobile = isMobileDevice();
+
+      if (wasMobile !== isMobile) {
+        if (isMobile) {
+          destroyCalendar();
+          initializeMobileCards(allEvents);
+        } else {
+          destroyMobileCards();
+          initializeCalendar(allEvents);
+          addTodayStyles();
+        }
       }
-    }
-  }, 200); // Adjust debounce time as needed
+    }, 200); // Adjust debounce time as needed
   });
 });
 
@@ -500,7 +500,14 @@ function initializeCalendar(events) {
   `;
       // Check both locations for description
       const description = info.event.extendedProps.description || info.event.description || '';
-      info.el.setAttribute('title', `${info.event.title}\n${info.event.extendedProps.location.address}\n${description}`);
+      const address = info.event.extendedProps.location?.address;
+      const parts = [
+        info.event.title,
+        address,
+        description
+      ].filter(Boolean).join('\n');
+
+      info.el.setAttribute('title', parts);
     },
     // Add this: Callback for when view is rendered
     viewDidMount: function () {
@@ -628,10 +635,10 @@ function populateCodeCollectiveEvents(events) {
     // Create truncated version (first 2-3 lines approximately)
     const words = description.split(' ');
     const truncateLength = 30; // Adjust as needed
-    const truncatedDescription = words.length > truncateLength 
+    const truncatedDescription = words.length > truncateLength
       ? words.slice(0, truncateLength).join(' ') + '...'
       : description;
-    
+
     const needsTruncation = words.length > truncateLength;
     const eventId = `event-${index}`;
 
@@ -673,7 +680,7 @@ function toggleDescription(eventId) {
   const shortDiv = document.getElementById(`${eventId}-short`);
   const fullDiv = document.getElementById(`${eventId}-full`);
   const btn = document.getElementById(`${eventId}-btn`);
-  
+
   if (fullDiv.style.display === 'none') {
     shortDiv.style.display = 'none';
     fullDiv.style.display = 'block';
