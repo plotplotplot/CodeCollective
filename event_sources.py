@@ -15,9 +15,7 @@ sources = {
         "https://www.meetup.com/python-frederick/events/"
     ],
     "Eventbrite":[
-        "https://www.eventbrite.com/e/indie-game-fest-2025-tickets-1264402364509",
-        "https://www.eventbrite.com/e/canton-laughs-the-inaugural-comedy-showcase-tickets-1354002962309",
-        "https://www.eventbrite.com/e/people-make-games-developer-talk-tickets-1264411943159",
+        "https://www.eventbrite.com/e/open-works-fundraising-happy-hour-tickets-1378163557299",
         "https://www.eventbrite.com/e/county-executive-balls-5th-annual-stem-awards-tickets-1371704919339",
         "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
         "https://www.eventbrite.com/e/weekly-meetings-no-labels-party-us-2028-tickets-1375290293289",
