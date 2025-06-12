@@ -12,7 +12,9 @@ import pytz
 from bs4 import BeautifulSoup
 import re
 import scrape_luma_orgpage
+import scrape_eventbrite_org
 import markdown
+from dateutil.parser import parse
 
 # Define the timezone for EST
 est_timezone = pytz.timezone("America/New_York")
@@ -189,19 +191,11 @@ def events_to_ics(events_json, output_file="baltimore_tech_events.ics"):
         if start_str:
             # Parse ISO format dates
             try:
-                # Handle different ISO format variations
-                if start_str.endswith('Z'):
-                    start_time = datetime.datetime.fromisoformat(start_str.replace('Z', '+00:00'))
-                else:
-                    start_time = datetime.datetime.fromisoformat(start_str)
-                
+                start_time = parse(start_str)
                 event.begin = start_time
                 
                 if end_str:
-                    if end_str.endswith('Z'):
-                        end_time = datetime.datetime.fromisoformat(end_str.replace('Z', '+00:00'))
-                    else:
-                        end_time = datetime.datetime.fromisoformat(end_str)
+                    end_time = parse(end_str)
                     event.end = end_time
                 else:
                     # Default to 2 hours if no end time specified
@@ -313,6 +307,13 @@ if __name__ == "__main__":
         except Exception as e:
             print(e)
 
+    for EVENTBRITE_URL in sources.get("Eventbrite Orgs", []):
+        try:
+            print(f"Fetching org events from {EVENTBRITE_URL}")
+            upcoming_events += scrape_eventbrite_org.scrape_eventbrite_organizer(EVENTBRITE_URL)
+        except Exception as e:
+            print(e)
+
     for JOTFORM_URL in sources.get("Jotform", []):
         print(f"Fetching events from {JOTFORM_URL}")
         upcoming_events += [scrape_jotform.parse_jotform_event(JOTFORM_URL)]
@@ -364,7 +365,7 @@ if __name__ == "__main__":
             event["imageUrl"] = "/" + image_filename
 
             if os.path.exists(image_filename):
-                print(f"Image already exists: {image_filename}, skipping download.")
+                #print(f"Image already exists: {image_filename}, skipping download.")
                 continue
             
             try:
@@ -393,14 +394,12 @@ if __name__ == "__main__":
     midnight_today = datetime.datetime.now(est_timezone).replace(hour=0, minute=0, second=0, microsecond=0)
 
     for event in upcoming_events:
-        if event == "error":
-            continue
-
         startDate = event.get("startDate")
         if not startDate:
+            print(f'{event.get("name")} missing startdate ')
             continue
         
-        startDateTime = datetime.datetime.fromisoformat(event["startDate"])
+        startDateTime = parse(event["startDate"])
 
         if startDateTime.date() == datetime.date(2025, 6, 28) and "unity" not in event.get("name", "").lower():
             print(f"Skipping event on June 28, 2025: {event['name']}")
@@ -408,6 +407,9 @@ if __name__ == "__main__":
 
         if startDateTime > midnight_today:
             nonerror_upcoming_events += [event]
+        else:
+            print(f'{event.get("name")} already happened ')
+
 
     unique_events = []
     fields_to_compare = ['name', 'description', 'url', 'imageUrl', 'startDate', 'endTime']
@@ -417,6 +419,7 @@ if __name__ == "__main__":
         for unique_event in unique_events:
             if sum(event.get(field) == unique_event.get(field) for field in fields_to_compare) >= 4:
                 is_duplicate = True
+                print(f'Duplicate event {event.get("name")}')
                 break
         if not is_duplicate:
             unique_events.append(event)

@@ -23,10 +23,15 @@ sources = {
         "https://www.eventbrite.com/e/weekly-meetings-no-labels-party-us-2028-tickets-1375290313349",
         "https://www.eventbrite.com/e/techspo-baltimore-2025-technology-expo-internet-adtech-martech-tickets-1114708064829",
         "https://www.eventbrite.com/e/2025-md-makerspace-meetup-tickets-1345760890049",
-        "https://www.eventbrite.com/e/blk-tech-connect-3-black-tech-brunch-tickets-1403222709899"
+    ],
+    "Eventbrite Orgs":[
+        "https://www.eventbrite.com/o/blk-tech-connect-107618183651",
+        "https://www.eventbrite.com/o/open-works-86343210063",
+        "https://www.eventbrite.com/o/baltimore-under-ground-science-space-bugss-4318633291",
+        "https://www.eventbrite.com.au/o/it-social-baltimore-110781946041"
     ],
     "Jotform":[
-        "https://form.jotform.com/251063812795157"
+        #"https://form.jotform.com/251063812795157"
     ],
     "Luma":[
         "https://lu.ma/k5mgdolz",
