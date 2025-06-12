@@ -33,4 +33,7 @@ sources = {
         "https://lu.ma/wrqpk3v2",
         "https://lu.ma/02zv4one"
     ],
+    "Luma Orgs":[
+        "https://lu.ma/civic-tech-dc",
+    ],
 }

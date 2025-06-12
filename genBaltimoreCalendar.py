@@ -11,6 +11,7 @@ import datetime
 import pytz
 from bs4 import BeautifulSoup
 import re
+import scrape_luma_orgpage
 import markdown
 
 # Define the timezone for EST
@@ -320,6 +321,13 @@ if __name__ == "__main__":
         print(f"Fetching events from {LUMA_URL}")
         upcoming_events += [scrape_luma.parse_luma_event_page(LUMA_URL)]
 
+    for LUMA_URL in sources.get("Luma Orgs", []):
+        print(f"Fetching events from {LUMA_URL}")
+        try:
+            upcoming_events += scrape_luma_orgpage.fetch_and_parse_luma_events(LUMA_URL)
+        except Exception as e:
+            print(f"Error fetching Luma events from {LUMA_URL}: {e}")
+
     gbc_events = scrape_gbc.scrape_gbc_events()
     upcoming_events += gbc_events
     
@@ -407,7 +415,7 @@ if __name__ == "__main__":
     for event in nonerror_upcoming_events:
         is_duplicate = False
         for unique_event in unique_events:
-            if all(event.get(field) == unique_event.get(field) for field in fields_to_compare):
+            if sum(event.get(field) == unique_event.get(field) for field in fields_to_compare) >= 4:
                 is_duplicate = True
                 break
         if not is_duplicate:
