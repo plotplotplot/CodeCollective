@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Code Collective | Baltimore Tech Events Calendar & Tech Labor Organization</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Code Collective organizes tech labor in Baltimore and provides a unified calendar of local tech meetups, hackathons, and tech community events." />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://codecollective.us/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://codecollective.us/" />
+  <meta property="og:site_name" content="Code Collective" />
+  <meta property="og:title" content="Code Collective | Baltimore Tech Events Calendar" />
+  <meta property="og:description"
+    content="Organizing tech labor in Baltimore and sharing a community-wide tech events calendar." />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/favicons/favicon.png" />
+
+  <link rel="preload" href="/css/master.css" as="style">
+  <link rel="preload" href="/css/calendar.css" as="style">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/master.css" />
+  <link rel="stylesheet" href="/css/calendar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Scripts -->
+  <script>
+
+    // Generic image prefetching function
+    function prefetchImages(urls) {
+      if (!window.Promise || !window.fetch) return; // Skip if browser doesn't support
+
+      urls.forEach(url => {
+        // Create link preload for important above-the-fold images
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = url;
+        document.head.appendChild(link);
+
+        // Fetch all images to cache them
+        fetch(url, {
+          mode: 'no-cors',
+          cache: 'force-cache'
+        }).catch(() => { }); // Silent fail is okay for prefetch
+      });
+    }
+
+    // First, prefetch all critical static images
+    prefetchImages([
+      '/images/favicons/favicon.png',
+      '/images/WhatsApp.svg.webp',
+      '/images/github_icon.png',
+      // Add other static images used by your UI
+    ]);
+
+  </script>
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Code Collective",
+    "url": "https://codecollective.us",
+    "description": "Organizing tech labor and maintaining a Baltimore tech events calendar.",
+    "location": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Baltimore",
+        "addressRegion": "MD",
+        "addressCountry": "US"
+      }
+    }
+  }
+  </script>
+</head>
+
+<body id="body">
+  <video id="bg-video" autoplay loop muted playsinline>
+  <source src="/videos/baltimorenight_15s_crossfaded.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+
+  <nav class="main-nav" aria-label="Main Navigation">
+    <div class="navbar dark-mode">
+      <a href="#main">Home</a>
+      <a href="#calendar">Calendar</a>
+      <a href="#get-involved">Join Us</a>
+      <a href="#about-us">About Us</a>
+    </div>
+  </nav>
+
+  <main id="wrapper" class="longform dark-mode" style="padding: 2em;">
+  <section id="nonprofits" class="dark-mode" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2em;">
+    
+    <style>
+      .iframe-card {
+        flex: 1 1 45%;
+        max-width: 600px;
+        min-width: 300px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-top: 2em;
+      }
+
+      .iframe-card:nth-child(odd) {
+        margin-top: 4em; /* Creates slight vertical offset */
+      }
+
+      .iframe-card iframe {
+        width: 100%;
+        height: 400px;
+        border: none;
+      }
+    </style>
+
+    <div class="iframe-card"><iframe src="https://gbc.org/all-in/" title="GBC All In"></iframe></div>
+    <div class="iframe-card"><iframe src="https://mdtechcouncil.com/chapter/brtc/" title="MTC BRTC"></iframe></div>
+    <div class="iframe-card"><iframe src="https://mdtechcouncil.com/about/about-mtc/" title="About MTC"></iframe></div>
+    <div class="iframe-card"><iframe src="https://iwbmore.org/" title="Innovation Works Baltimore"></iframe></div>
+    <div class="iframe-card"><iframe src="https://wtci.org/" title="World Trade Center Institute"></iframe></div>
+    <div class="iframe-card"><iframe src="https://digitalharbor.org/" title="Digital Harbor Foundation"></iframe></div>
+    <div class="iframe-card"><iframe src="https://www.standwithcrypto.org/" title="Stand With Crypto"></iframe></div>
+    <div class="iframe-card"><iframe src="https://magicinc.org/community/aric" title="MAGIC ARIC"></iframe></div>
+    <div class="iframe-card"><iframe src="https://novellacenter.org/" title="Novella Center"></iframe></div>
+    <div class="iframe-card"><iframe src="https://mdinnovate.org/" title="Maryland Innovation Center"></iframe></div>
+  
+  </section>
+</main>
+
+
+  <our-footer></our-footer>
+  <our-slack-link></our-slack-link>
+
+</body>
+
+<script type="module" src="/js/reusableComponents.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+</html>
