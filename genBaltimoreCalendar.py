@@ -406,7 +406,7 @@ if __name__ == "__main__":
             continue
 
         if startDateTime > midnight_today:
-            nonerror_upcoming_events += [event]
+            nonerror_upcoming_events = [event] + nonerror_upcoming_events
         else:
             print(f'{event.get("name")} already happened ')
 

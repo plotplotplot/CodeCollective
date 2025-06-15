@@ -23,6 +23,7 @@ sources = {
         "https://www.eventbrite.com/e/weekly-meetings-no-labels-party-us-2028-tickets-1375290313349",
         "https://www.eventbrite.com/e/techspo-baltimore-2025-technology-expo-internet-adtech-martech-tickets-1114708064829",
         "https://www.eventbrite.com/e/2025-md-makerspace-meetup-tickets-1345760890049",
+        "https://www.eventbrite.com/e/nce-conscious-venture-lab-accelerator-program-cohort-13-demo-day-tickets-1381181042679?aff=ebdsoporgprofile"
     ],
     "Eventbrite Orgs":[
         "https://www.eventbrite.com/o/blk-tech-connect-107618183651",
