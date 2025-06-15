@@ -417,8 +417,18 @@ function initializeCalendar(events) {
 
     events: events, // Use all events (validRange will filter the display)
     eventClick: function (info) {
-      window.location.href = info.url;
-    },
+      // Allow ctrl/cmd click to open in a new tab
+      if (info.jsEvent.ctrlKey || info.jsEvent.metaKey) {
+        window.open(info.event.url, '_blank');
+      } else {
+        // Default behavior: navigate in same tab
+        window.location.href = info.event.url;
+      }
+
+      // Prevent the browser's default link behavior
+      info.jsEvent.preventDefault();
+    }
+    ,
     eventTimeFormat: {
       hour: 'numeric',
       minute: '2-digit',
