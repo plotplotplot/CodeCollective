@@ -6,9 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, user-scalable=no"
     />
-    <title>
-      Code Collective | Baltimore Tech Organizations Directory
-    </title>
+    <title>Code Collective | Baltimore Tech Organizations Directory</title>
 
     <meta
       name="description"
@@ -119,9 +117,9 @@
         background: #111;
         color: white;
         padding: 1em;
-        height: 100%;
-        overflow-y: auto;    
-        top: 3em; /* Match navbar height */
+        height: 70%;
+        overflow-y: auto;
+        top: 12em; /* Match navbar height */
 
         position: fixed;
         left: 0;
@@ -159,9 +157,49 @@
           position: relative;
           top: 0;
         }
-        
+
         .content {
           margin-left: 0;
+        }
+        .sidebar-toggle {
+          display: none;
+          position: absolute;
+          top: 1em;
+          left: 1em;
+          z-index: 1000;
+          background: #111;
+          color: #4ecdc4;
+          padding: 0.5em 0.75em;
+          border: none;
+          font-size: 1.2em;
+          border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+          .sidebar {
+            display: none;
+            width: 100%;
+            position: absolute;
+            background: #111;
+            z-index: 999;
+            top: 3.5em; /* below navbar */
+            left: 0;
+            padding: 1em;
+            height: auto;
+          }
+
+          .sidebar.open {
+            display: block;
+          }
+
+          .sidebar-toggle {
+            display: block;
+          }
+
+          .content {
+            margin-left: 0;
+            padding-top: 4em;
+          }
         }
       }
     </style>
@@ -184,6 +222,7 @@
         <a href="/#about-us">About Us</a>
       </div>
     </nav>
+<button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button>
 
     <div class="sidebar" id="sidebar"></div>
     <div class="content" id="content">
@@ -206,6 +245,12 @@
     <script type="module" src="/js/reusableComponents.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    
+    <script>
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('open');
+  }
+</script>
+
   </body>
 </html>

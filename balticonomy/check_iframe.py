@@ -63,22 +63,6 @@ def screenshot_url(url, filename):
         driver.quit()
     return filename
 
-def process_org(org):
-    raw_url = org.get("Website")
-    if not raw_url:
-        return org
-
-    url = normalize_url(raw_url)
-
-    clean_url = url.replace("https://", "").replace("http://", "").replace("/", "_")
-    screenshot_path = f"./screenshots/{clean_url}.png"
-
-    if not is_iframe_allowed(url):
-        screenshot_url(url, screenshot_path)
-        org["screenshot"] = screenshot_path
-    else:
-        print(f"{url} is iframe-embeddable.")
-    return org
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: python check_iframe.py orgs.json")
@@ -93,6 +77,8 @@ if __name__ == "__main__":
 
     def check_org_iframe(org):
         raw_url = org.get("Website")
+        if not raw_url:
+            raw_url = org.get("Events Page")
         if not raw_url:
             return org
 

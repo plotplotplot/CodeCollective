@@ -35,18 +35,26 @@ fetch('./orgs_iframe.json')
     // Handle browser back/forward buttons
     window.addEventListener('popstate', checkUrlAndLoadContent);
 
-    for (const [type, orgs] of Object.entries(data)) {
+    for (const type of Object.keys(data)) {
       // Create heading for sidebar
       const heading = document.createElement('h2');
       heading.textContent = type;
       heading.style.cursor = 'pointer';
       heading.onclick = () => {
         updateUrl(type);
-        displayOrgsByType(type, orgs);
+        displayOrgsByType(type, data[type]);
+        populateOrgLinks(type);
       };
       sidebar.appendChild(heading);
+    }
 
-      // Create individual org links
+    // Function to populate org links for a selected type
+    function populateOrgLinks(type) {
+      // Remove existing org links
+      const existingLinks = sidebar.querySelectorAll('a');
+      existingLinks.forEach(link => link.remove());
+
+      const orgs = data[type];
       orgs.forEach(org => {
         const link = document.createElement('a');
         link.href = `#org=${encodeURIComponent(org["Group Name"])}`;
@@ -58,6 +66,7 @@ fetch('./orgs_iframe.json')
         sidebar.appendChild(link);
       });
     }
+
 
     function displayOrgsByType(type, orgs) {
       content.innerHTML = "";
