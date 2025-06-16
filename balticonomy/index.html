@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <title>
+      Code Collective | Baltimore Tech Organizations Directory
+    </title>
+
+    <meta
+      name="description"
+      content="Code Collective organizes tech labor in Baltimore and provides a directory of local tech organizations, nonprofits, and community groups."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://codecollective.us/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://codecollective.us/" />
+    <meta property="og:site_name" content="Code Collective" />
+    <meta
+      property="og:title"
+      content="Code Collective | Baltimore Tech Organizations Directory"
+    />
+    <meta
+      property="og:description"
+      content="Directory of Baltimore tech organizations, nonprofits, and community groups."
+    />
+    <link rel="icon" href="/images/favicons/favicon.png" />
+    <link rel="preload" href="/css/master.css" as="style" />
+    <link rel="preload" href="/css/calendar.css" as="style" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="/css/master.css" />
+    <link rel="stylesheet" href="/css/calendar.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      .iframe-card {
+        position: relative;
+        background: #1a1a1a;
+        color: white;
+        padding-top: 3.5em;
+        overflow: visible;
+        flex: 1 1 45%;
+        max-width: 600px;
+        min-width: 300px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        margin-bottom: 0em;
+      }
+
+      .iframe-card:nth-child(odd) {
+        margin-top: 4em;
+      }
+
+      .iframe-card iframe,
+      .iframe-card img {
+        width: 100%;
+        height: 400px;
+        border: none;
+        object-fit: cover;
+      }
+
+      .card-header {
+        display: block;
+        text-decoration: none;
+        color: white;
+        background: #222;
+        padding: 0.75em 1em;
+        font-size: 1.25em;
+        font-weight: bold;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 2;
+        cursor: pointer;
+      }
+
+      .card-header:hover {
+        background: #333;
+      }
+
+      .description-box {
+        position: absolute;
+        top: 3.5em;
+        left: 0;
+        width: 100%;
+        background: #333;
+        color: white;
+        padding: 1em;
+        font-size: 0.9em;
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: transform 0.3s ease;
+        z-index: 1;
+      }
+
+      .card-header:hover + .description-box,
+      .card-header:focus + .description-box {
+        transform: scaleY(1);
+      }
+
+      .description-box a {
+        display: inline-block;
+        margin-top: 0.5em;
+        color: #4ecdc4;
+        text-decoration: underline;
+      }
+
+      /* Sidebar styles */
+      .sidebar {
+        width: 250px;
+        background: #111;
+        color: white;
+        padding: 1em;
+        height: 100%;
+        overflow-y: auto;    
+        top: 3em; /* Match navbar height */
+
+        position: fixed;
+        left: 0;
+      }
+
+      .sidebar h2 {
+        font-size: 1.2em;
+        margin-top: 1em;
+        border-bottom: 1px solid #333;
+        padding-bottom: 0.25em;
+      }
+
+      .sidebar a {
+        display: block;
+        color: #4ecdc4;
+        text-decoration: none;
+        margin: 0.5em 0;
+        font-size: 0.95em;
+      }
+
+      .sidebar a:hover {
+        color: white;
+      }
+
+      .content {
+        margin-left: 250px;
+        padding: 2em;
+        flex-grow: 1;
+      }
+
+      @media (max-width: 768px) {
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+          top: 0;
+        }
+        
+        .content {
+          margin-left: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body id="body">
+    <video id="bg-video" autoplay loop muted playsinline>
+      <source
+        src="/videos/baltimorenight_15s_crossfaded.mp4"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
+
+    <nav class="main-nav" aria-label="Main Navigation">
+      <div class="navbar dark-mode">
+        <a href="/#main">Home</a>
+        <a href="/#calendar">Calendar</a>
+        <a href="/#get-involved">Join Us</a>
+        <a href="/#about-us">About Us</a>
+      </div>
+    </nav>
+
+    <div class="sidebar" id="sidebar"></div>
+    <div class="content" id="content">
+      <section
+        id="organizations"
+        class="dark-mode"
+        style="
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 2em;
+        "
+      ></section>
+    </div>
+
+    <our-footer></our-footer>
+    <our-slack-link></our-slack-link>
+
+    <script src="/js/orgrep.js"></script>
+    <script type="module" src="/js/reusableComponents.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+  </body>
+</html>
