@@ -12,7 +12,8 @@ sources = {
         "https://www.meetup.com/baltimore-bayesians/events/",
         "https://www.meetup.com/dataworks/events/",
         "https://www.meetup.com/baltimorebitcoin/events/",
-        "https://www.meetup.com/python-frederick/events/"
+        "https://www.meetup.com/python-frederick/events/",
+        "https://www.meetup.com/the-business-connection-network/"
     ],
     "Eventbrite":[
         "https://www.eventbrite.com/e/open-works-fundraising-happy-hour-tickets-1378163557299",
