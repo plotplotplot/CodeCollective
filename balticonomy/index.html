@@ -33,177 +33,11 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
     <link rel="stylesheet" href="/css/master.css" />
     <link rel="stylesheet" href="/css/calendar.css" />
+    <link rel="stylesheet" href="./style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-
-    <style>
-      .iframe-card {
-        position: relative;
-        background: #1a1a1a;
-        color: white;
-        padding-top: 3.5em;
-        overflow: visible;
-        flex: 1 1 45%;
-        max-width: 600px;
-        min-width: 300px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        border-radius: 12px;
-        margin-bottom: 0em;
-      }
-
-      .iframe-card:nth-child(odd) {
-        margin-top: 4em;
-      }
-
-      .iframe-card iframe,
-      .iframe-card img {
-        width: 100%;
-        height: 400px;
-        border: none;
-        object-fit: cover;
-      }
-
-      .card-header {
-        display: block;
-        text-decoration: none;
-        color: white;
-        background: #222;
-        padding: 0.75em 1em;
-        font-size: 1.25em;
-        font-weight: bold;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 2;
-        cursor: pointer;
-      }
-
-      .card-header:hover {
-        background: #333;
-      }
-
-      .description-box {
-        position: absolute;
-        top: 3.5em;
-        left: 0;
-        width: 100%;
-        background: #333;
-        color: white;
-        padding: 1em;
-        font-size: 0.9em;
-        transform: scaleY(0);
-        transform-origin: top;
-        transition: transform 0.3s ease;
-        z-index: 1;
-      }
-
-      .card-header:hover + .description-box,
-      .card-header:focus + .description-box {
-        transform: scaleY(1);
-      }
-
-      .description-box a {
-        display: inline-block;
-        margin-top: 0.5em;
-        color: #4ecdc4;
-        text-decoration: underline;
-      }
-
-      /* Sidebar styles */
-      .sidebar {
-        width: 250px;
-        background: #111;
-        color: white;
-        padding: 1em;
-        height: 70%;
-        overflow-y: auto;
-        top: 12em; /* Match navbar height */
-
-        position: fixed;
-        left: 0;
-      }
-
-      .sidebar h2 {
-        font-size: 1.2em;
-        margin-top: 1em;
-        border-bottom: 1px solid #333;
-        padding-bottom: 0.25em;
-      }
-
-      .sidebar a {
-        display: block;
-        color: #4ecdc4;
-        text-decoration: none;
-        margin: 0.5em 0;
-        font-size: 0.95em;
-      }
-
-      .sidebar a:hover {
-        color: white;
-      }
-
-      .content {
-        margin-left: 250px;
-        padding: 2em;
-        flex-grow: 1;
-      }
-
-      @media (max-width: 768px) {
-        .sidebar {
-          width: 100%;
-          height: auto;
-          position: relative;
-          top: 0;
-        }
-
-        .content {
-          margin-left: 0;
-        }
-        .sidebar-toggle {
-          display: none;
-          position: absolute;
-          top: 1em;
-          left: 1em;
-          z-index: 1000;
-          background: #111;
-          color: #4ecdc4;
-          padding: 0.5em 0.75em;
-          border: none;
-          font-size: 1.2em;
-          border-radius: 4px;
-        }
-
-        @media (max-width: 768px) {
-          .sidebar {
-            display: none;
-            width: 100%;
-            position: absolute;
-            background: #111;
-            z-index: 999;
-            top: 3.5em; /* below navbar */
-            left: 0;
-            padding: 1em;
-            height: auto;
-          }
-
-          .sidebar.open {
-            display: block;
-          }
-
-          .sidebar-toggle {
-            display: block;
-          }
-
-          .content {
-            margin-left: 0;
-            padding-top: 4em;
-          }
-        }
-      }
-    </style>
-  </head>
 
   <body id="body">
     <video id="bg-video" autoplay loop muted playsinline>
@@ -214,29 +48,34 @@
       Your browser does not support the video tag.
     </video>
 
-    <nav class="main-nav" aria-label="Main Navigation">
-      <div class="navbar dark-mode">
-        <a href="/#main">Home</a>
-        <a href="/#calendar">Calendar</a>
-        <a href="/#get-involved">Join Us</a>
-        <a href="/#about-us">About Us</a>
-      </div>
-    </nav>
-<button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button>
+    
 
-    <div class="sidebar" id="sidebar"></div>
-    <div class="content" id="content">
-      <section
-        id="organizations"
-        class="dark-mode"
-        style="
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 2em;
-        "
-      ></section>
+  <nav class="main-nav" aria-label="Main Navigation">
+    <div class="navbar dark-mode">
+      <a href="#main">Home</a>
+      <a href="/balticonomy/">Balticonomy</a>
+      <a href="#get-involved">Join Us</a>
+      <a href="#about-us">About Us</a>
     </div>
+  </nav>
+
+<button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button>
+<div class="main-layout">
+  <div class="sidebar" id="sidebar"></div>
+  <div class="content" id="content">
+    <section
+      id="organizations"
+      class="dark-mode"
+      style="
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.2em;
+      "
+    ></section>
+  </div>
+</div>
+
 
     <our-footer></our-footer>
     <our-slack-link></our-slack-link>

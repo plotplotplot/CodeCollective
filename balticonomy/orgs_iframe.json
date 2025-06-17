@@ -80,9 +80,9 @@
       "Meetup Frequency": "Monthly",
       "Online Community": "https://join.slack.com/t/baltimoretech/shared_invite/zt-1j93w123p-k43EWW4jXBopn6v8jSJmpw",
       "Usual Venues": "Spark Coworking",
-      "Events Page": "https://www.meetup.com/baltimore-tech/events/",
+      "Events Page": "https://www.meetup.com/baltimore-tech/events/?type=past",
       "Legal status": "Affinity",
-      "screenshot": "./screenshots/www.meetup.com_baltimore-tech_events_.png"
+      "screenshot": "./screenshots/www.meetup.com_baltimore-tech_events_?type=past.png"
     },
     {
       "Occupation": "Meetups",
@@ -105,7 +105,8 @@
       "Events Page": "https://www.meetup.com/baltimore-indie-game-developers-group/events/",
       "Website": "https://www.pixelcrushers.com/",
       "Legal status": "Affinity",
-      "Notes": "1st & 3rd Sat of month, 10 AM"
+      "Notes": "1st & 3rd Sat of month, 10 AM",
+      "screenshot": "./screenshots/www.pixelcrushers.com_.png"
     },
     {
       "Occupation": "Meetups",
@@ -284,6 +285,7 @@
       "Group Name": "Greater Baltimore Committee",
       "Group focus": "Voice of the Private Sector",
       "Website": "https://gbc.org/all-in/",
+      "Description": "Develops the Economic Brand of Baltimore. Advocates for better employment, infrastructure investment, and more in their 2035 plan.",
       "Assets": "$7.18M (2023)"
     },
     {
@@ -293,6 +295,7 @@
       "Location": "9808 Medical Center Drive, Suite 450, Rockville, MD 20850",
       "Events Page": "https://members.mdtechcouncil.com/calendar",
       "Website": "https://mdtechcouncil.com/about/about-mtc/",
+      "Description": "Advocates for tech in the legal realm. Administers Workforce Development in the form of BioPharma manufacturing.",
       "Assets": "$3.94M (2023)"
     },
     {
@@ -301,7 +304,8 @@
       "Group focus": "Life Sciences and all tech",
       "Location": "9808 Medical Center Drive, Suite 450, Rockville, MD 20850",
       "Parent Org": "Maryland Tech Council",
-      "Website": "https://mdtechcouncil.com/chapter/brtc/"
+      "Website": "https://mdtechcouncil.com/chapter/brtc/",
+      "Description": "Baltimore arm of the Maryland Tech Council."
     },
     {
       "Occupation": "Nonprofits",
@@ -309,6 +313,7 @@
       "Group focus": "Racial Economics",
       "Location": "5N Calhoun Street, Ste. 202 Baltimore, MD 21223",
       "Website": "https://iwbmore.org/",
+      "Description": "Advocates for a just economy. Closing the racial wealth divide.",
       "Assets": "$1.34M (2023)"
     },
     {
@@ -316,8 +321,9 @@
       "Group Name": "World Trade Center Institute",
       "Group focus": "Executives",
       "Location": "401 East Pratt Street Suite 232, Baltimore, MD",
-      "Events Page": "http://wtci.org/global-engagement/#events",
+      "Events Page": "https://wtci.org/events/",
       "Website": "https://wtci.org/",
+      "Description": "Makes assessments of the Port of Baltimore. Advocates for women. Promotes datacenters.",
       "Assets": "$4.03M (2023)"
     },
     {
@@ -326,6 +332,7 @@
       "Group focus": "Education",
       "Events Page": "https://digitalharbor.org/",
       "Website": "https://digitalharbor.org/",
+      "Description": "Hosts Baltimore Code and Coffee at the fantastic Tech Lab in Federal Hill. Builds robust independant, free internet for underserved communities.",
       "Assets": "$30.6M (2023)"
     },
     {
@@ -335,6 +342,7 @@
       "Location": "Worldwide - MD Chapter",
       "Parent Org": "Coinbase",
       "Website": "https://www.standwithcrypto.org/",
+      "Description": "Nonprofit arm of Coinbase. Advocates for crypto legally and socially",
       "Assets": "$7.07M (2023)",
       "screenshot": "./screenshots/www.standwithcrypto.org_.png"
     },
@@ -342,7 +350,8 @@
       "Occupation": "Nonprofits",
       "Group Name": "Mid-Atlantic Gigabit Innovation Collaboratory (MAGIC)",
       "Group focus": "Internet",
-      "Website": "https://magicinc.org/community/aric",
+      "Website": "https://magicinc.org/",
+      "Description": "Administers tech education and incubation. Makes use of the unique Westminster gigabit internet.",
       "Assets": "$43.9k (2024)"
     },
     {
@@ -351,6 +360,7 @@
       "Group focus": "Just, joyous, equitable, prosperous and profitable",
       "Events Page": "https://www.eventbrite.com/o/novella-center-for-entrepreneurship-32222748299",
       "Website": "https://novellacenter.org/",
+      "Description": "Uses entrepreneurship as a tool to transform the purpose of business in society. Creating a more just, joyous, equitable, prosperous and profitable world for us all.",
       "Assets": "$164k (2023)",
       "screenshot": "./screenshots/novellacenter.org_.png"
     },
@@ -360,6 +370,7 @@
       "Group focus": "Fiscal Sponsorship",
       "Location": "1601 Guilford Ave 2 South, Baltimore, MD 21202",
       "Website": "https://www.fusiongroup.org/",
+      "Description": "Fiscally sponsors about a hundred excellent Baltimore groups at a reasonable rate.",
       "Assets": "$7.29M (2023)"
     },
     {
@@ -369,6 +380,7 @@
       "Location": "C/O Eastern Shore Entrepreneurship Center , 8737 Brooks Drive, Suite 101, Easton, MD 21601",
       "Parent Org": "Tina Canady",
       "Website": "https://mdinnovate.org/",
+      "Description": "The Maryland Business Innovation Association (MBIA) was founded in 2002 to advance business incubation in Maryland. Today, MBIA has evolved to bring support to the entire ecosystem.",
       "screenshot": "./screenshots/mdinnovate.org_.png"
     }
   ],
@@ -958,7 +970,8 @@
       "Machines (comma separated)": "3GI - Forever Textiles",
       "Location": "Security Square Mall",
       "Website": "www.redarrowstore.com",
-      "Current Activity": "Red's Birthday"
+      "Current Activity": "Red's Birthday",
+      "screenshot": "./screenshots/www.redarrowstore.com.png"
     }
   ],
   "ESOs": [

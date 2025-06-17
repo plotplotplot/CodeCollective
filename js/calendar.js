@@ -366,6 +366,33 @@ function getLatestEventWithImageForDay(events, date) {
   // Return the latest event
   return dayEvents[0];
 }
+
+// Get a random event with an image for a specific day (desktop only)
+function getRandomImageForDay(events, date) {
+  if (isMobile) return null;
+  
+  // Format the date to YYYY-MM-DD using local timezone
+  const dateStr = date.getFullYear() + '-' +
+    String(date.getMonth() + 1).padStart(2, '0') + '-' +
+    String(date.getDate()).padStart(2, '0');
+  
+  // Filter events that are on this day and have an image
+  const dayEvents = events.filter(event => {
+    const eventDate = new Date(event.start);
+    const eventDateStr = eventDate.getFullYear() + '-' +
+      String(eventDate.getMonth() + 1).padStart(2, '0') + '-' +
+      String(eventDate.getDate()).padStart(2, '0');
+    return eventDateStr === dateStr && event.extendedProps.imageUrl;
+  });
+  
+  // If no events with images for this day, return null
+  if (dayEvents.length === 0) return null;
+  
+  // Return a random event instead of the latest one
+  const randomIndex = Math.floor(Math.random() * dayEvents.length);
+  return dayEvents[randomIndex];
+}
+
 // Initialize the FullCalendar (desktop only)
 function initializeCalendar(events) {
   if (isMobile) return;
@@ -449,7 +476,7 @@ function initializeCalendar(events) {
       }
 
       // Get the latest event with an image for this day
-      const latestEvent = getLatestEventWithImageForDay(events, info.date);
+      const latestEvent = getRandomImageForDay(events, info.date);
 
       if (latestEvent && latestEvent.extendedProps.imageUrl) {
         // Get the day cell element

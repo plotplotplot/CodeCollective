@@ -1,4 +1,3 @@
-
 fetch('./orgs_iframe.json')
   .then(response => response.json())
   .then(data => {
@@ -67,7 +66,6 @@ fetch('./orgs_iframe.json')
       });
     }
 
-
     function displayOrgsByType(type, orgs) {
       content.innerHTML = "";
       const typeHeading = document.createElement('h2');
@@ -114,6 +112,10 @@ fetch('./orgs_iframe.json')
       const card = document.createElement('div');
       card.className = 'iframe-card';
 
+      // Create header container for hover functionality
+      const headerContainer = document.createElement('div');
+      headerContainer.className = 'card-header-container';
+
       const headerLink = document.createElement('a');
       headerLink.href = url;
       headerLink.target = '_blank';
@@ -124,8 +126,9 @@ fetch('./orgs_iframe.json')
       desc.className = 'description-box';
       desc.innerHTML = `<p>${description}</p>`;
 
-      card.appendChild(headerLink);
-      card.appendChild(desc);
+      headerContainer.appendChild(headerLink);
+      headerContainer.appendChild(desc);
+      card.appendChild(headerContainer);
 
       if (screenshotPath) {
         const img = document.createElement('img');
