@@ -108,38 +108,6 @@
         "imageUrl": "/event_images/Baltimore_Region_Economic_Brand_Workshop.webp"
     },
     {
-        "name": "Baltimore Region Economic Brand Workshop",
-        "startDate": "2025-06-18T12:00:00-04:00",
-        "endTime": "2025-06-18T13:00:00-04:00",
-        "description": "GBC Partners are invited to help us in telling a dynamic new economic story for the Baltimore Region. Come and learn more about the Regional Brand initiative and how GBC",
-        "url": "https://gbc.org/event/baltimore-region-economic-brand-workshop-3/",
-        "status": "ACTIVE",
-        "location": {
-            "name": "",
-            "address": "",
-            "city": "Baltimore",
-            "state": "MD",
-            "country": "US"
-        },
-        "imageUrl": "/event_images/Baltimore_Region_Economic_Brand_Workshop.webp"
-    },
-    {
-        "name": "June 2025 All-Partner Meeting",
-        "startDate": "2025-06-17T16:00:00-04:00",
-        "endTime": "2025-06-17T18:00:00-04:00",
-        "description": "Join us on Tuesday, June 17th at 4:00pm for our Quarterly All-Partner Meeting. This quarter's gathering focuses on shaping Baltimore's economic future by learning from New York's rise as the",
-        "url": "https://gbc.org/event/https-gbc-glueup-com-event-june-all-partner-meeting-140344/",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Greater Baltimore Committee",
-            "address": "111 South Calvert Street, Baltimore, MD, United States",
-            "city": "Baltimore",
-            "state": "MD",
-            "country": "US"
-        },
-        "imageUrl": "/event_images/June_2025_All-Partner_Meeting.webp"
-    },
-    {
         "name": "Project Night at Virtru",
         "description": "Project Night at Virtru",
         "startDate": "2025-07-23T18:00:00.000-04:00",
@@ -177,83 +145,6 @@
             "address": "Virtru, Washington, District of Columbia"
         },
         "imageUrl": "/event_images/Project_Night_at_Virtru.webp"
-    },
-    {
-        "name": "Web3 Maryland Blockchain Mixer",
-        "description": "Maryland, let\u2019s connect through blockchain! \ud83e\udde9\ud83d\ude80\n\nJoin Web3 Maryland and Stand With Crypto to support community & connect the network of founders, developers, and dreamers building in the Old Line State. Whether you're launching a protocol, writing your first smart contract, or exploring the space, you\u2019ve got a home here.\n\nHosted by:\ud83c\udf10 Web3 Maryland \n\nPowered by:\ud83d\udee1\ufe0f Stand With Crypto \ud83d\udee0\ufe0f Maryland Blockchain Association\ud83c\udfdb\ufe0f Web3DC**Food will be provided**\n\nCome build with us.Come learn.Come connect.\n\n\ud83c\udf10 Web3 is happening in Maryland \u2014 don\u2019t miss it.",
-        "startDate": "2025-06-19T22:00:00.000Z",
-        "endTime": "2025-06-20T00:30:00.000Z",
-        "timezone": "America/New_York",
-        "visibility": "public",
-        "imageUrl": "/event_images/Web3_Maryland_Blockchain_Mixer.webp",
-        "url": "https://lu.ma/02zv4one",
-        "calendar": {
-            "name": "Web3 Maryland",
-            "description": "Community that powers us.",
-            "avatar": "https://images.lumacdn.com/calendars/cq/ffde340c-2888-436f-8e9f-24d13c1c4eab.png"
-        },
-        "location": {
-            "name": "The Hideaway",
-            "full_address": "The Hideaway, 1439 Odenton Rd, Odenton, MD 21113, USA",
-            "description": "",
-            "coordinates": {
-                "latitude": "39.08759",
-                "longitude": "-76.71169"
-            }
-        },
-        "hosts": [
-            {
-                "name": "Web3 Maryland",
-                "avatar": "https://images.lumacdn.com/avatars/4g/431276ef-4081-4db7-a077-9a45da105826.png",
-                "profile_url": "https://lu.ma/user/web3maryland"
-            },
-            {
-                "name": "Gilberto Nazario",
-                "avatar": "https://cdn.lu.ma/avatars-default/avatar_14.png",
-                "profile_url": "https://lu.ma/user/None"
-            }
-        ],
-        "ticket_info": {
-            "is_free": true,
-            "spots_remaining": 76,
-            "types": [
-                {
-                    "name": "Standard",
-                    "price": 0,
-                    "currency": null,
-                    "description": null
-                }
-            ]
-        },
-        "guest_count": 24,
-        "featured_guests": [
-            {
-                "name": "Azzariyah-Shalishah Cippriani Curtis",
-                "avatar": "https://cdn.lu.ma/avatars-default/avatar_7.png",
-                "bio": null
-            },
-            {
-                "name": "Nnabugo Aliozoranigbo",
-                "avatar": "https://cdn.lu.ma/avatars-default/avatar_43.png",
-                "bio": null
-            },
-            {
-                "name": "D'Ville Crypto Solutions (RYAN COOPER)",
-                "avatar": "https://images.lumacdn.com/avatars/oz/2940feb6-d222-4a54-9a44-30df05465fb3",
-                "bio": "https://bio.site/dcscrypto"
-            },
-            {
-                "name": "Jose",
-                "avatar": "https://cdn.lu.ma/avatars-default/avatar_26.png",
-                "bio": null
-            },
-            {
-                "name": "Kyle | Amp Pay",
-                "avatar": "https://images.lumacdn.com/avatars/b8/469792fe-b6fe-4c6c-8011-968ab1dc12ac.png",
-                "bio": "Building @GetAmpPay and Hedgehog.markets on Solana"
-            }
-        ],
-        "registration_questions": []
     },
     {
         "name": "Baltimore Climate Tech Meetup June 2025",
@@ -307,7 +198,7 @@
                 }
             ]
         },
-        "guest_count": 58,
+        "guest_count": 70,
         "featured_guests": [
             {
                 "name": "Brian Leung",
@@ -347,6 +238,19 @@
                 "type": "text"
             }
         ]
+    },
+    {
+        "name": "Using Randomness to Estimate Order (for 8-12th graders)",
+        "description": "How do we use computer simulation to find order in chaos and reveal fundamental principles of",
+        "startDate": "2025-08-02T10:00:00-0400",
+        "endTime": "2025-08-02T11:30:00-0400",
+        "url": "https://www.eventbrite.com/e/using-randomness-to-estimate-order-for-8-12th-graders-tickets-1417094229989",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Baltimore UnderGround Science Space (BUGSS)",
+            "address": "101 N Haven St, Baltimore, MD, 21224"
+        },
+        "imageUrl": "/event_images/Using_Randomness_to_Estimate_Order__for_8-12th_graders_.webp"
     },
     {
         "name": "BLK Tech Connect #3: Black Tech Brunch",
@@ -405,40 +309,6 @@
         "status": "ACTIVE",
         "location": {},
         "imageUrl": "/event_images/Weekly_Meetings__NO_Labels_Party__US__2028.webp"
-    },
-    {
-        "id": "1366415157519",
-        "name": "Tential Tech Tuesday",
-        "description": "Join us for Tential Tech Tuesday, where we dive into all things tech-related in a fun and interactive way!",
-        "startDate": "2025-06-17T18:00:00-04:00",
-        "endTime": "2025-06-17T19:30:00-04:00",
-        "url": "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
-        "status": "ACTIVE",
-        "location": {
-            "name": "912 Commerce Rd",
-            "address": "912 Commerce Road Annapolis, MD 21401",
-            "city": "912 Commerce Road Annapolis",
-            "state": "MD",
-            "country": "US"
-        },
-        "imageUrl": "/event_images/Tential_Tech_Tuesday.webp"
-    },
-    {
-        "id": "1371704919339",
-        "name": "County Executive Ball's 5th Annual STEM Awards",
-        "description": "The County Executive is looking forward to honoring our students who competed in various STEM competitions this school year.",
-        "startDate": "2025-06-17T17:30:00-04:00",
-        "endTime": "2025-06-17T19:30:00-04:00",
-        "url": "https://www.eventbrite.com/e/county-executive-balls-5th-annual-stem-awards-tickets-1371704919339",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Merriweather Post Pavilion",
-            "address": "10475 Little Patuxent Parkway Columbia, MD 21044",
-            "city": "10475 Little Patuxent Parkway Columbia",
-            "state": "MD",
-            "country": "US"
-        },
-        "imageUrl": "/event_images/County_Executive_Ball_s_5th_Annual_STEM_Awards.webp"
     },
     {
         "id": "jlzbrtyhcnbxb",
@@ -679,12 +549,12 @@
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp"
     },
     {
-        "id": "jlzbrtyhckbqb",
+        "id": "308617362",
         "name": "Casual Coding, Chat, & Coffee",
         "description": "Join us for an informal gathering of Python enthusiasts at ZiPani, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out, this meetup is designed for everyone who enjoys Python programming in a relaxed environment.\n\nPlan:\n\n* **Casual Coding:** Work on your personal projects, get help, or share your code with others.\n* **Open Discussion:** From Python libraries to best practices, let's talk about what's on your mind.\n* **Networking:** Meet other local Python developers, exchange ideas, and maybe find your next coding buddy or collaborator.\n\nWhy Attend?\n\n* Learn something new or share your knowledge in a friendly atmosphere.\n* Get real-time help with coding problems or brainstorm new ideas.\n* Discover local job opportunities or side projects within the Python community.\n\nNo need for formal presentations or slides; this is all about conversation and collaboration. Feel free to come and go as your schedule allows.",
         "startDate": "2025-07-12T10:00:00-04:00",
         "endTime": "2025-07-12T12:00:00-04:00",
-        "url": "https://www.meetup.com/python-frederick/events/jlzbrtyhckbqb/",
+        "url": "https://www.meetup.com/python-frederick/events/308617362/",
         "status": "ACTIVE",
         "location": {
             "name": "ZiPani",
@@ -719,23 +589,6 @@
         "startDate": "2025-07-05T10:00:00-04:00",
         "endTime": "2025-07-05T12:00:00-04:00",
         "url": "https://www.meetup.com/python-frederick/events/308186088/",
-        "status": "ACTIVE",
-        "location": {
-            "name": "ZiPani",
-            "address": "177A Thomas Johnson Drive",
-            "city": "Frederick",
-            "state": "MD",
-            "country": "us"
-        },
-        "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp"
-    },
-    {
-        "id": "308186081",
-        "name": "Casual Coding, Chat, & Coffee",
-        "description": "Join us for an informal gathering of Python enthusiasts at ZiPani, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out, this meetup is designed for everyone who enjoys Python programming in a relaxed environment.\n\nPlan:\n\n* **Casual Coding:** Work on your personal projects, get help, or share your code with others.\n* **Open Discussion:** From Python libraries to best practices, let's talk about what's on your mind.\n* **Networking:** Meet other local Python developers, exchange ideas, and maybe find your next coding buddy or collaborator.\n\nWhy Attend?\n\n* Learn something new or share your knowledge in a friendly atmosphere.\n* Get real-time help with coding problems or brainstorm new ideas.\n* Discover local job opportunities or side projects within the Python community.\n\nNo need for formal presentations or slides; this is all about conversation and collaboration. Feel free to come and go as your schedule allows.",
-        "startDate": "2025-06-21T10:00:00-04:00",
-        "endTime": "2025-06-21T12:00:00-04:00",
-        "url": "https://www.meetup.com/python-frederick/events/308186081/",
         "status": "ACTIVE",
         "location": {
             "name": "ZiPani",
@@ -905,21 +758,20 @@
         "imageUrl": "/event_images/[ONLINE]_Game_Dev_Meetup__Monthly_Meetup_.webp"
     },
     {
-        "id": "307582133",
-        "name": "[IN-PERSON] Summer Game Dev Picnic",
-        "description": "Come join us for the Baltimore Indie Game Devs potluck picnic at BIG member Allen Lambert's house in Marriottsville just west of Baltimore. This picnic is for all local game devs in the Baltimore-Washington area. Allen will be manning the grill, and there will be outdoor games as well as tabletop games to play.\n\nIf you'd like to bring something to the potluck, please add it in the Comments section.\n\nNotes:\n\n* This is a NO ALCOHOL event.\n* In the event of rain, we may postpone this event.\n* **We'll send the street address to RSVP'd attendees one week before the picnic and the day before the picnic. Please send a message to Allen Lambert or Tony Li if you'd like the address sooner.**",
-        "startDate": "2025-06-21T12:00:00-04:00",
-        "endTime": "2025-06-21T17:00:00-04:00",
-        "url": "https://www.meetup.com/baltimore-indie-game-developers-group/events/307582133/",
+        "id": "308562412",
+        "name": "DevUps and Downs - discussion",
+        "description": "Tell us some of your experiences with any part of DevOps!\n\nOur group has some great discussions, so let's discuss some of our successes and our failures and how we overcame them.\n\nOpen chat, snacks supplied. See you then!",
+        "startDate": "2025-06-26T19:00:00-04:00",
+        "endTime": "2025-06-26T20:00:00-04:00",
+        "url": "https://www.meetup.com/devops-columbia/events/308562412/",
         "status": "ACTIVE",
         "location": {
-            "name": "Crows Foot Road",
-            "address": "Crows Foot Rd",
-            "city": "Maryland",
+            "name": "Howard County Library, East Columbia Branch",
+            "address": "6600 Cradlerock Way",
+            "city": "Columbia",
             "state": "MD",
             "country": "us"
-        },
-        "imageUrl": "/event_images/[IN-PERSON]_Summer_Game_Dev_Picnic.webp"
+        }
     },
     {
         "id": "308279062",
@@ -954,19 +806,6 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Tech_Unity_Cookout.webp"
-    },
-    {
-        "name": "IT Social Baltimore | Data, Technology, Cybersecurity, IT",
-        "description": "The FIRST regular after-work social event. Friends, Music, Drinks, Games, Prizes!",
-        "startDate": "2025-06-20T17:30:00-0400",
-        "endTime": "2025-06-20T19:30:00-0400",
-        "url": "https://www.eventbrite.com/e/it-social-baltimore-data-technology-cybersecurity-it-tickets-1351085616449?aff=ebdssbdestsearch&keep_tld=1",
-        "status": "ACTIVE",
-        "location": {
-            "name": "James Joyce Irish Pub & Restaurant",
-            "address": "616 President St Baltimore, MD 21202"
-        },
-        "imageUrl": "/event_images/IT_Social_Baltimore_|_Data,_Technology,_Cybersecurity,_IT.webp"
     },
     {
         "id": "1403222709899",
@@ -1012,23 +851,6 @@
             "address": "20200 Observation Drive #4067 Germantown, MD 20876"
         },
         "imageUrl": "/event_images/From_Code_to_Cure_-_A_Biotech_Networking_Event.webp"
-    },
-    {
-        "id": "3074266634sd5",
-        "name": "The Art of Advocacy",
-        "description": "Stand Up was established on May 11, 2019 by twenty students who were inspired to continue to fight against gun violence after raising awareness about its negative effects for a school project. We even decided to name Stand Up after the poem created for the presentations. Since we established Stand Up, we have accomplished a lot, and we hope to progress further in our change-making journey with your help! ",
-        "startDate": "2025-06-21T14:00:00-04:00",
-        "endTime": "2025-06-21T16:30:00-04:00",
-        "url": "https://www.wemuststandup.org/",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Enoch Pratt Library: Wallbrook Branch",
-            "address": "3203 W North Ave",
-            "city": "Baltimore",
-            "state": "MD",
-            "country": "USA"
-        },
-        "imageUrl": "event_images/advocacy.png"
     },
     {
         "id": "3074266634",
