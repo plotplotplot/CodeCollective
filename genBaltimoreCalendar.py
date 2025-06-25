@@ -1,7 +1,7 @@
 import scrape_meetup
 import scrape_eventbrite
 import scrape_jotform
-import scrape_equitech
+import scrape_spark
 import scrape_gbc
 import scrape_luma
 import scrape_ics
@@ -348,6 +348,19 @@ if __name__ == "__main__":
         upcoming_events += scrape_ics.fetch_calendar_events(
             existing_events=upcoming_events,
             ICS_URL='http://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics')
+    except Exception as e:
+        print(f"Error fetching calendar events: {e}")
+
+    try:
+        upcoming_events += scrape_ics.fetch_calendar_events(
+            existing_events=upcoming_events,
+            ICS_URL='http://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics')
+    except Exception as e:
+        print(f"Error fetching calendar events: {e}")
+
+
+    try:
+        upcoming_events += scrape_spark.scrape_spark_events()
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
 
