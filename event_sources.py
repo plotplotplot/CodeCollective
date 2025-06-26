@@ -37,6 +37,7 @@ sources = {
     "Luma Orgs":[
         "https://lu.ma/civic-tech-dc",
         "https://lu.ma/calendar/cal-vzms1nGZmYUUCrj",
-        "https://lu.ma/Bmore_Climate"
+        "https://lu.ma/Bmore_Climate",
+        "https://lu.ma/blktechconnect"
     ],
 }
