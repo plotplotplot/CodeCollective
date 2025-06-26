@@ -11,53 +11,74 @@ from html import escape
 utc_timezone = pytz.timezone("UTC")
 est_timezone = pytz.timezone("America/New_York")
 
-# URL of the Baltimore Code Collective Meetup group
-MEETUP_URL = "https://www.meetup.com/code-collective/events/"
-PAST_EVENTS_URL = "https://www.meetup.com/code-collective/events/?type=past"
-
 def fetch_meetup_page(url):
     """Fetches the HTML content of the Meetup page."""
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
     }
-    response = requests.get(url, headers=headers)
-    if response.status_code != 200:
-        raise Exception(f"Failed to retrieve page: {response.status_code}")
-    return response.text
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+        response.raise_for_status()
+        return response.text
+    except requests.RequestException as e:
+        raise Exception(f"Failed to retrieve page: {e}")
 
 def extract_next_data(html_content):
-    """
-    Extracts the __NEXT_DATA__ JSON from the HTML which contains all the event data
-    in modern Meetup pages.
-    """
-    next_data_match = re.search(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', html_content, re.DOTALL)
-    if not next_data_match:
+    """Extracts the __NEXT_DATA__ JSON from the HTML."""
+    soup = BeautifulSoup(html_content, 'html.parser')
+    next_data_script = soup.find('script', {'id': '__NEXT_DATA__'})
+    
+    if not next_data_script:
         raise Exception("Could not find __NEXT_DATA__ in the HTML")
     
-    next_data_json = next_data_match.group(1)
     try:
-        next_data = json.loads(next_data_json)
-        return next_data
+        return json.loads(next_data_script.string)
     except json.JSONDecodeError as e:
         raise Exception(f"Failed to parse __NEXT_DATA__ JSON: {e}")
 
 def parse_meetup_events(next_data, include_past=False):
-    """
-    Parses events from the __NEXT_DATA__ structure of the modern Meetup page.
-    """
+    """Parses events from the __NEXT_DATA__ structure."""
     events = []
+    hero_image_url = None
     
     try:
-        # Navigate through the nested structure to find events
         apollo_state = next_data.get('props', {}).get('pageProps', {}).get('__APOLLO_STATE__', {})
         
-        # Find all event objects in the Apollo state
+        # Try multiple ways to find hero image
+        group_keys = [key for key in apollo_state.keys() if key.startswith('Group:')]
+        for group_key in group_keys:
+            group_data = apollo_state.get(group_key, {})
+            
+            # Check group photo
+            if 'groupPhoto' in group_data and group_data['groupPhoto']:
+                photo_ref = group_data['groupPhoto'].get('__ref')
+                if photo_ref and photo_ref in apollo_state:
+                    photo_data = apollo_state.get(photo_ref, {})
+                    hero_image_url = photo_data.get('highResUrl') or photo_data.get('baseUrl')
+                    if hero_image_url: break
+            
+            # Check key photo
+            if not hero_image_url and 'keyPhoto' in group_data and group_data['keyPhoto']:
+                photo_ref = group_data['keyPhoto'].get('__ref')
+                if photo_ref and photo_ref in apollo_state:
+                    photo_data = apollo_state.get(photo_ref, {})
+                    hero_image_url = photo_data.get('highResUrl') or photo_data.get('baseUrl')
+                    if hero_image_url: break
+            
+            # Check cover photo
+            if not hero_image_url and 'coverPhoto' in group_data and group_data['coverPhoto']:
+                photo_ref = group_data['coverPhoto'].get('__ref')
+                if photo_ref and photo_ref in apollo_state:
+                    photo_data = apollo_state.get(photo_ref, {})
+                    hero_image_url = photo_data.get('highResUrl') or photo_data.get('baseUrl')
+                    if hero_image_url: break
+        
+        # Parse events
         event_keys = [key for key in apollo_state.keys() if key.startswith('Event:')]
         
         for event_key in event_keys:
             event_data = apollo_state.get(event_key, {})
             if event_data.get('__typename') == 'Event':
-                # Extract the event details
                 event = {
                     "id": event_data.get('id'),
                     "name": event_data.get('title'),
@@ -68,7 +89,7 @@ def parse_meetup_events(next_data, include_past=False):
                     "status": event_data.get('status'),
                 }
                 
-                # Get venue information if available
+                # Get venue information
                 if 'venue' in event_data and event_data['venue']:
                     venue_ref = event_data['venue'].get('__ref')
                     if venue_ref and venue_ref in apollo_state:
@@ -81,75 +102,148 @@ def parse_meetup_events(next_data, include_past=False):
                             'country': venue_data.get('country', '')
                         }
                 
-                # Get image if available
+                # Get event image
+                event_image_url = None
                 if 'featuredEventPhoto' in event_data and event_data['featuredEventPhoto']:
                     image_ref = event_data['featuredEventPhoto'].get('__ref')
                     if image_ref and image_ref in apollo_state:
                         image_data = apollo_state.get(image_ref, {})
-                        event['imageUrl'] = image_data.get('highResUrl')
+                        event_image_url = image_data.get('highResUrl') or image_data.get('baseUrl')
                 
-                # Filter based on status if needed
+                # Use hero image as fallback
+                event['imageUrl'] = event_image_url or hero_image_url
+                
                 if include_past or event_data.get('status') == 'ACTIVE':
                     events.append(event)
     
     except Exception as e:
-        print(f"Error parsing events: {e}")
+        print(f"Error parsing events: {str(e)}")
     
     return events
 
 def create_html(events, header_title="Events for Baltimore Code Collective"):
-    """Creates an HTML string for the events, including event images."""
-    html_content = f"<h1>{header_title}</h1>"
-    html_content += '<a href="https://www.meetup.com/code-collective/">Join our Meetup!</a>'
-
+    """Creates an HTML string for the events."""
+    html_content = f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>{header_title}</title>
+        <style>
+            body {{
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 20px;
+            }}
+            .event-card {{
+                display: flex;
+                margin-bottom: 30px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }}
+            .event-image {{
+                flex: 0 0 300px;
+            }}
+            .event-thumbnail {{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }}
+            .event-content {{
+                flex: 1;
+                padding: 20px;
+            }}
+            .event-title {{
+                margin: 10px 0;
+                font-size: 1.5em;
+            }}
+            .event-date {{
+                color: #666;
+                margin-bottom: 5px;
+            }}
+            .event-location {{
+                color: #666;
+                margin-bottom: 15px;
+            }}
+            .event-description {{
+                margin: 15px 0;
+                max-height: 100px;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }}
+            .event-description.expanded {{
+                max-height: none;
+            }}
+            .see-more {{
+                color: #0066cc;
+                cursor: pointer;
+                display: inline-block;
+                margin-top: 5px;
+            }}
+            .rsvp-button, .share-button {{
+                padding: 8px 15px;
+                margin-right: 10px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }}
+            .rsvp-button {{
+                background-color: #f64060;
+                color: white;
+            }}
+            .share-button {{
+                background-color: #e0e0e0;
+            }}
+            .divider {{
+                border: none;
+                border-top: 1px solid #eee;
+                margin: 20px 0;
+            }}
+        </style>
+    </head>
+    <body>
+        <h1>{header_title}</h1>
+        <p><a href="https://www.meetup.com/code-collective/">Join our Meetup!</a></p>
+    """
+    
     if not events:
         html_content += "<p>No events to display at this time.</p>"
     else:
         for event in events:
-            print(json.dumps(event, indent=2))
             event_name = escape(event.get("name", "No title available"))
             event_date = event.get("startDate", "No date available")
             
             # Handle date conversion
             try:
-                # Remove timezone indicator if present
-                event_date = event_date.replace('Z', '') if event_date.endswith('Z') else event_date
-                
-                # Parse ISO format date
-                if 'T' in event_date:
-                    # Check if there's a timezone offset
-                    if '+' in event_date or '-' in event_date and event_date.rindex('-') > event_date.index('T'):
-                        # Already has timezone information
-                        event_date_obj = datetime.datetime.fromisoformat(event_date)
+                if event_date:
+                    # Remove timezone indicator if present
+                    event_date = event_date.replace('Z', '') if event_date.endswith('Z') else event_date
+                    
+                    if 'T' in event_date:
+                        # Parse ISO format date
+                        if '+' in event_date or '-' in event_date and event_date.rindex('-') > event_date.index('T'):
+                            event_date_obj = datetime.datetime.fromisoformat(event_date)
+                        else:
+                            event_date_obj = datetime.datetime.fromisoformat(event_date)
+                            event_date_obj = utc_timezone.localize(event_date_obj)
+                        
                         # Convert to EST
                         event_date_est = event_date_obj.astimezone(est_timezone)
-                    else:
-                        # No timezone information, assume UTC
-                        event_date_obj = datetime.datetime.fromisoformat(event_date)
-                        # Localize to UTC first
-                        event_date_obj = utc_timezone.localize(event_date_obj)
-                        # Then convert to EST
-                        event_date_est = event_date_obj.astimezone(est_timezone)
-                    
-                    # Format the date
-                    event_date = event_date_est.strftime("%Y-%m-%d %H:%M:%S")
-                
+                        event_date = event_date_est.strftime("%A, %B %d, %Y at %I:%M %p")
             except Exception as e:
                 print(f"Error parsing date {event_date}: {e}")
                 event_date = "Date parsing error"
 
-            event_description = escape(
-                event.get("description", "No description available")
-            )
+            event_description = escape(event.get("description", "No description available"))
             event_description = markdown.markdown(event_description).replace("strong>", "b>")
-
-            event_location = event.get("location", {}).get(
-                "name", "No location available"
-            )
-            event_link = event.get("url", "#")
             
-            # Get the image URL, with fallback to None if not available
-            event_image = event.get("imageUrl")
+            event_location = event.get("location", {}).get("name", "No location available")
+            event_link = event.get("url", "#")
+            event_image = event.get("imageUrl", "")
+            
             image_html = ""
             if event_image:
                 image_html = f"""
@@ -181,54 +275,52 @@ def create_html(events, header_title="Events for Baltimore Code Collective"):
                 </div>
                 <hr class="divider">
             """
+    
+    html_content += """
+        <script>
+            function toggleDescription(element) {
+                const description = element.previousElementSibling;
+                description.classList.toggle('collapsed');
+                element.textContent = description.classList.contains('collapsed') ? 'See more' : 'See less';
+            }
+        </script>
+    </body>
+    </html>
+    """
     return html_content
-
 
 def save_html_file(content, filename="calendar.html"):
     """Saves the HTML content to a file."""
-    with open(filename, "w", encoding="utf-8") as file:
-        file.write(content)
-    print(f"HTML file saved as {filename}")
-
+    try:
+        with open(filename, "w", encoding="utf-8") as file:
+            file.write(content)
+        print(f"HTML file saved as {filename}")
+    except IOError as e:
+        print(f"Failed to save HTML file: {e}")
 
 if __name__ == "__main__":
-    # Fetch upcoming events
-    upcoming_page_content = fetch_meetup_page(MEETUP_URL)
-    with open("meetup_upcoming.html", "w+", encoding="utf-8") as f:
-        f.write(upcoming_page_content)
-
-    # Extract the __NEXT_DATA__ JSON for upcoming events
-    upcoming_next_data = extract_next_data(upcoming_page_content)
-    
-    # Parse upcoming events
-    upcoming_events = parse_meetup_events(upcoming_next_data)
-
-    # Fetch past events
-    past_page_content = fetch_meetup_page(PAST_EVENTS_URL)
-    with open("meetup_past.html", "w+", encoding="utf-8") as f:
-        f.write(past_page_content)
-    
-    # Extract the __NEXT_DATA__ JSON for past events
-    past_next_data = extract_next_data(past_page_content)
-    
-    # Parse past events
-    past_events = parse_meetup_events(past_next_data, include_past=True)
-
-    # Create HTML content for upcoming events
-    upcoming_html = create_html(upcoming_events, header_title="Upcoming Events for Baltimore Code Collective")
-
-    # Create HTML content for past events
-    past_html = create_html(past_events, header_title="Past Events for Baltimore Code Collective")
-
-    # Combine both upcoming and past events
-    complete_html = upcoming_html + past_html
-    
     try:
-        with open("templates/events-template.html", "r", encoding="utf-8") as f:
-            html_template = f.read()
+        # URL of the Baltimore Code Collective Meetup group
+        MEETUP_URL = "https://www.meetup.com/code-collective/events/"
+        PAST_EVENTS_URL = "https://www.meetup.com/code-collective/events/?type=past"
 
-        # Save the HTML content to a file
-        save_html_file(html_template.replace("EVENTS_HTML", complete_html))
-    except FileNotFoundError:
-        # If the template file doesn't exist, just save the HTML content directly
+        # Fetch upcoming events
+        upcoming_page_content = fetch_meetup_page(MEETUP_URL)
+        upcoming_next_data = extract_next_data(upcoming_page_content)
+        upcoming_events = parse_meetup_events(upcoming_next_data)
+
+        # Fetch past events
+        past_page_content = fetch_meetup_page(PAST_EVENTS_URL)
+        past_next_data = extract_next_data(past_page_content)
+        past_events = parse_meetup_events(past_next_data, include_past=True)
+
+        # Create HTML content
+        upcoming_html = create_html(upcoming_events, "Upcoming Events for Baltimore Code Collective")
+        past_html = create_html(past_events, "Past Events for Baltimore Code Collective")
+        complete_html = upcoming_html + past_html
+        
+        # Save the HTML file
         save_html_file(complete_html)
+        
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")

@@ -10,12 +10,13 @@ let isMobile = false;
 function isMobileDevice() {
   return window.matchMedia('(max-width: 768px)').matches;
 }
-
-// Generic image prefetching function
+// Generic image prefetching function (with unique URLs only)
 function prefetchImages(urls) {
   if (!window.Promise || !window.fetch) return; // Skip if browser doesn't support
 
-  urls.forEach(url => {
+  const uniqueUrls = Array.from(new Set(urls)); // Remove duplicates
+
+  uniqueUrls.forEach(url => {
     // Create link preload for important above-the-fold images
     const link = document.createElement('link');
     link.rel = 'preload';
@@ -30,6 +31,7 @@ function prefetchImages(urls) {
     }).catch(() => { }); // Silent fail is okay for prefetch
   });
 }
+
 
 // Fetch and parse event data
 document.addEventListener('DOMContentLoaded', function () {

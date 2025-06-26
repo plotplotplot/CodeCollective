@@ -1,56 +1,88 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <title>
-    Code Collective | Professional Development through Team Building
-  </title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  <link rel="icon" href="/images/favicons/favicon.png" />
-
-  <link rel="canonical" href="https://baltimorecodecollective.us/" />
-  <meta property="og:type" content="Code Collective" />
-  <meta property="og:image" content="images/logo_transparent_small_original.png" />
-  <meta property="og:url" content="http://baltimorecodecollective.us/" />
-  <meta property="og:site_name" content="Code Collective" />
-  <meta property="og:title" content="Code Collective" />
-  <meta property="og:description" content="Organizing Tech Labor." />
-  <meta name="description" content="Organizing Tech Labor." />
-
-  <meta name="robots" content="index, follow" />
-  <meta name="googlebot" content="index, follow" />
-  <link rel="stylesheet" href="./css/master.css" />
-  <script type="module" src="./js/reusableComponents.js"></script>
-</head>
-
-<body id="body">
-  <nav class="main-nav">
-    <div class="navbar dark-mode">
-      <a href="/index.html" target="_top">Home</a>
-      <a href="/calendar.html" target="_top">Calendar</a>
-      <a href="/curriculum.html" target="_top">Curriculum</a>
-      <a href="/getinvolved.html" target="_top">Get Involved!</a>
-      <a href="/sponsors.html" target="_top">Sponsors</a>
-      <a href="/about-us.html" target="_top">About Us</a>
-    </div>
-    <button class="mobile-nav-bars">
-      <div class="top bar"></div>
-      <div class="middle bar"></div>
-      <div class="bottom bar"></div>
-    </button>
-  </nav>
-
-  <button id="toggle-dark-mode">☀️</button>
-
-  <!-- Wrapper -->
-  <div id="wrapper" , class="dark-mode">
-    <!-- Main -->
-    <section id="main" class="longform dark-mode">
-
-
-      <h1>Upcoming Events for Baltimore Code Collective</h1><a href="https://www.meetup.com/code-collective/">Join our Meetup!</a>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Upcoming Events for Baltimore Code Collective</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            .event-card {
+                display: flex;
+                margin-bottom: 30px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .event-image {
+                flex: 0 0 300px;
+            }
+            .event-thumbnail {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .event-content {
+                flex: 1;
+                padding: 20px;
+            }
+            .event-title {
+                margin: 10px 0;
+                font-size: 1.5em;
+            }
+            .event-date {
+                color: #666;
+                margin-bottom: 5px;
+            }
+            .event-location {
+                color: #666;
+                margin-bottom: 15px;
+            }
+            .event-description {
+                margin: 15px 0;
+                max-height: 100px;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            .event-description.expanded {
+                max-height: none;
+            }
+            .see-more {
+                color: #0066cc;
+                cursor: pointer;
+                display: inline-block;
+                margin-top: 5px;
+            }
+            .rsvp-button, .share-button {
+                padding: 8px 15px;
+                margin-right: 10px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            .rsvp-button {
+                background-color: #f64060;
+                color: white;
+            }
+            .share-button {
+                background-color: #e0e0e0;
+            }
+            .divider {
+                border: none;
+                border-top: 1px solid #eee;
+                margin: 20px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Upcoming Events for Baltimore Code Collective</h1>
+        <p><a href="https://www.meetup.com/code-collective/">Join our Meetup!</a></p>
+    
                 <div class="event-card">
                     
                     <div class="event-image">
@@ -59,7 +91,7 @@
                 
                     <div class="event-content">
                         <div class="event-detail">
-                            <h4 class="event-date">2025-06-28 13:00:00 EST</h4>
+                            <h4 class="event-date">Saturday, June 28, 2025 at 01:00 PM EST</h4>
                             <p class="event-location">@Wonderground Park</p>
                         </div>
                         <h2 class="event-title">
@@ -67,21 +99,26 @@
                         </h2>
                         <div class="event-details">
                             <div class="event-description collapsed"><p>How pleasant it is when the people of tech come together in unity!</p>
-<p>After a year of talking about it, we’re finally doing it: a chill summer cookout for everyone in Baltimore tech. No booths, no buzzwords — just food, sun, and a mic for any group that wants to say hi.</p>
+<p><b>In the case of inclement weather, the event will occur virtually</b></p>
+<p>After a year of talking about it, we’re finally doing it: a chill summer cookout for everyone in Baltimore tech. No booths, no buzzwords — just food, sun, and a mic for group leaders to explain their mission.</p>
 <p>We are hoping to cultivate a virtuous environment of Baltimore&#x27;s best tech leaders, to share organizational tips, and to lean into Smalltimore&#x27;s unique social strengths in building the future economy. Ultimately, we hope to foster the relationships that create better lives for ourselves and our people.</p>
-<p>Participating groups</p>
-<ul>
-<li><b>Code Collective</b></li>
-<li><b>Baltimore Node Makerspace</b></li>
-<li><b>Baltimore Tech</b></li>
-<li><b>Brady UX</b></li>
-<li><b>DevOps Columbia</b></li>
-<li><b>Blk Tech Connect</b></li>
-<li><b>Baltimore Indie Game Devs</b></li>
-</ul>
-<p>Free admission. Food will be provided!</p>
-<p>The event will occur at Wonderground Park in collaboration with the Greenmount West Community Association. It&#x27;s nearby Guilford Hall Brewery, home of EquiTech Tuesday and occasional host of Baltimore Rhythm Festival.</p>
-<p>In the case of inclement weather, the event will occur at Mount Vernon Marketplace, or at a local bar.</p></div>
+<p>Agenda</p>
+<ol>
+<li>Networking Time (Breakout groups if virtual)</li>
+<li><b>The Official Ceremony</b> - An hour and a half of brief talks from speakers representing each corner of the Baltimore Tech Economy</li>
+<li>Networking Time (Breakout groups if virtual)</li>
+</ol>
+<p><b>The official ceremony</b> will proceed something like this:</p>
+<p>Julian Coy (Code Collective) - <b>Keynote - the Baltimore Tech Economy</b>
+Judy Johnson (DevOps Columbia) - <b>DevOps is for Everyone</b>
+Khalif Cooper (BLK Tech Connect) - <b>On Underserved Communities</b>
+Cornelius Hairston (Baltimore Tech) - <b>How to Organize Tech Events</b>
+Tony Li (Indie Game Devs) - <b>How Gaming Drives Tech Forward</b>
+Matt Peters (CryptoMondays) - <b>Happenings in Crypto</b>
+Forest Rawly (Baltimore Node) - <b>On Makerspaces</b>
+Eliot Pearson (Digital Harbor Foundation) - <b>The 12 Nonprofits of Baltimore Tech</b></p>
+<p>Free admission. Food will be provided (if in-person)!</p>
+<p>Weather-permitting, the event will occur at Wonderground Park in collaboration with the Greenmount West Community Association. It&#x27;s nearby Guilford Hall Brewery, home of EquiTech Tuesday and occasional host of Baltimore Rhythm Festival.</p></div>
                             <span class="see-more" onclick="toggleDescription(this)">See more</span>
                         </div>
                         <div class="event-actions">
@@ -91,7 +128,130 @@
                     </div>
                 </div>
                 <hr class="divider">
-            <h1>Past Events for Baltimore Code Collective</h1><a href="https://www.meetup.com/code-collective/">Join our Meetup!</a>
+            
+        <script>
+            function toggleDescription(element) {
+                const description = element.previousElementSibling;
+                description.classList.toggle('collapsed');
+                element.textContent = description.classList.contains('collapsed') ? 'See more' : 'See less';
+            }
+        </script>
+    </body>
+    </html>
+    
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Past Events for Baltimore Code Collective</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            .event-card {
+                display: flex;
+                margin-bottom: 30px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .event-image {
+                flex: 0 0 300px;
+            }
+            .event-thumbnail {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .event-content {
+                flex: 1;
+                padding: 20px;
+            }
+            .event-title {
+                margin: 10px 0;
+                font-size: 1.5em;
+            }
+            .event-date {
+                color: #666;
+                margin-bottom: 5px;
+            }
+            .event-location {
+                color: #666;
+                margin-bottom: 15px;
+            }
+            .event-description {
+                margin: 15px 0;
+                max-height: 100px;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            .event-description.expanded {
+                max-height: none;
+            }
+            .see-more {
+                color: #0066cc;
+                cursor: pointer;
+                display: inline-block;
+                margin-top: 5px;
+            }
+            .rsvp-button, .share-button {
+                padding: 8px 15px;
+                margin-right: 10px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            .rsvp-button {
+                background-color: #f64060;
+                color: white;
+            }
+            .share-button {
+                background-color: #e0e0e0;
+            }
+            .divider {
+                border: none;
+                border-top: 1px solid #eee;
+                margin: 20px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Past Events for Baltimore Code Collective</h1>
+        <p><a href="https://www.meetup.com/code-collective/">Join our Meetup!</a></p>
+    
+                <div class="event-card">
+                    
+                    <div class="event-image">
+                        <img src="https://secure.meetupstatic.com/photos/event/a/3/b/4/highres_528281908.jpeg" alt="The Economy - Open Discussion [VIRTUAL]" class="event-thumbnail">
+                    </div>
+                
+                    <div class="event-content">
+                        <div class="event-detail">
+                            <h4 class="event-date">Sunday, June 08, 2025 at 04:00 PM EST</h4>
+                            <p class="event-location">@Online event</p>
+                        </div>
+                        <h2 class="event-title">
+                            <a href="https://www.meetup.com/code-collective/events/308198642/" target="_blank">The Economy - Open Discussion [VIRTUAL]</a>
+                        </h2>
+                        <div class="event-details">
+                            <div class="event-description collapsed"><p>It&#x27;s the economy, stupid!</p>
+<p>This is the place to discuss the <b>BIG</b> picture of the modern tech economy. Anything goes! California Capitalism, Military Keynesianism, the United States Dollar, Bitcoin and Etherium, Unemployment, Automation, and what we can do in the Baltimore area to bring prosperity to our people.</p>
+<p>Code Collective organizer Julian Coy will be briefly introducing his proposals for the <b>Baltimore AI Project</b> and the <b>Baltimore Dirtbike Project</b>, programs designed to make use of available facilities to build a strong local economy with less dependence on foreign nations and the federal government.</p>
+<p>Do you have special economic understanding or a similar <b>BIG</b> project in mind? We would love to hear it in this 2-hour virtual moderated discussion. RSVP for link.</p></div>
+                            <span class="see-more" onclick="toggleDescription(this)">See more</span>
+                        </div>
+                        <div class="event-actions">
+                            <button class="rsvp-button">RSVP</button>
+                            <button class="share-button">Share</button>
+                        </div>
+                    </div>
+                </div>
+                <hr class="divider">
+            
                 <div class="event-card">
                     
                     <div class="event-image">
@@ -100,7 +260,7 @@
                 
                     <div class="event-content">
                         <div class="event-detail">
-                            <h4 class="event-date">2025-05-04 15:00:00 EST</h4>
+                            <h4 class="event-date">Sunday, May 04, 2025 at 03:00 PM EST</h4>
                             <p class="event-location">@Reveille Grounds</p>
                         </div>
                         <h2 class="event-title">
@@ -141,7 +301,7 @@
                 
                     <div class="event-content">
                         <div class="event-detail">
-                            <h4 class="event-date">2025-05-04 13:00:00 EST</h4>
+                            <h4 class="event-date">Sunday, May 04, 2025 at 01:00 PM EST</h4>
                             <p class="event-location">@Reveille Grounds</p>
                         </div>
                         <h2 class="event-title">
@@ -182,7 +342,7 @@ By the end of the session, you’ll have a <b>3D model of your name</b>, ready t
                 
                     <div class="event-content">
                         <div class="event-detail">
-                            <h4 class="event-date">2025-02-08 11:00:00 EST</h4>
+                            <h4 class="event-date">Saturday, February 08, 2025 at 11:00 AM EST</h4>
                             <p class="event-location">@Dear Globe Coffee Roasters</p>
                         </div>
                         <h2 class="event-title">
@@ -210,7 +370,7 @@ By the end of the session, you’ll have a <b>3D model of your name</b>, ready t
                 
                     <div class="event-content">
                         <div class="event-detail">
-                            <h4 class="event-date">2025-02-01 11:00:00 EST</h4>
+                            <h4 class="event-date">Saturday, February 01, 2025 at 11:00 AM EST</h4>
                             <p class="event-location">@Dear Globe Coffee Roasters</p>
                         </div>
                         <h2 class="event-title">
@@ -241,7 +401,7 @@ By the end of the session, you’ll have a <b>3D model of your name</b>, ready t
                 
                     <div class="event-content">
                         <div class="event-detail">
-                            <h4 class="event-date">2025-01-18 11:00:00 EST</h4>
+                            <h4 class="event-date">Saturday, January 18, 2025 at 11:00 AM EST</h4>
                             <p class="event-location">@Dear Globe Coffee Roasters</p>
                         </div>
                         <h2 class="event-title">
@@ -283,7 +443,7 @@ Join us for an engaging <b>45-minute workshop on GitHub</b>, the industry-standa
                 
                     <div class="event-content">
                         <div class="event-detail">
-                            <h4 class="event-date">2024-11-16 13:00:00 EST</h4>
+                            <h4 class="event-date">Saturday, November 16, 2024 at 01:00 PM EST</h4>
                             <p class="event-location">@Dear Globe Coffee Roasters</p>
                         </div>
                         <h2 class="event-title">
@@ -316,7 +476,7 @@ Join us for an engaging <b>45-minute workshop on GitHub</b>, the industry-standa
                 
                     <div class="event-content">
                         <div class="event-detail">
-                            <h4 class="event-date">2024-11-02 13:00:00 EST</h4>
+                            <h4 class="event-date">Saturday, November 02, 2024 at 01:00 PM EST</h4>
                             <p class="event-location">@Dear Globe Coffee Roasters</p>
                         </div>
                         <h2 class="event-title">
@@ -349,7 +509,7 @@ Join us for an engaging <b>45-minute workshop on GitHub</b>, the industry-standa
                 
                     <div class="event-content">
                         <div class="event-detail">
-                            <h4 class="event-date">2024-10-26 10:00:00 EST</h4>
+                            <h4 class="event-date">Saturday, October 26, 2024 at 10:00 AM EST</h4>
                             <p class="event-location">@Dear Globe Coffee Roasters</p>
                         </div>
                         <h2 class="event-title">
@@ -381,7 +541,7 @@ Join us for an engaging <b>45-minute workshop on GitHub</b>, the industry-standa
                 
                     <div class="event-content">
                         <div class="event-detail">
-                            <h4 class="event-date">2024-10-12 10:00:00 EST</h4>
+                            <h4 class="event-date">Saturday, October 12, 2024 at 10:00 AM EST</h4>
                             <p class="event-location">@Dear Globe Coffee Roasters</p>
                         </div>
                         <h2 class="event-title">
@@ -410,54 +570,13 @@ https://forms.gle/q5UrAsHN7iQoUC4T8</p></div>
                 </div>
                 <hr class="divider">
             
-                <div class="event-card">
-                    
-                    <div class="event-image">
-                        <img src="https://secure.meetupstatic.com/photos/event/9/2/d/c/highres_523717596.jpeg" alt="First Networking Meetup" class="event-thumbnail">
-                    </div>
-                
-                    <div class="event-content">
-                        <div class="event-detail">
-                            <h4 class="event-date">2024-10-04 10:00:00 EST</h4>
-                            <p class="event-location">@Dear Globe Coffee Roasters</p>
-                        </div>
-                        <h2 class="event-title">
-                            <a href="https://www.meetup.com/code-collective/events/303624476/" target="_blank">First Networking Meetup</a>
-                        </h2>
-                        <div class="event-details">
-                            <div class="event-description collapsed"><p>Join us at Code Collective for our first Regular Meetup! Bring a laptop and ideas, and let&#x27;s work together to bring them to fruition. This event is free and open to anyone with entrepreneurial spirit. Whether you are interested in computers, architecture, life science, AI, web design, sociology, or a similar field, Code Collective is the place for you.</p>
-<p><b>Agenda</b>
-10:00AM : Start
-10:30AM : Intro Circle and Group Vision
-11:00AM-12:00PM: Networking</p>
-<p>Street parking is available.</p></div>
-                            <span class="see-more" onclick="toggleDescription(this)">See more</span>
-                        </div>
-                        <div class="event-actions">
-                            <button class="rsvp-button">RSVP</button>
-                            <button class="share-button">Share</button>
-                        </div>
-                    </div>
-                </div>
-                <hr class="divider">
-            
-    </section>
-
-    <our-footer></our-footer>
-  </div>
-
-  <our-slack-link></our-slack-link>
-
-  <!-- Scripts -->
-  <!-- Clicky Analytics -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      document.body.classList.add("loaded"); // Add 'loaded' class when the document is fully loaded
-    });
-  </script>
-  <script src="/js/scripts.js"></script>
-  <script src="/lightdark.js"></script>
-  
-</body>
-
-</html>
+        <script>
+            function toggleDescription(element) {
+                const description = element.previousElementSibling;
+                description.classList.toggle('collapsed');
+                element.textContent = description.classList.contains('collapsed') ? 'See more' : 'See less';
+            }
+        </script>
+    </body>
+    </html>
+    

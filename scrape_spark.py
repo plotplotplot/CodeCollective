@@ -34,6 +34,7 @@ def scrape_spark_events(url="https://sparkcoworking.com/baltimore/"):
                 print(f"Error parsing event modal: {e}")
                 continue
         
+        print(f"Got {len(events)} Spark Events")
         return events
     
     except requests.RequestException as e:

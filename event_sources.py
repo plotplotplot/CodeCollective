@@ -16,31 +16,27 @@ sources = {
         "https://www.meetup.com/the-business-connection-network/"
     ],
     "Eventbrite":[
-        "https://www.eventbrite.com/e/open-works-fundraising-happy-hour-tickets-1378163557299",
-        "https://www.eventbrite.com/e/county-executive-balls-5th-annual-stem-awards-tickets-1371704919339",
         "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
-        "https://www.eventbrite.com/e/weekly-meetings-no-labels-party-us-2028-tickets-1375290293289",
-        "https://www.eventbrite.com/e/know-your-local-leaders-tickets-1302421310199",
-        "https://www.eventbrite.com/e/weekly-meetings-no-labels-party-us-2028-tickets-1375290313349",
         "https://www.eventbrite.com/e/techspo-baltimore-2025-technology-expo-internet-adtech-martech-tickets-1114708064829",
         "https://www.eventbrite.com/e/2025-md-makerspace-meetup-tickets-1345760890049",
-        "https://www.eventbrite.com/e/nce-conscious-venture-lab-accelerator-program-cohort-13-demo-day-tickets-1381181042679?aff=ebdsoporgprofile"
     ],
     "Eventbrite Orgs":[
         "https://www.eventbrite.com/o/blk-tech-connect-107618183651",
         "https://www.eventbrite.com/o/open-works-86343210063",
         "https://www.eventbrite.com/o/baltimore-under-ground-science-space-bugss-4318633291",
-        "https://www.eventbrite.com.au/o/it-social-baltimore-110781946041"
+        "https://www.eventbrite.com.au/o/it-social-baltimore-110781946041",
+        "https://www.eventbrite.com/cc/baltimore-4326703"
     ],
     "Jotform":[
         #"https://form.jotform.com/251063812795157"
     ],
     "Luma":[
         "https://lu.ma/k5mgdolz",
-        "https://lu.ma/wrqpk3v2",
         "https://lu.ma/02zv4one"
     ],
     "Luma Orgs":[
         "https://lu.ma/civic-tech-dc",
+        "https://lu.ma/calendar/cal-vzms1nGZmYUUCrj",
+        "https://lu.ma/Bmore_Climate"
     ],
 }

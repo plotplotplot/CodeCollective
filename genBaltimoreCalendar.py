@@ -5,6 +5,7 @@ import scrape_spark
 import scrape_gbc
 import scrape_luma
 import scrape_ics
+import scrape_starTUp
 import json
 from ics import Calendar, Event
 import datetime
@@ -363,6 +364,12 @@ if __name__ == "__main__":
         upcoming_events += scrape_spark.scrape_spark_events()
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
+
+    try:
+        upcoming_events += scrape_starTUp.scrape_towson_events()
+    except Exception as e:
+        print(f"Error fetching calendar events: {e}")
+        
 
     # Download images for each event
     for event in upcoming_events:
