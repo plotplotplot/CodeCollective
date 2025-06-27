@@ -13,7 +13,8 @@ sources = {
         "https://www.meetup.com/dataworks/events/",
         "https://www.meetup.com/baltimorebitcoin/events/",
         "https://www.meetup.com/python-frederick/events/",
-        "https://www.meetup.com/the-business-connection-network/"
+        "https://www.meetup.com/the-business-connection-network/",
+        "https://www.meetup.com/baltimore-ux-meetup/"
     ],
     "Eventbrite":[
         "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
