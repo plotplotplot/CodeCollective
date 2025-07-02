@@ -8,7 +8,8 @@ let isMobile = false;
 
 // Check if device is mobile
 function isMobileDevice() {
-  return window.matchMedia('(max-width: 768px)').matches;
+  //return window.matchMedia('(max-width: 768px)').matches;
+  return false;
 }
 // Generic image prefetching function (with unique URLs only)
 function prefetchImages(urls) {
