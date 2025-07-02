@@ -29,7 +29,9 @@ def fetch_calendar_events(existing_events, ICS_URL, imageURL="https://www.unallo
             f.write(r.text)
     else:
         print("✅ Using cached .ics file")
+    processICS(CACHE_FILENAME, existing_events, imageURL)
 
+def processICS(CACHE_FILENAME, existing_events, imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png"):
     # Read from the cached file
     with open(CACHE_FILENAME, "r", encoding="utf-8") as f:
         calendar = Calendar(f.read())

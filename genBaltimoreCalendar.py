@@ -353,9 +353,10 @@ if __name__ == "__main__":
         print(f"Error fetching calendar events: {e}")
 
     try:
-        upcoming_events += scrape_ics.fetch_calendar_events(
+        upcoming_events += scrape_ics.processICS(
+            CACHE_FILENAME='maryland-stem-festival-96ecc18ef7d.ics',
             existing_events=upcoming_events,
-            ICS_URL='http://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics')
+            imageURL='https://marylandstemfestival.org/wp-content/uploads/2024/06/Family-Feud-group-Pix-1-scaled-e1717876361661.jpeg')
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
 

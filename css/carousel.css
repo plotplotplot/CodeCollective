@@ -1,0 +1,137 @@
+.carousel-container {
+    position: relative;
+    width: 100%;
+    background: transparent;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    touch-action: pan-y;
+}
+
+.carousel-track {
+    display: flex;
+    height: 100%;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    width: max-content; /* allows content to define width */
+    gap: 0; /* ensures no gap between items */
+}
+
+
+@keyframes slideLeft {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes slideRight {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.carousel-slide {
+    flex: 0 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    user-select: none;
+    padding: 0;
+    margin: 0;
+}
+
+.carousel-slide img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+}
+
+.carousel-slide img:hover {
+    transform: scale(1.05);
+}
+
+.speed-zone {
+    position: absolute;
+    top: 0;
+    width: 30%;
+    height: 100%;
+    z-index: 10;
+    background: transparent;
+    transition: background 0.3s ease;
+    pointer-events: auto;
+}
+
+.speed-zone.left {
+    left: 0;
+    --gradient-direction: 90deg;
+    background: linear-gradient(90deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+}
+
+.speed-zone.right {
+    right: 0;
+    --gradient-direction: 270deg;
+    background: linear-gradient(270deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+}
+
+.speed-zone:hover {
+    background: linear-gradient(
+        var(--gradient-direction),
+        rgba(255,255,255,0.3) 0%,
+        rgba(255,255,255,0.1) 100%
+    );
+}
+
+.speed-zone:focus {
+    outline: 2px solid rgba(255,255,255,0.5);
+    outline-offset: -2px;
+}
+
+@media (max-width: 768px) {
+    .carousel {
+        height: 300px;
+    }
+
+    .speed-zone {
+        width: 40%;
+    }
+
+    .carousel-slide img {
+        object-fit: cover;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .carousel-track {
+        animation: none !important;
+    }
+
+    .carousel-slide img {
+        transition: none !important;
+    }
+}
+
+.carousel-track.loading {
+    animation: none;
+    justify-content: center;
+}
+
+.carousel:hover .carousel-track:not(.loading) {
+    animation-play-state: running;
+}

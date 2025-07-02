@@ -1,0 +1,67 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Maryland STEM Festival - ECPv6.13.2.1//NONSGML v1.0//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Maryland STEM Festival
+X-ORIGINAL-URL:https://marylandstemfestival.org
+X-WR-CALDESC:Events for Maryland STEM Festival
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-Robots-Tag:noindex
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:America/New_York
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:20250309T070000
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:20251102T060000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20251017T140000
+DTEND;TZID=America/New_York:20251017T150000
+DTSTAMP:20250630T001416
+CREATED:20250602T130712Z
+LAST-MODIFIED:20250602T130806Z
+UID:10000560-1760709600-1760713200@marylandstemfestival.org
+SUMMARY:Calling All Halloween Hooligans! Build a Haunted Halloween House!
+DESCRIPTION:Spooky season is here! Engage your mind by blending art and engineering to construct your very own haunted house to keep. We’ll be using sturdy milk cartons\, icing as our construction glue\, and sweet and savory treats and candies. All materials provided\, while they last. Dress for a mess! \nThis program is for children between the ages of 8 and 17 years old. Children under the age of 12 MUST be accompanied by an adult. This is a STEAM (Science\, Technology\, Engineering\, Art and Math) Program.
+URL:https://marylandstemfestival.org/event/calling-all-halloween-hooligans-build-a-haunted-halloween-house/
+LOCATION:Olney Library\, 3500 Olney Laytonsville Rd\, Olney\, MD\, 20832\, United States
+CATEGORIES:Arts,Engineering,Food
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20251025T100000
+DTEND;TZID=America/New_York:20251025T140000
+DTSTAMP:20250630T001416
+CREATED:20250626T130651Z
+LAST-MODIFIED:20250626T130651Z
+UID:10000565-1761386400-1761400800@marylandstemfestival.org
+SUMMARY:St. Mary's STEAM Festival
+DESCRIPTION:St. Mary’s County Public Schools will host their 10th annual STEAM Festival on Saturday\, October 25\, 2025 at the St. Mary’s County Fairgrounds. Festivities will run from 10:00 am to 2:00 pm and will feature fun\, food\, and phenomena! \nEach year\, the state designates a month-long celebration of all things science\, technology\, engineering\, and math. This STEM-related exploration takes place through in person festivals and online events. Our annual STEAM Festival is set up in a fair-style manner\, where attendees can engage with exhibitors at their own pace.
+URL:https://marylandstemfestival.org/event/st-marys-steam-festival/
+LOCATION:St Mary’s  County Fairgrounds\, 42455 Fairgrounds Rd\, Leonardtown\, MD\, 20650\, United States
+CATEGORIES:Arts,Engineering,Physics,Science and Society,Technology
+ORGANIZER;CN="St. Mary's County Public Schools":MAILTO:jwhayes@smcps.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20251028T093000
+DTEND;TZID=America/New_York:20251028T110000
+DTSTAMP:20250630T001416
+CREATED:20250603T153859Z
+LAST-MODIFIED:20250603T153859Z
+UID:10000562-1761643800-1761649200@marylandstemfestival.org
+SUMMARY:STEM of Many Colors
+DESCRIPTION:STEM Professionals from underserved communities discuss career paths and working in the STEM Field. This event is for Carver Center students only
+URL:https://marylandstemfestival.org/event/stem-of-many-colors/
+LOCATION:George Washington Carver Center for Arts and Technology\, 938 York Rd\,\, Baltimore\, MD\, 21204\, United States
+CATEGORIES:Biotech,Cybersecurity,Earth and Space Science,Engineering,Life Sciences,Mathematics,Physics,Robotics,Technology
+END:VEVENT
+END:VCALENDAR
