@@ -524,7 +524,7 @@ function initializeCalendar(events) {
       // Add title with time
       const titleEl = document.createElement('div');
       titleEl.classList.add('fc-event-title');
-      titleEl.innerHTML = `<strong>${eventTime} ${info.event.title}</strong>`;
+      titleEl.innerHTML = `${eventTime} ${info.event.title}`;
       eventEl.appendChild(titleEl);
 
       return { domNodes: [eventEl] };
@@ -534,7 +534,7 @@ function initializeCalendar(events) {
       const tooltip = document.createElement('div');
       tooltip.classList.add('event-tooltip');
       tooltip.innerHTML = `
-    <strong>${info.event.title}</strong>
+    ${info.event.title}
     <div>${formatEventDate(info.event.start, info.event.end)}</div>
   `;
       // Check both locations for description
@@ -666,7 +666,7 @@ function populateCodeCollectiveEvents(events) {
     } else {
       // Simple fallback for basic markdown
       description = description
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*\*(.*?)\*\*/g, '$1')
         .replace(/\*(.*?)\*/g, '<em>$1</em>')
         .replace(/\n/g, '<br>');
     }
