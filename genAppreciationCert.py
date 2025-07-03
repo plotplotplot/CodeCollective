@@ -296,7 +296,7 @@ def generate_hex(image_size, font_large, font_medium):
     return pil_image, draw
 
 
-def generate_badge(name, tablename):
+def generate_badge(imagefilename, name, tablename):
     time = datetime.now(timezone.utc)  # Get the current time in UTC
     timestamp = time.strftime("%Y-%m-%d_%H:%M:%S_%Z")  # Include timezone name
 
@@ -369,8 +369,26 @@ def generate_badge(name, tablename):
     qr_image = qr_image.resize((qr_len, qr_len))
     y_draw = int(image_size * 0.64)
     pil_image.paste(
-        qr_image, (int(image_size // 2 - qr_len // 2), int(y_draw)), qr_image
+        qr_image, (int(image_size // 2 + int(qr_len * 0.1)), int(y_draw)), qr_image
     )
+    
+    
+    # Use OpenCV to load and convert to RGB
+    cv_image = cv2.imread(imagefilename)
+    #cv_image = cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB)  # Fix color order
+    person_image = Image.fromarray(cv_image).convert("RGBA")
+
+    # Resize after conversion
+    w_percent = qr_len / float(person_image.width)
+    h_size = int((float(person_image.height) * w_percent))
+    person_image = person_image.resize((qr_len, h_size), Image.LANCZOS)
+
+    pil_image.paste(
+        person_image,
+        (int(image_size // 2 - int(qr_len * 1.1)), int(y_draw)),
+        person_image  # This acts as the mask
+    )
+
 
     y_draw = int(image_size * 0.865)
     drawTextCentered(
@@ -425,7 +443,8 @@ if __name__ == "__main__":
         )
         sys.exit(1)
 
-    full_name = " ".join(sys.argv[1:])
+    imagefilename = sys.argv[1]
+    full_name = " ".join(sys.argv[2:])
     table_name = "appreciation"
 
-    generate_badge(full_name, table_name)
+    generate_badge(imagefilename, full_name, table_name)

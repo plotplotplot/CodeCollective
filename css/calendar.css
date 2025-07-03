@@ -83,6 +83,10 @@ table .fc-col-header {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
+.fc table {
+  font-size: 0.5vw !important;
+}
+
 .fc-header-toolbar {
   flex-direction: row !important;
   align-items: center !important;
