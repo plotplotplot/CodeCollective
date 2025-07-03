@@ -28,7 +28,9 @@ sources = {
         "https://www.eventbrite.com/o/open-works-86343210063",
         "https://www.eventbrite.com/o/baltimore-under-ground-science-space-bugss-4318633291",
         "https://www.eventbrite.com.au/o/it-social-baltimore-110781946041",
-        "https://www.eventbrite.com/cc/baltimore-4326703"
+        "https://www.eventbrite.com/cc/baltimore-4326703",
+        "https://www.eventbrite.com/o/impact-hub-baltimore-8423440202",
+        "https://www.eventbrite.com/o/a-prosperous-tomorrow-11875462384"
     ],
     "Jotform":[
         #"https://form.jotform.com/251063812795157"
