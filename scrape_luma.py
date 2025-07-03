@@ -40,18 +40,8 @@ def parse_luma_event_page(url):
         },
         'location': {
             'name': event_data['event']['geo_address_info']['address'],
-            'full_address': event_data['event']['geo_address_info']['full_address'],
-            'description': event_data['event']['geo_address_info']['description'],
-            'coordinates': {
-                'latitude': event_data['event']['geo_latitude'],
-                'longitude': event_data['event']['geo_longitude']
-            }
+            'full_address': event_data['event']['geo_address_info']['full_address']
         },
-        'hosts': [{
-            'name': host['name'],
-            'avatar': host['avatar_url'],
-            'profile_url': f"https://lu.ma/user/{host.get('username', '')}"
-        } for host in event_data['hosts']],
         'ticket_info': {
             'is_free': event_data['ticket_info']['is_free'],
             'spots_remaining': event_data['ticket_info']['spots_remaining'],
@@ -61,18 +51,7 @@ def parse_luma_event_page(url):
                 'currency': tt['currency'],
                 'description': tt['description']
             } for tt in event_data['ticket_types']]
-        },
-        'guest_count': event_data['guest_count'],
-        'featured_guests': [{
-            'name': guest['name'],
-            'avatar': guest['avatar_url'],
-            'bio': guest.get('bio_short')
-        } for guest in event_data['featured_guests'][:5]],  # Just first 5
-        'registration_questions': [{
-            'question': q['label'],
-            'required': q['required'],
-            'type': q['question_type']
-        } for q in event_data.get('registration_questions', [])]
+        }
     }
     
     return event_info
