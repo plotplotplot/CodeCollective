@@ -1,10 +1,12 @@
 import os
 import requests
-from ics import Calendar
+import recurring_ical_events  # pip install recurring-ical-events
+from icalendar import Calendar  # pip install icalendar
 from dateutil.parser import parse
 import pytz
 import hashlib
 from datetime import datetime, timedelta
+from pprint import pprint
 
 # Constants
 TIMEZONE = pytz.timezone("America/New_York")
@@ -25,61 +27,160 @@ def fetch_calendar_events(existing_events, ICS_URL, imageURL="https://www.unallo
         print("🔄 Downloading new .ics file from URL...")
         r = requests.get(ICS_URL)
         r.raise_for_status()
-        with open(CACHE_FILENAME, "w", encoding="utf-8") as f:
-            f.write(r.text)
+        with open(CACHE_FILENAME, "wb") as f:
+            f.write(r.content)  # Write as binary to preserve encoding
     else:
         print("✅ Using cached .ics file")
-    processICS(CACHE_FILENAME, existing_events, imageURL)
+    
+    return processICS(CACHE_FILENAME, existing_events, imageURL)
 
-def processICS(CACHE_FILENAME, existing_events, imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png"):
-    # Read from the cached file
-    with open(CACHE_FILENAME, "r", encoding="utf-8") as f:
-        calendar = Calendar(f.read())
+def processICS(CACHE_FILENAME, existing_events, imageURL):
+    # Read the calendar file
+    with open(CACHE_FILENAME, "rb") as f:
+        calendar = Calendar.from_ical(f.read())
 
-    today = datetime.now(TIMEZONE).date()
+    today = datetime.now(TIMEZONE)
+    future_cutoff = today + timedelta(days=180)  # 6 months ahead
     calendar_events = []
 
-    for event in calendar.events:
-        try:
-            start_time = event.begin.astimezone(TIMEZONE)
-            end_time = event.end.astimezone(TIMEZONE)
+    print(f"\n📆 Processing calendar events between {today.date()} and {future_cutoff.date()}")
 
-            if start_time.date() < today:
-                #print(f"⏭️ Skipping past event '{event.name}' on {start_time.date()}")
+    # Use recurring-ical-events to get all events (including recurring ones)
+    try:
+        events = recurring_ical_events.of(calendar).between(today, future_cutoff)
+        print(f"🔍 Found {len(events)} total events (including recurring instances)")
+        
+        for event in events:
+            try:
+                # Extract event details
+                event_name = str(event.get('summary', 'Untitled Event'))
+                event_start = event.get('dtstart')
+                event_end = event.get('dtend')
+                
+                # Handle different datetime formats
+                if hasattr(event_start, 'dt'):
+                    start_dt = event_start.dt
+                else:
+                    start_dt = event_start
+                    
+                if hasattr(event_end, 'dt'):
+                    end_dt = event_end.dt
+                else:
+                    end_dt = event_end
+                
+                # Convert to timezone-aware datetime if needed
+                if not hasattr(start_dt, 'tzinfo') or start_dt.tzinfo is None:
+                    start_dt = TIMEZONE.localize(start_dt)
+                elif start_dt.tzinfo != TIMEZONE:
+                    start_dt = start_dt.astimezone(TIMEZONE)
+                    
+                if not hasattr(end_dt, 'tzinfo') or end_dt.tzinfo is None:
+                    end_dt = TIMEZONE.localize(end_dt)
+                elif end_dt.tzinfo != TIMEZONE:
+                    end_dt = end_dt.astimezone(TIMEZONE)
+
+                print(f"\n🎯 Processing: {event_name}")
+                print(f"   - Start: {start_dt}")
+                print(f"   - End: {end_dt}")
+                
+                # Skip past events
+                if end_dt < today:
+                    print("   - Skipping: Event is in the past")
+                    continue
+
+                # Generate unique event ID
+                event_id = hashlib.md5(
+                    f"{event_name}{start_dt}{end_dt}".encode()
+                ).hexdigest()[:16]
+
+                # Check if this is a recurring event instance
+                is_recurring = 'rrule' in event or 'recurrence-id' in event
+
+                calendar_event = {
+                    "id": event_id,
+                    "name": event_name,
+                    "startDate": start_dt.isoformat(),
+                    "endTime": end_dt.isoformat(),
+                    "description": str(event.get('description', '')),
+                    "url": str(event.get('url', '')),
+                    "status": "ACTIVE",
+                    "location": {
+                        "name": str(event.get('location', '')),
+                        "address": str(event.get('location', ''))
+                    },
+                    "imageUrl": imageURL,
+                    "recurring": is_recurring
+                }
+
+                calendar_events.append(calendar_event)
+                print(f"   - ✅ Added event (recurring: {is_recurring})")
+
+            except Exception as e:
+                print(f"⚠️ Error processing event: {e}")
                 continue
-            print(f"📅 Processing event '{event.name}' from {start_time} to {end_time}")
-            event_id = hashlib.md5(
-                f"{event.name}{event.begin}{event.end}".encode()
-            ).hexdigest()[:16]
 
-            calendar_event = {
-                "id": event_id,
-                "name": str(event.name) if event.name else "Untitled Event",
-                "startDate": start_time.isoformat(),
-                "endTime": end_time.isoformat(),
-                "description": str(event.description) if event.description else "",
-                "url": str(event.url) if event.url else "",
-                "status": "ACTIVE",
-                "location": {
-                    "name": str(event.location) if event.location else "",
-                    "address": str(event.location) if event.location else ""
-                },
-                "imageUrl": imageURL
-            }
+    except Exception as e:
+        print(f"❌ Error processing calendar with recurring-ical-events: {e}")
+        print("🔄 Falling back to basic processing...")
+        
+        # Fallback to basic processing without recurring events
+        for component in calendar.walk():
+            if component.name == "VEVENT":
+                try:
+                    event_name = str(component.get('summary', 'Untitled Event'))
+                    start_dt = component.get('dtstart').dt
+                    end_dt = component.get('dtend').dt
+                    
+                    # Convert to timezone-aware datetime if needed
+                    if not hasattr(start_dt, 'tzinfo') or start_dt.tzinfo is None:
+                        start_dt = TIMEZONE.localize(start_dt)
+                    elif start_dt.tzinfo != TIMEZONE:
+                        start_dt = start_dt.astimezone(TIMEZONE)
+                        
+                    if not hasattr(end_dt, 'tzinfo') or end_dt.tzinfo is None:
+                        end_dt = TIMEZONE.localize(end_dt)
+                    elif end_dt.tzinfo != TIMEZONE:
+                        end_dt = end_dt.astimezone(TIMEZONE)
+                    
+                    # Skip past events
+                    if end_dt < today or start_dt > future_cutoff:
+                        continue
+                        
+                    event_id = hashlib.md5(
+                        f"{event_name}{start_dt}{end_dt}".encode()
+                    ).hexdigest()[:16]
 
-            calendar_events.append(calendar_event)
+                    calendar_event = {
+                        "id": event_id,
+                        "name": event_name,
+                        "startDate": start_dt.isoformat(),
+                        "endTime": end_dt.isoformat(),
+                        "description": str(component.get('description', '')),
+                        "url": str(component.get('url', '')),
+                        "status": "ACTIVE",
+                        "location": {
+                            "name": str(component.get('location', '')),
+                            "address": str(component.get('location', ''))
+                        },
+                        "imageUrl": imageURL,
+                        "recurring": False
+                    }
 
-        except Exception as e:
-            print(f"⚠️ Error processing event '{getattr(event, 'name', 'Unknown')}': {e}")
-            continue
+                    calendar_events.append(calendar_event)
+                    
+                except Exception as e:
+                    print(f"⚠️ Error processing fallback event: {e}")
+                    continue
 
+    print(f"\n📊 Found {len(calendar_events)} total events before filtering")
     return filter_events(existing_events, calendar_events)
 
 def get_event_dates(events):
     dates = set()
     for event in events:
         try:
-            dates.add(parse(event["startDate"]).astimezone(TIMEZONE).date())
+            event_date = parse(event["startDate"]).astimezone(TIMEZONE).date()
+            dates.add(event_date)
         except Exception as e:  
             print(f"Error parsing date for event '{event.get('name', 'Unknown')}': {e}")
             continue
@@ -87,6 +188,7 @@ def get_event_dates(events):
 
 def filter_events(existing_events, calendar_events):
     existing_dates = get_event_dates(existing_events)
+    print(f"\n🗓️ Existing event dates: {sorted(existing_dates)}")
 
     non_conflicting = []
     for event in calendar_events:
@@ -125,5 +227,6 @@ if __name__ == "__main__":
     calendar_events = fetch_calendar_events(existing_events, ICS_URL)
 
     print(f"\n✅ Final list of {len(calendar_events)} non-conflicting events:")
-    #from pprint import pprint
-    #pprint(calendar_events)
+    for event in calendar_events:
+        recurring_indicator = "🔄" if event.get('recurring') else "📅"
+        print(f"{recurring_indicator} {event['name']} - {parse(event['startDate']).strftime('%Y-%m-%d %H:%M')}")
