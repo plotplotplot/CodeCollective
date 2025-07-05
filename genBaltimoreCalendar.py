@@ -493,7 +493,7 @@ if __name__ == "__main__":
         start = str(parse(event.get("startDate", "")).date())
         url = event.get("url", "").split("?")[0].lower()  # Remove query params
         location = event.get("location", {}).get("name", "").strip().lower()
-        return f"{name}||{start}||{url}||{location}"
+        return f"{name}||{start}"
 
     unique_events = []
     date_occupied = set()  # Track which dates already have events
