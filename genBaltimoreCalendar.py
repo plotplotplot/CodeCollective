@@ -377,6 +377,8 @@ if __name__ == "__main__":
         upcoming_events += scrape_ics.fetch_calendar_events(
             existing_events=upcoming_events,
             ICS_URL="http://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics",
+            imageURL="https://www.baltimorenode.org/wp-content/uploads/2013/11/node-logo.png",
+            eventUrl="https://baltimorenode.org/events/"
         )
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
@@ -385,6 +387,8 @@ if __name__ == "__main__":
         upcoming_events += scrape_ics.fetch_calendar_events(
             existing_events=upcoming_events,
             ICS_URL="https://calendar.google.com/calendar/ical/unallocatedspacehq@gmail.com/public/basic.ics",
+            imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png",
+            eventUrl="https://www.unallocatedspace.org/"
         )
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
@@ -394,6 +398,7 @@ if __name__ == "__main__":
             CACHE_FILENAME="maryland-stem-festival-96ecc18ef7d.ics",
             existing_events=upcoming_events,
             imageURL="https://marylandstemfestival.org/wp-content/uploads/2024/06/Family-Feud-group-Pix-1-scaled-e1717876361661.jpeg",
+            eventUrl="https://marylandstemfestival.org/events/month/"
         )
     except Exception as e:
         print(f"Error fetching calendar events: {e}")

@@ -34,7 +34,7 @@ def fetch_calendar_events(existing_events, ICS_URL, imageURL="https://www.unallo
     
     return processICS(CACHE_FILENAME, existing_events, imageURL)
 
-def processICS(CACHE_FILENAME, existing_events, imageURL):
+def processICS(CACHE_FILENAME, existing_events, imageURL, eventUrl):
     # Read the calendar file
     with open(CACHE_FILENAME, "rb") as f:
         calendar = Calendar.from_ical(f.read())
@@ -102,7 +102,7 @@ def processICS(CACHE_FILENAME, existing_events, imageURL):
                     "startDate": start_dt.isoformat(),
                     "endTime": end_dt.isoformat(),
                     "description": str(event.get('description', '')),
-                    "url": str(event.get('url', '')),
+                    "url": eventUrl,
                     "status": "ACTIVE",
                     "location": {
                         "name": str(event.get('location', '')),

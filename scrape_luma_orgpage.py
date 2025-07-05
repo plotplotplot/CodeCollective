@@ -14,29 +14,22 @@ def fetch_and_parse_luma_events(url: str) -> List[Dict[str, Any]]:
     Returns:
         List[Dict[str, Any]]: List of parsed events in the specified format
     """
-    try:
-        # Add headers to mimic a real browser request
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Accept-Encoding': 'gzip, deflate',
-            'Connection': 'keep-alive',
-        }
+    # Add headers to mimic a real browser request
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5',
+        'Accept-Encoding': 'gzip, deflate',
+        'Connection': 'keep-alive',
+    }
+    
+    # Fetch the URL
+    response = requests.get(url, headers=headers, timeout=30)
+    response.raise_for_status()  # Raise an exception for bad status codes
+    
+    # Parse the HTML content
+    return parse_luma_events(response.text)
         
-        # Fetch the URL
-        response = requests.get(url, headers=headers, timeout=30)
-        response.raise_for_status()  # Raise an exception for bad status codes
-        
-        # Parse the HTML content
-        return parse_luma_events(response.text)
-        
-    except requests.RequestException as e:
-        print(f"Error fetching URL {url}: {e}")
-        return []
-    except Exception as e:
-        print(f"Unexpected error: {e}")
-        return []
 
 def parse_luma_events(html_content: str) -> List[Dict[str, Any]]:
     """
@@ -86,43 +79,39 @@ def parse_single_event(event: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     Returns:
         Optional[Dict[str, Any]]: Parsed event in target format, or None if parsing fails
     """
-    try:
-        # Extract basic event information
-        name = event.get('name', '')
-        description = event.get('description', '')
-        start_date = event.get('startDate', '')
-        end_date = event.get('endDate', '')
-        event_url = event.get('@id', '')
-        
-        # Determine status based on eventStatus
-        event_status = event.get('eventStatus', '')
-        status = 'ACTIVE' if 'EventScheduled' in event_status else 'INACTIVE'
-        
-        # Extract location information
-        location_data = event.get('location', {})
-        location = parse_location(location_data)
-        
-        # Extract image URL
-        images = event.get('image', [])
-        image_url = images[0] if images and isinstance(images, list) else ''
-        
-        # Build the parsed event
-        parsed_event = {
-            'name': name,
-            'description': description,
-            'startDate': start_date,
-            'endTime': end_date,  # Note: using endTime as per the target format
-            'url': event_url,
-            'status': status,
-            'location': location,
-            'imageUrl': image_url
-        }
-        
-        return parsed_event
-        
-    except Exception as e:
-        print(f"Error parsing event: {e}")
-        return None
+    # Extract basic event information
+    name = event.get('name', '')
+    description = event.get('description', '')
+    start_date = event.get('startDate', '')
+    end_date = event.get('endDate', '')
+    event_url = event.get('@id', '')
+    
+    # Determine status based on eventStatus
+    event_status = event.get('eventStatus', '')
+    status = 'ACTIVE' if 'EventScheduled' in event_status else 'INACTIVE'
+    
+    # Extract location information
+    location_data = event.get('location', {})
+    location = parse_location(location_data)
+    
+    # Extract image URL
+    images = event.get('image', [])
+    image_url = images[0] if images and isinstance(images, list) else ''
+    
+    # Build the parsed event
+    parsed_event = {
+        'name': name,
+        'description': description,
+        'startDate': start_date,
+        'endTime': end_date,  # Note: using endTime as per the target format
+        'url': event_url,
+        'status': status,
+        'location': location,
+        'imageUrl': image_url
+    }
+    
+    return parsed_event
+    
 
 def parse_location(location_data: Dict[str, Any]) -> Dict[str, str]:
     """
@@ -147,7 +136,7 @@ def parse_location(location_data: Dict[str, Any]) -> Dict[str, str]:
     
     # Extract address information
     address_data = location_data.get('address', {})
-    if address_data:
+    if isinstance(address_data, dict):
         address_parts = []
         
         # Build address from components
@@ -166,13 +155,17 @@ def parse_location(location_data: Dict[str, Any]) -> Dict[str, str]:
         # Handle country (could be string or object)
         if isinstance(country_data, dict):
             country_name = country_data.get('name', '')
-            if country_name and country_name != 'United States':  # Don't add US to address
+            if country_name and country_name != 'United States':
                 address_parts.append(country_name)
         elif isinstance(country_data, str) and country_data != 'United States':
             address_parts.append(country_data)
         
         location['address'] = ', '.join(address_parts)
     
+    elif isinstance(address_data, str):
+        # If the address is a plain string, just use it directly
+        location['address'] = address_data
+
     return location
 
 
