@@ -486,27 +486,37 @@ if __name__ == "__main__":
             nonerror_upcoming_events = [event] + nonerror_upcoming_events
         else:
             print(f'{event.get("name")} already happened ')
-
+            
     unique_events = []
 
     for event in nonerror_upcoming_events:
         is_duplicate = False
         event_name = event.get("name", "")
         event_start = event.get("startDate", "")
+        
+        # Ensure current event has scrapeTime
+        if not event.get("scrapeTime"):
+            event["scrapeTime"] = str(datetime.datetime.now())
 
         # Extract just the date (no time) if startDate is valid
-        event_date = parse(event_start).date()
+        try:
+            event_date = parse(event_start).date() if event_start else None
+        except:
+            event_date = None
 
-        for unique_event in unique_events:
+        for i, unique_event in enumerate(unique_events):
             unique_name = unique_event.get("name", "")
             unique_start = unique_event.get("startDate", "")
 
             same_name_and_start = event_name == unique_name and event_start == unique_start
 
             same_date = False
-            if event_date:
-                unique_date =parse(unique_start).date()
-                same_date = event_date == unique_date
+            if event_date and unique_start:
+                try:
+                    unique_date = parse(unique_start).date()
+                    same_date = event_date == unique_date
+                except:
+                    same_date = False
 
             casual_conflict = (
                 "Casual Coding" in event_name and same_date
@@ -516,10 +526,15 @@ if __name__ == "__main__":
                 same_name_and_start
                 or casual_conflict
                 or event.get("recurring") and same_date
-                or "uas virtual" in event.get("name").lower()
+                or "uas virtual" in event.get("name", "").lower()
             ):
                 is_duplicate = True
-                print(f'Duplicate event: {event_name} on {event_start}')
+                print(f'Duplicate event found: {event_name} on {event_start}')
+                
+                # Compare scrape times to keep the newer one
+                if parse(event["scrapeTime"]) > parse(unique_event.get("scrapeTime", "")):
+                    print(f'Replacing with newer version (scraped at {event["scrapeTime"]})')
+                    unique_events[i] = event  # Replace the old event with the new one
                 break
 
         if not is_duplicate:
@@ -536,4 +551,4 @@ if __name__ == "__main__":
         json.dump(sorted_events, f, indent=4)
         print(f"Upcoming events saved to upcoming_events.json")
 
-    events_to_ics(unique_events, output_file="baltimore_tech_events.ics")
+    events_to_ics(sorted_events, output_file="baltimore_tech_events.ics")
