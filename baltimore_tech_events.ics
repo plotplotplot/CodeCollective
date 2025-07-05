@@ -2,6 +2,7 @@ BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:Baltimore Tech Events Calendar Generator
 BEGIN:VEVENT
+<<<<<<< HEAD
 DTSTAMP:20250705T021621Z
 DESCRIPTION:No description available
 DTEND:20250822T010000Z
@@ -141,11 +142,332 @@ UID:f8fa9745-9433-47fa-b8a4-78b0341dbfd4@f8fa.org
 END:VEVENT
 BEGIN:VEVENT
 DTSTAMP:20250705T021621Z
+=======
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Casual meetup to talk about crypto\n\nEvent Link: https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/307622522/
+DTEND:20250726T003000Z
+LOCATION:Phoenix Upper Main\, 8308 Main St\, Ellicott City\, MD us
+DTSTART:20250725T223000Z
+SUMMARY:Ellicott City Cryptocurrency Bar Meetup
+UID:3a1b8b0e-854c-4222-9b14-310c8c86c99d@3a1b.org
+URL:https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/307622522/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20251009T230000Z
+LOCATION:2106 N Lovegrove St\, Baltimore\, MD 21218\, USA\, 2106 N Lovegrove St\, Baltimore\, MD 21218\, USA\, \,  
+DTSTART:20251009T220000Z
+SUMMARY:Baltimore Node Monthly Member Meeting
+UID:3278faba-a31a-45d6-bf7d-2ec84b5e57a3@3278.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcmbkc/
+DTEND:20250927T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250927T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:c54be370-d1cc-43c3-806d-1541ac6c95a1@c54b.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcmbkc/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20251219T020000Z
+LOCATION:\,  
+DTSTART:20251219T000000Z
+SUMMARY:Open Hack
+UID:56db4e8d-c046-4234-ac82-963dcef6efdc@56db.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20251023T020000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251022T220000Z
+SUMMARY:Open House
+UID:593d5773-b62f-48f1-906a-3c58102b53b6@593d.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Project Night at Prefect\n\nEvent Link: https://lu.ma/1ncpije2
+DTEND:20250710T003000Z
+LOCATION:2112 Pennsylvania Avenue NW\, 2112 Pennsylvania Avenue NW\, Washington\, District of Columbia\, \,  
+DTSTART:20250709T220000Z
+SUMMARY:Project Night at Prefect
+UID:3287ae67-e823-412a-8bd6-5db7e297664a@3287.org
+URL:https://lu.ma/1ncpije2
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20251120T030000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251119T230000Z
+SUMMARY:Open House
+UID:773ed4ab-6399-4f58-af4c-0bb91938c39a@773e.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Start your morning with innovation\, insight\, & meaningful connections. Join us for Montgomery College’s signature biotech networking event.\n\nEvent Link: https://www.eventbrite.com/e/community-connect-5-from-code-to-cure-a-biotech-networking-event-tickets-1349767273249?aff=ebdssbdestsearch
+DTEND:20250716T150000Z
+LOCATION:Montgomery College Germantown Campus\, 20200 Observation Drive #4067 Germantown\, MD 20876\, \,  
+DTSTART:20250716T123000Z
+SUMMARY:From Code to Cure - A Biotech Networking Event
+UID:f7cab1ed-e22f-43d3-b06b-e1cf862beb35@f7ca.org
+URL:https://www.eventbrite.com/e/community-connect-5-from-code-to-cure-a-biotech-networking-event-tickets-1349767273249?aff=ebdssbdestsearch
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:This event is changing! Moving forward we'll be using Discord instead of Zoom. Please join us here: https://discord.gg/sF8P8fY5Nd\n\nIn the future we're also moving to a new meetup group. You can join t
+DTEND:20251004T023000Z
+LOCATION:\,  
+DTSTART:20251003T233000Z
+SUMMARY:[Virtual] Hackthebox Working Group
+UID:03bb21fb-a787-460a-b588-5f6d1c1cf1c6@03bb.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20251218T030000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251217T230000Z
+SUMMARY:Open House
+UID:4b650e84-20fc-4ac3-85eb-7bda8951e34f@4b65.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcnbxb/
+DTEND:20251018T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20251018T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:aad4ade3-b6c3-4386-b418-074bb7a86f8a@aad4.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcnbxb/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Queers and Beers (and Other Delightful Drinks!)\n\nCalling all people of the rainbow! Want to learn more about our hacker/maker space while meeting new people? Come to Queers and Beers (and Other Deligh
+DTEND:20251210T030000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251209T230000Z
+SUMMARY:Queers and Beers (and Other Delightful Drinks!)
+UID:7452ae9f-c481-49dd-a900-a89800408c31@7452.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:This event is changing! Moving forward we'll be using Discord instead of Zoom. Please join us here: https://discord.gg/sF8P8fY5Nd\n\nIn the future we're also moving to a new meetup group. You can join t
+DTEND:20251129T033000Z
+LOCATION:\,  
+DTSTART:20251129T003000Z
+SUMMARY:[Virtual] Hackthebox Working Group
+UID:961982cd-8ceb-4863-a472-3777fb0d48ad@9619.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:SUMMARY:\nThe DEF CON Group 443\, also known as DC443\, is an interest group designed to discuss general hacking and its culture\, information security (InfoSec)\, and related topics. Our group’s interests
+DTEND:20250816T010000Z
+LOCATION:\,  
+DTSTART:20250815T230000Z
+SUMMARY:Infosec & DC443 Meetup
+UID:ad6a0dcf-515d-4333-9c65-465333db1335@ad6a.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20251031T010000Z
+LOCATION:\,  
+DTSTART:20251030T230000Z
+SUMMARY:Open Hack
+UID:a26057de-c547-417c-98d8-ec9db48b41c6@a260.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Join the fellows of the StarTUp Accelerator as they pitch their ventures to campus\,\n community and business leaders.\n\nEvent Link: https://www.towson.edu/startup/programs/community-entrepreneurship/accelerator/showcase.html
+DTEND:20250915T210000Z
+LOCATION:Towson University StarTUp\, Towson\, MD\, \,  
+DTSTART:20250915T160000Z
+SUMMARY:Accelerator Showcase
+UID:102e032c-4687-415e-8623-a4ed68d6c8ba@102e.org
+URL:https://www.towson.edu/startup/programs/community-entrepreneurship/accelerator/showcase.html
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20251125T030000Z
+LOCATION:\,  
+DTSTART:20251125T000000Z
+SUMMARY:Project Night
+UID:6fa7e004-b7b2-48ae-ae84-b04fd3a0cde4@6fa7.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:🪩Baltimore Climate Tech 2 Year Anniversary Party🎉🥂🎊🪩!\n\nEvent Link: https://lu.ma/vnc110vf
+DTEND:20250717T000000Z
+LOCATION:Union Craft Brewing\, Union Craft Brewing\, Baltimore\, Maryland\, \,  
+DTSTART:20250716T220000Z
+SUMMARY:🪩Baltimore Climate Tech 2 Year Anniversary Party🎉🥂🎊🪩!
+UID:eca21365-26e9-46e6-96b4-600feddb0ab2@eca2.org
+URL:https://lu.ma/vnc110vf
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20251014T020000Z
+LOCATION:\,  
+DTSTART:20251013T230000Z
+SUMMARY:Project Night
+UID:fa6508e2-c174-4786-8a4a-ffa3fb3a5504@fa65.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcmbjb/
+DTEND:20250906T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250906T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:4cf77a8f-0514-45b2-aff2-af1678142e4c@4cf7.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcmbjb/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20251204T030000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251203T230000Z
+SUMMARY:Open House
+UID:2818335c-7bd0-4b99-9c08-1953666cd989@2818.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:GBC Partners are invited to help us in telling a dynamic new economic story for the Baltimore Region. Come and learn more about the Regional Brand initiative and how GBC\n\nEvent Link: https://gbc.org/event/baltimore-region-economic-brand-workshop-8/
+DTEND:20250730T170000Z
+LOCATION:Baltimore\, MD US
+DTSTART:20250730T160000Z
+SUMMARY:Baltimore Region Economic Brand Workshop
+UID:50081dea-6b40-45a3-86b1-9b5c31ea89d9@5008.org
+URL:https://gbc.org/event/baltimore-region-economic-brand-workshop-8/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:ONLINE MEETUP USING DISCORD. (Discord link visible after RSVPing.)\n\nWe're meeting on Discord! The link to join the Baltimore Indie Game Devs discord server will be in your RSVP message.\n\nJoin us to di\n\nEvent Link: https://www.meetup.com/baltimore-indie-game-developers-group/events/308309865/
+DTEND:20250705T153000Z
+LOCATION:Online event\, \,  
+DTSTART:20250705T140000Z
+SUMMARY:[ONLINE] Game Dev Meetup (Monthly Meetup)
+UID:94a9b5a2-7b63-46ee-9bf8-1e2bd6d5d385@94a9.org
+URL:https://www.meetup.com/baltimore-indie-game-developers-group/events/308309865/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:SUMMARY: Locksport @ UAS.\n\nGOAL: Learn how locks work and how to pick them.\n\nTHINGS TO BRING: just yourself or locks & tools.\n\nSKILL LEVEL: all\n\nPRESENTER: MacGnG\n\nhttps://www.unallocatedspace.org/eve
+DTEND:20251009T020000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251008T230000Z
+SUMMARY:Locksport - MD TOOOL
+UID:e2503519-08ef-4e8b-b07f-e39feaa906e6@e250.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:This event is changing! Moving forward we'll be using Discord instead of Zoom. Please join us here: https://discord.gg/sF8P8fY5Nd\n\nIn the future we're also moving to a new meetup group. You can join t
+DTEND:20250920T023000Z
+LOCATION:\,  
+DTSTART:20250919T233000Z
+SUMMARY:[Virtual] Hackthebox Working Group
+UID:48bfe9c3-853a-45aa-b26e-6ed4775c1d41@48bf.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20251209T030000Z
+LOCATION:\,  
+DTSTART:20251209T000000Z
+SUMMARY:Project Night
+UID:cb688a49-f6db-4160-b7af-370f943b2769@cb68.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20250828T020000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20250827T220000Z
+SUMMARY:Open House
+UID:c46bc558-c9b2-4c76-9e55-a1984c63eea8@c46b.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:SUMMARY:\nThe DEF CON Group 443\, also known as DC443\, is an interest group designed to discuss general hacking and its culture\, information security (InfoSec)\, and related topics. Our group’s interests
+DTEND:20251011T010000Z
+LOCATION:\,  
+DTSTART:20251010T230000Z
+SUMMARY:Infosec & DC443 Meetup
+UID:3602e036-4831-4b6b-97de-e94a90dda00c@3602.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20250801T010000Z
+LOCATION:\,  
+DTSTART:20250731T230000Z
+SUMMARY:Open Hack
+UID:c035ecd4-49ac-42bd-9484-c1fab0c1a0f7@c035.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20251104T030000Z
+LOCATION:\,  
+DTSTART:20251104T000000Z
+SUMMARY:Project Night
+UID:92ba258d-52a3-4686-9bcd-bc3f6130a33d@92ba.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20251021T020000Z
+LOCATION:\,  
+DTSTART:20251020T230000Z
+SUMMARY:Project Night
+UID:0a8df110-435c-41a3-925a-2e9fb67b3cc9@0a8d.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:SUMMARY:\nThe DEF CON Group 443\, also known as DC443\, is an interest group designed to discuss general hacking and its culture\, information security (InfoSec)\, and related topics. Our group’s interests
+DTEND:20251220T020000Z
+LOCATION:\,  
+DTSTART:20251220T000000Z
+SUMMARY:Infosec & DC443 Meetup
+UID:720b6303-a4b7-4525-98f4-60b76e9e7917@720b.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20260101T030000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251231T230000Z
+SUMMARY:Open House
+UID:f988abc4-629e-4162-b8e1-294814140749@f988.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:GBC Partners are invited to help us in telling a dynamic new economic story for the Baltimore Region. Come and learn more about the Regional Brand initiative and how GBC\n\nEvent Link: https://gbc.org/event/baltimore-region-economic-brand-workshop-6/
+DTEND:20250716T170000Z
+LOCATION:Baltimore\, MD US
+DTSTART:20250716T160000Z
+SUMMARY:Baltimore Region Economic Brand Workshop
+UID:b455fc23-c9fb-4c83-8ddd-d21f22cacc7b@b455.org
+URL:https://gbc.org/event/baltimore-region-economic-brand-workshop-6/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+>>>>>>> 623de81ce663a706b640cc38220137761f72f93c
 DESCRIPTION:RSVPs are required due to venue safety precautions. Anyone that's not on the RSVP list by July 7th 7pm will not be able to attend the event.\n\nAgenda:\n6pm: Networking session\n7pm: Speaker begins and Q&\n\nEvent Link: https://www.meetup.com/pitch-labs/events/308657813/
 DTEND:20250709T010000Z
 LOCATION:Northeastern University Rosslyn Campus\, 1300 17th Street North Suite 1500\, Arlington\, VA us
 DTSTART:20250708T220000Z
 SUMMARY:Technical Readiness Level for Founders
+<<<<<<< HEAD
 UID:6d8336eb-7da0-4bc7-8017-ca3dff3007d2@6d83.org
 URL:https://www.meetup.com/pitch-labs/events/308657813/
 END:VEVENT
@@ -173,9 +495,121 @@ BEGIN:VEVENT
 DTSTAMP:20250705T021621Z
 DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcmbrb/
 DTEND:20250913T160000Z
+=======
+UID:fbdca11b-8315-42d3-9b0c-d8397a5625c3@fbdc.org
+URL:https://www.meetup.com/pitch-labs/events/308657813/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:SUMMARY:\nThe DEF CON Group 443\, also known as DC443\, is an interest group designed to discuss general hacking and its culture\, information security (InfoSec)\, and related topics. Our group’s interests
+DTEND:20250719T010000Z
+LOCATION:\,  
+DTSTART:20250718T230000Z
+SUMMARY:Infosec & DC443 Meetup
+UID:8eedff15-92a9-4c6e-8a64-8a2a3244058f@8eed.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20251002T020000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251001T220000Z
+SUMMARY:Open House
+UID:1da7335b-f891-433b-8b1f-5c294cc2a2c1@1da7.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Abstract:\nModern technology decisions often occur at the intersection of three critical domains: Identity Security\, User Experience\, and DevOps. While many organizations may treat these as separate co\n\nEvent Link: https://www.meetup.com/devops-columbia/events/308797089/
+DTEND:20250725T000000Z
+LOCATION:Howard County Library\, East Columbia Branch\, 6600 Cradlerock Way\, Columbia\, MD us
+DTSTART:20250724T230000Z
+SUMMARY:How Human-Centric Identity Strategy Unlocks DevOps Potential
+UID:599d10d6-e515-48b1-b39f-0346c6b04f51@599d.org
+URL:https://www.meetup.com/devops-columbia/events/308797089/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:This event is changing! Moving forward we'll be using Discord instead of Zoom. Please join us here: https://discord.gg/sF8P8fY5Nd\n\nIn the future we're also moving to a new meetup group. You can join t
+DTEND:20250906T023000Z
+LOCATION:\,  
+DTSTART:20250905T233000Z
+SUMMARY:[Virtual] Hackthebox Working Group
+UID:6e189543-6a1c-420f-badb-56a8639d9399@6e18.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20250822T010000Z
+LOCATION:\,  
+DTSTART:20250821T230000Z
+SUMMARY:Open Hack
+UID:2d5ec55b-4a22-49e9-ac06-e5bd20e69dc2@2d5e.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20251226T020000Z
+LOCATION:\,  
+DTSTART:20251226T000000Z
+SUMMARY:Open Hack
+UID:4e2e6005-1ff9-4dd0-b99c-5f8e65528604@4e2e.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:SUMMARY: Locksport @ UAS.\n\nGOAL: Learn how locks work and how to pick them.\n\nTHINGS TO BRING: just yourself or locks & tools.\n\nSKILL LEVEL: all\n\nPRESENTER: MacGnG\n\nhttps://www.unallocatedspace.org/eve
+DTEND:20250911T020000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20250910T230000Z
+SUMMARY:Locksport - MD TOOOL
+UID:4fb727a0-e14e-447f-92a0-e8b4b7ce7a89@4fb7.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:TECHSPO Baltimore Technology Expo (Internet ~ Mobile ~ AdTech ~ MarTech ~ SaaS) - October 23 - 24\, 2025 - Baltimore\, MD\n\nEvent Link: https://www.eventbrite.com/e/techspo-baltimore-2025-technology-expo-internet-adtech-martech-tickets-1114708064829
+DTEND:20251024T200000Z
+LOCATION:Sheraton Inner Harbor Hotel\, 300 South Charles Street Baltimore\, MD 21201\, 300 South Charles Street Baltimore\, MD US
+DTSTART:20251023T130000Z
+SUMMARY:TECHSPO Baltimore 2025 Technology Expo (Internet ~ AdTech ~ MarTech)
+UID:33b4ea10-d63c-4dee-8210-4463c68a8aab@33b4.org
+URL:https://www.eventbrite.com/e/techspo-baltimore-2025-technology-expo-internet-adtech-martech-tickets-1114708064829
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:This event is changing! Moving forward we'll be using Discord instead of Zoom. Please join us here: https://discord.gg/sF8P8fY5Nd\n\nIn the future we're also moving to a new meetup group. You can join t
+DTEND:20251213T033000Z
+LOCATION:\,  
+DTSTART:20251213T003000Z
+SUMMARY:[Virtual] Hackthebox Working Group
+UID:d0756c5e-2d79-4f3a-96f0-457b809b2493@d075.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Whether you’re passionate about the latest trends\, eager to hear from industry leaders\, or just looking for a unique networking opportunity\, this is the perfect event for you. Join us for an exciting \n\nEvent Link: https://wtci.org/Events/2025-inside-series-featuring-coty/
+DTEND:20250909T210000Z
+LOCATION:WTCI Event Location\, Washington\, DC Metro Area\, \,  
+DTSTART:20250909T160000Z
+SUMMARY:2025 Inside Series Featuring Coty
+UID:6d5b142b-2f43-4a4d-b40d-e56b1b45f9bb@6d5b.org
+URL:https://wtci.org/Events/2025-inside-series-featuring-coty/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20251127T030000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251126T230000Z
+SUMMARY:Open House
+UID:68390b58-5aff-41e9-ab5d-ff2fee7e1fd4@6839.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/308186088/
+DTEND:20250705T160000Z
+>>>>>>> 623de81ce663a706b640cc38220137761f72f93c
 LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
-DTSTART:20250913T140000Z
+DTSTART:20250705T140000Z
 SUMMARY:Casual Coding\, Chat\, & Coffee
+<<<<<<< HEAD
 UID:570c7367-95fc-4af2-b8eb-512606755dd7@570c.org
 URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcmbrb/
 END:VEVENT
@@ -444,11 +878,19 @@ UID:83bf8a92-8442-43b9-9fb2-567c31f37344@83bf.org
 END:VEVENT
 BEGIN:VEVENT
 DTSTAMP:20250705T021621Z
+=======
+UID:7b8e1b36-b1bb-45c4-a532-fca62fc0ab49@7b8e.org
+URL:https://www.meetup.com/python-frederick/events/308186088/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+>>>>>>> 623de81ce663a706b640cc38220137761f72f93c
 DESCRIPTION:SUMMARY:\nThe DEF CON Group 443\, also known as DC443\, is an interest group designed to discuss general hacking and its culture\, information security (InfoSec)\, and related topics. Our group’s interests
 DTEND:20251025T010000Z
 LOCATION:\,  
 DTSTART:20251024T230000Z
 SUMMARY:Infosec & DC443 Meetup
+<<<<<<< HEAD
 UID:0cb0070b-c30b-4811-9930-7ea820d47c79@0cb0.org
 END:VEVENT
 BEGIN:VEVENT
@@ -508,20 +950,230 @@ UID:3b9b0684-ee4a-4571-92df-16682f683f85@3b9b.org
 END:VEVENT
 BEGIN:VEVENT
 DTSTAMP:20250705T021621Z
+=======
+UID:b8f234b2-287b-4244-b7fe-77d4712e6243@b8f2.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:A dynamic networking event with a service providers panel and small group discussions to help you build your\n\nEvent Link: https://www.eventbrite.com/e/the-sounding-board-insights-from-legal-contracts-hr-experts-tickets-1388458981189
+DTEND:20250717T220000Z
+LOCATION:Impact Hub Baltimore\, 10 East North Avenue\, Baltimore\, MD\, 21202\, \,  
+DTSTART:20250717T200000Z
+SUMMARY:The Sounding Board: Insights from Legal\, Contracts\, & HR Experts
+UID:16bdc6cf-f6fe-4b34-b4d8-3b71a63849e1@16bd.org
+URL:https://www.eventbrite.com/e/the-sounding-board-insights-from-legal-contracts-hr-experts-tickets-1388458981189
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:We're going to get together\, share a meal\, and talk some Python (and whatever other topics you're interested in).\n\nCome on out for some fun and food. This is a great chance to chat about Python with o\n\nEvent Link: https://www.meetup.com/python-frederick/events/308504989/
+DTEND:20250710T010000Z
+LOCATION:Old Dominion Sushi Bar and Grill\, 5732 Buckeystown Pike #18-20\, Frederick\, MD us
+DTSTART:20250709T230000Z
+SUMMARY:Old Dominion Grill and Sushi (2nd Wed Dinner)
+UID:fd1c1c25-5161-4620-ad60-4d232875d2a5@fd1c.org
+URL:https://www.meetup.com/python-frederick/events/308504989/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20250925T020000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20250924T220000Z
+SUMMARY:Open House
+UID:c7643e7a-8ee0-4776-8558-885c96566902@c764.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:SUMMARY:\nThe DEF CON Group 443\, also known as DC443\, is an interest group designed to discuss general hacking and its culture\, information security (InfoSec)\, and related topics. Our group’s interests
+DTEND:20250830T010000Z
+LOCATION:\,  
+DTSTART:20250829T230000Z
+SUMMARY:Infosec & DC443 Meetup
+UID:94c624e3-38bd-4268-9b17-35ccc0d47fcc@94c6.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20250826T020000Z
+LOCATION:\,  
+DTSTART:20250825T230000Z
+SUMMARY:Project Night
+UID:9d25e8b4-90a0-42df-99d3-8275924ff50e@9d25.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20250807T020000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20250806T220000Z
+SUMMARY:Open House
+UID:4562f02f-56e6-4c36-9b37-95c54ad8328d@4562.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:GBC Partners are invited to help us in telling a dynamic new economic story for the Baltimore Region. Come and learn more about the Regional Brand initiative and how GBC\n\nEvent Link: https://gbc.org/event/baltimore-region-economic-brand-workshop-5/
+DTEND:20250710T170000Z
+LOCATION:Baltimore\, MD US
+DTSTART:20250710T160000Z
+SUMMARY:Baltimore Region Economic Brand Workshop
+UID:bd13df2c-979a-4a1c-a602-8683c4bfc67e@bd13.org
+URL:https://gbc.org/event/baltimore-region-economic-brand-workshop-5/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20250819T020000Z
+LOCATION:\,  
+DTSTART:20250818T230000Z
+SUMMARY:Project Night
+UID:5f9a44f2-f8c3-4b4c-aea9-1927ac9bd69e@5f9a.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Queers and Beers (and Other Delightful Drinks!)\n\nCalling all people of the rainbow! Want to learn more about our hacker/maker space while meeting new people? Come to Queers and Beers (and Other Deligh
+DTEND:20250813T020000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20250812T220000Z
+SUMMARY:Queers and Beers (and Other Delightful Drinks!)
+UID:3eb77075-fd6d-42fa-b715-79019ac9f346@3eb7.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:SUMMARY:\nThe DEF CON Group 443\, also known as DC443\, is an interest group designed to discuss general hacking and its culture\, information security (InfoSec)\, and related topics. Our group’s interests
+DTEND:20250927T010000Z
+LOCATION:\,  
+DTSTART:20250926T230000Z
+SUMMARY:Infosec & DC443 Meetup
+UID:f568db46-5460-43de-808a-e72df502ea40@f568.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20250708T020000Z
+LOCATION:\,  
+DTSTART:20250707T230000Z
+SUMMARY:Project Night
+UID:fcd44c8d-029b-4697-81ab-fa2c73935016@fcd4.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20251016T020000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251015T220000Z
+SUMMARY:Open House
+UID:b81e12f9-f9ed-4514-9a02-05ba4b6f3002@b81e.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:How do we use computer simulation to find order in chaos and reveal fundamental principles of\n\nEvent Link: https://www.eventbrite.com/e/using-randomness-to-estimate-order-for-8-12th-graders-tickets-1417094229989
+DTEND:20250802T153000Z
+LOCATION:Baltimore UnderGround Science Space (BUGSS)\, 101 N Haven St\, Baltimore\, MD\, 21224\, \,  
+DTSTART:20250802T140000Z
+SUMMARY:Using Randomness to Estimate Order (for 8-12th graders)
+UID:21c515d1-e45c-4fb1-bb0b-461c3e86840c@21c5.org
+URL:https://www.eventbrite.com/e/using-randomness-to-estimate-order-for-8-12th-graders-tickets-1417094229989
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20250902T020000Z
+LOCATION:\,  
+DTSTART:20250901T230000Z
+SUMMARY:Project Night
+UID:5dcedb92-134a-481e-8f31-ffad795a3112@5dce.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20250829T010000Z
+LOCATION:\,  
+DTSTART:20250828T230000Z
+SUMMARY:Open Hack
+UID:c1da4aae-c86c-4068-9392-bee948b6c21f@c1da.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:We will likely be in the main bar area\n\nEvent Link: https://www.meetup.com/baltimorebitcoin/events/307979235/
+DTEND:20250808T003000Z
+LOCATION:La Palapa Grill & Cantina\, 8307 Main St\, Ellicott City\, MD US
+DTSTART:20250807T223000Z
+SUMMARY:1st Thursday Bitcoin HoDL Hour
+UID:d65076d4-40a9-4cb5-b2f2-673476177620@d650.org
+URL:https://www.meetup.com/baltimorebitcoin/events/307979235/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhclbmb/
+DTEND:20250809T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250809T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:9737bcc5-287d-4429-b48a-778cd900fe00@9737.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhclbmb/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:SUMMARY:\nThe DEF CON Group 443\, also known as DC443\, is an interest group designed to discuss general hacking and its culture\, information security (InfoSec)\, and related topics. Our group’s interests
+DTEND:20250913T010000Z
+LOCATION:\,  
+DTSTART:20250912T230000Z
+SUMMARY:Infosec & DC443 Meetup
+UID:8c83cba1-73a1-42da-88b4-15f6e2678ff9@8c83.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+>>>>>>> 623de81ce663a706b640cc38220137761f72f93c
 DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
 DTEND:20251216T030000Z
 LOCATION:\,  
 DTSTART:20251216T000000Z
 SUMMARY:Project Night
+<<<<<<< HEAD
 UID:e8fd8534-3a46-409f-ae94-4242333e19c7@e8fd.org
 END:VEVENT
 BEGIN:VEVENT
 DTSTAMP:20250705T021621Z
+=======
+UID:90a5d028-9d1a-4f93-83c7-701661f5cde7@90a5.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20250930T020000Z
+LOCATION:\,  
+DTSTART:20250929T230000Z
+SUMMARY:Project Night
+UID:6d568899-7d80-405a-9e65-3d05ecc04c6b@6d56.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Let's take a look at how easy detecting vulnerabilities in code can be using the latest and greatest technologies\, including scale challenges and costs.\n\nAlso\, we're going to have another "after hour.\n\nEvent Link: https://www.meetup.com/python-frederick/events/308767216/
+DTEND:20250814T010000Z
+LOCATION:Cowork Frederick\, 122 E Patrick St\, Frederick\, MD us
+DTSTART:20250813T230000Z
+SUMMARY:Detecting Code Vulnerabilities Using Python with AI and LLMs (2nd Wed Talk)
+UID:1c371d1e-d473-4d5f-ac96-6b1074046186@1c37.org
+URL:https://www.meetup.com/python-frederick/events/308767216/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:SUMMARY: Locksport @ UAS.\n\nGOAL: Learn how locks work and how to pick them.\n\nTHINGS TO BRING: just yourself or locks & tools.\n\nSKILL LEVEL: all\n\nPRESENTER: MacGnG\n\nhttps://www.unallocatedspace.org/eve
+DTEND:20251113T030000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251113T000000Z
+SUMMARY:Locksport - MD TOOOL
+UID:58a6dd00-b30f-4a71-b766-8de2c1734286@58a6.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+>>>>>>> 623de81ce663a706b640cc38220137761f72f93c
 DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcnbpb/
 DTEND:20251011T160000Z
 LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
 DTSTART:20251011T140000Z
 SUMMARY:Casual Coding\, Chat\, & Coffee
+<<<<<<< HEAD
 UID:2100957a-842c-457b-82f1-860a51774475@2100.org
 URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcnbpb/
 END:VEVENT
@@ -1199,11 +1851,19 @@ UID:4c6d5bb0-56cb-4d4d-8506-a512675dd1b6@4c6d.org
 END:VEVENT
 BEGIN:VEVENT
 DTSTAMP:20250705T021621Z
+=======
+UID:488686c8-07af-48e1-806d-4d1e44d4345b@4886.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcnbpb/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+>>>>>>> 623de81ce663a706b640cc38220137761f72f93c
 DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
 DTEND:20251202T030000Z
 LOCATION:\,  
 DTSTART:20251202T000000Z
 SUMMARY:Project Night
+<<<<<<< HEAD
 UID:bfde0995-7058-40e7-909f-703a440592c7@bfde.org
 END:VEVENT
 BEGIN:VEVENT
@@ -1292,11 +1952,37 @@ UID:8fd2c3ab-843d-4ad8-9693-3a3ddee67adf@8fd2.org
 END:VEVENT
 BEGIN:VEVENT
 DTSTAMP:20250705T021621Z
+=======
+UID:665bc07d-3056-4d6c-bbed-a0fa9603cee1@665b.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/308617362/
+DTEND:20250712T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250712T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:e909fc90-cceb-4130-8a26-e3dcd9e691bd@e909.org
+URL:https://www.meetup.com/python-frederick/events/308617362/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20250715T020000Z
+LOCATION:\,  
+DTSTART:20250714T230000Z
+SUMMARY:Project Night
+UID:12ae383c-96e6-4bf0-baaa-ad64394f120b@12ae.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+>>>>>>> 623de81ce663a706b640cc38220137761f72f93c
 DESCRIPTION:No description available
 DTEND:20250926T010000Z
 LOCATION:\,  
 DTSTART:20250925T230000Z
 SUMMARY:Open Hack
+<<<<<<< HEAD
 UID:64aab575-958b-4aa0-b9f5-482de7aad8fa@64aa.org
 END:VEVENT
 BEGIN:VEVENT
@@ -1308,5 +1994,615 @@ DTSTART:20250705T140000Z
 SUMMARY:Casual Coding\, Chat\, & Coffee
 UID:15085a47-516f-460b-9a34-53c00ae12c7f@1508.org
 URL:https://www.meetup.com/python-frederick/events/308186088/
+=======
+UID:3928d7de-1235-4947-afc3-efd47affe30e@3928.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20251225T030000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251224T230000Z
+SUMMARY:Open House
+UID:d877b046-0b95-4e0e-92fd-77070be81824@d877.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhclbnc/
+DTEND:20250830T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250830T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:0bb6ee7e-3292-4e51-afbf-c0a64ae49fb2@0bb6.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhclbnc/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20251017T010000Z
+LOCATION:\,  
+DTSTART:20251016T230000Z
+SUMMARY:Open Hack
+UID:a5d3f770-79b5-4a2d-9712-fbbee9517fa4@a5d3.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:We’ll gather at Common Ground Café (near Penn Station) for:\n\nInteractive discussion about UX’s role in urban infrastructure\, mobility\, and community resilience\nHands-on system mapping using 3D-printed\n\nEvent Link: https://www.meetup.com/baltimore-ux-meetup/events/308672527/
+DTEND:20250730T170000Z
+LOCATION:Common Ground\, 819 W 36th St\, Baltimore\, MD us
+DTSTART:20250730T150000Z
+SUMMARY:Design for Planets
+UID:38df3de2-75a9-4cea-a582-b4c031d6e8be@38df.org
+URL:https://www.meetup.com/baltimore-ux-meetup/events/308672527/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20251207T000000Z
+LOCATION:Unallocated Space\, Unallocated Space\, \,  
+DTSTART:20251206T000000Z
+SUMMARY:LAN Party!
+UID:ef7910df-eea5-48fd-9b09-a2d3e5107f9b@ef79.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20250923T020000Z
+LOCATION:\,  
+DTSTART:20250922T230000Z
+SUMMARY:Project Night
+UID:5a403d8c-b5b8-4428-b41f-3338c44e5e2d@5a40.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Bring your voice\, something comfy to sit on\, your favorite sound maker(s)
+DTEND:20250719T193000Z
+LOCATION:St Luke's Church on the Avenue\, 800 W 36th St.\, \,  
+DTSTART:20250719T170000Z
+SUMMARY:Scream on the Avenue
+UID:d04d1b37-75e6-4093-b35f-1578059a100d@d04d.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20251007T020000Z
+LOCATION:\,  
+DTSTART:20251006T230000Z
+SUMMARY:Project Night
+UID:73032efd-0458-4521-94d8-a8cca9f92e7a@7303.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Queers and Beers (and Other Delightful Drinks!)\n\nCalling all people of the rainbow! Want to learn more about our hacker/maker space while meeting new people? Come to Queers and Beers (and Other Deligh
+DTEND:20251112T030000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251111T230000Z
+SUMMARY:Queers and Beers (and Other Delightful Drinks!)
+UID:3749fcfc-dd01-484b-8e96-b7cae9a7a190@3749.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:SUMMARY:\nThe DEF CON Group 443\, also known as DC443\, is an interest group designed to discuss general hacking and its culture\, information security (InfoSec)\, and related topics. Our group’s interests
+DTEND:20251122T020000Z
+LOCATION:\,  
+DTSTART:20251122T000000Z
+SUMMARY:Infosec & DC443 Meetup
+UID:9c07b76d-a5df-4937-9280-e703d74a2f4c@9c07.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:This event is changing! Moving forward we'll be using Discord instead of Zoom. Please join us here: https://discord.gg/sF8P8fY5Nd\n\nIn the future we're also moving to a new meetup group. You can join t
+DTEND:20251101T023000Z
+LOCATION:\,  
+DTSTART:20251031T233000Z
+SUMMARY:[Virtual] Hackthebox Working Group
+UID:ed476826-f6ee-4154-b940-d0c7551ae6fc@ed47.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:This event is changing! Moving forward we'll be using Discord instead of Zoom. Please join us here: https://discord.gg/sF8P8fY5Nd\n\nIn the future we're also moving to a new meetup group. You can join t
+DTEND:20250823T023000Z
+LOCATION:\,  
+DTSTART:20250822T233000Z
+SUMMARY:[Virtual] Hackthebox Working Group
+UID:35f267a9-eea9-40cb-8d25-9582b83dea9d@35f2.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Casual meetup to talk about crypto\n\nEvent Link: https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/307622485/
+DTEND:20250712T003000Z
+LOCATION:Phoenix Upper Main\, 8308 Main St\, Ellicott City\, MD us
+DTSTART:20250711T223000Z
+SUMMARY:Ellicott City Cryptocurrency Bar Meetup
+UID:bc62d2f2-ea81-4d52-99d4-036a12a426bc@bc62.org
+URL:https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/307622485/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:This event is changing! Moving forward we'll be using Discord instead of Zoom. Please join us here: https://discord.gg/sF8P8fY5Nd\n\nIn the future we're also moving to a new meetup group. You can join t
+DTEND:20251227T033000Z
+LOCATION:\,  
+DTSTART:20251227T003000Z
+SUMMARY:[Virtual] Hackthebox Working Group
+UID:e5bc5fca-586d-4e23-af8a-9a3ad600af2e@e5bc.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20250918T020000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20250917T220000Z
+SUMMARY:Open House
+UID:ac1ed9fe-2edf-46d1-a205-cb3f72739f79@ac1e.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:SUMMARY:\nThe DEF CON Group 443\, also known as DC443\, is an interest group designed to discuss general hacking and its culture\, information security (InfoSec)\, and related topics. Our group’s interests
+DTEND:20250802T010000Z
+LOCATION:\,  
+DTSTART:20250801T230000Z
+SUMMARY:Infosec & DC443 Meetup
+UID:939f6e68-ba38-4fc2-bc33-03249d2d7f8c@939f.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Ask Us Anything WordPress!\n\nRegister for it by filling out this form: https://forms.gle/Th6AZUbS2GoiCEJz5\n\nThis is a virtual meetup on Zoom for you to ask your WordPress questions and help you fix pro\n\nEvent Link: https://www.meetup.com/the-baltimore-wordpress-group/events/308435329/
+DTEND:20250916T160000Z
+LOCATION:Online event\, \,  
+DTSTART:20250916T150000Z
+SUMMARY:All Levels: Online Ask Me Anything WordPress!
+UID:fc96585f-c370-4443-82c3-b84261f3f417@fc96.org
+URL:https://www.meetup.com/the-baltimore-wordpress-group/events/308435329/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:IN-PERSON + ONLINE\n\nIn-person is at the Elkridge Branch Library in the Grist Mill Room.\n\nJoin us IN-PERSON or ONLINE. Anyone with an interest in game design and development is welcome\, from beginners \n\nEvent Link: https://www.meetup.com/baltimore-indie-game-developers-group/events/308309875/
+DTEND:20250719T153000Z
+LOCATION:Howard County Library Elkridge Branch\, 6540 Washington Blvd\, Elkridge\, MD us
+DTSTART:20250719T140000Z
+SUMMARY:[IN-PERSON/ONLINE] Game Dev Meetup (Elkridge Branch!)
+UID:7706e0be-7002-41df-a43d-f87cbd94c12c@7706.org
+URL:https://www.meetup.com/baltimore-indie-game-developers-group/events/308309875/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20250812T020000Z
+LOCATION:\,  
+DTSTART:20250811T230000Z
+SUMMARY:Project Night
+UID:2315710b-abe7-4282-95d0-9fd860860475@2315.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20251030T020000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251029T220000Z
+SUMMARY:Open House
+UID:349d92a4-775e-439d-adaa-20ef3ffb2f77@349d.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20250814T230000Z
+LOCATION:2106 N Lovegrove St\, Baltimore\, MD 21218\, USA\, 2106 N Lovegrove St\, Baltimore\, MD 21218\, USA\, \,  
+DTSTART:20250814T220000Z
+SUMMARY:Baltimore Node Monthly Member Meeting
+UID:470dbe40-4660-4536-ac6b-71d01b5824c8@470d.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:SUMMARY: Locksport @ UAS.\n\nGOAL: Learn how locks work and how to pick them.\n\nTHINGS TO BRING: just yourself or locks & tools.\n\nSKILL LEVEL: all\n\nPRESENTER: MacGnG\n\nhttps://www.unallocatedspace.org/eve
+DTEND:20251211T030000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251211T000000Z
+SUMMARY:Locksport - MD TOOOL
+UID:65465722-a4e3-4e28-a237-a6bdbefeed27@6546.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20251106T030000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251105T230000Z
+SUMMARY:Open House
+UID:cbb72b96-cfc4-454c-886e-01e280211d7d@cbb7.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:This month\, we will be meeting at Raw & Refined on Canton's waterfront for networking and happy hour. This casual\, recurring happy hour is for both new and seasoned Baltimore technologists interested \n\nEvent Link: https://www.meetup.com/baltimore-tech/events/308811461/
+DTEND:20250724T233000Z
+LOCATION:Raw & Refined\, 2723 Lighthouse Point E.\, Baltimore\, MD us
+DTSTART:20250724T213000Z
+SUMMARY:The #BaltimoreTech Happy Hour!
+UID:5f5e703a-1971-4e36-8f5b-9996cf97c699@5f5e.org
+URL:https://www.meetup.com/baltimore-tech/events/308811461/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:This event is changing! Moving forward we'll be using Discord instead of Zoom. Please join us here: https://discord.gg/sF8P8fY5Nd\n\nIn the future we're also moving to a new meetup group. You can join t
+DTEND:20250809T023000Z
+LOCATION:\,  
+DTSTART:20250808T233000Z
+SUMMARY:[Virtual] Hackthebox Working Group
+UID:91aaa8b7-3f41-4195-b7e7-4dbf157e8e3d@91aa.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20250919T010000Z
+LOCATION:\,  
+DTSTART:20250918T230000Z
+SUMMARY:Open Hack
+UID:07c18c2d-907a-48d5-b605-565e1941127d@07c1.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:STEM Professionals from underserved communities discuss career paths and working in the STEM Field. This event is for Carver Center students only\n\nEvent Link: https://marylandstemfestival.org/event/stem-of-many-colors/
+DTEND:20251028T150000Z
+LOCATION:George Washington Carver Center for Arts and Technology\, 938 York Rd\,\, Baltimore\, MD\, 21204\, United States\, George Washington Carver Center for Arts and Technology\, 938 York Rd\,\, Baltimore\, MD\, 21204\, United States\, \,  
+DTSTART:20251028T133000Z
+SUMMARY:STEM of Many Colors
+UID:bbea7ed7-4488-4fdc-8454-175b76357f07@bbea.org
+URL:https://marylandstemfestival.org/event/stem-of-many-colors/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Join us for an dynamic conversation about AI\, Tech\, &\n\nEvent Link: https://www.eventbrite.com/e/blk-tech-connect-3-tickets-1450877095449
+DTEND:20250726T180000Z
+LOCATION:FLOCK\, 1415 Washington Boulevard\, Baltimore\, MD\, 21230\, \,  
+DTSTART:20250726T150000Z
+SUMMARY:BLK Tech Connect #3
+UID:5478f799-b513-459e-8a07-d4b06c60c97d@5478.org
+URL:https://www.eventbrite.com/e/blk-tech-connect-3-tickets-1450877095449
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhclbvb/
+DTEND:20250816T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250816T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:3cc0a3ee-5129-41f5-9aa9-075e62be301b@3cc0.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhclbvb/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20251028T020000Z
+LOCATION:\,  
+DTSTART:20251027T230000Z
+SUMMARY:Project Night
+UID:4b2e4513-0e4a-4d3b-ac49-9d5d570c4092@4b2e.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:SUMMARY:\nThe DEF CON Group 443\, also known as DC443\, is an interest group designed to discuss general hacking and its culture\, information security (InfoSec)\, and related topics. Our group’s interests
+DTEND:20250705T010000Z
+LOCATION:\,  
+DTSTART:20250704T230000Z
+SUMMARY:Infosec & DC443 Meetup
+UID:46b11a2f-4f5c-46ee-a1ab-4fc790ed97c9@46b1.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20251118T030000Z
+LOCATION:\,  
+DTSTART:20251118T000000Z
+SUMMARY:Project Night
+UID:de4fc5dd-2da2-498d-80d9-aa1329508175@de4f.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcmbrb/
+DTEND:20250913T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250913T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:47476e55-d5c5-4a7a-bc30-a9ef3f2500d7@4747.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcmbrb/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20251121T020000Z
+LOCATION:\,  
+DTSTART:20251121T000000Z
+SUMMARY:Open Hack
+UID:01157e4a-dab8-4dec-b2d1-e93e4c0a89e7@0115.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Join peers in learning how to manage grief & foster hope through indigenous knowledge and mental health\n\nEvent Link: https://www.eventbrite.com/e/grief-hope-for-people-impacted-by-federal-changes-tickets-1400514469479
+DTEND:20250708T183000Z
+LOCATION:Impact Hub Baltimore\, 10 East North Avenue\, Baltimore\, MD\, 21202\, \,  
+DTSTART:20250708T163000Z
+SUMMARY:Grief & Hope for People Impacted by Federal Changes
+UID:6f633513-7165-40d9-8923-cddeb7e2aa9a@6f63.org
+URL:https://www.eventbrite.com/e/grief-hope-for-people-impacted-by-federal-changes-tickets-1400514469479
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20250911T230000Z
+LOCATION:2106 N Lovegrove St\, Baltimore\, MD 21218\, USA\, 2106 N Lovegrove St\, Baltimore\, MD 21218\, USA\, \,  
+DTSTART:20250911T220000Z
+SUMMARY:Baltimore Node Monthly Member Meeting
+UID:2fc2fa3f-f43c-4dc3-9e31-5180023b0239@2fc2.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20250909T020000Z
+LOCATION:\,  
+DTSTART:20250908T230000Z
+SUMMARY:Project Night
+UID:4f2bdf6a-c6f9-4e40-9574-0619667cb108@4f2b.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20250904T020000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20250903T220000Z
+SUMMARY:Open House
+UID:976bb729-b5c4-453a-af61-74a1abf254cb@976b.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20251114T000000Z
+LOCATION:2106 N Lovegrove St\, Baltimore\, MD 21218\, USA\, 2106 N Lovegrove St\, Baltimore\, MD 21218\, USA\, \,  
+DTSTART:20251113T230000Z
+SUMMARY:Baltimore Node Monthly Member Meeting
+UID:11a30432-be4b-4e94-a65d-dd34cd59506d@11a3.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions\, help with projects\, and give tours. If you've never been to UAS befor
+DTEND:20250821T020000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20250820T220000Z
+SUMMARY:Open House
+UID:7a4377fe-b178-4c27-8cd2-f375048ffd5e@7a43.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:This event is changing! Moving forward we'll be using Discord instead of Zoom. Please join us here: https://discord.gg/sF8P8fY5Nd\n\nIn the future we're also moving to a new meetup group. You can join t
+DTEND:20251115T033000Z
+LOCATION:\,  
+DTSTART:20251115T003000Z
+SUMMARY:[Virtual] Hackthebox Working Group
+UID:8016860e-0137-44a7-99f6-ea5d9c621189@8016.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:SUMMARY:\nThe DEF CON Group 443\, also known as DC443\, is an interest group designed to discuss general hacking and its culture\, information security (InfoSec)\, and related topics. Our group’s interests
+DTEND:20251108T020000Z
+LOCATION:\,  
+DTSTART:20251108T000000Z
+SUMMARY:Infosec & DC443 Meetup
+UID:03a2ebec-9069-43c9-94e8-79ac29258ff5@03a2.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Join our 2-Hour Tech Workshop! Explore tech careers\, opportunities & easy ways to break in. Perfect for beginners & career\n\nEvent Link: https://www.eventbrite.com/e/moving-into-tech-discover-the-easiest-way-to-break-in-to-tech-tickets-1405661835389
+DTEND:20250719T160000Z
+LOCATION:101 N Haven St\, 101 North Haven Street\, Baltimore\, MD\, 21224\, \,  
+DTSTART:20250719T140000Z
+SUMMARY:Moving Into Tech: Discover The Easiest Way To Break In To Tech
+UID:1c2794bd-54ee-44fd-9874-b0ab20a45459@1c27.org
+URL:https://www.eventbrite.com/e/moving-into-tech-discover-the-easiest-way-to-break-in-to-tech-tickets-1405661835389
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:GBC Partners are invited to help us in telling a dynamic new economic story for the Baltimore Region. Come and learn more about the Regional Brand initiative and how GBC\n\nEvent Link: https://gbc.org/event/baltimore-region-economic-brand-workshop-7/
+DTEND:20250723T220000Z
+LOCATION:Baltimore\, MD US
+DTSTART:20250723T200000Z
+SUMMARY:Baltimore Region Economic Brand Workshop
+UID:18c0de8e-70b4-469f-94fd-7404ea4bae53@18c0.org
+URL:https://gbc.org/event/baltimore-region-economic-brand-workshop-7/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20250729T020000Z
+LOCATION:\,  
+DTSTART:20250728T230000Z
+SUMMARY:Project Night
+UID:582acb18-fb77-4913-af84-a3213ff9be60@582a.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20251111T030000Z
+LOCATION:\,  
+DTSTART:20251111T000000Z
+SUMMARY:Project Night
+UID:bc0d4f00-80b9-439e-ab3a-1a994544cadd@bc0d.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20251128T020000Z
+LOCATION:\,  
+DTSTART:20251128T000000Z
+SUMMARY:Open Hack
+UID:d81c4e45-4064-4dcf-9e18-fb42a11e49c9@d81c.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20250722T020000Z
+LOCATION:\,  
+DTSTART:20250721T230000Z
+SUMMARY:Project Night
+UID:fbf53084-3705-453e-b21f-338b6152d3d8@fbf5.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Spooky season is here! Engage your mind by blending art and engineering to construct your very own haunted house to keep. We’ll be using sturdy milk cartons\, icing as our construction glue\, and sweet \n\nEvent Link: https://marylandstemfestival.org/event/calling-all-halloween-hooligans-build-a-haunted-halloween-house/
+DTEND:20251017T190000Z
+LOCATION:Olney Library\, 3500 Olney Laytonsville Rd\, Olney\, MD\, 20832\, United States\, Olney Library\, 3500 Olney Laytonsville Rd\, Olney\, MD\, 20832\, United States\, \,  
+DTSTART:20251017T180000Z
+SUMMARY:Calling All Halloween Hooligans! Build a Haunted Halloween House!
+UID:1b879894-b8f5-4171-9e8d-0ff1e1e0eaba@1b87.org
+URL:https://marylandstemfestival.org/event/calling-all-halloween-hooligans-build-a-haunted-halloween-house/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20251212T000000Z
+LOCATION:2106 N Lovegrove St\, Baltimore\, MD 21218\, USA\, 2106 N Lovegrove St\, Baltimore\, MD 21218\, USA\, \,  
+DTSTART:20251211T230000Z
+SUMMARY:Baltimore Node Monthly Member Meeting
+UID:066b8314-0526-4d8f-8383-a95739ed9059@066b.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20251003T010000Z
+LOCATION:\,  
+DTSTART:20251002T230000Z
+SUMMARY:Open Hack
+UID:400495a3-31a3-4fce-8f89-40da3fcc5692@4004.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:St. Mary’s County Public Schools will host their 10th annual STEAM Festival on Saturday\, October 25\, 2025 at the St. Mary’s County Fairgrounds. Festivities will run from 10:00 am to 2:00 pm and will f\n\nEvent Link: https://marylandstemfestival.org/event/st-marys-steam-festival/
+DTEND:20251025T180000Z
+LOCATION:St Mary’s  County Fairgrounds\, 42455 Fairgrounds Rd\, Leonardtown\, MD\, 20650\, United States\, St Mary’s  County Fairgrounds\, 42455 Fairgrounds Rd\, Leonardtown\, MD\, 20650\, United States\, \,  
+DTSTART:20251025T140000Z
+SUMMARY:St. Mary's STEAM Festival
+UID:9a87803f-8961-4f4f-bf4a-22984b78fb84@9a87.org
+URL:https://marylandstemfestival.org/event/st-marys-steam-festival/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20251107T020000Z
+LOCATION:\,  
+DTSTART:20251107T000000Z
+SUMMARY:Open Hack
+UID:c25bb86a-3b43-4e06-9847-e22b08b4d682@c25b.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhclbfc/
+DTEND:20250823T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250823T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:4ce18904-2d44-44e3-9fcd-b2ad8cdfd4b3@4ce1.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhclbfc/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Chesapeake Bay Green Entrepreneur Roundtable\n\nEvent Link: https://lu.ma/80z2oq00
+DTEND:20250724T200000Z
+LOCATION:Online Event\, \,  
+DTSTART:20250724T190000Z
+SUMMARY:Chesapeake Bay Green Entrepreneur Roundtable
+UID:4a065078-ed42-4ce7-9f43-79aa49af94f3@4a06.org
+URL:https://lu.ma/80z2oq00
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcmbbc/
+DTEND:20250920T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20250920T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:2797b484-cbcf-4654-a7b9-25eedb590635@2797.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcmbbc/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20251230T030000Z
+LOCATION:\,  
+DTSTART:20251230T000000Z
+SUMMARY:Project Night
+UID:79365b8d-4378-4b79-b14d-097fe42df93c@7936.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20250805T020000Z
+LOCATION:\,  
+DTSTART:20250804T230000Z
+SUMMARY:Project Night
+UID:e507191b-d3f6-426d-97bf-39345b54583e@e507.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Project Night at Virtru\n\nEvent Link: https://lu.ma/l8s6onr5
+DTEND:20250724T003000Z
+LOCATION:Virtru\, Virtru\, Washington\, District of Columbia\, \,  
+DTSTART:20250723T220000Z
+SUMMARY:Project Night at Virtru
+UID:c98c5be4-29c8-4848-afac-d4725cb03f56@c98c.org
+URL:https://lu.ma/l8s6onr5
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:We will likely be in the main bar area\n\nEvent Link: https://www.meetup.com/baltimorebitcoin/events/308862595/
+DTEND:20250905T003000Z
+LOCATION:La Palapa Grill & Cantina\, 8307 Main St\, Ellicott City\, MD US
+DTSTART:20250904T223000Z
+SUMMARY:1st Thursday Bitcoin HoDL Hour
+UID:2e2b1c39-5237-4a18-8d65-62daa6443085@2e2b.org
+URL:https://www.meetup.com/baltimorebitcoin/events/308862595/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:No description available
+DTEND:20251205T020000Z
+LOCATION:\,  
+DTSTART:20251205T000000Z
+SUMMARY:Open Hack
+UID:7b9ec3ca-81c2-4e2c-bc2e-e1286caa0b59@7b9e.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:BLK Tech Connect #3\n\nEvent Link: https://lu.ma/4frqc4x9
+DTEND:20250726T180000Z
+LOCATION:FLOCK\, FLOCK\, Baltimore\, Maryland\, \,  
+DTSTART:20250726T150000Z
+SUMMARY:BLK Tech Connect #3
+UID:af2ce4dc-f71e-426e-9fb3-fce4fec85674@af2c.org
+URL:https://lu.ma/4frqc4x9
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Join us for an informal gathering of Python enthusiasts at ZiPani\, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out\, this m\n\nEvent Link: https://www.meetup.com/python-frederick/events/jlzbrtyhcnbgb/
+DTEND:20251004T160000Z
+LOCATION:ZiPani\, 177A Thomas Johnson Drive\, Frederick\, MD us
+DTSTART:20251004T140000Z
+SUMMARY:Casual Coding\, Chat\, & Coffee
+UID:04d9fcff-99ed-4287-82ca-7fda11d38fd7@04d9.org
+URL:https://www.meetup.com/python-frederick/events/jlzbrtyhcnbgb/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Monday evenings\, we will be open for Project Night - a night to work on\, collaborate on\, or brainstorm on whatever projects you're currently working on or interested in.\nDon't have a project? Come see
+DTEND:20251223T030000Z
+LOCATION:\,  
+DTSTART:20251223T000000Z
+SUMMARY:Project Night
+UID:04724c01-4d43-4b0e-9512-5e822390c16a@0472.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20250705T002950Z
+DESCRIPTION:Queers and Beers (and Other Delightful Drinks!)\n\nCalling all people of the rainbow! Want to learn more about our hacker/maker space while meeting new people? Come to Queers and Beers (and Other Deligh
+DTEND:20251015T020000Z
+LOCATION:1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, 1029 Benfield Blvd\, Millersville\, MD 21108\, USA\, \,  
+DTSTART:20251014T220000Z
+SUMMARY:Queers and Beers (and Other Delightful Drinks!)
+UID:4792efe9-7d3e-4bdd-83c9-72d7d7545a8a@4792.org
+>>>>>>> 623de81ce663a706b640cc38220137761f72f93c
 END:VEVENT
 END:VCALENDAR
