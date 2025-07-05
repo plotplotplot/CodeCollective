@@ -490,9 +490,10 @@ if __name__ == "__main__":
     def get_event_signature(event):
         """Creates a unique signature for duplicate detection"""
         name = event.get("name", "").strip().lower()
-        start = str(parse(event.get("startDate", "")).date)
-        group = event.get("group", "").strip().lower()
-        return f"{name}||{start}||{group}"
+        start = str(parse(event.get("startDate", "")).date())
+        url = event.get("url", "").split("?")[0].lower()  # Remove query params
+        location = event.get("location", {}).get("name", "").strip().lower()
+        return f"{name}||{start}||{url}||{location}"
 
     unique_events = []
     date_occupied = set()  # Track which dates already have events
