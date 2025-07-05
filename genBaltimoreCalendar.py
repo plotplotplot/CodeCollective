@@ -490,7 +490,7 @@ if __name__ == "__main__":
     def get_event_signature(event):
         """Creates a unique signature for duplicate detection"""
         name = event.get("name", "").strip().lower()
-        start = event.get("startDate", "")
+        start = str(parse(event.get("startDate", "")).date)
         group = event.get("group", "").strip().lower()
         return f"{name}||{start}||{group}"
 
