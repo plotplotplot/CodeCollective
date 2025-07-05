@@ -561,7 +561,7 @@
     {
         "id": "307979235",
         "name": "1st Thursday Bitcoin HoDL Hour",
-        "description": "We will likely be in the mainn bar area",
+        "description": "We will likely be in the main bar area",
         "startDate": "2025-08-07T18:30:00-04:00",
         "endTime": "2025-08-07T20:30:00-04:00",
         "url": "https://www.meetup.com/baltimorebitcoin/events/307979235/",
@@ -885,19 +885,21 @@
         "recurring": true
     },
     {
-        "id": "28ff85b5daa2f4d0",
-        "name": "Open Hack",
-        "startDate": "2025-09-04T19:00:00-04:00",
-        "endTime": "2025-09-04T21:00:00-04:00",
-        "description": "",
-        "url": "",
+        "id": "308862595",
+        "name": "1st Thursday Bitcoin HoDL Hour",
+        "description": "We will likely be in the main bar area",
+        "startDate": "2025-09-04T18:30:00-04:00",
+        "endTime": "2025-09-04T20:30:00-04:00",
+        "url": "https://www.meetup.com/baltimorebitcoin/events/308862595/",
         "status": "ACTIVE",
         "location": {
-            "name": "",
-            "address": ""
+            "name": "La Palapa Grill & Cantina",
+            "address": "8307 Main St",
+            "city": "Ellicott City",
+            "state": "MD",
+            "country": "US"
         },
-        "imageUrl": "/event_images/Open_Hack.webp",
-        "recurring": true
+        "imageUrl": "/event_images/1st_Thursday_Bitcoin_HoDL_Hour.webp"
     },
     {
         "id": "2fa571f026e3c1a7",
@@ -2107,6 +2109,21 @@
             "address": ""
         },
         "imageUrl": "/event_images/Project_Night.webp",
+        "recurring": true
+    },
+    {
+        "id": "96241a818f7f444b",
+        "name": "Open House",
+        "startDate": "2025-12-31T18:00:00-05:00",
+        "endTime": "2025-12-31T22:00:00-05:00",
+        "description": "Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions, help with projects, and give tours. If you've never been to UAS before, this is a great time to check us out. We host a weekly open house to help introduce new people to the space and some of the various interests and participants. Come on by, and check out the space and some of the fun projects we are working on.\n\nHosting Keyholder: Whitney",
+        "url": "",
+        "status": "ACTIVE",
+        "location": {
+            "name": "1029 Benfield Blvd, Millersville, MD 21108, USA",
+            "address": "1029 Benfield Blvd, Millersville, MD 21108, USA"
+        },
+        "imageUrl": "/event_images/Open_House.webp",
         "recurring": true
     }
 ]
