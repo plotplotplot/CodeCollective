@@ -487,46 +487,6 @@ if __name__ == "__main__":
         if "Casual Coding" in event.get("name", ""):
             event["recurring"] = True
             
-            unique_events = []
-    date_occupied = set()  # Track which dates already have events
-
-    # --- PHASE 1: Process NON-RECURRING events first ---
-    for event in nonerror_upcoming_events:
-        # Skip recurring events in first pass
-        if event.get("recurring"):
-            continue
-            
-        event_name = event.get("name", "").strip().lower()
-        event_start = event.get("startDate", "")
-            
-        # Ensure scrapeTime exists
-        if not event.get("scrapeTime"):
-            event["scrapeTime"] = str(datetime.datetime.now())
-        
-        # Parse date
-        try:
-            event_date = parse(event_start).date()
-        except:
-            continue  # Skip if invalid date
-            
-        is_duplicate = False
-        
-        # Check against existing unique events
-        for unique_event in unique_events:
-            unique_name = unique_event.get("name", "").strip().lower()
-            unique_start = unique_event.get("startDate", "")
-            
-            # Standard duplicate check
-            if event_name == unique_name and event_start == unique_start:
-                # Keep the newer one
-                if parse(event["scrapeTime"]) < parse(unique_event["scrapeTime"]):
-                    is_duplicate = True
-                    break
-        
-        if not is_duplicate:
-            unique_events.append(event)
-            date_occupied.add(event_date)  # Mark this date as occupied
-
     def get_event_signature(event):
         """Creates a unique signature for duplicate detection"""
         name = event.get("name", "").strip().lower()
@@ -534,6 +494,45 @@ if __name__ == "__main__":
         group = event.get("group", "").strip().lower()
         return f"{name}||{start}||{group}"
 
+    unique_events = []
+    date_occupied = set()  # Track which dates already have events
+    unique_event_signatures = set()  # Track all unique event signatures
+
+    # --- PHASE 1: Process NON-RECURRING events first ---
+    for event in nonerror_upcoming_events:
+        # Skip recurring events in first pass
+        if event.get("recurring"):
+            continue
+            
+        # Ensure scrapeTime exists
+        if not event.get("scrapeTime"):
+            event["scrapeTime"] = str(datetime.datetime.now())
+        
+        # Parse date
+        try:
+            event_date = parse(event.get("startDate", "")).date()
+        except:
+            continue  # Skip if invalid date
+            
+        event_sig = get_event_signature(event)
+        
+        # Check if this is a duplicate
+        if event_sig in unique_event_signatures:
+            # Find the existing event with this signature
+            existing_event = next((e for e in unique_events if get_event_signature(e) == event_sig), None)
+            if existing_event:
+                # Keep the newer one
+                if parse(event["scrapeTime"]) > parse(existing_event["scrapeTime"]):
+                    unique_events.remove(existing_event)
+                    unique_events.append(event)
+                    # No need to update date_occupied since it's the same date
+            continue
+        
+        # If not a duplicate, add it
+        unique_events.append(event)
+        unique_event_signatures.add(event_sig)
+        date_occupied.add(event_date)  # Mark this date as occupied
+        
     # --- PHASE 2: Process RECURRING events ---
     # Create set of signatures from UNIQUE events (not original list)
     unique_event_signatures = {get_event_signature(e) for e in unique_events}
