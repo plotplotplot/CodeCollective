@@ -375,20 +375,18 @@ if __name__ == "__main__":
 
     try:
         upcoming_events += scrape_ics.fetch_calendar_events(
-            existing_events=upcoming_events,
             ICS_URL="http://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics",
             imageURL="https://www.baltimorenode.org/wp-content/uploads/2013/11/node-logo.png",
-            eventUrl="https://baltimorenode.org/events/"
+            eventUrl="https://baltimorenode.org/events/",
         )
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
 
     try:
         upcoming_events += scrape_ics.fetch_calendar_events(
-            existing_events=upcoming_events,
             ICS_URL="https://calendar.google.com/calendar/ical/unallocatedspacehq@gmail.com/public/basic.ics",
             imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png",
-            eventUrl="https://www.unallocatedspace.org/"
+            eventUrl="https://www.unallocatedspace.org/events/",
         )
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
@@ -396,9 +394,8 @@ if __name__ == "__main__":
     try:
         upcoming_events += scrape_ics.processICS(
             CACHE_FILENAME="maryland-stem-festival-96ecc18ef7d.ics",
-            existing_events=upcoming_events,
             imageURL="https://marylandstemfestival.org/wp-content/uploads/2024/06/Family-Feud-group-Pix-1-scaled-e1717876361661.jpeg",
-            eventUrl="https://marylandstemfestival.org/events/month/"
+            eventUrl="https://marylandstemfestival.org/events/month/",
         )
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
@@ -486,60 +483,93 @@ if __name__ == "__main__":
             nonerror_upcoming_events = [event] + nonerror_upcoming_events
         else:
             print(f'{event.get("name")} already happened ')
-            
-    unique_events = []
 
+        if "Casual Coding" in event.get("name", ""):
+            event["recurring"] = True
+            
+            unique_events = []
+    date_occupied = set()  # Track which dates already have events
+
+    # --- PHASE 1: Process NON-RECURRING events first ---
     for event in nonerror_upcoming_events:
-        is_duplicate = False
-        event_name = event.get("name", "")
+        # Skip recurring events in first pass
+        if event.get("recurring"):
+            continue
+            
+        event_name = event.get("name", "").strip().lower()
         event_start = event.get("startDate", "")
-        
-        # Ensure current event has scrapeTime
+            
+        # Ensure scrapeTime exists
         if not event.get("scrapeTime"):
             event["scrapeTime"] = str(datetime.datetime.now())
-
-        # Extract just the date (no time) if startDate is valid
+        
+        # Parse date
         try:
-            event_date = parse(event_start).date() if event_start else None
+            event_date = parse(event_start).date()
         except:
-            event_date = None
-
-        for i, unique_event in enumerate(unique_events):
-            unique_name = unique_event.get("name", "")
+            continue  # Skip if invalid date
+            
+        is_duplicate = False
+        
+        # Check against existing unique events
+        for unique_event in unique_events:
+            unique_name = unique_event.get("name", "").strip().lower()
             unique_start = unique_event.get("startDate", "")
-
-            same_name_and_start = event_name == unique_name and event_start == unique_start
-
-            same_date = False
-            if event_date and unique_start:
-                try:
-                    unique_date = parse(unique_start).date()
-                    same_date = event_date == unique_date
-                except:
-                    same_date = False
-
-            casual_conflict = (
-                "Casual Coding" in event_name and same_date
-            )
-
-            if (
-                same_name_and_start
-                or casual_conflict
-                or event.get("recurring") and same_date
-                or "uas virtual" in event.get("name", "").lower()
-            ):
-                is_duplicate = True
-                print(f'Duplicate event found: {event_name} on {event_start}')
-                
-                # Compare scrape times to keep the newer one
-                if parse(event["scrapeTime"]) > parse(unique_event.get("scrapeTime", "")):
-                    print(f'Replacing with newer version (scraped at {event["scrapeTime"]})')
-                    unique_events[i] = event  # Replace the old event with the new one
-                break
-
+            
+            # Standard duplicate check
+            if event_name == unique_name and event_start == unique_start:
+                # Keep the newer one
+                if parse(event["scrapeTime"]) < parse(unique_event["scrapeTime"]):
+                    is_duplicate = True
+                    break
+        
         if not is_duplicate:
             unique_events.append(event)
+            date_occupied.add(event_date)  # Mark this date as occupied
 
+    def get_event_signature(event):
+        """Creates a unique signature for duplicate detection"""
+        name = event.get("name", "").strip().lower()
+        start = event.get("startDate", "")
+        group = event.get("group", "").strip().lower()
+        return f"{name}||{start}||{group}"
+
+    # --- PHASE 2: Process RECURRING events ---
+    # Create set of signatures from UNIQUE events (not original list)
+    unique_event_signatures = {get_event_signature(e) for e in unique_events}
+
+    for event in nonerror_upcoming_events:
+        # Only process recurring events in second pass
+        if not event.get("recurring"):
+            continue
+            
+        event_name = event.get("name", "").strip().lower()
+        event_start = event.get("startDate", "")
+        
+        # Ensure scrapeTime exists
+        if not event.get("scrapeTime"):
+            event["scrapeTime"] = str(datetime.datetime.now())
+        
+        # Parse date
+        try:
+            event_date = parse(event_start).date()
+        except:
+            continue  # Skip if invalid date
+            
+        event_sig = get_event_signature(event)
+        
+        # Only add if:
+        # 1. No other event exists on this date (strict), AND
+        # 2. This isn't a duplicate of any existing event
+        if event_date not in date_occupied and event_sig not in unique_event_signatures:
+            unique_events.append(event)
+            unique_event_signatures.add(event_sig)  # Keep this in sync
+            print(f"Added recurring event: {event_name} on {event_date}")
+        else:
+            print(f"Skipping recurring event: {event_name} (conflict on {event_date})")
+
+    # Sort all events by date
+    unique_events.sort(key=lambda x: parse(x["startDate"]))
     # Sort events by startDate
     sorted_events = sorted(
         (e for e in unique_events if "startDate" in e),

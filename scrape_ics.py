@@ -12,7 +12,7 @@ from pprint import pprint
 TIMEZONE = pytz.timezone("America/New_York")
 CACHE_MAX_AGE = timedelta(days=1)
 
-def fetch_calendar_events(existing_events, ICS_URL, imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png"):
+def fetch_calendar_events(ICS_URL, imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png", eventUrl = "https://www.unallocatedspace.org"):
     """Fetch and return calendar events in the standardized format."""
     fetch_from_web = True
     CACHE_FILENAME = f"cache_{hashlib.md5(ICS_URL.encode()).hexdigest()}.ics"
@@ -32,9 +32,9 @@ def fetch_calendar_events(existing_events, ICS_URL, imageURL="https://www.unallo
     else:
         print("✅ Using cached .ics file")
     
-    return processICS(CACHE_FILENAME, existing_events, imageURL)
+    return processICS(CACHE_FILENAME, imageURL, eventUrl)
 
-def processICS(CACHE_FILENAME, existing_events, imageURL, eventUrl):
+def processICS(CACHE_FILENAME, imageURL, eventUrl):
     # Read the calendar file
     with open(CACHE_FILENAME, "rb") as f:
         calendar = Calendar.from_ical(f.read())
@@ -173,7 +173,7 @@ def processICS(CACHE_FILENAME, existing_events, imageURL, eventUrl):
                     continue
 
     print(f"\n📊 Found {len(calendar_events)} total events before filtering")
-    return filter_events(existing_events, calendar_events)
+    return calendar_events
 
 def get_event_dates(events):
     dates = set()
@@ -186,45 +186,12 @@ def get_event_dates(events):
             continue
     return dates
 
-def filter_events(existing_events, calendar_events):
-    existing_dates = get_event_dates(existing_events)
-    print(f"\n🗓️ Existing event dates: {sorted(existing_dates)}")
-
-    non_conflicting = []
-    for event in calendar_events:
-        event_date = parse(event["startDate"]).astimezone(TIMEZONE).date()
-        if event_date in existing_dates:
-            print(f"🔴 Skipping calendar event '{event['name']}' on {event_date} - Conflict with existing")
-        else:
-            print(f"🟢 Adding calendar event '{event['name']}' on {event_date} - No conflict")
-            non_conflicting.append(event)
-
-    return non_conflicting
-
 if __name__ == "__main__":
-    existing_events = [
-        {
-            "id": "77ffd88ad65d41b6",
-            "name": "Evening With ESOs",
-            "startDate": "2025-06-10T18:00:00-04:00",
-            "endTime": "2025-06-10T20:00:00-04:00",
-            "description": "Equitech Tuesday event at GBC Offices: Evening With ESOs. Join Baltimore's tech ecosystem for networking and innovation.",
-            "url": "https://upsurgebaltimore.com/equitech-tuesday/",
-            "status": "ACTIVE",
-            "location": {
-                "name": "GBC Offices",
-                "address": "GBC Offices, Baltimore, MD 21202",
-                "city": "Baltimore",
-                "state": "MD",
-                "country": "US"
-            },
-            "imageUrl": "/event_images/Evening_With_ESOs.webp"
-        }
-    ]
-
-    ICS_URL = "https://calendar.google.com/calendar/ical/unallocatedspacehq@gmail.com/public/basic.ics"
-    print("📅 Fetching calendar events...")
-    calendar_events = fetch_calendar_events(existing_events, ICS_URL)
+    calendar_events = fetch_calendar_events(
+        ICS_URL="http://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics",
+        imageURL="https://www.baltimorenode.org/wp-content/uploads/2013/11/node-logo.png",
+        eventUrl="https://baltimorenode.org/events/"
+    )
 
     print(f"\n✅ Final list of {len(calendar_events)} non-conflicting events:")
     for event in calendar_events:
