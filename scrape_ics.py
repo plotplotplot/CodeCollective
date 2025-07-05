@@ -12,7 +12,7 @@ from pprint import pprint
 TIMEZONE = pytz.timezone("America/New_York")
 CACHE_MAX_AGE = timedelta(days=1)
 
-def fetch_calendar_events(ICS_URL, imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png", eventUrl = "https://www.unallocatedspace.org"):
+def fetch_calendar_events(ICS_URL, imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png", eventUrl = "https://www.unallocatedspace.org", recurring=True, preface="GameDevs "):
     """Fetch and return calendar events in the standardized format."""
     fetch_from_web = True
     CACHE_FILENAME = f"cache_{hashlib.md5(ICS_URL.encode()).hexdigest()}.ics"
@@ -32,9 +32,9 @@ def fetch_calendar_events(ICS_URL, imageURL="https://www.unallocatedspace.org/wp
     else:
         print("✅ Using cached .ics file")
     
-    return processICS(CACHE_FILENAME, imageURL, eventUrl)
+    return processICS(CACHE_FILENAME, imageURL, eventUrl, recurring, preface)
 
-def processICS(CACHE_FILENAME, imageURL, eventUrl):
+def processICS(CACHE_FILENAME, imageURL, eventUrl, recurring=True, preface="GameDevs "):
     # Read the calendar file
     with open(CACHE_FILENAME, "rb") as f:
         calendar = Calendar.from_ical(f.read())
@@ -94,11 +94,11 @@ def processICS(CACHE_FILENAME, imageURL, eventUrl):
                 ).hexdigest()[:16]
 
                 # Check if this is a recurring event instance
-                is_recurring = 'rrule' in event or 'recurrence-id' in event
+                is_recurring = ('rrule' in event or 'recurrence-id' in event) and recurring
 
                 calendar_event = {
                     "id": event_id,
-                    "name": event_name,
+                    "name": preface + event_name,
                     "startDate": start_dt.isoformat(),
                     "endTime": end_dt.isoformat(),
                     "description": str(event.get('description', '')),
@@ -188,9 +188,10 @@ def get_event_dates(events):
 
 if __name__ == "__main__":
     calendar_events = fetch_calendar_events(
-        ICS_URL="http://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics",
-        imageURL="https://www.baltimorenode.org/wp-content/uploads/2013/11/node-logo.png",
-        eventUrl="https://baltimorenode.org/events/"
+        ICS_URL="https://baltimoreindiegames.com/events/list/?ical=1",
+        imageURL="https://baltimoreindiegames.com/wp-content/uploads/2025/03/BIG_small.png",
+        eventUrl="https://baltimoreindiegames.com/events/",
+        recurring=False
     )
 
     print(f"\n✅ Final list of {len(calendar_events)} non-conflicting events:")

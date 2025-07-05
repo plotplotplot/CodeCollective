@@ -378,6 +378,7 @@ if __name__ == "__main__":
             ICS_URL="http://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics",
             imageURL="https://www.baltimorenode.org/wp-content/uploads/2013/11/node-logo.png",
             eventUrl="https://baltimorenode.org/events/",
+            preface="Node "
         )
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
@@ -387,6 +388,7 @@ if __name__ == "__main__":
             ICS_URL="https://calendar.google.com/calendar/ical/unallocatedspacehq@gmail.com/public/basic.ics",
             imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png",
             eventUrl="https://www.unallocatedspace.org/events/",
+            preface="UAS "
         )
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
@@ -396,6 +398,18 @@ if __name__ == "__main__":
             CACHE_FILENAME="maryland-stem-festival-96ecc18ef7d.ics",
             imageURL="https://marylandstemfestival.org/wp-content/uploads/2024/06/Family-Feud-group-Pix-1-scaled-e1717876361661.jpeg",
             eventUrl="https://marylandstemfestival.org/events/month/",
+            preface="STEMFest "
+        )
+    except Exception as e:
+        print(f"Error fetching calendar events: {e}")
+
+    try:
+        upcoming_events += scrape_ics.fetch_calendar_events(
+            ICS_URL="https://baltimoreindiegames.com/events/list/?ical=1",
+            imageURL="https://baltimoreindiegames.com/wp-content/uploads/2025/03/BIG_small.png",
+            eventUrl="https://baltimoreindiegames.com/events/",
+            recurring=False,
+            preface="GameDevs "
         )
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
@@ -542,6 +556,9 @@ if __name__ == "__main__":
         # Only process recurring events in second pass
         if not event.get("recurring"):
             continue
+
+        if "Member Meeting" in event.get("name"):
+            continue
             
         event_name = event.get("name", "").strip().lower()
         event_start = event.get("startDate", "")
@@ -564,9 +581,9 @@ if __name__ == "__main__":
         if event_date not in date_occupied and event_sig not in unique_event_signatures:
             unique_events.append(event)
             unique_event_signatures.add(event_sig)  # Keep this in sync
-            print(f"Added recurring event: {event_name} on {event_date}")
-        else:
-            print(f"Skipping recurring event: {event_name} (conflict on {event_date})")
+        #    print(f"Added recurring event: {event_name} on {event_date}")
+        #else:
+        #    print(f"Skipping recurring event: {event_name} (conflict on {event_date})")
 
     # Sort all events by date
     unique_events.sort(key=lambda x: parse(x["startDate"]))

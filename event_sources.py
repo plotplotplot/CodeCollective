@@ -4,7 +4,7 @@ sources = {
         "https://www.meetup.com/baltimore-tech/events/",
         "https://www.meetup.com/devops-columbia/events/",
         "https://www.meetup.com/baltimore-code-and-coffee/events/",
-        "https://www.meetup.com/baltimore-indie-game-developers-group/events/",
+        #"https://www.meetup.com/baltimore-indie-game-developers-group/events/",
         "https://www.meetup.com/baltimore-cryptomondays/events/",
         "https://www.meetup.com/ellicott-city-cryptocurrency-meetup-group/events/",
         "https://www.meetup.com/it-social-east-us-ca-data-technology-cybersecurity/events/",

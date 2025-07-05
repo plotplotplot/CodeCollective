@@ -1,0 +1,87 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Baltimore Indie Games - ECPv6.14.0//NONSGML v1.0//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Baltimore Indie Games
+X-ORIGINAL-URL:https://baltimoreindiegames.com
+X-WR-CALDESC:Events for Baltimore Indie Games
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-Robots-Tag:noindex
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:America/New_York
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:20250309T070000
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:20251102T060000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20250705T100000
+DTEND;TZID=America/New_York:20250705T113000
+DTSTAMP:20250705T105520
+CREATED:20250605T190018Z
+LAST-MODIFIED:20250605T190018Z
+UID:162-1751709600-1751715000@baltimoreindiegames.com
+SUMMARY:Online Meetup
+DESCRIPTION:We’re meeting on Discord! The link to join the Baltimore Indie Game Devs discord server will be in your RSVP message. \nJoin us to discuss game development\, talk shop\, and bounce ideas. Anyone with an interest in game design and development is welcome\, from beginners to veteran professionals. \nIf you’re working on a game\, you’re welcome to show it and ask for feedback. There will be plenty of time to chat and talk shop\, too.
+URL:https://baltimoreindiegames.com/event/online-meetup-3/
+LOCATION:MD
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20250710T090000
+DTEND;TZID=America/New_York:20250710T173000
+DTSTAMP:20250705T105520
+CREATED:20250624T204442Z
+LAST-MODIFIED:20250624T204442Z
+UID:186-1752138000-1752168600@baltimoreindiegames.com
+SUMMARY:Unity Industry User Day @ XR Symposium 2025
+DESCRIPTION:Unity’s Industry team is thrilled to host an Industry User Day alongside the 2025 XR Symposium at Johns Hopkins University Applied Physics Laboratory (JHUAPL) in Laurel\, MD. Free to attend and open to the public. \nEvent Highlights\nWhen: July 10\, 2025\, 9:00 AM–5:30 PM (Industry User Day)\nWhere: 11091 Johns Hopkins Rd\, Laurel\, MD 20723 \nUnity Showcase:\n– Artist focused talks on high-fidelity asset pipelines and lighting techniques\n– Advanced optimization with Unity DOTS\n– Updates on Unity 6.2\n– CAD/BIM transformation via Unity Asset Manager\, and PiXYZ workflows with Unity Cloud Automation. \nThis event is perfect for anyone passionate about XR and immersive technologies. It’s a chance to see Unity’s latest tools in action and learn how they solve complex industry problems.\nRegister here: https://on.unity.com/3HokZuM
+URL:https://baltimoreindiegames.com/event/unity-industry-user-day-xr-symposium-2025/
+LOCATION:JHU Applied Physics Lab\, 11091 Johns Hopkins Rd\, Laurel\, MD\, 20723\, United States
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20250719T100000
+DTEND;TZID=America/New_York:20250719T113000
+DTSTAMP:20250705T105520
+CREATED:20250605T190232Z
+LAST-MODIFIED:20250605T190232Z
+UID:161-1752919200-1752924600@baltimoreindiegames.com
+SUMMARY:In-Person/Online Meetup
+DESCRIPTION:In-person is at the Elkridge Branch Library in the Grist Mill Room. \nJoin us IN-PERSON or ONLINE. Anyone with an interest in game design and development is welcome\, from beginners to veteran professionals. \nWe will be meeting in the Marvin Thomas Room at the East Columbia Branch Library (6540 Washington Blvd\, Elkridge\, MD 21075). (Not an official Howard County Library System event.) \nIf you want to attend virtually\, the Discord server link is provided in the main monthly (1st of the month) meetup details. An organizer will ensure that a laptop is provided on-site to connect the Discord attendees with those physically on-site. It takes us a few minutes to set up the projector\, so hold tight when you join the Discord voice chat channel. We’ll be there soon!
+URL:https://baltimoreindiegames.com/event/in-person-online-meetup-2/
+LOCATION:Elkridge Branch Library\, 6540 Washington Blvd\, Elkridge\, Maryland\, 21075\, United States
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20250920T110000
+DTEND;TZID=America/New_York:20250920T160000
+DTSTAMP:20250705T105520
+CREATED:20250627T170825Z
+LAST-MODIFIED:20250627T170825Z
+UID:196-1758366000-1758384000@baltimoreindiegames.com
+SUMMARY:Game Escape Indie Showcase
+DESCRIPTION:An exhibition of locally-made indie videogames. \nSubmission form: https://docs.google.com/forms/d/e/1FAIpQLSf-fI-WGcm8yRo5W9TpynQNBM8kxda1KB52lCP_VymJcOb3kw
+URL:https://baltimoreindiegames.com/event/game-escape-indie-showcase/
+LOCATION:Parkway Theatre\, 5 W North Ave\, Baltimore\, MD\, 21201\, United States
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20251114T090000
+DTEND;TZID=America/New_York:20251116T170000
+DTSTAMP:20250705T105520
+CREATED:20250329T190515Z
+LAST-MODIFIED:20250329T190515Z
+UID:110-1763110800-1763312400@baltimoreindiegames.com
+SUMMARY:Game Your Future Conference
+DESCRIPTION:This is the 4th annual Game Your Future is a conference\, an event organized by Maryland-regional developer groups at the Baltimore Convention Center.  It brings an experience similar to the Game Developers Conference (GDC) to the East Coast to fill the void of a more accessible event for our East Coast devs who want something near where they live.
+URL:https://baltimoreindiegames.com/event/game-your-future-conference/
+LOCATION:Baltimore Convention Center\, 1 W Pratt Street\, Baltimore\, MD\, 21201\, United States
+END:VEVENT
+END:VCALENDAR
