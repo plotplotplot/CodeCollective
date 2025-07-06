@@ -9,43 +9,113 @@ def generate_id(text):
     """Generate a unique ID based on the event title"""
     return hashlib.md5(text.encode()).hexdigest()[:16]
 
-def parse_date_range(date_string):
-    """Parse date strings like 'Thursday, July 17' or 'Monday, September 08 - Friday, September 12'"""
-    # Clean up the date string
-    date_string = date_string.strip()
+def parse_detailed_event(event_url, headers):
+    """Parse detailed event page to extract complete information"""
+    try:
+        response = requests.get(event_url, headers=headers)
+        response.raise_for_status()
+        
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        # Extract detailed information from event page
+        details = {}
+        
+        # Get date and time info
+        calendar_current = soup.find('div', class_='event-calendar-current')
+        if calendar_current:
+            # Extract date
+            date_element = calendar_current.find('div', class_='event-calendar-start')
+            if date_element:
+                details['date'] = date_element.get_text(strip=True)
+            
+            # Extract time
+            time_element = calendar_current.find('div', class_='event-calendar-time')
+            if time_element:
+                # Clean up time string by removing extra whitespace and newlines
+                time_text = ' '.join(time_element.get_text(strip=True).split())
+                details['time'] = time_text
+            
+            # Extract location
+            location_element = calendar_current.find('div', class_='event-calendar-location')
+            if location_element:
+                details['location'] = location_element.get_text(strip=True)
+        
+        # Extract description from event-content-description
+        description_element = soup.find('div', class_='event-content-description')
+        if description_element:
+            # Remove the Event Categories section if it exists
+            for unwanted in description_element.find_all('div', class_='filter-links-with-eyebrow'):
+                unwanted.decompose()
+            
+            # Get all text content but clean it up
+            description_text = description_element.get_text(separator='\n', strip=True)
+            details['description'] = description_text
+        
+        # Extract categories
+        categories = []
+        category_section = soup.find('div', class_='filter-links-with-eyebrow')
+        if category_section:
+            category_links = category_section.find_all('a', class_='minor-link')
+            for link in category_links:
+                categories.append(link.get_text(strip=True))
+        details['categories'] = categories
+        
+        return details
+        
+    except Exception as e:
+        print(f"Error parsing detailed event page {event_url}: {e}")
+        return {}
+
+def parse_date_time(date_str, time_str):
+    """Parse date and time strings to ISO format"""
+    if not date_str or not time_str:
+        return None, None
     
-    # Handle date ranges
-    if ' - ' in date_string:
-        start_part, end_part = date_string.split(' - ', 1)
-        # For now, just use the start date
-        date_string = start_part.strip()
+    # Parse date like "Thursday, July 17"
+    date_pattern = r'(\w+),\s+(\w+)\s+(\d+)'
+    date_match = re.search(date_pattern, date_str)
     
-    # Extract day name and date
-    # Pattern: "Thursday, July 17"
-    pattern = r'(\w+),\s+(\w+)\s+(\d+)'
-    match = re.search(pattern, date_string)
+    if not date_match:
+        return None, None
     
-    if match:
-        day_name, month_name, day_num = match.groups()
-        
-        # Map month names to numbers
-        month_map = {
-            'January': '01', 'February': '02', 'March': '03', 'April': '04',
-            'May': '05', 'June': '06', 'July': '07', 'August': '08',
-            'September': '09', 'October': '10', 'November': '11', 'December': '12'
-        }
-        
-        month_num = month_map.get(month_name, '01')
-        
-        # Assume current year (2025)
-        year = '2025'
-        
-        # Format as ISO date
-        iso_date = f"{year}-{month_num}-{day_num.zfill(2)}"
-        
-        return f"{iso_date}T09:00:00-04:00"  # Default time
+    day_name, month_name, day_num = date_match.groups()
     
-    return None
+    # Map month names to numbers
+    month_map = {
+        'January': '01', 'February': '02', 'March': '03', 'April': '04',
+        'May': '05', 'June': '06', 'July': '07', 'August': '08',
+        'September': '09', 'October': '10', 'November': '11', 'December': '12'
+    }
+    
+    month_num = month_map.get(month_name, '01')
+    year = '2025'  # Assume current year
+    
+    # Parse time like "3:00 PM - 4:00 PM"
+    time_parts = [t.strip() for t in time_str.split('-')]
+    if len(time_parts) < 2:
+        return None, None
+    
+    start_time_str = time_parts[0].strip()
+    end_time_str = time_parts[1].strip()
+    
+    # Convert to 24-hour format
+    try:
+        start_time = convert_to_24hour(start_time_str)
+        end_time = convert_to_24hour(end_time_str)
+    except:
+        return None, None
+    
+    # Format as ISO dates
+    iso_date = f"{year}-{month_num}-{day_num.zfill(2)}"
+    start_date = f"{iso_date}T{start_time}-04:00"
+    end_date = f"{iso_date}T{end_time}-04:00"
+    
+    return start_date, end_date
+
+def convert_to_24hour(time_str):
+    """Convert time like '3:00 PM' to '15:00:00'"""
+    time_obj = datetime.strptime(time_str.strip(), '%I:%M %p')
+    return time_obj.strftime('%H:%M:%S')
 
 def scrape_jhu_events():
     """Scrape JHU APL events page and return JSON format"""
@@ -67,9 +137,11 @@ def scrape_jhu_events():
         
         events = []
         
-        for card in cards:
+        for i, card in enumerate(cards):
             try:
-                # Extract event title
+                print(f"Processing event {i+1}/{len(cards)}...")
+                
+                # Extract basic info from card
                 title_element = card.find('h3', class_='card__title')
                 if not title_element:
                     continue
@@ -80,51 +152,50 @@ def scrape_jhu_events():
                     
                 title = title_span.get_text(strip=True)
                 
-                # Extract date
-                date_element = card.find('h4', class_='card__event-date')
-                start_date = None
-                if date_element:
-                    date_text = date_element.get_text(strip=True)
-                    start_date = parse_date_range(date_text)
-                
-                # Extract location
-                location_element = card.find('h4', class_='card__event-location')
-                location_name = location_element.get_text(strip=True) if location_element else "Location TBD"
-                
-                # Extract description from card body
-                description = ""
-                body_element = card.find('div', class_='card__body')
-                if body_element:
-                    description = body_element.get_text(strip=True)
-                
                 # Extract URL
                 link_element = card.find('a', class_='clickable-soldier')
                 event_url = link_element.get('href') if link_element else ""
                 if event_url and not event_url.startswith('http'):
                     event_url = "https://www.jhuapl.edu" + event_url
                 
-                # Extract image URL
+                # Extract image URL from card
                 img_element = card.find('img')
                 image_url = ""
                 if img_element:
-                    # Try data-src first (lazy loading), then src
                     image_url = img_element.get('data-src') or img_element.get('src') or ""
+                
+                # Get detailed information from event page
+                detailed_info = {}
+                if event_url:
+                    print(f"  Fetching details from: {event_url}")
+                    detailed_info = parse_detailed_event(event_url, headers)
+                
+                # Parse dates and times - skip if we can't get valid times
+                start_date, end_date = parse_date_time(
+                    detailed_info.get('date'), 
+                    detailed_info.get('time')
+                )
+                
+                if not start_date or not end_date:
+                    print(f"  Skipping event due to missing/invalid date/time")
+                    continue
                 
                 # Create event object
                 event = {
                     "id": generate_id(title),
                     "name": title,
                     "startDate": start_date,
-                    "endTime": start_date,  # Using same as start for now
-                    "description": description,
+                    "endTime": end_date,
+                    "description": detailed_info.get('description', ''),
                     "url": event_url,
                     "status": "ACTIVE",
                     "location": {
-                        "name": location_name,
-                        "address": location_name
+                        "name": detailed_info.get('location', 'Location TBD'),
+                        "address": detailed_info.get('location', 'Location TBD')
                     },
                     "imageUrl": image_url,
                     "recurring": False,
+                    "categories": detailed_info.get('categories', []),
                     "scrapeTime": datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
                 }
                 
