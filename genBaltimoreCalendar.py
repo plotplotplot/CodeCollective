@@ -506,7 +506,12 @@ if __name__ == "__main__":
 
         if "Casual Coding" in event.get("name", ""):
             event["recurring"] = True
-            
+    
+    def get_event_signature_strict(event):
+        e2 = event.copy()
+        del e2["scrapeTime"]
+        return json.dumps(e2, sort_keys=True)
+
     def get_event_signature(event):
         """Creates a unique signature for duplicate detection"""
         name = event.get("name", "").strip().lower()
@@ -542,11 +547,11 @@ if __name__ == "__main__":
             # Find the existing event with this signature
             existing_event = next((e for e in unique_events if get_event_signature(e) == event_sig), None)
             if existing_event:
-                # Keep the newer one
-                if parse(event["scrapeTime"]) > parse(existing_event["scrapeTime"]):
+                # Only update if the content has actually changed
+                if get_event_signature_strict(existing_event) != get_event_signature_strict(event):
+                    # Content changed - replace the event
                     unique_events.remove(existing_event)
                     unique_events.append(event)
-                    # No need to update date_occupied since it's the same date
             continue
         
         # If not a duplicate, add it
