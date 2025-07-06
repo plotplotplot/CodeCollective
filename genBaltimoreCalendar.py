@@ -6,6 +6,7 @@ import scrape_gbc
 import scrape_luma
 import scrape_ics
 import scrape_starTUp
+import scrape_jhuapl
 import json
 from ics import Calendar, Event
 import datetime
@@ -421,6 +422,11 @@ if __name__ == "__main__":
 
     try:
         upcoming_events += scrape_starTUp.scrape_towson_events()
+    except Exception as e:
+        print(f"Error fetching calendar events: {e}")
+
+    try:
+        upcoming_events += scrape_jhuapl.scrape_jhu_events()
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
 
