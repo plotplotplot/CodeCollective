@@ -1043,9 +1043,9 @@ button:focus {
   background-color: #1a1a1a;
   border: 1px solid #333;
   border-radius: 8px;
+  justify-content: center;
   margin-bottom: 20px;
   max-width: 800px;
-  overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -1062,6 +1062,7 @@ button:focus {
 }
 
 .cc-event-card-content {
+  justify-content: center;
   padding: 20px;
 }
 

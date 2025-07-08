@@ -1,9 +1,13 @@
 // data.js - Firebase version with AI order processing
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 import { getFirestore, collection, getDocs, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+import { firebaseConfig } from "./firebase-config.js";
 
-const db = getFirestore();
-const auth = getAuth();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
 const AI_ENDPOINT = 'https://ollama.app.codecollective.us/api/chat';
 
 function populateTable(tableId, data, keys) {
