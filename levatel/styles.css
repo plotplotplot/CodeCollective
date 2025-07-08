@@ -5,16 +5,18 @@
     padding: 40px;
     height:100%;
     width: 100%;
+    flex: 1;
     text-align: center;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 20px;
 }
 
 .levatel-horiz-container {
     display: flex;
-    flex-direction: column;
+    flex: 1;
+    flex-direction: row;
     height: 100%;
     width: 100%;
 }
@@ -485,6 +487,21 @@ h1 {
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
+  display: none;
+}
+
+.login-text {
+  display: none;
+}
+
+.auth-toggle.logged-out .login-text {
+  display: inline;
+  color: white;
+  font-weight: 500;
+}
+
+.auth-toggle.logged-in .profile-pic {
+  display: inline;
 }
 
 .info-box {
@@ -502,4 +519,24 @@ table {
 table td, table th {
   border: 1px solid #ccc;
   padding: 5px;
+}
+
+.transcription-marker {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+  margin: 0 4px;
+  vertical-align: middle;
+}
+
+.speech-segment-marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    border-radius: 50%;
+    margin: 0 4px;
+    vertical-align: middle;
 }

@@ -6,7 +6,7 @@ import { firebaseConfig } from "./firebase-config.js";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+//const db = getFirestore(app);
 const auth = getAuth(app);
 const AI_ENDPOINT = 'https://ollama.app.codecollective.us/api/chat';
 
@@ -43,6 +43,7 @@ function populateTable(tableId, data, keys) {
 }
 
 async function processOrderWithAI(userId, transcription) {
+  return 0;
   try {
     // First check Firestore connection
     const testDoc = await getDoc(doc(db, 'test', 'test'));

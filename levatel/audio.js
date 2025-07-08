@@ -1,28 +1,15 @@
 class VoiceRecorder {
     constructor() {
         this.recognition = null;
-        this.audioContext = null;
-        this.analyser = null;
-        this.microphone = null;
         this.isRecording = false;
         this.silenceTimer = null;
-        this.volumeCheckInterval = null;
         this.restartTimer = null;
-
-        // Advanced VAD variables
-        this.speechStartTime = null;
-        this.lastSpeechTime = null;
-        this.energyBuffer = [];
-        this.bufferSize = 20;
-        this.baselineEnergy = 0;
-        this.adaptiveThreshold = 0.02;
-        this.isSpeaking = false;
-        this.speechStarted = false;
 
         // Speech recognition variables
         this.finalTranscript = '';
         this.interimTranscript = '';
         this.speechRecognitionActive = false;
+        this.lastSpeechTime = null;
 
         this.initializeElements();
         this.setupEventListeners();
@@ -41,17 +28,14 @@ class VoiceRecorder {
     initializeElements() {
         this.micButton = document.getElementById('micButton');
         this.status = document.getElementById('status');
-        this.volumeBar = document.getElementById('volumeBar');
-        this.energyThreshold = document.getElementById('energyThreshold');
-        this.silenceDuration = document.getElementById('silenceDuration');
-        this.minSpeechDuration = document.getElementById('minSpeechDuration');
-        this.language = document.getElementById('language');
-        this.task = document.getElementById('task');
+        // Hardcoded values
+        this.silenceDuration = { value: 2000 };
+        this.language = { value: '' }; // Auto-detect
+        this.task = { value: 'transcribe' };
+        this.endpoint = { value: 'https://whisper.app.codecollective.us/asr' };
         this.error = document.getElementById('error');
         this.transcription = document.getElementById('transcription');
         this.transcriptionText = document.getElementById('transcriptionText');
-        this.vadLight = document.getElementById('vadLight');
-        this.vadStatus = document.getElementById('vadStatus');
     }
 
     setupEventListeners() {
@@ -67,26 +51,20 @@ class VoiceRecorder {
     async startRecording() {
         try {
             this.clearError();
-            this.hideTranscription();
+            if (this.transcription && this.transcriptionText) {
+                this.hideTranscription();
+            }
 
-            // Request microphone access for VAD monitoring
+            // Request microphone access
             const stream = await navigator.mediaDevices.getUserMedia({
                 audio: {
                     echoCancellation: true,
                     noiseSuppression: true,
-                    autoGainControl: true,
-                    sampleRate: 44100
+                    autoGainControl: true
                 }
             });
-
-            // Setup audio context for advanced VAD
-            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            this.analyser = this.audioContext.createAnalyser();
-            this.microphone = this.audioContext.createMediaStreamSource(stream);
-            this.microphone.connect(this.analyser);
-
-            this.analyser.fftSize = 2048;
-            this.analyser.smoothingTimeConstant = 0.3;
+            // Store stream for cleanup
+            this.mediaStream = stream;
 
             // Setup speech recognition
             this.setupSpeechRecognition();
@@ -94,18 +72,10 @@ class VoiceRecorder {
             this.isRecording = true;
             this.updateUI('recording');
 
-            // Reset VAD variables
-            this.speechStartTime = null;
-            this.lastSpeechTime = null;
-            this.energyBuffer = [];
-            this.baselineEnergy = 0;
-            this.isSpeaking = false;
-            this.speechStarted = false;
+            // Reset variables
             this.finalTranscript = '';
             this.interimTranscript = '';
-
-            // Start intelligent VAD monitoring
-            this.startIntelligentVAD();
+            this.lastSpeechTime = Date.now();
 
             // Start speech recognition
             this.startSpeechRecognition();
@@ -124,9 +94,8 @@ class VoiceRecorder {
         this.recognition.interimResults = true;
         this.recognition.maxAlternatives = 1;
 
-        // Set language
-        const selectedLanguage = this.language.value || 'en-US';
-        this.recognition.lang = selectedLanguage;
+        // Set language (hardcoded to auto-detect)
+        this.recognition.lang = 'en-US'; // Fallback if auto-detect fails
 
         // Event handlers
         this.recognition.onstart = () => {
@@ -141,7 +110,9 @@ class VoiceRecorder {
             for (let i = event.resultIndex; i < event.results.length; i++) {
                 const transcript = event.results[i][0].transcript;
                 if (event.results[i].isFinal) {
-                    finalTranscript += transcript + ' ';
+                    finalTranscript += transcript;
+                    // Add red circle marker when speech segment ends
+                    finalTranscript += '\n\u25CF\n'; // Unicode red circle
                 } else {
                     interimTranscript += transcript;
                 }
@@ -214,7 +185,6 @@ class VoiceRecorder {
     stopRecording() {
         if (this.isRecording) {
             this.isRecording = false;
-            this.stopVADMonitoring();
             this.updateUI('processing');
 
             // Stop speech recognition
@@ -228,13 +198,16 @@ class VoiceRecorder {
                 this.restartTimer = null;
             }
 
-            // Stop microphone stream
-            if (this.microphone && this.microphone.mediaStream) {
-                this.microphone.mediaStream.getTracks().forEach(track => track.stop());
+            // Clear silence timer
+            if (this.silenceTimer) {
+                clearTimeout(this.silenceTimer);
+                this.silenceTimer = null;
             }
 
-            if (this.audioContext) {
-                this.audioContext.close();
+            // Stop microphone stream
+            if (this.mediaStream) {
+                this.mediaStream.getTracks().forEach(track => track.stop());
+                this.mediaStream = null;
             }
 
             // Process final results
@@ -250,16 +223,10 @@ class VoiceRecorder {
             this.status.textContent = 'Processing order...';
             
             try {
-                const user = this.getCurrentUser();
-                if (user) {
-                    await window.processVoiceOrder(user.uid, finalText);
-                    this.status.textContent = 'Order updated successfully!';
-                } else {
-                    this.status.textContent = 'Please login to process orders';
-                }
+                this.status.textContent = 'Transcription processed locally';
             } catch (error) {
-                this.status.textContent = 'Error processing order';
-                console.error('Order processing error:', error);
+                this.status.textContent = 'Error processing transcription';
+                console.error('Processing error:', error);
             }
         } else {
             this.showTranscription('(No speech detected)', true);
@@ -269,141 +236,51 @@ class VoiceRecorder {
         setTimeout(() => this.updateUI('idle'), 2000);
     }
 
-    getCurrentUser() {
-        const auth = firebase.auth();
-        return auth.currentUser;
-    }
+    // Modified onresult handler to handle silence timeout
+    onresult = (event) => {
+        let interimTranscript = '';
+        let finalTranscript = this.finalTranscript;
 
-    startIntelligentVAD() {
-        const bufferLength = this.analyser.frequencyBinCount;
-        const dataArray = new Float32Array(bufferLength);
-
-        this.volumeCheckInterval = setInterval(() => {
-            this.analyser.getFloatFrequencyData(dataArray);
-
-            // Calculate spectral energy
-            const energy = this.calculateSpectralEnergy(dataArray);
-
-            // Update energy buffer for adaptive threshold
-            this.energyBuffer.push(energy);
-            if (this.energyBuffer.length > this.bufferSize) {
-                this.energyBuffer.shift();
-            }
-
-            // Calculate baseline energy (average of buffer)
-            this.baselineEnergy = this.energyBuffer.reduce((a, b) => a + b, 0) / this.energyBuffer.length;
-
-            // Adaptive threshold based on recent energy levels
-            const energyVariance = this.calculateVariance(this.energyBuffer);
-            this.adaptiveThreshold = Math.max(
-                parseFloat(this.energyThreshold.value),
-                this.baselineEnergy + Math.sqrt(energyVariance) * 2
-            );
-
-            // Update volume bar with normalized energy
-            const volumePercent = Math.min(100, (energy / this.adaptiveThreshold) * 50);
-            this.volumeBar.style.width = volumePercent + '%';
-
-            // Voice activity detection
-            const currentTime = Date.now();
-            const wasSpeaking = this.isSpeaking;
-            this.isSpeaking = energy > this.adaptiveThreshold;
-
-            // Update VAD indicator
-            if (this.isSpeaking) {
-                this.vadLight.classList.add('active');
-                this.vadStatus.textContent = 'Voice Detected';
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+            const transcript = event.results[i][0].transcript;
+            if (event.results[i].isFinal) {
+                finalTranscript += transcript;
+                // Add red circle marker when speech segment ends
+                finalTranscript += '\n\u25CF\n'; // Unicode red circle
             } else {
-                this.vadLight.classList.remove('active');
-                this.vadStatus.textContent = 'Listening...';
+                interimTranscript += transcript;
             }
-
-            // Speech start detection
-            if (this.isSpeaking && !wasSpeaking) {
-                this.speechStartTime = currentTime;
-                this.lastSpeechTime = currentTime;
-                this.status.textContent = 'Speech detected - transcribing...';
-
-                // Clear any existing silence timer
-                if (this.silenceTimer) {
-                    clearTimeout(this.silenceTimer);
-                    this.silenceTimer = null;
-                }
-            }
-
-            // Update last speech time
-            if (this.isSpeaking) {
-                this.lastSpeechTime = currentTime;
-            }
-
-            // Speech end detection with auto-stop
-            if (wasSpeaking && !this.isSpeaking && this.speechStartTime) {
-                const speechDuration = this.lastSpeechTime - this.speechStartTime;
-                const minDuration = parseInt(this.minSpeechDuration.value);
-
-                if (speechDuration >= minDuration) {
-                    this.speechStarted = true;
-                    this.status.textContent = 'Speech ended - waiting for silence...';
-
-                    // Start silence timer for auto-stop
-                    const silenceDuration = parseInt(this.silenceDuration.value);
-                    this.silenceTimer = setTimeout(() => {
-                        this.status.textContent = 'Silence confirmed - finalizing...';
-                        this.stopRecording();
-                    }, silenceDuration);
-                }
-            }
-
-            // Reset if speech resumes during silence period
-            if (this.isSpeaking && this.silenceTimer) {
-                clearTimeout(this.silenceTimer);
-                this.silenceTimer = null;
-                this.status.textContent = 'Speech resumed - transcribing...';
-            }
-
-        }, 50);
-    }
-
-    calculateSpectralEnergy(frequencyData) {
-        let energy = 0;
-        // Focus on speech frequency range (80Hz - 8kHz)
-        const minBin = Math.floor(80 * frequencyData.length / (this.audioContext.sampleRate / 2));
-        const maxBin = Math.floor(8000 * frequencyData.length / (this.audioContext.sampleRate / 2));
-
-        for (let i = minBin; i < maxBin; i++) {
-            const magnitude = Math.pow(10, frequencyData[i] / 10);
-            energy += magnitude;
         }
 
-        return energy / (maxBin - minBin);
-    }
+        this.finalTranscript = finalTranscript;
+        this.interimTranscript = interimTranscript;
 
-    calculateVariance(buffer) {
-        if (buffer.length < 2) return 0;
+        // Update last speech time
+        this.lastSpeechTime = Date.now();
 
-        const mean = buffer.reduce((a, b) => a + b, 0) / buffer.length;
-        const variance = buffer.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / buffer.length;
-        return variance;
-    }
-
-    stopVADMonitoring() {
-        if (this.volumeCheckInterval) {
-            clearInterval(this.volumeCheckInterval);
-            this.volumeCheckInterval = null;
-        }
-
+        // Clear any existing silence timer
         if (this.silenceTimer) {
             clearTimeout(this.silenceTimer);
-            this.silenceTimer = null;
         }
 
-        this.volumeBar.style.width = '0%';
-        this.vadLight.classList.remove('active');
-        this.vadStatus.textContent = 'Voice Activity Detection Ready';
-    }
+        // Set new silence timer if we have speech
+        if (finalTranscript || interimTranscript) {
+            this.silenceTimer = setTimeout(() => {
+                if (this.isRecording) {
+                    this.stopRecording();
+                }
+            }, parseInt(this.silenceDuration.value));
+        }
+
+        // Update display with both final and interim results
+        const displayText = (finalTranscript + interimTranscript).trim();
+        if (displayText) {
+            this.showTranscription(displayText, !interimTranscript);
+        }
+    };
 
     showTranscription(text, isFinal = false) {
-        this.transcriptionText.textContent = text;
+        this.transcriptionText.innerHTML = text;
         this.transcription.classList.remove('empty');
         
         // Add visual indication for interim vs final results
@@ -446,12 +323,19 @@ class VoiceRecorder {
     }
 
     showError(message) {
-        this.error.textContent = message;
-        setTimeout(() => this.error.textContent = '', 5000);
+        if (this.error) {
+            this.error.textContent = message;
+            setTimeout(() => {
+                if (this.error) this.error.textContent = '';
+            }, 5000);
+        }
+        console.error(message);
     }
 
     clearError() {
-        this.error.textContent = '';
+        if (this.error) {
+            this.error.textContent = '';
+        }
     }
 }
 
