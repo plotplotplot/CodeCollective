@@ -14,6 +14,9 @@ class VoiceRecorder {
         this.interimTranscript = '';
         this.speechRecognitionActive = false;
         this.lastSpeechTime = null;
+        
+        // Conversation history
+        this.conversationHistory = [];
 
         // Initialize Firebase AI
         console.log('Initializing Firebase app...');
@@ -53,6 +56,11 @@ class VoiceRecorder {
         this.error = document.getElementById('error');
         this.transcription = document.getElementById('transcription');
         this.transcriptionText = document.getElementById('transcriptionText');
+        
+        // Create interim text overlay
+        this.interimOverlay = document.createElement('div');
+        this.interimOverlay.id = 'interim-overlay';
+        document.body.appendChild(this.interimOverlay);
     }
 
     async startRecording() {
@@ -198,6 +206,9 @@ class VoiceRecorder {
                 this.mediaStream = null;
             }
 
+            // Hide interim overlay
+            this.interimOverlay.style.display = 'none';
+
             // Process final results
             this.processTranscription();
         }
@@ -226,53 +237,84 @@ class VoiceRecorder {
         }
     }
 
-    // Unified transcription handler
+    // Simplified transcription handler with direct interim display
     onresult = async (event) => {
-        let interimTranscript = '';
-        let finalTranscript = '';
+        // Clear overlay initially
+        this.interimOverlay.style.display = 'none';
 
         // Process all results
         for (let i = event.resultIndex; i < event.results.length; i++) {
             const transcript = event.results[i][0].transcript;
             if (event.results[i].isFinal) {
-                this.finalTranscript += transcript;
-                finalTranscript = this.finalTranscript;
-            } else {
-                interimTranscript += transcript;
-            }
-        }
-
-        // Update display immediately
-        if (finalTranscript || interimTranscript) {
-            let formattedText = '';
-            if (finalTranscript) {
-                formattedText += `<div class="user-speech">${finalTranscript}</div>`;
-            }
-            if (interimTranscript) {
-                formattedText += `<div class="interim-speech">${interimTranscript}</div>`;
-            }
-            
-            this.transcriptionText.innerHTML = formattedText;
-            this.transcriptionText.scrollTop = this.transcriptionText.scrollHeight;
-            this.transcription.classList.remove('empty');
-        }
-
-        // Process final results with Gemini
-        if (finalTranscript) {
-            try {
-                const result = await this.model.generateContent(finalTranscript);
-                const response = result.response;
-                const geminiText = response.text();
+                // Hide overlay for final text
+                this.interimOverlay.style.display = 'none';
                 
-                this.finalTranscript += `\n\n<div class="gemini-response">${geminiText}</div>\n\n`;
-                this.transcriptionText.innerHTML = this.finalTranscript;
-                this.transcriptionText.scrollTop = this.transcriptionText.scrollHeight;
-            } catch (error) {
-                console.error('Gemini API error:', error);
-                this.showError('Gemini processing failed: ' + error.message);
+                // Add user message to history
+                this.conversationHistory.push({
+                    speaker: 'user',
+                    text: transcript,
+                    timestamp: new Date()
+                });
+
+                // Immediately show user message
+                this.updateDisplay(transcript, null);
+
+                // Process with Gemini using full conversation context
+                try {
+                    let conversationContext = this.conversationHistory.map(msg => 
+                        `${msg.speaker === 'user' ? 'User' : 'Assistant'}: ${msg.text}`
+                    ).join('\n\n');
+                    
+                    const result = await this.model.generateContent({
+                        contents: [{
+                            role: 'user',
+                            parts: [{text: `${conversationContext}\n\nUser: ${transcript}`}]
+                        }]
+                    });
+                    const response = result.response;
+                    const geminiText = response.text();
+                    
+                    // Add Gemini response to history
+                    this.conversationHistory.push({
+                        speaker: 'gemini',
+                        text: geminiText,
+                        timestamp: new Date()
+                    });
+
+                    // Update with Gemini response
+                    this.updateDisplay(null, geminiText);
+                } catch (error) {
+                    console.error('Gemini API error:', error);
+                    this.showError('Gemini processing failed: ' + error.message);
+                }
+            } else {
+                // Directly show interim text in overlay
+                this.interimOverlay.textContent = transcript;
+                this.interimOverlay.style.display = 'block';
             }
         }
     };
+
+    // Helper to update display from conversation history
+    updateDisplay(finalText, geminiText, isInterim = false) {
+        let formattedText = '';
+        
+        // Add all conversation history in reverse order (newest first)
+        for (let i = this.conversationHistory.length - 1; i >= 0; i--) {
+            const msg = this.conversationHistory[i];
+            const divClass = msg.speaker === 'user' ? 'user-speech' : 'gemini-response';
+            formattedText += `<div class="${divClass}">${msg.text}</div>`;
+        }
+
+        // Add current interim text if present
+        if (isInterim) {
+            formattedText += `<div class="interim-speech">${geminiText}</div>`;
+        }
+
+        this.transcriptionText.innerHTML = formattedText;
+        this.transcriptionText.scrollTop = 0;
+        this.transcription.classList.remove('empty');
+    }
 
     showTranscription(text) {
         this.transcriptionText.innerHTML = text;

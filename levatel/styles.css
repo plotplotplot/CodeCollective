@@ -229,10 +229,21 @@ h1 {
     font-weight: normal;
 }
 
-.interim-speech {
-    color: rgba(255, 255, 255, 0.7);
-    font-style: italic;
-    margin-bottom: 10px;
+#interim-overlay {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.7);
+    color: red;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1000;
+    pointer-events: none;
+    transform: translateY(-50%);
+    display: none;
 }
 
 .gemini-response {
