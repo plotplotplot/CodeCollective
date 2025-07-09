@@ -23,6 +23,7 @@ sources = {
         "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
         "https://www.eventbrite.com/e/techspo-baltimore-2025-technology-expo-internet-adtech-martech-tickets-1114708064829",
         "https://www.eventbrite.com/e/2025-md-makerspace-meetup-tickets-1345760890049",
+        "https://www.eventbrite.com/e/baltimore-data-day-state-of-our-neighborhoods-2025-tickets-1424508315719"
     ],
     "Eventbrite Orgs":[
         "https://www.eventbrite.com/o/blk-tech-connect-107618183651",
