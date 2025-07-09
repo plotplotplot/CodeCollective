@@ -1,3 +1,7 @@
+import { getAI, getGenerativeModel, GoogleAIBackend } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-ai.js";
+import { firebaseConfig } from './firebase-config.js';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+
 class VoiceRecorder {
     constructor() {
         this.recognition = null;
@@ -11,22 +15,35 @@ class VoiceRecorder {
         this.speechRecognitionActive = false;
         this.lastSpeechTime = null;
 
+        // Initialize Firebase AI
+        console.log('Initializing Firebase app...');
+        this.firebaseApp = initializeApp(firebaseConfig);
+        console.log('Firebase app initialized, setting up AI service...');
+        this.ai = getAI(this.firebaseApp, { backend: new GoogleAIBackend() });
+        console.log('AI service initialized, creating model...');
+        this.model = getGenerativeModel(this.ai, { model: "gemini-2.5-flash" });
+        console.log('Gemini model ready:', this.model);
+
         this.initializeElements();
-        this.setupEventListeners();
         this.checkBrowserSupport();
+        
+        // Wait for DOM to be ready before starting
+        if (document.readyState === 'complete') {
+            this.startRecording();
+        } else {
+            window.addEventListener('load', () => this.startRecording());
+        }
     }
 
     checkBrowserSupport() {
         if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
             this.showError('Speech recognition not supported in this browser. Please use Chrome, Edge, or Safari.');
-            this.micButton.disabled = true;
             return false;
         }
         return true;
     }
 
     initializeElements() {
-        this.micButton = document.getElementById('micButton');
         this.status = document.getElementById('status');
         // Hardcoded values
         this.silenceDuration = { value: 2000 };
@@ -36,16 +53,6 @@ class VoiceRecorder {
         this.error = document.getElementById('error');
         this.transcription = document.getElementById('transcription');
         this.transcriptionText = document.getElementById('transcriptionText');
-    }
-
-    setupEventListeners() {
-        this.micButton.addEventListener('click', () => {
-            if (!this.isRecording) {
-                this.startRecording();
-            } else {
-                this.stopRecording();
-            }
-        });
     }
 
     async startRecording() {
@@ -70,15 +77,19 @@ class VoiceRecorder {
             this.setupSpeechRecognition();
 
             this.isRecording = true;
-            this.updateUI('recording');
 
-            // Reset variables
-            this.finalTranscript = '';
+            // Reset variables (keep transcript history)
             this.interimTranscript = '';
             this.lastSpeechTime = Date.now();
 
             // Start speech recognition
             this.startSpeechRecognition();
+            
+            // Remove any existing silence timer
+            if (this.silenceTimer) {
+                clearTimeout(this.silenceTimer);
+                this.silenceTimer = null;
+            }
 
         } catch (error) {
             this.showError('Error accessing microphone: ' + error.message);
@@ -103,30 +114,8 @@ class VoiceRecorder {
             console.log('Speech recognition started');
         };
 
-        this.recognition.onresult = (event) => {
-            let interimTranscript = '';
-            let finalTranscript = this.finalTranscript;
-
-            for (let i = event.resultIndex; i < event.results.length; i++) {
-                const transcript = event.results[i][0].transcript;
-                if (event.results[i].isFinal) {
-                    finalTranscript += transcript;
-                    // Add red circle marker when speech segment ends
-                    finalTranscript += '\n\u25CF\n'; // Unicode red circle
-                } else {
-                    interimTranscript += transcript;
-                }
-            }
-
-            this.finalTranscript = finalTranscript;
-            this.interimTranscript = interimTranscript;
-
-            // Update display with both final and interim results
-            const displayText = (finalTranscript + interimTranscript).trim();
-            if (displayText) {
-                this.showTranscription(displayText, !interimTranscript);
-            }
-        };
+        // Use our modified onresult handler
+        this.recognition.onresult = this.onresult.bind(this);
 
         this.recognition.onerror = (event) => {
             console.error('Speech recognition error:', event.error);
@@ -185,7 +174,6 @@ class VoiceRecorder {
     stopRecording() {
         if (this.isRecording) {
             this.isRecording = false;
-            this.updateUI('processing');
 
             // Stop speech recognition
             if (this.recognition && this.speechRecognitionActive) {
@@ -198,7 +186,7 @@ class VoiceRecorder {
                 this.restartTimer = null;
             }
 
-            // Clear silence timer
+            // Clear silence timer (no longer needed)
             if (this.silenceTimer) {
                 clearTimeout(this.silenceTimer);
                 this.silenceTimer = null;
@@ -220,77 +208,75 @@ class VoiceRecorder {
         
         if (finalText) {
             this.showTranscription(finalText, true);
-            this.status.textContent = 'Processing order...';
             
             try {
-                this.status.textContent = 'Transcription processed locally';
+                // Send transcription to Gemini
+                const result = await this.model.generateContent(finalText);
+                const response = result.response;
+                const geminiText = response.text();
+                
+                // Show Gemini response
+                this.showTranscription(geminiText, true);
             } catch (error) {
-                this.status.textContent = 'Error processing transcription';
-                console.error('Processing error:', error);
+                console.error('Gemini API error:', error);
+                this.showError('Gemini processing failed: ' + error.message);
             }
         } else {
             this.showTranscription('(No speech detected)', true);
-            this.status.textContent = 'No speech detected';
         }
-
-        setTimeout(() => this.updateUI('idle'), 2000);
     }
 
-    // Modified onresult handler to handle silence timeout
-    onresult = (event) => {
+    // Unified transcription handler
+    onresult = async (event) => {
         let interimTranscript = '';
-        let finalTranscript = this.finalTranscript;
+        let finalTranscript = '';
 
+        // Process all results
         for (let i = event.resultIndex; i < event.results.length; i++) {
             const transcript = event.results[i][0].transcript;
             if (event.results[i].isFinal) {
-                finalTranscript += transcript;
-                // Add red circle marker when speech segment ends
-                finalTranscript += '\n\u25CF\n'; // Unicode red circle
+                this.finalTranscript += transcript;
+                finalTranscript = this.finalTranscript;
             } else {
                 interimTranscript += transcript;
             }
         }
 
-        this.finalTranscript = finalTranscript;
-        this.interimTranscript = interimTranscript;
-
-        // Update last speech time
-        this.lastSpeechTime = Date.now();
-
-        // Clear any existing silence timer
-        if (this.silenceTimer) {
-            clearTimeout(this.silenceTimer);
-        }
-
-        // Set new silence timer if we have speech
+        // Update display immediately
         if (finalTranscript || interimTranscript) {
-            this.silenceTimer = setTimeout(() => {
-                if (this.isRecording) {
-                    this.stopRecording();
-                }
-            }, parseInt(this.silenceDuration.value));
+            let formattedText = '';
+            if (finalTranscript) {
+                formattedText += `<div class="user-speech">${finalTranscript}</div>`;
+            }
+            if (interimTranscript) {
+                formattedText += `<div class="interim-speech">${interimTranscript}</div>`;
+            }
+            
+            this.transcriptionText.innerHTML = formattedText;
+            this.transcriptionText.scrollTop = this.transcriptionText.scrollHeight;
+            this.transcription.classList.remove('empty');
         }
 
-        // Update display with both final and interim results
-        const displayText = (finalTranscript + interimTranscript).trim();
-        if (displayText) {
-            this.showTranscription(displayText, !interimTranscript);
+        // Process final results with Gemini
+        if (finalTranscript) {
+            try {
+                const result = await this.model.generateContent(finalTranscript);
+                const response = result.response;
+                const geminiText = response.text();
+                
+                this.finalTranscript += `\n\n<div class="gemini-response">${geminiText}</div>\n\n`;
+                this.transcriptionText.innerHTML = this.finalTranscript;
+                this.transcriptionText.scrollTop = this.transcriptionText.scrollHeight;
+            } catch (error) {
+                console.error('Gemini API error:', error);
+                this.showError('Gemini processing failed: ' + error.message);
+            }
         }
     };
 
-    showTranscription(text, isFinal = false) {
+    showTranscription(text) {
         this.transcriptionText.innerHTML = text;
         this.transcription.classList.remove('empty');
-        
-        // Add visual indication for interim vs final results
-        if (isFinal) {
-            this.transcriptionText.style.opacity = '1';
-            this.transcriptionText.style.fontStyle = 'normal';
-        } else {
-            this.transcriptionText.style.opacity = '0.7';
-            this.transcriptionText.style.fontStyle = 'italic';
-        }
     }
 
     hideTranscription() {
@@ -300,36 +286,18 @@ class VoiceRecorder {
         this.transcriptionText.style.fontStyle = 'normal';
     }
 
-    updateUI(state) {
-        this.micButton.className = 'mic-button';
-
-        switch (state) {
-            case 'recording':
-                this.micButton.classList.add('recording');
-                this.micButton.textContent = '⏹️';
-                this.status.textContent = 'Listening for speech...';
-                break;
-            case 'processing':
-                this.micButton.classList.add('processing');
-                this.micButton.textContent = '⏳';
-                this.status.textContent = 'Finalizing transcription...';
-                break;
-            case 'idle':
-            default:
-                this.micButton.textContent = '🎤';
-                this.status.textContent = 'Click the microphone to start';
-                break;
-        }
-    }
-
     showError(message) {
-        if (this.error) {
-            this.error.textContent = message;
-            setTimeout(() => {
-                if (this.error) this.error.textContent = '';
-            }, 5000);
+        try {
+            if (this.error && this.error.textContent !== undefined) {
+                this.error.textContent = message;
+                setTimeout(() => {
+                    if (this.error) this.error.textContent = '';
+                }, 5000);
+            }
+            console.error(message);
+        } catch (e) {
+            console.error('Error showing error message:', e);
         }
-        console.error(message);
     }
 
     clearError() {

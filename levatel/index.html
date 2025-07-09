@@ -38,19 +38,7 @@
 
     <div class="levatel-horiz-container">
       <div class="levatel-vert-container">
-        <h1>Transcription</h1>
-
-        <button class="mic-button" id="micButton" disabled>🎤</button>
-        
-        <div class="status" id="status">Click the microphone to start</div>
-
-        <div class="vad-indicator">
-          <div class="vad-light" id="vadLight"></div>
-          <span id="vadStatus">Login to enable Voice Activity Detection</span>
-        </div>
-
         <div class="transcription empty" id="transcription">
-          <h3>Transcription:</h3>
           <div class="transcription-text" id="transcriptionText">
             Your speech will appear here...
           </div>
@@ -128,7 +116,6 @@
         function updateUIForLoggedOutState() {
           const loginNavBtn = document.getElementById("loginButtonNav");
           const authToggle = document.getElementById("authToggle");
-          const micButton = document.getElementById("micButton");
           const statusElement = document.getElementById("status");
 
           console.log("Updating UI for logged out state");
@@ -141,9 +128,7 @@
           }
           if (loginNavBtn) loginNavBtn.classList.add("visible");
           if (authToggle) authToggle.classList.remove("visible");
-          
-          if (micButton) micButton.disabled = true;
-          
+                    
           if (statusElement) {
             statusElement.textContent = "Please login to start recording";
           }
@@ -160,7 +145,6 @@
         function updateUIForLoggedInState(user) {
           const loginNavBtn = document.getElementById("loginButtonNav");
           const authToggle = document.getElementById("authToggle");
-          const micButton = document.getElementById("micButton");
           const statusElement = document.getElementById("status");
 
           console.log("Updating UI for logged in state", user);
@@ -171,7 +155,6 @@
             authToggle.classList.add("logged-in");
             authToggle.classList.remove("logged-out");
           }
-          if (micButton) micButton.disabled = false;
 
           // Update profile picture from Firebase
           const profilePic = document.querySelector("#authToggle img.profile-pic");
@@ -287,7 +270,7 @@
 
       }); // End of DOMContentLoaded
     </script>
-    <script type="text/javascript" src="./audio.js"></script>
+    <script type="module" src="./audio.js"></script>
     <!-- <script type="module" src="./data.js"></script> -->
   </body>
 </html>

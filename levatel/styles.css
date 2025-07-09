@@ -173,12 +173,13 @@ h1 {
 }
 
 .transcription {
-    margin-top: 30px;
-    padding: 20px;
+    margin-top: 0px;
+    padding: 0px;
     background: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+    border-radius: 0px;
     text-align: left;
     min-height: 100px;
+    overflow-y: auto;
     border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -198,6 +199,49 @@ h1 {
     color: #ffffff;
     word-wrap: break-word;
     white-space: pre-wrap;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+}
+
+.user-speech {
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    border-left: 3px solid #4CAF50;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.user-speech::before {
+    content: "You";
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background: #4CAF50;
+    color: white;
+    font-size: 0.8em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: normal;
+}
+
+.interim-speech {
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.gemini-response {
+    color: #a8d8ff;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px 0;
+    border-left: 3px solid #4dabf7;
 }
 
 .settings {
