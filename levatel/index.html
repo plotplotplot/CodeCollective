@@ -5,228 +5,272 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin" />
     <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp" />
-    <title>Voice Recording App</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://codecollective.us/css/master.css" />
+    <title>Demo - LevaTel</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="/css/master.css" />
   </head>
-  <body>
-    <div class="levatel-vert-container">
-      <nav class="main-nav-bar" aria-label="Main Navigation">
-        <div class="navbar dark-mode">
-          <div class="nav-links">
-            <a href="/#main">Home</a>
-            <a href="/balticonomy/">Balticonomy</a>
-            <a href="/#get-involved">Join Us</a>
-            <a href="/#about-us">About Us</a>
-            <div class="auth-dropdown" id="authDropdown">
-              <button class="auth-toggle" id="authToggle">
-                <img
-                  src="/path/to/default-profile.png"
-                  alt="Profile"
-                  class="profile-pic"
-                />
-                <span id="userInfo">Not logged in</span>
-              </button>
-              <div class="auth-menu hidden" id="authMenu">
-                <button id="loginButton" class="auth-button">Login</button>
-                <button id="accountButton" class="auth-button hidden">
-                  Account
-                </button>
-                <button id="logoutButton" class="auth-button hidden">
-                  Logout
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <div class="levatel-horiz-container">
-        <div class="levatel-vert-container">
-          <h1>🎤 Voice Chat</h1>
-
-          <button class="mic-button" id="micButton" disabled>🎤</button>
-
-          <div class="status" id="status">Please login to start recording</div>
-
-          <div class="volume-meter">
-            <div class="volume-bar" id="volumeBar"></div>
-          </div>
-
-          <div class="vad-indicator">
-            <div class="vad-light" id="vadLight"></div>
-            <span id="vadStatus">Login to enable Voice Activity Detection</span>
-          </div>
-
-          <div class="settings">
-            <div class="setting-group">
-              <label for="endpoint">API Endpoint:</label>
-              <input
-                type="text"
-                id="endpoint"
-                placeholder="https://your-api.com/voice"
-                value="https://whisper.app.codecollective.us/asr"
-              />
-            </div>
-
-            <div class="setting-group">
-              <label for="language">Language (optional):</label>
-              <select id="language">
-                <option value="">Auto-detect</option>
-                <option value="en">English</option>
-                <option value="es">Spanish</option>
-                <option value="fr">French</option>
-                <option value="de">German</option>
-                <option value="it">Italian</option>
-                <option value="pt">Portuguese</option>
-                <option value="ru">Russian</option>
-                <option value="ja">Japanese</option>
-                <option value="ko">Korean</option>
-                <option value="zh">Chinese</option>
-              </select>
-            </div>
-
-            <div class="setting-group">
-              <label for="task">Task:</label>
-              <select id="task">
-                <option value="transcribe">Transcribe</option>
-                <option value="translate">Translate to English</option>
-              </select>
-            </div>
-
-            <div class="setting-group">
-              <label for="energyThreshold">Energy Threshold:</label>
-              <input
-                type="number"
-                id="energyThreshold"
-                min="0"
-                max="1"
-                step="0.01"
-                value="0.02"
-              />
-            </div>
-
-            <div class="setting-group">
-              <label for="silenceDuration">Silence Duration (ms):</label>
-              <input
-                type="number"
-                id="silenceDuration"
-                min="500"
-                max="5000"
-                value="2000"
-              />
-            </div>
-
-            <div class="setting-group">
-              <label for="minSpeechDuration">Min Speech Duration (ms):</label>
-              <input
-                type="number"
-                id="minSpeechDuration"
-                min="100"
-                max="2000"
-                value="500"
-              />
-            </div>
-          </div>
-        </div>
-
-        <!-- Add this inside <body>, before </body> -->
-        <div class="dashboard-container">
-          <div class="right-panel">
-            <div id="userInfoBox" class="info-box">
-              <h3>User Info</h3>
-              <table id="userInfoTable"></table>
-            </div>
-
-            <div id="servicesBox" class="info-box">
-              <h3>Available Services</h3>
-              <table id="servicesTable"></table>
-            </div>
-
-            <div id="orderBox" class="info-box">
-              <h3>Current Order</h3>
-              <table id="orderTable"></table>
-            </div>
-          </div>
+  <body id="body">
+    <nav class="main-nav" aria-label="Main Navigation">
+      <div class="navbar dark-mode">
+        <a href="/#main">Home</a>
+        <a href="/balticonomy/">Balticonomy</a>
+        <a href="/#about-us">About Us</a>
+        <div class="auth-dropdown" id="authDropdown">
+          <button
+            class="auth-toggle hidden"
+            id="authToggle"
+            aria-expanded="false"
+            aria-controls="authMenu"
+          >
+            <img
+              src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+              alt="Profile"
+              class="profile-pic"
+            />
+            <span class="login-text">Login</span>
+          </button>
+          <button id="loginButtonNav" class="login-button hidden">Login</button>
+          <!-- Portal-style dropdown that renders at root level -->
+          <div id="authMenuPortal"></div>
         </div>
       </div>
+    </nav>
 
-      <div class="error" id="error"></div>
+    <div class="levatel-horiz-container">
+      <div class="levatel-vert-container">
+        <div class="transcription empty" id="transcription">
+          <div class="transcription-text" id="transcriptionText">
+            Your speech will appear here...
+          </div>
+        </div>
 
-      <div class="transcription empty" id="transcription">
-        <h3>Transcription:</h3>
-        <div class="transcription-text" id="transcriptionText">
-          Your speech will appear here...
+      </div>
+
+      <!-- Add this inside <body>, before </body> -->
+      <div class="dashboard-container">
+        <div class="right-panel">
+          <div id="userInfoBox" class="info-box">
+            <h3>User Info</h3>
+            <table id="userInfoTable"></table>
+          </div>
+
+          <div id="servicesBox" class="info-box">
+            <h3>Available Services</h3>
+            <table id="servicesTable"></table>
+          </div>
+
+          <div id="orderBox" class="info-box">
+            <h3>Current Order</h3>
+            <table id="orderTable"></table>
+          </div>
         </div>
       </div>
     </div>
 
+    <div class="error" id="error"></div>
+
     <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-analytics.js";
-      import {
-        getAuth,
-        signInWithPopup,
-        GoogleAuthProvider,
-        signOut,
-      } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+      import { auth, logout } from "./firebase-config.js";
 
-      // Your web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyCS457zr9rpyORhefGcfvb4xZwsXXYg0Dc",
-        authDomain: "levatel-d3b77.firebaseapp.com",
-        projectId: "levatel-d3b77",
-        storageBucket: "levatel-d3b77.firebasestorage.app",
-        messagingSenderId: "922786354907",
-        appId: "1:922786354907:web:bc01bf82b626ebc5875efe",
-        measurementId: "G-5Z06BMPY2B",
-      };
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-      const auth = getAuth();
-      const provider = new GoogleAuthProvider();
-
-      // Auth UI handlers
-      document.getElementById("loginButton").addEventListener("click", () => {
-        signInWithPopup(auth, provider).catch((error) => {
-          console.error("Login error:", error);
-          document.getElementById("error").textContent =
-            "Login failed: " + error.message;
+      // Wait for DOM to be fully loaded
+      document.addEventListener('DOMContentLoaded', async () => {
+        console.log("DOM loaded, setting up auth listener");
+        
+        // Wait for Firebase Auth to be ready
+        await new Promise((resolve) => {
+          const unsubscribe = auth.onAuthStateChanged((user) => {
+            console.log("Firebase Auth ready, initial state:", user ? "logged in" : "logged out");
+            unsubscribe(); // Unsubscribe from this initial check
+            resolve();
+          });
         });
-      });
+        
+        // Portal-based dropdown implementation
+        const authToggle = document.getElementById("authToggle");
+        const authMenuPortal = document.getElementById("authMenuPortal");
+        const dropdownContainer = document.getElementById("authDropdown");
 
-      document.getElementById("logoutButton").addEventListener("click", () => {
-        signOut(auth).catch((error) => {
-          console.error("Logout error:", error);
-        });
-      });
-
-      // Update UI based on auth state
-      auth.onAuthStateChanged((user) => {
-        const loginBtn = document.getElementById("loginButton");
-        const logoutBtn = document.getElementById("logoutButton");
-        const accountBtn = document.getElementById("accountButton");
-        const userInfo = document.getElementById("userInfo");
-        const micButton = document.getElementById("micButton");
-
-        if (user) {
-          loginBtn.classList.add("hidden");
-          logoutBtn.classList.remove("hidden");
-          accountBtn.classList.remove("hidden");
-          userInfo.textContent = user.email;
-          micButton.disabled = false;
-        } else {
-          loginBtn.classList.remove("hidden");
-          logoutBtn.classList.add("hidden");
-          accountBtn.classList.add("hidden");
-          userInfo.textContent = "Not logged in";
-          micButton.disabled = true;
+        // Centralized logout handler with error handling
+        async function handleLogout() {
+          try {
+            console.log("Logout button clicked");
+            
+            // Clear the dropdown first
+            authMenuPortal.innerHTML = '';
+            
+            // Call the logout function
+            await logout();
+            
+            console.log("Logout successful");
+            
+            // Force immediate UI update
+            updateUIForLoggedOutState();
+            
+          } catch (error) {
+            console.error("Logout error:", error);
+            document.getElementById("error").textContent = "Logout failed: " + error.message;
+          }
         }
-      });
+
+        // Update UI for logged out state
+        function updateUIForLoggedOutState() {
+          const loginNavBtn = document.getElementById("loginButtonNav");
+          const authToggle = document.getElementById("authToggle");
+          const statusElement = document.getElementById("status");
+
+          console.log("Updating UI for logged out state");
+
+          if (loginNavBtn) loginNavBtn.classList.remove("hidden");
+          if (authToggle) {
+            authToggle.classList.remove("hidden");
+            authToggle.classList.add("logged-out");
+            authToggle.classList.remove("logged-in");
+          }
+          if (loginNavBtn) loginNavBtn.classList.add("visible");
+          if (authToggle) authToggle.classList.remove("visible");
+                    
+          if (statusElement) {
+            statusElement.textContent = "Please login to start recording";
+          }
+          
+          // Clear any existing dropdown
+          authMenuPortal.innerHTML = '';
+          
+          // Clear error messages
+          const errorElement = document.getElementById("error");
+          if (errorElement) errorElement.textContent = "";
+        }
+
+        // Update UI for logged in state
+        function updateUIForLoggedInState(user) {
+          const loginNavBtn = document.getElementById("loginButtonNav");
+          const authToggle = document.getElementById("authToggle");
+          const statusElement = document.getElementById("status");
+
+          console.log("Updating UI for logged in state", user);
+
+          if (loginNavBtn) loginNavBtn.classList.add("hidden");
+          if (authToggle) {
+            authToggle.classList.remove("hidden");
+            authToggle.classList.add("logged-in");
+            authToggle.classList.remove("logged-out");
+          }
+
+          // Update profile picture from Firebase
+          const profilePic = document.querySelector("#authToggle img.profile-pic");
+          if (profilePic) {
+            const photoURL = user?.photoURL || 
+              "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
+            profilePic.src = photoURL;
+            profilePic.alt = `${user?.displayName || "User"} profile picture`;
+            profilePic.onerror = () => {
+              profilePic.src = "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
+            };
+          }
+          
+        }
+
+        function createDropdownMenu() {
+          const menu = document.createElement("div");
+          menu.className = "auth-menu-portal";
+          menu.innerHTML = `
+            <button id="accountButton" class="auth-button hidden">Account</button>
+            <button id="logoutButton" class="auth-button">Logout</button>
+          `;
+
+          // Add logout handler
+          const logoutBtn = menu.querySelector("#logoutButton");
+          if (logoutBtn) {
+            logoutBtn.addEventListener("click", (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handleLogout();
+            });
+          }
+
+          return menu;
+        }
+
+        function positionDropdownMenu(menu, toggle) {
+          const rect = toggle.getBoundingClientRect();
+          menu.style.top = `${rect.bottom + window.scrollY + 8}px`;
+          menu.style.right = `${window.innerWidth - rect.right}px`;
+        }
+
+        // Toggle dropdown or redirect to login
+        authToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+
+          if (authToggle.classList.contains('logged-out')) {
+            // Redirect to login when in logged-out state
+            window.location.href = "login.html";
+          } else {
+            // Show dropdown when logged in
+            if (authMenuPortal.children.length > 0) {
+              authMenuPortal.innerHTML = '';
+            } else {
+              const menu = createDropdownMenu();
+              positionDropdownMenu(menu, authToggle);
+              authMenuPortal.appendChild(menu);
+              setTimeout(() => menu.classList.add('visible'), 10);
+            }
+          }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (e) => {
+          if (!dropdownContainer.contains(e.target)) {
+            const menu = document.querySelector(".auth-menu-portal");
+            if (menu) {
+              menu.classList.remove("visible");
+              setTimeout(() => {
+                if (menu.parentNode) {
+                  menu.remove();
+                }
+              }, 200);
+            }
+          }
+        });
+
+        // Set initial UI state based on current user
+        const currentUser = auth.currentUser;
+        if (currentUser) {
+          console.log("Current user found immediately:", currentUser);
+          updateUIForLoggedInState(currentUser);
+        } else {
+          console.log("No current user found, showing login state");
+          updateUIForLoggedOutState();
+        }
+
+        // Update UI based on auth state changes
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+          console.log("Auth state changed:", user ? "logged in" : "logged out", user);
+          
+          if (user) {
+            // User is logged in
+            updateUIForLoggedInState(user);
+          } else {
+            // User is logged out
+            updateUIForLoggedOutState();
+          }
+          
+          // Add login button event listener (only when logged out)
+          if (!user) {
+            const loginNavBtn = document.getElementById("loginButtonNav");
+            if (loginNavBtn) {
+              // Remove any existing listeners to avoid duplicates
+              loginNavBtn.replaceWith(loginNavBtn.cloneNode(true));
+              const newLoginNavBtn = document.getElementById("loginButtonNav");
+              newLoginNavBtn.addEventListener("click", () => {
+                window.location.href = "login.html";
+              });
+            }
+          }
+        });
+
+      }); // End of DOMContentLoaded
     </script>
-    <script type="text/javascript" src="./audio.js"></script>
-    <script type="module" src="./data.js"></script>
+    <script type="module" src="./audio.js"></script>
+    <!-- <script type="module" src="./data.js"></script> -->
   </body>
 </html>

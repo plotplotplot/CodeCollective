@@ -1,114 +1,103 @@
+import { getAI, getGenerativeModel, GoogleAIBackend } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-ai.js";
+import { firebaseConfig } from './firebase-config.js';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+
 class VoiceRecorder {
     constructor() {
         this.recognition = null;
-        this.audioContext = null;
-        this.analyser = null;
-        this.microphone = null;
         this.isRecording = false;
         this.silenceTimer = null;
-        this.volumeCheckInterval = null;
         this.restartTimer = null;
-
-        // Advanced VAD variables
-        this.speechStartTime = null;
-        this.lastSpeechTime = null;
-        this.energyBuffer = [];
-        this.bufferSize = 20;
-        this.baselineEnergy = 0;
-        this.adaptiveThreshold = 0.02;
-        this.isSpeaking = false;
-        this.speechStarted = false;
 
         // Speech recognition variables
         this.finalTranscript = '';
         this.interimTranscript = '';
         this.speechRecognitionActive = false;
+        this.lastSpeechTime = null;
+        
+        // Conversation history
+        this.conversationHistory = [];
+
+        // Initialize Firebase AI
+        console.log('Initializing Firebase app...');
+        this.firebaseApp = initializeApp(firebaseConfig);
+        console.log('Firebase app initialized, setting up AI service...');
+        this.ai = getAI(this.firebaseApp, { backend: new GoogleAIBackend() });
+        console.log('AI service initialized, creating model...');
+        this.model = getGenerativeModel(this.ai, { model: "gemini-2.5-flash" });
+        console.log('Gemini model ready:', this.model);
 
         this.initializeElements();
-        this.setupEventListeners();
         this.checkBrowserSupport();
+        
+        // Wait for DOM to be ready before starting
+        if (document.readyState === 'complete') {
+            this.startRecording();
+        } else {
+            window.addEventListener('load', () => this.startRecording());
+        }
     }
 
     checkBrowserSupport() {
         if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
             this.showError('Speech recognition not supported in this browser. Please use Chrome, Edge, or Safari.');
-            this.micButton.disabled = true;
             return false;
         }
         return true;
     }
 
     initializeElements() {
-        this.micButton = document.getElementById('micButton');
         this.status = document.getElementById('status');
-        this.volumeBar = document.getElementById('volumeBar');
-        this.energyThreshold = document.getElementById('energyThreshold');
-        this.silenceDuration = document.getElementById('silenceDuration');
-        this.minSpeechDuration = document.getElementById('minSpeechDuration');
-        this.language = document.getElementById('language');
-        this.task = document.getElementById('task');
+        // Hardcoded values
+        this.silenceDuration = { value: 2000 };
+        this.language = { value: '' }; // Auto-detect
+        this.task = { value: 'transcribe' };
+        this.endpoint = { value: 'https://whisper.app.codecollective.us/asr' };
         this.error = document.getElementById('error');
         this.transcription = document.getElementById('transcription');
         this.transcriptionText = document.getElementById('transcriptionText');
-        this.vadLight = document.getElementById('vadLight');
-        this.vadStatus = document.getElementById('vadStatus');
-    }
-
-    setupEventListeners() {
-        this.micButton.addEventListener('click', () => {
-            if (!this.isRecording) {
-                this.startRecording();
-            } else {
-                this.stopRecording();
-            }
-        });
+        
+        // Create interim text overlay
+        this.interimOverlay = document.createElement('div');
+        this.interimOverlay.id = 'interim-overlay';
+        document.body.appendChild(this.interimOverlay);
     }
 
     async startRecording() {
         try {
             this.clearError();
-            this.hideTranscription();
+            if (this.transcription && this.transcriptionText) {
+                this.hideTranscription();
+            }
 
-            // Request microphone access for VAD monitoring
+            // Request microphone access
             const stream = await navigator.mediaDevices.getUserMedia({
                 audio: {
                     echoCancellation: true,
                     noiseSuppression: true,
-                    autoGainControl: true,
-                    sampleRate: 44100
+                    autoGainControl: true
                 }
             });
-
-            // Setup audio context for advanced VAD
-            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            this.analyser = this.audioContext.createAnalyser();
-            this.microphone = this.audioContext.createMediaStreamSource(stream);
-            this.microphone.connect(this.analyser);
-
-            this.analyser.fftSize = 2048;
-            this.analyser.smoothingTimeConstant = 0.3;
+            // Store stream for cleanup
+            this.mediaStream = stream;
 
             // Setup speech recognition
             this.setupSpeechRecognition();
 
             this.isRecording = true;
-            this.updateUI('recording');
 
-            // Reset VAD variables
-            this.speechStartTime = null;
-            this.lastSpeechTime = null;
-            this.energyBuffer = [];
-            this.baselineEnergy = 0;
-            this.isSpeaking = false;
-            this.speechStarted = false;
-            this.finalTranscript = '';
+            // Reset variables (keep transcript history)
             this.interimTranscript = '';
-
-            // Start intelligent VAD monitoring
-            this.startIntelligentVAD();
+            this.lastSpeechTime = Date.now();
 
             // Start speech recognition
             this.startSpeechRecognition();
+            
+            // Remove any existing silence timer
+            if (this.silenceTimer) {
+                clearTimeout(this.silenceTimer);
+                this.silenceTimer = null;
+            }
 
         } catch (error) {
             this.showError('Error accessing microphone: ' + error.message);
@@ -124,9 +113,8 @@ class VoiceRecorder {
         this.recognition.interimResults = true;
         this.recognition.maxAlternatives = 1;
 
-        // Set language
-        const selectedLanguage = this.language.value || 'en-US';
-        this.recognition.lang = selectedLanguage;
+        // Set language (hardcoded to auto-detect)
+        this.recognition.lang = 'en-US'; // Fallback if auto-detect fails
 
         // Event handlers
         this.recognition.onstart = () => {
@@ -134,28 +122,8 @@ class VoiceRecorder {
             console.log('Speech recognition started');
         };
 
-        this.recognition.onresult = (event) => {
-            let interimTranscript = '';
-            let finalTranscript = this.finalTranscript;
-
-            for (let i = event.resultIndex; i < event.results.length; i++) {
-                const transcript = event.results[i][0].transcript;
-                if (event.results[i].isFinal) {
-                    finalTranscript += transcript + ' ';
-                } else {
-                    interimTranscript += transcript;
-                }
-            }
-
-            this.finalTranscript = finalTranscript;
-            this.interimTranscript = interimTranscript;
-
-            // Update display with both final and interim results
-            const displayText = (finalTranscript + interimTranscript).trim();
-            if (displayText) {
-                this.showTranscription(displayText, !interimTranscript);
-            }
-        };
+        // Use our modified onresult handler
+        this.recognition.onresult = this.onresult.bind(this);
 
         this.recognition.onerror = (event) => {
             console.error('Speech recognition error:', event.error);
@@ -214,8 +182,6 @@ class VoiceRecorder {
     stopRecording() {
         if (this.isRecording) {
             this.isRecording = false;
-            this.stopVADMonitoring();
-            this.updateUI('processing');
 
             // Stop speech recognition
             if (this.recognition && this.speechRecognitionActive) {
@@ -228,14 +194,20 @@ class VoiceRecorder {
                 this.restartTimer = null;
             }
 
-            // Stop microphone stream
-            if (this.microphone && this.microphone.mediaStream) {
-                this.microphone.mediaStream.getTracks().forEach(track => track.stop());
+            // Clear silence timer (no longer needed)
+            if (this.silenceTimer) {
+                clearTimeout(this.silenceTimer);
+                this.silenceTimer = null;
             }
 
-            if (this.audioContext) {
-                this.audioContext.close();
+            // Stop microphone stream
+            if (this.mediaStream) {
+                this.mediaStream.getTracks().forEach(track => track.stop());
+                this.mediaStream = null;
             }
+
+            // Hide interim overlay
+            this.interimOverlay.style.display = 'none';
 
             // Process final results
             this.processTranscription();
@@ -247,173 +219,106 @@ class VoiceRecorder {
         
         if (finalText) {
             this.showTranscription(finalText, true);
-            this.status.textContent = 'Processing order...';
             
             try {
-                const user = this.getCurrentUser();
-                if (user) {
-                    await window.processVoiceOrder(user.uid, finalText);
-                    this.status.textContent = 'Order updated successfully!';
-                } else {
-                    this.status.textContent = 'Please login to process orders';
-                }
+                // Send transcription to Gemini
+                const result = await this.model.generateContent(finalText);
+                const response = result.response;
+                const geminiText = response.text();
+                
+                // Show Gemini response
+                this.showTranscription(geminiText, true);
             } catch (error) {
-                this.status.textContent = 'Error processing order';
-                console.error('Order processing error:', error);
+                console.error('Gemini API error:', error);
+                this.showError('Gemini processing failed: ' + error.message);
             }
         } else {
             this.showTranscription('(No speech detected)', true);
-            this.status.textContent = 'No speech detected';
         }
-
-        setTimeout(() => this.updateUI('idle'), 2000);
     }
 
-    getCurrentUser() {
-        const auth = firebase.auth();
-        return auth.currentUser;
-    }
+    // Simplified transcription handler with direct interim display
+    onresult = async (event) => {
+        // Clear overlay initially
+        this.interimOverlay.style.display = 'none';
 
-    startIntelligentVAD() {
-        const bufferLength = this.analyser.frequencyBinCount;
-        const dataArray = new Float32Array(bufferLength);
+        // Process all results
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+            const transcript = event.results[i][0].transcript;
+            if (event.results[i].isFinal) {
+                // Hide overlay for final text
+                this.interimOverlay.style.display = 'none';
+                
+                // Add user message to history
+                this.conversationHistory.push({
+                    speaker: 'user',
+                    text: transcript,
+                    timestamp: new Date()
+                });
 
-        this.volumeCheckInterval = setInterval(() => {
-            this.analyser.getFloatFrequencyData(dataArray);
+                // Immediately show user message
+                this.updateDisplay(transcript, null);
 
-            // Calculate spectral energy
-            const energy = this.calculateSpectralEnergy(dataArray);
+                // Process with Gemini using full conversation context
+                try {
+                    let conversationContext = this.conversationHistory.map(msg => 
+                        `${msg.speaker === 'user' ? 'User' : 'Assistant'}: ${msg.text}`
+                    ).join('\n\n');
+                    
+                    const result = await this.model.generateContent({
+                        contents: [{
+                            role: 'user',
+                            parts: [{text: `${conversationContext}\n\nUser: ${transcript}`}]
+                        }]
+                    });
+                    const response = result.response;
+                    const geminiText = response.text();
+                    
+                    // Add Gemini response to history
+                    this.conversationHistory.push({
+                        speaker: 'gemini',
+                        text: geminiText,
+                        timestamp: new Date()
+                    });
 
-            // Update energy buffer for adaptive threshold
-            this.energyBuffer.push(energy);
-            if (this.energyBuffer.length > this.bufferSize) {
-                this.energyBuffer.shift();
-            }
-
-            // Calculate baseline energy (average of buffer)
-            this.baselineEnergy = this.energyBuffer.reduce((a, b) => a + b, 0) / this.energyBuffer.length;
-
-            // Adaptive threshold based on recent energy levels
-            const energyVariance = this.calculateVariance(this.energyBuffer);
-            this.adaptiveThreshold = Math.max(
-                parseFloat(this.energyThreshold.value),
-                this.baselineEnergy + Math.sqrt(energyVariance) * 2
-            );
-
-            // Update volume bar with normalized energy
-            const volumePercent = Math.min(100, (energy / this.adaptiveThreshold) * 50);
-            this.volumeBar.style.width = volumePercent + '%';
-
-            // Voice activity detection
-            const currentTime = Date.now();
-            const wasSpeaking = this.isSpeaking;
-            this.isSpeaking = energy > this.adaptiveThreshold;
-
-            // Update VAD indicator
-            if (this.isSpeaking) {
-                this.vadLight.classList.add('active');
-                this.vadStatus.textContent = 'Voice Detected';
+                    // Update with Gemini response
+                    this.updateDisplay(null, geminiText);
+                } catch (error) {
+                    console.error('Gemini API error:', error);
+                    this.showError('Gemini processing failed: ' + error.message);
+                }
             } else {
-                this.vadLight.classList.remove('active');
-                this.vadStatus.textContent = 'Listening...';
+                // Directly show interim text in overlay
+                this.interimOverlay.textContent = transcript;
+                this.interimOverlay.style.display = 'block';
             }
-
-            // Speech start detection
-            if (this.isSpeaking && !wasSpeaking) {
-                this.speechStartTime = currentTime;
-                this.lastSpeechTime = currentTime;
-                this.status.textContent = 'Speech detected - transcribing...';
-
-                // Clear any existing silence timer
-                if (this.silenceTimer) {
-                    clearTimeout(this.silenceTimer);
-                    this.silenceTimer = null;
-                }
-            }
-
-            // Update last speech time
-            if (this.isSpeaking) {
-                this.lastSpeechTime = currentTime;
-            }
-
-            // Speech end detection with auto-stop
-            if (wasSpeaking && !this.isSpeaking && this.speechStartTime) {
-                const speechDuration = this.lastSpeechTime - this.speechStartTime;
-                const minDuration = parseInt(this.minSpeechDuration.value);
-
-                if (speechDuration >= minDuration) {
-                    this.speechStarted = true;
-                    this.status.textContent = 'Speech ended - waiting for silence...';
-
-                    // Start silence timer for auto-stop
-                    const silenceDuration = parseInt(this.silenceDuration.value);
-                    this.silenceTimer = setTimeout(() => {
-                        this.status.textContent = 'Silence confirmed - finalizing...';
-                        this.stopRecording();
-                    }, silenceDuration);
-                }
-            }
-
-            // Reset if speech resumes during silence period
-            if (this.isSpeaking && this.silenceTimer) {
-                clearTimeout(this.silenceTimer);
-                this.silenceTimer = null;
-                this.status.textContent = 'Speech resumed - transcribing...';
-            }
-
-        }, 50);
-    }
-
-    calculateSpectralEnergy(frequencyData) {
-        let energy = 0;
-        // Focus on speech frequency range (80Hz - 8kHz)
-        const minBin = Math.floor(80 * frequencyData.length / (this.audioContext.sampleRate / 2));
-        const maxBin = Math.floor(8000 * frequencyData.length / (this.audioContext.sampleRate / 2));
-
-        for (let i = minBin; i < maxBin; i++) {
-            const magnitude = Math.pow(10, frequencyData[i] / 10);
-            energy += magnitude;
         }
+    };
 
-        return energy / (maxBin - minBin);
-    }
-
-    calculateVariance(buffer) {
-        if (buffer.length < 2) return 0;
-
-        const mean = buffer.reduce((a, b) => a + b, 0) / buffer.length;
-        const variance = buffer.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / buffer.length;
-        return variance;
-    }
-
-    stopVADMonitoring() {
-        if (this.volumeCheckInterval) {
-            clearInterval(this.volumeCheckInterval);
-            this.volumeCheckInterval = null;
-        }
-
-        if (this.silenceTimer) {
-            clearTimeout(this.silenceTimer);
-            this.silenceTimer = null;
-        }
-
-        this.volumeBar.style.width = '0%';
-        this.vadLight.classList.remove('active');
-        this.vadStatus.textContent = 'Voice Activity Detection Ready';
-    }
-
-    showTranscription(text, isFinal = false) {
-        this.transcriptionText.textContent = text;
-        this.transcription.classList.remove('empty');
+    // Helper to update display from conversation history
+    updateDisplay(finalText, geminiText, isInterim = false) {
+        let formattedText = '';
         
-        // Add visual indication for interim vs final results
-        if (isFinal) {
-            this.transcriptionText.style.opacity = '1';
-            this.transcriptionText.style.fontStyle = 'normal';
-        } else {
-            this.transcriptionText.style.opacity = '0.7';
-            this.transcriptionText.style.fontStyle = 'italic';
+        // Add all conversation history in reverse order (newest first)
+        for (let i = this.conversationHistory.length - 1; i >= 0; i--) {
+            const msg = this.conversationHistory[i];
+            const divClass = msg.speaker === 'user' ? 'user-speech' : 'gemini-response';
+            formattedText += `<div class="${divClass}">${msg.text}</div>`;
         }
+
+        // Add current interim text if present
+        if (isInterim) {
+            formattedText += `<div class="interim-speech">${geminiText}</div>`;
+        }
+
+        this.transcriptionText.innerHTML = formattedText;
+        this.transcriptionText.scrollTop = 0;
+        this.transcription.classList.remove('empty');
+    }
+
+    showTranscription(text) {
+        this.transcriptionText.innerHTML = text;
+        this.transcription.classList.remove('empty');
     }
 
     hideTranscription() {
@@ -423,35 +328,24 @@ class VoiceRecorder {
         this.transcriptionText.style.fontStyle = 'normal';
     }
 
-    updateUI(state) {
-        this.micButton.className = 'mic-button';
-
-        switch (state) {
-            case 'recording':
-                this.micButton.classList.add('recording');
-                this.micButton.textContent = '⏹️';
-                this.status.textContent = 'Listening for speech...';
-                break;
-            case 'processing':
-                this.micButton.classList.add('processing');
-                this.micButton.textContent = '⏳';
-                this.status.textContent = 'Finalizing transcription...';
-                break;
-            case 'idle':
-            default:
-                this.micButton.textContent = '🎤';
-                this.status.textContent = 'Click the microphone to start';
-                break;
+    showError(message) {
+        try {
+            if (this.error && this.error.textContent !== undefined) {
+                this.error.textContent = message;
+                setTimeout(() => {
+                    if (this.error) this.error.textContent = '';
+                }, 5000);
+            }
+            console.error(message);
+        } catch (e) {
+            console.error('Error showing error message:', e);
         }
     }
 
-    showError(message) {
-        this.error.textContent = message;
-        setTimeout(() => this.error.textContent = '', 5000);
-    }
-
     clearError() {
-        this.error.textContent = '';
+        if (this.error) {
+            this.error.textContent = '';
+        }
     }
 }
 

@@ -632,7 +632,6 @@ function populateCodeCollectiveEvents(events) {
   const container = document.getElementById('code-collective-events-container');
   if (!container) return;
 
-  // Filter events that have "code-collective" in the URL
   const codeCollectiveEvents = events.filter(event =>
     event.url && event.url.includes('code-collective')
   );
@@ -642,11 +641,12 @@ function populateCodeCollectiveEvents(events) {
     return;
   }
 
-  // Sort events by start date
   codeCollectiveEvents.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
 
-  // Generate HTML for each event
-  const eventsHTML = codeCollectiveEvents.map((event, index) => {
+  // Clear container and build with DOM methods
+  container.innerHTML = '';
+
+  codeCollectiveEvents.forEach((event, index) => {
     const startDate = new Date(event.startDate);
     const formattedDate = startDate.toLocaleDateString('en-US', {
       weekday: 'long',
@@ -660,59 +660,95 @@ function populateCodeCollectiveEvents(events) {
       hour12: true
     });
 
-    // Convert markdown description to HTML if marked library is available
-    let description = event.description || '';
-    if (window.marked && description) {
-      description = marked.parse(description);
-    } else {
-      // Simple fallback for basic markdown
-      description = description
-        .replace(/\*\*(.*?)\*\*/g, '$1')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/\n/g, '<br>');
+    // Create elements with DOM methods (prevents formatting issues)
+    const eventCard = document.createElement('div');
+    eventCard.className = 'cc-event-card';
+
+    const eventLink = document.createElement('a');
+    eventLink.href = event.url;
+    eventLink.className = 'cc-event-card-link';
+    eventLink.target = '_blank';
+    eventLink.rel = 'noopener noreferrer';
+
+    // Add image if available
+    if (event.imageUrl) {
+      const img = document.createElement('img');
+      img.src = event.imageUrl;
+      img.alt = event.name;
+      img.className = 'event-card-image';
+      img.loading = 'lazy';
+      eventLink.appendChild(img);
     }
 
-    // Create truncated version (first 2-3 lines approximately)
-    const words = description.split(' ');
-    const truncateLength = 30; // Adjust as needed
-    const truncatedDescription = words.length > truncateLength
-      ? words.slice(0, truncateLength).join(' ') + '...'
-      : description;
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'cc-event-card-content';
 
-    const needsTruncation = words.length > truncateLength;
+    const title = document.createElement('h3');
+    title.className = 'cc-event-card-title';
+    title.textContent = event.name; // Safe from HTML injection
+
+    const dateDiv = document.createElement('div');
+    dateDiv.className = 'cc-event-card-date';
+    dateDiv.textContent = `${formattedDate} at ${formattedTime}`;
+
+    const locationDiv = document.createElement('div');
+    locationDiv.className = 'cc-event-card-location';
+    locationDiv.textContent = event.location?.name || 'Location TBD';
+
+    const descriptionDiv = document.createElement('div');
+    descriptionDiv.className = 'cc-event-card-description';
+
+    // Handle description safely
+    let description = event.description || '';
+    
+    // Strip all HTML/markdown and just use plain text
+    description = description
+      .replace(/<[^>]*>/g, '') // Remove all HTML tags
+      .replace(/\*\*(.*?)\*\*/g, '$1') // Remove markdown bold
+      .replace(/\*(.*?)\*/g, '$1') // Remove markdown italic
+      .replace(/\n+/g, ' ') // Replace newlines with spaces
+      .trim();
+
+    const truncatedDescription = description.length > 200 
+      ? description.substring(0, 200) + '...' 
+      : description;
+    
+    const needsTruncation = description.length > 200;
     const eventId = `event-${index}`;
 
-    const locationText = event.location?.name || 'Location TBD';
+    const shortDesc = document.createElement('div');
+    shortDesc.id = `${eventId}-short`;
+    shortDesc.textContent = truncatedDescription; // Safe from HTML injection
+    if (!needsTruncation) shortDesc.style.display = 'block';
 
-    return `
-      <div class="cc-event-card">
-        <a href="${event.url}" class="cc-event-card-link" target="_blank" rel="noopener noreferrer">
+    descriptionDiv.appendChild(shortDesc);
 
-        ${event.imageUrl ? `<img src="${event.imageUrl}" alt="${event.name}" class="event-card-image" loading="lazy">` : ''}
-        <div class="cc-event-card-content">
-          <h3 class="cc-event-card-title">${event.name}</h3>
-          <div class="cc-event-card-date">${formattedDate} at ${formattedTime}</div>
-          <div class="cc-event-card-location">${locationText}</div>
-          <div class="cc-event-card-description">
-            <div id="${eventId}-short" ${needsTruncation ? '' : 'style="display: block;"'}>
-              ${truncatedDescription}
-            </div>
-            ${needsTruncation ? `
-              <div id="${eventId}-full" style="display: none;">
-                ${description}
-              </div>
-              <button type="button" class="cc-show-more-btn" onclick="toggleDescription('${eventId}')" id="${eventId}-btn">
-                Show more
-              </button>
-            ` : ''}
-          </div>
-        </div>
-      </a>
-      </div>
-    `;
-  }).join('');
+    if (needsTruncation) {
+      const fullDesc = document.createElement('div');
+      fullDesc.id = `${eventId}-full`;
+      fullDesc.style.display = 'none';
+      fullDesc.textContent = description; // Safe from HTML injection
 
-  container.innerHTML = eventsHTML;
+      const showMoreBtn = document.createElement('button');
+      showMoreBtn.type = 'button';
+      showMoreBtn.className = 'cc-show-more-btn';
+      showMoreBtn.id = `${eventId}-btn`;
+      showMoreBtn.textContent = 'Show more';
+      showMoreBtn.onclick = () => toggleDescription(eventId);
+
+      descriptionDiv.appendChild(fullDesc);
+      descriptionDiv.appendChild(showMoreBtn);
+    }
+
+    // Assemble the card
+    contentDiv.appendChild(title);
+    contentDiv.appendChild(dateDiv);
+    contentDiv.appendChild(locationDiv);
+    contentDiv.appendChild(descriptionDiv);
+    eventLink.appendChild(contentDiv);
+    eventCard.appendChild(eventLink);
+    container.appendChild(eventCard);
+  });
 }
 
 // Toggle function for show more/less
