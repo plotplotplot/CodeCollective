@@ -49,10 +49,6 @@ class VoiceRecorder {
     initializeElements() {
         this.status = document.getElementById('status');
         // Hardcoded values
-        this.silenceDuration = { value: 2000 };
-        this.language = { value: '' }; // Auto-detect
-        this.task = { value: 'transcribe' };
-        this.endpoint = { value: 'https://whisper.app.codecollective.us/asr' };
         this.error = document.getElementById('error');
         this.transcription = document.getElementById('transcription');
         this.transcriptionText = document.getElementById('transcriptionText');
@@ -179,39 +175,11 @@ class VoiceRecorder {
         }, 100);
     }
 
+    // Modified to keep recognition running continuously
     stopRecording() {
-        if (this.isRecording) {
-            this.isRecording = false;
-
-            // Stop speech recognition
-            if (this.recognition && this.speechRecognitionActive) {
-                this.recognition.stop();
-            }
-
-            // Clear restart timer
-            if (this.restartTimer) {
-                clearTimeout(this.restartTimer);
-                this.restartTimer = null;
-            }
-
-            // Clear silence timer (no longer needed)
-            if (this.silenceTimer) {
-                clearTimeout(this.silenceTimer);
-                this.silenceTimer = null;
-            }
-
-            // Stop microphone stream
-            if (this.mediaStream) {
-                this.mediaStream.getTracks().forEach(track => track.stop());
-                this.mediaStream = null;
-            }
-
-            // Hide interim overlay
-            this.interimOverlay.style.display = 'none';
-
-            // Process final results
-            this.processTranscription();
-        }
+        // Just hide overlay and process any final results
+        this.interimOverlay.style.display = 'none';
+        this.processTranscription();
     }
 
     async processTranscription() {
