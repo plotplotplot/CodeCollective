@@ -1,6 +1,7 @@
 import { getAI, getGenerativeModel, GoogleAIBackend } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-ai.js";
 import { firebaseConfig } from './firebase-config.js';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import { processUserRequest, handleAction, updateOrderDisplay } from './agent.js';
 
 class VoiceRecorder {
     constructor() {
@@ -17,15 +18,6 @@ class VoiceRecorder {
         
         // Conversation history
         this.conversationHistory = [];
-
-        // Initialize Firebase AI
-        console.log('Initializing Firebase app...');
-        this.firebaseApp = initializeApp(firebaseConfig);
-        console.log('Firebase app initialized, setting up AI service...');
-        this.ai = getAI(this.firebaseApp, { backend: new GoogleAIBackend() });
-        console.log('AI service initialized, creating model...');
-        this.model = getGenerativeModel(this.ai, { model: "gemini-2.5-flash" });
-        console.log('Gemini model ready:', this.model);
 
         this.initializeElements();
         this.checkBrowserSupport();
@@ -233,24 +225,17 @@ class VoiceRecorder {
                         `${msg.speaker === 'user' ? 'User' : 'Assistant'}: ${msg.text}`
                     ).join('\n\n');
                     
-                    const result = await this.model.generateContent({
-                        contents: [{
-                            role: 'user',
-                            parts: [{text: `${conversationContext}\n\nUser: ${transcript}`}]
-                        }]
-                    });
-                    const response = result.response;
-                    const geminiText = response.text();
-                    
-                    // Add Gemini response to history
-                    this.conversationHistory.push({
-                        speaker: 'gemini',
-                        text: geminiText,
-                        timestamp: new Date()
-                    });
+                const responseText = await processUserRequest(transcript);
+                
+                // Add response to history
+                this.conversationHistory.push({
+                    speaker: 'gemini',
+                    text: responseText,
+                    timestamp: new Date()
+                });
 
-                    // Update with Gemini response
-                    this.updateDisplay(null, geminiText);
+                // Update display with response
+                this.updateDisplay(null, responseText);
                 } catch (error) {
                     console.error('Gemini API error:', error);
                     this.showError('Gemini processing failed: ' + error.message);
@@ -321,3 +306,15 @@ class VoiceRecorder {
 document.addEventListener('DOMContentLoaded', () => {
     new VoiceRecorder();
 });
+
+
+async function processConversation(parts) {
+  const result = await this.model.generateContent({
+    contents: [
+      {
+        role: "user",
+        parts: parts,
+      },
+    ],
+  });
+}
