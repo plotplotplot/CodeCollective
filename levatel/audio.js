@@ -24,11 +24,6 @@ class VoiceRecorder {
     this.speechRecognitionActive = false;
     this.lastSpeechTime = null;
 
-    // Speech synthesis
-    this.speechSynthesis = window.speechSynthesis;
-    this.currentUtterance = null;
-    this.isSpeaking = false;
-
     // Conversation history
     this.conversationHistory = [];
 
@@ -196,11 +191,6 @@ class VoiceRecorder {
     // Clear overlay initially
     this.interimOverlay.style.display = "none";
 
-    // Interrupt any ongoing speech when user starts speaking
-    if (this.isSpeaking && event.results.length > 0) {
-      this.speechSynthesis.cancel();
-    }
-
     // Process all results
     for (let i = event.resultIndex; i < event.results.length; i++) {
       const transcript = event.results[i][0].transcript;
@@ -266,39 +256,6 @@ class VoiceRecorder {
     this.transcriptionText.innerHTML = formattedText;
     this.transcriptionText.scrollTop = 0;
     this.transcription.classList.remove("empty");
-
-    // Speak the response if it's from Gemini
-    if (geminiText) {
-      this.speakResponse(geminiText);
-    }
-  }
-
-  speakResponse(text) {
-    // Cancel any ongoing speech
-    if (this.isSpeaking) {
-      this.speechSynthesis.cancel();
-    }
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 1.0;
-    utterance.pitch = 1.0;
-    utterance.volume = 1.0;
-
-    utterance.onstart = () => {
-      this.isSpeaking = true;
-    };
-
-    utterance.onend = () => {
-      this.isSpeaking = false;
-    };
-
-    utterance.onerror = (event) => {
-      console.error('SpeechSynthesis error:', event.error);
-      this.isSpeaking = false;
-    };
-
-    this.currentUtterance = utterance;
-    this.speechSynthesis.speak(utterance);
   }
 
   showTranscription(text) {
