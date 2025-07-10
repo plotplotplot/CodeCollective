@@ -102,15 +102,16 @@ export async function processUserRequest(requestText, conversationHistory = []) 
   const response = await fetch('./menu.json');
   const menu = await response.json();
   
-  // Format conversation history
+  // Format conversation history with clear speaker labels
   const historyContext = conversationHistory
     .slice(-5) // Keep last 5 exchanges
-    .map(msg => `${msg.speaker === 'user' ? 'User' : 'Assistant'}: ${msg.text}`)
+    .map(msg => `=== ${msg.speaker.toUpperCase()} ===\n${msg.text}`)
     .join('\n\n');
 
   // Update prompt with current data and history
-  const currentPrompt = `
-Conversation History:
+// Update prompt with current data and history
+const currentPrompt = `
+=== CONVERSATION HISTORY ===
 ${historyContext}
 
 Current Context:
@@ -129,13 +130,19 @@ Please respond with one of these actions:
 - POPULAR_SERVICES
 - REQUEST_CONFIRMATION
 - SUBMIT_ORDER
+- PRINT_ORDER
 
 Rules:
 1. Return only the action
 2. Use exact item names from menu
 3. Use exact service names from list
-4. Don't submit without requesting confirmation first
-5. Don't include the square brackets above`;
+4. Send REQUEST_CONFIRMATION exactly once per order flow before SUBMIT_ORDER
+5. Do not send REQUEST_CONFIRMATION more than once in a row
+6. If the user gives any form of confirmation (e.g., "submit", "okay", "buy this") after REQUEST_CONFIRMATION, respond with SUBMIT_ORDER
+7. Do not repeat or rephrase existing notes for items
+8. When using ADD_NOTE, apply it only if it adds meaningful new information not already attached to any item
+9. Don't include the square brackets above`;
+
 
   const result = await model.generateContent({
     contents: [
@@ -202,6 +209,46 @@ export async function handleAction(action) {
   }
   else if (action === 'SUBMIT_ORDER') {
     displayText = 'Order submitted successfully!';
+  }
+  else if (action === 'PRINT_ORDER') {
+    if (userOrder.length === 0) {
+      displayText = 'Your order is currently empty';
+    } else {
+      let orderText = '=== CURRENT ORDER ===\n';
+      let total = 0;
+      
+      userOrder.forEach(item => {
+        const itemName = Object.keys(item)[0];
+        const notes = item[itemName];
+        const baseName = itemName.split(' #')[0];
+        let price = '';
+        
+        // Get price from menu
+        if (menu[activeService]) {
+          for (const menuItem of menu[activeService]) {
+            if (Object.keys(menuItem)[0] === baseName) {
+              price = menuItem[baseName][1];
+              if (price !== 'Included') {
+                total += parseFloat(price.replace('$', ''));
+              }
+              break;
+            }
+          }
+        }
+
+        orderText += `- ${itemName}`;
+        if (notes) {
+          orderText += ` (${notes})`;
+        }
+        if (price) {
+          orderText += ` - ${price}`;
+        }
+        orderText += '\n';
+      });
+
+      orderText += `\nTOTAL: $${total.toFixed(2)}`;
+      displayText = orderText;
+    }
   }
   else {
     displayText = action; // Fallback to original action
