@@ -9,7 +9,10 @@ const firebaseApp = initializeApp(firebaseConfig);
 console.log('Firebase app initialized, setting up AI service...');
 const ai = getAI(firebaseApp, { backend: new GoogleAIBackend() });
 console.log('AI service initialized, creating model...');
-const model = getGenerativeModel(ai, { model: "gemini-2.5-flash" });
+//const model = getGenerativeModel(ai, { model: "gemini-2.5-flash" });
+//const model = getGenerativeModel(ai, { model: "gemini-2.0-flash-lite" });
+const model = getGenerativeModel(ai, { model: "gemini-2.5-flash-lite-preview-06-17" });
+
 console.log('Gemini model ready:', model);
 
 let userOrder = [];
@@ -30,49 +33,94 @@ let activeService = '';
 })();
 
 export function updateOrderDisplay() {
-  const orderTable = document.getElementById('orderTable');
-  if (!orderTable) return;
+  const orderContainer = document.getElementById('orderTable');
+  if (!orderContainer) return;
 
-  // Clear existing rows
-  orderTable.innerHTML = '';
-
-  // Add header row
-  const headerRow = document.createElement('tr');
-  headerRow.innerHTML = '<th>Item</th><th>Notes</th>';
-  orderTable.appendChild(headerRow);
+  // Clear existing content
+  orderContainer.innerHTML = '';
 
   // Add order items
   userOrder.forEach(item => {
-    const row = document.createElement('tr');
     const itemName = Object.keys(item)[0];
     const notes = item[itemName];
-    row.innerHTML = `<td>${itemName}</td><td>${notes}</td>`;
-    orderTable.appendChild(row);
+    const baseName = itemName.split(' #')[0]; // Remove item number
+    
+    // Find price from menu
+    let price = '';
+    if (menu[activeService]) {
+      for (const menuItem of menu[activeService]) {
+        if (Object.keys(menuItem)[0] === baseName) {
+          price = menuItem[baseName][1]; // Get price from menu
+          break;
+        }
+      }
+    }
+
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'order-item';
+    
+    itemDiv.innerHTML = `
+      <div class="order-item-name">${itemName}</div>
+      <div class="order-item-notes">${notes || 'No notes'}</div>
+      <div class="order-item-price">${price}</div>
+    `;
+    
+    orderContainer.appendChild(itemDiv);
   });
+
+  // Add total if items exist
+  if (userOrder.length > 0) {
+    const totalDiv = document.createElement('div');
+    totalDiv.className = 'order-total';
+    
+    // Calculate total
+    let total = 0;
+    userOrder.forEach(item => {
+      const itemName = Object.keys(item)[0];
+      const baseName = itemName.split(' #')[0];
+      
+      if (menu[activeService]) {
+        for (const menuItem of menu[activeService]) {
+          if (Object.keys(menuItem)[0] === baseName) {
+            const priceStr = menuItem[baseName][1];
+            if (priceStr !== 'Included') {
+              total += parseFloat(priceStr.replace('$', ''));
+            }
+            break;
+          }
+        }
+      }
+    });
+    
+    totalDiv.textContent = `Total: $${total.toFixed(2)}`;
+    orderContainer.appendChild(totalDiv);
+  }
 }
 
+export async function processUserRequest(requestText, conversationHistory = []) {
+  // Get current menu data
+  const response = await fetch('./menu.json');
+  const menu = await response.json();
+  
+  // Format conversation history
+  const historyContext = conversationHistory
+    .slice(-5) // Keep last 5 exchanges
+    .map(msg => `${msg.speaker === 'user' ? 'User' : 'Assistant'}: ${msg.text}`)
+    .join('\n\n');
 
-// Menu data is now loaded in the async IIFE at the top
+  // Update prompt with current data and history
+  const currentPrompt = `
+Conversation History:
+${historyContext}
 
-const aiActions = {
-  "CHANGE_SERVICE": "CHANGE_SERVICE SERVICENAME ; Triggered when the user wants to switch to a different restaurant or service.",
-  "POPULAR_ITEMS": "POPULAR_ITEMS ; Used when the user is hesitant or undecided — instructs the client to display the top 3 popular items from the currently active service.",
-  "POPULAR_SERVICES": "POPULAR_SERVICES ; Used when the user doesn't know which service they want — instructs the client to list popular or available services.",
-  "ADD_ITEM": "ADD_ITEM ITEMNAME, NOTE ; Adds the specified item to the user's order. Optionally include a note (e.g., 'no onions'). The client should assign a unique item number.",
-  "REMOVE_ITEM": "REMOVE_ITEM ITEMNAME #N ; Removes the specified item (with number #N) from the user's order.",
-  "ADD_NOTE": "ADD_NOTE NOTE ; Adds a note or instruction (e.g., 'extra spicy') to the last added item or to the currently selected item.",
-  "REQUEST_CONFIRMATION": "REQUEST_CONFIRMATION ; Asks the user to confirm if their order is correct and ready to be submitted.",
-  "SUBMIT_ORDER": "SUBMIT_ORDER ; Tells the client browser to submit the current order."
-};
+Current Context:
+Available services: ${availableServices.map(s => `- ${s}`).join('\n')}
+Current service: ${activeService}
+Menu items: ${JSON.stringify(menu[activeService] || [])}
 
-const prompt = `
-You help users order food. Read the user's message and pick ONE action.
+User said: "${requestText}"
 
-Available services: AVAILABLE_SERVICES_REPLACE
-Current service: ACTIVE_SERVICE_REPLACE
-Menu items: MENU_ITEMS_REPLACE
-
-ACTIONS:
+Please respond with one of these actions:
 - CHANGE_SERVICE [service name]
 - ADD_ITEM [item name], [note]
 - REMOVE_ITEM [item name] #[number]
@@ -82,26 +130,12 @@ ACTIONS:
 - REQUEST_CONFIRMATION
 - SUBMIT_ORDER
 
-RULES:
-- Return only the action
-- Use exact item names from menu
-- Use exact service names from list, NOT the form supplied by the user
-
-User said: "{user_input}"
-
-Action:`;
-
-
-export async function processUserRequest(requestText) {
-  // Get current menu data
-  const response = await fetch('./menu.json');
-  const menu = await response.json();
-  
-  // Update prompt with current data
-  const currentPrompt = prompt
-    .replace('{user_input}', requestText)
-    .replace('AVAILABLE_SERVICES_REPLACE', availableServices.map(s => `- ${s}`).join('\n'))
-    .replace('MENU_ITEMS_REPLACE', JSON.stringify(menu[activeService] || []))
+Rules:
+1. Return only the action
+2. Use exact item names from menu
+3. Use exact service names from list
+4. Don't submit without requesting confirmation first
+5. Don't include the square brackets above`;
 
   const result = await model.generateContent({
     contents: [
@@ -126,11 +160,13 @@ export async function handleAction(action) {
     const note = parts.length > 1 ? parts[1].trim() : '';
     const itemNumber = userOrder.length + 1;
     userOrder.push({ [`${itemName} #${itemNumber}`]: note });
+    updateOrderDisplay();
     displayText = `Added ${itemName} to your order`;
   } 
   else if (action.startsWith('REMOVE_ITEM')) {
     const itemKey = action.replace('REMOVE_ITEM', '').trim();
     userOrder = userOrder.filter(item => !Object.keys(item)[0].includes(itemKey));
+    updateOrderDisplay();
     displayText = `Removed ${itemKey} from your order`;
   }
   else if (action.startsWith('ADD_NOTE')) {
@@ -139,6 +175,7 @@ export async function handleAction(action) {
       const lastItem = userOrder[userOrder.length - 1];
       const key = Object.keys(lastItem)[0];
       lastItem[key] = note;
+      updateOrderDisplay();
       displayText = `Added note: ${note}`;
     }
   }

@@ -59,6 +59,12 @@
 
     <script type="module">
       import { auth, logout } from "./firebase-config.js";
+      import { updateOrderDisplay } from "./agent.js";
+      
+      // Initialize order display
+      document.addEventListener('DOMContentLoaded', () => {
+        updateOrderDisplay();
+      });
 
       // Wait for DOM to be fully loaded
       document.addEventListener('DOMContentLoaded', async () => {
@@ -259,6 +265,7 @@
       }); // End of DOMContentLoaded
     </script>
     <script type="module" src="./audio.js"></script>
+    <script type="module" src="./agent.js"></script>
     <!-- <script type="module" src="./data.js"></script> -->
   </body>
 </html>

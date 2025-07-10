@@ -471,6 +471,49 @@ h1 {
   flex-direction: column;
   gap: 20px;
   border-left: 1px solid #ccc;
+  color: white;
+}
+
+#orderTable {
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+#orderTable h3 {
+  margin: 0 0 15px 0;
+  color: white;
+  text-align: center;
+}
+
+.order-item {
+  margin: 8px 0;
+  padding: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.order-item-name {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.order-item-notes {
+  color: #aaa;
+  font-size: 0.9em;
+  margin-bottom: 4px;
+}
+
+.order-item-price {
+  text-align: right;
+  color: #ffd700;
+}
+
+.order-total {
+  margin-top: 16px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: bold;
+  text-align: right;
 }
 
 .auth-button {
