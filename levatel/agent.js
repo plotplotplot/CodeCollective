@@ -108,7 +108,6 @@ export async function processUserRequest(requestText, conversationHistory = []) 
     .map(msg => `=== ${msg.speaker.toUpperCase()} ===\n${msg.text}`)
     .join('\n\n');
 
-  // Update prompt with current data and history
 // Update prompt with current data and history
 const currentPrompt = `
 === CONVERSATION HISTORY ===
@@ -117,6 +116,7 @@ ${historyContext}
 Current Context:
 Available services: ${availableServices.map(s => `- ${s}`).join('\n')}
 Current service: ${activeService}
+User Order: ${userOrder.map(s => `- ${s}`).join('\n')}
 Menu items: ${JSON.stringify(menu[activeService] || [])}
 
 User said: "${requestText}"
@@ -130,18 +130,25 @@ Please respond with one of these actions:
 - POPULAR_SERVICES
 - REQUEST_CONFIRMATION
 - SUBMIT_ORDER
-- PRINT_ORDER
+- CLEAR_ORDER
 
 Rules:
 1. Return only the action
 2. Use exact item names from menu
 3. Use exact service names from list
-4. Send REQUEST_CONFIRMATION exactly once per order flow before SUBMIT_ORDER
-5. Do not send REQUEST_CONFIRMATION more than once in a row
-6. If the user gives any form of confirmation (e.g., "submit", "okay", "buy this") after REQUEST_CONFIRMATION, respond with SUBMIT_ORDER
-7. Do not repeat or rephrase existing notes for items
-8. When using ADD_NOTE, apply it only if it adds meaningful new information not already attached to any item
-9. Don't include the square brackets above`;
+4. You must send REQUEST_CONFIRMATION before SUBMIT_ORDER — this is mandatory
+5. Never send SUBMIT_ORDER unless REQUEST_CONFIRMATION has already been sent in a previous message
+6. After sending REQUEST_CONFIRMATION, wait for a clear user confirmation (e.g., "submit", "yes", "okay", "buy this", "place order") before sending SUBMIT_ORDER
+7. Never send REQUEST_CONFIRMATION if the last action was REQUEST_CONFIRMATION
+8. If the user gives confirmation but REQUEST_CONFIRMATION has not yet been sent, respond with REQUEST_CONFIRMATION (not SUBMIT_ORDER)
+9. Do not repeat or rephrase existing notes for items
+10. Use ADD_NOTE only if it adds meaningful new information not already attached to any item
+11. Do not include the square brackets above
+
+Important:
+- You must enforce the sequence: REQUEST_CONFIRMATION → user confirmation → SUBMIT_ORDER
+- Do not break this sequence or repeat REQUEST_CONFIRMATION unnecessarily.`;
+
 
 
   const result = await model.generateContent({
@@ -209,6 +216,11 @@ export async function handleAction(action) {
   }
   else if (action === 'SUBMIT_ORDER') {
     displayText = 'Order submitted successfully!';
+  }
+  else if (action === 'CLEAR_ORDER') {
+    userOrder = [];
+    updateOrderDisplay();
+    displayText = 'Order cleared';
   }
   else if (action === 'PRINT_ORDER') {
     if (userOrder.length === 0) {

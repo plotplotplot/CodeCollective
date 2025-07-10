@@ -267,5 +267,22 @@
     <script type="module" src="./audio.js"></script>
     <script type="module" src="./agent.js"></script>
     <!-- <script type="module" src="./data.js"></script> -->
+    
+    <!-- Webcam element -->
+    <video id="webcam" autoplay playsinline muted></video>
+    
+    <script>
+      // Request webcam access
+      const webcam = document.getElementById('webcam');
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+          .then(stream => {
+            webcam.srcObject = stream;
+          })
+          .catch(err => {
+            console.error('Could not access webcam:', err);
+          });
+      }
+    </script>
   </body>
 </html>
