@@ -1,6 +1,6 @@
 // Firebase configuration and auth
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-import { getAuth, signOut, onAuthStateChanged, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, linkWithCredential, EmailAuthProvider, fetchSignInMethodsForEmail } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+import { getAuth, signOut, onAuthStateChanged, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, signInWithRedirect, linkWithCredential, EmailAuthProvider, fetchSignInMethodsForEmail } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 // Add GitHub OAuth scope
@@ -27,8 +27,8 @@ export const auth = getAuth(app);
 
 // Unified auth state handler
 onAuthStateChanged(auth, (user) => {
-    const loginContainer = document.getElementById('loginContainer');
-    const body = document.getElementById('body');
+    const loginContainer = document.querySelector('.login-container');
+    const body = document.body;
 
     if (user) {
         // User is logged in - hide login and show app
@@ -80,13 +80,26 @@ export const logout = async () => {
 };
 
 
-// Unified auth handler
+// Unified auth handler with popup fallback
 async function handleAuthSignIn(provider, errorProvider) {
     try {
         console.log("Attempting sign-in with provider:", provider.providerId);
-        const result = await signInWithPopup(auth, provider);
-        console.log("Sign-in successful, redirecting...");
-        window.location.href = "index.html";
+        
+        // First try popup method
+        try {
+            const result = await signInWithPopup(auth, provider);
+            console.log("Popup sign-in successful, redirecting...");
+            window.location.href = "index.html";
+            return;
+        } catch (popupError) {
+            console.log("Popup failed, trying redirect:", popupError);
+            if (popupError.code === 'auth/popup-blocked' || popupError.code === 'auth/popup-closed-by-user') {
+                // Fallback to redirect if popup is blocked or closed
+                await signInWithRedirect(auth, provider);
+                return;
+            }
+            throw popupError; // Re-throw other errors
+        }
     } catch (error) {
         console.error("Full auth error:", error);
         if (error.code === 'auth/account-exists-with-different-credential') {
@@ -133,21 +146,54 @@ async function handleAuthSignIn(provider, errorProvider) {
     }
 }
 
-// Handle auth button clicks
+// Handle auth button clicks and add alternative methods
 document.addEventListener('DOMContentLoaded', () => {
+    // Add popup blocker warning
+    const popupWarning = document.createElement('div');
+    popupWarning.className = 'popup-warning hidden';
+    popupWarning.innerHTML = `
+        <p>Popup blocked! Please allow popups for this site or use the redirect method below.</p>
+        <button class="auth-button redirect-button">Sign in with Redirect</button>
+    `;
+    document.querySelector('.login-box')?.appendChild(popupWarning);
+
     // Google sign-in
     const googleSignInBtn = document.getElementById('googleSignIn');
     if (googleSignInBtn) {
-        googleSignInBtn.addEventListener('click', () => {
-            handleAuthSignIn(googleProvider, GoogleAuthProvider);
+        googleSignInBtn.addEventListener('click', async () => {
+            try {
+                await handleAuthSignIn(googleProvider, GoogleAuthProvider);
+            } catch (error) {
+                if (error.code === 'auth/popup-blocked') {
+                    document.querySelector('.popup-warning').classList.remove('hidden');
+                }
+                console.error("Google sign-in error:", error);
+            }
         });
     }
 
     // GitHub sign-in
     const githubSignInBtn = document.getElementById('githubSignIn');
     if (githubSignInBtn) {
-        githubSignInBtn.addEventListener('click', () => {
-            handleAuthSignIn(githubProvider, GithubAuthProvider);
+        githubSignInBtn.addEventListener('click', async () => {
+            try {
+                await handleAuthSignIn(githubProvider, GithubAuthProvider);
+            } catch (error) {
+                if (error.code === 'auth/popup-blocked') {
+                    document.querySelector('.popup-warning').classList.remove('hidden');
+                }
+                console.error("GitHub sign-in error:", error);
+            }
         });
     }
+
+    // Handle redirect button clicks
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('redirect-button')) {
+            const provider = e.target.closest('.popup-warning').previousElementSibling?.id === 'googleSignIn' 
+                ? googleProvider 
+                : githubProvider;
+            signInWithRedirect(auth, provider);
+        }
+    });
 });

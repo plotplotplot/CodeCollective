@@ -524,6 +524,32 @@ h1 {
   padding: 8px 16px;
 }
 
+.popup-warning {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px 0;
+  color: white;
+}
+
+.popup-warning p {
+  margin-bottom: 10px;
+}
+
+.popup-warning.hidden {
+  display: none;
+}
+
+.redirect-button {
+  background: #ff4444;
+  color: white;
+}
+
+.redirect-button:hover {
+  background: #cc0000;
+}
+
 .auth-menu-portal {
   position: fixed;
   background: white;
