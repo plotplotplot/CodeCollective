@@ -3,8 +3,9 @@ import {
   getGenerativeModel,
   GoogleAIBackend,
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-ai.js";
-import { firebaseConfig } from "./firebase-config.js";
+import { firebaseConfig, auth } from "./firebase-config.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 import {
   processUserRequest,
   handleAction,
@@ -30,12 +31,17 @@ class VoiceRecorder {
     this.initializeElements();
     this.checkBrowserSupport();
 
-    // Wait for DOM to be ready before starting
-    if (document.readyState === "complete") {
-      this.startRecording();
-    } else {
-      window.addEventListener("load", () => this.startRecording());
-    }
+    // Listen for auth state changes
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // Only start recording if user is authenticated
+        if (document.readyState === "complete") {
+          this.startRecording();
+        } else {
+          window.addEventListener("load", () => this.startRecording());
+        }
+      }
+    });
   }
 
   checkBrowserSupport() {

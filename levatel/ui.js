@@ -1,0 +1,206 @@
+
+import { auth, logout } from "./firebase-config.js";
+import { updateOrderDisplay } from "./agent.js";
+
+// Initialize order display
+document.addEventListener('DOMContentLoaded', () => {
+    updateOrderDisplay();
+});
+
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', async () => {
+    console.log("DOM loaded, setting up auth listener");
+
+    // Wait for Firebase Auth to be ready
+    await new Promise((resolve) => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            console.log("Firebase Auth ready, initial state:", user ? "logged in" : "logged out");
+            unsubscribe(); // Unsubscribe from this initial check
+            resolve();
+        });
+    });
+
+    // Portal-based dropdown implementation
+    const authToggle = document.getElementById("authToggle");
+    const authMenuPortal = document.getElementById("authMenuPortal");
+    const dropdownContainer = document.getElementById("authDropdown");
+
+    // Centralized logout handler with error handling
+    async function handleLogout() {
+        try {
+            console.log("Logout button clicked");
+
+            // Clear the dropdown first
+            authMenuPortal.innerHTML = '';
+
+            // Call the logout function
+            await logout();
+
+            console.log("Logout successful");
+
+            // Force immediate UI update
+            updateUIForLoggedOutState();
+
+        } catch (error) {
+            console.error("Logout error:", error);
+            document.getElementById("error").textContent = "Logout failed: " + error.message;
+        }
+    }
+
+    // Update UI for logged out state
+    function updateUIForLoggedOutState() {
+        const loginNavBtn = document.getElementById("loginButtonNav");
+        const authToggle = document.getElementById("authToggle");
+        const statusElement = document.getElementById("status");
+
+        console.log("Updating UI for logged out state");
+
+        if (loginNavBtn) loginNavBtn.classList.remove("hidden");
+        if (authToggle) {
+            authToggle.classList.remove("hidden");
+            authToggle.classList.add("logged-out");
+            authToggle.classList.remove("logged-in");
+        }
+        if (loginNavBtn) loginNavBtn.classList.add("visible");
+        if (authToggle) authToggle.classList.remove("visible");
+
+        if (statusElement) {
+            statusElement.textContent = "Please login to start recording";
+        }
+
+        // Clear any existing dropdown
+        authMenuPortal.innerHTML = '';
+
+        // Clear error messages
+        const errorElement = document.getElementById("error");
+        if (errorElement) errorElement.textContent = "";
+    }
+
+    // Update UI for logged in state
+    function updateUIForLoggedInState(user) {
+        const loginNavBtn = document.getElementById("loginButtonNav");
+        const authToggle = document.getElementById("authToggle");
+        const statusElement = document.getElementById("status");
+
+        console.log("Updating UI for logged in state", user);
+
+        if (loginNavBtn) loginNavBtn.classList.add("hidden");
+        if (authToggle) {
+            authToggle.classList.remove("hidden");
+            authToggle.classList.add("logged-in");
+            authToggle.classList.remove("logged-out");
+        }
+
+        // Update profile picture from Firebase
+        const profilePic = document.querySelector("#authToggle img.profile-pic");
+        if (profilePic) {
+            const photoURL = user?.photoURL ||
+                "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
+            profilePic.src = photoURL;
+            profilePic.alt = `${user?.displayName || "User"} profile picture`;
+            profilePic.onerror = () => {
+                profilePic.src = "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y";
+            };
+        }
+
+    }
+
+    function createDropdownMenu() {
+        const menu = document.createElement("div");
+        menu.className = "auth-menu-portal";
+        menu.innerHTML = `
+            <button id="accountButton" class="auth-button hidden">Account</button>
+            <button id="logoutButton" class="auth-button">Logout</button>
+          `;
+
+        // Add logout handler
+        const logoutBtn = menu.querySelector("#logoutButton");
+        if (logoutBtn) {
+            logoutBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleLogout();
+            });
+        }
+
+        return menu;
+    }
+
+    function positionDropdownMenu(menu, toggle) {
+        const rect = toggle.getBoundingClientRect();
+        menu.style.top = `${rect.bottom + window.scrollY + 8}px`;
+        menu.style.right = `${window.innerWidth - rect.right}px`;
+    }
+
+    // Toggle dropdown or redirect to login
+    authToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        if (authToggle.classList.contains('logged-out')) {
+            // Redirect to login when in logged-out state
+            window.location.href = "login.html";
+        } else {
+            // Show dropdown when logged in
+            if (authMenuPortal.children.length > 0) {
+                authMenuPortal.innerHTML = '';
+            } else {
+                const menu = createDropdownMenu();
+                positionDropdownMenu(menu, authToggle);
+                authMenuPortal.appendChild(menu);
+                setTimeout(() => menu.classList.add('visible'), 10);
+            }
+        }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (e) => {
+        if (!dropdownContainer.contains(e.target)) {
+            const menu = document.querySelector(".auth-menu-portal");
+            if (menu) {
+                menu.classList.remove("visible");
+                setTimeout(() => {
+                    if (menu.parentNode) {
+                        menu.remove();
+                    }
+                }, 200);
+            }
+        }
+    });
+
+    // Set initial UI state based on current user
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+        console.log("Current user found immediately:", currentUser);
+        updateUIForLoggedInState(currentUser);
+    } else {
+        console.log("No current user found, showing login state");
+        updateUIForLoggedOutState();
+    }
+
+    // Update UI based on auth state changes
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+        console.log("Auth state changed:", user ? "logged in" : "logged out", user);
+
+        if (user) {
+            // User is logged in
+            updateUIForLoggedInState(user);
+        } else {
+            // User is logged out
+            updateUIForLoggedOutState();
+        }
+
+        // Add login button event listener (only when logged out)
+        if (!user) {
+            const loginNavBtn = document.getElementById("loginButtonNav");
+            if (loginNavBtn) {
+                // Remove any existing listeners to avoid duplicates
+                loginNavBtn.replaceWith(loginNavBtn.cloneNode(true));
+                const newLoginNavBtn = document.getElementById("loginButtonNav");
+                newLoginNavBtn.addEventListener("click", () => {
+                    window.location.href = "login.html";
+                });
+            }
+        }
+    });
+
+}); // End of DOMContentLoaded
