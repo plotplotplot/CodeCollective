@@ -17,7 +17,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://codecollective.us/" />
   <meta property="og:site_name" content="Code Collective" />
-  <meta property="og:title" content="Code Collective | Baltimore Tech Events Calendar" />
+  <meta property="og:title" content="Code Collective | Organizing Tech Labor" />
   <meta property="og:description"
     content="Organizing tech labor in Baltimore and sharing a community-wide tech events calendar." />
 
@@ -25,107 +25,135 @@
   <link rel="icon" href="/images/favicons/favicon.png" />
 
   <link rel="preload" href="/css/master.css" as="style">
-  <link rel="preload" href="/css/calendar.css" as="style">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/css/master.css" />
-  <link rel="stylesheet" href="/css/calendar.css" />
+  <link rel="stylesheet" href="/css/carousel.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Scripts -->
-  <script>
-
-    // Generic image prefetching function
-    function prefetchImages(urls) {
-      if (!window.Promise || !window.fetch) return; // Skip if browser doesn't support
-
-      urls.forEach(url => {
-        // Create link preload for important above-the-fold images
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'image';
-        link.href = url;
-        document.head.appendChild(link);
-
-        // Fetch all images to cache them
-        fetch(url, {
-          mode: 'no-cors',
-          cache: 'force-cache'
-        }).catch(() => { }); // Silent fail is okay for prefetch
-      });
-    }
-
-    // First, prefetch all critical static images
-    prefetchImages([
-      '/images/favicons/favicon.png',
-      '/images/WhatsApp.svg.webp',
-      '/images/github_icon.png',
-      // Add other static images used by your UI
-    ]);
-
-  </script>
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Code Collective",
-    "url": "https://codecollective.us",
-    "description": "Organizing tech labor and maintaining a Baltimore tech events calendar.",
-    "location": {
-      "@type": "Place",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Baltimore",
-        "addressRegion": "MD",
-        "addressCountry": "US"
-      }
-    }
-  }
-  </script>
 </head>
 
 <body id="body">
   <video id="bg-video" autoplay loop muted playsinline>
-  <source src="/videos/baltimorenight_15s_crossfaded.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+    <source src="/videos/baltimorenight_15s_crossfaded.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 
 
   <nav class="main-nav" aria-label="Main Navigation">
     <div class="navbar dark-mode">
       <a href="/#main">Home</a>
       <a href="/balticonomy/">Balticonomy</a>
-      <a href="/#get-involved">Join Us</a>
+      <a href="/calendar.html">Calendar</a>
       <a href="/#about-us">About Us</a>
     </div>
   </nav>
 
   <main id="wrapper" class="longform dark-mode" style="padding: 0; margin: 0;">
     <section id="main" class="longform dark-mode" style="padding: 0; margin: 0;">
-      <header class="header-container" style="text-align: center; padding: 20px 0;">
-        <p style="margin-bottom: 8px; font-size: 1.2rem;">Code Collective brings you</p>
-        <h1 style="margin: 10px 0; font-size: 2.5rem;">A Baltimore Techonomics Calendar</h1>
-        <p style="margin-top: 8px; font-size: 1.1rem;">A unified calendar of tech events from Baltimore area meetup
-        <p style="margin-top: 8px; font-size: 1.1rem;">Also see our <a href="/balticonomy/">interactive index of BMSA Tech Groups</a>
-          </p>
-          <a href="https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/baltimore_tech_events.ics"
-          class="download-button" target="_blank" rel="noopener noreferrer">
-          <i class="fas fa-calendar-alt" aria-hidden="true"></i> Add to Google Calendar
-        </a>
-      </header>
+      <section class="about-us" id="about-us" aria-label="About Code Collective">
+        
+      <img src="/images/version_control_basic/version_control_code_collective.webp">
+      <h2>Workforce Development</h2>
+      <p>The free <strong>Version Control Basic Proficiency</strong> exists to promote collaboration among coders and
+        artists of the Baltimore Metropolis. Learning Version Control will enable you to collaborate effectively with
+        others to develop quality products quickly. We hope that it will lay the groundwork for a high-tech local
+        economy where talented folks can make use of their skills.</p>
 
-      <div class="container">
-        <section class="calendar-container" aria-label="Baltimore Tech Events Calendar">
-          <div id="loading" aria-live="polite">
-            <i class="fas fa-spinner fa-spin"></i> Loading calendar events...
+      <h2>Motivation</h2>
+      <p>The USA is still the land of the free. However when it comes to employment in the Baltimore Metropolis, it can
+        feel more like a military dictatorship. Far from representing a free market, the USA looks more akin to
+        Keynesian labor on life-support. Code Collective exists to promote peaceful occupations for our people and the
+        formation of an independent local economy. We do so through community organizing, workforce development,
+        economic branding, and political advocacy.</p>
+
+      <h2>Community Organizing</h2>
+        
+      <div class="carousel-container">
+          <div class="carousel">
+              <div class="carousel-track" id="carouselTrack">
+                  <div class="carousel-slide">
+                      <img src="/images/tech_unity/hero.jpeg" alt="Hero Image">
+                  </div>
+                  <div class="carousel-slide">
+                      <img src="/images/tech_unity/chicken.jpeg" alt="Chicken Image">
+                  </div>
+                  <div class="carousel-slide">
+                      <img src="/images/tech_unity/pauleliot.jpeg" alt="Hero Image">
+                  </div>
+                  <div class="carousel-slide">
+                      <img src="/images/tech_unity/juliantony.jpeg" alt="Chicken Image">
+                  </div>
+                  <div class="carousel-slide">
+                      <img src="/images/tech_unity/techunity.jpg" alt="Chicken Image">
+                  </div>
+                  <div class="carousel-slide">
+                      <img src="/images/tech_unity/techunityshade.jpeg" alt="Chicken Image">
+                  </div>
+
+                  <!-- Duplicate slides for seamless loop -->
+                  <div class="carousel-slide">
+                      <div class="demo-image">Hero Image</div>
+                  </div>
+                  <div class="carousel-slide">
+                      <div class="demo-image">Chicken Image</div>
+                  </div>
+                  <div class="carousel-slide">
+                      <div class="demo-image">Paul & Eliot</div>
+                  </div>
+                  <div class="carousel-slide">
+                      <div class="demo-image">Julian & Tony</div>
+                  </div>
+                  <div class="carousel-slide">
+                      <img src="/images/tech_unity/techunity.jpg" alt="Chicken Image">
+                  </div>
+                  <div class="carousel-slide">
+                      <img src="/images/tech_unity/techunityshade.jpeg" alt="Chicken Image">
+                  </div>
+              </div>
+              
+              <!-- Speed control zones -->
+              <div class="speed-zone left" id="leftZone"></div>
+              <div class="speed-zone right" id="rightZone"></div>
           </div>
-          <div id="calendar"></div>
-        </section>
       </div>
+      
+      <p></p><a href="/newsletter/techunity2025.html"><strong>Tech Unity</strong></a> was a first-of-its-kind cookout designed to unite the forces of the Baltimore
+        Metropolitan Tech Economy on June 28th, 2025.</p>
 
+      <h1>Code Collective</h1>
+        <img src = "/images/general_encircled_banner.webp">
+      <h2>Economic Branding</h2>
+      <p>We want the people of Baltimore Metropolis to be seen for what they are: Authentic, Virtuous, Peaceful, and
+        Capable. Masters of logistics, we boast one of the most valuable maritime ports in the world. Our city is a
+        significant contributor to global understanding of health. And we possess a well-organized high-tech workforce
+        capable in the areas of gaming, silicon design, engineering, and – as circumstance may occasion – the tools of
+        modern warfare. We present the following as the flag of the Baltimore Metropolis, representing our peaceful
+        strengths:</p>
+        <p></p>
+        <img src="/images/tech_unity/flag.png" style="border-radius: 1rem;">
+
+      <h2>Advocacy</h2>
+      <p>Our people are experiencing degraded employment in terms of wages and peaceful end-goals. These issues stem
+        from a deficiency in labor organization, an excess in federal military spending, absurd medical costs for all
+        employers, automation, structural unemployment, and mass offshoring of labor to foreign countries. To address
+        these concerns Code Collective holds the following positions:</p>
+
+      <ol>
+        <li>Issue Universal Basic Income (UBI) to reduce the curse of surplus labor</li>
+        <li>End the relationship between employment and medical insurance</li>
+        <li>Combat corruption in medicine and pharmacology</li>
+        <li>Reduce the military budget</li>
+        <li>Declassify large segments of military employment, including silicon design</li>
+        <li>Restrict federal offshoring and H1B contracting</li>
+        <li>Restrict private sector H1B contracting</li>
+        <li>Update K-12 and College curriculums for relevance</li>
+        <li>Eliminate or degrade federal standardized testing</li>
+        <li>Establish and support efficient food-distribution centers for all people</li>
+      </ol>
+      </section>
 
       <h1 style="margin: 10px 0; font-size: 4vw; text-align: center">Code Collective Events</h1>
       <section class="code-collective-events" aria-label="Code Collective Events">
@@ -136,49 +164,6 @@
 
       <section class="about-us" id="about-us" aria-label="About Code Collective">
 
-        <h1>About Us</h1>
-        <div class="logo" , class="dark-mode">
-          <img src="images/codecollective.png" alt="Code Colletive" class="img-fluid" />
-        </div>
-        <h1>A Call to Virtue</h1>
-        <p>
-          Technology is essential in the current economy. Code Collective exists to empower
-          virtuous technologists to create a better economy.
-        </p>
-        <h1 align="right">The Voice of Baltimore's Best Technologists</h1>
-        <p>
-          Code Collective empowers local technologists through
-          educational workshops, community-driven meetups, and advocacy
-          for change in the economy. By reforming labor and incentive systems,
-          we strengthen the institutions around us.
-          Our approach combines necessary skills teaching with collective decision making,
-          thereby creating an economy that works for the people.
-        </p>
-        <h1>Empowered Tech Labor</h1>
-        <p>
-          The hiring process of today is broken. Companies spend significant
-          resources finding employees, but still seem to hire the wrong
-          people. Code Collective aims to improve the hiring pipeline
-          by evaluating candidates in real development environments
-          before recommending them to employers. With a deeper
-          understanding of the current tech landscape, we offer a practical approach to hiring where others have failed.
-        </p>
-        <h1 align="right">Influential Projects</h1>
-        <p>
-          At Code Collective, we tackle a diverse range of projects that
-          bridge technology and real-world impact. There are two major
-          projects underway; the Arkavo Secure Communications platform and Baltimore ASI
-          (Artificial Super Intelligence). These projects are both
-          a means to develop local technologists and of monumental importance
-          in themselves.
-        </p>
-        <br />
-        <p>
-          Code Collective is a cybernetic syncretism emphasizing professionalism
-          in Computer Science. The org is currently guided by the unofficial
-          <a href="/constitution.html">Constitution and Bylaws</a>
-        </p>
-        <br />
         <h1>Organizers</h1>
         <div class="card">
           <div class="imageBox">
@@ -226,7 +211,10 @@
       </section>
     </section>
 
-    <script src="/js/calendar.js"></script>
+    <script src="/js/populateEvents.js"></script>
+    <script src="/js/carousel.js"></script>
+      
+    
     </section>
 
   </main>

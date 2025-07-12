@@ -1108,14 +1108,15 @@ button:focus {
   background-color: #004d40;
 }
 .about-us {
-  margin: 0 0.5rem; /* Small side margins on mobile */
+  margin: 2rem 0.5rem; /* Small side margins on mobile */
   background-color: #002a61;
   padding: 1rem 0;
+  border-radius: 3rem;
 }
 
 @media (min-width: 768px) {
   .about-us {
-    margin: 0 auto;       /* Center it horizontally */
+    margin: 2rem  auto;       /* Center it horizontally */
     max-width: 800px;     /* Limit width on desktop */
     padding: 2rem 1rem;   /* Add more padding on desktop */
   }
