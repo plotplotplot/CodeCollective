@@ -17,7 +17,8 @@ sources = {
         "https://www.meetup.com/baltimore-ux-meetup/",
         "https://www.meetup.com/baltomsdn/",
         "https://www.meetup.com/pitch-labs/",
-        "https://www.meetup.com/Baltimore-Hackerspace/"
+        "https://www.meetup.com/Baltimore-Hackerspace/",
+        "https://www.meetup.com/maryland-red-hat-user-group/"
     ],
     "Eventbrite":[
         "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
