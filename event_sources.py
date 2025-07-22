@@ -51,6 +51,10 @@ sources = {
         "https://lu.ma/user/web3dc"
     ],
     "Luma Users":[
-        "https://api.lu.ma/user/profile/events-hosting"
+        #"https://api.lu.ma/user/profile/events-hosting"
+        "usr-tYdFPQYBiZY4T6B"
     ],
+    "Google Forms":[
+        "http://docs.google.com/forms/d/e/1FAIpQLSfAHwexta7vxLto1xmvBxFNawicAUtRrjTKqN0jHs25RjLCQg/viewform"
+    ]
 }

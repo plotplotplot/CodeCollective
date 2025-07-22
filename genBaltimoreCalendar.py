@@ -8,6 +8,7 @@ import scrape_ics
 import scrape_starTUp
 import scrape_jhuapl
 import scrape_big
+import scrape_gform
 import scrape_luma_orgpage
 import scrape_luma_user
 import json
@@ -369,6 +370,14 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"Error fetching Luma events from {LUMA_URL}: {e}")
 
+
+    for URL in sources.get("Google Forms", []):
+        print(f"Fetching events from {URL}")
+        try:
+            newEvents += scrape_gform.scrape(URL)
+        except Exception as e:
+            print(f"Error fetching calendar events: {e}")
+
     gbc_events = scrape_gbc.scrape_gbc_events()
     newEvents += gbc_events
 
@@ -438,6 +447,8 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
 
+    invalid_events = []
+
     # Download images for each event
     for event in newEvents:
         # Download images if available
@@ -496,6 +507,8 @@ if __name__ == "__main__":
         startDate = event.get("startDate")
         if not startDate:
             print(f'{event.get("name")} missing startdate ')
+            event["invalid_reason"] = 'missing startdate'
+            invalid_events += [event]
             continue
 
         startDateTime = parse(event["startDate"])
@@ -505,11 +518,15 @@ if __name__ == "__main__":
             and "unity" not in event.get("name", "").lower()
         ):
             print(f"Skipping event on June 28, 2025: {event['name']}")
+            event["invalid_reason"] = 'UNITY CONFLICT'
+            invalid_events += [event]
             continue
 
         if startDateTime > midnight_today:
-            nonerror_newevents = [event] + nonerror_newevents
+            nonerror_newevents += [event]
         else:
+            event["invalid_reason"] = 'Already happened'
+            invalid_events += [event]
             print(f'{event.get("name")} already happened ')
 
         if "Casual Coding" in event.get("name", ""):
@@ -544,7 +561,6 @@ if __name__ == "__main__":
             total_events += [event]
 
     total_events += existing_events_in_file
-
     # --- PHASE 1: Process NON-RECURRING events first ---
     for event in total_events:
         # Skip recurring events in first pass
@@ -559,6 +575,8 @@ if __name__ == "__main__":
         try:
             event_date = parse(event.get("startDate", "")).date()
         except:
+            event["invalid_reason"] = "Bad startdate"
+            invalid_events += [event]
             continue  # Skip if invalid date
 
         event_sig = get_event_signature(event)
@@ -575,8 +593,13 @@ if __name__ == "__main__":
                     existing_event
                 ) != get_event_signature_strict(event):
                     # Content changed - replace the event
+                    existing_event["invalid_reason"] = "Replaced by more recent event"
+                    invalid_events += [existing_event]
                     unique_events.remove(existing_event)
                     unique_events.append(event)
+            else:
+                event["invalid_reason"] = "Already exists with same signature and earlier scrapedate"
+                invalid_events += [event]
             continue
 
         # If not a duplicate, add it
@@ -594,6 +617,8 @@ if __name__ == "__main__":
             continue
 
         if "Member Meeting" in event.get("name"):
+            event["invalid_reason"] = "Member meeting"
+            invalid_events += [event]
             continue
 
         event_name = event.get("name", "").strip().lower()
@@ -607,6 +632,8 @@ if __name__ == "__main__":
         try:
             event_date = parse(event_start).date()
         except:
+            event["invalid_reason"] = "Invalid date"
+            invalid_events += [event]
             continue  # Skip if invalid date
 
         event_sig = get_event_signature(event)
@@ -617,6 +644,9 @@ if __name__ == "__main__":
         if event_date not in date_occupied and event_sig not in unique_event_signatures:
             unique_events.append(event)
             unique_event_signatures.add(event_sig)  # Keep this in sync
+        else:
+            event["invalid_reason"] = "Recurring event removed when non-recurring event is present"
+            invalid_events += [event]
         #    print(f"Added recurring event: {event_name} on {event_date}")
         # else:
         #    print(f"Skipping recurring event: {event_name} (conflict on {event_date})")
@@ -633,5 +663,10 @@ if __name__ == "__main__":
     with open("upcoming_events.json", "w+", encoding="utf-8") as f:
         json.dump(sorted_events, f, indent=4)
         print(f"Upcoming events saved to upcoming_events.json")
+
+    # Save upcoming events to a file
+    with open("skipped_events.json", "w+", encoding="utf-8") as f:
+        json.dump(invalid_events, f, indent=4)
+        print(f"Upcoming events saved to skipped_events.json")
 
     events_to_ics(sorted_events, output_file="baltimore_tech_events.ics")
