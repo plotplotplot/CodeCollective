@@ -7,13 +7,15 @@ import scrape_luma
 import scrape_ics
 import scrape_starTUp
 import scrape_jhuapl
+import scrape_big
+import scrape_luma_orgpage
+import scrape_luma_user
 import json
 from ics import Calendar, Event
 import datetime
 import pytz
 from bs4 import BeautifulSoup
 import re
-import scrape_luma_orgpage
 import scrape_eventbrite_org
 import markdown
 from dateutil.parser import parse
@@ -315,10 +317,7 @@ def download_image(url, filename):
 from event_sources import sources
 
 if __name__ == "__main__":
-    # read existing events from file
-    with open("./upcoming_events.json", "r") as f:
-        upcoming_events = json.loads(f.read())
-
+    newEvents = []
     # Loop through each meetup URL
     for MEETUP_URL in sources.get("Meetup", []):
         print(f"Fetching events from {MEETUP_URL}")
@@ -331,21 +330,21 @@ if __name__ == "__main__":
         upcoming_next_data = scrape_meetup.extract_next_data(upcoming_page_content)
 
         # Parse upcoming events
-        upcoming_events += scrape_meetup.parse_meetup_events(
+        newEvents += scrape_meetup.parse_meetup_events(
             upcoming_next_data, include_past=True
         )
 
     for EVENTBRITE_URL in sources.get("Eventbrite", []):
         try:
             print(f"Fetching events from {EVENTBRITE_URL}")
-            upcoming_events += scrape_eventbrite.parse_eventbrite_event(EVENTBRITE_URL)
+            newEvents += scrape_eventbrite.parse_eventbrite_event(EVENTBRITE_URL)
         except Exception as e:
             print(e)
 
     for EVENTBRITE_URL in sources.get("Eventbrite Orgs", []):
         try:
             print(f"Fetching org events from {EVENTBRITE_URL}")
-            upcoming_events += scrape_eventbrite_org.scrape_eventbrite_organizer(
+            newEvents += scrape_eventbrite_org.scrape_eventbrite_organizer(
                 EVENTBRITE_URL
             )
         except Exception as e:
@@ -353,21 +352,25 @@ if __name__ == "__main__":
 
     for JOTFORM_URL in sources.get("Jotform", []):
         print(f"Fetching events from {JOTFORM_URL}")
-        upcoming_events += [scrape_jotform.parse_jotform_event(JOTFORM_URL)]
+        newEvents += [scrape_jotform.parse_jotform_event(JOTFORM_URL)]
 
     for LUMA_URL in sources.get("Luma", []):
         print(f"Fetching events from {LUMA_URL}")
-        upcoming_events += [scrape_luma.parse_luma_event_page(LUMA_URL)]
+        newEvents += [scrape_luma.parse_luma_event_page(LUMA_URL)]
+
+    for LUMA_URL in sources.get("Luma Users", []):
+        print(f"Fetching events from {LUMA_URL}")
+        newEvents += scrape_luma_user.fetch_and_convert_luma_events(LUMA_URL)
 
     for LUMA_URL in sources.get("Luma Orgs", []):
         print(f"Fetching events from {LUMA_URL}")
         try:
-            upcoming_events += scrape_luma_orgpage.fetch_and_parse_luma_events(LUMA_URL)
+            newEvents += scrape_luma_orgpage.fetch_and_parse_luma_events(LUMA_URL)
         except Exception as e:
             print(f"Error fetching Luma events from {LUMA_URL}: {e}")
 
     gbc_events = scrape_gbc.scrape_gbc_events()
-    upcoming_events += gbc_events
+    newEvents += gbc_events
 
     # upcoming_events += scrape_equitech.scrape_equitech_tuesday()
     headers = {
@@ -375,63 +378,68 @@ if __name__ == "__main__":
     }
 
     try:
-        upcoming_events += scrape_ics.fetch_calendar_events(
+        newEvents += scrape_ics.fetch_calendar_events(
             ICS_URL="http://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics",
             imageURL="https://www.baltimorenode.org/wp-content/uploads/2013/11/node-logo.png",
             eventUrl="https://baltimorenode.org/events/",
-            preface="Node "
+            preface="Node ",
         )
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
 
     try:
-        upcoming_events += scrape_ics.fetch_calendar_events(
+        newEvents += scrape_ics.fetch_calendar_events(
             ICS_URL="https://calendar.google.com/calendar/ical/unallocatedspacehq@gmail.com/public/basic.ics",
             imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png",
             eventUrl="https://www.unallocatedspace.org/events/",
-            preface="UAS "
+            preface="UAS ",
         )
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
 
     try:
-        upcoming_events += scrape_ics.processICS(
+        newEvents += scrape_ics.processICS(
             CACHE_FILENAME="maryland-stem-festival-96ecc18ef7d.ics",
             imageURL="https://marylandstemfestival.org/wp-content/uploads/2024/06/Family-Feud-group-Pix-1-scaled-e1717876361661.jpeg",
             eventUrl="https://marylandstemfestival.org/events/month/",
-            preface="STEMFest "
+            preface="STEMFest ",
         )
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
 
     try:
-        upcoming_events += scrape_ics.fetch_calendar_events(
+        newEvents += scrape_ics.fetch_calendar_events(
             ICS_URL="https://baltimoreindiegames.com/events/list/?ical=1",
             imageURL="https://baltimoreindiegames.com/wp-content/uploads/2025/03/BIG_small.png",
             eventUrl="https://baltimoreindiegames.com/events/",
             recurring=False,
-            preface="GameDevs "
+            preface="GameDevs ",
         )
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
 
     try:
-        upcoming_events += scrape_spark.scrape_spark_events()
+        newEvents += scrape_spark.scrape_spark_events()
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
 
     try:
-        upcoming_events += scrape_starTUp.scrape_towson_events()
+        newEvents += scrape_starTUp.scrape_towson_events()
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
 
     try:
-        upcoming_events += scrape_jhuapl.scrape_jhu_events()
+        newEvents += scrape_jhuapl.scrape_jhu_events()
+    except Exception as e:
+        print(f"Error fetching calendar events: {e}")
+
+    try:
+        newEvents += scrape_big.main()
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
 
     # Download images for each event
-    for event in upcoming_events:
+    for event in newEvents:
         # Download images if available
         if "imageUrl" in event and event["imageUrl"]:
             image_url = event["imageUrl"]
@@ -479,12 +487,12 @@ if __name__ == "__main__":
                 # revert url
                 event["imageUrl"] = image_url
 
-    nonerror_upcoming_events = []
+    nonerror_newevents = []
     midnight_today = datetime.datetime.now(est_timezone).replace(
         hour=0, minute=0, second=0, microsecond=0
     )
 
-    for event in upcoming_events:
+    for event in newEvents:
         startDate = event.get("startDate")
         if not startDate:
             print(f'{event.get("name")} missing startdate ')
@@ -500,13 +508,13 @@ if __name__ == "__main__":
             continue
 
         if startDateTime > midnight_today:
-            nonerror_upcoming_events = [event] + nonerror_upcoming_events
+            nonerror_newevents = [event] + nonerror_newevents
         else:
             print(f'{event.get("name")} already happened ')
 
         if "Casual Coding" in event.get("name", ""):
             event["recurring"] = True
-    
+
     def get_event_signature_strict(event):
         e2 = event.copy()
         del e2["scrapeTime"]
@@ -518,74 +526,91 @@ if __name__ == "__main__":
         start = str(parse(event.get("startDate", "")).date())
         url = event.get("url", "").split("?")[0].lower()  # Remove query params
         location = event.get("location", {}).get("name", "").strip().lower()
-        return f"{name}||{start}"
+        return f"{name[:10]}||{start}"
 
     unique_events = []
     date_occupied = set()  # Track which dates already have events
     unique_event_signatures = set()  # Track all unique event signatures
 
+    # --- PHASE 0: mix with existing events
+    # read existing events from file
+    with open("./upcoming_events.json", "r") as f:
+        existing_events_in_file = json.loads(f.read())
+    existing_sigs = [get_event_signature(e) for e in existing_events_in_file]
+    total_events = []
+    for event in nonerror_newevents:
+        sig = get_event_signature(event)
+        if sig not in existing_sigs:
+            total_events += [event]
+
+    total_events += existing_events_in_file
+
     # --- PHASE 1: Process NON-RECURRING events first ---
-    for event in nonerror_upcoming_events:
+    for event in total_events:
         # Skip recurring events in first pass
         if event.get("recurring"):
             continue
-            
+
         # Ensure scrapeTime exists
         if not event.get("scrapeTime"):
             event["scrapeTime"] = str(datetime.datetime.now())
-        
+
         # Parse date
         try:
             event_date = parse(event.get("startDate", "")).date()
         except:
             continue  # Skip if invalid date
-            
+
         event_sig = get_event_signature(event)
-        
+
         # Check if this is a duplicate
         if event_sig in unique_event_signatures:
             # Find the existing event with this signature
-            existing_event = next((e for e in unique_events if get_event_signature(e) == event_sig), None)
+            existing_event = next(
+                (e for e in unique_events if get_event_signature(e) == event_sig), None
+            )
             if existing_event:
                 # Only update if the content has actually changed
-                if get_event_signature_strict(existing_event) != get_event_signature_strict(event):
+                if get_event_signature_strict(
+                    existing_event
+                ) != get_event_signature_strict(event):
                     # Content changed - replace the event
                     unique_events.remove(existing_event)
                     unique_events.append(event)
             continue
-        
+
         # If not a duplicate, add it
         unique_events.append(event)
         unique_event_signatures.add(event_sig)
         date_occupied.add(event_date)  # Mark this date as occupied
-        
+
     # --- PHASE 2: Process RECURRING events ---
     # Create set of signatures from UNIQUE events (not original list)
     unique_event_signatures = {get_event_signature(e) for e in unique_events}
 
-    for event in nonerror_upcoming_events:
+    for event in total_events:
         # Only process recurring events in second pass
         if not event.get("recurring"):
             continue
 
         if "Member Meeting" in event.get("name"):
             continue
-            
+
         event_name = event.get("name", "").strip().lower()
         event_start = event.get("startDate", "")
-        
+
         # Ensure scrapeTime exists
         if not event.get("scrapeTime"):
             event["scrapeTime"] = str(datetime.datetime.now())
-        
+
         # Parse date
         try:
             event_date = parse(event_start).date()
         except:
             continue  # Skip if invalid date
-            
+
         event_sig = get_event_signature(event)
-        
+
         # Only add if:
         # 1. No other event exists on this date (strict), AND
         # 2. This isn't a duplicate of any existing event
@@ -593,7 +618,7 @@ if __name__ == "__main__":
             unique_events.append(event)
             unique_event_signatures.add(event_sig)  # Keep this in sync
         #    print(f"Added recurring event: {event_name} on {event_date}")
-        #else:
+        # else:
         #    print(f"Skipping recurring event: {event_name} (conflict on {event_date})")
 
     # Sort all events by date

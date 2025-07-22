@@ -47,6 +47,10 @@ sources = {
         "https://lu.ma/civic-tech-dc",
         "https://lu.ma/calendar/cal-vzms1nGZmYUUCrj",
         "https://lu.ma/Bmore_Climate",
-        "https://lu.ma/blktechconnect"
+        "https://lu.ma/blktechconnect",
+        "https://lu.ma/user/web3dc"
+    ],
+    "Luma Users":[
+        "https://api.lu.ma/user/profile/events-hosting"
     ],
 }

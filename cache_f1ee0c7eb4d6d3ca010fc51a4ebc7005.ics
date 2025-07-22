@@ -1,6 +1,6 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Baltimore Indie Games - ECPv6.14.0//NONSGML v1.0//EN
+PRODID:-//Baltimore Indie Games - ECPv6.14.1//NONSGML v1.0//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:Baltimore Indie Games
@@ -25,45 +25,44 @@ DTSTART:20251102T060000
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20250705T100000
-DTEND;TZID=America/New_York:20250705T113000
-DTSTAMP:20250705T105520
-CREATED:20250605T190018Z
-LAST-MODIFIED:20250605T190018Z
-UID:162-1751709600-1751715000@baltimoreindiegames.com
+DTSTART;TZID=America/New_York:20250802T100000
+DTEND;TZID=America/New_York:20250802T113000
+DTSTAMP:20250721T225237
+CREATED:20250709T004239Z
+LAST-MODIFIED:20250709T004239Z
+UID:216-1754128800-1754134200@baltimoreindiegames.com
 SUMMARY:Online Meetup
 DESCRIPTION:We’re meeting on Discord! The link to join the Baltimore Indie Game Devs discord server will be in your RSVP message. \nJoin us to discuss game development\, talk shop\, and bounce ideas. Anyone with an interest in game design and development is welcome\, from beginners to veteran professionals. \nIf you’re working on a game\, you’re welcome to show it and ask for feedback. There will be plenty of time to chat and talk shop\, too.
-URL:https://baltimoreindiegames.com/event/online-meetup-3/
-LOCATION:MD
+URL:https://baltimoreindiegames.com/event/online-meetup-4/
 END:VEVENT
 BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20250710T090000
-DTEND;TZID=America/New_York:20250710T173000
-DTSTAMP:20250705T105520
-CREATED:20250624T204442Z
-LAST-MODIFIED:20250624T204442Z
-UID:186-1752138000-1752168600@baltimoreindiegames.com
-SUMMARY:Unity Industry User Day @ XR Symposium 2025
-DESCRIPTION:Unity’s Industry team is thrilled to host an Industry User Day alongside the 2025 XR Symposium at Johns Hopkins University Applied Physics Laboratory (JHUAPL) in Laurel\, MD. Free to attend and open to the public. \nEvent Highlights\nWhen: July 10\, 2025\, 9:00 AM–5:30 PM (Industry User Day)\nWhere: 11091 Johns Hopkins Rd\, Laurel\, MD 20723 \nUnity Showcase:\n– Artist focused talks on high-fidelity asset pipelines and lighting techniques\n– Advanced optimization with Unity DOTS\n– Updates on Unity 6.2\n– CAD/BIM transformation via Unity Asset Manager\, and PiXYZ workflows with Unity Cloud Automation. \nThis event is perfect for anyone passionate about XR and immersive technologies. It’s a chance to see Unity’s latest tools in action and learn how they solve complex industry problems.\nRegister here: https://on.unity.com/3HokZuM
-URL:https://baltimoreindiegames.com/event/unity-industry-user-day-xr-symposium-2025/
-LOCATION:JHU Applied Physics Lab\, 11091 Johns Hopkins Rd\, Laurel\, MD\, 20723\, United States
+DTSTART;TZID=America/New_York:20250805T180000
+DTEND;TZID=America/New_York:20250805T200000
+DTSTAMP:20250721T225237
+CREATED:20250705T154803Z
+LAST-MODIFIED:20250705T154803Z
+UID:206-1754416800-1754424000@baltimoreindiegames.com
+SUMMARY:Dev Mode
+DESCRIPTION:DevMode is a new gathering for Baltimore-based game developers\, digital artists\, creative technologists\, and tech-minded entrepreneurs to connect\, network\, and spark ideas. Whether you’re building AAA titles\, experimenting in Unreal or Unity\, or exploring how your skills might translate into the gaming space\, this is for YOU. Meet local devs\, test-play featured games\, and mingle with the talent shaping the future of interactive media in Baltimore and beyond. \nDevMode is for: \n\nGame devs\nIndie creators\nTech entrepreneurs\n3D artists & animators\nInteractive media & XR creatives\nAnyone curious about working in game dev\n\nDevMode is FREE to attend. Registration is required in advance or at the door. \nCo-presented by the SNF Parkway Theatre and Game 4 Good\, this laid-back gathering kicks off a new era of gaming-focused community events in Baltimore.
+URL:https://baltimoreindiegames.com/event/dev-mode/
+LOCATION:Parkway Theatre\, 5 W North Ave\, Baltimore\, MD\, 21201\, United States
 END:VEVENT
 BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20250719T100000
-DTEND;TZID=America/New_York:20250719T113000
-DTSTAMP:20250705T105520
-CREATED:20250605T190232Z
-LAST-MODIFIED:20250605T190232Z
-UID:161-1752919200-1752924600@baltimoreindiegames.com
-SUMMARY:In-Person/Online Meetup
-DESCRIPTION:In-person is at the Elkridge Branch Library in the Grist Mill Room. \nJoin us IN-PERSON or ONLINE. Anyone with an interest in game design and development is welcome\, from beginners to veteran professionals. \nWe will be meeting in the Marvin Thomas Room at the East Columbia Branch Library (6540 Washington Blvd\, Elkridge\, MD 21075). (Not an official Howard County Library System event.) \nIf you want to attend virtually\, the Discord server link is provided in the main monthly (1st of the month) meetup details. An organizer will ensure that a laptop is provided on-site to connect the Discord attendees with those physically on-site. It takes us a few minutes to set up the projector\, so hold tight when you join the Discord voice chat channel. We’ll be there soon!
-URL:https://baltimoreindiegames.com/event/in-person-online-meetup-2/
-LOCATION:Elkridge Branch Library\, 6540 Washington Blvd\, Elkridge\, Maryland\, 21075\, United States
+DTSTART;TZID=America/New_York:20250816T100000
+DTEND;TZID=America/New_York:20250816T113000
+DTSTAMP:20250721T225237
+CREATED:20250709T004104Z
+LAST-MODIFIED:20250711T181757Z
+UID:215-1755338400-1755343800@baltimoreindiegames.com
+SUMMARY:In-Person/Online Meetup (Version Control Certification)
+DESCRIPTION:In-person is at the East Columbia Branch Library in the Marvin Thomas Room. \nJoin us IN-PERSON or ONLINE. Anyone with an interest in game design and development is welcome\, from beginners to veteran professionals. \nJulian Coy will run a Version Control Basic Proficiency certification session from 10:30 AM – 11:30 AM. Learn how to use version control to work with teams. Great for artists and programmers alike! \nWe will be meeting in the Marvin Thomas Room at the East Columbia Branch Library (6600 Cradlerock Way\, Columbia\, MD). (Not an official Howard County Library System event.) \nIf you want to attend virtually\, the Discord server link is provided in the main monthly (1st of the month) meetup details. An organizer will ensure that a laptop is provided on-site to connect the Discord attendees with those physically on-site. It takes us a few minutes to set up the projector\, so hold tight when you join the Discord voice chat channel. We’ll be there soon!
+URL:https://baltimoreindiegames.com/event/in-person-online-meetup-4/
+LOCATION:East Columbia Branch
 END:VEVENT
 BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20250920T110000
 DTEND;TZID=America/New_York:20250920T160000
-DTSTAMP:20250705T105520
+DTSTAMP:20250721T225237
 CREATED:20250627T170825Z
 LAST-MODIFIED:20250627T170825Z
 UID:196-1758366000-1758384000@baltimoreindiegames.com
@@ -73,9 +72,20 @@ URL:https://baltimoreindiegames.com/event/game-escape-indie-showcase/
 LOCATION:Parkway Theatre\, 5 W North Ave\, Baltimore\, MD\, 21201\, United States
 END:VEVENT
 BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20251003T210000
+DTEND;TZID=America/New_York:20251005T210000
+DTSTAMP:20250721T225237
+CREATED:20250719T114459Z
+LAST-MODIFIED:20250719T114459Z
+UID:232-1759525200-1759698000@baltimoreindiegames.com
+SUMMARY:Ludum Dare 58
+DESCRIPTION:Ludum Dare is an online event where games are made from scratch in a weekend. \nBIG is planning to host an in-person site for people who want to get together in person to make games. Location details will be announced in early September. \nldjam.com | Ludum Dare game jam
+URL:https://baltimoreindiegames.com/event/ludum-dare-58/
+END:VEVENT
+BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20251114T090000
 DTEND;TZID=America/New_York:20251116T170000
-DTSTAMP:20250705T105520
+DTSTAMP:20250721T225237
 CREATED:20250329T190515Z
 LAST-MODIFIED:20250329T190515Z
 UID:110-1763110800-1763312400@baltimoreindiegames.com
