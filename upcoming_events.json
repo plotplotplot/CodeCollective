@@ -3053,5 +3053,37 @@
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
         "scrapeTime": "2025-07-25 23:51:29.529817"
+    },
+    {
+        "id": "f0448b32f34f2552",
+        "name": "UAS UAS Virtual Happy Hour",
+        "startDate": "2026-01-22T18:00:00-05:00",
+        "endTime": "2026-01-22T19:00:00-05:00",
+        "description": "Unallocated Space is hosting Happy Hour!\n\nThis is an unstructured event where we can all get together, break bread, and hang out virtually. Bring your preferred beverage, some good conversation, and let's chat!\n\nThis is a virtual event hosted over Zoom.\n\nSometimes we play DnD or Minecraft.",
+        "url": "https://www.unallocatedspace.org/events/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "https://zoom.us/j/93194733649?pwd=VHMwdHpCeUFIejFzMldTajJCcCtsZz09",
+            "address": "https://zoom.us/j/93194733649?pwd=VHMwdHpCeUFIejFzMldTajJCcCtsZz09"
+        },
+        "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
+        "recurring": true,
+        "scrapeTime": "2025-07-27 00:36:44.329412"
+    },
+    {
+        "id": "5be792fbb7cfd98c",
+        "name": "Node Open Hack",
+        "startDate": "2026-01-22T19:00:00-05:00",
+        "endTime": "2026-01-22T21:00:00-05:00",
+        "description": "",
+        "url": "https://baltimorenode.org/events/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "",
+            "address": ""
+        },
+        "imageUrl": "/event_images/Node_Open_Hack.webp",
+        "recurring": true,
+        "scrapeTime": "2025-07-27 00:36:44.328160"
     }
 ]
