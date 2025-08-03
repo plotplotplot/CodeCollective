@@ -1126,23 +1126,20 @@
         "scrapeTime": "2025-07-22 00:33:12.778380"
     },
     {
-        "id": "jlzbrtyhcmbjb",
-        "name": "Casual Coding, Chat, & Coffee",
-        "description": "Join us for an informal gathering of Python enthusiasts at ZiPani, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out, this meetup is designed for everyone who enjoys Python programming in a relaxed environment.\n\nPlan:\n\n* **Casual Coding:** Work on your personal projects, get help, or share your code with others.\n* **Open Discussion:** From Python libraries to best practices, let's talk about what's on your mind.\n* **Networking:** Meet other local Python developers, exchange ideas, and maybe find your next coding buddy or collaborator.\n\nWhy Attend?\n\n* Learn something new or share your knowledge in a friendly atmosphere.\n* Get real-time help with coding problems or brainstorm new ideas.\n* Discover local job opportunities or side projects within the Python community.\n\nNo need for formal presentations or slides; this is all about conversation and collaboration. Feel free to come and go as your schedule allows.",
-        "startDate": "2025-09-06T10:00:00-04:00",
-        "endTime": "2025-09-06T12:00:00-04:00",
-        "url": "https://www.meetup.com/python-frederick/events/jlzbrtyhcmbjb/",
+        "id": "a1a9d9eae0806048",
+        "name": "Online Meetup",
+        "startDate": "2025-09-06T10:00:00-05:00",
+        "endTime": "2025-09-06T11:30:00-05:00",
+        "description": "We\u2019re meeting on Discord! The link to join the Baltimore Indie Game Devs discord server will be in your RSVP message. Join us to discuss game development, talk shop, and bounce ideas. Anyone with an interest in game design and development is welcome, from beginners to veteran professionals. If you\u2019re working on a game, you\u2019re [\u2026]",
+        "url": "https://baltimoreindiegames.com/event/online-meetup-5/",
         "status": "ACTIVE",
         "location": {
-            "name": "ZiPani",
-            "address": "177A Thomas Johnson Drive",
-            "city": "Frederick",
-            "state": "MD",
-            "country": "us"
+            "name": "",
+            "address": ""
         },
-        "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
-        "recurring": true,
-        "scrapeTime": "2025-07-22 00:33:12.785182"
+        "imageUrl": "/event_images/Online_Meetup.webp",
+        "recurring": false,
+        "scrapeTime": "2025-08-03 00:37:18.987722"
     },
     {
         "id": "367d9682ea727ac3",
@@ -3161,5 +3158,37 @@
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
         "scrapeTime": "2025-08-02 00:32:13.170121"
+    },
+    {
+        "id": "23270ea5f759996b",
+        "name": "UAS UAS Virtual Happy Hour",
+        "startDate": "2026-01-29T18:00:00-05:00",
+        "endTime": "2026-01-29T19:00:00-05:00",
+        "description": "Unallocated Space is hosting Happy Hour!\n\nThis is an unstructured event where we can all get together, break bread, and hang out virtually. Bring your preferred beverage, some good conversation, and let's chat!\n\nThis is a virtual event hosted over Zoom.\n\nSometimes we play DnD or Minecraft.",
+        "url": "https://www.unallocatedspace.org/events/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "https://zoom.us/j/93194733649?pwd=VHMwdHpCeUFIejFzMldTajJCcCtsZz09",
+            "address": "https://zoom.us/j/93194733649?pwd=VHMwdHpCeUFIejFzMldTajJCcCtsZz09"
+        },
+        "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
+        "recurring": true,
+        "scrapeTime": "2025-08-03 00:37:19.048339"
+    },
+    {
+        "id": "906dde197ab68608",
+        "name": "Node Open Hack",
+        "startDate": "2026-01-29T19:00:00-05:00",
+        "endTime": "2026-01-29T21:00:00-05:00",
+        "description": "",
+        "url": "https://baltimorenode.org/events/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "",
+            "address": ""
+        },
+        "imageUrl": "/event_images/Node_Open_Hack.webp",
+        "recurring": true,
+        "scrapeTime": "2025-08-03 00:37:19.047090"
     }
 ]
