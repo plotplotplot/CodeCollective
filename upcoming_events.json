@@ -796,22 +796,6 @@
         "scrapeTime": "2025-07-22 00:33:12.688517"
     },
     {
-        "id": "63227256a1522c83",
-        "name": "In-Person/Online Meetup (Version Control Certification)",
-        "startDate": "2025-08-16T10:00:00-05:00",
-        "endTime": "2025-08-16T11:30:00-05:00",
-        "description": "In-person is at the\u00a0East Columbia Branch Library in the Marvin Thomas Room. Join us\u00a0IN-PERSON\u00a0or ONLINE. Anyone with an interest in game design and development is welcome, from beginners to veteran professionals. Julian Coy\u00a0will run a\u00a0Version Control Basic Proficiency\u00a0certification session from 10:30 AM \u2013 11:30 AM. Learn how to use version control to work with teams. [\u2026]",
-        "url": "https://baltimoreindiegames.com/event/in-person-online-meetup-4/",
-        "status": "ACTIVE",
-        "location": {
-            "name": "East Columbia Branch",
-            "address": "East Columbia Branch"
-        },
-        "imageUrl": "/event_images/In-Person_Online_Meetup__Version_Control_Certification_.webp",
-        "recurring": false,
-        "scrapeTime": "2025-07-22 03:16:15.390647"
-    },
-    {
         "name": "Bioeyes (for 3-6th graders)",
         "description": "Join us for BioEYES, an award-winning, hands-on, science outreach program that teaches genetics and basic life science to K-12",
         "startDate": "2025-08-18T09:00:00-0400",
@@ -1062,20 +1046,6 @@
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
         "scrapeTime": "2025-07-22 00:33:12.776619"
-    },
-    {
-        "name": "BLK Tech Mixer: VC Edition",
-        "description": "BLK Tech Mixer: VC Edition",
-        "startDate": "2025-09-03T18:00:00.000-04:00",
-        "endTime": "2025-09-03T21:00:00.000-04:00",
-        "url": "https://lu.ma/61nl0pe8",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Bar Vegan",
-            "address": "Bar Vegan, Baltimore, Maryland"
-        },
-        "imageUrl": "/event_images/BLK_Tech_Mixer__VC_Edition.webp",
-        "scrapeTime": "2025-07-30 17:58:17.373807"
     },
     {
         "name": "The Network Breakfast on Institutional & Public Procurement",
@@ -1377,22 +1347,6 @@
         "imageUrl": "/event_images/GameDevs_Game_Escape_Indie_Showcase.webp",
         "recurring": false,
         "scrapeTime": "2025-07-22 00:33:12.682741"
-    },
-    {
-        "id": "3ee9e7244f886fa8",
-        "name": "Game Escape Indie Showcase",
-        "startDate": "2025-09-20T11:00:00-04:00",
-        "endTime": "2025-09-20T16:00:00-04:00",
-        "description": "An exhibition of locally-made indie videogames. \nSubmission form: https://docs.google.com/forms/d/e/1FAIpQLSf-fI-WGcm8yRo5W9TpynQNBM8kxda1KB52lCP_VymJcOb3kw",
-        "url": "https://baltimoreindiegames.com/events/",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Parkway Theatre, 5 W North Ave, Baltimore, MD, 21201, United States",
-            "address": "Parkway Theatre, 5 W North Ave, Baltimore, MD, 21201, United States"
-        },
-        "imageUrl": "/event_images/Game_Escape_Indie_Showcase.webp",
-        "recurring": false,
-        "scrapeTime": "2025-07-05 11:08:58.731024"
     },
     {
         "id": "a51326c57f39500f",
@@ -3145,5 +3099,101 @@
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
         "scrapeTime": "2025-07-31 00:33:34.663075"
+    },
+    {
+        "id": "a230042a02f8d712f",
+        "name": "2025 Climate Tech Exchange",
+        "startDate": "2026-10-14T13:00:00-05:00",
+        "endTime": "2026-10-14T17:30:00-05:00",
+        "description": "Hosted by MCEC and our partners, the 2025 Maryland Clean Energy Summit will convene forward thinkers in policy and research, business and utility sector leaders, capital providers, and finance partners for vibrant conversations and thought-provoking presentations. Mark your calendars to attend October 14-15 at the College Park Marriott Hotel & Conference Center. for the 2025 Maryland Clean Energy Summit. Balancing Supply, Demand & Sustainability: Innovation in the Energy Marketplace",
+        "url": "https://mdeia.org/event-list",
+        "status": "ACTIVE",
+        "location": {
+            "name": "College Park Marriott Hotel & Conference Center",
+            "address": ""
+        },
+        "imageUrl": "https://img1.wsimg.com/isteam/ip/a709702a-64e2-4eda-b327-d35fead17fd4/MEIA%20with%20MCEC.png/:/rs=w:134,h:56,cg:true,m/cr=w:134,h:56/qt=q:95",
+        "recurring": true,
+        "scrapeTime": "2025-07-31 00:33:34.663075"
+    },
+        {
+        "id": "1mc-baltimore-2025-09-03",
+        "name": "1 Million Cups Baltimore",
+        "startDate": "2025-09-03T08:45:00-04:00",
+        "endTime": "2025-09-03T10:00:00-04:00",
+        "description": "Join the Baltimore chapter of 1 Million Cups for local startup presentations and community networking.",
+        "url": "https://www.1millioncups.com/s/events?community=baltimore",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Oca Mocha",
+            "address": "Maryland 21227"
+        },
+        "imageUrl": "https://www.1millioncups.com/file-asset/X1MC_Stacked_White?v=1",
+        "recurring": false,
+        "scrapeTime": "2025-08-07T00:00:00"
+    },
+    {
+        "id": "1mc-baltimore-2025-09-17",
+        "name": "1 Million Cups Baltimore",
+        "startDate": "2025-09-17T08:45:00-04:00",
+        "endTime": "2025-09-17T10:00:00-04:00",
+        "description": "Join the Baltimore chapter of 1 Million Cups for local startup presentations and community networking.",
+        "url": "https://www.1millioncups.com/s/events?community=baltimore",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Oca Mocha",
+            "address": "Maryland 21227"
+        },
+        "imageUrl": "https://www.1millioncups.com/file-asset/X1MC_Stacked_White?v=1",
+        "recurring": false,
+        "scrapeTime": "2025-08-07T00:00:00"
+    },
+    {
+        "id": "1mc-baltimore-2025-10-01",
+        "name": "1 Million Cups Baltimore",
+        "startDate": "2025-10-01T08:45:00-04:00",
+        "endTime": "2025-10-01T10:00:00-04:00",
+        "description": "Join the Baltimore chapter of 1 Million Cups for local startup presentations and community networking.",
+        "url": "https://www.1millioncups.com/s/events?community=baltimore",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Oca Mocha",
+            "address": "Maryland 21227"
+        },
+        "imageUrl": "https://www.1millioncups.com/file-asset/X1MC_Stacked_White?v=1",
+        "recurring": false,
+        "scrapeTime": "2025-08-07T00:00:00"
+    },
+    {
+        "id": "1mc-baltimore-2025-10-15",
+        "name": "1 Million Cups Baltimore",
+        "startDate": "2025-10-15T08:45:00-04:00",
+        "endTime": "2025-10-15T10:00:00-04:00",
+        "description": "Join the Baltimore chapter of 1 Million Cups for local startup presentations and community networking.",
+        "url": "https://www.1millioncups.com/s/events?community=baltimore",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Oca Mocha",
+            "address": "Maryland 21227"
+        },
+        "imageUrl": "https://www.1millioncups.com/file-asset/X1MC_Stacked_White?v=1",
+        "recurring": false,
+        "scrapeTime": "2025-08-07T00:00:00"
+    },
+    {
+        "id": "1mc-baltimore-2025-10-22",
+        "name": "1 Million Cups Baltimore",
+        "startDate": "2025-10-22T08:45:00-04:00",
+        "endTime": "2025-10-22T10:00:00-04:00",
+        "description": "Join the Baltimore chapter of 1 Million Cups for local startup presentations and community networking.",
+        "url": "https://www.1millioncups.com/s/events?community=baltimore",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Oca Mocha",
+            "address": "Maryland 21227"
+        },
+        "imageUrl": "https://www.1millioncups.com/file-asset/X1MC_Stacked_White?v=1",
+        "recurring": false,
+        "scrapeTime": "2025-08-07T00:00:00"
     }
 ]
