@@ -908,6 +908,22 @@
         "scrapeTime": "2025-07-25 00:33:17.728639"
     },
     {
+        "id": "1mc-baltimore-2025-09-03",
+        "name": "1 Million Cups Baltimore",
+        "startDate": "2025-08-20T08:45:00-04:00",
+        "endTime": "2025-08-20T10:00:00-04:00",
+        "description": "Join the Baltimore chapter of 1 Million Cups for local startup presentations and community networking.",
+        "url": "https://www.1millioncups.com/s/events?community=baltimore",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Oca Mocha",
+            "address": "Maryland 21227"
+        },
+        "imageUrl": "https://www.1millioncups.com/file-asset/X1MC_Stacked_White?v=1",
+        "recurring": false,
+        "scrapeTime": "2025-08-07T00:00:00"
+    },
+    {
         "id": "fcd8967197a4ed3c",
         "name": "Solana Summer Series #2",
         "startDate": "2025-08-20T21:30:00.000Z",
@@ -1127,22 +1143,6 @@
         },
         "imageUrl": "/event_images/Commercial_UAV_Convention_&_Expo_2025.webp",
         "scrapeTime": "2025-08-05 00:34:28.406937"
-    },
-    {
-        "id": "1mc-baltimore-2025-09-03",
-        "name": "1 Million Cups Baltimore",
-        "startDate": "2025-08-20T08:45:00-04:00",
-        "endTime": "2025-08-20T10:00:00-04:00",
-        "description": "Join the Baltimore chapter of 1 Million Cups for local startup presentations and community networking.",
-        "url": "https://www.1millioncups.com/s/events?community=baltimore",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Oca Mocha",
-            "address": "Maryland 21227"
-        },
-        "imageUrl": "https://www.1millioncups.com/file-asset/X1MC_Stacked_White?v=1",
-        "recurring": false,
-        "scrapeTime": "2025-08-07T00:00:00"
     },
     {
         "id": "1mc-baltimore-2025-09-03",
@@ -2251,36 +2251,22 @@
         "scrapeTime": "2025-07-22 00:33:12.772753"
     },
     {
-        "id": "ab67d1d44541efac",
-        "name": "UAS UAS Virtual Happy Hour",
-        "startDate": "2025-11-06T18:00:00-05:00",
-        "endTime": "2025-11-06T19:00:00-05:00",
-        "description": "Unallocated Space is hosting Happy Hour!\n\nThis is an unstructured event where we can all get together, break bread, and hang out virtually. Bring your preferred beverage, some good conversation, and let's chat!\n\nThis is a virtual event hosted over Zoom.\n\nSometimes we play DnD or Minecraft.",
-        "url": "https://www.unallocatedspace.org/events/",
+        "id": "310408648",
+        "name": "Hybrid Event: Cyber Security for Individuals, Small Businesses & Non-Profits",
+        "description": "Our very first hybrid event! Thanks to the folks at Klik Solutions, we will have our very first hybrid event -- this means you can attend either in person or on Zoom.\n\nSchedule:\n\n* 11am: arrive for those coming in person, we will have open networking & general WP Q&A from 11am - 11:30am.\n* 11:30am: presentation on cyber security.\n* 12pm: Q&A on cyber security, bring your questions!\n\nAdditional details will be coming by September.",
+        "startDate": "2025-11-06T11:00:00-05:00",
+        "endTime": "2025-11-06T12:30:00-05:00",
+        "url": "https://www.meetup.com/the-baltimore-wordpress-group/events/310408648/",
         "status": "ACTIVE",
         "location": {
-            "name": "https://zoom.us/j/93194733649?pwd=VHMwdHpCeUFIejFzMldTajJCcCtsZz09",
-            "address": "https://zoom.us/j/93194733649?pwd=VHMwdHpCeUFIejFzMldTajJCcCtsZz09"
+            "name": "Klik Solutions",
+            "address": "1000 Key Highway East",
+            "city": "Baltimore",
+            "state": "MD",
+            "country": "us"
         },
-        "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
-        "recurring": true,
-        "scrapeTime": "2025-07-22 00:33:12.779903"
-    },
-    {
-        "id": "9502e576f403c90f",
-        "name": "Node Open Hack",
-        "startDate": "2025-11-06T19:00:00-05:00",
-        "endTime": "2025-11-06T21:00:00-05:00",
-        "description": "",
-        "url": "https://baltimorenode.org/events/",
-        "status": "ACTIVE",
-        "location": {
-            "name": "",
-            "address": ""
-        },
-        "imageUrl": "/event_images/Node_Open_Hack.webp",
-        "recurring": true,
-        "scrapeTime": "2025-07-22 00:33:12.782770"
+        "imageUrl": null,
+        "scrapeTime": "2025-08-07 16:34:18.418118"
     },
     {
         "id": "4788f816384bbeb6",
