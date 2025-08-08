@@ -231,9 +231,6 @@ def main():
         print("="*50)
         print(json_output)
         
-        # Optionally save to file
-        with open('baltimore_indie_games_events.json', 'w') as f:
-            f.write(json_output)
         
         print(f"\nSuccessfully scraped {len(events)} events!")
         print("Events saved to 'baltimore_indie_games_events.json'")
@@ -241,4 +238,6 @@ def main():
         print("No events found or error occurred during scraping.")
     return events
 if __name__ == "__main__":
-    main()
+    # Optionally save to file
+    with open('baltimore_indie_games_events.json', 'w') as f:
+        f.write(scrape_baltimore_indie_games())

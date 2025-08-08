@@ -11,6 +11,7 @@ import scrape_big
 import scrape_gform
 import scrape_luma_orgpage
 import scrape_luma_user
+import scrape_bwtech
 import json
 from ics import Calendar, Event
 import datetime
@@ -433,6 +434,11 @@ if __name__ == "__main__":
         print(f"Error fetching calendar events: {e}")
 
     try:
+        newEvents += scrape_bwtech.scrape_events()
+    except Exception as e:
+        print(f"Error fetching calendar events: {e}")
+
+    try:
         newEvents += scrape_starTUp.scrape_towson_events()
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
@@ -499,9 +505,7 @@ if __name__ == "__main__":
                 event["imageUrl"] = image_url
 
     nonerror_newevents = []
-    midnight_today = datetime.datetime.now(est_timezone).replace(
-        hour=0, minute=0, second=0, microsecond=0
-    )
+    time_now = datetime.datetime.now(est_timezone)
 
     for event in newEvents:
         startDate = event.get("startDate")
@@ -522,7 +526,7 @@ if __name__ == "__main__":
             invalid_events += [event]
             continue
 
-        if startDateTime > midnight_today:
+        if startDateTime > time_now:
             nonerror_newevents += [event]
         else:
             event["invalid_reason"] = 'Already happened'
@@ -542,7 +546,7 @@ if __name__ == "__main__":
         name = event.get("name", "").strip().lower()
         start = str(parse(event.get("startDate", "")).date())
         url = event.get("url", "").split("?")[0].lower()  # Remove query params
-        location = event.get("location", {}).get("name", "").strip().lower()
+        location = str(event.get("location", {}).get("name", "")).strip().lower()
         return f"{name[:10]}||{start}"
 
     unique_events = []
@@ -553,14 +557,20 @@ if __name__ == "__main__":
     # read existing events from file
     with open("./upcoming_events.json", "r") as f:
         existing_events_in_file = json.loads(f.read())
-    existing_sigs = [get_event_signature(e) for e in existing_events_in_file]
+    upcoming_existing_events_in_file = []
+    for event in existing_events_in_file:
+        startDateTime = parse(event["startDate"])
+        if startDateTime > time_now:
+            upcoming_existing_events_in_file += [event]
+
+    existing_sigs = [get_event_signature(e) for e in upcoming_existing_events_in_file]
     total_events = []
     for event in nonerror_newevents:
         sig = get_event_signature(event)
         if sig not in existing_sigs:
             total_events += [event]
 
-    total_events += existing_events_in_file
+    total_events += upcoming_existing_events_in_file
     # --- PHASE 1: Process NON-RECURRING events first ---
     for event in total_events:
         # Skip recurring events in first pass

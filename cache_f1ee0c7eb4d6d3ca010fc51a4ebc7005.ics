@@ -1,6 +1,6 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Baltimore Indie Games - ECPv6.14.1//NONSGML v1.0//EN
+PRODID:-//Baltimore Indie Games - ECPv6.14.2//NONSGML v1.0//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:Baltimore Indie Games
@@ -25,32 +25,31 @@ DTSTART:20251102T060000
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20250802T100000
-DTEND;TZID=America/New_York:20250802T113000
-DTSTAMP:20250721T225237
-CREATED:20250709T004239Z
-LAST-MODIFIED:20250709T004239Z
-UID:216-1754128800-1754134200@baltimoreindiegames.com
-SUMMARY:Online Meetup
-DESCRIPTION:We’re meeting on Discord! The link to join the Baltimore Indie Game Devs discord server will be in your RSVP message. \nJoin us to discuss game development\, talk shop\, and bounce ideas. Anyone with an interest in game design and development is welcome\, from beginners to veteran professionals. \nIf you’re working on a game\, you’re welcome to show it and ask for feedback. There will be plenty of time to chat and talk shop\, too.
-URL:https://baltimoreindiegames.com/event/online-meetup-4/
+DTSTART;TZID=America/New_York:20250807T080000
+DTEND;TZID=America/New_York:20250810T170000
+DTSTAMP:20250808T152638
+CREATED:20250806T142634Z
+LAST-MODIFIED:20250806T142634Z
+UID:266-1754553600-1754845200@baltimoreindiegames.com
+SUMMARY:SuperNova
+DESCRIPTION:Since 2015\, Supernova (previously ‘Super Smash Con’) has brought thousands of fans from all over the world together in celebration and competition! \nFor our 10th Anniversary\, we’re going even BIGGER. This year\, we’re aiming to make history together\, with the largest ALL-TIME tournaments for Melee and Rivals 2. \nSome BIG members will be showing game there\, including the multiplayer party RTS Base Battles.
+URL:https://baltimoreindiegames.com/event/supernova/
 END:VEVENT
 BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20250805T180000
-DTEND;TZID=America/New_York:20250805T200000
-DTSTAMP:20250721T225237
-CREATED:20250705T154803Z
-LAST-MODIFIED:20250705T154803Z
-UID:206-1754416800-1754424000@baltimoreindiegames.com
-SUMMARY:Dev Mode
-DESCRIPTION:DevMode is a new gathering for Baltimore-based game developers\, digital artists\, creative technologists\, and tech-minded entrepreneurs to connect\, network\, and spark ideas. Whether you’re building AAA titles\, experimenting in Unreal or Unity\, or exploring how your skills might translate into the gaming space\, this is for YOU. Meet local devs\, test-play featured games\, and mingle with the talent shaping the future of interactive media in Baltimore and beyond. \nDevMode is for: \n\nGame devs\nIndie creators\nTech entrepreneurs\n3D artists & animators\nInteractive media & XR creatives\nAnyone curious about working in game dev\n\nDevMode is FREE to attend. Registration is required in advance or at the door. \nCo-presented by the SNF Parkway Theatre and Game 4 Good\, this laid-back gathering kicks off a new era of gaming-focused community events in Baltimore.
-URL:https://baltimoreindiegames.com/event/dev-mode/
-LOCATION:Parkway Theatre\, 5 W North Ave\, Baltimore\, MD\, 21201\, United States
+DTSTART;TZID=America/New_York:20250808T080000
+DTEND;TZID=America/New_York:20250810T170000
+DTSTAMP:20250808T152638
+CREATED:20250806T142511Z
+LAST-MODIFIED:20250806T142511Z
+UID:262-1754640000-1754845200@baltimoreindiegames.com
+SUMMARY:Otakon
+DESCRIPTION:Founded in 1994\, Otakon is an annual convention held in the summer months to celebrate Asian pop culture (anime\, manga\, music\, movies\, video games\, etc) and its fandom. The event runs from Friday to Sunday and is packed with a schedule that has tons to do. \nOtakon is held at the Walter E. Washington Convention Center in our nation’s capital of Washington\, DC. \nSome BIG members will be showing games there\, including Boba Studios showing Squirrely Roo Rabbit.
+URL:https://baltimoreindiegames.com/event/otakon/
 END:VEVENT
 BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20250816T100000
 DTEND;TZID=America/New_York:20250816T113000
-DTSTAMP:20250721T225237
+DTSTAMP:20250808T152638
 CREATED:20250709T004104Z
 LAST-MODIFIED:20250711T181757Z
 UID:215-1755338400-1755343800@baltimoreindiegames.com
@@ -60,21 +59,43 @@ URL:https://baltimoreindiegames.com/event/in-person-online-meetup-4/
 LOCATION:East Columbia Branch
 END:VEVENT
 BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20250830T120000
+DTEND;TZID=America/New_York:20250830T170000
+DTSTAMP:20250808T152638
+CREATED:20250803T014958Z
+LAST-MODIFIED:20250803T014958Z
+UID:258-1756555200-1756573200@baltimoreindiegames.com
+SUMMARY:End of Summer Game Dev Picnic in College Park
+DESCRIPTION:Come join us for an end of summer picnic at BIG member Stevens Miller’s house in College Park\, between Lackawanna St. and Mangum Rd. on 52nd Ave. Ignore permit parking signs: Stevens will arrange event parking with the city. Greenbelt Metro is 5min walk (last stop on the Green line). This picnic is for all local game devs in the Baltimore-Washington area. \nDetails and RSVP link: https://www.meetup.com/baltimore-indie-game-developers-group/events/310332861
+URL:https://baltimoreindiegames.com/event/end-of-summer-game-dev-picnic-in-college-park/
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20250906T100000
+DTEND;TZID=America/New_York:20250906T113000
+DTSTAMP:20250808T152638
+CREATED:20250802T004117Z
+LAST-MODIFIED:20250802T004117Z
+UID:254-1757152800-1757158200@baltimoreindiegames.com
+SUMMARY:Online Meetup
+DESCRIPTION:We’re meeting on Discord! The link to join the Baltimore Indie Game Devs discord server will be in your RSVP message. \nJoin us to discuss game development\, talk shop\, and bounce ideas. Anyone with an interest in game design and development is welcome\, from beginners to veteran professionals. \nIf you’re working on a game\, you’re welcome to show it and ask for feedback. There will be plenty of time to chat and talk shop\, too.
+URL:https://baltimoreindiegames.com/event/online-meetup-5/
+END:VEVENT
+BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20250920T110000
 DTEND;TZID=America/New_York:20250920T160000
-DTSTAMP:20250721T225237
+DTSTAMP:20250808T152638
 CREATED:20250627T170825Z
-LAST-MODIFIED:20250627T170825Z
+LAST-MODIFIED:20250726T144055Z
 UID:196-1758366000-1758384000@baltimoreindiegames.com
 SUMMARY:Game Escape Indie Showcase
-DESCRIPTION:An exhibition of locally-made indie videogames. \nSubmission form: https://docs.google.com/forms/d/e/1FAIpQLSf-fI-WGcm8yRo5W9TpynQNBM8kxda1KB52lCP_VymJcOb3kw
+DESCRIPTION:Come see a selection of locally made indie games brought to you by the creators behind them! \n\nA curation of locally made games presented by the developers behind them!\nFeaturing a performance by the BGSO Small Ensembles at 1-2 PM!\nParking is available in limited quantities on the street\, and the recommended parking lot is 1714 N Charles St.\n\nHosted by IGDA Baltimore.
 URL:https://baltimoreindiegames.com/event/game-escape-indie-showcase/
 LOCATION:Parkway Theatre\, 5 W North Ave\, Baltimore\, MD\, 21201\, United States
 END:VEVENT
 BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20251003T210000
 DTEND;TZID=America/New_York:20251005T210000
-DTSTAMP:20250721T225237
+DTSTAMP:20250808T152638
 CREATED:20250719T114459Z
 LAST-MODIFIED:20250719T114459Z
 UID:232-1759525200-1759698000@baltimoreindiegames.com
@@ -85,7 +106,7 @@ END:VEVENT
 BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20251114T090000
 DTEND;TZID=America/New_York:20251116T170000
-DTSTAMP:20250721T225237
+DTSTAMP:20250808T152638
 CREATED:20250329T190515Z
 LAST-MODIFIED:20250329T190515Z
 UID:110-1763110800-1763312400@baltimoreindiegames.com
