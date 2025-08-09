@@ -423,7 +423,7 @@ if __name__ == "__main__":
             imageURL="https://baltimoreindiegames.com/wp-content/uploads/2025/03/BIG_small.png",
             eventUrl="https://baltimoreindiegames.com/events/",
             recurring=False,
-            preface="GameDevs ",
+            preface="",
         )
     except Exception as e:
         print(f"Error fetching calendar events: {e}")
