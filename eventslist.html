@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Code Collective | Baltimore Tech Events List</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="List of upcoming tech events in Baltimore from Code Collective's unified calendar." />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://codecollective.us/eventslist.html" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/favicons/favicon.png" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/master.css" />
+  <link rel="stylesheet" href="/css/calendar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body id="body">
+  <video id="bg-video" autoplay loop muted playsinline>
+    <source src="/videos/baltimorenight_15s_crossfaded.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <nav class="main-nav" aria-label="Main Navigation">
+    <div class="navbar dark-mode">
+      <a href="/#main">Home</a>
+      <a href="/balticonomy/">Balticonomy</a>
+      <a href="/calendar.html">Calendar</a>
+      <a href="/#about-us">About Us</a>
+    </div>
+  </nav>
+
+  <main id="wrapper" class="longform dark-mode" style="padding: 0; margin: 0;">
+    <section id="main" class="longform dark-mode" style="padding: 0; margin: 0;">
+      <header class="header-container" style="text-align: center; padding: 20px 0;">
+        <h1 style="margin: 10px 0; font-size: 2.5rem;">Baltimore Tech Events List</h1>
+        <p style="margin-top: 8px; font-size: 1.1rem;">A simple list view of upcoming tech events in Baltimore</p>
+      </header>
+
+      <div class="container">
+        <section class="events-list-container" aria-label="Baltimore Tech Events List">
+          <div id="loading" aria-live="polite">
+            <i class="fas fa-spinner fa-spin"></i> Loading events...
+          </div>
+          <div id="events-by-day"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <our-footer></our-footer>
+  <our-slack-link></our-slack-link>
+
+  <script>
+    // Load and display events grouped by day
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('upcoming_events.json')
+        .then(response => response.json())
+        .then(events => {
+          displayEventsByDay(events);
+          document.getElementById('loading').style.display = 'none';
+        })
+        .catch(error => {
+          console.error('Error loading events:', error);
+          document.getElementById('loading').innerHTML = 
+            '<i class="fas fa-exclamation-circle"></i> Error loading events. Please try again.';
+        });
+    });
+
+    // Display events grouped by day
+    function displayEventsByDay(events) {
+      const container = document.getElementById('events-by-day');
+      container.innerHTML = '';
+
+      // Filter to only future events
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      const futureEvents = events.filter(event => {
+        const eventDate = new Date(event.startDate);
+        return eventDate >= today;
+      });
+
+      // Sort events by date
+      futureEvents.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+
+      // Group events by day
+      const eventsByDay = {};
+      futureEvents.forEach(event => {
+        const eventDate = new Date(event.startDate);
+        const dateKey = eventDate.toLocaleDateString('en-US', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+
+        if (!eventsByDay[dateKey]) {
+          eventsByDay[dateKey] = [];
+        }
+        eventsByDay[dateKey].push(event);
+      });
+
+      // Create HTML for each day's events
+      for (const [date, dayEvents] of Object.entries(eventsByDay)) {
+        const daySection = document.createElement('div');
+        daySection.className = 'day-section';
+        
+        const dayHeader = document.createElement('h2');
+        dayHeader.className = 'day-header';
+        dayHeader.textContent = date;
+        daySection.appendChild(dayHeader);
+
+        const eventsList = document.createElement('div');
+        eventsList.className = 'events-list';
+        
+        dayEvents.forEach(event => {
+          eventsList.appendChild(createEventCard(event));
+        });
+
+        daySection.appendChild(eventsList);
+        container.appendChild(daySection);
+      }
+
+      // Show message if no events
+      if (futureEvents.length === 0) {
+        const noEventsMsg = document.createElement('div');
+        noEventsMsg.className = 'no-events-message';
+        noEventsMsg.innerHTML = `
+          <i class="fas fa-calendar-times"></i>
+          <h3>No upcoming events</h3>
+          <p>Check back later for new events!</p>
+        `;
+        container.appendChild(noEventsMsg);
+      }
+    }
+
+    // Create an event card (similar to mobile view but simplified)
+    function createEventCard(event) {
+      const card = document.createElement('div');
+      card.className = 'event-card';
+
+      const startTime = formatEventTime(new Date(event.startDate));
+      const endTime = event.endTime ? formatEventTime(new Date(event.endTime)) : '';
+      const timeRange = endTime ? `${startTime} - ${endTime}` : startTime;
+
+      card.innerHTML = `
+        <div class="event-card-content">
+          <div class="event-flex-container">
+            ${event.imageUrl ? `
+              <div class="event-image-container">
+                <img src="${event.imageUrl}" alt="${event.name}" class="event-image">
+              </div>
+            ` : ''}
+            <div class="event-details">
+              <h3 class="event-title">${event.name}</h3>
+              <div class="event-time">${timeRange}</div>
+              ${event.location ? `
+                <div class="event-location">
+                  <i class="fas fa-map-marker-alt"></i> 
+                  ${event.location.name || event.location.address || ''}
+                </div>
+              ` : ''}
+              ${event.description ? `
+                <div class="event-description">
+                  ${event.description.substring(0, 100)}${event.description.length > 100 ? '...' : ''}
+                </div>
+              ` : ''}
+              ${event.url ? `
+                <a href="${event.url}" target="_blank" rel="noopener noreferrer" class="event-link">
+                  View Details <i class="fas fa-external-link-alt"></i>
+                </a>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+
+      return card;
+    }
+
+    // Format event time to display like "3PM"
+    function formatEventTime(date) {
+      if (!date) return '';
+
+      const hours = date.getHours();
+      const minutes = date.getMinutes();
+
+      // Determine AM/PM
+      const period = hours >= 12 ? 'PM' : 'AM';
+
+      // Convert to 12-hour format
+      const displayHours = hours % 12 || 12; // 0 should be displayed as 12
+
+      // Only show minutes if not on the hour
+      const timeString = minutes === 0 ?
+        `${displayHours}${period}` :
+        `${displayHours}:${minutes.toString().padStart(2, '0')}${period}`;
+
+      return timeString;
+    }
+  </script>
+
+  <script type="module" src="/js/reusableComponents.js"></script>
+</html>
