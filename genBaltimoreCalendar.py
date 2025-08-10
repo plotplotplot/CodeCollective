@@ -21,6 +21,7 @@ import re
 import scrape_eventbrite_org
 import markdown
 from dateutil.parser import parse
+import genSimpleCalendar
 
 # Define the timezone for EST
 est_timezone = pytz.timezone("America/New_York")
@@ -680,3 +681,4 @@ if __name__ == "__main__":
         print(f"Upcoming events saved to skipped_events.json")
 
     events_to_ics(sorted_events, output_file="baltimore_tech_events.ics")
+    genSimpleCalendar.main()
