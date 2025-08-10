@@ -1,19 +1,5 @@
 [
     {
-        "name": "Nanopore Sequencing",
-        "description": "Join us to explore the latest advancements in DNA sequencing technology in a fun and interactive",
-        "startDate": "2025-08-09T10:00:00-0400",
-        "endTime": "2025-08-09T12:00:00-0400",
-        "url": "https://www.eventbrite.com/e/nanopore-sequencing-tickets-1466071612659",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Baltimore UnderGround Science Space (BUGSS)",
-            "address": "101 N Haven St, Baltimore, MD, 21224"
-        },
-        "imageUrl": "/event_images/Nanopore_Sequencing.webp",
-        "scrapeTime": "2025-07-07 00:34:06.665868"
-    },
-    {
         "id": "309050848",
         "name": "Mingle Meetup in Columbia @ K9 & Coffee",
         "description": "This one is at the same place, K9 & Coffee. Otherwise, enjoy the pizza and drinks. We encourage Minglers to at least buy a drink as a thank you for allowing us to use the space.\n\nWhat is a Mingle? It is a space where we have civil political conversations and get to know people in your neighborhood without the loud noise of the internet. We all have different opinions and being able to discuss these things among each other face-to-face civilly to try to bring people together rather than reinforcing the division we see around the country is our goal.\n\nTopic will be given ahead of time.",
@@ -2716,5 +2702,37 @@
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
         "scrapeTime": "2025-08-09 00:31:08.522591"
+    },
+    {
+        "id": "88e379bd43c57ebf",
+        "name": "UAS UAS Virtual Happy Hour",
+        "startDate": "2026-02-05T18:00:00-05:00",
+        "endTime": "2026-02-05T19:00:00-05:00",
+        "description": "Unallocated Space is hosting Happy Hour!\n\nThis is an unstructured event where we can all get together, break bread, and hang out virtually. Bring your preferred beverage, some good conversation, and let's chat!\n\nThis is a virtual event hosted over Zoom.\n\nSometimes we play DnD or Minecraft.",
+        "url": "https://www.unallocatedspace.org/events/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "https://zoom.us/j/93194733649?pwd=VHMwdHpCeUFIejFzMldTajJCcCtsZz09",
+            "address": "https://zoom.us/j/93194733649?pwd=VHMwdHpCeUFIejFzMldTajJCcCtsZz09"
+        },
+        "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
+        "recurring": true,
+        "scrapeTime": "2025-08-10 00:36:33.823848"
+    },
+    {
+        "id": "0ba7d5615752edc2",
+        "name": "Node Open Hack",
+        "startDate": "2026-02-05T19:00:00-05:00",
+        "endTime": "2026-02-05T21:00:00-05:00",
+        "description": "",
+        "url": "https://baltimorenode.org/events/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "",
+            "address": ""
+        },
+        "imageUrl": "/event_images/Node_Open_Hack.webp",
+        "recurring": true,
+        "scrapeTime": "2025-08-10 00:36:33.822569"
     }
 ]
