@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Upcoming Events</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #111111;
+    --muted: #555555;
+    --link: #000000;
+    --card: #f7f7f7;
+    --maxw: 950px;
+    --ring: #cfcfcf;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    line-height: 1.6;
+  }
+  .wrap { width: 100%; padding: 1rem; }
+  @media (min-width: 900px) {
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 2.5rem 2rem; }
+  }
+  header.site {
+    margin-bottom: 1.25rem;
+    border-bottom: 2px solid #e4e4e4;
+    padding-bottom: .5rem;
+  }
+  header.site h1 {
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: .2px;
+    font-size: 1.75rem;
+  }
+  .status { margin-top: .75rem; font-size: .95rem; color: var(--muted); }
+  .date-head {
+    margin: 2rem 0 1rem;
+    padding-top: .5rem;
+    border-top: 1px solid #ececec;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .event {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 0.75rem 1rem;
+    margin: .75rem 0;
+    border: 1px solid #ececec;
+  }
+
+  /* Header line: time + title on the left, toggle button on the right */
+  .event-header {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+  }
+  .event-meta {
+    display: inline-flex;
+    gap: .75rem;
+    min-width: 0;         /* allow text to truncate */
+    flex: 1 1 auto;
+  }
+  .event-time {
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--muted);
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .event-title {
+    min-width: 0;         /* allow ellipsis */
+    flex: 1 1 auto;
+  }
+  .event-title a {
+    color: var(--link);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    word-break: break-word;
+  }
+  .event-title a:hover, .event-title a:focus { text-decoration: underline; }
+
+  .toggle-btn {
+    flex: 0 0 auto;
+    border: 1px solid var(--ring);
+    background: #fff;
+    border-radius: 10px;
+    padding: .25rem .55rem;
+    line-height: 1;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform .08s ease;
+  }
+  .toggle-btn:active { transform: scale(0.98); }
+
+  /* Collapsible body */
+  .event-body {
+    display: none;
+    margin-top: .6rem;
+    border-top: 1px dashed #ddd;
+    padding-top: .6rem;
+  }
+  .event-body.open { display: block; }
+
+  .event-desc p { margin: .5rem 0 0; }
+  .location { margin-top: .5rem; font-size: .9rem; color: var(--muted); }
+
+  /* Image in description */
+  .event-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-top: .6rem;
+    border-radius: 10px;
+    border: 1px solid #e5e5e5;
+  }
+
+  pre code { white-space: pre; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <h1>Upcoming Events</h1>
+      <div id="status" class="status" aria-live="polite">Loading events…</div>
+    </header>
+    <main id="events"></main>
+  </div>
+
+<!-- Markdown parser + sanitizer -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+
+<script>
+/* ---------- Date helpers ---------- */
+function normalizeIso(iso) {
+  let s = String(iso || "").trim().replace("Z", "+00:00");
+  s = s.replace(/([+-]\d{2})(\d{2})$/, "$1:$2");
+  const m = s.match(/^(.*\.\d+)([+-]\d{2}:\d{2})$/);
+  if (m) {
+    const [pre, frac] = m[1].split(".", 2);
+    s = `${pre}.${(frac + "000000").slice(0, 6)}${m[2]}`;
+  }
+  return s;
+}
+function parseDt(iso) {
+  const normalized = normalizeIso(iso);
+  const d = new Date(normalized);
+  if (isNaN(d.getTime())) throw new Error(`Unparseable date: ${iso}`);
+  return { date: d, normalized };
+}
+function niceDateFromParts(isoLike) { return isoLike.split("T")[0]; }
+
+const fmtDate = new Intl.DateTimeFormat("en-US", { weekday:"long", month:"long", day:"numeric", year:"numeric" });
+const fmtTime = new Intl.DateTimeFormat("en-US", { hour:"numeric", minute:"2-digit", hour12:true });
+
+/* ---------- Marked configuration ---------- */
+const renderer = new marked.Renderer();
+renderer.link = (href, title, text) => {
+  const t = title ? ` title="${title}"` : "";
+  const safeHref = href ?? "";
+  return `<a href="${safeHref}" target="_blank" rel="noopener"${t}>${text}</a>`;
+};
+marked.setOptions({
+  renderer,
+  gfm: true,
+  breaks: true,
+  headerIds: false,
+  mangle: false
+});
+
+/* ---------- Description rendering ---------- */
+function formatDescription(text) {
+  const rawHtml = marked.parse(text || "");
+  const cleanHtml = DOMPurify.sanitize(rawHtml, { ADD_ATTR: ["target", "rel"] });
+  return cleanHtml;
+}
+
+/* ---------- Event HTML ---------- */
+function buildEventHTML(ev, dt, idx) {
+  const timeStr = fmtTime.format(dt.date);
+  const name = (ev.name || "Untitled");
+  const url = (ev.url || "#");
+  const descHTML = formatDescription(ev.description || "");
+
+  const bodyId = `desc-${idx}-${dt.date.getTime()}`;
+  const hasImage = typeof ev.imageUrl === "string" && ev.imageUrl.trim().length > 0;
+
+  // We render the image element with data-src and set src only when opened.
+  const imageHTML = hasImage
+    ? `<img class="event-image" alt="${escapeHtmlAttr(name)}" data-src="${escapeHtmlAttr(ev.imageUrl)}" loading="lazy">`
+    : "";
+
+  let locHTML = "";
+  if (ev.location && typeof ev.location === "object") {
+    const locStr = [ev.location.name, ev.location.address].filter(Boolean).join(", ");
+    if (locStr) locHTML = `<div class="location">${DOMPurify.sanitize(locStr)}</div>`;
+  }
+
+  return `<article class="event" data-event-index="${idx}">
+    <div class="event-header">
+      <div class="event-meta">
+        <div class="event-time">${timeStr}</div>
+        <div class="event-title"><a href="${url}" target="_blank" rel="noopener">${DOMPurify.sanitize(name)}</a></div>
+      </div>
+      <button class="toggle-btn" data-toggle="${bodyId}" aria-expanded="false" aria-controls="${bodyId}" aria-label="Show details">+</button>
+    </div>
+    <div class="event-body" id="${bodyId}" hidden>
+      <div class="event-desc">${descHTML}</div>
+      ${imageHTML}
+      ${locHTML}
+    </div>
+  </article>`;
+}
+
+/* Escape helper for attribute contexts */
+function escapeHtmlAttr(str) {
+  return String(str || "")
+    .replace(/&/g, "&amp;").replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+/* ---------- Main render ---------- */
+async function loadAndRender() {
+  const statusEl = document.getElementById("status");
+  const main = document.getElementById("events");
+  try {
+    const res = await fetch("upcoming_events.json", { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    if (!Array.isArray(data)) throw new Error("Expected a JSON array");
+
+    const events = [];
+    for (const ev of data) {
+      if (!ev?.startDate) continue;
+      try { events.push({ ...ev, _dt: parseDt(ev.startDate) }); } catch {}
+    }
+    events.sort((a,b)=>a._dt.date - b._dt.date);
+
+    const groups = new Map();
+    const order = [];
+    for (const ev of events) {
+      const key = niceDateFromParts(ev._dt.normalized);
+      if (!groups.has(key)) {
+        order.push(key);
+        groups.set(key, { humanLabel: fmtDate.format(ev._dt.date), items: [] });
+      }
+      groups.get(key).items.push(ev);
+    }
+
+    if (order.length === 0) {
+      statusEl.textContent = "No upcoming events.";
+      main.innerHTML = "";
+      return;
+    }
+
+    const chunks = [];
+    let idx = 0;
+    for (const key of order) {
+      const group = groups.get(key);
+      chunks.push(`<h2 class="date-head">${group.humanLabel}</h2>`);
+      for (const ev of group.items) {
+        chunks.push(buildEventHTML(ev, ev._dt, idx++));
+      }
+    }
+    main.innerHTML = chunks.join("\n");
+    statusEl.textContent = `${events.length} event${events.length===1?"":"s"} loaded.`;
+
+    // Set up toggle behavior (event delegation)
+    main.addEventListener("click", (e) => {
+      const btn = e.target.closest(".toggle-btn");
+      if (!btn) return;
+      const targetId = btn.getAttribute("data-toggle");
+      const panel = document.getElementById(targetId);
+      if (!panel) return;
+
+      const isOpen = panel.classList.toggle("open");
+      if (isOpen) {
+        panel.removeAttribute("hidden");
+        btn.setAttribute("aria-expanded", "true");
+        btn.textContent = "–";
+        btn.setAttribute("aria-label", "Hide details");
+
+        // Lazy-init image src on first open
+        const img = panel.querySelector("img.event-image[data-src]");
+        if (img && !img.getAttribute("src")) {
+          img.setAttribute("src", img.getAttribute("data-src"));
+        }
+      } else {
+        panel.setAttribute("hidden", "");
+        btn.setAttribute("aria-expanded", "false");
+        btn.textContent = "+";
+        btn.setAttribute("aria-label", "Show details");
+      }
+    });
+
+  } catch (err) {
+    document.getElementById("events").innerHTML = "";
+    document.getElementById("status").textContent = "Failed to load events.";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadAndRender);
+</script>
+</body>
+</html>
