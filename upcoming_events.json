@@ -1,65 +1,5 @@
 [
     {
-        "id": "1mc-baltimore-2025-09-03",
-        "name": "1 Million Cups Baltimore",
-        "startDate": "2025-08-20T08:45:00-04:00",
-        "endTime": "2025-08-20T10:00:00-04:00",
-        "description": "Join the Baltimore chapter of 1 Million Cups for local startup presentations and community networking.",
-        "url": "https://www.1millioncups.com/s/events?community=baltimore",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Oca Mocha",
-            "address": "Maryland 21227"
-        },
-        "imageUrl": "https://www.1millioncups.com/file-asset/X1MC_Stacked_White?v=1",
-        "recurring": false,
-        "scrapeTime": "2025-08-07T00:00:00"
-    },
-    {
-        "id": "fcd8967197a4ed3c",
-        "name": "Solana Summer Series #2",
-        "startDate": "2025-08-20T21:30:00.000Z",
-        "endTime": "2025-08-21T00:00:00.000Z",
-        "description": "",
-        "url": "https://lu.ma/0m2ibig1",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Mindspace Washington",
-            "address": "Mindspace Washington, One Franklin Square, 1301 K St NW, Washington, DC 20005, USA"
-        },
-        "imageUrl": "/event_images/Solana_Summer_Series__2.webp",
-        "recurring": false,
-        "scrapeTime": "2025-07-30 00:33:18.444748"
-    },
-    {
-        "name": "Culture Builders: creators of long-term change",
-        "description": "Exchange insights on what it really takes to shift systems toward a brighter future and what that vision could bring",
-        "startDate": "2025-08-20T18:00:00-0400",
-        "endTime": "2025-08-20T20:00:00-0400",
-        "url": "https://www.eventbrite.com/e/culture-builders-creators-of-long-term-change-tickets-1528112759399",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Impact Hub Baltimore",
-            "address": "10 East North Avenue, Baltimore, MD, 21202"
-        },
-        "imageUrl": "/event_images/Culture_Builders__creators_of_long-term_change.webp",
-        "scrapeTime": "2025-08-17 00:34:42.978182"
-    },
-    {
-        "name": "Culture Keepers",
-        "description": "A gathering for the builders of long-term culture",
-        "startDate": "2025-08-20T18:00:00-0400",
-        "endTime": "2025-08-20T20:00:00-0400",
-        "url": "https://www.eventbrite.com/e/culture-keepers-tickets-1528112759399",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Impact Hub Baltimore",
-            "address": "10 East North Avenue, Baltimore, MD, 21202"
-        },
-        "imageUrl": "/event_images/Culture_Keepers.webp",
-        "scrapeTime": "2025-07-25 00:33:17.728754"
-    },
-    {
         "name": "Chesapeake Bay Green Entrepreneur Roundtable",
         "description": "Chesapeake Bay Green Entrepreneur Roundtable",
         "startDate": "2025-08-21T15:00:00.000-04:00",
@@ -90,23 +30,20 @@
         "scrapeTime": "2025-07-22 00:33:12.778486"
     },
     {
-        "id": "jlzbrtyhclbfc",
-        "name": "Casual Coding, Chat, & Coffee",
-        "description": "Join us for an informal gathering of Python enthusiasts at ZiPani, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out, this meetup is designed for everyone who enjoys Python programming in a relaxed environment.\n\nPlan:\n\n* **Casual Coding:** Work on your personal projects, get help, or share your code with others.\n* **Open Discussion:** From Python libraries to best practices, let's talk about what's on your mind.\n* **Networking:** Meet other local Python developers, exchange ideas, and maybe find your next coding buddy or collaborator.\n\nWhy Attend?\n\n* Learn something new or share your knowledge in a friendly atmosphere.\n* Get real-time help with coding problems or brainstorm new ideas.\n* Discover local job opportunities or side projects within the Python community.\n\nNo need for formal presentations or slides; this is all about conversation and collaboration. Feel free to come and go as your schedule allows.",
-        "startDate": "2025-08-23T10:00:00-04:00",
-        "endTime": "2025-08-23T12:00:00-04:00",
-        "url": "https://www.meetup.com/python-frederick/events/jlzbrtyhclbfc/",
+        "id": "aee293c824aed2e9",
+        "name": "Bit Gen Gamer Fest XIX",
+        "startDate": "2025-08-23T16:00:00-04:00",
+        "endTime": "2025-08-23T22:00:00-04:00",
+        "description": "Bit Gen Gamer Fest powers up once more as planet Earth\u2019s largest one-day video game music festival. Bit Gen 19 storms the legendary Ottobar in Baltimore, Maryland, for an all-day, all-out celebration of the music and madness that defined a generation. And it all goes down this Saturday, August 23rd! This year\u2019s lineup showcases some [\u2026]",
+        "url": "https://baltimoreindiegames.com/event/bit-gen-gamer-fest-xix/",
         "status": "ACTIVE",
         "location": {
-            "name": "ZiPani",
-            "address": "177A Thomas Johnson Drive",
-            "city": "Frederick",
-            "state": "MD",
-            "country": "us"
+            "name": "",
+            "address": ""
         },
-        "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
-        "recurring": true,
-        "scrapeTime": "2025-07-22 00:33:12.785416"
+        "imageUrl": "/event_images/Bit_Gen_Gamer_Fest_XIX.webp",
+        "recurring": false,
+        "scrapeTime": "2025-08-21 00:28:44.411805"
     },
     {
         "id": "6821fcb7e1260c71",
@@ -311,6 +248,22 @@
         "imageUrl": "/event_images/End_of_Summer_Game_Dev_Picnic_in_College_Park.webp",
         "recurring": false,
         "scrapeTime": "2025-08-04 00:36:45.257133"
+    },
+    {
+        "id": "659b912580f89108",
+        "name": "Unlock The Block: Baltimore",
+        "startDate": "2025-08-30T22:00:00.000Z",
+        "endTime": "2025-08-31T02:00:00.000Z",
+        "description": "",
+        "url": "https://lu.ma/8s846gnu",
+        "status": "ACTIVE",
+        "location": {
+            "name": "401 Light St",
+            "address": "401 Light St, Baltimore, MD 21202, USA"
+        },
+        "imageUrl": "/event_images/Unlock_The_Block__Baltimore.webp",
+        "recurring": false,
+        "scrapeTime": "2025-08-21 00:28:30.563451"
     },
     {
         "id": "421f39ab121c4797",
@@ -596,6 +549,24 @@
         },
         "imageUrl": "/event_images/Skillshare__HR_Mastermind_Lunch_&_Learn.webp",
         "scrapeTime": "2025-08-08 00:33:40.828259"
+    },
+    {
+        "id": "310537176",
+        "name": "When Marketing Fails, Try MessageTherapy (not a typo)",
+        "description": "Sept we have a fun session by Joel Benge:\n\n**Who is Joel:**\nJoel Benge is the Principal Nerd That Talks Good at MessageSpecs Consulting and helps other nerds talk good, too. Working with companies from Nickelodeon to NASA, Joel has mastered the art of communicating complicated ideas and tech to audiences and teams. His card deck, the MessageDeck, gamifies the process to help developers communicate their ideas and discover their credibility builders and hooks for their messaging. His latest book, Be a Nerd That Talks Good, is quickly becoming the nerd\u2019s go-to- guide for turning technical knowledge into powerful messages.\n\n**What to expect:**\nHooked on jargon? Struggling to make your technical talk matter?\nIt\u2019s time to put your brand on the couch.\n\nMessageTherapy Live! is a fast-paced, laugh-a-little, learn-a-lot session where startup survivor horror stories meet the science of saying something that sticks. Whether you\u2019re a founder, a product marketer, or a clever soloist with a big idea but a fuzzy pitch, this session helps you trade blank stares for blank checks.\n\nIn the high-stakes world of technical innovation, one of the greatest threats to growth isn\u2019t your competition. It\u2019s your communication. If your pitch is perfect but nobody\u2019s listening, you may as well be speaking to cavemen. From startup founders to tech leaders, the \u201cblank stare\u201d moment strikes even the most brilliant minds. Why? Because being technically right isn\u2019t enough. You need to be heard. MessageTherapy Live! is a fast-paced, hands-on keynote that blends ancient philosophy, brain science, and a dash of improv to help technical leaders escape the curse of expertise and learn how to craft messages that stick, scale, and sell. Using Joel Benge\u2019s proven \u201cHeart, Head, Gut\u201d messaging model and the wildly engaging MessageDeck card game, participants as audience members will laugh, cringe, and finally get why that last pitch fell flat \u2014 and how to fix it. By the end of the session, you\u2019ll walk away with messaging that hits the emotional sweet spot, satisfies logical scrutiny, and builds instant credibility \u2014 without dumbing anything down.\n\n**Agenda:**\n**5:30\u20136:00** \u2013 Networking\n**6:00\u20137:00 -** Presentation and Q&A\n**7:00 +** \u2013 Leinie Lodge & Beer Garden for additional and conversations\n\n**Keep convos going on Slack - [Join Baltimore Tech Meetup](http://baltimoretechslack.com/) or follow us [LinkedIn](https://www.linkedin.com/company/baltimore-tech-meetup/) or [Instagram](https://www.linkedin.com/company/baltimore-tech-meetup/)**\n\n**Date: Sept 10th 2025**\n**Location: Spark Baltimore - 8 Market Pl Suite 300, Baltimore, MD 21202**\n**Time: 5:30pm to 7:00 pm**\n\n\\#\\#\\# A few logistical details:\n\n* Spark Baltimore is located in PowerPlant Live! next to Charm City Clue Room on the first floor.\n* We will meet for drinks in the area after.\n* By attending, all participants commit to upholding and being subject to our[ ](https://docs.google.com/document/d/1ihtT6eeIuc6KXqQX4KbWpKTY3PLJ6RjgoTqXDY1QPgw/edit?usp=sharing)[Code of Conduct](https://docs.google.com/document/d/1ctYtmK0_q16rm7Vk3hdBkC6o_4MQZ_148bEKLR9JoCE/edit?usp=sharing).\n* By attending, participants also acknowledge and grant permission for the use of photographs they may appear in for promotional material by the organizers or sponsors. If you would like to rescind this permission, please contact us directly.",
+        "startDate": "2025-09-10T17:30:00-04:00",
+        "endTime": "2025-09-10T19:30:00-04:00",
+        "url": "https://www.meetup.com/baltimore-tech/events/310537176/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Spark Coworking - Baltimore",
+            "address": "8 Market Pl Suite 300",
+            "city": "Baltimore",
+            "state": "MD",
+            "country": "us"
+        },
+        "imageUrl": "/event_images/When_Marketing_Fails,_Try_MessageTherapy__not_a_typo_.webp",
+        "scrapeTime": "2025-08-21 00:28:46.165026"
     },
     {
         "name": "Project Night at Prefect",
@@ -2782,5 +2753,21 @@
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
         "scrapeTime": "2025-08-18 00:34:37.241576"
+    },
+    {
+        "id": "9c8f0f078f32a24c",
+        "name": "UAS Project Night",
+        "startDate": "2026-02-16T19:00:00-05:00",
+        "endTime": "2026-02-16T22:00:00-05:00",
+        "description": "<br>Monday evenings, we will be open for Project Night - a night to work on, collaborate on, or brainstorm on whatever projects you're currently working on or interested in.<br>Don't have a project? Come see what others are working on and get involved or get ideas. If you have an concept for a group project, bring your ideas and seek out others to join you.<br><br>Project Night is a great opportunity to make progress on your projects as a regularly scheduled event. Anyone is welcome to work on projects any time the space is open, but a dedicated night--just for this--is really fantastic.<br><br>Please check out our COVID restrictions at:&nbsp;<a href=\"https://wiki.unallocatedspace.org/wiki/index.php?title=COVID-19_Reopening_Plan\" id=\"ow605\" __is_owner=\"true\">https://wiki.unallocatedspace.org/wiki/index.php?title=COVID-19_Reopening_Plan</a><br><br>Key: Bowie<br>Free and open to the public",
+        "url": "https://www.unallocatedspace.org/events/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "",
+            "address": ""
+        },
+        "imageUrl": "/event_images/UAS_Project_Night.webp",
+        "recurring": true,
+        "scrapeTime": "2025-08-21 00:28:46.181770"
     }
 ]
