@@ -51,7 +51,8 @@ sources = {
         "https://lu.ma/calendar/cal-vzms1nGZmYUUCrj",
         "https://lu.ma/Bmore_Climate",
         "https://lu.ma/blktechconnect",
-        "https://lu.ma/user/web3dc"
+        "https://lu.ma/user/web3dc",
+        "https://lu.ma/mtechumd"
     ],
     "Luma Users":[
         #"https://api.lu.ma/user/profile/events-hosting"

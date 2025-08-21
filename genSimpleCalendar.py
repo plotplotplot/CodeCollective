@@ -171,8 +171,9 @@ def build_body(grouped):
             )
     return "\n".join(chunks)
 
-def main():
-    data = json.loads(Path(INPUT_FILE).read_text(encoding="utf-8"))
+import os
+def main(city="baltimore"):
+    data = json.loads(Path(os.path.join(city, INPUT_FILE)).read_text(encoding="utf-8"))
     if not isinstance(data, list):
         raise SystemExit("Expected a JSON array of events.")
 
@@ -204,7 +205,7 @@ def main():
     ordered_grouped = {k: grouped[k] for k in order}
 
     html_str = build_html(ordered_grouped, title="Upcoming Events")
-    Path(OUTPUT_FILE).write_text(html_str, encoding="utf-8")
+    Path(os.path.join(city, OUTPUT_FILE)).write_text(html_str, encoding="utf-8")
     print(f"Wrote {OUTPUT_FILE} with {len(events)} event(s).")
 
 if __name__ == "__main__":

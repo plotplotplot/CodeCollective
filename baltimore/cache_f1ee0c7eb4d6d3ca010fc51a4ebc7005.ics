@@ -1,6 +1,6 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Baltimore Indie Games - ECPv6.14.2//NONSGML v1.0//EN
+PRODID:-//Baltimore Indie Games - ECPv6.15.0.1//NONSGML v1.0//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:Baltimore Indie Games
@@ -25,43 +25,20 @@ DTSTART:20251102T060000
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20250807T080000
-DTEND;TZID=America/New_York:20250810T170000
-DTSTAMP:20250809T210633
-CREATED:20250806T142634Z
-LAST-MODIFIED:20250806T142634Z
-UID:266-1754553600-1754845200@baltimoreindiegames.com
-SUMMARY:SuperNova
-DESCRIPTION:Since 2015\, Supernova (previously ‘Super Smash Con’) has brought thousands of fans from all over the world together in celebration and competition! \nFor our 10th Anniversary\, we’re going even BIGGER. This year\, we’re aiming to make history together\, with the largest ALL-TIME tournaments for Melee and Rivals 2. \nSome BIG members will be showing game there\, including the multiplayer party RTS Base Battles.
-URL:https://baltimoreindiegames.com/event/supernova/
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20250808T080000
-DTEND;TZID=America/New_York:20250810T170000
-DTSTAMP:20250809T210633
-CREATED:20250806T142511Z
-LAST-MODIFIED:20250806T142511Z
-UID:262-1754640000-1754845200@baltimoreindiegames.com
-SUMMARY:Otakon
-DESCRIPTION:Founded in 1994\, Otakon is an annual convention held in the summer months to celebrate Asian pop culture (anime\, manga\, music\, movies\, video games\, etc) and its fandom. The event runs from Friday to Sunday and is packed with a schedule that has tons to do. \nOtakon is held at the Walter E. Washington Convention Center in our nation’s capital of Washington\, DC. \nSome BIG members will be showing games there\, including Boba Studios showing Squirrely Roo Rabbit.
-URL:https://baltimoreindiegames.com/event/otakon/
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20250816T100000
-DTEND;TZID=America/New_York:20250816T113000
-DTSTAMP:20250809T210633
-CREATED:20250709T004104Z
-LAST-MODIFIED:20250711T181757Z
-UID:215-1755338400-1755343800@baltimoreindiegames.com
-SUMMARY:In-Person/Online Meetup (Version Control Certification)
-DESCRIPTION:In-person is at the East Columbia Branch Library in the Marvin Thomas Room. \nJoin us IN-PERSON or ONLINE. Anyone with an interest in game design and development is welcome\, from beginners to veteran professionals. \nJulian Coy will run a Version Control Basic Proficiency certification session from 10:30 AM – 11:30 AM. Learn how to use version control to work with teams. Great for artists and programmers alike! \nWe will be meeting in the Marvin Thomas Room at the East Columbia Branch Library (6600 Cradlerock Way\, Columbia\, MD). (Not an official Howard County Library System event.) \nIf you want to attend virtually\, the Discord server link is provided in the main monthly (1st of the month) meetup details. An organizer will ensure that a laptop is provided on-site to connect the Discord attendees with those physically on-site. It takes us a few minutes to set up the projector\, so hold tight when you join the Discord voice chat channel. We’ll be there soon!
-URL:https://baltimoreindiegames.com/event/in-person-online-meetup-4/
-LOCATION:East Columbia Branch
+DTSTART;TZID=America/New_York:20250823T160000
+DTEND;TZID=America/New_York:20250823T220000
+DTSTAMP:20250821T181507
+CREATED:20250820T201129Z
+LAST-MODIFIED:20250820T201129Z
+UID:287-1755964800-1755986400@baltimoreindiegames.com
+SUMMARY:Bit Gen Gamer Fest XIX
+DESCRIPTION:Bit Gen Gamer Fest powers up once more as planet Earth’s largest one-day video game music festival. Bit Gen 19 storms the legendary Ottobar in Baltimore\, Maryland\, for an all-day\, all-out celebration of the music and madness that defined a generation. And it all goes down this Saturday\, August 23rd! \nThis year’s lineup showcases some of the most iconic and electrifying performers in the video game music scene\, spanning nearly 30 years of pixel-fueled history. With two stages running on a ping-pong-style alternating schedule\, the action never stops. Fuel your combo meter with video game-inspired cocktails\, dive into a curated selection of free-play arcade and console games\, and let your nostalgia pacman feast until it bursts with joy. \nThis is raw\, unfiltered nerd culture turned all the way up. No panels. No cosplay contests (or should we?). Just pure\, live\, VGM performed by the best in the game. Bit Gen Gamer Fest continues to cement its legacy as the galaxy’s most relentless celebration of video game music and the weird\, wonderful people who love it. We hope to see you at the Ottobar this weekend!
+URL:https://baltimoreindiegames.com/event/bit-gen-gamer-fest-xix/
 END:VEVENT
 BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20250830T120000
 DTEND;TZID=America/New_York:20250830T170000
-DTSTAMP:20250809T210633
+DTSTAMP:20250821T181507
 CREATED:20250803T014958Z
 LAST-MODIFIED:20250803T014958Z
 UID:258-1756555200-1756573200@baltimoreindiegames.com
@@ -72,7 +49,7 @@ END:VEVENT
 BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20250906T100000
 DTEND;TZID=America/New_York:20250906T113000
-DTSTAMP:20250809T210633
+DTSTAMP:20250821T181507
 CREATED:20250802T004117Z
 LAST-MODIFIED:20250802T004117Z
 UID:254-1757152800-1757158200@baltimoreindiegames.com
@@ -83,7 +60,7 @@ END:VEVENT
 BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20250920T110000
 DTEND;TZID=America/New_York:20250920T160000
-DTSTAMP:20250809T210633
+DTSTAMP:20250821T181507
 CREATED:20250627T170825Z
 LAST-MODIFIED:20250726T144055Z
 UID:196-1758366000-1758384000@baltimoreindiegames.com
@@ -95,7 +72,7 @@ END:VEVENT
 BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20251003T210000
 DTEND;TZID=America/New_York:20251005T210000
-DTSTAMP:20250809T210633
+DTSTAMP:20250821T181507
 CREATED:20250719T114459Z
 LAST-MODIFIED:20250719T114459Z
 UID:232-1759525200-1759698000@baltimoreindiegames.com
@@ -104,14 +81,26 @@ DESCRIPTION:Ludum Dare is an online event where games are made from scratch in a
 URL:https://baltimoreindiegames.com/event/ludum-dare-58/
 END:VEVENT
 BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20251025T130000
+DTEND;TZID=America/New_York:20251025T170000
+DTSTAMP:20250821T181507
+CREATED:20250816T182706Z
+LAST-MODIFIED:20250819T212743Z
+UID:275-1761397200-1761411600@baltimoreindiegames.com
+SUMMARY:District Arcade
+DESCRIPTION:Hosted by IGDA DC\, District Arcade returns on October 25th 2025 1:00-5:00 PM at the Martin Luther King Library in DC. The meetup and lineup is still being worked on\, however the date and location have been confirmed. \nWhat is District Arcade\, you ask? It’s a free celebration of games and game makers from the DC and DMV area. Play locally-crafted indie games and chat with the devs in this fun\, family-friendly in person event. There will be 15-20 local developers showcasing games of different genres and levels of completion. \nEvent Information \n\nLocation: Lab – Bottom floor of the MLK Library\nAddress: 901 G St NW\, Washington DC\, 20001\nDate and Time: October 25th 2024 1:00-5:00 PM\nMeetup Page: https://www.meetup.com/igda-dc/events/310523499/\n\nIf you are interested in presenting at District Arcade please fill out this form: https://forms.gle/z3ikPZQnfwbbtrm2A \nSubmissions close September 30th. We have 25-30 slots so if you submit you will most likely get in.
+URL:https://baltimoreindiegames.com/event/district-arcade/
+LOCATION:Martin Luther King Jr. Memorial Library\, 901 G St NW\, Washington\, DC\, 20001\, United States
+END:VEVENT
+BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20251114T090000
 DTEND;TZID=America/New_York:20251116T170000
-DTSTAMP:20250809T210633
+DTSTAMP:20250821T181507
 CREATED:20250329T190515Z
-LAST-MODIFIED:20250329T190515Z
+LAST-MODIFIED:20250816T182936Z
 UID:110-1763110800-1763312400@baltimoreindiegames.com
 SUMMARY:Game Your Future Conference
-DESCRIPTION:This is the 4th annual Game Your Future is a conference\, an event organized by Maryland-regional developer groups at the Baltimore Convention Center.  It brings an experience similar to the Game Developers Conference (GDC) to the East Coast to fill the void of a more accessible event for our East Coast devs who want something near where they live.
+DESCRIPTION:This is the 4th annual Game Your Future is a conference\, an event organized by Maryland-regional developer groups at the Baltimore Convention Center.  It brings an experience similar to the Game Developers Conference (GDC) to the East Coast to fill the void of a more accessible event for our East Coast devs who want something near where they live.\n\nJoin us at the Game Your Future Conference\, where community\, creativity\, and career growth collide. Whether you’re a game developer\, esports enthusiast\, student\, or professional in a tangential industry\, this is your chance to upskill\, get inspired\, and build meaningful connections in an evolving job market. With top speakers\, hands-on learning\, and unmatched networking opportunities\, you’ll leave empowered to thrive in gaming—and beyond.
 URL:https://baltimoreindiegames.com/event/game-your-future-conference/
 LOCATION:Baltimore Convention Center\, 1 W Pratt Street\, Baltimore\, MD\, 21201\, United States
 END:VEVENT

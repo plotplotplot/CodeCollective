@@ -21,6 +21,7 @@ import re
 import scrape_eventbrite_org
 import markdown
 from dateutil.parser import parse
+import sys
 import genSimpleCalendar
 
 # Define the timezone for EST
@@ -317,16 +318,20 @@ def download_image(url, filename):
         return False
 
 
-from event_sources import sources
-
-if __name__ == "__main__":
+def main(city = "baltimore"):
     newEvents = []
+
+    import importlib
+
+    module = importlib.import_module(f"{city}.event_sources")
+    sources = module.sources
+
     # Loop through each meetup URL
     for MEETUP_URL in sources.get("Meetup", []):
         print(f"Fetching events from {MEETUP_URL}")
         # Fetch upcoming events
         upcoming_page_content = scrape_meetup.fetch_meetup_page(MEETUP_URL)
-        with open("meetup_upcoming.html", "w+", encoding="utf-8") as f:
+        with open(os.path.join(city, "meetup_upcoming.html"), "w+", encoding="utf-8") as f:
             f.write(upcoming_page_content)
 
         # Extract the __NEXT_DATA__ JSON for upcoming events
@@ -380,79 +385,84 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"Error fetching calendar events: {e}")
 
-    gbc_events = scrape_gbc.scrape_gbc_events()
-    newEvents += gbc_events
 
     # upcoming_events += scrape_equitech.scrape_equitech_tuesday()
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
     }
 
-    try:
-        newEvents += scrape_ics.fetch_calendar_events(
-            ICS_URL="http://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics",
-            imageURL="https://www.baltimorenode.org/wp-content/uploads/2013/11/node-logo.png",
-            eventUrl="https://baltimorenode.org/events/",
-            preface="Node ",
-        )
-    except Exception as e:
-        print(f"Error fetching calendar events: {e}")
+    if city == "baltimore":
 
-    try:
-        newEvents += scrape_ics.fetch_calendar_events(
-            ICS_URL="https://calendar.google.com/calendar/ical/unallocatedspacehq@gmail.com/public/basic.ics",
-            imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png",
-            eventUrl="https://www.unallocatedspace.org/events/",
-            preface="UAS ",
-        )
-    except Exception as e:
-        print(f"Error fetching calendar events: {e}")
+        gbc_events = scrape_gbc.scrape_gbc_events()
+        newEvents += gbc_events
+        try:
+            newEvents += scrape_ics.fetch_calendar_events(
+                ICS_URL="http://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics",
+                imageURL="https://www.baltimorenode.org/wp-content/uploads/2013/11/node-logo.png",
+                city=city,
+                eventUrl="https://baltimorenode.org/events/",
+                preface="Node ",
+            )
+        except Exception as e:
+            print(f"Error fetching calendar events: {e}")
 
-    try:
-        newEvents += scrape_ics.processICS(
-            CACHE_FILENAME="maryland-stem-festival-96ecc18ef7d.ics",
-            imageURL="https://marylandstemfestival.org/wp-content/uploads/2024/06/Family-Feud-group-Pix-1-scaled-e1717876361661.jpeg",
-            eventUrl="https://marylandstemfestival.org/events/month/",
-            preface="STEMFest ",
-        )
-    except Exception as e:
-        print(f"Error fetching calendar events: {e}")
+        try:
+            newEvents += scrape_ics.fetch_calendar_events(
+                ICS_URL="https://calendar.google.com/calendar/ical/unallocatedspacehq@gmail.com/public/basic.ics",
+                imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png",
+                city=city,
+                eventUrl="https://www.unallocatedspace.org/events/",
+                preface="UAS ",
+            )
+        except Exception as e:
+            print(f"Error fetching calendar events: {e}")
 
-    try:
-        newEvents += scrape_ics.fetch_calendar_events(
-            ICS_URL="https://baltimoreindiegames.com/events/list/?ical=1",
-            imageURL="https://baltimoreindiegames.com/wp-content/uploads/2025/03/BIG_small.png",
-            eventUrl="https://baltimoreindiegames.com/events/",
-            recurring=False,
-            preface="",
-        )
-    except Exception as e:
-        print(f"Error fetching calendar events: {e}")
+        try:
+            newEvents += scrape_ics.processICS(
+                CACHE_FILENAME="maryland-stem-festival-96ecc18ef7d.ics",
+                imageURL="https://marylandstemfestival.org/wp-content/uploads/2024/06/Family-Feud-group-Pix-1-scaled-e1717876361661.jpeg",
+                eventUrl="https://marylandstemfestival.org/events/month/",
+                preface="STEMFest ",
+            )
+        except Exception as e:
+            print(f"Error fetching calendar events: {e}")
 
-    try:
-        newEvents += scrape_spark.scrape_spark_events()
-    except Exception as e:
-        print(f"Error fetching calendar events: {e}")
+        try:
+            newEvents += scrape_ics.fetch_calendar_events(
+                ICS_URL="https://baltimoreindiegames.com/events/list/?ical=1",
+                city=city,
+                imageURL="https://baltimoreindiegames.com/wp-content/uploads/2025/03/BIG_small.png",
+                eventUrl="https://baltimoreindiegames.com/events/",
+                recurring=False,
+                preface="",
+            )
+        except Exception as e:
+            print(f"Error fetching calendar events: {e}")
 
-    try:
-        newEvents += scrape_bwtech.scrape_events()
-    except Exception as e:
-        print(f"Error fetching calendar events: {e}")
+        try:
+            newEvents += scrape_spark.scrape_spark_events()
+        except Exception as e:
+            print(f"Error fetching calendar events: {e}")
 
-    try:
-        newEvents += scrape_starTUp.scrape_towson_events()
-    except Exception as e:
-        print(f"Error fetching calendar events: {e}")
+        try:
+            newEvents += scrape_bwtech.scrape_events()
+        except Exception as e:
+            print(f"Error fetching calendar events: {e}")
 
-    try:
-        newEvents += scrape_jhuapl.scrape_jhu_events()
-    except Exception as e:
-        print(f"Error fetching calendar events: {e}")
+        try:
+            newEvents += scrape_starTUp.scrape_towson_events()
+        except Exception as e:
+            print(f"Error fetching calendar events: {e}")
 
-    try:
-        newEvents += scrape_big.main()
-    except Exception as e:
-        print(f"Error fetching calendar events: {e}")
+        try:
+            newEvents += scrape_jhuapl.scrape_jhu_events()
+        except Exception as e:
+            print(f"Error fetching calendar events: {e}")
+
+        try:
+            newEvents += scrape_big.main()
+        except Exception as e:
+            print(f"Error fetching calendar events: {e}")
 
     invalid_events = []
 
@@ -556,7 +566,7 @@ if __name__ == "__main__":
 
     # --- PHASE 0: mix with existing events
     # read existing events from file
-    with open("./upcoming_events.json", "r") as f:
+    with open(os.path.join(city, "upcoming_events.json"), "r") as f:
         existing_events_in_file = json.loads(f.read())
     upcoming_existing_events_in_file = []
     for event in existing_events_in_file:
@@ -671,14 +681,23 @@ if __name__ == "__main__":
     )
 
     # Save upcoming events to a file
-    with open("upcoming_events.json", "w+", encoding="utf-8") as f:
+    with open(os.path.join(city, "upcoming_events.json"), "w+", encoding="utf-8") as f:
         json.dump(sorted_events, f, indent=4)
         print(f"Upcoming events saved to upcoming_events.json")
 
     # Save upcoming events to a file
-    with open("skipped_events.json", "w+", encoding="utf-8") as f:
+    with open(os.path.join(city, "skipped_events.json"), "w+", encoding="utf-8") as f:
         json.dump(invalid_events, f, indent=4)
         print(f"Upcoming events saved to skipped_events.json")
 
-    events_to_ics(sorted_events, output_file="baltimore_tech_events.ics")
-    genSimpleCalendar.main()
+    events_to_ics(sorted_events, output_file=os.path.join(city, "cc_events.ics"))
+    os.system("cp baltimore/cc_events.ics .")
+    os.system("cp baltimore/upcoming_events.json .")
+    genSimpleCalendar.main(city)
+
+if __name__ == "__main__":
+    cities = ["baltimore", "westvirginia"]
+    if len(sys.argv) > 1:
+        cities = sys.argv[1:]
+    for city in cities:
+        main(city)

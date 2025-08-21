@@ -57,6 +57,22 @@
       });
     }
 
+    // Function to get city from URL parameters
+    function getCityFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const city = urlParams.get('city');
+      return city || 'baltimore'; // Default to baltimore if no city specified
+    }
+
+    // Update ICS link based on city parameter
+    function updateIcsLink() {
+      const city = getCityFromUrl();
+      const icsLink = document.querySelector('.download-button');
+      if (icsLink) {
+        icsLink.href = `https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/${city}/cc_events.ics`;
+      }
+    }
+
     // First, prefetch all critical static images
     prefetchImages([
       '/images/favicons/favicon.png',
@@ -64,6 +80,9 @@
       '/images/github_icon.png',
       // Add other static images used by your UI
     ]);
+
+    // Update ICS link on page load
+    document.addEventListener('DOMContentLoaded', updateIcsLink);
 
   </script>
   <!-- Structured Data -->
@@ -98,7 +117,7 @@
     <div class="navbar dark-mode">
       <a href="/#main">Home</a>
       <a href="/balticonomy/">Balticonomy</a>
-      <a href="/calendar.html">Calendar</a>
+      <a href="/calendar.html?city=baltimore">Calendar</a>
       <a href="/#about-us">About Us</a>
     </div>
   </nav>
@@ -111,7 +130,7 @@
         <p style="margin-top: 8px; font-size: 1.1rem;">A unified calendar of tech events from Baltimore area meetup
         <p style="margin-top: 8px; font-size: 1.1rem;">Also see our <a href="/balticonomy/">interactive index of BMSA Tech Groups</a>
           </p>
-          <a href="https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/baltimore_tech_events.ics"
+          <a href="https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/baltimore/cc_events.ics"
           class="download-button" target="_blank" rel="noopener noreferrer">
           <i class="fas fa-calendar-alt" aria-hidden="true"></i> Add to Google Calendar
         </a>

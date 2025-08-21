@@ -356,12 +356,21 @@
   </article>`;
       }
 
+      /* ---------- URL parameter helpers ---------- */
+      function getCityFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const city = urlParams.get('city');
+        return city || 'baltimore'; // Default to baltimore if no city specified
+      }
+
       /* ---------- Main render ---------- */
       async function loadAndRender() {
         const statusEl = document.getElementById("status");
         const main = document.getElementById("events");
         try {
-          const res = await fetch("upcoming_events.json", {
+          const city = getCityFromUrl();
+          const endpoint = `/${city}/upcoming_events.json`;
+          const res = await fetch(endpoint, {
             cache: "no-store",
           });
           if (!res.ok) throw new Error(`HTTP ${res.status}`);

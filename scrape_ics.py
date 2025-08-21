@@ -12,10 +12,10 @@ from pprint import pprint
 TIMEZONE = pytz.timezone("America/New_York")
 CACHE_MAX_AGE = timedelta(days=1)
 
-def fetch_calendar_events(ICS_URL, imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png", eventUrl = "https://www.unallocatedspace.org", recurring=True, preface="GameDevs "):
+def fetch_calendar_events(ICS_URL, city, imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png", eventUrl = "https://www.unallocatedspace.org", recurring=True, preface="GameDevs "):
     """Fetch and return calendar events in the standardized format."""
     fetch_from_web = True
-    CACHE_FILENAME = f"cache_{hashlib.md5(ICS_URL.encode()).hexdigest()}.ics"
+    CACHE_FILENAME = os.path.join(city,f"cache_{hashlib.md5(ICS_URL.encode()).hexdigest()}.ics")
 
     # Check if cached file exists and is recent
     if os.path.exists(CACHE_FILENAME):
