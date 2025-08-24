@@ -1,21 +1,5 @@
 [
     {
-        "id": "aee293c824aed2e9",
-        "name": "Bit Gen Gamer Fest XIX",
-        "startDate": "2025-08-23T16:00:00-04:00",
-        "endTime": "2025-08-23T22:00:00-04:00",
-        "description": "Bit Gen Gamer Fest powers up once more as planet Earth\u2019s largest one-day video game music festival. Bit Gen 19 storms the legendary Ottobar in Baltimore, Maryland, for an all-day, all-out celebration of the music and madness that defined a generation. And it all goes down this Saturday, August 23rd! This year\u2019s lineup showcases some [\u2026]",
-        "url": "https://baltimoreindiegames.com/event/bit-gen-gamer-fest-xix/",
-        "status": "ACTIVE",
-        "location": {
-            "name": "",
-            "address": ""
-        },
-        "imageUrl": "/event_images/Bit_Gen_Gamer_Fest_XIX.webp",
-        "recurring": false,
-        "scrapeTime": "2025-08-21 18:21:40.525139"
-    },
-    {
         "id": "6821fcb7e1260c71",
         "name": "UAS Tentative Keyholder meeting",
         "startDate": "2025-08-24T11:00:00-04:00",
@@ -2755,5 +2739,37 @@
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
         "scrapeTime": "2025-08-23 00:29:00.188120"
+    },
+    {
+        "id": "1100e0cdaa41c98f",
+        "name": "UAS UAS Virtual Happy Hour",
+        "startDate": "2026-02-19T18:00:00-05:00",
+        "endTime": "2026-02-19T19:00:00-05:00",
+        "description": "Unallocated Space is hosting Happy Hour!\n\nThis is an unstructured event where we can all get together, break bread, and hang out virtually. Bring your preferred beverage, some good conversation, and let's chat!\n\nThis is a virtual event hosted over Zoom.\n\nSometimes we play DnD or Minecraft.",
+        "url": "https://www.unallocatedspace.org/events/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "https://zoom.us/j/93194733649?pwd=VHMwdHpCeUFIejFzMldTajJCcCtsZz09",
+            "address": "https://zoom.us/j/93194733649?pwd=VHMwdHpCeUFIejFzMldTajJCcCtsZz09"
+        },
+        "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
+        "recurring": true,
+        "scrapeTime": "2025-08-24 00:33:32.995539"
+    },
+    {
+        "id": "dcfcc70729be03b9",
+        "name": "Node Open Hack",
+        "startDate": "2026-02-19T19:00:00-05:00",
+        "endTime": "2026-02-19T21:00:00-05:00",
+        "description": "",
+        "url": "https://baltimorenode.org/events/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "",
+            "address": ""
+        },
+        "imageUrl": "/event_images/Node_Open_Hack.webp",
+        "recurring": true,
+        "scrapeTime": "2025-08-24 00:33:32.994068"
     }
 ]
