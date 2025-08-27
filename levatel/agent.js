@@ -11,7 +11,7 @@ const ai = getAI(firebaseApp, { backend: new GoogleAIBackend() });
 console.log('AI service initialized, creating model...');
 //const model = getGenerativeModel(ai, { model: "gemini-2.5-flash" });
 //const model = getGenerativeModel(ai, { model: "gemini-2.0-flash-lite" });
-const model = getGenerativeModel(ai, { model: "gemini-2.5-flash-lite-preview-06-17" });
+const model = getGenerativeModel(ai, { model: "gemini-2.5-flash-lite" });
 
 console.log('Gemini model ready:', model);
 
