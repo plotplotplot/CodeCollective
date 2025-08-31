@@ -1,55 +1,5 @@
 [
     {
-        "id": "310772841",
-        "name": "(make-up event) Building a Polling Platform for Fairer Representation",
-        "description": "Let\u2019s roll up our sleeves and work on a civic tech project with real-world impact.\nWe\u2019ll be developing a platform inspired by *Finding the Lone Star\u2019s North Star* \u2014 a quadratic voting poll designed to measure community values and cluster neighborhoods by similarity. The goal: create tools that could guide fairer district maps and give citizens more meaningful choices.\nWhether you\u2019re a developer, data scientist, designer, or just curious about how civic tech and algorithmic mapping can work together, this is a hands-on session. We\u2019ll:\n\n* Walk through the current poll design and data model.\n* Discuss how to score and cluster responses.\n* Explore map-generation possibilities using open geographic data.\n* Collaborate on feature ideas for a working prototype.\n\nBring your laptop and your curiosity \u2014 we\u2019ll have plenty of space for ideation, coding, and whiteboarding.\n**Skill levels:** All welcome. If you\u2019ve never touched civic tech before, you\u2019ll still be able to contribute ideas and feedback.\n**Why it matters:** Tools like this could make representation more about *shared priorities* and less about political maneuvering. By the end of the meetup, you\u2019ll have contributed to a platform that can be adapted for communities across the country.",
-        "startDate": "2025-08-30T12:30:00-04:00",
-        "endTime": "2025-08-30T14:30:00-04:00",
-        "url": "https://www.meetup.com/philanthropicode/events/310772841/",
-        "status": "ACTIVE",
-        "location": {
-            "name": "R. House",
-            "address": "301 W 29th St",
-            "city": "Baltimore",
-            "state": "MD",
-            "country": "us"
-        },
-        "imageUrl": "/event_images/_make-up_event__Building_a_Polling_Platform_for_Fairer_Representation.webp",
-        "scrapeTime": "2025-08-30 00:28:15.662923"
-    },
-    {
-        "id": "9b0bef4c9ce9f6e7",
-        "name": "End of Summer Game Dev Picnic in College Park",
-        "startDate": "2025-08-30T12:00:00-05:00",
-        "endTime": "2025-08-30T17:00:00-05:00",
-        "description": "Come join us for an end of summer picnic at BIG member Stevens Miller\u2019s house in College Park, between Lackawanna St. and Mangum Rd. on 52nd Ave. Ignore permit parking signs: Stevens will arrange event parking with the city. Greenbelt Metro is 5min walk (last stop on the Green line). This picnic is for all [\u2026]",
-        "url": "https://baltimoreindiegames.com/event/end-of-summer-game-dev-picnic-in-college-park/",
-        "status": "ACTIVE",
-        "location": {
-            "name": "",
-            "address": ""
-        },
-        "imageUrl": "/event_images/End_of_Summer_Game_Dev_Picnic_in_College_Park.webp",
-        "recurring": false,
-        "scrapeTime": "2025-08-04 00:36:45.257133"
-    },
-    {
-        "id": "659b912580f89108",
-        "name": "Unlock The Block: Baltimore",
-        "startDate": "2025-08-30T22:00:00.000Z",
-        "endTime": "2025-08-31T02:00:00.000Z",
-        "description": "",
-        "url": "https://lu.ma/8s846gnu",
-        "status": "ACTIVE",
-        "location": {
-            "name": "401 Light St",
-            "address": "401 Light St, Baltimore, MD 21202, USA"
-        },
-        "imageUrl": "/event_images/Unlock_The_Block__Baltimore.webp",
-        "recurring": false,
-        "scrapeTime": "2025-08-21 18:21:28.195677"
-    },
-    {
         "id": "924ffd3c2ddc042f",
         "name": "Crypto & Coffee- Gm Baltimore",
         "startDate": "2025-08-31T13:00:00.000Z",
@@ -2801,6 +2751,38 @@
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
         "scrapeTime": "2025-08-30 00:28:15.680514"
+    },
+    {
+        "id": "c16b08ddfe1934b4",
+        "name": "UAS UAS Virtual Happy Hour",
+        "startDate": "2026-02-26T18:00:00-05:00",
+        "endTime": "2026-02-26T19:00:00-05:00",
+        "description": "Unallocated Space is hosting Happy Hour!\n\nThis is an unstructured event where we can all get together, break bread, and hang out virtually. Bring your preferred beverage, some good conversation, and let's chat!\n\nThis is a virtual event hosted over Zoom.\n\nSometimes we play DnD or Minecraft.",
+        "url": "https://www.unallocatedspace.org/events/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "https://zoom.us/j/93194733649?pwd=VHMwdHpCeUFIejFzMldTajJCcCtsZz09",
+            "address": "https://zoom.us/j/93194733649?pwd=VHMwdHpCeUFIejFzMldTajJCcCtsZz09"
+        },
+        "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
+        "recurring": true,
+        "scrapeTime": "2025-08-31 00:32:41.748349"
+    },
+    {
+        "id": "6d62bc97887ece2a",
+        "name": "Node Open Hack",
+        "startDate": "2026-02-26T19:00:00-05:00",
+        "endTime": "2026-02-26T21:00:00-05:00",
+        "description": "",
+        "url": "https://baltimorenode.org/events/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "",
+            "address": ""
+        },
+        "imageUrl": "/event_images/Node_Open_Hack.webp",
+        "recurring": true,
+        "scrapeTime": "2025-08-31 00:32:41.746904"
     },
     {
         "name": "Civic Hack DC 2025 \u2013 Part 2: Making Public Comments Count",
