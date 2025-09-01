@@ -1,21 +1,5 @@
 [
     {
-        "id": "924ffd3c2ddc042f",
-        "name": "Crypto & Coffee- Gm Baltimore",
-        "startDate": "2025-08-31T13:00:00.000Z",
-        "endTime": "2025-08-31T15:00:00.000Z",
-        "description": "",
-        "url": "https://lu.ma/1o0yfih6",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Matriarch Coffee - Harborplace Cafe",
-            "address": "Matriarch Coffee - Harborplace Cafe, 201 E Pratt St Suite 1004T, Baltimore, MD 21202, USA"
-        },
-        "imageUrl": "/event_images/Crypto_&_Coffee-_Gm_Baltimore.webp",
-        "recurring": false,
-        "scrapeTime": "2025-08-29 00:29:33.061277"
-    },
-    {
         "id": "421f39ab121c4797",
         "name": "UAS Project Night",
         "startDate": "2025-09-01T19:00:00-04:00",
@@ -437,6 +421,24 @@
         },
         "imageUrl": "/event_images/70th_Annual_Meeting.webp",
         "scrapeTime": "2025-07-22 00:33:12.682864"
+    },
+    {
+        "id": "310798771",
+        "name": "Baltimore Code & Coffee at Digital Harbor Foundation",
+        "description": "We're an inclusive, informal, co-working meetup for people of all skill levels. Bring a laptop and ideas, we'll bring coffee!\nThis upcoming meetup will be hosted at the Digital Harbor Foundation in Federal Hill!\n\n**SCHEDULE:**\n11:00 AM: Start\n11.30 AM: Intro Circle\n11:45: Networking\n1:30 PM: End\n\n**PARKING:** There is metered street parking. If all else fails, park at the West Street Garage. Residents of Baltimore near Charles St should consider the free Charm City Circulator bus.\n\n**HOW TO FIND US**\nPlease use the main door at 1045 Light Street. If the door is closed, please ring the doorbell.",
+        "startDate": "2025-09-13T11:00:00-04:00",
+        "endTime": "2025-09-13T14:00:00-04:00",
+        "url": "https://www.meetup.com/baltimore-code-and-coffee/events/310798771/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Digital Harbor Foundation Tech Center",
+            "address": "1045 Light St",
+            "city": "Baltimore",
+            "state": "MD",
+            "country": "us"
+        },
+        "imageUrl": "/event_images/Baltimore_Code_&_Coffee_at_Digital_Harbor_Foundation.webp",
+        "scrapeTime": "2025-09-01 00:36:38.885592"
     },
     {
         "name": "Science Slam at Checkerspot!",
@@ -2783,6 +2785,22 @@
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
         "scrapeTime": "2025-08-31 00:32:41.746904"
+    },
+    {
+        "id": "13d8ba93f21bd4d5",
+        "name": "UAS Infosec & DC443 Meetup",
+        "startDate": "2026-02-27T19:00:00-05:00",
+        "endTime": "2026-02-27T21:00:00-05:00",
+        "description": "<p>SUMMARY:<br>The DEF CON Group 443, also known as DC443, is an interest group designed to discuss general hacking and its culture, information security (InfoSec), and related topics. Our group\u2019s interests include InfoSec, SDR, Hackathons, Speaker Events (MiniCons), Capture The Flags (CTFs), Binary Reversing/Exploitation, Ham Radio, Lock Picking, Micro Electronics, Web Development, etc.</p><p>We plan to meet every other week on Fridays at Unallocated space. Meetings can include Talks, projects, trivia nights, workshops, or contests and CTFs.</p><p>Website:&nbsp;<a href=\"https://dc443.org/\">https://dc443.org</a><br>Twitter:&nbsp;<a href=\"https://twitter.com/dc443_\">https://twitter.com/dc443_</a></p><p>GOAL: Learn about new and existing interests and grow the Unallocated Space community.</p><p></p><p>THINGS TO BRING: Yourself and friends</p><p></p><p>SKILL LEVEL:<br>Any</p><p></p><p>PRESENTER: Adam (Digital Tinker)</p>",
+        "url": "https://www.unallocatedspace.org/events/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "",
+            "address": ""
+        },
+        "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
+        "recurring": true,
+        "scrapeTime": "2025-09-01 00:36:38.903930"
     },
     {
         "name": "Civic Hack DC 2025 \u2013 Part 2: Making Public Comments Count",
