@@ -287,5 +287,5 @@ def main():
     else:
         print("No events found or error occurred")
 
-
-main()
+if __name__ == "__main__":
+    main()

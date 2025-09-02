@@ -34,13 +34,27 @@ function prefetchImages(urls) {
 }
 
 
+// Function to get city from URL parameters
+function getCityFromUrl() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const city = urlParams.get('city');
+  return city || 'baltimore'; // Default to baltimore if no city specified
+}
+
 // Fetch and parse event data
 document.addEventListener('DOMContentLoaded', function () {
 
   isMobile = isMobileDevice();
+  const city = getCityFromUrl();
+  const endpoint = `/${city}/upcoming_events.json`;
 
-  fetch('upcoming_events.json')
-    .then(response => response.json())
+  fetch(endpoint)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Failed to fetch events for city: ${city}`);
+      }
+      return response.json();
+    })
     .then(events => {
       allEvents = processEvents(events);
 

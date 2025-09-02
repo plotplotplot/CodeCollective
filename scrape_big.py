@@ -2,7 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import hashlib
-from datetime import datetime
+from datetime import datetime, timezone
+import pytz
 import re
 
 def generate_event_id(name, start_date):
@@ -77,7 +78,10 @@ def parse_datetime(datetime_text):
                 print(f"Error parsing start time '{full_start}': {e}")
                 return None, None
             
-            start_iso = dt_start.strftime("%Y-%m-%dT%H:%M:%S-05:00")
+            # Make datetime timezone-aware
+            eastern = pytz.timezone('America/New_York')
+            dt_start = eastern.localize(dt_start)
+            start_iso = dt_start.isoformat()
             
             # Parse end datetime
             if end_time:
@@ -95,11 +99,13 @@ def parse_datetime(datetime_text):
                 except ValueError:
                     dt_end = dt_start.replace(hour=dt_start.hour + 2)  # Default 2 hour duration
                 
-                end_iso = dt_end.strftime("%Y-%m-%dT%H:%M:%S-05:00")
+                dt_end = eastern.localize(dt_end)
+                end_iso = dt_end.isoformat()
             else:
                 # Default to 2 hours after start
                 dt_end = dt_start.replace(hour=dt_start.hour + 2)
-                end_iso = dt_end.strftime("%Y-%m-%dT%H:%M:%S-05:00")
+                dt_end = eastern.localize(dt_end)
+                end_iso = dt_end.isoformat()
             
             return start_iso, end_iso
     
@@ -225,9 +231,6 @@ def main():
         print("="*50)
         print(json_output)
         
-        # Optionally save to file
-        with open('baltimore_indie_games_events.json', 'w') as f:
-            f.write(json_output)
         
         print(f"\nSuccessfully scraped {len(events)} events!")
         print("Events saved to 'baltimore_indie_games_events.json'")
@@ -235,4 +238,6 @@ def main():
         print("No events found or error occurred during scraping.")
     return events
 if __name__ == "__main__":
-    main()
+    # Optionally save to file
+    with open('baltimore_indie_games_events.json', 'w') as f:
+        f.write(scrape_baltimore_indie_games())

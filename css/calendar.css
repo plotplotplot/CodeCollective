@@ -394,6 +394,10 @@ h1 {
     font-size: 0.9rem;
 }
 
+.event-card {
+    background-color: #007bff;
+}
+
 .event-card:last-child {
     margin-bottom: 20px;
 }
@@ -566,6 +570,47 @@ h1 {
     background-position: center;
     opacity: 1;
     z-index: 1;
+}
+
+/* Event List Flex Layout */
+.event-flex-container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.event-image-container {
+    flex: 0 0 120px;
+}
+
+.event-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    aspect-ratio: 1;
+}
+
+.event-details {
+    flex: 1;
+    min-width: 0;
+}
+
+@media (max-width: 600px) {
+    .event-flex-container {
+        flex-direction: column;
+    }
+    
+    .event-image-container {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+    
+    .event-image {
+        max-height: 200px;
+        width: 100%;
+        object-fit: cover;
+    }
 }
 
 .fc-event-title {
