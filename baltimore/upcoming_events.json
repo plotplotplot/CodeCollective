@@ -1,21 +1,5 @@
 [
     {
-        "id": "2fa571f026e3c1a7",
-        "name": "UAS [Virtual] Hackthebox Working Group",
-        "startDate": "2025-09-05T19:30:00-04:00",
-        "endTime": "2025-09-05T22:30:00-04:00",
-        "description": "This event is changing! Moving forward we'll be using Discord instead of Zoom. Please join us here: <a href=\"https://discord.gg/sF8P8fY5Nd\">https://discord.gg/sF8P8fY5Nd</a><br><br>In the future we're also moving to a new meetup group. You can join that here: <a href=\"https://www.meetup.com/hack-the-box-meetup-baltimore/\">https://www.meetup.com/hack-the-box-meetup-baltimore/</a><br><br>We'll be hanging out and working on <a href=\"http://hackthebox.eu\">hackthebox.eu</a> machines. We'll pick a machine to go after at the beginning of the evening and work together to hack into it. Please follow all rules listed here: <a href=\"https://www.hackthebox.eu/home/rules.\">https://www.hackthebox.eu/home/rules.</a><br><br>Collaboration is allowed, spoiling boxes and sharing flags is not.",
-        "url": "https://www.unallocatedspace.org/events/",
-        "status": "ACTIVE",
-        "location": {
-            "name": "",
-            "address": ""
-        },
-        "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
-        "recurring": true,
-        "scrapeTime": "2025-07-22 00:33:12.778380"
-    },
-    {
         "id": "a1a9d9eae0806048",
         "name": "Online Meetup",
         "startDate": "2025-09-06T10:00:00-05:00",
@@ -877,6 +861,20 @@
         "status": "ACTIVE",
         "imageUrl": null,
         "scrapeTime": "2025-08-08 00:33:40.828139"
+    },
+    {
+        "name": "Baltimore Climate Tech Meetup October 2025",
+        "description": "Baltimore Climate Tech Meetup October 2025",
+        "startDate": "2025-10-08T17:30:00.000-04:00",
+        "endTime": "2025-10-08T20:00:00.000-04:00",
+        "url": "https://luma.com/nnp5vnfc",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Union Craft Brewing",
+            "address": "Union Craft Brewing, Baltimore, Maryland"
+        },
+        "imageUrl": "/event_images/Baltimore_Climate_Tech_Meetup_October_2025.webp",
+        "scrapeTime": "2025-09-06 00:27:58.255779"
     },
     {
         "name": "Project Night at Taoti",
@@ -2779,5 +2777,21 @@
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
         "scrapeTime": "2025-09-04 00:28:09.472082"
+    },
+    {
+        "id": "754a9d4d920cbd7c",
+        "name": "UAS Open House",
+        "startDate": "2026-03-04T18:00:00-05:00",
+        "endTime": "2026-03-04T22:00:00-05:00",
+        "description": "Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions, help with projects, and give tours. If you've never been to UAS before, this is a great time to check us out. We host a weekly open house to help introduce new people to the space and some of the various interests and participants. Come on by, and check out the space and some of the fun projects we are working on.\n\nHosting Keyholder: Whitney",
+        "url": "https://www.unallocatedspace.org/events/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "1029 Benfield Blvd, Millersville, MD 21108, USA",
+            "address": "1029 Benfield Blvd, Millersville, MD 21108, USA"
+        },
+        "imageUrl": "/event_images/UAS_Open_House.webp",
+        "recurring": true,
+        "scrapeTime": "2025-09-06 00:27:58.272510"
     }
 ]
