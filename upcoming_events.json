@@ -1,56 +1,5 @@
 [
     {
-        "id": "2cf6051cf36fdc0d",
-        "name": "Purdue University: 2025 Fall Industrial Roundtable",
-        "startDate": "2025-09-09T08:00:00-04:00",
-        "endTime": "2025-09-09T16:00:00-04:00",
-        "description": "Connect with us\nat the 2025 fall industrial roundtable at Purdue University.",
-        "url": "https://www.jhuapl.edu/events-calendar/purdue-university-2025-fall-industrial-roundtable?featured_date=181",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Purdue University",
-            "address": "Purdue University"
-        },
-        "imageUrl": "/event_images/Purdue_University__2025_Fall_Industrial_Roundtable.webp",
-        "recurring": false,
-        "categories": [],
-        "scrapeTime": "2025-08-21 18:21:37.362997"
-    },
-    {
-        "id": "d80670e1c5407e2a",
-        "name": "Virginia Tech: 46th Annual Engineering Expo",
-        "startDate": "2025-09-09T10:00:00-04:00",
-        "endTime": "2025-09-09T16:00:00-04:00",
-        "description": "Connect with us\nat the 46th annual engineering expo at Virginia Tech.",
-        "url": "https://www.jhuapl.edu/events-calendar/virginia-tech-46th-annual-engineering-expo?featured_date=186",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Virginia Tech",
-            "address": "Virginia Tech"
-        },
-        "imageUrl": "/event_images/Virginia_Tech__46th_Annual_Engineering_Expo.webp",
-        "recurring": false,
-        "categories": [],
-        "scrapeTime": "2025-08-21 18:21:37.569803"
-    },
-    {
-        "id": "fde7e4e645b0ad83",
-        "name": "UNC Computer Science Fall 2025 Tech Career Fair",
-        "startDate": "2025-09-09T18:00:00-04:00",
-        "endTime": "2025-09-09T20:30:00-04:00",
-        "description": "Connect with us\nat the UNC Computer Science Fall 2025 Tech Career Fair.",
-        "url": "https://www.jhuapl.edu/events-calendar/unc-computer-science-fall-2025-tech-career-fair?featured_date=176",
-        "status": "ACTIVE",
-        "location": {
-            "name": "University of North Carolina at Chapel Hill",
-            "address": "University of North Carolina at Chapel Hill"
-        },
-        "imageUrl": "/event_images/UNC_Computer_Science_Fall_2025_Tech_Career_Fair.webp",
-        "recurring": false,
-        "categories": [],
-        "scrapeTime": "2025-08-21 18:21:37.839633"
-    },
-    {
         "id": "508478d219ff9c2c",
         "name": "Ohio State University: GSPIRE 2025",
         "startDate": "2025-09-10T10:00:00-04:00",
@@ -66,6 +15,40 @@
         "recurring": false,
         "categories": [],
         "scrapeTime": "2025-08-21 18:21:38.049970"
+    },
+    {
+        "id": "1133b1ee68089e2f",
+        "name": "University of Texas at Austin: Fall 2025 Engineering Expo",
+        "startDate": "2025-09-10T11:00:00-04:00",
+        "endTime": "2025-09-10T17:00:00-04:00",
+        "description": "Connect with us\nat the fall 2025 engineering expo at the University of Texas at Austin.",
+        "url": "https://www.jhuapl.edu/events-calendar/university-texas-austin-fall-2025-engineering-expo?featured_date=206",
+        "status": "ACTIVE",
+        "location": {
+            "name": "University of Texas at Austin",
+            "address": "University of Texas at Austin"
+        },
+        "imageUrl": "/event_images/University_of_Texas_at_Austin__Fall_2025_Engineering_Expo.webp",
+        "recurring": false,
+        "categories": [],
+        "scrapeTime": "2025-09-10 00:28:29.398321"
+    },
+    {
+        "id": "70d15b9510d7ddf3",
+        "name": "Grainger Engineering Fall 2025 In-Person Career Fair",
+        "startDate": "2025-09-10T11:00:00-04:00",
+        "endTime": "2025-09-10T16:00:00-04:00",
+        "description": "Connect with us\nat the Grainger Engineering Fall 2025 In-Person Career Fair at the University of Illinois Urbana-Champaign.",
+        "url": "https://www.jhuapl.edu/events-calendar/grainger-engineering-fall-2025-person-career-fair?featured_date=196",
+        "status": "ACTIVE",
+        "location": {
+            "name": "University of Illinois Urbana-Champaign",
+            "address": "University of Illinois Urbana-Champaign"
+        },
+        "imageUrl": "/event_images/Grainger_Engineering_Fall_2025_In-Person_Career_Fair.webp",
+        "recurring": false,
+        "categories": [],
+        "scrapeTime": "2025-09-10 00:28:29.983452"
     },
     {
         "name": "Skillshare: HR Mastermind Lunch & Learn",
@@ -720,6 +703,23 @@
         "scrapeTime": "2025-09-03 20:16:50.652556"
     },
     {
+        "name": "September All-Partner Meeting",
+        "startDate": "2025-09-30T15:30:00-04:00",
+        "endTime": "2025-09-30T17:00:00-04:00",
+        "description": "Partner-Only Event - Register to Attend Join us on Tuesday, September 30th for our quarterly All-Partner Meeting. This quarter's gathering focuses on shaping Baltimore's regional brand narrative through GBC's Bold",
+        "url": "https://gbc.org/event/september-all-partner-meeting/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "",
+            "address": "",
+            "city": "Baltimore",
+            "state": "MD",
+            "country": "US"
+        },
+        "imageUrl": "/event_images/September_All-Partner_Meeting.webp",
+        "scrapeTime": "2025-09-10 00:28:33.200128"
+    },
+    {
         "id": "310869606",
         "name": "Artificial Intelligence, Machine Learning, and DevSecOps",
         "description": "This Meetup is organized by [Mount Everest Consulting ](https://mtevc.com/)\n\nThrough this Meetup, we aim to build a strong community that fosters networking and collaboration among individuals, government and non-government organizations, educational institutions, and industry professionals. Our focus areas include industry trends, AI governance best practices, open-source tools, Capture the Flag (CTF) competitions, and more.\n\nAs we know, AI is becoming increasingly integrated into every aspect of life, enhancing productivity while also introducing new risks. Adversaries are leveraging AI tools to refine and strengthen their attack strategies. To address these challenges, each of our Meetups features expert speakers, timely AI industry updates, and educational sessions.\n\nOur mission is to provide valuable knowledge, emerging tools, and actionable insights that empower individuals, families, and organizations to strengthen information security and reduce personal and organizational risk in an AI-driven world.",
@@ -766,6 +766,37 @@
         "imageUrl": "https://www.1millioncups.com/file-asset/X1MC_Stacked_White?v=1",
         "recurring": false,
         "scrapeTime": "2025-08-07T00:00:00"
+    },
+    {
+        "name": "Blood Drive at bwtech North",
+        "description": "&nbsp; American Red Cross Blood Drive Wednesday, October 1, 2025 10:00 AM to 3:00 PM bwtech North,...",
+        "startDate": "2025-10-01T10:00:00-04:00",
+        "endTime": "2025-10-01T15:00:00-04:00",
+        "url": "https://bwtech.umbc.edu/event/blood-drive-at-bwtech-north/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "bwtech NORTH Campus",
+            "address": "5520 Research Park Drive, Baltimore, MD, 21228"
+        },
+        "imageUrl": "/event_images/Blood_Drive_at_bwtech_North.webp",
+        "scrapeTime": "2025-09-10 00:28:20"
+    },
+    {
+        "name": "Maryland Competitiveness Briefing with CNBC Reporter Scott Cohn",
+        "startDate": "2025-10-01T12:00:00-04:00",
+        "endTime": "2025-10-01T13:30:00-04:00",
+        "description": "Partner-Only Event - Register to Attend You're invited to a special\u00a0Maryland Competitiveness Briefing\u00a0hosted by the Greater Baltimore Committee featuring\u00a0CNBC journalist Scott Cohn, lead correspondent for the\u00a02024 CNBC Top States for",
+        "url": "https://gbc.org/event/gbc-partner-conversation-maryland-competitiveness-briefing-with-cnbc-reporter-scott-cohn/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "",
+            "address": "",
+            "city": "Baltimore",
+            "state": "MD",
+            "country": "US"
+        },
+        "imageUrl": "/event_images/Maryland_Competitiveness_Briefing_with_CNBC_Reporter_Scott_Cohn.webp",
+        "scrapeTime": "2025-09-10 00:28:33.200243"
     },
     {
         "name": "The Network Breakfast on Procurement for Small & Medium Enterprises",
@@ -1095,23 +1126,18 @@
         "scrapeTime": "2025-07-22 00:33:12.778039"
     },
     {
-        "id": "jlzbrtyhcnbxb",
-        "name": "Casual Coding, Chat, & Coffee",
-        "description": "Join us for an informal gathering of Python enthusiasts at ZiPani, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out, this meetup is designed for everyone who enjoys Python programming in a relaxed environment.\n\nPlan:\n\n* **Casual Coding:** Work on your personal projects, get help, or share your code with others.\n* **Open Discussion:** From Python libraries to best practices, let's talk about what's on your mind.\n* **Networking:** Meet other local Python developers, exchange ideas, and maybe find your next coding buddy or collaborator.\n\nWhy Attend?\n\n* Learn something new or share your knowledge in a friendly atmosphere.\n* Get real-time help with coding problems or brainstorm new ideas.\n* Discover local job opportunities or side projects within the Python community.\n\nNo need for formal presentations or slides; this is all about conversation and collaboration. Feel free to come and go as your schedule allows.",
-        "startDate": "2025-10-18T10:00:00-04:00",
-        "endTime": "2025-10-18T12:00:00-04:00",
-        "url": "https://www.meetup.com/python-frederick/events/jlzbrtyhcnbxb/",
+        "name": "BLK Tech Connect: AI For The People",
+        "description": "BLK Tech Connect: AI For The People",
+        "startDate": "2025-10-18T11:30:00.000-04:00",
+        "endTime": "2025-10-18T14:00:00.000-04:00",
+        "url": "https://luma.com/myw6suur",
         "status": "ACTIVE",
         "location": {
-            "name": "ZiPani",
-            "address": "177A Thomas Johnson Drive",
-            "city": "Frederick",
-            "state": "MD",
-            "country": "us"
+            "name": "FLOCK",
+            "address": "FLOCK, Baltimore, Maryland"
         },
-        "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
-        "recurring": true,
-        "scrapeTime": "2025-07-22 00:33:12.784535"
+        "imageUrl": "/event_images/BLK_Tech_Connect__AI_For_The_People.webp",
+        "scrapeTime": "2025-09-10 00:28:33.199990"
     },
     {
         "id": "307914320",
@@ -1274,20 +1300,18 @@
         "scrapeTime": "2025-07-22 00:33:12.768632"
     },
     {
-        "id": "72a2bbf5e5d738e3",
-        "name": "UAS Open House",
-        "startDate": "2025-10-29T18:00:00-04:00",
-        "endTime": "2025-10-29T22:00:00-04:00",
-        "description": "Open House Night - Come join us and check out what UAS is all about. Keyholders and members will be available to answer questions, help with projects, and give tours. If you've never been to UAS before, this is a great time to check us out. We host a weekly open house to help introduce new people to the space and some of the various interests and participants. Come on by, and check out the space and some of the fun projects we are working on.\n\nHosting Keyholder: Whitney",
-        "url": "https://www.unallocatedspace.org/events/",
+        "name": "Accelerate Your Defense Contracting Success",
+        "description": "&nbsp; Stay tuned for details!",
+        "startDate": "2025-10-29T15:30:00-04:00",
+        "endTime": "2025-10-29T20:30:00-04:00",
+        "url": "https://bwtech.umbc.edu/event/accelerate-your-defense-contracting-success/",
         "status": "ACTIVE",
         "location": {
-            "name": "1029 Benfield Blvd, Millersville, MD 21108, USA",
-            "address": "1029 Benfield Blvd, Millersville, MD 21108, USA"
+            "name": "bwtech South Campus",
+            "address": "1450 Rolling Road, Baltimore, Maryland, 21227"
         },
-        "imageUrl": "/event_images/UAS_Open_House.webp",
-        "recurring": true,
-        "scrapeTime": "2025-07-22 00:33:12.772861"
+        "imageUrl": "/event_images/Accelerate_Your_Defense_Contracting_Success.webp",
+        "scrapeTime": "2025-09-09T20:33:33+00:00"
     },
     {
         "id": "f1d24f63d5d89516",
