@@ -107,6 +107,19 @@ class OurSocials extends HTMLElement {
                         />
                     </button>
                 </a>
+                <a
+                    href="https://discord.gg/ZSRhJmJmnN"
+                    target="_blank"
+                    class="social__link"
+                >
+                    <button class="social__button">
+                        <img
+                            src="/images/discord.jpg"
+                            alt="Discord icon"
+                            class="social__icon"
+                        />
+                    </button>
+                </a>
             </aside>
         `;
     }
