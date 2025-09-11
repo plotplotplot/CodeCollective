@@ -8,54 +8,73 @@ import urllib.parse
 def parse_date(date_str, year=2025):
     """Parse various date formats and return ISO format with default times"""
     
-    # Handle specific dates like "Thursday, June 26, 5–7 p.m."
-    specific_date_pattern = r'(\w+day),?\s+(\w+)\s+(\d+),?\s+(\d+)–(\d+)\s+p\.m\.'
-    match = re.search(specific_date_pattern, date_str)
+    # Handle specific dates like "Thursday, September 18, 5–8 p.m."
+    specific_date_pattern = r'(\w+day),?\s+(\w+)\s+(\d+),?\s+(\d+)(?::(\d+))?\s*–\s*(\d+)(?::(\d+))?\s*([ap]\.m\.)'
+    match = re.search(specific_date_pattern, date_str, re.IGNORECASE)
     if match:
-        day_name, month_name, day, start_hour, end_hour = match.groups()
+        day_name, month_name, day, start_hour, start_min, end_hour, end_min, am_pm = match.groups()
+        
+        # Set default minutes if not provided
+        start_min = start_min or "00"
+        end_min = end_min or "00"
+        
+        # Convert to 24-hour format
+        start_hour = int(start_hour)
+        end_hour = int(end_hour)
+        
+        if "p.m." in am_pm.lower() and start_hour < 12:
+            start_hour += 12
+        if "p.m." in am_pm.lower() and end_hour < 12:
+            end_hour += 12
+        if "a.m." in am_pm.lower() and start_hour == 12:
+            start_hour = 0
+        if "a.m." in am_pm.lower() and end_hour == 12:
+            end_hour = 0
+            
         month_map = {
             'January': 1, 'February': 2, 'March': 3, 'April': 4, 'May': 5, 'June': 6,
             'July': 7, 'August': 8, 'September': 9, 'October': 10, 'November': 11, 'December': 12
         }
-        month = month_map.get(month_name, 6)  # Default to June if not found
-        start_time = f"{year}-{month:02d}-{int(day):02d}T{int(start_hour) + 12}:00:00-0400"
-        end_time = f"{year}-{month:02d}-{int(day):02d}T{int(end_hour) + 12}:00:00-0400"
+        month = month_map.get(month_name, 9)  # Default to September if not found
+        
+        start_time = f"{year}-{month:02d}-{int(day):02d}T{start_hour:02d}:{start_min}:00-0400"
+        end_time = f"{year}-{month:02d}-{int(day):02d}T{end_hour:02d}:{end_min}:00-0400"
         return start_time, end_time
     
-    # Handle month-year format like "September 2025"
-    month_year_pattern = r'(\w+)\s+(\d{4})'
-    match = re.search(month_year_pattern, date_str)
+    # Handle date ranges like "August 29–September 1"
+    date_range_pattern = r'(\w+)\s+(\d+)–(\w+)\s+(\d+)'
+    match = re.search(date_range_pattern, date_str)
     if match:
-        month_name, year_str = match.groups()
+        start_month, start_day, end_month, end_day = match.groups()
         month_map = {
             'January': 1, 'February': 2, 'March': 3, 'April': 4, 'May': 5, 'June': 6,
             'July': 7, 'August': 8, 'September': 9, 'October': 10, 'November': 11, 'December': 12
         }
-        month = month_map.get(month_name, 6)
-        # Use middle of month (15th)
-        start_time = f"{year_str}-{month:02d}-15T12:00:00-0400"
-        end_time = f"{year_str}-{month:02d}-15T17:00:00-0400"
+        start_month_num = month_map.get(start_month, 8)
+        end_month_num = month_map.get(end_month, 9)
+        
+        start_time = f"{year}-{start_month_num:02d}-{int(start_day):02d}T00:00:00-0400"
+        end_time = f"{year}-{end_month_num:02d}-{int(end_day):02d}T23:59:59-0400"
         return start_time, end_time
     
-    # Handle seasons like "Fall 2025"
-    season_pattern = r'(\w+)\s+(\d{4})'
-    match = re.search(season_pattern, date_str)
+    # Handle single dates like "September 18"
+    single_date_pattern = r'(\w+)\s+(\d+)'
+    match = re.search(single_date_pattern, date_str)
     if match:
-        season, year_str = match.groups()
-        season_map = {
-            'Spring': ('03', '15'),  # March 15
-            'Summer': ('06', '15'),  # June 15
-            'Fall': ('09', '15'),    # September 15
-            'Winter': ('12', '15')   # December 15
+        month_name, day = match.groups()
+        month_map = {
+            'January': 1, 'February': 2, 'March': 3, 'April': 4, 'May': 5, 'June': 6,
+            'July': 7, 'August': 8, 'September': 9, 'October': 10, 'November': 11, 'December': 12
         }
-        month, day = season_map.get(season, ('06', '15'))
-        start_time = f"{year_str}-{month}-{day}T12:00:00-0400"
-        end_time = f"{year_str}-{month}-{day}T17:00:00-0400"
+        month = month_map.get(month_name, 9)
+        
+        start_time = f"{year}-{month:02d}-{int(day):02d}T09:00:00-0400"
+        end_time = f"{year}-{month:02d}-{int(day):02d}T17:00:00-0400"
         return start_time, end_time
     
     # Default fallback
-    start_time = f"{year}-06-15T12:00:00-0400"
-    end_time = f"{year}-06-15T17:00:00-0400"
+    start_time = f"{year}-09-15T12:00:00-0400"
+    end_time = f"{year}-09-15T17:00:00-0400"
     return start_time, end_time
 
 def scrape_towson_events(url = "https://www.towson.edu/startup/about/events.html"):
@@ -92,14 +111,29 @@ def scrape_towson_events(url = "https://www.towson.edu/startup/about/events.html
                 
                 desc_text = desc_elem.get_text(strip=True)
                 
-                # Split description to separate date and description
-                parts = desc_text.split(':', 1)
-                if len(parts) == 2:
-                    date_part = parts[0].strip()
-                    description = parts[1].strip()
+                # Extract date part (should be the first part before the colon)
+                date_part = ""
+                description = desc_text
+                
+                # Look for the pattern with a colon separating date and description
+                if ":" in desc_text:
+                    colon_pos = desc_text.find(":")
+                    date_part = desc_text[:colon_pos].strip()
+                    description = desc_text[colon_pos+1:].strip()
                 else:
-                    date_part = desc_text
-                    description = desc_text
+                    # If no colon, try to extract date using regex
+                    date_patterns = [
+                        r'\w+day,?\s+\w+\s+\d+,?\s+\d+(?::\d+)?\s*–\s*\d+(?::\d+)?\s*[ap]\.m\.',
+                        r'\w+\s+\d+–\w+\s+\d+',
+                        r'\w+\s+\d+'
+                    ]
+                    
+                    for pattern in date_patterns:
+                        match = re.search(pattern, desc_text)
+                        if match:
+                            date_part = match.group(0)
+                            description = desc_text.replace(date_part, "").strip()
+                            break
                 
                 # Parse dates
                 start_date, end_date = parse_date(date_part)
@@ -135,7 +169,7 @@ def scrape_towson_events(url = "https://www.towson.edu/startup/about/events.html
                     "status": "ACTIVE",
                     "location": {
                         "name": "Towson University StarTUp",
-                        "address": "Towson, MD"
+                        "address": "307 Washington Avenue, Towson, MD 21204"
                     }
                 }
                 

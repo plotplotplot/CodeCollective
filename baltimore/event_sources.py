@@ -23,7 +23,8 @@ sources = {
         "https://www.meetup.com/dc-area-drone-user-group/",
         "https://www.meetup.com/ai-performance-engineering-washington-dc/",
         "https://www.meetup.com/philanthropicode/",
-        "https://www.meetup.com/profs-and-pints-baltimore/"
+        "https://www.meetup.com/profs-and-pints-baltimore/",
+        "https://www.meetup.com/ai-enthusiasts/"
     ],
     "Eventbrite":[
         "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
