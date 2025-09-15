@@ -873,36 +873,18 @@
         "scrapeTime": "2025-07-29 00:36:17.617099"
     },
     {
-        "id": "4caa5f03a31e9999",
-        "name": "UAS UAS Virtual Happy Hour",
-        "startDate": "2025-10-09T18:00:00-04:00",
-        "endTime": "2025-10-09T19:00:00-04:00",
-        "description": "Unallocated Space is hosting Happy Hour!\n\nThis is an unstructured event where we can all get together, break bread, and hang out virtually. Bring your preferred beverage, some good conversation, and let's chat!\n\nThis is a virtual event hosted over Zoom.\n\nSometimes we play DnD or Minecraft.",
-        "url": "https://www.unallocatedspace.org/events/",
+        "name": "Gig & Bite",
+        "description": "An exclusive networking mixer designed to connect tech professionals, aspiring tech enthusiasts, and innovators from all",
+        "startDate": "2025-10-09T17:30:00-0400",
+        "endTime": "2025-10-09T20:00:00-0400",
+        "url": "https://www.eventbrite.com/e/gig-bite-tickets-1698089273729",
         "status": "ACTIVE",
         "location": {
-            "name": "https://zoom.us/j/93194733649?pwd=VHMwdHpCeUFIejFzMldTajJCcCtsZz09",
-            "address": "https://zoom.us/j/93194733649?pwd=VHMwdHpCeUFIejFzMldTajJCcCtsZz09"
+            "name": "Prim and Proper Restaurant Cocktail & Wine Bar",
+            "address": "206 East Redwood Street, Baltimore, MD, 21202"
         },
-        "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
-        "recurring": true,
-        "scrapeTime": "2025-07-22 00:33:12.780356"
-    },
-    {
-        "id": "df32814a049760cc",
-        "name": "Node Open Hack",
-        "startDate": "2025-10-09T19:00:00-04:00",
-        "endTime": "2025-10-09T21:00:00-04:00",
-        "description": "",
-        "url": "https://baltimorenode.org/events/",
-        "status": "ACTIVE",
-        "location": {
-            "name": "",
-            "address": ""
-        },
-        "imageUrl": "/event_images/Node_Open_Hack.webp",
-        "recurring": true,
-        "scrapeTime": "2025-07-22 00:33:12.783196"
+        "imageUrl": "/event_images/Gig_&_Bite.webp",
+        "scrapeTime": "2025-09-15 00:31:30.976682"
     },
     {
         "id": "77d9421802584b03",
@@ -2910,5 +2892,21 @@
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
         "scrapeTime": "2025-09-14 00:31:11.976418"
+    },
+    {
+        "id": "1cd8b1bcf09cf279",
+        "name": "UAS Infosec & DC443 Meetup",
+        "startDate": "2026-03-13T19:00:00-04:00",
+        "endTime": "2026-03-13T21:00:00-04:00",
+        "description": "<p>SUMMARY:<br>The DEF CON Group 443, also known as DC443, is an interest group designed to discuss general hacking and its culture, information security (InfoSec), and related topics. Our group\u2019s interests include InfoSec, SDR, Hackathons, Speaker Events (MiniCons), Capture The Flags (CTFs), Binary Reversing/Exploitation, Ham Radio, Lock Picking, Micro Electronics, Web Development, etc.</p><p>We plan to meet every other week on Fridays at Unallocated space. Meetings can include Talks, projects, trivia nights, workshops, or contests and CTFs.</p><p>Website:&nbsp;<a href=\"https://dc443.org/\">https://dc443.org</a><br>Twitter:&nbsp;<a href=\"https://twitter.com/dc443_\">https://twitter.com/dc443_</a></p><p>GOAL: Learn about new and existing interests and grow the Unallocated Space community.</p><p></p><p>THINGS TO BRING: Yourself and friends</p><p></p><p>SKILL LEVEL:<br>Any</p><p></p><p>PRESENTER: Adam (Digital Tinker)</p>",
+        "url": "https://www.unallocatedspace.org/events/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "",
+            "address": ""
+        },
+        "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
+        "recurring": true,
+        "scrapeTime": "2025-09-15 00:31:30.995159"
     }
 ]
