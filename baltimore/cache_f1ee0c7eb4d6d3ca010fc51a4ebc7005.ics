@@ -1,6 +1,6 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Baltimore Indie Games - ECPv6.15.0.1//NONSGML v1.0//EN
+PRODID:-//Baltimore Indie Games - ECPv6.15.4//NONSGML v1.0//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:Baltimore Indie Games
@@ -25,42 +25,9 @@ DTSTART:20251102T060000
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20250823T160000
-DTEND;TZID=America/New_York:20250823T220000
-DTSTAMP:20250821T181507
-CREATED:20250820T201129Z
-LAST-MODIFIED:20250820T201129Z
-UID:287-1755964800-1755986400@baltimoreindiegames.com
-SUMMARY:Bit Gen Gamer Fest XIX
-DESCRIPTION:Bit Gen Gamer Fest powers up once more as planet Earth’s largest one-day video game music festival. Bit Gen 19 storms the legendary Ottobar in Baltimore\, Maryland\, for an all-day\, all-out celebration of the music and madness that defined a generation. And it all goes down this Saturday\, August 23rd! \nThis year’s lineup showcases some of the most iconic and electrifying performers in the video game music scene\, spanning nearly 30 years of pixel-fueled history. With two stages running on a ping-pong-style alternating schedule\, the action never stops. Fuel your combo meter with video game-inspired cocktails\, dive into a curated selection of free-play arcade and console games\, and let your nostalgia pacman feast until it bursts with joy. \nThis is raw\, unfiltered nerd culture turned all the way up. No panels. No cosplay contests (or should we?). Just pure\, live\, VGM performed by the best in the game. Bit Gen Gamer Fest continues to cement its legacy as the galaxy’s most relentless celebration of video game music and the weird\, wonderful people who love it. We hope to see you at the Ottobar this weekend!
-URL:https://baltimoreindiegames.com/event/bit-gen-gamer-fest-xix/
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20250830T120000
-DTEND;TZID=America/New_York:20250830T170000
-DTSTAMP:20250821T181507
-CREATED:20250803T014958Z
-LAST-MODIFIED:20250803T014958Z
-UID:258-1756555200-1756573200@baltimoreindiegames.com
-SUMMARY:End of Summer Game Dev Picnic in College Park
-DESCRIPTION:Come join us for an end of summer picnic at BIG member Stevens Miller’s house in College Park\, between Lackawanna St. and Mangum Rd. on 52nd Ave. Ignore permit parking signs: Stevens will arrange event parking with the city. Greenbelt Metro is 5min walk (last stop on the Green line). This picnic is for all local game devs in the Baltimore-Washington area. \nDetails and RSVP link: https://www.meetup.com/baltimore-indie-game-developers-group/events/310332861
-URL:https://baltimoreindiegames.com/event/end-of-summer-game-dev-picnic-in-college-park/
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20250906T100000
-DTEND;TZID=America/New_York:20250906T113000
-DTSTAMP:20250821T181507
-CREATED:20250802T004117Z
-LAST-MODIFIED:20250802T004117Z
-UID:254-1757152800-1757158200@baltimoreindiegames.com
-SUMMARY:Online Meetup
-DESCRIPTION:We’re meeting on Discord! The link to join the Baltimore Indie Game Devs discord server will be in your RSVP message. \nJoin us to discuss game development\, talk shop\, and bounce ideas. Anyone with an interest in game design and development is welcome\, from beginners to veteran professionals. \nIf you’re working on a game\, you’re welcome to show it and ask for feedback. There will be plenty of time to chat and talk shop\, too.
-URL:https://baltimoreindiegames.com/event/online-meetup-5/
-END:VEVENT
-BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20250920T110000
 DTEND;TZID=America/New_York:20250920T160000
-DTSTAMP:20250821T181507
+DTSTAMP:20250918T153631
 CREATED:20250627T170825Z
 LAST-MODIFIED:20250726T144055Z
 UID:196-1758366000-1758384000@baltimoreindiegames.com
@@ -70,20 +37,55 @@ URL:https://baltimoreindiegames.com/event/game-escape-indie-showcase/
 LOCATION:Parkway Theatre\, 5 W North Ave\, Baltimore\, MD\, 21201\, United States
 END:VEVENT
 BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20251003T210000
-DTEND;TZID=America/New_York:20251005T210000
-DTSTAMP:20250821T181507
-CREATED:20250719T114459Z
-LAST-MODIFIED:20250719T114459Z
-UID:232-1759525200-1759698000@baltimoreindiegames.com
-SUMMARY:Ludum Dare 58
-DESCRIPTION:Ludum Dare is an online event where games are made from scratch in a weekend. \nBIG is planning to host an in-person site for people who want to get together in person to make games. Location details will be announced in early September. \nldjam.com | Ludum Dare game jam
-URL:https://baltimoreindiegames.com/event/ludum-dare-58/
+DTSTART;TZID=America/New_York:20250923T183000
+DTEND;TZID=America/New_York:20250923T203000
+DTSTAMP:20250918T153631
+CREATED:20250906T155759Z
+LAST-MODIFIED:20250906T155830Z
+UID:306-1758652200-1758659400@baltimoreindiegames.com
+SUMMARY:IGDA DC: Game Showcases: Tabling Tips and Tricks
+DESCRIPTION:Online event. \nIf you’re an indie game developer\, switching from the mindset of creating your game to showing your game at an event can be a new and intimidating experience. This collaborative talk will feature volunteers from the IGDA DC chapter giving lightning talks about their tips and tricks for presenting their game at events. Learn from people who have done it before so you can be prepared to showcase your creativity to the world! \nIf you’d like to participate as a speaker\, fill out this form and we’ll add you to the speaker list: https://forms.gle/9MKe61u59XfhL6nG6
+URL:https://baltimoreindiegames.com/event/igda-dc-game-showcases-tabling-tips-and-tricks-online/
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20250927T110000
+DTEND;TZID=America/New_York:20250927T130000
+DTSTAMP:20250918T153631
+CREATED:20250907T201315Z
+LAST-MODIFIED:20250912T163959Z
+UID:317-1758970800-1758978000@baltimoreindiegames.com
+SUMMARY:MSU Level Up Summit
+DESCRIPTION:Morgan State University\n1700 E. Cold Spring Lane\, Baltimore\, MD 21251 \nJoin the Baltimore IGDA on September 27\, 2025 at Morgan State University for a full day of gaming\, innovation\, and community building! Participate in interactive panels from AAA Game Developers from the Baltimore IGDA\, witness the grand opening of the Esports Competition & Broadcast Lab\, and cheer on Morgan State and Howard University in the Battle of 295 Marvel Rivals competition for a custom championship belt. \nExperience the excitement live—MSU student broadcasters will stream all the behind-the-scenes tournament action from the Legacy Hall lobby. Spectators can watch in person from Legacy Hall and the Student Center theater for even more immersive viewing. Enjoy creative showcases from student talent and open gaming at the BEARcade in the Student Center. \nAll are welcome—students\, alumni\, families\, and the community. Admission is free with RSVP. All venues ADA accessible. \nOfficial RSVP here. https://events.morgan.edu/event/level-up-summit-empowering-futures-through-gaming \n 
+URL:https://baltimoreindiegames.com/event/morgan-state-level-up-summit/
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20250927T120000
+DTEND;TZID=America/New_York:20250927T140000
+DTSTAMP:20250918T153631
+CREATED:20250906T155329Z
+LAST-MODIFIED:20250906T155401Z
+UID:301-1758974400-1758981600@baltimoreindiegames.com
+SUMMARY:Game Fest at Columbia Central Library
+DESCRIPTION:Age Group: Children\, Teens\, Adults\, Everyone \nEvent Details: Join Howard County Libraries for an exciting\, all-ages Game Fest at Central! Explore a variety of gaming experiences\, from board games and video games to D&D and tabletop RPGs. Enjoy live music from the Baltimore Gamer Symphony Orchestra & Choir\, participate in interactive workshops\, and connect with local community partners. \nWhether you’re a kid\, teen\, or adult\, there’s something for everyone! \nBIG members will be showing indie games.
+URL:https://baltimoreindiegames.com/event/game-fest-at-columbia-central-library/
+LOCATION:Central Branch Library\, 10375 Little Patuxent Parkway\, Columbia\, MD\, United States
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20251003T190000
+DTEND;TZID=America/New_York:20251005T170000
+DTSTAMP:20250918T153631
+CREATED:20250902T144747Z
+LAST-MODIFIED:20250906T154158Z
+UID:294-1759518000-1759683600@baltimoreindiegames.com
+SUMMARY:Ludum Dare 58 [East Columbia Branch & Online]
+DESCRIPTION:BIG is hosting an online site for the Ludum Dare 58 game jam all weekend on our Discord server (message Tony Li on Meetup for link) and in-person! \n\nFriday 7 PM – 9:30 PM: MOD Pizza Columbia Mall | Columbia\, MD\nSaturday 10 AM – 5 PM: Marvin Thomas Room\, East Columia Branch Library\nSunday 1 PM – 4:30 PM: Marvin Thomas Room\, East Columbia Branch Library\n\nWhether you’re a game jam veteran or have never made a video game before\, all are welcome to join us online and make a game in a weekend! Team up with other BIG members\, bring your own team\, or work solo. \nJoin us for the theme announcement\, then stay connected through the weekend to discuss game ideas\, find team members\, and coordinate on your jam entry. \nLudum Dare 58: https://ludumdare.com/ \nMeetup RSVP: https://www.meetup.com/baltimore-indie-game-developers-group/events/310831033/
+URL:https://baltimoreindiegames.com/event/ludum-dare-58-central-branch-library-online/
+LOCATION:East Columbia Branch
 END:VEVENT
 BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20251025T130000
 DTEND;TZID=America/New_York:20251025T170000
-DTSTAMP:20250821T181507
+DTSTAMP:20250918T153631
 CREATED:20250816T182706Z
 LAST-MODIFIED:20250819T212743Z
 UID:275-1761397200-1761411600@baltimoreindiegames.com
@@ -93,9 +95,20 @@ URL:https://baltimoreindiegames.com/event/district-arcade/
 LOCATION:Martin Luther King Jr. Memorial Library\, 901 G St NW\, Washington\, DC\, 20001\, United States
 END:VEVENT
 BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20251101T000000
+DTEND;TZID=America/New_York:20251101T235959
+DTSTAMP:20250918T153631
+CREATED:20250907T201009Z
+LAST-MODIFIED:20250907T201009Z
+UID:312-1761955200-1762041599@baltimoreindiegames.com
+SUMMARY:Frederick STEM Carnival
+DESCRIPTION:Details coming soon.
+URL:https://baltimoreindiegames.com/event/frederick-stem-carnival/
+END:VEVENT
+BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20251114T090000
 DTEND;TZID=America/New_York:20251116T170000
-DTSTAMP:20250821T181507
+DTSTAMP:20250918T153631
 CREATED:20250329T190515Z
 LAST-MODIFIED:20250816T182936Z
 UID:110-1763110800-1763312400@baltimoreindiegames.com
