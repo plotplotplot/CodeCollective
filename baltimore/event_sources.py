@@ -54,13 +54,14 @@ sources = {
         "https://lu.ma/Bmore_Climate",
         "https://lu.ma/blktechconnect",
         "https://lu.ma/user/web3dc",
+        "https://lu.ma/user/charmcityjs",
         "https://lu.ma/mtechumd"
     ],
     "Luma Users":[
         #"https://api.lu.ma/user/profile/events-hosting"
         "usr-tYdFPQYBiZY4T6B",
         "usr-d4s75dZyC9VOXAd",
-        "usr-iZFykYNctUzTFLd"
+        "usr-iZFykYNctUzTFLd",
     ],
     "Google Forms":[
         "http://docs.google.com/forms/d/e/1FAIpQLSfAHwexta7vxLto1xmvBxFNawicAUtRrjTKqN0jHs25RjLCQg/viewform"
