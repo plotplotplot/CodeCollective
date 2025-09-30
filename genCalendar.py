@@ -454,16 +454,27 @@ def main(city = "baltimore"):
         except Exception as e:
             print(f"Error fetching calendar events: {e}")
 
-        try:
-            newEvents += scrape_jhuapl.scrape_jhu_events()
-        except Exception as e:
-            print(f"Error fetching calendar events: {e}")
+        # JHUAPL excluded because of too many events external to Baltimore tech scene
+        #try:
+        #    newEvents += scrape_jhuapl.scrape_jhu_events()
+        #except Exception as e:
+        #    print(f"Error fetching calendar events: {e}")
 
         try:
             newEvents += scrape_big.main()
         except Exception as e:
             print(f"Error fetching calendar events: {e}")
 
+    if city == "westvirginia":
+
+        newEvents += scrape_ics.fetch_calendar_events(
+            ICS_URL="https://wvbusinesslink.com/?post_type=tribe_events&ical=1&eventDisplay=list",
+            imageURL="https://baltimoreindiegames.com/wp-content/uploads/2025/03/BIG_small.png",
+            eventUrl="https://baltimoreindiegames.com/events/",
+            city="westvirginia",
+            preface="",
+            recurring=False
+        )
     invalid_events = []
 
     # Download images for each event
@@ -566,7 +577,7 @@ def main(city = "baltimore"):
 
     # --- PHASE 0: mix with existing events
     # read existing events from file
-    with open(os.path.join(city, "upcoming_events.json"), "r") as f:
+    with open(os.path.join(city, "manual_events.json"), "r") as f:
         existing_events_in_file = json.loads(f.read())
     upcoming_existing_events_in_file = []
     for event in existing_events_in_file:

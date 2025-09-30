@@ -22,7 +22,9 @@ sources = {
         "https://www.meetup.com/columbia-politics-meetup-group/",
         "https://www.meetup.com/dc-area-drone-user-group/",
         "https://www.meetup.com/ai-performance-engineering-washington-dc/",
-        "https://www.meetup.com/philanthropicode/"
+        "https://www.meetup.com/philanthropicode/",
+        "https://www.meetup.com/profs-and-pints-baltimore/",
+        "https://www.meetup.com/ai-enthusiasts/"
     ],
     "Eventbrite":[
         "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
@@ -52,13 +54,14 @@ sources = {
         "https://lu.ma/Bmore_Climate",
         "https://lu.ma/blktechconnect",
         "https://lu.ma/user/web3dc",
+        "https://lu.ma/user/charmcityjs",
         "https://lu.ma/mtechumd"
     ],
     "Luma Users":[
         #"https://api.lu.ma/user/profile/events-hosting"
         "usr-tYdFPQYBiZY4T6B",
         "usr-d4s75dZyC9VOXAd",
-        "usr-iZFykYNctUzTFLd"
+        "usr-iZFykYNctUzTFLd",
     ],
     "Google Forms":[
         "http://docs.google.com/forms/d/e/1FAIpQLSfAHwexta7vxLto1xmvBxFNawicAUtRrjTKqN0jHs25RjLCQg/viewform"
