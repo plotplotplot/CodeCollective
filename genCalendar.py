@@ -147,7 +147,7 @@ def parse_markdown_to_plain_text(markdown_text):
     return text.strip()
 
 
-def events_to_ics(events_json, output_file="baltimore_tech_events.ics"):
+def events_to_ics(events_json, city, output_file="baltimore_tech_events.ics"):
     """
     Convert event JSON data to ICS format and save to a file
 
@@ -163,7 +163,7 @@ def events_to_ics(events_json, output_file="baltimore_tech_events.ics"):
 
     # Create a new calendar
     cal = Calendar()
-    cal.creator = "Baltimore Tech Events Calendar Generator"
+    cal.creator = f"{city} Tech Events"
 
     # Add each event to the calendar
     for event_data in events:
@@ -701,7 +701,7 @@ def main(city = "baltimore"):
         json.dump(invalid_events, f, indent=4)
         print(f"Upcoming events saved to skipped_events.json")
 
-    events_to_ics(sorted_events, output_file=os.path.join(city, "cc_events.ics"))
+    events_to_ics(sorted_events, city, output_file=os.path.join(city, "cc_events.ics"))
     os.system("cp baltimore/cc_events.ics .")
     os.system("cp baltimore/upcoming_events.json .")
     genSimpleCalendar.main(city)
