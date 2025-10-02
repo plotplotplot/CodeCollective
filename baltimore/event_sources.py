@@ -54,7 +54,8 @@ sources = {
         "https://lu.ma/blktechconnect",
         "https://lu.ma/user/web3dc",
         "https://lu.ma/user/charmcityjs",
-        "https://lu.ma/mtechumd"
+        "https://lu.ma/mtechumd",
+        "https://luma.com/codecollective"
     ],
     "Luma Users":[
         #"https://api.lu.ma/user/profile/events-hosting"
