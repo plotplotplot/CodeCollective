@@ -45,8 +45,7 @@ sources = {
         #"https://form.jotform.com/251063812795157"
     ],
     "Luma":[
-        "https://lu.ma/k5mgdolz",
-        "https://lu.ma/02zv4one"
+        "https://luma.com/2d1a4uwv"
     ],
     "Luma Orgs":[
         "https://lu.ma/civic-tech-dc",

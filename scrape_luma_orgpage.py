@@ -196,7 +196,7 @@ if __name__ == "__main__":
     Example usage of the parser with a Luma URL.
     """
     # Example URL
-    url = "https://lu.ma/civic-tech-dc"
+    url = "https://lu.ma/user/charmcityjs"
     
     print(f"Fetching and parsing events from: {url}")
     print("=" * 60)

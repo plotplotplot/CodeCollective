@@ -75,5 +75,7 @@ def clean_description(content):
 
 # Example usage:
 if __name__ == "__main__":
-    event_data = parse_luma_event_page("https://lu.ma/k5mgdolz")
+    from baltimore.event_sources import sources as sources
+    for source in sources:
+        event_data = parse_luma_event_page(source)
     print(json.dumps(event_data, indent=2))
