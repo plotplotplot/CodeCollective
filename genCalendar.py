@@ -440,6 +440,19 @@ def main(city = "baltimore"):
             print(f"Error fetching calendar events: {e}")
 
         try:
+            newEvents += scrape_ics.fetch_calendar_events(
+                ICS_URL="https://calendar.google.com/calendar/ical/c_be274545c6e9af174fab0df99319a3c47f1be77a013450babf6d03e90396a064%40group.calendar.google.com/public/basic.ics",
+                city=city,
+                imageURL="https://static.wixstatic.com/media/8dc51b_7123df01d68e47a1b4b717c89ad4aea7~mv2.png/v1/fill/w_223,h_90,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/BDEC%20(1).png",
+                eventUrl="https://www.digitalequitybaltimore.org/general-clean",
+                recurring=False,
+                preface="",
+            )
+        except Exception as e:
+            print(f"Error fetching calendar events: {e}")
+
+
+        try:
             newEvents += scrape_spark.scrape_spark_events()
         except Exception as e:
             print(f"Error fetching calendar events: {e}")
