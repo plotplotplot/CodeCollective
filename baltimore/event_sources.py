@@ -46,8 +46,7 @@ sources = {
         #"https://form.jotform.com/251063812795157"
     ],
     "Luma":[
-        "https://lu.ma/k5mgdolz",
-        "https://lu.ma/02zv4one"
+        "https://luma.com/2d1a4uwv"
     ],
     "Luma Orgs":[
         "https://lu.ma/civic-tech-dc",
@@ -55,13 +54,16 @@ sources = {
         "https://lu.ma/Bmore_Climate",
         "https://lu.ma/blktechconnect",
         "https://lu.ma/user/web3dc",
-        "https://lu.ma/mtechumd"
+        "https://lu.ma/user/charmcityjs",
+        "https://lu.ma/mtechumd",
+        "https://luma.com/codecollective"
     ],
     "Luma Users":[
         #"https://api.lu.ma/user/profile/events-hosting"
         "usr-tYdFPQYBiZY4T6B",
         "usr-d4s75dZyC9VOXAd",
-        "usr-iZFykYNctUzTFLd"
+        "usr-iZFykYNctUzTFLd",
+        "usr-dwIy5y3nhtspeEz"
     ],
     "Google Forms":[
         "http://docs.google.com/forms/d/e/1FAIpQLSfAHwexta7vxLto1xmvBxFNawicAUtRrjTKqN0jHs25RjLCQg/viewform"
