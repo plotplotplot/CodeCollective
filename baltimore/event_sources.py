@@ -56,7 +56,8 @@ sources = {
         "https://lu.ma/user/web3dc",
         "https://lu.ma/user/charmcityjs",
         "https://lu.ma/mtechumd",
-        "https://luma.com/codecollective"
+        "https://luma.com/codecollective",
+        "https://luma.com/bmore-on-rails"
     ],
     "Luma Users":[
         #"https://api.lu.ma/user/profile/events-hosting"
