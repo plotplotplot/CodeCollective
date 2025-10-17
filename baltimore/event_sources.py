@@ -39,7 +39,8 @@ sources = {
         "https://www.eventbrite.com.au/o/it-social-baltimore-110781946041",
         "https://www.eventbrite.com/cc/baltimore-4326703",
         "https://www.eventbrite.com/o/impact-hub-baltimore-8423440202",
-        "https://www.eventbrite.com/o/a-prosperous-tomorrow-11875462384"
+        "https://www.eventbrite.com/o/a-prosperous-tomorrow-11875462384",
+        "https://www.eventbrite.com/o/lets-go-113135073431"
     ],
     "Jotform":[
         #"https://form.jotform.com/251063812795157"
@@ -55,7 +56,8 @@ sources = {
         "https://lu.ma/user/web3dc",
         "https://lu.ma/user/charmcityjs",
         "https://lu.ma/mtechumd",
-        "https://luma.com/codecollective"
+        "https://luma.com/codecollective",
+        "https://luma.com/bmore-on-rails"
     ],
     "Luma Users":[
         #"https://api.lu.ma/user/profile/events-hosting"
