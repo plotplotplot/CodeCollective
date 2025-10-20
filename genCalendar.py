@@ -6,6 +6,7 @@ import scrape_gbc
 import scrape_luma
 import scrape_ics
 import scrape_starTUp
+import scrape_tedco
 import scrape_jhuapl
 import scrape_big
 import scrape_gform
@@ -405,6 +406,11 @@ def main(city = "baltimore"):
             )
         except Exception as e:
             print(f"Error fetching calendar events: {e}")
+
+        try:
+            newEvents += scrape_tedco.scrape_tedco_events(months=2)
+        except Exception as e:
+            print(f"Error fetching tedco")
 
         try:
             newEvents += scrape_ics.fetch_calendar_events(
