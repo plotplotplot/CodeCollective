@@ -4,13 +4,87 @@ import json
 import hashlib
 from datetime import datetime
 from urllib.parse import urljoin
+import time
+import re
 
-def scrape_mtc_events(url="https://members.mdtechcouncil.com/eventcalendar"):
+def scrape_event_details(event_url):
+    """
+    Scrape detailed information from an individual event page
+    
+    Returns:
+        dict with startDate, endTime, location details
+    """
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+    }
+    
+    try:
+        response = requests.get(event_url, headers=headers)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.text, 'html.parser')
+        
+        details = {
+            'startDate': None,
+            'endTime': None,
+            'location_name': '',
+            'location_address': ''
+        }
+        
+        # Find the time block with class 'mn-hours'
+        time_block = soup.find('div', class_='mn-hours')
+        if time_block:
+            date_div = time_block.find('div', class_='mn-date')
+            if date_div:
+                # Extract the span text which contains the full date/time
+                date_span = date_div.find('span')
+                if date_span:
+                    time_text = date_span.get_text(strip=True)
+                    # Pattern: "Thursday, October 30, 2025 (4:00 PM - 7:00 PM)"
+                    match = re.search(r'(\w+,\s+\w+\s+\d+,\s+\d{4})\s+\((\d+:\d+\s+[AP]M)\s*-\s*(\d+:\d+\s+[AP]M)\)', time_text)
+                    if match:
+                        date_str = match.group(1)
+                        start_time = match.group(2)
+                        end_time = match.group(3)
+                        
+                        try:
+                            # Parse start time
+                            dt_start = datetime.strptime(f"{date_str} {start_time}", "%A, %B %d, %Y %I:%M %p")
+                            details['startDate'] = dt_start.strftime("%Y-%m-%dT%H:%M:%S-04:00")
+                            
+                            # Parse end time
+                            dt_end = datetime.strptime(f"{date_str} {end_time}", "%A, %B %d, %Y %I:%M %p")
+                            details['endTime'] = dt_end.strftime("%Y-%m-%dT%H:%M:%S-04:00")
+                        except Exception as e:
+                            print(f"  Date parsing error: {e}")
+        
+        # Find location block with class 'mn-location-description'
+        location_block = soup.find('div', class_='mn-location-description')
+        if location_block:
+            text_div = location_block.find('div', class_='mn-text')
+            if text_div:
+                # Get all text and split by newlines
+                location_text = text_div.get_text('\n', strip=True)
+                lines = [line.strip() for line in location_text.split('\n') if line.strip()]
+                
+                if len(lines) >= 1:
+                    details['location_name'] = lines[0]
+                    # Combine remaining lines as address
+                    if len(lines) > 1:
+                        details['location_address'] = ', '.join(lines[1:])
+        
+        return details
+        
+    except Exception as e:
+        print(f"  Warning: Could not fetch details from {event_url}: {e}")
+        return None
+
+def scrape_mtc_events(url="https://members.mdtechcouncil.com/eventcalendar", fetch_details=True):
     """
     Scrapes events from Maryland Tech Council event calendar
     
     Args:
         url: URL of the event calendar page
+        fetch_details: If True, fetches individual event pages for times/location
         
     Returns:
         List of event dictionaries
@@ -87,10 +161,27 @@ def scrape_mtc_events(url="https://members.mdtechcouncil.com/eventcalendar"):
             # Parse dates (simplified - would need more robust parsing)
             start_date = parse_date_string(date_text)
             end_date = start_date  # Same as start if not specified
+            location_name = ""
+            location_address = ""
             
             # Check if event has registration button
             register_btn = block.find('a', class_='mn-button', string=lambda x: x and 'Register' in x)
             status = "ACTIVE" if register_btn else "ACTIVE"
+            
+            # Fetch detailed information from event page
+            if fetch_details and event_url:
+                print(f"  Fetching details from {event_url}...")
+                event_details = scrape_event_details(event_url)
+                time.sleep(0.5)  # Be polite, don't hammer the server
+                
+                if event_details:
+                    if event_details['startDate']:
+                        start_date = event_details['startDate']
+                    if event_details['endTime']:
+                        end_date = event_details['endTime']
+                    if event_details['location_name']:
+                        location_name = event_details['location_name']
+                        location_address = event_details['location_address']
             
             event = {
                 "id": event_id,
@@ -101,10 +192,10 @@ def scrape_mtc_events(url="https://members.mdtechcouncil.com/eventcalendar"):
                 "url": event_url,
                 "status": status,
                 "location": {
-                    "name": "",
-                    "address": ""
+                    "name": location_name,
+                    "address": location_address
                 },
-                "imageUrl": "https://mdtechcouncil.com/wp-content/uploads/2019/12/mtc-logo-home2.png",
+                "imageUrl": "",
                 "recurring": False,
                 "scrapeTime": scrape_time
             }
@@ -146,9 +237,15 @@ def parse_date_string(date_str):
 # Main execution
 if __name__ == "__main__":
     print("Scraping MTC Event Calendar...")
-    events = scrape_mtc_events()
+    print("Note: Setting fetch_details=True will scrape each event page for times/location")
+    print("This will be slower but more accurate.\n")
+    
+    # Set to True to fetch detailed times and location (slower)
+    # Set to False for quick scraping (times will be midnight)
+    events = scrape_mtc_events(fetch_details=True)
     
     # Print results as JSON
+    print("\n" + "="*60)
     print(json.dumps(events, indent=4))
     
     # Optionally save to file
@@ -156,3 +253,4 @@ if __name__ == "__main__":
         json.dump(events, f, indent=4)
     
     print(f"\nScraped {len(events)} events successfully!")
+    print(f"Saved to mtc_events.json")
