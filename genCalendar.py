@@ -12,6 +12,7 @@ import scrape_big
 import scrape_gform
 import scrape_luma_orgpage
 import scrape_luma_user
+import scrape_mtc
 import scrape_bwtech
 import json
 from ics import Calendar, Event
@@ -412,6 +413,12 @@ def main(city = "baltimore"):
         except Exception as e:
             print(f"Error fetching tedco")
 
+
+        try:
+            newEvents += scrape_mtc.scrape_mtc_events()
+        except Exception as e:
+            print(f"Error fetching MTC")
+
         try:
             newEvents += scrape_ics.fetch_calendar_events(
                 ICS_URL="https://calendar.google.com/calendar/ical/unallocatedspacehq@gmail.com/public/basic.ics",
@@ -496,6 +503,17 @@ def main(city = "baltimore"):
         )
     invalid_events = []
 
+    # Convert all datetime strings in newEvents to timezone-aware datetime objects
+    for event in newEvents:
+        if "startDate" in event:
+            try:
+                start_dt = parse(event["startDate"])
+                if start_dt.tzinfo is None:
+                    start_dt = est_timezone.localize(start_dt)
+                event["startDate"] = start_dt.isoformat()
+            except Exception as e:
+                print(f"Error converting datetime for event {event.get('name', 'Unknown')}: {e}")
+
     # Download images for each event
     for event in newEvents:
         # Download images if available
@@ -557,6 +575,9 @@ def main(city = "baltimore"):
             continue
 
         startDateTime = parse(event["startDate"])
+        # Make startDateTime timezone-aware if it's naive
+        if startDateTime.tzinfo is None:
+            startDateTime = est_timezone.localize(startDateTime)
 
         if (
             startDateTime.date() == datetime.date(2025, 6, 28)
@@ -601,6 +622,9 @@ def main(city = "baltimore"):
     upcoming_existing_events_in_file = []
     for event in existing_events_in_file:
         startDateTime = parse(event["startDate"])
+        # Make startDateTime timezone-aware if it's naive
+        if startDateTime.tzinfo is None:
+            startDateTime = est_timezone.localize(startDateTime)
         if startDateTime > time_now:
             upcoming_existing_events_in_file += [event]
 
@@ -703,11 +727,11 @@ def main(city = "baltimore"):
         #    print(f"Skipping recurring event: {event_name} (conflict on {event_date})")
 
     # Sort all events by date
-    unique_events.sort(key=lambda x: parse(x["startDate"]))
+    unique_events.sort(key=lambda x: est_timezone.localize(parse(x["startDate"])) if parse(x["startDate"]).tzinfo is None else parse(x["startDate"]))
     # Sort events by startDate
     sorted_events = sorted(
         (e for e in unique_events if "startDate" in e),
-        key=lambda e: parse(e["startDate"]),
+        key=lambda e: est_timezone.localize(parse(e["startDate"])) if parse(e["startDate"]).tzinfo is None else parse(e["startDate"]),
     )
 
     # Save upcoming events to a file

@@ -1,6 +1,6 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Baltimore Indie Games - ECPv6.15.4//NONSGML v1.0//EN
+PRODID:-//Baltimore Indie Games - ECPv6.15.8//NONSGML v1.0//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:Baltimore Indie Games
@@ -15,6 +15,18 @@ BEGIN:DAYLIGHT
 TZOFFSETFROM:-0500
 TZOFFSETTO:-0400
 TZNAME:EDT
+DTSTART:20240310T070000
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:20241103T060000
+END:STANDARD
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
 DTSTART:20250309T070000
 END:DAYLIGHT
 BEGIN:STANDARD
@@ -23,69 +35,23 @@ TZOFFSETTO:-0500
 TZNAME:EST
 DTSTART:20251102T060000
 END:STANDARD
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:20260308T070000
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:20261101T060000
+END:STANDARD
 END:VTIMEZONE
-BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20250920T110000
-DTEND;TZID=America/New_York:20250920T160000
-DTSTAMP:20250918T153631
-CREATED:20250627T170825Z
-LAST-MODIFIED:20250726T144055Z
-UID:196-1758366000-1758384000@baltimoreindiegames.com
-SUMMARY:Game Escape Indie Showcase
-DESCRIPTION:Come see a selection of locally made indie games brought to you by the creators behind them! \n\nA curation of locally made games presented by the developers behind them!\nFeaturing a performance by the BGSO Small Ensembles at 1-2 PM!\nParking is available in limited quantities on the street\, and the recommended parking lot is 1714 N Charles St.\n\nHosted by IGDA Baltimore.
-URL:https://baltimoreindiegames.com/event/game-escape-indie-showcase/
-LOCATION:Parkway Theatre\, 5 W North Ave\, Baltimore\, MD\, 21201\, United States
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20250923T183000
-DTEND;TZID=America/New_York:20250923T203000
-DTSTAMP:20250918T153631
-CREATED:20250906T155759Z
-LAST-MODIFIED:20250906T155830Z
-UID:306-1758652200-1758659400@baltimoreindiegames.com
-SUMMARY:IGDA DC: Game Showcases: Tabling Tips and Tricks
-DESCRIPTION:Online event. \nIf you’re an indie game developer\, switching from the mindset of creating your game to showing your game at an event can be a new and intimidating experience. This collaborative talk will feature volunteers from the IGDA DC chapter giving lightning talks about their tips and tricks for presenting their game at events. Learn from people who have done it before so you can be prepared to showcase your creativity to the world! \nIf you’d like to participate as a speaker\, fill out this form and we’ll add you to the speaker list: https://forms.gle/9MKe61u59XfhL6nG6
-URL:https://baltimoreindiegames.com/event/igda-dc-game-showcases-tabling-tips-and-tricks-online/
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20250927T110000
-DTEND;TZID=America/New_York:20250927T130000
-DTSTAMP:20250918T153631
-CREATED:20250907T201315Z
-LAST-MODIFIED:20250912T163959Z
-UID:317-1758970800-1758978000@baltimoreindiegames.com
-SUMMARY:MSU Level Up Summit
-DESCRIPTION:Morgan State University\n1700 E. Cold Spring Lane\, Baltimore\, MD 21251 \nJoin the Baltimore IGDA on September 27\, 2025 at Morgan State University for a full day of gaming\, innovation\, and community building! Participate in interactive panels from AAA Game Developers from the Baltimore IGDA\, witness the grand opening of the Esports Competition & Broadcast Lab\, and cheer on Morgan State and Howard University in the Battle of 295 Marvel Rivals competition for a custom championship belt. \nExperience the excitement live—MSU student broadcasters will stream all the behind-the-scenes tournament action from the Legacy Hall lobby. Spectators can watch in person from Legacy Hall and the Student Center theater for even more immersive viewing. Enjoy creative showcases from student talent and open gaming at the BEARcade in the Student Center. \nAll are welcome—students\, alumni\, families\, and the community. Admission is free with RSVP. All venues ADA accessible. \nOfficial RSVP here. https://events.morgan.edu/event/level-up-summit-empowering-futures-through-gaming \n 
-URL:https://baltimoreindiegames.com/event/morgan-state-level-up-summit/
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20250927T120000
-DTEND;TZID=America/New_York:20250927T140000
-DTSTAMP:20250918T153631
-CREATED:20250906T155329Z
-LAST-MODIFIED:20250906T155401Z
-UID:301-1758974400-1758981600@baltimoreindiegames.com
-SUMMARY:Game Fest at Columbia Central Library
-DESCRIPTION:Age Group: Children\, Teens\, Adults\, Everyone \nEvent Details: Join Howard County Libraries for an exciting\, all-ages Game Fest at Central! Explore a variety of gaming experiences\, from board games and video games to D&D and tabletop RPGs. Enjoy live music from the Baltimore Gamer Symphony Orchestra & Choir\, participate in interactive workshops\, and connect with local community partners. \nWhether you’re a kid\, teen\, or adult\, there’s something for everyone! \nBIG members will be showing indie games.
-URL:https://baltimoreindiegames.com/event/game-fest-at-columbia-central-library/
-LOCATION:Central Branch Library\, 10375 Little Patuxent Parkway\, Columbia\, MD\, United States
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20251003T190000
-DTEND;TZID=America/New_York:20251005T170000
-DTSTAMP:20250918T153631
-CREATED:20250902T144747Z
-LAST-MODIFIED:20250906T154158Z
-UID:294-1759518000-1759683600@baltimoreindiegames.com
-SUMMARY:Ludum Dare 58 [East Columbia Branch & Online]
-DESCRIPTION:BIG is hosting an online site for the Ludum Dare 58 game jam all weekend on our Discord server (message Tony Li on Meetup for link) and in-person! \n\nFriday 7 PM – 9:30 PM: MOD Pizza Columbia Mall | Columbia\, MD\nSaturday 10 AM – 5 PM: Marvin Thomas Room\, East Columia Branch Library\nSunday 1 PM – 4:30 PM: Marvin Thomas Room\, East Columbia Branch Library\n\nWhether you’re a game jam veteran or have never made a video game before\, all are welcome to join us online and make a game in a weekend! Team up with other BIG members\, bring your own team\, or work solo. \nJoin us for the theme announcement\, then stay connected through the weekend to discuss game ideas\, find team members\, and coordinate on your jam entry. \nLudum Dare 58: https://ludumdare.com/ \nMeetup RSVP: https://www.meetup.com/baltimore-indie-game-developers-group/events/310831033/
-URL:https://baltimoreindiegames.com/event/ludum-dare-58-central-branch-library-online/
-LOCATION:East Columbia Branch
-END:VEVENT
 BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20251025T130000
 DTEND;TZID=America/New_York:20251025T170000
-DTSTAMP:20250918T153631
+DTSTAMP:20251020T164932
 CREATED:20250816T182706Z
 LAST-MODIFIED:20250819T212743Z
 UID:275-1761397200-1761411600@baltimoreindiegames.com
@@ -95,26 +61,37 @@ URL:https://baltimoreindiegames.com/event/district-arcade/
 LOCATION:Martin Luther King Jr. Memorial Library\, 901 G St NW\, Washington\, DC\, 20001\, United States
 END:VEVENT
 BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20251101T000000
-DTEND;TZID=America/New_York:20251101T235959
-DTSTAMP:20250918T153631
-CREATED:20250907T201009Z
-LAST-MODIFIED:20250907T201009Z
-UID:312-1761955200-1762041599@baltimoreindiegames.com
-SUMMARY:Frederick STEM Carnival
-DESCRIPTION:Details coming soon.
-URL:https://baltimoreindiegames.com/event/frederick-stem-carnival/
+DTSTART;TZID=America/New_York:20251101T130000
+DTEND;TZID=America/New_York:20251101T160000
+DTSTAMP:20251020T164932
+CREATED:20250929T133031Z
+LAST-MODIFIED:20250929T133031Z
+UID:332-1762002000-1762012800@baltimoreindiegames.com
+SUMMARY:Frederick STEM Festival
+DESCRIPTION:Location: Carroll Creek Amphitheater\, Frederick\, Maryland \nAdmission: Free \nThe 2nd Frederick STEM Carnival will occur on November 1st at Carroll Creek from 1 to 4 PM. The event builds on previous successes our Frederick events and offers a unique opportunity for Frederick residents to engage in STEM-related activities. At 2:30\, there will be a magic show\, and a juggler will walk around the event. We will have plenty of giveaways! \nThis event is being held with the Frederick Children’s Business Fair. \nOrganizations that have been invited to participate include: \nAstraZeneca \nBovine Intervention \nGoTeam Therapy Dogs \nLonza \nUrbana STEMM \nTheromfisher Scientific \nFrederick Community College Biology Department \nTexcell \nLanline Games (video game developer) \nHope4OurChildren Face Painter \nHood College \nBrunswick Robotics
+URL:https://baltimoreindiegames.com/event/frederick-stem-festival/
 END:VEVENT
 BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20251114T090000
 DTEND;TZID=America/New_York:20251116T170000
-DTSTAMP:20250918T153631
+DTSTAMP:20251020T164932
 CREATED:20250329T190515Z
-LAST-MODIFIED:20250816T182936Z
+LAST-MODIFIED:20250924T200800Z
 UID:110-1763110800-1763312400@baltimoreindiegames.com
 SUMMARY:Game Your Future Conference
-DESCRIPTION:This is the 4th annual Game Your Future is a conference\, an event organized by Maryland-regional developer groups at the Baltimore Convention Center.  It brings an experience similar to the Game Developers Conference (GDC) to the East Coast to fill the void of a more accessible event for our East Coast devs who want something near where they live.\n\nJoin us at the Game Your Future Conference\, where community\, creativity\, and career growth collide. Whether you’re a game developer\, esports enthusiast\, student\, or professional in a tangential industry\, this is your chance to upskill\, get inspired\, and build meaningful connections in an evolving job market. With top speakers\, hands-on learning\, and unmatched networking opportunities\, you’ll leave empowered to thrive in gaming—and beyond.
+DESCRIPTION:This is the 4th annual Game Your Future is a conference\, an event organized by Maryland-regional developer groups at the Baltimore Convention Center.  It brings an experience similar to the Game Developers Conference (GDC) to the East Coast to fill the void of a more accessible event for our East Coast devs who want something near where they live.\n\nJoin us at the Game Your Future Conference\, where community\, creativity\, and career growth collide. Whether you’re a game developer\, esports enthusiast\, student\, or professional in a tangential industry\, this is your chance to upskill\, get inspired\, and build meaningful connections in an evolving job market. With top speakers\, hands-on learning\, and unmatched networking opportunities\, you’ll leave empowered to thrive in gaming—and beyond.\n\nTickets and info: https://www.game4good.gg/game-your-future-conference/\n\nIndie Showcase (submit your game to show at the conference): Submission Form
 URL:https://baltimoreindiegames.com/event/game-your-future-conference/
 LOCATION:Baltimore Convention Center\, 1 W Pratt Street\, Baltimore\, MD\, 21201\, United States
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20251203T180000
+DTEND;TZID=America/New_York:20251203T210000
+DTSTAMP:20251020T164932
+CREATED:20251018T135740Z
+LAST-MODIFIED:20251018T135800Z
+UID:340-1764784800-1764795600@baltimoreindiegames.com
+SUMMARY:Baltimore IGDA Year In Review 2025
+DESCRIPTION:The Baltimore IGDA is finishing the year strong with our final event of the 2025 year\, ‘The Baltimore IGDA – Year In Review’. This event is being held at the Greene Turtle in Hunt Valley on Wednesday December 3rd from 6pm – 9pm. We will have speakers from all 15+ of the local game development companies on how their year was and a look toward the future for 2026. This event is normally one of the biggest and can’t miss events to network and check out what each of the local studios are doing. Please RSVP so we can get a headcount and share this can’t miss event! \n118 Shawan Rd Suite HH\, Hunt Valley\, MD 21030
+URL:https://baltimoreindiegames.com/event/baltimore-igda-year-in-review-2025/
 END:VEVENT
 END:VCALENDAR
