@@ -177,7 +177,7 @@ def scrape_event_page(event_url, event_title):
         print(f"✗ Error scraping event page: {e}")
         return None
 
-def main():
+def scrape_all():
     # Main page URL
     main_url = "https://innovationmaryland.org/"
     
@@ -216,8 +216,8 @@ def main():
     
 
 if __name__ == "__main__":
-    all_event_data = main()
-    
+    all_event_data = scrape_all()
+
     # Output as JSON
     print("\n" + "="*60)
     print("JSON Output:")

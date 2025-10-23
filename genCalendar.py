@@ -482,7 +482,7 @@ def main(city = "baltimore"):
             print(f"Error fetching calendar events: {e}")
 
         try:
-            newEvents += scrape_innovatemd.scrape_event_page
+            newEvents += scrape_innovatemd.scrape_all()
         except Exception as e:
             print(f"Error fetching calendar events: {e}")
 
