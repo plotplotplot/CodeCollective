@@ -57,15 +57,15 @@ sources = {
         "https://lu.ma/user/charmcityjs",
         "https://lu.ma/mtechumd",
         "https://luma.com/codecollective",
-        "https://luma.com/bmore-on-rails",
-        "https://luma.com/user/trypalavahut"
+        "https://luma.com/bmore-on-rails"
     ],
     "Luma Users":[
         #"https://api.lu.ma/user/profile/events-hosting"
         "usr-tYdFPQYBiZY4T6B",
         "usr-d4s75dZyC9VOXAd",
         "usr-iZFykYNctUzTFLd",
-        "usr-dwIy5y3nhtspeEz"
+        "usr-dwIy5y3nhtspeEz",
+        "usr-k0oO7FswDxbAWh0" # Palava Hut
     ],
     "Google Forms":[
         "http://docs.google.com/forms/d/e/1FAIpQLSfAHwexta7vxLto1xmvBxFNawicAUtRrjTKqN0jHs25RjLCQg/viewform"
