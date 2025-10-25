@@ -14,6 +14,7 @@ import scrape_luma_orgpage
 import scrape_luma_user
 import scrape_mtc
 import scrape_bwtech
+import scrape_innovatemd
 import json
 from ics import Calendar, Event
 import datetime
@@ -477,6 +478,11 @@ def main(city = "baltimore"):
 
         try:
             newEvents += scrape_starTUp.scrape_towson_events()
+        except Exception as e:
+            print(f"Error fetching calendar events: {e}")
+
+        try:
+            newEvents += scrape_innovatemd.scrape_all()
         except Exception as e:
             print(f"Error fetching calendar events: {e}")
 
