@@ -1,0 +1,194 @@
+[
+    {
+        "id": "evt-lzfGHGtaA3QESgg",
+        "name": "Tech Career Pathways Summit",
+        "startDate": "2025-10-28T18:30:00+00:00",
+        "endTime": "2025-10-29T02:30:00.000Z",
+        "description": "",
+        "url": "https://lu.ma/fj5ncrpn",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Japanese Cultural Center of Hawai\u02bbi",
+            "address": "Japanese Cultural Center of Hawai\u02bbi, 2454 S Beretania St., Honolulu, HI 96826, USA"
+        },
+        "imageUrl": "/event_images/Tech_Career_Pathways_Summit.webp",
+        "recurring": false,
+        "scrapeTime": "2025-10-26 17:19:09.292604"
+    },
+    {
+        "name": "Debbie Ngarewa-Packer: Indigenous Politics in an Age of Peril",
+        "description": "An onstage conversation with Debbie Ngarewa-Packer, co-leader of Te P\u0101ti M\u0101ori  and member of parliament in",
+        "startDate": "2025-10-30T18:30:00-10:00",
+        "endTime": "2025-10-30T20:00:00-1000",
+        "url": "https://www.eventbrite.com/e/debbie-ngarewa-packer-indigenous-politics-in-an-age-of-peril-tickets-1681192825999",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Art Building Auditorium (ART132)",
+            "address": "2535 McCarthy Mall, Honolulu, HI, 96822"
+        },
+        "imageUrl": "/event_images/Debbie_Ngarewa-Packer__Indigenous_Politics_in_an_Age_of_Peril.webp",
+        "scrapeTime": "2025-10-26 17:19:09.305213"
+    },
+    {
+        "name": "Scrum Master & Product Owner Intro (My Agile Guru)",
+        "description": "Find out what it takes to Become a certified Scrum Master & Product Owner in this Intro",
+        "startDate": "2025-11-01T09:00:00-04:00",
+        "endTime": "2025-11-01T10:00:00-0400",
+        "url": "https://www.eventbrite.com/e/scrum-master-product-owner-intro-my-agile-guru-registration-1876007903139",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Unknown Location",
+            "address": "Unknown Address"
+        },
+        "imageUrl": "/event_images/Scrum_Master_&_Product_Owner_Intro__My_Agile_Guru_.webp",
+        "scrapeTime": "2025-10-26 17:19:09.304913"
+    },
+    {
+        "id": "311530424",
+        "name": "Tech Meetup",
+        "description": "Low-key in-person meetup for people who are either in tech, interested in starting a career in tech, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako, in the outside cafe seating.\n\nMore info on the Honolulu Tech Network website:\n[https://honolulu.network/~tech](https://honolulu.network/~tech/)\n\nThere's usually no real set topic, often people ask what we talk about so here's a sampling of common topics:\n\n* AI\n* ChatGPT\n* Career stuff\n* Other tech communities and events\n* Web development\n* Agile\n* What places exist in Honolulu and where they are\n* Renewable energy",
+        "startDate": "2025-11-02T17:00:00-10:00",
+        "endTime": "2025-11-02T19:00:00-10:00",
+        "url": "https://www.meetup.com/honolulu-tech-network/events/311530424/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Whole Foods Market",
+            "address": "388 Kamakee St",
+            "city": "Honolulu",
+            "state": "HI",
+            "country": "us"
+        },
+        "imageUrl": "/event_images/Tech_Meetup.webp",
+        "scrapeTime": "2025-10-26 17:19:09.303738"
+    },
+    {
+        "id": "310134234",
+        "name": "A.I. in Production: Learnings & Findings",
+        "description": "**TLDR**\n\u2014\u2014\u2014-\nWe will have multiple presenters speaking on the A.I. implementations they've shipped to production, and are working on now.\n\nMore details about the event [here](https://lp.flowingblue.com/oahuai-20251106)\n\nTopics include:\n\n* what we\u2019ve pushed to production, how it\u2019s going\n* what we\u2019ve found (tools, patterns, vendors) along the way\n* Raspberry Pi + A.I. demo\n\n**SCHEDULE**\n\u2014\u2014\u2014\u2014\u2014-\n\n* ***6:30 PM: Doors Open & Socialize***\n* ***7:00 PM: Announcements, Presentations begin***\n* ***8:00 PM: Presenters finish, Extended Socialization***\n* ***8:30 PM: Doors close***\n\nPRESENTERS\n\u2014\u2014\u2014\u2014\u2014\u2014\u2014\n\n## ***Featured Presenters***\n\n## ***Scott Lichtenstein***\n\n## ***When AI Picks Up the Phone: Making Technology Work for the Non-Tech Crowd***\n\n***Most small business owners aren\u2019t sitting around training models or writing prompts, they\u2019re answering phones, serving customers, and trying not to miss sales. This talk explores how AI can be designed to meet them where they are, through tools that feel natural, solve real problems, and quietly deliver the power of AI without any tech know-how.***\n\n## ***David Pickett***\n\n## ***Fast, Small, Accurate(-ish): A 4-Bit LLM Tour with Qwen3-32B***\n\n* ***A 10-minute, data-first comparison of 4-bit quantization formats for the Qwen3-32B model across three environments: Hybrid CPU/GPU, NVIDIA-only, and Apple Silicon.***\n* ***Benchmarks focus on accuracy (LiveBench; possibly Aider Polyglot) and performance: prompt processing, time-to-first-token, steady token rate, and multi-request concurrency/throughput.***\n* ***Formats covered (time permitting): GPU (mxfp4, nvfp4, AWQ-4bit, ExLlamaV3 4bpw), CPU/GPU via GGUF (Q4_0, Q4_K_M, UD\u2011Q4_K_XL, IQ4_NL), and Apple MLX (MLX 4\u2011bit, MLX 4\u2011bit DWQ).***\n* ***Goal: provide practical rules of thumb on speed/accuracy/memory trade-offs and a simple decision path to choose the right 4-bit format for specific hardware and workloads. No hype\u2014just results.***\n\n## ***Ben Ward***\n\n# ***Building Real-Time Conversational AI for Mobile: Architecture Lessons from ConvoLive***\n\n* ***Deep dive into ConvoLive\u2019s real-time conversational pipeline on React Native, orchestrating multiple AI services.***\n* ***Components: OpenAI GPT with scenario-specific prompt engineering; Google Cloud TTS with streaming; 3D avatar rendering and lip sync.***\n* ***Focus on engineering tactics: reducing end-to-end latency, optimizing token usage/costs, handling mobile constraints.***\n* ***Concrete examples: generating dynamic language-learning scenarios and prompts.***\n* ***Production lessons: rate limiting, offline/spotty connectivity strategies, multilingual TTS quirks (e.g., dialect/locale issues like \u201cSpanish isn\u2019t one Spanish\u201d).***\n\n## What to expect\n\n#### ***Presentations on AI projects shipped to production***\n\n#### ***Discover essential tools, patterns, and vendors***\n\n#### ***Live Raspberry Pi + AI Demo!***\n\n**Crowd**\n\\* What have \\*you\\* learned over the last few months and years? We are especially interested in anything that is running in production!\n\n**Sponsors & Amenities**\n*\ud83c\udf3a Meeting space generously provided by [Hub Coworking Hawaii](https://hubcoworkinghi.com/) and* [Hawaii Center for AI](https://hawaiiai.org/) *\ud83c\udf3a*\n\n\ud83e\udd16 Food and drinks will be provided by [Flowing Blue](https://flowingblue.com) \ud83e\udd16\n\nEvent cost: FREE\n\nWant to help out? Send us a message!",
+        "startDate": "2025-11-06T18:30:00-10:00",
+        "endTime": "2025-11-06T20:30:00-10:00",
+        "url": "https://www.meetup.com/oahuai/events/310134234/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Entrepreneurs Sandbox",
+            "address": "643 Ilalo St",
+            "city": "Honolulu",
+            "state": "HI",
+            "country": "us"
+        },
+        "imageUrl": "/event_images/A.I._in_Production__Learnings_&_Findings.webp",
+        "scrapeTime": "2025-10-26 17:19:09.303439"
+    },
+    {
+        "name": "Waiwai: Water & the Future of Hawai\u2018i",
+        "description": "A public conversation on the history and future of fresh water in",
+        "startDate": "2025-11-06T18:30:00-10:00",
+        "endTime": "2025-11-06T20:00:00-1000",
+        "url": "https://www.eventbrite.com/e/waiwai-water-the-future-of-hawaii-tickets-1815927581279",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Kuykendall Auditorium",
+            "address": "2535 McCarthy Mall, Honolulu, HI, 96822"
+        },
+        "imageUrl": "/event_images/Waiwai__Water_&_the_Future_of_Hawai\u2018i.webp",
+        "scrapeTime": "2025-10-26 17:19:09.305501"
+    },
+    {
+        "id": "311647407",
+        "name": "Tech Meetup",
+        "description": "Low-key in-person meetup for people who are either in tech, interested in starting a career in tech, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako, in the outside cafe seating.\n\nMore info on the Honolulu Tech Network website:\n[https://honolulu.network/~tech](https://honolulu.network/~tech/)\n\nThere's usually no real set topic, often people ask what we talk about so here's a sampling of common topics:\n\n* AI\n* ChatGPT\n* Career stuff\n* Other tech communities and events\n* Web development\n* Agile\n* What places exist in Honolulu and where they are\n* Renewable energy",
+        "startDate": "2025-11-09T17:00:00-10:00",
+        "endTime": "2025-11-09T19:00:00-10:00",
+        "url": "https://www.meetup.com/honolulu-tech-network/events/311647407/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Whole Foods Market",
+            "address": "388 Kamakee St",
+            "city": "Honolulu",
+            "state": "HI",
+            "country": "us"
+        },
+        "imageUrl": "/event_images/Tech_Meetup.webp",
+        "scrapeTime": "2025-10-26 17:19:09.304025"
+    },
+    {
+        "name": "Satsuki Ina: Detention & Democracy",
+        "description": "A public conversation on the legacy of Japanese-American incarceration during World War II with Satsuki",
+        "startDate": "2025-11-14T18:00:00-10:00",
+        "endTime": "2025-11-14T20:00:00-1000",
+        "url": "https://www.eventbrite.com/e/satsuki-ina-detention-democracy-tickets-1815895876449",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Richardson School of Law",
+            "address": "2515 Dole Street, Honolulu, HI, 96822"
+        },
+        "imageUrl": "/event_images/Satsuki_Ina__Detention_&_Democracy.webp",
+        "scrapeTime": "2025-10-26 17:19:09.305799"
+    },
+    {
+        "id": "vpfrntyhcpbvb",
+        "name": "Tech Meetup",
+        "description": "Low-key in-person meetup for people who are either in tech, interested in starting a career in tech, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako, in the outside cafe seating.\n\nMore info on the Honolulu Tech Network website:\n[https://honolulu.network/~tech](https://honolulu.network/~tech/)\n\nThere's usually no real set topic, often people ask what we talk about so here's a sampling of common topics:\n\n* AI\n* ChatGPT\n* Career stuff\n* Other tech communities and events\n* Web development\n* Agile\n* What places exist in Honolulu and where they are\n* Renewable energy",
+        "startDate": "2025-11-16T17:00:00-10:00",
+        "endTime": "2025-11-16T19:00:00-10:00",
+        "url": "https://www.meetup.com/honolulu-tech-network/events/vpfrntyhcpbvb/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Whole Foods Market",
+            "address": "388 Kamakee St",
+            "city": "Honolulu",
+            "state": "HI",
+            "country": "us"
+        },
+        "imageUrl": "/event_images/Tech_Meetup.webp",
+        "scrapeTime": "2025-10-26 17:19:09.304346"
+    },
+    {
+        "name": "Jane Chen: Like a Wave We Break",
+        "description": "A talk by author and entrepreneur Jane",
+        "startDate": "2025-12-04T18:00:00-10:00",
+        "endTime": "2025-12-04T20:30:00-1000",
+        "url": "https://www.eventbrite.com/e/jane-chen-like-a-wave-we-break-tickets-1830978839999",
+        "status": "ACTIVE",
+        "location": {
+            "name": "AC Hotel Honolulu",
+            "address": "1111 Bishop Street, Honolulu, HI, 96813"
+        },
+        "imageUrl": "/event_images/Jane_Chen__Like_a_Wave_We_Break.webp",
+        "scrapeTime": "2025-10-26 17:19:09.306083"
+    },
+    {
+        "id": "1799066639749",
+        "name": "Tech Tuesday: Reason Behind the Seasons",
+        "description": "Get ready to uncover the science behind the changing seasons in our Tech Tuesday event!",
+        "startDate": "2025-12-16T15:00:00-10:00",
+        "endTime": "2025-12-16T16:00:00-10:00",
+        "url": "https://www.eventbrite.com/e/tech-tuesday-reason-behind-the-seasons-tickets-1799066639749?aff=ebdssbdestsearch",
+        "status": "ACTIVE",
+        "location": {
+            "name": "MCBH Library",
+            "address": "MCBH Library Kaneohe Bay, HI 96863",
+            "city": "MCBH Library Kaneohe Bay",
+            "state": "HI",
+            "country": "US"
+        },
+        "imageUrl": "/event_images/Tech_Tuesday__Reason_Behind_the_Seasons.webp",
+        "scrapeTime": "2025-10-26 17:19:09.304629"
+    },
+    {
+        "id": "evt-VPqNGPgzHbeMHD2",
+        "name": "2nd Annual National Civics Bee Hawaii State Finals",
+        "startDate": "2026-04-19T02:00:00+00:00",
+        "endTime": "2026-04-19T04:00:00.000Z",
+        "description": "",
+        "url": "https://lu.ma/xhlobj5l",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Kaimuk\u012b High School",
+            "address": "Kaimuk\u012b High School, 2705 Kaimuki Ave, Honolulu, HI 96816, USA"
+        },
+        "imageUrl": "/event_images/2nd_Annual_National_Civics_Bee_Hawaii_State_Finals.webp",
+        "recurring": false,
+        "scrapeTime": "2025-10-26 17:19:09.292648"
+    }
+]
