@@ -102,7 +102,7 @@ def fetch_and_convert_luma_events(user_api_id= "usr-tYdFPQYBiZY4T6B"):
     except Exception as e:
         print(f"Unexpected error: {e}")
         return []
-
+import sys
 if __name__ == "__main__":
-    events = fetch_and_convert_luma_events()
+    events = fetch_and_convert_luma_events(sys.argv[1])
     print(json.dumps(events, indent=2))
