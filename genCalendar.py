@@ -11,6 +11,7 @@ import scrape_jhuapl
 import scrape_big
 import scrape_gform
 import scrape_luma_orgpage
+import scrape_luma_calendar
 import scrape_luma_user
 import scrape_mtc
 import scrape_bwtech
@@ -380,6 +381,12 @@ def main(city = "baltimore"):
         except Exception as e:
             print(f"Error fetching Luma events from {LUMA_URL}: {e}")
 
+    for LUMA_URL in sources.get("Luma Calendars", []):
+        print(f"Fetching events from {LUMA_URL}")
+        try:
+            newEvents += scrape_luma_calendar.scrape(LUMA_URL)
+        except Exception as e:
+            print(f"Error fetching Luma events from {LUMA_URL}: {e}")
 
     for URL in sources.get("Google Forms", []):
         print(f"Fetching events from {URL}")
@@ -485,6 +492,7 @@ def main(city = "baltimore"):
             newEvents += scrape_innovatemd.scrape_all()
         except Exception as e:
             print(f"Error fetching calendar events: {e}")
+
 
         # JHUAPL excluded because of too many events external to Baltimore tech scene
         #try:
@@ -756,7 +764,7 @@ def main(city = "baltimore"):
     genSimpleCalendar.main(city)
 
 if __name__ == "__main__":
-    cities = ["baltimore", "westvirginia"]
+    cities = ["baltimore", "westvirginia", "hawaii"]
     if len(sys.argv) > 1:
         cities = sys.argv[1:]
     for city in cities:
