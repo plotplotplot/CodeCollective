@@ -1,35 +1,5 @@
 [
     {
-        "name": "Community Greens Baltimore: Launch and Design",
-        "description": "Join us for a gathering of Baltimore\u2019s vibrant green innovation community, where we\u2019ll collaborate, ideate, and shape a greener",
-        "startDate": "2025-11-15T10:00:00-05:00",
-        "endTime": "2025-11-15T14:00:00-0500",
-        "url": "https://www.eventbrite.com/e/community-greens-baltimore-launch-and-design-tickets-1802886123929",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Impact Hub Baltimore",
-            "address": "10 East North Avenue, Baltimore, MD, 21202"
-        },
-        "imageUrl": "/event_images/Community_Greens_Baltimore__Launch_and_Design.webp",
-        "scrapeTime": "2025-11-15 00:31:38.287655"
-    },
-    {
-        "id": "ff1d09b31d094ff6b6c44ab1326b2832",
-        "name": "DevFest Annapolis 2025",
-        "startDate": "2025-11-15T10:00:00-05:00",
-        "endDate": "",
-        "description": "MyTEDCO",
-        "url": "https://www.tedcomd.com/devfest-annapolis-2025",
-        "status": "ACTIVE",
-        "location": {
-            "name": "",
-            "address": "United States"
-        },
-        "imageUrl": "/event_images/DevFest_Annapolis_2025.webp",
-        "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
-    },
-    {
         "id": "311606027",
         "name": "Speed of Light Inference w/ Modular + Data Curation/Visualization w/ NVIDIA CuML",
         "description": "**Zoom link**: [https://us02web.zoom.us/j/82308186562](https://us02web.zoom.us/j/82308186562)\n\n**Talk #0: Introductions and Meetup Updates**\nby Chris Fregly and Antje Barth\n\n**Talk #1: Speed of Light Inference w/ NVIDIA and AMD GPUs using the Modular Platform by Abdul Dakkak @ Modular**\nThis technical presentation will demonstrate how the Modular platform can be used to scale AI workloads across various clusters. It will delve into the collaborative functionality of the Modular stack, encompassing Modular Cloud (a cluster-level solution), MAX (the framework and runtime), and Mojo (the programming language). Together, these components deliver exceptional performance and significantly reduce Total Cost of Ownership (TCO) across both NVIDIA and AMD GPU architectures.\n\n**Talk #2: Advanced and Accelerated Data Curation and Visualizations for LLMs with NVIDIA CuML, DBSCAN, and tSNE (Performance-focused) by Theo Viel and Danta Gama Dessavre @ NVIDIA**\nThis technical talk will focus on applying high-performance techniques to data curation and visualization tasks using NVIDIA CuML, DBSCAN, and tSNE.\n\n**Zoom link**: [https://us02web.zoom.us/j/82308186562](https://us02web.zoom.us/j/82308186562)\n\n**Related Links**\nGithub Repo: [http://github.com/cfregly/ai-performance-engineering/](http://github.com/cfregly/ai-performance-engineering/)\nO'Reilly Book: [https://www.amazon.com/Systems-Performance-Engineering-Optimizing-Algorithms/dp/B0F47689K8/](https://www.amazon.com/Systems-Performance-Engineering-Optimizing-Algorithms/dp/B0F47689K8/)\nYouTube: [https://www.youtube.com/@AIPerformanceEngineering](https://www.youtube.com/@AIPerformanceEngineering)\nGenerative AI Free Course on DeepLearning.ai: [https://bit.ly/gllm](https://bit.ly/gllm)",
@@ -45,7 +15,7 @@
             "country": ""
         },
         "imageUrl": "/event_images/Speed_of_Light_Inference_w__Modular_+_Data_Curation_Visualization_w__NVIDIA_CuML.webp",
-        "scrapeTime": "2025-11-15 00:31:38.286838"
+        "scrapeTime": "2025-11-16 00:34:40.361578"
     },
     {
         "name": "Skillshare: The Physics of Power - More Impact, Less Burnout",
@@ -59,10 +29,10 @@
             "address": "10 East North Avenue, Baltimore, MD, 21202"
         },
         "imageUrl": "/event_images/Skillshare__The_Physics_of_Power_-_More_Impact,_Less_Burnout.webp",
-        "scrapeTime": "2025-11-15 00:31:38.287777"
+        "scrapeTime": "2025-11-16 00:34:40.362425"
     },
     {
-        "id": "50cf8392ca134dceb5901889bf69792a",
+        "id": "8aa586e3fd30481dbe90cecf449eff95",
         "name": "Big Idea CONNECTpreneur Baltimore Forum - Nov 18 IN PERSON",
         "startDate": "2025-11-18T08:00:00-05:00",
         "endDate": "",
@@ -75,7 +45,7 @@
         },
         "imageUrl": "/event_images/Big_Idea_CONNECTpreneur_Baltimore_Forum_-_Nov_18_IN_PERSON.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
         "id": "40ffd948198e2730b5b9",
@@ -91,10 +61,10 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
-        "id": "a5045ff127fb4827ad743a8205bba029",
+        "id": "eadb1ee0838141a388fa6f9b1217de1a",
         "name": "Cybersecurity Association: Business Growth and Innovation Summit",
         "startDate": "2025-11-18T08:30:00-05:00",
         "endDate": "",
@@ -107,10 +77,10 @@
         },
         "imageUrl": "/event_images/Cybersecurity_Association__Business_Growth_and_Innovation_Summit.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
-        "id": "1755f44513ce4cc59b75be8efe03fe35",
+        "id": "865842d41cb740c08ccf888fa5b8522e",
         "name": "Introduction to Biopharma Manufacturing",
         "startDate": "2025-11-18T09:00:00-05:00",
         "endDate": "",
@@ -123,7 +93,21 @@
         },
         "imageUrl": "/event_images/Introduction_to_Biopharma_Manufacturing.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
+    },
+    {
+        "name": "Startup Social Hosted by Spark Coworking",
+        "startDate": "2025-11-18T17:30:00-04:00",
+        "endTime": "2025-11-18T20:00:00-0400",
+        "description": "Baltimore is home to creativity, ambition, and bold ideas \u2014 and Spark Coworking is proud to host a community that embodies all three. Join us for an evening dedicated toconnection, inspiration, and collaborationwith the city\u2019s newest founders. This is your chance to meet the incredible startups fromthree accelerator programs housed at Spark: Conscious Venture Lab Accelerator Program by the Novella Center for Entrepreneurship Techstars Baltimore: AI + Healthcare Hutch by Fearless Institute Hear from cohort alumni who\u2019ve launched and scaled companies through these programs. Learn their stories, insights, and how Baltimore shaped their journeys. Meet the Cohorts:Network with Baltimore\u2019s newest startup founders Alumni Panel & Q&A:Real advice from founders who\u2019ve been there Local Flavor:Neighborhood eats and craft beverages Spark Community:Connect with mentors, investors, and ecosystem builders Raffle & Giveaways:Spark memberships and local goodies Founders, innovators, mentors, investors, and anyone passionate about Baltimore\u2019s startup ecosystem.",
+        "url": "https://spark-baltimore.cobot.me/event/2025-11-18-startup-social-at-spark-coworking-7fa697ccb0291ac65664dab3590ed549",
+        "location": {
+            "name": "Spark Coworking Baltimore | 8 Market Place, Power Plant Live",
+            "address": "Baltimore, MD"
+        },
+        "imageUrl": "/event_images/Startup_Social_Hosted_by_Spark_Coworking.webp",
+        "status": "ACTIVE",
+        "scrapeTime": "2025-11-16 00:34:40.374354"
     },
     {
         "id": "8c6d38649583d1f2",
@@ -139,7 +123,7 @@
         },
         "imageUrl": "/event_images/Palava_Night__1__Civic_Engagement_&_Tech.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:47.180171"
+        "scrapeTime": "2025-11-16 00:33:41.410414"
     },
     {
         "id": "311705827",
@@ -157,7 +141,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Profs_&_Pints_Baltimore__A_Crash_Course_on_Critical_Thinking.webp",
-        "scrapeTime": "2025-11-15 00:31:38.287248"
+        "scrapeTime": "2025-11-16 00:34:40.361996"
     },
     {
         "id": "2f883181236f3e970c63",
@@ -173,10 +157,10 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
-        "id": "f9061bf3050b4644a5e7375162b283bd",
+        "id": "f2f64b379461467ab73b3e11606de42d",
         "name": "TEDCO\u2019s Investment Open Forum",
         "startDate": "2025-11-19T10:00:00-05:00",
         "endDate": "",
@@ -189,10 +173,10 @@
         },
         "imageUrl": "/event_images/TEDCO\u2019s_Investment_Open_Forum.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
-        "id": "12d1d4480ef4403591f63771fba9d09c",
+        "id": "0ea9f1c1dac0472690a1b5c2f45a0b83",
         "name": "TEDCO's SBIR/STTR Proposal Lab Open Forum",
         "startDate": "2025-11-19T11:00:00-05:00",
         "endDate": "",
@@ -205,10 +189,10 @@
         },
         "imageUrl": "/event_images/TEDCO_s_SBIR_STTR_Proposal_Lab_Open_Forum.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
-        "id": "8197586914914e429b6bb2150634d819",
+        "id": "1dab12faeba44a869eb3ca264af4ae05",
         "name": "TEDCO's Venture Development Open Forum",
         "startDate": "2025-11-19T12:00:00-05:00",
         "endDate": "",
@@ -221,7 +205,7 @@
         },
         "imageUrl": "/event_images/TEDCO_s_Venture_Development_Open_Forum.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
         "name": "Baltimore Region Economic Brand Workshop",
@@ -238,7 +222,7 @@
             "country": "US"
         },
         "imageUrl": "/event_images/Baltimore_Region_Economic_Brand_Workshop.webp",
-        "scrapeTime": "2025-11-15 00:31:38.289256"
+        "scrapeTime": "2025-11-16 00:34:40.363967"
     },
     {
         "id": "d0709e81788477ecdbe9",
@@ -254,10 +238,10 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
-        "id": "ed66f9175e1d498ab74b25cb75b64fd3",
+        "id": "15ded3e1ff174599ad5e4fd48cf86694",
         "name": "Morgan State University: Entrepreneurs Showcase- Pitch Competition",
         "startDate": "2025-11-19T17:30:00-05:00",
         "endDate": "",
@@ -270,7 +254,7 @@
         },
         "imageUrl": "/event_images/Morgan_State_University__Entrepreneurs_Showcase-_Pitch_Competition.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
         "id": "311706748",
@@ -288,7 +272,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Profs_&_Pints_Baltimore__A_Night_at_the_Opera_House.webp",
-        "scrapeTime": "2025-11-15 00:31:38.287350"
+        "scrapeTime": "2025-11-16 00:34:40.362098"
     },
     {
         "name": "Project Night at Virtru",
@@ -302,10 +286,10 @@
             "address": "Virtru, Washington, District of Columbia"
         },
         "imageUrl": "/event_images/Project_Night_at_Virtru.webp",
-        "scrapeTime": "2025-11-15 00:31:38.288315"
+        "scrapeTime": "2025-11-16 00:34:40.362952"
     },
     {
-        "id": "2a4d89d46052415abca2fb700d3d8bb7",
+        "id": "54c3337163404a0393f1921bab30ea87",
         "name": "Policy Forum for Maryland's Future",
         "startDate": "2025-11-20T08:00:00-05:00",
         "endDate": "",
@@ -318,10 +302,10 @@
         },
         "imageUrl": "/event_images/Policy_Forum_for_Maryland_s_Future.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
-        "id": "3d4430ca8be74ddbbaca777b0cca3056",
+        "id": "0991fb6ad511410eac6de8104bce072d",
         "name": "AACC 3rd Annual Innovation Summit",
         "startDate": "2025-11-20T13:00:00-05:00",
         "endDate": "",
@@ -334,7 +318,7 @@
         },
         "imageUrl": "/event_images/AACC_3rd_Annual_Innovation_Summit.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
         "id": "b67ac3aa97a919d08db2",
@@ -350,7 +334,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
         "name": "Chesapeake Bay Green Entrepreneur Roundtable",
@@ -364,7 +348,7 @@
             "address": ""
         },
         "imageUrl": "/event_images/Chesapeake_Bay_Green_Entrepreneur_Roundtable.webp",
-        "scrapeTime": "2025-11-15 00:31:38.288852"
+        "scrapeTime": "2025-11-16 00:34:40.363553"
     },
     {
         "name": "GBC Quarterly All Partner Meeting",
@@ -381,7 +365,7 @@
             "country": "US"
         },
         "imageUrl": "/event_images/GBC_Quarterly_All_Partner_Meeting.webp",
-        "scrapeTime": "2025-11-15 00:31:38.289359"
+        "scrapeTime": "2025-11-16 00:34:40.364072"
     },
     {
         "name": "The Sounding Board: Marketing, Design, Customer/UX & Storytelling experts",
@@ -395,10 +379,10 @@
             "address": "10 East North Avenue, Baltimore, MD, 21202"
         },
         "imageUrl": "/event_images/The_Sounding_Board__Marketing,_Design,_Customer_UX_&_Storytelling_experts.webp",
-        "scrapeTime": "2025-11-15 00:31:38.287881"
+        "scrapeTime": "2025-11-16 00:34:40.362528"
     },
     {
-        "id": "09e73bb6f2e447538e0a392451423695",
+        "id": "ad7bebd325164e569754d4e6621893af",
         "name": "Howard County Chamber\u2019s Networking Mixer",
         "startDate": "2025-11-20T17:00:00-05:00",
         "endDate": "",
@@ -411,7 +395,7 @@
         },
         "imageUrl": "/event_images/Howard_County_Chamber\u2019s_Networking_Mixer.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
         "id": "311946283",
@@ -429,10 +413,10 @@
             "country": "US"
         },
         "imageUrl": "/event_images/The__BaltimoreTech_Happy_Hour!.webp",
-        "scrapeTime": "2025-11-15 00:31:38.285887"
+        "scrapeTime": "2025-11-16 00:34:40.360609"
     },
     {
-        "id": "dcab257a83274cc7a69c44858abfcf2d",
+        "id": "aeb7a75ec8604f178fe8e5edb79cd7d0",
         "name": "MDHCC: Networking with an Edge",
         "startDate": "2025-11-20T17:30:00-05:00",
         "endDate": "",
@@ -445,7 +429,7 @@
         },
         "imageUrl": "/event_images/MDHCC__Networking_with_an_Edge.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
         "id": "6121591851b31138",
@@ -461,7 +445,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.322585"
+        "scrapeTime": "2025-11-16 00:34:40.396020"
     },
     {
         "id": "311836752",
@@ -480,7 +464,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.305881"
+        "scrapeTime": "2025-11-16 00:34:40.380051"
     },
     {
         "id": "311599327",
@@ -498,7 +482,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Profs_&_Pints_Baltimore__America_s_Revolution_as_a_World_Revolution.webp",
-        "scrapeTime": "2025-11-15 00:31:38.287453"
+        "scrapeTime": "2025-11-16 00:34:40.362199"
     },
     {
         "id": "b894bd9b4a68f2f0",
@@ -514,10 +498,10 @@
         },
         "imageUrl": "/event_images/E\u2011Bike_Maintenance_Workshop__Free_&_Hands\u2011On!.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:47.024916"
+        "scrapeTime": "2025-11-16 00:33:41.328853"
     },
     {
-        "id": "b5a6cef0b6f1454080c4d7dffffd9a97",
+        "id": "ac6100420cb24d6682d783a0727eae02",
         "name": "TEDCO's SBIR/STTR Proposal Lab Open Forum",
         "startDate": "2025-11-26T11:00:00-05:00",
         "endDate": "",
@@ -530,7 +514,7 @@
         },
         "imageUrl": "/event_images/TEDCO_s_SBIR_STTR_Proposal_Lab_Open_Forum.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
         "id": "08f26164708098c3",
@@ -546,7 +530,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.311985"
+        "scrapeTime": "2025-11-16 00:34:40.385954"
     },
     {
         "id": "4fd3fb4d518d5cc2",
@@ -562,7 +546,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.309343"
+        "scrapeTime": "2025-11-16 00:34:40.383223"
     },
     {
         "id": "0fb812bf9ea4f975",
@@ -578,7 +562,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.314520"
+        "scrapeTime": "2025-11-16 00:34:40.388580"
     },
     {
         "id": "311929599",
@@ -597,7 +581,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.305990"
+        "scrapeTime": "2025-11-16 00:34:40.380160"
     },
     {
         "id": "45950eaf4e68068c",
@@ -613,7 +597,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.316006"
+        "scrapeTime": "2025-11-16 00:34:40.390040"
     },
     {
         "id": "6515563a699358ed",
@@ -629,7 +613,7 @@
         },
         "imageUrl": "/event_images/Coalition_Coffee_.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:38.299393"
+        "scrapeTime": "2025-11-16 00:34:40.373705"
     },
     {
         "id": "0d1688bdff0f64f9458d",
@@ -645,7 +629,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
         "id": "311732287",
@@ -663,10 +647,10 @@
             "country": ""
         },
         "imageUrl": null,
-        "scrapeTime": "2025-11-15 00:31:38.285994"
+        "scrapeTime": "2025-11-16 00:34:40.360719"
     },
     {
-        "id": "165a42c464c94bc2b6e459c4f23e4d70",
+        "id": "299856d682ab4e3c999bf7b9937856a8",
         "name": "TEDCO's SBIR/STTR Proposal Lab Open Forum",
         "startDate": "2025-12-03T11:00:00-05:00",
         "endDate": "",
@@ -679,10 +663,10 @@
         },
         "imageUrl": "/event_images/TEDCO_s_SBIR_STTR_Proposal_Lab_Open_Forum.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
-        "id": "da3902abc272404c85faf22af2a8fe72",
+        "id": "9dd5f1c7805845d38af3b37f5b51749c",
         "name": "WTCI's Annual State of the Ports & Global Flavor Showcase",
         "startDate": "2025-12-03T16:00:00-05:00",
         "endDate": "",
@@ -695,7 +679,7 @@
         },
         "imageUrl": "/event_images/WTCI_s_Annual_State_of_the_Ports_&_Global_Flavor_Showcase.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
         "name": "Spark Presents Every Startup\u2019s Holiday Party",
@@ -709,7 +693,7 @@
         },
         "imageUrl": "/event_images/Spark_Presents_Every_Startup\u2019s_Holiday_Party.webp",
         "status": "ACTIVE",
-        "scrapeTime": "2025-11-15 00:31:38.300037"
+        "scrapeTime": "2025-11-16 00:34:40.374459"
     },
     {
         "id": "312007250",
@@ -727,7 +711,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Profs_&_Pints_Baltimore__Nightmares_Before_Christmas.webp",
-        "scrapeTime": "2025-11-15 00:31:38.287553"
+        "scrapeTime": "2025-11-16 00:34:40.362320"
     },
     {
         "id": "37b7bd6208653845",
@@ -743,10 +727,10 @@
         },
         "imageUrl": "/event_images/Baltimore_IGDA_Year_In_Review_2025.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:38.299288"
+        "scrapeTime": "2025-11-16 00:34:40.373600"
     },
     {
-        "id": "89b95c13d74d45a4b1b79bb15a605956",
+        "id": "74f691221bc8424b85df8e7db261eff5",
         "name": "International Meet on Public Health and Healthcare Management",
         "startDate": "2025-12-04T09:00:00-05:00",
         "endDate": "",
@@ -759,10 +743,10 @@
         },
         "imageUrl": "/event_images/International_Meet_on_Public_Health_and_Healthcare_Management.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
-        "id": "23875759dc1d498385868f0506394849",
+        "id": "9da858655fdc4d4a9399d184faa8ff58",
         "name": "2nd International Meet & Expo on Biotechnology and Biomedical Engineering 2025",
         "startDate": "2025-12-04T09:00:00-05:00",
         "endDate": "",
@@ -775,7 +759,7 @@
         },
         "imageUrl": "/event_images/2nd_International_Meet_&_Expo_on_Biotechnology_and_Biomedical_Engineering_2025.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
         "id": "a6a27acbab27773cd841",
@@ -791,10 +775,10 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
-        "id": "3505451dcd3146fa9e5cd9bb7a977312",
+        "id": "3293f0a1e2b7478fb29c9d4cefa6b58d",
         "name": "Techstars AI Health Baltimore Demo Day",
         "startDate": "2025-12-04T17:30:00-05:00",
         "endDate": "",
@@ -807,7 +791,7 @@
         },
         "imageUrl": "/event_images/Techstars_AI_Health_Baltimore_Demo_Day.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
         "id": "310511917",
@@ -825,7 +809,7 @@
             "country": "US"
         },
         "imageUrl": "/event_images/1st_Thursday_Bitcoin_HoDL_Hour.webp",
-        "scrapeTime": "2025-11-15 00:31:38.286099"
+        "scrapeTime": "2025-11-16 00:34:40.360828"
     },
     {
         "id": "311689489",
@@ -843,7 +827,7 @@
             "country": "US"
         },
         "imageUrl": "/event_images/Back_to_Mingling_in_Bmore_Grunwald_.webp",
-        "scrapeTime": "2025-11-15 00:31:38.286733"
+        "scrapeTime": "2025-11-16 00:34:40.361474"
     },
     {
         "id": "310733905",
@@ -861,7 +845,7 @@
             "country": ""
         },
         "imageUrl": null,
-        "scrapeTime": "2025-11-15 00:31:38.286306"
+        "scrapeTime": "2025-11-16 00:34:40.361037"
     },
     {
         "name": "Monthly Lunch & Learn + Coworking Day with Monument Women\u2019s Creative Alliance",
@@ -875,7 +859,7 @@
         },
         "imageUrl": "/event_images/Monthly_Lunch_&_Learn_+_Coworking_Day_with_Monument_Women\u2019s_Creative_Alliance.webp",
         "status": "ACTIVE",
-        "scrapeTime": "2025-11-15 00:31:38.300142"
+        "scrapeTime": "2025-11-16 00:34:40.374565"
     },
     {
         "id": "wlgsttyhcqbjb",
@@ -894,10 +878,10 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.306094"
+        "scrapeTime": "2025-11-16 00:34:40.380284"
     },
     {
-        "id": "7e6eb50929c14b1d94b5a2b741aaa817",
+        "id": "0053770467c2464ba7f0481cccb40381",
         "name": "The Daily Record's Icon Honors Awards",
         "startDate": "2025-12-08T16:00:00-05:00",
         "endDate": "",
@@ -910,7 +894,7 @@
         },
         "imageUrl": "/event_images/The_Daily_Record_s_Icon_Honors_Awards.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
         "name": "The Network Breakfast: Community is Wealth",
@@ -924,10 +908,10 @@
             "address": "10 East North Avenue, Baltimore, MD, 21202"
         },
         "imageUrl": "/event_images/The_Network_Breakfast__Community_is_Wealth.webp",
-        "scrapeTime": "2025-11-15 00:31:38.287984"
+        "scrapeTime": "2025-11-16 00:34:40.362632"
     },
     {
-        "id": "6e7d0d653adf47a8a53d28e9dcb2d9b2",
+        "id": "b1b7e4a9abd84db0910e5dfa0b490c53",
         "name": "Vision 2035: Building for a Better Baltimore Region",
         "startDate": "2025-12-09T08:30:00-05:00",
         "endDate": "",
@@ -940,10 +924,10 @@
         },
         "imageUrl": "/event_images/Vision_2035__Building_for_a_Better_Baltimore_Region.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
-        "id": "015d6f87953840e1bb6d92999da0ff00",
+        "id": "9b1861b79cee416bbf4af13ab6792330",
         "name": "Capital Capital 2025: Dual Use",
         "startDate": "2025-12-09T09:00:00-05:00",
         "endDate": "",
@@ -956,10 +940,10 @@
         },
         "imageUrl": "/event_images/Capital_Capital_2025__Dual_Use.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
-        "id": "4e9401618a5e42c4b9d83f640c022f8d",
+        "id": "ad08e8484f884545b52759970d469332",
         "name": "TEDCO's DefTech Monthly Office Hours",
         "startDate": "2025-12-09T10:00:00-05:00",
         "endDate": "",
@@ -972,10 +956,10 @@
         },
         "imageUrl": "/event_images/TEDCO_s_DefTech_Monthly_Office_Hours.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
-        "id": "f2deeb70ac4f49c699bb2b1e227cb3a0",
+        "id": "0a4345a0f79448a69234f9a882c49953",
         "name": "TEDCO's SBIR/STTR Proposal Lab Open Forum",
         "startDate": "2025-12-10T11:00:00-05:00",
         "endDate": "",
@@ -988,10 +972,10 @@
         },
         "imageUrl": "/event_images/TEDCO_s_SBIR_STTR_Proposal_Lab_Open_Forum.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
-        "id": "8929604f11c740209f2ef7140da5eefd",
+        "id": "aa09d9ec916a41ad9128cae2b8fd04b2",
         "name": "TEDCO's Venture Development Open Forum",
         "startDate": "2025-12-10T12:00:00-05:00",
         "endDate": "",
@@ -1004,7 +988,7 @@
         },
         "imageUrl": "/event_images/TEDCO_s_Venture_Development_Open_Forum.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
         "name": "Baltimore Region Economic Brand Workshop",
@@ -1021,7 +1005,7 @@
             "country": "US"
         },
         "imageUrl": "/event_images/Baltimore_Region_Economic_Brand_Workshop.webp",
-        "scrapeTime": "2025-11-15 00:31:38.289565"
+        "scrapeTime": "2025-11-16 00:34:40.364300"
     },
     {
         "name": "Holiday Social: bwtech NORTH",
@@ -1042,14 +1026,14 @@
         "description": "Civic Tech Showcase: A Night of Celebration",
         "startDate": "2025-12-10T18:00:00-05:00",
         "endTime": "2025-12-10T20:00:00.000-05:00",
-        "url": "https://luma.com/6qy8346l",
+        "url": "https://luma.com/72j0klbk",
         "status": "ACTIVE",
         "location": {
             "name": "2112 Pennsylvania Ave NW",
             "address": "2112 Pennsylvania Ave NW, Washington, District of Columbia"
         },
         "imageUrl": "/event_images/Civic_Tech_Showcase__A_Night_of_Celebration.webp",
-        "scrapeTime": "2025-11-15 00:31:38.288419"
+        "scrapeTime": "2025-11-16 00:34:40.363058"
     },
     {
         "id": "311902064",
@@ -1067,7 +1051,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Distributed_Computing_with_PySpark_Chained_Conditions__2nd_Wed_Talk_.webp",
-        "scrapeTime": "2025-11-15 00:31:38.286202"
+        "scrapeTime": "2025-11-16 00:34:40.360931"
     },
     {
         "name": "B'more on Rails Presents: Your Talks!",
@@ -1081,7 +1065,7 @@
             "address": "2601 N Howard St, Baltimore, Maryland"
         },
         "imageUrl": "/event_images/B_more_on_Rails_Presents__Your_Talks!.webp",
-        "scrapeTime": "2025-11-15 00:31:38.289155"
+        "scrapeTime": "2025-11-16 00:34:40.363863"
     },
     {
         "id": "046a58dc748790d1",
@@ -1097,7 +1081,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.314622"
+        "scrapeTime": "2025-11-16 00:34:40.388683"
     },
     {
         "id": "wlgsttyhcqbrb",
@@ -1116,7 +1100,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.306199"
+        "scrapeTime": "2025-11-16 00:34:40.380394"
     },
     {
         "id": "311912068",
@@ -1134,10 +1118,10 @@
             "country": ""
         },
         "imageUrl": "/event_images/GPU,_CUDA,_and_PyTorch_Performance_Optimizations.webp",
-        "scrapeTime": "2025-11-15 00:31:38.286942"
+        "scrapeTime": "2025-11-16 00:34:40.361681"
     },
     {
-        "id": "060e549c501543c99eaae7ff95a3eb1a",
+        "id": "91adc88d881b4ceea3c4603c04854de7",
         "name": "TEDCO's SBIR/STTR Proposal Lab Open Forum",
         "startDate": "2025-12-16T11:00:00-05:00",
         "endDate": "",
@@ -1150,7 +1134,7 @@
         },
         "imageUrl": "/event_images/TEDCO_s_SBIR_STTR_Proposal_Lab_Open_Forum.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:30:53"
+        "scrapeTime": "2025-11-16 00:33:45"
     },
     {
         "name": "A Very Climate-Tech Baltimore Holiday Party - 2025",
@@ -1164,7 +1148,7 @@
             "address": "TBD"
         },
         "imageUrl": "/event_images/A_Very_Climate-Tech_Baltimore_Holiday_Party_-_2025.webp",
-        "scrapeTime": "2025-11-15 00:31:38.289054"
+        "scrapeTime": "2025-11-16 00:34:40.363760"
     },
     {
         "name": "Holiday Social, bwtech SOUTH",
@@ -1192,7 +1176,7 @@
             "address": ""
         },
         "imageUrl": "/event_images/Chesapeake_Bay_Green_Entrepreneur_Roundtable.webp",
-        "scrapeTime": "2025-11-15 00:31:38.288953"
+        "scrapeTime": "2025-11-16 00:34:40.363658"
     },
     {
         "id": "5b6bb451f7916bff",
@@ -1208,7 +1192,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.322811"
+        "scrapeTime": "2025-11-16 00:34:40.396221"
     },
     {
         "id": "wlgsttyhcqbbc",
@@ -1227,7 +1211,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.306304"
+        "scrapeTime": "2025-11-16 00:34:40.380510"
     },
     {
         "id": "5a4a94f82a54b79a",
@@ -1243,7 +1227,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.316315"
+        "scrapeTime": "2025-11-16 00:34:40.390363"
     },
     {
         "id": "c9e37911a3e7b563",
@@ -1259,7 +1243,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.319631"
+        "scrapeTime": "2025-11-16 00:34:40.393125"
     },
     {
         "id": "cefa4e0cf1a2a76f",
@@ -1275,7 +1259,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.312397"
+        "scrapeTime": "2025-11-16 00:34:40.386387"
     },
     {
         "id": "14b2d3a0e78e2ec1",
@@ -1291,7 +1275,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.309776"
+        "scrapeTime": "2025-11-16 00:34:40.383656"
     },
     {
         "id": "475450fca72b3187",
@@ -1307,7 +1291,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.314746"
+        "scrapeTime": "2025-11-16 00:34:40.388784"
     },
     {
         "id": "wlgsttyhcqbkc",
@@ -1326,7 +1310,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.306408"
+        "scrapeTime": "2025-11-16 00:34:40.380612"
     },
     {
         "id": "a63d58a722af7a50",
@@ -1342,7 +1326,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.316419"
+        "scrapeTime": "2025-11-16 00:34:40.390465"
     },
     {
         "id": "96241a818f7f444b",
@@ -1358,7 +1342,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.319752"
+        "scrapeTime": "2025-11-16 00:34:40.393225"
     },
     {
         "id": "vzkqttyjccbcb",
@@ -1376,7 +1360,7 @@
             "country": ""
         },
         "imageUrl": null,
-        "scrapeTime": "2025-11-15 00:31:38.286409"
+        "scrapeTime": "2025-11-16 00:34:40.361143"
     },
     {
         "id": "9b0cf8e9dc4f773f",
@@ -1392,7 +1376,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.322916"
+        "scrapeTime": "2025-11-16 00:34:40.396344"
     },
     {
         "id": "wlgsttyjccbfb",
@@ -1411,7 +1395,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.306510"
+        "scrapeTime": "2025-11-16 00:34:40.380714"
     },
     {
         "id": "e0a5b7b7d0afdd6b",
@@ -1427,7 +1411,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.316522"
+        "scrapeTime": "2025-11-16 00:34:40.390566"
     },
     {
         "id": "ee8605f0d32797f4",
@@ -1443,7 +1427,7 @@
         },
         "imageUrl": "/event_images/Coalition_Coffee_.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:38.299497"
+        "scrapeTime": "2025-11-16 00:34:40.373808"
     },
     {
         "id": "0e815c67397fef268e66",
@@ -1459,7 +1443,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
         "id": "928a6d7f38f6e4b8",
@@ -1475,7 +1459,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.312600"
+        "scrapeTime": "2025-11-16 00:34:40.386594"
     },
     {
         "id": "d48b8985964aa4fa",
@@ -1491,7 +1475,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.309984"
+        "scrapeTime": "2025-11-16 00:34:40.383859"
     },
     {
         "id": "edddb9f9050cd217",
@@ -1507,7 +1491,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.314853"
+        "scrapeTime": "2025-11-16 00:34:40.388886"
     },
     {
         "id": "wlgsttyjccbnb",
@@ -1526,7 +1510,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.306613"
+        "scrapeTime": "2025-11-16 00:34:40.380815"
     },
     {
         "id": "02d34891cc93f8e5",
@@ -1542,7 +1526,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.316624"
+        "scrapeTime": "2025-11-16 00:34:40.390666"
     },
     {
         "name": "Project Night at Virtru",
@@ -1556,7 +1540,7 @@
             "address": "Virtru, Washington, District of Columbia"
         },
         "imageUrl": "/event_images/Project_Night_at_Virtru.webp",
-        "scrapeTime": "2025-11-15 00:31:38.288521"
+        "scrapeTime": "2025-11-16 00:34:40.363161"
     },
     {
         "id": "4060bd5600eb9f45",
@@ -1572,7 +1556,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.312719"
+        "scrapeTime": "2025-11-16 00:34:40.386695"
     },
     {
         "id": "4877ac3e8cba5923",
@@ -1588,7 +1572,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.310089"
+        "scrapeTime": "2025-11-16 00:34:40.383961"
     },
     {
         "id": "c581f35e402692c9",
@@ -1604,7 +1588,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.323019"
+        "scrapeTime": "2025-11-16 00:34:40.396446"
     },
     {
         "id": "wlgsttyjccbwb",
@@ -1623,7 +1607,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.306732"
+        "scrapeTime": "2025-11-16 00:34:40.380918"
     },
     {
         "id": "311912073",
@@ -1641,7 +1625,7 @@
             "country": ""
         },
         "imageUrl": "/event_images/GPU,_CUDA,_and_PyTorch_Performance_Optimizations.webp",
-        "scrapeTime": "2025-11-15 00:31:38.287043"
+        "scrapeTime": "2025-11-16 00:34:40.361791"
     },
     {
         "id": "06a3933615938123",
@@ -1657,7 +1641,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.320065"
+        "scrapeTime": "2025-11-16 00:34:40.393552"
     },
     {
         "id": "311659712",
@@ -1675,7 +1659,7 @@
             "country": ""
         },
         "imageUrl": null,
-        "scrapeTime": "2025-11-15 00:31:38.286513"
+        "scrapeTime": "2025-11-16 00:34:40.361260"
     },
     {
         "id": "0d60ad532f689134",
@@ -1691,7 +1675,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.314955"
+        "scrapeTime": "2025-11-16 00:34:40.388989"
     },
     {
         "id": "wlgsttyjccbgc",
@@ -1710,7 +1694,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.306855"
+        "scrapeTime": "2025-11-16 00:34:40.381020"
     },
     {
         "id": "a230042a02f8d712",
@@ -1726,7 +1710,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.316854"
+        "scrapeTime": "2025-11-16 00:34:40.390869"
     },
     {
         "name": "Project Night at Prefect",
@@ -1740,7 +1724,7 @@
             "address": "2112 Pennsylvania Ave NW, Washington, District of Columbia"
         },
         "imageUrl": "/event_images/Project_Night_at_Prefect.webp",
-        "scrapeTime": "2025-11-15 00:31:38.288623"
+        "scrapeTime": "2025-11-16 00:34:40.363281"
     },
     {
         "id": "23270ea5f759996b",
@@ -1756,7 +1740,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.312931"
+        "scrapeTime": "2025-11-16 00:34:40.386899"
     },
     {
         "id": "906dde197ab68608",
@@ -1772,7 +1756,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.310292"
+        "scrapeTime": "2025-11-16 00:34:40.384164"
     },
     {
         "id": "a1005a6f016602e9",
@@ -1788,7 +1772,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.323122"
+        "scrapeTime": "2025-11-16 00:34:40.396547"
     },
     {
         "id": "wlgsttyjccbpc",
@@ -1807,7 +1791,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.306985"
+        "scrapeTime": "2025-11-16 00:34:40.381123"
     },
     {
         "id": "18882a7c3cf5cbdb",
@@ -1823,7 +1807,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.316958"
+        "scrapeTime": "2025-11-16 00:34:40.390971"
     },
     {
         "id": "e3b557c5f69ba33e0e41",
@@ -1839,7 +1823,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
         "id": "a96838f3ec273d02",
@@ -1855,7 +1839,7 @@
         },
         "imageUrl": "/event_images/Coalition_Coffee_.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:38.299600"
+        "scrapeTime": "2025-11-16 00:34:40.373912"
     },
     {
         "id": "53b983355c8384c76961",
@@ -1871,7 +1855,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
         "id": "vzkqttyjcdbhb",
@@ -1889,7 +1873,7 @@
             "country": ""
         },
         "imageUrl": null,
-        "scrapeTime": "2025-11-15 00:31:38.286614"
+        "scrapeTime": "2025-11-16 00:34:40.361370"
     },
     {
         "id": "9aafb3f003402586",
@@ -1905,7 +1889,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.315058"
+        "scrapeTime": "2025-11-16 00:34:40.389091"
     },
     {
         "id": "wlgsttyjcdbkb",
@@ -1924,7 +1908,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.307234"
+        "scrapeTime": "2025-11-16 00:34:40.381224"
     },
     {
         "id": "1872aa2b3107cdec",
@@ -1940,7 +1924,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.317109"
+        "scrapeTime": "2025-11-16 00:34:40.391072"
     },
     {
         "id": "028b3332a1036bd5",
@@ -1956,7 +1940,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.320373"
+        "scrapeTime": "2025-11-16 00:34:40.393855"
     },
     {
         "id": "e6702e3086fe4728",
@@ -1972,7 +1956,7 @@
         },
         "imageUrl": "/event_images/UAS_Locksport_-_MD_TOOOL.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.322068"
+        "scrapeTime": "2025-11-16 00:34:40.395511"
     },
     {
         "id": "37241f88c92b34cf2502e7ddd255848d",
@@ -1980,7 +1964,7 @@
         "url": "https://innovationmaryland.org/the-product-market-fit-playbook",
         "status": "ACTIVE",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:35.426171",
+        "scrapeTime": "2025-11-16 00:34:37.072655",
         "location": {
             "name": "bwtech North",
             "address": "5520 Research Park Drive, Baltimore"
@@ -2003,7 +1987,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.323226"
+        "scrapeTime": "2025-11-16 00:34:40.396646"
     },
     {
         "id": "wlgsttyjcdbsb",
@@ -2022,7 +2006,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.307373"
+        "scrapeTime": "2025-11-16 00:34:40.381348"
     },
     {
         "id": "nhvnttyjcdbvb",
@@ -2040,7 +2024,7 @@
             "country": ""
         },
         "imageUrl": "/event_images/GPU,_CUDA,_and_PyTorch_Performance_Optimizations.webp",
-        "scrapeTime": "2025-11-15 00:31:38.287146"
+        "scrapeTime": "2025-11-16 00:34:40.361895"
     },
     {
         "id": "59804eaf15b8b800",
@@ -2056,7 +2040,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.320475"
+        "scrapeTime": "2025-11-16 00:34:40.393957"
     },
     {
         "id": "1100e0cdaa41c98f",
@@ -2072,7 +2056,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.313240"
+        "scrapeTime": "2025-11-16 00:34:40.387204"
     },
     {
         "id": "dcfcc70729be03b9",
@@ -2088,7 +2072,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.310600"
+        "scrapeTime": "2025-11-16 00:34:40.384494"
     },
     {
         "id": "cdfaccaab73d4e78",
@@ -2104,7 +2088,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.315160"
+        "scrapeTime": "2025-11-16 00:34:40.389193"
     },
     {
         "id": "wlgsttyjcdbcc",
@@ -2123,7 +2107,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.307506"
+        "scrapeTime": "2025-11-16 00:34:40.381452"
     },
     {
         "id": "bdab0176905fb754",
@@ -2139,7 +2123,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.317434"
+        "scrapeTime": "2025-11-16 00:34:40.391363"
     },
     {
         "id": "3de72a79c5a9f598",
@@ -2155,7 +2139,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.320577"
+        "scrapeTime": "2025-11-16 00:34:40.394058"
     },
     {
         "id": "c16b08ddfe1934b4",
@@ -2171,7 +2155,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.313350"
+        "scrapeTime": "2025-11-16 00:34:40.387334"
     },
     {
         "id": "6d62bc97887ece2a",
@@ -2187,7 +2171,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.310718"
+        "scrapeTime": "2025-11-16 00:34:40.384597"
     },
     {
         "id": "13d8ba93f21bd4d5",
@@ -2203,7 +2187,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.323328"
+        "scrapeTime": "2025-11-16 00:34:40.396747"
     },
     {
         "name": "Civic Hack DC 2025 \u2013 Part 2: Making Public Comments Count",
@@ -2217,7 +2201,7 @@
             "address": "Register to See Address"
         },
         "imageUrl": "/event_images/Civic_Hack_DC_2025_\u2013_Part_2__Making_Public_Comments_Count.webp",
-        "scrapeTime": "2025-11-15 00:31:38.288746"
+        "scrapeTime": "2025-11-16 00:34:40.363431"
     },
     {
         "id": "32fec8354a00cad4",
@@ -2233,7 +2217,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.317610"
+        "scrapeTime": "2025-11-16 00:34:40.391469"
     },
     {
         "id": "c72526179e0477b1",
@@ -2249,7 +2233,7 @@
         },
         "imageUrl": "/event_images/Coalition_Coffee_.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:38.299718"
+        "scrapeTime": "2025-11-16 00:34:40.374025"
     },
     {
         "id": "4b7be033141cbc463fe3",
@@ -2265,7 +2249,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
         "id": "9f0a1c36e2f42718",
@@ -2281,7 +2265,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.313453"
+        "scrapeTime": "2025-11-16 00:34:40.387437"
     },
     {
         "id": "b6d5bcc94bc5b750",
@@ -2297,7 +2281,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.310828"
+        "scrapeTime": "2025-11-16 00:34:40.384700"
     },
     {
         "id": "1a99ba6fae0f8a17",
@@ -2313,7 +2297,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.315263"
+        "scrapeTime": "2025-11-16 00:34:40.389314"
     },
     {
         "id": "wlgsttyjcfbkb",
@@ -2332,7 +2316,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.307776"
+        "scrapeTime": "2025-11-16 00:34:40.381658"
     },
     {
         "id": "7e8d1dd6d62bd4cc",
@@ -2348,7 +2332,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.317851"
+        "scrapeTime": "2025-11-16 00:34:40.391572"
     },
     {
         "id": "99eb6455dfc14fbf",
@@ -2364,7 +2348,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.320804"
+        "scrapeTime": "2025-11-16 00:34:40.394278"
     },
     {
         "id": "e94ae5594f35e1d5",
@@ -2380,7 +2364,7 @@
         },
         "imageUrl": "/event_images/UAS_Locksport_-_MD_TOOOL.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.322172"
+        "scrapeTime": "2025-11-16 00:34:40.395613"
     },
     {
         "id": "cfd8f011e8c27d4fb45b",
@@ -2396,7 +2380,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
         "id": "1cd8b1bcf09cf279",
@@ -2412,7 +2396,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.323433"
+        "scrapeTime": "2025-11-16 00:34:40.396846"
     },
     {
         "id": "wlgsttyjcfbsb",
@@ -2431,7 +2415,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.307889"
+        "scrapeTime": "2025-11-16 00:34:40.381768"
     },
     {
         "id": "2b1fde7609710e4a",
@@ -2447,7 +2431,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.318021"
+        "scrapeTime": "2025-11-16 00:34:40.391674"
     },
     {
         "id": "c5baf524836165e4",
@@ -2463,7 +2447,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.320909"
+        "scrapeTime": "2025-11-16 00:34:40.394383"
     },
     {
         "id": "16303ef557eab20e",
@@ -2479,7 +2463,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.313658"
+        "scrapeTime": "2025-11-16 00:34:40.387641"
     },
     {
         "id": "45674de297f1b193",
@@ -2495,7 +2479,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.311034"
+        "scrapeTime": "2025-11-16 00:34:40.384905"
     },
     {
         "id": "a69ec48a82a318cf",
@@ -2511,7 +2495,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.315365"
+        "scrapeTime": "2025-11-16 00:34:40.389419"
     },
     {
         "id": "wlgsttyjcfbcc",
@@ -2530,7 +2514,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.308000"
+        "scrapeTime": "2025-11-16 00:34:40.381872"
     },
     {
         "id": "045fe81309b40207",
@@ -2546,7 +2530,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.318141"
+        "scrapeTime": "2025-11-16 00:34:40.391783"
     },
     {
         "id": "d32d7bd6688cb5af",
@@ -2562,7 +2546,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.321014"
+        "scrapeTime": "2025-11-16 00:34:40.394484"
     },
     {
         "id": "8840bea1a3bdc933",
@@ -2578,7 +2562,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.313780"
+        "scrapeTime": "2025-11-16 00:34:40.387744"
     },
     {
         "id": "d49b06e01378ec9b",
@@ -2594,7 +2578,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.311137"
+        "scrapeTime": "2025-11-16 00:34:40.385007"
     },
     {
         "id": "d6c771a2080d064e",
@@ -2610,7 +2594,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.323537"
+        "scrapeTime": "2025-11-16 00:34:40.396948"
     },
     {
         "id": "wlgsttyjcfblc",
@@ -2629,7 +2613,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.308110"
+        "scrapeTime": "2025-11-16 00:34:40.381976"
     },
     {
         "id": "1aefaa27aaa5b467",
@@ -2645,7 +2629,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.318267"
+        "scrapeTime": "2025-11-16 00:34:40.391886"
     },
     {
         "id": "5075d16afe6624188b6b",
@@ -2661,7 +2645,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
         "id": "145af3a168d9094c",
@@ -2677,7 +2661,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.313884"
+        "scrapeTime": "2025-11-16 00:34:40.387846"
     },
     {
         "id": "2f60e9088b76bf5c",
@@ -2693,7 +2677,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.311239"
+        "scrapeTime": "2025-11-16 00:34:40.385109"
     },
     {
         "id": "0d382091d64ab513",
@@ -2709,7 +2693,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.315467"
+        "scrapeTime": "2025-11-16 00:34:40.389522"
     },
     {
         "id": "wlgsttyjcgbgb",
@@ -2728,7 +2712,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.308213"
+        "scrapeTime": "2025-11-16 00:34:40.382078"
     },
     {
         "id": "2a06e28d402c111b",
@@ -2744,7 +2728,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.318394"
+        "scrapeTime": "2025-11-16 00:34:40.391987"
     },
     {
         "id": "e9eb99b9a9293311",
@@ -2760,7 +2744,7 @@
         },
         "imageUrl": "/event_images/Coalition_Coffee_.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:38.299829"
+        "scrapeTime": "2025-11-16 00:34:40.374128"
     },
     {
         "id": "333ee79a72e5f0d8",
@@ -2776,7 +2760,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.321220"
+        "scrapeTime": "2025-11-16 00:34:40.394683"
     },
     {
         "id": "cd6c0aca73ce86aa",
@@ -2792,7 +2776,7 @@
         },
         "imageUrl": "/event_images/UAS_Locksport_-_MD_TOOOL.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.322274"
+        "scrapeTime": "2025-11-16 00:34:40.395717"
     },
     {
         "id": "2d34439f959bedb7",
@@ -2808,7 +2792,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.313985"
+        "scrapeTime": "2025-11-16 00:34:40.387947"
     },
     {
         "id": "be71b7ea20778e7d",
@@ -2824,7 +2808,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.311341"
+        "scrapeTime": "2025-11-16 00:34:40.385211"
     },
     {
         "id": "eed98cae2ec8dc18",
@@ -2840,7 +2824,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.323638"
+        "scrapeTime": "2025-11-16 00:34:40.397047"
     },
     {
         "id": "wlgsttyjcgbpb",
@@ -2859,7 +2843,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.308316"
+        "scrapeTime": "2025-11-16 00:34:40.382181"
     },
     {
         "id": "bfbda9126bf35c0d",
@@ -2875,7 +2859,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.318521"
+        "scrapeTime": "2025-11-16 00:34:40.392088"
     },
     {
         "id": "d704f8c1233cd5eb",
@@ -2891,7 +2875,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.321325"
+        "scrapeTime": "2025-11-16 00:34:40.394785"
     },
     {
         "id": "d83b9826e06457fc",
@@ -2907,7 +2891,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.314094"
+        "scrapeTime": "2025-11-16 00:34:40.388049"
     },
     {
         "id": "c4616192d5ffa727",
@@ -2923,7 +2907,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.311443"
+        "scrapeTime": "2025-11-16 00:34:40.385333"
     },
     {
         "id": "c4413fcafbda187e",
@@ -2939,7 +2923,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.315570"
+        "scrapeTime": "2025-11-16 00:34:40.389633"
     },
     {
         "id": "wlgsttyjcgbxb",
@@ -2958,7 +2942,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.308418"
+        "scrapeTime": "2025-11-16 00:34:40.382300"
     },
     {
         "id": "1c1c129a2a4b973a",
@@ -2974,7 +2958,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.318649"
+        "scrapeTime": "2025-11-16 00:34:40.392189"
     },
     {
         "id": "ed00188645c990d2",
@@ -2990,7 +2974,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.321429"
+        "scrapeTime": "2025-11-16 00:34:40.394886"
     },
     {
         "id": "7cc55d3b2a3be0dc",
@@ -3006,7 +2990,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.314200"
+        "scrapeTime": "2025-11-16 00:34:40.388152"
     },
     {
         "id": "802605d4ca8ecfa1",
@@ -3022,7 +3006,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.311545"
+        "scrapeTime": "2025-11-16 00:34:40.385435"
     },
     {
         "id": "4a51c9944bcb467c",
@@ -3038,7 +3022,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.323758"
+        "scrapeTime": "2025-11-16 00:34:40.397148"
     },
     {
         "id": "wlgsttyjcgbhc",
@@ -3057,7 +3041,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.308519"
+        "scrapeTime": "2025-11-16 00:34:40.382405"
     },
     {
         "id": "2237403cb3e08448",
@@ -3073,7 +3057,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.318789"
+        "scrapeTime": "2025-11-16 00:34:40.392313"
     },
     {
         "id": "9e794685a3939b96",
@@ -3089,7 +3073,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.321532"
+        "scrapeTime": "2025-11-16 00:34:40.394986"
     },
     {
         "id": "8a699f13d3522675",
@@ -3105,7 +3089,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.314309"
+        "scrapeTime": "2025-11-16 00:34:40.388268"
     },
     {
         "id": "be16c20c377542eb",
@@ -3121,7 +3105,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.311646"
+        "scrapeTime": "2025-11-16 00:34:40.385536"
     },
     {
         "id": "0c7c64e08b38c03f",
@@ -3137,7 +3121,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.315674"
+        "scrapeTime": "2025-11-16 00:34:40.389735"
     },
     {
         "id": "wlgsttyjchbdb",
@@ -3156,7 +3140,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.308622"
+        "scrapeTime": "2025-11-16 00:34:40.382508"
     },
     {
         "id": "cafc73ea90ff2203",
@@ -3172,7 +3156,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.318902"
+        "scrapeTime": "2025-11-16 00:34:40.392419"
     },
     {
         "id": "d50533efdb91f79c",
@@ -3188,7 +3172,7 @@
         },
         "imageUrl": "/event_images/Coalition_Coffee_.webp",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:38.299933"
+        "scrapeTime": "2025-11-16 00:34:40.374230"
     },
     {
         "id": "1980f9e36b87e2b9bfdc",
@@ -3204,7 +3188,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
         "id": "e9201d0f756f57ed758ef07b42486eee",
@@ -3212,7 +3196,7 @@
         "url": "https://innovationmaryland.org/the-product-scale-playbook",
         "status": "ACTIVE",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:36.163953",
+        "scrapeTime": "2025-11-16 00:34:38.091374",
         "description": "Product-market fit is just the beginning. The real challenge? Turning that early traction into repeatable growth, operational efficiency, and ultimately \u2014 market leadership. If you\u2019re a founder stuck in the \u201cmessy middle\u201d between proving your idea and building a scalable, investable company,The Product Scale Playbookis for you. This session is designed to help startup founders build theinfrastructure, systems, and teamsto support hyper-growth. Whether you\u2019re heading into a growth funding round or trying to break through a revenue plateau, you\u2019ll walk away with proven frameworks, actionable strategies, and expert insights acrossfinance, operations, sales, marketing, and technology. We\u2019re bringing together seasoned operators, growth architects, and scale-stage advisors to share what\u2019sreallyrequired to go from scrappy startup to category-defining company \u2014 and we\u2019re not holding anything back. (Speaker profiles will be updated as confirmed)",
         "location": {
             "name": "bwtech North",
@@ -3236,7 +3220,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.323862"
+        "scrapeTime": "2025-11-16 00:34:40.397267"
     },
     {
         "id": "wlgsttyjchbmb",
@@ -3255,7 +3239,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.308775"
+        "scrapeTime": "2025-11-16 00:34:40.382609"
     },
     {
         "id": "5b25f2c123656d3c",
@@ -3271,7 +3255,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.319007"
+        "scrapeTime": "2025-11-16 00:34:40.392520"
     },
     {
         "id": "2b51a6b11ca2af4d",
@@ -3287,7 +3271,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.321756"
+        "scrapeTime": "2025-11-16 00:34:40.395187"
     },
     {
         "id": "93af4ce2530ecec6",
@@ -3303,7 +3287,39 @@
         },
         "imageUrl": "/event_images/UAS_Locksport_-_MD_TOOOL.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.322378"
+        "scrapeTime": "2025-11-16 00:34:40.395820"
+    },
+    {
+        "id": "9468ca0025e82b32",
+        "name": "UAS UAS Virtual Happy Hour",
+        "startDate": "2026-05-14T18:00:00-04:00",
+        "endTime": "2026-05-14T19:00:00-04:00",
+        "description": "Unallocated Space is hosting Happy Hour!\n\nThis is an unstructured event where we can all get together, break bread, and hang out virtually. Bring your preferred beverage, some good conversation, and let's chat!\n\nThis is a virtual event hosted over Zoom.\n\nSometimes we play DnD or Minecraft.",
+        "url": "https://www.unallocatedspace.org/events/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "https://zoom.us/j/93194733649?pwd=VHMwdHpCeUFIejFzMldTajJCcCtsZz09",
+            "address": "https://zoom.us/j/93194733649?pwd=VHMwdHpCeUFIejFzMldTajJCcCtsZz09"
+        },
+        "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
+        "recurring": true,
+        "scrapeTime": "2025-11-16 00:34:40.388478"
+    },
+    {
+        "id": "664785e64da1f8cf",
+        "name": "Node Open Hack",
+        "startDate": "2026-05-14T19:00:00-04:00",
+        "endTime": "2026-05-14T21:00:00-04:00",
+        "description": "",
+        "url": "https://baltimorenode.org/events/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "",
+            "address": ""
+        },
+        "imageUrl": "/event_images/Node_Open_Hack.webp",
+        "recurring": true,
+        "scrapeTime": "2025-11-16 00:34:40.385740"
     },
     {
         "id": "wlgsttyjchbvb",
@@ -3322,7 +3338,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.308928"
+        "scrapeTime": "2025-11-16 00:34:40.382710"
     },
     {
         "id": "8ad02b69f28de88d4e65",
@@ -3338,7 +3354,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
         "id": "wlgsttyjchbfc",
@@ -3357,7 +3373,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.309034"
+        "scrapeTime": "2025-11-16 00:34:40.382812"
     },
     {
         "id": "wlgsttyjchbnc",
@@ -3376,7 +3392,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2025-11-15 00:31:38.309137"
+        "scrapeTime": "2025-11-16 00:34:40.382913"
     },
     {
         "id": "74cd776368a0b79a8e10",
@@ -3392,7 +3408,26 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
+    },
+    {
+        "id": "wlgsttyjcjbjb",
+        "name": "Casual Coding, Chat, & Coffee",
+        "description": "Join us for an informal gathering of Python enthusiasts at ZiPani, where we'll blend our love for coding with the rich aroma of coffee! Whether you're a seasoned developer or just starting out, this meetup is designed for everyone who enjoys Python programming in a relaxed environment.\n\nPlan:\n\n* **Casual Coding:** Work on your personal projects, get help, or share your code with others.\n* **Open Discussion:** From Python libraries to best practices, let's talk about what's on your mind.\n* **Networking:** Meet other local Python developers, exchange ideas, and maybe find your next coding buddy or collaborator.\n\nWhy Attend?\n\n* Learn something new or share your knowledge in a friendly atmosphere.\n* Get real-time help with coding problems or brainstorm new ideas.\n* Discover local job opportunities or side projects within the Python community.\n\nNo need for formal presentations or slides; this is all about conversation and collaboration. Feel free to come and go as your schedule allows.",
+        "startDate": "2026-06-06T10:00:00-04:00",
+        "endTime": "2026-06-06T12:00:00-04:00",
+        "url": "https://www.meetup.com/python-frederick/events/wlgsttyjcjbjb/",
+        "status": "ACTIVE",
+        "location": {
+            "name": "ZiPani",
+            "address": "177A Thomas Johnson Drive",
+            "city": "Frederick",
+            "state": "MD",
+            "country": "us"
+        },
+        "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
+        "recurring": true,
+        "scrapeTime": "2025-11-16 00:34:40.383016"
     },
     {
         "id": "bddf40284840f3466b5c",
@@ -3408,7 +3443,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
         "id": "8be782129bb4126bd8a2",
@@ -3424,7 +3459,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
         "id": "58d83f46d11328abcd81",
@@ -3440,7 +3475,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
         "id": "b17c94d8945c680352b4",
@@ -3456,7 +3491,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     },
     {
         "id": "6b2ce8740d1f21cab90244b0ef380e67",
@@ -3464,7 +3499,7 @@
         "url": "https://innovationmaryland.org/the-playbook-for-a-perfect-exit",
         "status": "ACTIVE",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:36.918543",
+        "scrapeTime": "2025-11-16 00:34:39.071639",
         "description": "Whether you\u2019re dreaming of an acquisition, planning a merger, or imagining an IPO, one thing is certain:a great exit doesn\u2019t happen by accident.It\u2019s designed from day one. The Playbook for a Perfect Exitis a powerful, founder-focused session built to help you make smarter decisions today that lead to a more profitable, seamless exit tomorrow. Whether you\u2019re years away from selling \u2014 or you\u2019re getting ready to start the process \u2014 this session will equip you with the strategies, structures, and insight to maximize your outcome. You\u2019ll hear from seasoned M&A experts, exit planners, and founders who\u2019ve been through it \u2014 sharing both the wins and the lessons learned the hard way. (Speaker profiles will be updated as confirmed)",
         "location": {
             "name": "bwtech North",
@@ -3488,6 +3523,6 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2025-11-15 00:31:13.270555"
+        "scrapeTime": "2025-11-16 00:34:11.213494"
     }
 ]
