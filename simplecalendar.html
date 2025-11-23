@@ -4,19 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Upcoming Events</title>
+    <link rel="preload" href="/css/master.css" as="style" />
+    <link rel="stylesheet" href="/css/master.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --bg: #ffffff;
-        --fg: #111111;
-        --muted: #555555;
-        --link: #000000;
-        --card: #f7f7f7;
+        --bg: #002a61;
+        --fg: #ffffff;
+        --muted: #d1dce9;
+        --link: #ffffff;
+        --card: #0a3b7a;
         --maxw: 950px;
-        --ring: #cfcfcf;
+        --ring: #5e7aa3;
       }
       * {
         box-sizing: border-box;
@@ -28,6 +30,7 @@
         color: var(--fg);
         font-family: "Playfair Display", Georgia, "Times New Roman", serif;
         line-height: 1.6;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
       }
       .wrap {
         width: 100%;
@@ -118,10 +121,11 @@
         line-height: 1;
         font-size: 1rem;
         cursor: pointer;
-        transition: transform 0.08s ease;
       }
+      .toggle-btn:focus,
       .toggle-btn:active {
-        transform: scale(0.98);
+        background: #fff;
+        color: var(--fg);
       }
 
       .event-body {
@@ -162,6 +166,15 @@
     </style>
   </head>
   <body>
+
+    <nav class="main-nav" aria-label="Main Navigation">
+      <div class="navbar dark-mode">
+        <a href="/#main">Home</a>
+        <a href="/balticonomy/">Balticonomy</a>
+        <a href="/calendar.html?city=baltimore">Calendar</a>
+        <a href="/#about-us">About Us</a>
+      </div>
+    </nav>
     <div class="wrap">
       <header class="site">
         <h1>Upcoming Events</h1>
