@@ -28,15 +28,16 @@ def fetch_and_parse_luma_events(url: str) -> List[Dict[str, Any]]:
     response.raise_for_status()  # Raise an exception for bad status codes
     
     # Parse the HTML content
-    return parse_luma_events(response.text)
+    return parse_luma_events(response.text, url)
         
 
-def parse_luma_events(html_content: str) -> List[Dict[str, Any]]:
+def parse_luma_events(html_content: str, source_url: str = '') -> List[Dict[str, Any]]:
     """
     Parse events from Luma HTML content and return them in the specified format.
     
     Args:
         html_content (str): The HTML content containing JSON-LD structured data
+        source_url (str): The source URL where the events were scraped from
         
     Returns:
         List[Dict[str, Any]]: List of parsed events in the specified format
@@ -59,7 +60,7 @@ def parse_luma_events(html_content: str) -> List[Dict[str, Any]]:
         parsed_events = []
         
         for event in events:
-            parsed_event = parse_single_event(event)
+            parsed_event = parse_single_event(event, source_url)
             if parsed_event:
                 parsed_events.append(parsed_event)
                 
@@ -69,12 +70,13 @@ def parse_luma_events(html_content: str) -> List[Dict[str, Any]]:
         print(f"Error parsing JSON-LD: {e}")
         return []
 
-def parse_single_event(event: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+def parse_single_event(event: Dict[str, Any], source_url: str = '') -> Optional[Dict[str, Any]]:
     """
     Parse a single event from JSON-LD format to the target format.
     
     Args:
         event (Dict[str, Any]): Single event data from JSON-LD
+        source_url (str): The source URL where the event was scraped from
         
     Returns:
         Optional[Dict[str, Any]]: Parsed event in target format, or None if parsing fails
@@ -107,7 +109,8 @@ def parse_single_event(event: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         'url': event_url,
         'status': status,
         'location': location,
-        'imageUrl': image_url
+        'imageUrl': image_url,
+        'source': source_url
     }
     
     return parsed_event

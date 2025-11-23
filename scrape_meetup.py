@@ -36,8 +36,8 @@ def extract_next_data(html_content):
     except json.JSONDecodeError as e:
         raise Exception(f"Failed to parse __NEXT_DATA__ JSON: {e}")
 
-def parse_meetup_events(next_data, include_past=False):
-    """Parses events from the __NEXT_DATA__ structure."""
+def parse_meetup_events(next_data, include_past=False, source_url=None):
+    """Parses events from the __NEXT_DATA__ structure, tagging each with the originating URL."""
     events = []
     hero_image_url = None
     
@@ -87,6 +87,7 @@ def parse_meetup_events(next_data, include_past=False):
                     "endTime": event_data.get('endTime'),
                     "url": event_data.get('eventUrl'),
                     "status": event_data.get('status'),
+                    "source": source_url,
                 }
                 
                 # Get venue information
@@ -307,12 +308,12 @@ if __name__ == "__main__":
         # Fetch upcoming events
         upcoming_page_content = fetch_meetup_page(MEETUP_URL)
         upcoming_next_data = extract_next_data(upcoming_page_content)
-        upcoming_events = parse_meetup_events(upcoming_next_data)
+        upcoming_events = parse_meetup_events(upcoming_next_data, source_url=MEETUP_URL)
 
         # Fetch past events
         past_page_content = fetch_meetup_page(PAST_EVENTS_URL)
         past_next_data = extract_next_data(past_page_content)
-        past_events = parse_meetup_events(past_next_data, include_past=True)
+        past_events = parse_meetup_events(past_next_data, include_past=True, source_url=PAST_EVENTS_URL)
 
         # Create HTML content
         upcoming_html = create_html(upcoming_events, "Upcoming Events for Baltimore Code Collective")

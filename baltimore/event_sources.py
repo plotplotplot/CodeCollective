@@ -66,6 +66,7 @@ sources = {
         "usr-d4s75dZyC9VOXAd",
         "usr-iZFykYNctUzTFLd",
         "usr-dwIy5y3nhtspeEz",
+        "usr-A83YmR5Onz1uMdp", #https://luma.com/user/web3maryland
         "usr-k0oO7FswDxbAWh0" # Palava Hut
     ],
     "Google Forms":[
