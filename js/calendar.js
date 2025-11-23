@@ -5,6 +5,7 @@ let eventGroups = new Set();
 let calendar;
 let currentView = 'dayGridMonth';
 let isMobile = false;
+let forceCardView = false;
 
 // Check if device is mobile
 function isMobileDevice() {
@@ -43,8 +44,16 @@ function getCityFromUrl() {
 
 // Fetch and parse event data
 document.addEventListener('DOMContentLoaded', function () {
+  forceCardView = Boolean(window.FORCE_CALENDAR_CARDS);
+  isMobile = forceCardView ? true : isMobileDevice();
 
-  isMobile = isMobileDevice();
+  if (!forceCardView && isMobile) {
+    const query = window.location.search || '';
+    const target = `/simplecalendar.html${query}`;
+    window.location.replace(target);
+    return;
+  }
+
   const city = getCityFromUrl();
   const endpoint = `/${city}/upcoming_events.json`;
 
@@ -93,31 +102,40 @@ document.addEventListener('DOMContentLoaded', function () {
     addTodayStyles();
   }
 
-  // Debounce the resize event listener to avoid excessive re-rendering
-  let resizeTimeout;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      const wasMobile = isMobile;
-      isMobile = isMobileDevice();
+  if (!forceCardView) {
+    // Debounce the resize event listener to avoid excessive re-rendering
+    let resizeTimeout;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        const wasMobile = isMobile;
+        isMobile = isMobileDevice();
 
-      if (wasMobile !== isMobile) {
-        if (isMobile) {
-          destroyCalendar();
-          initializeMobileCards(allEvents);
-        } else {
-          destroyMobileCards();
-          initializeCalendar(allEvents);
-          addTodayStyles();
+        if (wasMobile !== isMobile) {
+          if (isMobile) {
+            destroyCalendar();
+            initializeMobileCards(allEvents);
+          } else {
+            destroyMobileCards();
+            const calendarEl = document.getElementById('calendar');
+            if (calendarEl) {
+              calendarEl.style.display = '';
+            }
+            initializeCalendar(allEvents);
+            addTodayStyles();
+          }
         }
-      }
-    }, 200); // Adjust debounce time as needed
-  });
+      }, 200); // Adjust debounce time as needed
+    });
+  }
 });
 
 // Initialize mobile card view
 function initializeMobileCards(events) {
   const container = document.getElementById('calendar');
+  if (!container) return;
+
+  container.style.display = '';
   container.innerHTML = '';
   container.className = 'mobile-cards-container';
 
@@ -267,8 +285,10 @@ function stripMarkdown(text) {
 // Destroy mobile cards view
 function destroyMobileCards() {
   const container = document.getElementById('calendar');
+  if (!container) return;
   container.innerHTML = '';
   container.className = '';
+  container.style.display = '';
 }
 
 // Destroy calendar view

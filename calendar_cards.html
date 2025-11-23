@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Code Collective | Calendar Cards View</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Code Collective organizes tech labor in Baltimore and offers this card-based tech events calendar view." />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://codecollective.us/calendar_cards.html" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://codecollective.us/calendar_cards.html" />
+  <meta property="og:site_name" content="Code Collective" />
+  <meta property="og:title" content="Code Collective | Baltimore Tech Events Calendar (Cards)" />
+  <meta property="og:description"
+    content="Organizing tech labor in Baltimore and sharing a community-wide tech events calendar." />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/favicons/favicon.png" />
+
+  <link rel="preload" href="/css/master.css" as="style">
+  <link rel="preload" href="/css/calendar.css" as="style">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/master.css" />
+  <link rel="stylesheet" href="/css/calendar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body id="body">
+  <video id="bg-video" autoplay loop muted playsinline>
+    <source src="/videos/baltimorenight_15s_crossfaded.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <nav class="main-nav" aria-label="Main Navigation">
+    <div class="navbar dark-mode">
+      <a href="/#main">Home</a>
+      <a href="/balticonomy/">Balticonomy</a>
+      <a href="/calendar.html?city=baltimore">Calendar</a>
+      <a href="/#about-us">About Us</a>
+    </div>
+  </nav>
+
+  <main id="wrapper" class="longform dark-mode" style="padding: 0; margin: 0;">
+    <section id="main" class="longform dark-mode" style="padding: 0; margin: 0;">
+      <header class="header-container" style="text-align: center; padding: 20px 0;">
+        <p style="margin-bottom: 8px; font-size: 1.2rem;">Code Collective brings you</p>
+        <h1 style="margin: 10px 0; font-size: 2.5rem;">Card-Based Baltimore Tech Calendar</h1>
+        <p style="margin-top: 8px; font-size: 1.1rem;">Browse tech meetups and events in a scrollable card layout.</p>
+        <p style="margin-top: 8px; font-size: 1.1rem;">Need the simple list instead? <a href="/simplecalendar.html">Visit the streamlined calendar.</a></p>
+        <a href="https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/baltimore/cc_events.ics"
+          class="download-button" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-calendar-alt" aria-hidden="true"></i> Add to Google Calendar
+        </a>
+      </header>
+
+      <div class="container">
+        <section class="calendar-container" aria-label="Card view of Baltimore Tech Events">
+          <div id="loading" aria-live="polite">
+            <i class="fas fa-spinner fa-spin"></i> Loading card view events...
+          </div>
+          <div id="calendar"></div>
+        </section>
+      </div>
+
+      <section class="code-collective-events" aria-label="Code Collective Events">
+        <div id="code-collective-events-container"></div>
+      </section>
+    </section>
+
+    <script>
+      window.FORCE_CALENDAR_CARDS = true;
+    </script>
+    <script src="/js/calendar.js"></script>
+  </main>
+
+  <our-footer></our-footer>
+  <our-slack-link></our-slack-link>
+
+</body>
+
+<script type="module" src="/js/reusableComponents.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+</html>

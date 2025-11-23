@@ -16,9 +16,9 @@
         --fg: #ffffff;
         --muted: #d1dce9;
         --link: #ffffff;
-        --card: #0a3b7a;
+        --card: #002a61;
         --maxw: 950px;
-        --ring: #5e7aa3;
+        --ring: #002a61;
       }
       * {
         box-sizing: border-box;
@@ -31,6 +31,31 @@
         font-family: "Playfair Display", Georgia, "Times New Roman", serif;
         line-height: 1.6;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+      }
+      a {
+        color: var(--link);
+        font-weight: 700;
+      }
+      a:visited {
+        color: var(--link);
+      }
+      .view-switch {
+        margin: 1rem 0;
+        display: flex;
+        justify-content: flex-end;
+      }
+      .view-switch a {
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 999px;
+        padding: 0.35rem 0.9rem;
+        background: rgba(0, 0, 0, 0.2);
+        font-size: 0.95rem;
+        text-decoration: none;
+      }
+      .view-switch a:hover,
+      .view-switch a:focus {
+        text-decoration: underline;
+        background: rgba(255, 255, 255, 0.15);
       }
       .wrap {
         width: 100%;
@@ -45,7 +70,6 @@
       }
       header.site {
         margin-bottom: 1.25rem;
-        border-bottom: 2px solid #e4e4e4;
         padding-bottom: 0.5rem;
       }
       header.site h1 {
@@ -99,7 +123,7 @@
       .event-title a {
         color: var(--link);
         text-decoration: none;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 1.05rem;
         word-break: break-word;
       }
@@ -180,6 +204,9 @@
         <h1>Upcoming Events</h1>
         <div id="status" class="status" aria-live="polite">Loading events…</div>
       </header>
+      <div class="view-switch">
+        <a id="cardsViewLink" href="/calendar_cards.html">Switch to cards view</a>
+      </div>
       <main id="events"></main>
     </div>
 
@@ -466,6 +493,13 @@
       }
 
       document.addEventListener("DOMContentLoaded", loadAndRender);
+      document.addEventListener("DOMContentLoaded", () => {
+        const link = document.getElementById("cardsViewLink");
+        if (link) {
+          const query = window.location.search || "";
+          link.setAttribute("href", `/calendar_cards.html${query}`);
+        }
+      });
     </script>
   </body>
 </html>
