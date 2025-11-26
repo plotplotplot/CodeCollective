@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Map</title>
+    <link rel="stylesheet" href="css/master.css">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        crossorigin=""
+    >
+    <style>
+        :root {
+            --panel-bg: #f6fbff;
+            --accent: #0d3d79;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            background: #e9f3ff;
+            color: #0f172a;
+        }
+
+        header {
+            padding: 1rem 2rem;
+            text-align: center;
+            background: #a0d6ff;
+            border-bottom: 2px solid #002a61;
+            -webkit-filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+            color: #002a61;
+        }
+
+        .page-container {
+            display: flex;
+            min-height: calc(100vh - 140px);
+        }
+
+        .panel {
+            padding: 1.5rem;
+        }
+
+        .left-panel {
+            width: 40%;
+            background: var(--panel-bg);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .right-panel {
+            width: 60%;
+            background: #d5ecff;
+            padding: 0;
+        }
+
+        .section-title {
+            margin: 0;
+            font-size: 1.25rem;
+            color: var(--accent);
+            letter-spacing: 0.02em;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .location-card {
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 18px;
+            border: 2px solid #002a61;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+        }
+
+        .location-card h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.1rem;
+            color: #001b3d;
+        }
+
+        .location-card p {
+            margin: 0.15rem 0;
+            font-size: 0.95rem;
+            color: #1d3557;
+        }
+
+        .location-card .event-name {
+            font-weight: 600;
+            color: #0d3d79;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            min-height: 60vh;
+        }
+
+        .map-legend {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 900px) {
+            .page-container {
+                flex-direction: column;
+            }
+
+            .left-panel,
+            .right-panel {
+                width: 100%;
+            }
+
+            #map {
+                min-height: 40vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Code Collective Event Map</h1>
+        <p>Explore upcoming event locations and see where everything is happening.</p>
+    </header>
+    <div class="page-container">
+        <section class="panel left-panel">
+            <h2 class="section-title">Featured Event Locations</h2>
+            <p>Here are a few events with complete location info. Tap a card to learn more.</p>
+            <div id="location-cards" class="cards-grid"></div>
+        </section>
+        <section class="panel right-panel">
+            <div id="map"></div>
+            <div class="map-legend">
+                <strong>Map Tips</strong>
+                <div>• Drag & zoom to explore</div>
+                <div>• Tap markers for event details</div>
+            </div>
+        </section>
+    </div>
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        crossorigin=""
+    ></script>
+    <script>
+        const CARDS_TO_SHOW = 4;
+        const DEFAULT_CITY = 'dc';
+        const DEFAULT_CENTER = [39.2904, -76.6122];
+        const geocodeCache = {};
+        const eventsWithCoords = [];
+        let fileGeocodeCache = {};
+        const cityPathContext = resolveCityPath();
+        const EVENTS_SOURCE = `${cityPathContext.basePath}/upcoming_events.json`;
+        const GEOCODE_CACHE_URL = `${cityPathContext.basePath}/geocode_cache.json`;
+
+        const map = L.map('map', {
+            zoomControl: true
+        }).setView(DEFAULT_CENTER, 11);
+
+        function sanitizeCityName(value) {
+            return (value || '')
+                .toLowerCase()
+                .replace(/[^a-z0-9\-\/]/g, '')
+                .replace(/^\/+/, '')
+                .replace(/\/+$/, '');
+        }
+
+        function resolveCityPath() {
+            const params = new URLSearchParams(window.location.search);
+            const requested = sanitizeCityName(params.get('city'));
+            const fallback = sanitizeCityName(DEFAULT_CITY) || 'baltimore';
+            const city = requested || fallback;
+            return {
+                city,
+                basePath: `/${city}`
+            };
+        }
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        async function loadEvents() {
+            try {
+                await loadFileCache();
+                const response = await fetch(EVENTS_SOURCE);
+                if (!response.ok) {
+                    throw new Error('Failed to load upcoming events.');
+                }
+                const events = await response.json();
+                const withAddresses = events.filter(evt => {
+                    const address = evt?.location?.address;
+                    return address && address.trim().length > 0;
+                });
+
+                await plotEvents(withAddresses);
+
+                if (eventsWithCoords.length > 0) {
+                    updateCards();
+                    map.on('moveend', updateCards);
+                } else {
+                    renderCards([]);
+                }
+            } catch (error) {
+                console.error(error);
+                document.getElementById('location-cards').innerHTML =
+                    '<p>Unable to load events right now. Please try again later.</p>';
+            }
+        }
+
+        async function loadFileCache() {
+            try {
+                const response = await fetch(GEOCODE_CACHE_URL, { cache: 'no-cache' });
+                if (response.ok) {
+                    fileGeocodeCache = await response.json();
+                }
+            } catch (error) {
+                console.warn('Unable to load geocode cache file', error);
+            }
+        }
+
+        function renderCards(events) {
+            const container = document.getElementById('location-cards');
+            if (events.length === 0) {
+                container.innerHTML = '<p>No events with full addresses were found.</p>';
+                return;
+            }
+
+            container.innerHTML = '';
+            events.forEach(evt => {
+                const card = document.createElement('article');
+                card.className = 'location-card';
+                card.innerHTML = `
+                    <h3>${evt.location?.name || evt.name}</h3>
+                    <p class="event-name">${evt.name}</p>
+                    <p>${evt.location?.address || 'Address unavailable'}</p>
+                    ${evt.startDate ? `<p>${formatDate(evt.startDate)}</p>` : ''}
+                    ${evt.url ? `<p><a href="${evt.url}" target="_blank" rel="noopener">View event</a></p>` : ''}
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function updateCards() {
+            if (eventsWithCoords.length === 0) {
+                renderCards([]);
+                return;
+            }
+
+            const center = map.getCenter();
+            const bounds = map.getBounds();
+
+            const inView = eventsWithCoords.filter(evt =>
+                bounds.contains([evt.coords.lat, evt.coords.lng])
+            );
+
+            const sourceEvents = inView.length > 0 ? inView : eventsWithCoords;
+            const sorted = [...sourceEvents].sort((a, b) => {
+                return distanceToCenter(a.coords, center) - distanceToCenter(b.coords, center);
+            });
+
+            renderCards(sorted.slice(0, CARDS_TO_SHOW));
+        }
+
+        function distanceToCenter(coords, center) {
+            return haversine(coords.lat, coords.lng, center.lat, center.lng);
+        }
+
+        function haversine(lat1, lon1, lat2, lon2) {
+            const toRad = angle => angle * (Math.PI / 180);
+            const R = 6371;
+            const dLat = toRad(lat2 - lat1);
+            const dLon = toRad(lon2 - lon1);
+            const a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            if (Number.isNaN(date.getTime())) {
+                return '';
+            }
+            return date.toLocaleString(undefined, {
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit',
+                timeZoneName: 'short'
+            });
+        }
+
+        function normalizeAddressKey(address) {
+            return (address || '').trim().toLowerCase();
+        }
+
+        function getCachedGeocode(key) {
+            if (geocodeCache[key]) {
+                return geocodeCache[key];
+            }
+            try {
+                const stored = localStorage.getItem(key);
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    geocodeCache[key] = parsed;
+                    return parsed;
+                }
+            } catch (err) {
+                console.warn('Local storage unavailable', err);
+            }
+            return null;
+        }
+
+        function setCachedGeocode(key, value) {
+            geocodeCache[key] = value;
+            try {
+                localStorage.setItem(key, JSON.stringify(value));
+            } catch (err) {
+                // Ignore storage errors (private mode, etc.)
+            }
+        }
+
+        function getFileCacheCoords(address) {
+            const key = normalizeAddressKey(address);
+            return fileGeocodeCache[key] || null;
+        }
+
+        function setFileCacheCoords(address, coords) {
+            const key = normalizeAddressKey(address);
+            if (!key) {
+                return;
+            }
+            fileGeocodeCache[key] = coords;
+        }
+
+        async function plotEvents(events) {
+            const markers = [];
+
+            for (const evt of events) {
+                const coords = await getEventCoordinates(evt);
+                if (!coords) {
+                    continue;
+                }
+
+                const eventWithCoords = { ...evt, coords };
+                eventsWithCoords.push(eventWithCoords);
+
+                const marker = L.marker([coords.lat, coords.lng]).addTo(map);
+                marker.bindPopup(`
+                    <strong>${evt.name}</strong><br>
+                    ${evt.location?.address || 'Address on RSVP'}<br>
+                    ${evt.startDate ? formatDate(evt.startDate) : ''}
+                `);
+                markers.push(marker);
+            }
+
+            if (markers.length > 0) {
+                const group = new L.featureGroup(markers);
+                map.fitBounds(group.getBounds().pad(0.2));
+            } else {
+                map.setView(DEFAULT_CENTER, 11);
+            }
+        }
+
+        async function getEventCoordinates(evt) {
+            const loc = evt.location || {};
+            if (loc.latitude && loc.longitude) {
+                return {
+                    lat: Number(loc.latitude),
+                    lng: Number(loc.longitude)
+                };
+            }
+
+            const address = loc.address;
+            if (!address) {
+                return null;
+            }
+
+            const fileCached = getFileCacheCoords(address);
+            if (fileCached) {
+                return fileCached;
+            }
+
+            const cacheKey = `eventsmap:${normalizeAddressKey(address)}`;
+            const cached = getCachedGeocode(cacheKey);
+            if (cached) {
+                return cached;
+            }
+            return null;
+        }
+
+        loadEvents();
+    </script>
+</body>
+</html>

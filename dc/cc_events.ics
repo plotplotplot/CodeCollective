@@ -2,153 +2,133 @@ BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:dc Tech Events
 BEGIN:VEVENT
-DTSTAMP:20251124T050119Z
-DESCRIPTION:Zoom link: https://us02web.zoom.us/j/82308186562\n\nTalk #0: Introductions and Meetup Updates\nby Chris Fregly and Antje Barth\n\nTalk #1: GPU\, PyTorch\, and CUDA Performance Optimizations\n\nTalk #2: GPU\, Py\n\nEvent Link: https://www.meetup.com/ai-performance-engineering-washington-dc/events/311912068/
-DTEND:20251215T180000Z
-LOCATION:Online event\, \,  
-DTSTART:20251215T170000Z
-SUMMARY:GPU\, CUDA\, and PyTorch Performance Optimizations
-UID:90ccead1-b1ff-4b61-83e7-c8b6ae6cc535@90cc.org
-URL:https://www.meetup.com/ai-performance-engineering-washington-dc/events/311912068/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251124T050119Z
-DESCRIPTION:Data Viz in Python\n\nEvent Link: https://luma.com/xdrb7cca
-DTEND:20251217T010000Z
-LOCATION:2112 Pennsylvania Ave NW\, 2112 Pennsylvania Ave NW\, Washington\, District of Columbia\, \,  
-DTSTART:20251216T223000Z
-SUMMARY:Data Viz in Python
-UID:f9db42df-64fe-4fbc-a721-5ad38458b0d2@f9db.org
-URL:https://luma.com/xdrb7cca
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251124T050119Z
-DESCRIPTION:Defense Tech DC 011\n\nEvent Link: https://luma.com/cq32j6oc
-DTEND:20260128T003000Z
-LOCATION:Washington\, District of Columbia\, Register to See Address\, \,  
-DTSTART:20260127T223000Z
-SUMMARY:Defense Tech DC 011
-UID:8ad5aa4c-176e-4fb7-a394-fce06775422a@8ad5.org
-URL:https://luma.com/cq32j6oc
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251124T050119Z
-DESCRIPTION:Project Night at Virtru\n\nEvent Link: https://luma.com/buwatm7e
-DTEND:20260115T013000Z
-LOCATION:Virtru\, Virtru\, Washington\, District of Columbia\, \,  
-DTSTART:20260114T230000Z
-SUMMARY:Project Night at Virtru
-UID:42fa8710-7cbb-4989-bae4-fab99d6def9e@42fa.org
-URL:https://luma.com/buwatm7e
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251124T050119Z
-DESCRIPTION:Zoom link: https://us02web.zoom.us/j/82308186562\n\nTalk #0: Introductions and Meetup Updates\nby Chris Fregly and Antje Barth\n\nTalk #1: GPU\, PyTorch\, and CUDA Performance Optimizations\n\nTalk #2: GPU\, Py\n\nEvent Link: https://www.meetup.com/ai-performance-engineering-washington-dc/events/nhvnttyjcdbvb/
-DTEND:20260216T180000Z
-LOCATION:Online event\, \,  
-DTSTART:20260216T170000Z
-SUMMARY:GPU\, CUDA\, and PyTorch Performance Optimizations
-UID:18266cf3-e00b-474e-a60e-222529c3ed4e@1826.org
-URL:https://www.meetup.com/ai-performance-engineering-washington-dc/events/nhvnttyjcdbvb/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251124T050119Z
-DESCRIPTION:Zoom link: https://us02web.zoom.us/j/82308186562\n\nTalk #0: Introductions and Meetup Updates\nby Chris Fregly and Antje Barth\n\nTalk #1: GPU\, PyTorch\, and CUDA Performance Optimizations\n\nTalk #2: GPU\, Py\n\nEvent Link: https://www.meetup.com/ai-performance-engineering-washington-dc/events/311912073/
-DTEND:20260119T180000Z
-LOCATION:Online event\, \,  
-DTSTART:20260119T170000Z
-SUMMARY:GPU\, CUDA\, and PyTorch Performance Optimizations
-UID:ee16fd1a-46a1-4c22-91d4-239fc7391d2f@ee16.org
-URL:https://www.meetup.com/ai-performance-engineering-washington-dc/events/311912073/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251124T050119Z
-DESCRIPTION:World Bank Data Dive 2025: Jobs & Development\n\nEvent Link: https://luma.com/h00ptp1v
-DTEND:20251204T010000Z
-LOCATION:1818 H St NW\, 1818 H St NW\, Washington\, District of Columbia\, \,  
-DTSTART:20251203T170000Z
-SUMMARY:World Bank Data Dive 2025: Jobs & Development
-UID:1adc2c91-fe13-4a2b-b31e-89ac583610b5@1adc.org
-URL:https://luma.com/h00ptp1v
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251124T050119Z
-DESCRIPTION:Founder Speakeasy {001}\n\nEvent Link: https://luma.com/p6d3rktc
-DTEND:20251125T020000Z
-LOCATION:Washington\, District of Columbia\, Register to See Address\, \,  
-DTSTART:20251124T220000Z
-SUMMARY:Founder Speakeasy {001}
-UID:d377f873-5a22-4149-becd-0eb21db05f0c@d377.org
-URL:https://luma.com/p6d3rktc
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251124T050119Z
+DTSTAMP:20251126T033343Z
 DESCRIPTION:Zoom link: https://us02web.zoom.us/j/82308186562\n\nTalk #0: Introductions and Meetup Updates\nby Chris Fregly and Antje Barth\n\nTalk #1: GPU\, PyTorch\, and CUDA Performance Optimizations\n\nTalk #2: GPU\, Py\n\nEvent Link: https://www.meetup.com/ai-performance-engineering-washington-dc/events/nhvnttyjcfbvb/
 DTEND:20260316T170000Z
 LOCATION:Online event\, \,  
 DTSTART:20260316T160000Z
 SUMMARY:GPU\, CUDA\, and PyTorch Performance Optimizations
-UID:fc40c2c6-a3a4-4e5d-90ef-d200c86c542d@fc40.org
+UID:efbcfeae-fbd0-48ca-b784-b7457d399419@efbc.org
 URL:https://www.meetup.com/ai-performance-engineering-washington-dc/events/nhvnttyjcfbvb/
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20251124T050119Z
-DESCRIPTION:Civic Hack DC 2025 – Part 2: Making Public Comments Count\n\nEvent Link: https://luma.com/vu8ktr9y
-DTEND:20260228T233000Z
-LOCATION:Silver Spring\, Maryland\, Register to See Address\, \,  
-DTSTART:20260228T150000Z
-SUMMARY:Civic Hack DC 2025 – Part 2: Making Public Comments Count
-UID:ab785c4c-843d-47b3-ac6b-e8a1c2957535@ab78.org
-URL:https://luma.com/vu8ktr9y
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251124T050119Z
-DESCRIPTION:Civic Tech Showcase: A Night of Celebration\n\nEvent Link: https://luma.com/72j0klbk
-DTEND:20251211T010000Z
-LOCATION:2112 Pennsylvania Ave NW\, 2112 Pennsylvania Ave NW\, Washington\, District of Columbia\, \,  
-DTSTART:20251210T230000Z
-SUMMARY:Civic Tech Showcase: A Night of Celebration
-UID:a6750263-4c08-4ba9-8770-7ec2369c0e1d@a675.org
-URL:https://luma.com/72j0klbk
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251124T050119Z
-DESCRIPTION:Defense Tech DC 009\n\nEvent Link: https://luma.com/550neien
-DTEND:20251126T003000Z
-LOCATION:Washington\, District of Columbia\, Register to See Address\, \,  
-DTSTART:20251125T223000Z
-SUMMARY:Defense Tech DC 009
-UID:948ebff5-5577-4de0-b9cc-5abfb7c8b0b9@948e.org
-URL:https://luma.com/550neien
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251124T050119Z
+DTSTAMP:20251126T033343Z
 DESCRIPTION:DMV Startup & AI Community - EOY Gathering (yes\, indoors)\n\nEvent Link: https://luma.com/qdhss47w
 DTEND:20251212T023000Z
 LOCATION:Washington\, District of Columbia\, Register to See Address\, \,  
 DTSTART:20251211T230000Z
 SUMMARY:DMV Startup & AI Community - EOY Gathering (yes\, indoors)
-UID:02292831-a56c-4751-8ff7-71aee3fd0497@0229.org
+UID:8ccdd206-0821-4d8c-9aa8-b3a9986a6d96@8ccd.org
 URL:https://luma.com/qdhss47w
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20251124T050119Z
-DESCRIPTION:Project Night at Prefect\n\nEvent Link: https://luma.com/hx866jo3
-DTEND:20260129T013000Z
-LOCATION:2112 Pennsylvania Ave NW\, 2112 Pennsylvania Ave NW\, Washington\, District of Columbia\, \,  
-DTSTART:20260128T230000Z
-SUMMARY:Project Night at Prefect
-UID:dec001a4-f0f6-4980-b7d6-1bd39ce4a522@dec0.org
-URL:https://luma.com/hx866jo3
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20251124T050119Z
+DTSTAMP:20251126T033343Z
 DESCRIPTION:Defense Tech DC 010\n\nEvent Link: https://luma.com/llbdxm3s
 DTEND:20251217T003000Z
 LOCATION:Washington\, District of Columbia\, Register to See Address\, \,  
 DTSTART:20251216T223000Z
 SUMMARY:Defense Tech DC 010
-UID:df4d73e5-6275-4707-b02e-945e9cd8b0c1@df4d.org
+UID:d43a6827-d787-419f-aea1-9f5931108d4a@d43a.org
 URL:https://luma.com/llbdxm3s
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251126T033343Z
+DESCRIPTION:Defense Tech DC 011\n\nEvent Link: https://luma.com/cq32j6oc
+DTEND:20260128T003000Z
+LOCATION:Washington\, District of Columbia\, Register to See Address\, \,  
+DTSTART:20260127T223000Z
+SUMMARY:Defense Tech DC 011
+UID:0e6e487e-dba3-4a20-868f-b856817aa027@0e6e.org
+URL:https://luma.com/cq32j6oc
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251126T033343Z
+DESCRIPTION:Project Night at Prefect\n\nEvent Link: https://luma.com/hx866jo3
+DTEND:20260129T013000Z
+LOCATION:2112 Pennsylvania Ave NW\, 2112 Pennsylvania Ave NW\, Washington\, District of Columbia\, \,  
+DTSTART:20260128T230000Z
+SUMMARY:Project Night at Prefect
+UID:e646485b-f130-45ce-b5db-0fa3877a4f41@e646.org
+URL:https://luma.com/hx866jo3
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251126T033343Z
+DESCRIPTION:Data Viz in Python\n\nEvent Link: https://luma.com/xdrb7cca
+DTEND:20251217T010000Z
+LOCATION:2112 Pennsylvania Ave NW\, 2112 Pennsylvania Ave NW\, Washington\, District of Columbia\, \,  
+DTSTART:20251216T223000Z
+SUMMARY:Data Viz in Python
+UID:e27b5d16-0a5c-4e43-a445-5fa62fe1fda2@e27b.org
+URL:https://luma.com/xdrb7cca
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251126T033343Z
+DESCRIPTION:Zoom link: https://us02web.zoom.us/j/82308186562\n\nTalk #0: Introductions and Meetup Updates\nby Chris Fregly and Antje Barth\n\nTalk #1: GPU\, PyTorch\, and CUDA Performance Optimizations\n\nTalk #2: GPU\, Py\n\nEvent Link: https://www.meetup.com/ai-performance-engineering-washington-dc/events/311912068/
+DTEND:20251215T180000Z
+LOCATION:Online event\, \,  
+DTSTART:20251215T170000Z
+SUMMARY:GPU\, CUDA\, and PyTorch Performance Optimizations
+UID:cd83a3e1-73ad-4aa4-ba76-13de770fe1a1@cd83.org
+URL:https://www.meetup.com/ai-performance-engineering-washington-dc/events/311912068/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251126T033343Z
+DESCRIPTION:Civic Hack DC 2025 – Part 2: Making Public Comments Count\n\nEvent Link: https://luma.com/vu8ktr9y
+DTEND:20260228T233000Z
+LOCATION:Silver Spring\, Maryland\, Register to See Address\, \,  
+DTSTART:20260228T150000Z
+SUMMARY:Civic Hack DC 2025 – Part 2: Making Public Comments Count
+UID:b240ee5a-a48b-4279-b9bb-7701bb4c45a0@b240.org
+URL:https://luma.com/vu8ktr9y
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251126T033343Z
+DESCRIPTION:Zoom link: https://us02web.zoom.us/j/82308186562\n\nTalk #0: Introductions and Meetup Updates\nby Chris Fregly and Antje Barth\n\nTalk #1: GPU\, PyTorch\, and CUDA Performance Optimizations\n\nTalk #2: GPU\, Py\n\nEvent Link: https://www.meetup.com/ai-performance-engineering-washington-dc/events/nhvnttyjcdbvb/
+DTEND:20260216T180000Z
+LOCATION:Online event\, \,  
+DTSTART:20260216T170000Z
+SUMMARY:GPU\, CUDA\, and PyTorch Performance Optimizations
+UID:997875d2-2c0e-4fcf-979a-a0cda9bf7a44@9978.org
+URL:https://www.meetup.com/ai-performance-engineering-washington-dc/events/nhvnttyjcdbvb/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251126T033343Z
+DESCRIPTION:World Bank Data Dive 2025: Jobs & Development\n\nEvent Link: https://luma.com/h00ptp1v
+DTEND:20251204T010000Z
+LOCATION:1818 H St NW\, 1818 H St NW\, Washington\, District of Columbia\, \,  
+DTSTART:20251203T170000Z
+SUMMARY:World Bank Data Dive 2025: Jobs & Development
+UID:cb5f9ac6-9072-4bfd-bb64-1565cb8d72ba@cb5f.org
+URL:https://luma.com/h00ptp1v
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251126T033343Z
+DESCRIPTION:Project Night at Virtru\n\nEvent Link: https://luma.com/buwatm7e
+DTEND:20260115T013000Z
+LOCATION:Virtru\, Virtru\, Washington\, District of Columbia\, \,  
+DTSTART:20260114T230000Z
+SUMMARY:Project Night at Virtru
+UID:3c0bde05-a4c2-4626-9d14-3ef56e11522e@3c0b.org
+URL:https://luma.com/buwatm7e
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251126T033343Z
+DESCRIPTION:Civic Tech Showcase: A Night of Celebration\n\nEvent Link: https://luma.com/72j0klbk
+DTEND:20251211T010000Z
+LOCATION:2112 Pennsylvania Ave NW\, 2112 Pennsylvania Ave NW\, Washington\, District of Columbia\, \,  
+DTSTART:20251210T230000Z
+SUMMARY:Civic Tech Showcase: A Night of Celebration
+UID:49662433-9d87-4969-9aa7-ce243a3a2954@4966.org
+URL:https://luma.com/72j0klbk
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20251126T033343Z
+DESCRIPTION:Zoom link: https://us02web.zoom.us/j/82308186562\n\nTalk #0: Introductions and Meetup Updates\nby Chris Fregly and Antje Barth\n\nTalk #1: GPU\, PyTorch\, and CUDA Performance Optimizations\n\nTalk #2: GPU\, Py\n\nEvent Link: https://www.meetup.com/ai-performance-engineering-washington-dc/events/311912073/
+DTEND:20260119T180000Z
+LOCATION:Online event\, \,  
+DTSTART:20260119T170000Z
+SUMMARY:GPU\, CUDA\, and PyTorch Performance Optimizations
+UID:22960e78-ff8e-41c4-adf6-b43b38036ef3@2296.org
+URL:https://www.meetup.com/ai-performance-engineering-washington-dc/events/311912073/
 END:VEVENT
 END:VCALENDAR
