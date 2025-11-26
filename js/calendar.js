@@ -7,6 +7,24 @@ let currentView = 'dayGridMonth';
 let isMobile = false;
 let forceCardView = false;
 
+// Utility helpers ---------------------------------------------------------
+function getTodayStart() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return today;
+}
+
+// Compare only the calendar date so events stay visible all day
+function isEventOnOrAfterToday(dateInput, todayStart = getTodayStart()) {
+  if (!dateInput) return false;
+
+  const eventDate = new Date(dateInput);
+  if (isNaN(eventDate)) return false;
+
+  eventDate.setHours(0, 0, 0, 0);
+  return eventDate >= todayStart;
+}
+
 // Check if device is mobile
 function isMobileDevice() {
   return window.matchMedia('(max-width: 768px)').matches;
@@ -140,13 +158,11 @@ function initializeMobileCards(events) {
   container.className = 'mobile-cards-container';
 
   // Filter events to only show future events (after today)
-  const today = new Date();
-  today.setHours(0, 0, 0, 0); // Set to start of today
+  const todayStart = getTodayStart();
 
-  const futureEvents = events.filter(event => {
-    const eventDate = new Date(event.start);
-    return eventDate >= today;
-  });
+  const futureEvents = events.filter(event =>
+    isEventOnOrAfterToday(event.start, todayStart)
+  );
 
   // Sort events by date and time
   futureEvents.sort((a, b) => new Date(a.start) - new Date(b.start));
@@ -435,8 +451,7 @@ function initializeCalendar(events) {
   if (isMobile) return;
 
   // Filter events to show only next 4 weeks starting from today
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const today = getTodayStart();
 
   const fourWeeksFromNow = new Date(today);
   fourWeeksFromNow.setDate(today.getDate() + 28); // 4 weeks = 28 days
@@ -444,7 +459,8 @@ function initializeCalendar(events) {
 
   const filteredEvents = events.filter(event => {
     const eventDate = new Date(event.start);
-    return eventDate >= today && eventDate <= fourWeeksFromNow;
+    if (isNaN(eventDate)) return false;
+    return isEventOnOrAfterToday(event.start, today) && eventDate <= fourWeeksFromNow;
   });
 
   // Calculate the start of current week (Sunday)
@@ -625,15 +641,10 @@ function setupViewSelectors() {
 
 // Handle view changes in mobile mode
 function handleMobileViewChange(view) {
-  let eventsToShow = [...allEvents];
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  // Always filter to future events first
-  eventsToShow = allEvents.filter(event => {
-    const eventDate = new Date(event.start);
-    return eventDate >= today;
-  });
+  const todayStart = getTodayStart();
+  const eventsToShow = allEvents.filter(event =>
+    isEventOnOrAfterToday(event.start, todayStart)
+  );
 
   // Re-render mobile cards with filtered events
   initializeMobileCards(eventsToShow);
