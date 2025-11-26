@@ -24,7 +24,9 @@ sources = {
         "https://www.meetup.com/ai-performance-engineering-washington-dc/",
         "https://www.meetup.com/philanthropicode/",
         "https://www.meetup.com/profs-and-pints-baltimore/",
-        "https://www.meetup.com/ai-enthusiasts/"
+        "https://www.meetup.com/ai-enthusiasts/",
+        "https://www.meetup.com/baltimore-tech-innovation/",
+        "https://www.meetup.com/cmap-online/"
     ],
     "Eventbrite":[
         "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
@@ -40,7 +42,8 @@ sources = {
         "https://www.eventbrite.com/cc/baltimore-4326703",
         "https://www.eventbrite.com/o/impact-hub-baltimore-8423440202",
         "https://www.eventbrite.com/o/a-prosperous-tomorrow-11875462384",
-        "https://www.eventbrite.com/o/lets-go-113135073431"
+        "https://www.eventbrite.com/o/lets-go-113135073431",
+        "https://www.eventbrite.com/o/howard-county-office-of-workforce-development-88843319173"
     ],
     "Jotform":[
         #"https://form.jotform.com/251063812795157"

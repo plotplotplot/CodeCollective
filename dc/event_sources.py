@@ -2,6 +2,9 @@ sources = {
     "Meetup":[
         "https://www.meetup.com/dc-area-drone-user-group/",
         "https://www.meetup.com/ai-performance-engineering-washington-dc/",
+        "https://www.meetup.com/lfdt-washington-dc/",
+        "https://www.meetup.com/openanalyticsdc/",
+        "https://www.meetup.com/meetup-group-xfwllgfg/"
     ],
     "Eventbrite":[
     ],
