@@ -26,14 +26,25 @@ def convert_luma_to_event_format(luma_data):
         end_time = end_at if end_at else None
         
         # Extract location info
-        geo_info = event.get('geo_address_info', {})
+        geo_info = event.get('geo_address_info', {}) or {}
+        coordinate_info = event.get('coordinate', {}) or {}
         location_name = geo_info.get('address', '') or geo_info.get('full_address', '')
         location_address = geo_info.get('full_address', '') or location_name
+        city = geo_info.get('city', '')
+        state = geo_info.get('region', '')
+        country = geo_info.get('country', '')
+        latitude = coordinate_info.get('latitude') or event.get('geo_latitude', '')
+        longitude = coordinate_info.get('longitude') or event.get('geo_longitude', '')
         
         # Handle virtual events
         if event.get('location_type') == 'online' or event.get('virtual_info', {}).get('has_access'):
             location_name = "Virtual Event"
             location_address = "Virtual Event"
+            city = ""
+            state = ""
+            country = ""
+            latitude = ""
+            longitude = ""
         
         # Get event URL
         event_url = f"https://lu.ma/{event.get('url', '')}" if event.get('url') else ""
@@ -52,7 +63,12 @@ def convert_luma_to_event_format(luma_data):
             "status": "ACTIVE",
             "location": {
                 "name": location_name,
-                "address": location_address
+                "address": location_address,
+                "city": city,
+                "state": state,
+                "country": country,
+                "latitude": latitude,
+                "longitude": longitude
             },
             "imageUrl": image_url,
             "recurring": False,  # Would need additional logic to determine this

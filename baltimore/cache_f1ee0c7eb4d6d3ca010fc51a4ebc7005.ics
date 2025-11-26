@@ -1,6 +1,6 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Baltimore Indie Games - ECPv6.15.8//NONSGML v1.0//EN
+PRODID:-//Baltimore Indie Games - ECPv6.15.12.2//NONSGML v1.0//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:Baltimore Indie Games
@@ -47,51 +47,85 @@ TZOFFSETTO:-0500
 TZNAME:EST
 DTSTART:20261101T060000
 END:STANDARD
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:20270314T070000
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:20271107T060000
+END:STANDARD
 END:VTIMEZONE
-BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20251025T130000
-DTEND;TZID=America/New_York:20251025T170000
-DTSTAMP:20251020T164932
-CREATED:20250816T182706Z
-LAST-MODIFIED:20250819T212743Z
-UID:275-1761397200-1761411600@baltimoreindiegames.com
-SUMMARY:District Arcade
-DESCRIPTION:Hosted by IGDA DC\, District Arcade returns on October 25th 2025 1:00-5:00 PM at the Martin Luther King Library in DC. The meetup and lineup is still being worked on\, however the date and location have been confirmed. \nWhat is District Arcade\, you ask? It’s a free celebration of games and game makers from the DC and DMV area. Play locally-crafted indie games and chat with the devs in this fun\, family-friendly in person event. There will be 15-20 local developers showcasing games of different genres and levels of completion. \nEvent Information \n\nLocation: Lab – Bottom floor of the MLK Library\nAddress: 901 G St NW\, Washington DC\, 20001\nDate and Time: October 25th 2024 1:00-5:00 PM\nMeetup Page: https://www.meetup.com/igda-dc/events/310523499/\n\nIf you are interested in presenting at District Arcade please fill out this form: https://forms.gle/z3ikPZQnfwbbtrm2A \nSubmissions close September 30th. We have 25-30 slots so if you submit you will most likely get in.
-URL:https://baltimoreindiegames.com/event/district-arcade/
-LOCATION:Martin Luther King Jr. Memorial Library\, 901 G St NW\, Washington\, DC\, 20001\, United States
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20251101T130000
-DTEND;TZID=America/New_York:20251101T160000
-DTSTAMP:20251020T164932
-CREATED:20250929T133031Z
-LAST-MODIFIED:20250929T133031Z
-UID:332-1762002000-1762012800@baltimoreindiegames.com
-SUMMARY:Frederick STEM Festival
-DESCRIPTION:Location: Carroll Creek Amphitheater\, Frederick\, Maryland \nAdmission: Free \nThe 2nd Frederick STEM Carnival will occur on November 1st at Carroll Creek from 1 to 4 PM. The event builds on previous successes our Frederick events and offers a unique opportunity for Frederick residents to engage in STEM-related activities. At 2:30\, there will be a magic show\, and a juggler will walk around the event. We will have plenty of giveaways! \nThis event is being held with the Frederick Children’s Business Fair. \nOrganizations that have been invited to participate include: \nAstraZeneca \nBovine Intervention \nGoTeam Therapy Dogs \nLonza \nUrbana STEMM \nTheromfisher Scientific \nFrederick Community College Biology Department \nTexcell \nLanline Games (video game developer) \nHope4OurChildren Face Painter \nHood College \nBrunswick Robotics
-URL:https://baltimoreindiegames.com/event/frederick-stem-festival/
-END:VEVENT
-BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20251114T090000
-DTEND;TZID=America/New_York:20251116T170000
-DTSTAMP:20251020T164932
-CREATED:20250329T190515Z
-LAST-MODIFIED:20250924T200800Z
-UID:110-1763110800-1763312400@baltimoreindiegames.com
-SUMMARY:Game Your Future Conference
-DESCRIPTION:This is the 4th annual Game Your Future is a conference\, an event organized by Maryland-regional developer groups at the Baltimore Convention Center.  It brings an experience similar to the Game Developers Conference (GDC) to the East Coast to fill the void of a more accessible event for our East Coast devs who want something near where they live.\n\nJoin us at the Game Your Future Conference\, where community\, creativity\, and career growth collide. Whether you’re a game developer\, esports enthusiast\, student\, or professional in a tangential industry\, this is your chance to upskill\, get inspired\, and build meaningful connections in an evolving job market. With top speakers\, hands-on learning\, and unmatched networking opportunities\, you’ll leave empowered to thrive in gaming—and beyond.\n\nTickets and info: https://www.game4good.gg/game-your-future-conference/\n\nIndie Showcase (submit your game to show at the conference): Submission Form
-URL:https://baltimoreindiegames.com/event/game-your-future-conference/
-LOCATION:Baltimore Convention Center\, 1 W Pratt Street\, Baltimore\, MD\, 21201\, United States
-END:VEVENT
 BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20251203T180000
 DTEND;TZID=America/New_York:20251203T210000
-DTSTAMP:20251020T164932
+DTSTAMP:20251124T000051
 CREATED:20251018T135740Z
 LAST-MODIFIED:20251018T135800Z
 UID:340-1764784800-1764795600@baltimoreindiegames.com
 SUMMARY:Baltimore IGDA Year In Review 2025
 DESCRIPTION:The Baltimore IGDA is finishing the year strong with our final event of the 2025 year\, ‘The Baltimore IGDA – Year In Review’. This event is being held at the Greene Turtle in Hunt Valley on Wednesday December 3rd from 6pm – 9pm. We will have speakers from all 15+ of the local game development companies on how their year was and a look toward the future for 2026. This event is normally one of the biggest and can’t miss events to network and check out what each of the local studios are doing. Please RSVP so we can get a headcount and share this can’t miss event! \n118 Shawan Rd Suite HH\, Hunt Valley\, MD 21030
 URL:https://baltimoreindiegames.com/event/baltimore-igda-year-in-review-2025/
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20251206T100000
+DTEND;TZID=America/New_York:20251206T113000
+DTSTAMP:20251124T000051
+CREATED:20251027T175429Z
+LAST-MODIFIED:20251027T175429Z
+UID:349-1765015200-1765020600@baltimoreindiegames.com
+SUMMARY:Online Meetup
+DESCRIPTION:We’re meeting on Discord! The link to join the Baltimore Indie Game Devs discord server will be in your Meetup RSVP message. \nJoin us to discuss game development\, talk shop\, and bounce ideas. Anyone with an interest in game design and development is welcome\, from beginners to veteran professionals. \nIf you’re working on a game\, you’re welcome to show it and ask for feedback. There will be plenty of time to chat and talk shop\, too.
+URL:https://baltimoreindiegames.com/event/online-meetup-7/
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20251220T090000
+DTEND;TZID=America/New_York:20251221T190000
+DTSTAMP:20251124T000051
+CREATED:20251123T204845Z
+LAST-MODIFIED:20251123T204845Z
+UID:369-1766221200-1766343600@baltimoreindiegames.com
+SUMMARY:Dig Dug Dig Market & Festival
+DESCRIPTION:Location: Northeast D.C. at multiple venues including metrobar\, City State Brewing\, Lost Generation Brewing Company\, and Bryant St. Market. \nDetails: D.C.’s newest and biggest holiday market\, featuring vendors\, a “Winter Wonderland” theme at some locations\, a dog fashion show\, cookie exchanges and contests\, gift wrapping stations\, and indie video game showcases. \nAdmission: The event is free to attend. \nSaturday\, Dec 20\, 2025\nParade 9am\nDoors at 11am\nFestival end times vary from venue to venue \nSunday\, Dec 21\, 2025\nDoors at 11am\nFestival ends at 7pm \nGame Submission Form: If you’re an indie dev and you’d like to show your game\, please complete the Submission Form.
+URL:https://baltimoreindiegames.com/event/dig-dug-dig-market-festival/
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20251220T100000
+DTEND;TZID=America/New_York:20251220T113000
+DTSTAMP:20251124T000051
+CREATED:20251027T181621Z
+LAST-MODIFIED:20251103T161549Z
+UID:353-1766224800-1766230200@baltimoreindiegames.com
+SUMMARY:In-Person/Online Meetup [Year In Review]
+DESCRIPTION:In-person: East Columbia Branch Library\, Marvin Thomas Room \nJoin us IN-PERSON or ONLINE. Anyone with an interest in game design and development is welcome\, from beginners to veteran professionals. \nIf you want to attend virtually\, the Discord server link is provided in the main monthly (1st of the month) meetup details. An organizer will ensure that a laptop is provided on-site to connect the Discord attendees with those physically on-site. It takes us a few minutes to set up the projector\, so hold tight when you join the Discord voice chat channel. We’ll be there soon! \nThe floor will be open to anyone who wants to speak about their 2025 accomplishments and/or 2026 goals!
+URL:https://baltimoreindiegames.com/event/in-person-online-meetup-5/
+LOCATION:East Columbia Branch
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260108T090000
+DTEND;TZID=America/New_York:20260111T170000
+DTSTAMP:20251124T000051
+CREATED:20251027T182026Z
+LAST-MODIFIED:20251027T182026Z
+UID:357-1767862800-1768150800@baltimoreindiegames.com
+SUMMARY:Super MAGFest
+DESCRIPTION:MAGFest Indie Videogames Showcase (MIVS): https://super.magfest.org/indie-games \n 
+URL:https://baltimoreindiegames.com/event/super-magfest/
+LOCATION:Gaylord National Resort & Convention Center\, 201 Waterfront St\, Oxon Hill\, MD\, 20745\, United States
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260126T180000
+DTEND;TZID=America/New_York:20260201T170000
+DTSTAMP:20251124T000051
+CREATED:20251027T182318Z
+LAST-MODIFIED:20251027T182355Z
+UID:358-1769450400-1769965200@baltimoreindiegames.com
+SUMMARY:Global Game Jam 2026
+DESCRIPTION:Global Game Jam is the world’s largest game creation event … and directly serves 40\,000 game creators every year in 100+ countries. More than just a 48-hour game jam\, GGJ has been a starting point for hundreds of thousands of game developers around the world who have built successful\, sustainable careers in game development\, launched studios and created award-winning games. Throughout the year\, we work to support our community of jammers through community engagement\, partner jams and more. \nJoin BIG as we participate in GGJ 2026!
+URL:https://baltimoreindiegames.com/event/global-game-jam-2026/
 END:VEVENT
 END:VCALENDAR

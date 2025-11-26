@@ -27,6 +27,8 @@ import markdown
 from dateutil.parser import parse
 import sys
 import genSimpleCalendar
+from events_map_generator import generate_events_map_page
+from geocode_cache import load_geocode_cache, save_geocode_cache, apply_geocode_cache
 
 # Define the timezone for EST
 est_timezone = pytz.timezone("America/New_York")
@@ -324,6 +326,9 @@ def download_image(url, filename):
 
 def main(city = "baltimore"):
     newEvents = []
+    cache_path = os.path.join(city, "geocode_cache.json")
+    geocode_cache = load_geocode_cache(cache_path)
+    cache_updated = False
 
     import importlib
 
@@ -650,6 +655,7 @@ def main(city = "baltimore"):
             total_events += [event]
 
     total_events += upcoming_existing_events_in_file
+    cache_updated = apply_geocode_cache(total_events, geocode_cache) or cache_updated
     # --- PHASE 1: Process NON-RECURRING events first ---
     for event in total_events:
         # Skip recurring events in first pass
@@ -761,10 +767,13 @@ def main(city = "baltimore"):
     events_to_ics(sorted_events, city, output_file=os.path.join(city, "cc_events.ics"))
     os.system("cp baltimore/cc_events.ics .")
     os.system("cp baltimore/upcoming_events.json .")
+    generate_events_map_page(city)
+    if cache_updated:
+        save_geocode_cache(geocode_cache, cache_path)
     genSimpleCalendar.main(city)
 
 if __name__ == "__main__":
-    cities = ["baltimore", "westvirginia", "hawaii"]
+    cities = ["baltimore", "westvirginia", "hawaii", "dc"]
     if len(sys.argv) > 1:
         cities = sys.argv[1:]
     for city in cities:

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geocode Cache Index</title>
+    <link rel="stylesheet" href="css/master.css">
+    <style>
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background: #f6fbff;
+            color: #0f172a;
+        }
+        h1 {
+            margin-bottom: 0.5rem;
+        }
+        .card {
+            background: #fff;
+            border: 2px solid #002a61;
+            border-radius: 18px;
+            padding: 1.5rem;
+            max-width: 720px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        code {
+            background: rgba(0,0,0,0.06);
+            padding: 0.1rem 0.35rem;
+            border-radius: 6px;
+        }
+        ul {
+            padding-left: 1.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Geocode Cache</h1>
+        <p>
+            Each city publishes its latitude/longitude lookups at
+            <code>/{city}/geocode_cache.json</code>. The shared map
+            page at <code>eventsmap.html</code> reads the cache and
+            event feed for the chosen city using the query parameter
+            <code>?city=baltimore</code>.
+        </p>
+        <p>Example links:</p>
+        <ul>
+            <li><a href="eventsmap.html?city=baltimore">eventsmap.html?city=baltimore</a></li>
+            <li><a href="baltimore/geocode_cache.json">baltimore/geocode_cache.json</a></li>
+            <li><a href="baltimore/upcoming_events.json">baltimore/upcoming_events.json</a></li>
+        </ul>
+        <p>
+            Add new caches by dropping <code>geocode_cache.json</code>
+            files inside each city folder (for example <code>/dc/geocode_cache.json</code>).
+        </p>
+    </div>
+</body>
+</html>
