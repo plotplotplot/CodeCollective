@@ -28,7 +28,14 @@ from dateutil.parser import parse
 import sys
 import genSimpleCalendar
 from events_map_generator import generate_events_map_page
-from geocode_cache import load_geocode_cache, save_geocode_cache, apply_geocode_cache
+from geocode_cache import (
+    load_geocode_cache,
+    save_geocode_cache,
+    apply_geocode_cache,
+    normalize_address,
+)
+from geopy.geocoders import Nominatim
+from geopy.extra.rate_limiter import RateLimiter
 
 # Define the timezone for EST
 est_timezone = pytz.timezone("America/New_York")
@@ -322,6 +329,143 @@ def download_image(url, filename):
     except Exception as e:
         print(f"Error downloading image from {url}: {e}")
         return False
+
+
+def build_geocode_query(location_data, default_city=""):
+    """Construct a geocoding query from the location metadata."""
+    if not location_data:
+        return ""
+
+    candidates = [
+        location_data.get("address"),
+        location_data.get("name"),
+        location_data.get("city"),
+        location_data.get("state"),
+        location_data.get("postalCode"),
+        location_data.get("country"),
+    ]
+
+    if default_city:
+        candidates.append(default_city)
+
+    cleaned = []
+    seen = set()
+    for value in candidates:
+        if not value:
+            continue
+        trimmed = value.strip()
+        lowered = trimmed.lower()
+        if not trimmed:
+            continue
+        if lowered.startswith("http://") or lowered.startswith("https://"):
+            continue
+        if lowered in seen:
+            continue
+        seen.add(lowered)
+        cleaned.append(trimmed)
+
+    return ", ".join(cleaned)
+
+
+def geocode_upcoming_events(city, geocode_cache, events_path=None):
+    """Geocode events stored in upcoming_events.json for the provided city."""
+    events_path = events_path or os.path.join(city, "upcoming_events.json")
+    if not os.path.exists(events_path):
+        print(f"No upcoming_events.json found for {city}; skipping geocoding")
+        return None, False
+
+    try:
+        with open(events_path, "r", encoding="utf-8") as f:
+            events = json.load(f)
+    except Exception as exc:
+        print(f"Unable to read events file for {city}: {exc}")
+        return None, False
+
+    geolocator = Nominatim(user_agent="codecollective-calendar")
+    geocode = RateLimiter(
+        geolocator.geocode,
+        min_delay_seconds=1,
+        max_retries=2,
+        error_wait_seconds=2.0,
+        swallow_exceptions=True,
+    )
+
+    updated_events = 0
+    cache_updated = False
+
+    for event in events:
+        location_data = event.get("location") or {}
+        if not location_data:
+            continue
+
+        lat = location_data.get("latitude")
+        lon = location_data.get("longitude")
+
+        # Normalize the address used for caching lookups
+        cache_key_source = (
+            location_data.get("address")
+            or location_data.get("name")
+            or ""
+        )
+        cache_key = normalize_address(cache_key_source) if cache_key_source else ""
+
+        if lat and lon:
+            try:
+                lat_val = float(lat)
+                lon_val = float(lon)
+            except (TypeError, ValueError):
+                continue
+
+            if cache_key:
+                cached = geocode_cache.get(cache_key)
+                if not cached or cached.get("latitude") != lat_val or cached.get("longitude") != lon_val:
+                    geocode_cache[cache_key] = {"latitude": lat_val, "longitude": lon_val}
+                    cache_updated = True
+            continue
+
+        query = build_geocode_query(location_data, city)
+        if not query:
+            continue
+
+        coords = None
+        if cache_key and cache_key in geocode_cache:
+            coords = geocode_cache[cache_key]
+        else:
+            try:
+                result = geocode(query)
+            except Exception as exc:
+                print(f"Geocoding failed for '{query}': {exc}")
+                continue
+            if result:
+                coords = {"latitude": result.latitude, "longitude": result.longitude}
+
+        if not coords:
+            continue
+
+        try:
+            location_data["latitude"] = float(coords["latitude"])
+            location_data["longitude"] = float(coords["longitude"])
+        except (TypeError, ValueError, KeyError):
+            continue
+
+        event["location"] = location_data
+        updated_events += 1
+
+        if cache_key:
+            geocode_cache[cache_key] = {
+                "latitude": location_data["latitude"],
+                "longitude": location_data["longitude"],
+            }
+            cache_updated = True
+
+    if updated_events:
+        with open(events_path, "w", encoding="utf-8") as f:
+            json.dump(events, f, indent=4)
+        print(f"Geocoded {updated_events} event(s) for {city}.")
+    else:
+        print(f"No new geocoding data added for {city}.")
+
+    return events, cache_updated
 
 
 def main(city = "baltimore"):
@@ -758,6 +902,11 @@ def main(city = "baltimore"):
     with open(os.path.join(city, "upcoming_events.json"), "w+", encoding="utf-8") as f:
         json.dump(sorted_events, f, indent=4)
         print(f"Upcoming events saved to upcoming_events.json")
+
+    geocoded_payload, geocode_cache_changed = geocode_upcoming_events(city, geocode_cache)
+    if geocoded_payload is not None:
+        sorted_events = geocoded_payload
+    cache_updated = cache_updated or geocode_cache_changed
 
     # Save upcoming events to a file
     with open(os.path.join(city, "skipped_events.json"), "w+", encoding="utf-8") as f:
