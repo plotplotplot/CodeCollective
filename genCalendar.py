@@ -396,6 +396,7 @@ def geocode_upcoming_events(city, geocode_cache, events_path=None):
     for event in events:
         location_data = event.get("location") or {}
         if not location_data:
+            print(f"[geocode] Skipping '{event.get('name')}' – no location data present.")
             continue
 
         lat = location_data.get("latitude")
@@ -414,6 +415,7 @@ def geocode_upcoming_events(city, geocode_cache, events_path=None):
                 lat_val = float(lat)
                 lon_val = float(lon)
             except (TypeError, ValueError):
+                print(f"[geocode] '{event.get('name')}' has invalid latitude/longitude values; skipping cache update.")
                 continue
 
             if cache_key:
@@ -421,25 +423,32 @@ def geocode_upcoming_events(city, geocode_cache, events_path=None):
                 if not cached or cached.get("latitude") != lat_val or cached.get("longitude") != lon_val:
                     geocode_cache[cache_key] = {"latitude": lat_val, "longitude": lon_val}
                     cache_updated = True
+            print(f"[geocode] '{event.get('name')}' already has coordinates; updating cache if needed.")
             continue
 
         query = build_geocode_query(location_data, city)
         if not query:
+            print(f"[geocode] Skipping '{event.get('name')}' – could not build geocode query from location data.")
             continue
 
         coords = None
         if cache_key and cache_key in geocode_cache:
+            print(f"[geocode] Using cached coordinates for '{event.get('name')}'.")
             coords = geocode_cache[cache_key]
         else:
             try:
+                print(f"[geocode] Querying geocoder for '{event.get('name')}': {query}")
                 result = geocode(query)
             except Exception as exc:
-                print(f"Geocoding failed for '{query}': {exc}")
+                print(f"[geocode] Geocoding failed for '{query}': {exc}")
                 continue
             if result:
                 coords = {"latitude": result.latitude, "longitude": result.longitude}
+            else:
+                print(f"[geocode] No geocode result returned for '{query}'.")
 
         if not coords:
+            print(f"[geocode] Skipping '{event.get('name')}' – no coordinates available.")
             continue
 
         try:
