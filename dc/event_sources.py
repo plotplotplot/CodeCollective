@@ -4,7 +4,9 @@ sources = {
         "https://www.meetup.com/ai-performance-engineering-washington-dc/",
         "https://www.meetup.com/lfdt-washington-dc/",
         "https://www.meetup.com/openanalyticsdc/",
-        "https://www.meetup.com/meetup-group-xfwllgfg/"
+        "https://www.meetup.com/meetup-group-xfwllgfg/",
+        "https://www.meetup.com/bethesda-ted-talk-discussion-club/",
+
     ],
     "Eventbrite":[
     ],
@@ -20,9 +22,12 @@ sources = {
         "https://lu.ma/civic-tech-dc",
         "https://luma.com/FounderSpeakeasy",
         "https://luma.com/defense-tech-dc",
-        "https://luma.com/DC2"
+        "https://luma.com/DC2",
+        "https://luma.com/girliesintechdinner",
+        "https://luma.com/ai-discussion-club"
     ],
     "Luma Users":[
+        "usr-f5X9pGAJt2YOugC"
         #"usr-k0oO7FswDxbAWh0" # Palava Hut
     ],
     "Google Forms":[
