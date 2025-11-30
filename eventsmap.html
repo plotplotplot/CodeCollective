@@ -27,7 +27,7 @@
         header {
             padding: 1rem 2rem;
             text-align: center;
-            background: #002a61;
+            background: #a0d6ff;
             border-bottom: 2px solid #002a61;
             -webkit-filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
             filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
@@ -36,11 +36,7 @@
         header h1 {
             margin: 0;
             font-size: 2rem;
-            color: #ffffff;
-        }
-
-        header p {
-            color: #ffffff;
+            color: #002a61;
         }
 
         .page-container {
@@ -120,16 +116,6 @@
             border-radius: 12px;
             font-size: 0.85rem;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .map-legend strong {
-            color: #002a61;
-            font-weight: bold;
-        }
-
-        .leaflet-popup-content strong {
-            color: #002a61;
-            font-weight: bold;
         }
 
         @media (max-width: 900px) {
@@ -382,25 +368,11 @@
                 eventsWithCoords.push(eventWithCoords);
 
                 const marker = L.marker([coords.lat, coords.lng]).addTo(map);
-                
-                // Create popup content with event name as link if URL exists
-                let popupContent = '';
-                if (evt.url) {
-                    popupContent = `
-                        <strong><a href="${evt.url}" target="_blank" rel="noopener">${evt.name}</a></strong><br>
-                    `;
-                } else {
-                    popupContent = `
-                        <strong>${evt.name}</strong><br>
-                    `;
-                }
-                
-                popupContent += `
+                marker.bindPopup(`
+                    <strong>${evt.name}</strong><br>
                     ${evt.location?.address || 'Address on RSVP'}<br>
                     ${evt.startDate ? formatDate(evt.startDate) : ''}
-                `;
-                
-                marker.bindPopup(popupContent);
+                `);
                 markers.push(marker);
             }
 
