@@ -11,6 +11,9 @@ sources = {
     "Eventbrite":[
     ],
     "Eventbrite Orgs":[
+        "https://www.eventbrite.com/o/tech-turn-up-32326719035",
+        "https://www.eventbrite.com/o/georgetown-ventures-61649666833",
+
     ],
     "Jotform":[
         #"https://form.jotform.com/251063812795157"
@@ -24,11 +27,14 @@ sources = {
         "https://luma.com/defense-tech-dc",
         "https://luma.com/DC2",
         "https://luma.com/girliesintechdinner",
-        "https://luma.com/ai-discussion-club"
+        "https://luma.com/ai-discussion-club",
+        "https://luma.com/DCTechMeetup",
+        "https://luma.com/vcdc",
+        "https://luma.com/squadra",
     ],
     "Luma Users":[
-        "usr-f5X9pGAJt2YOugC"
-        #"usr-k0oO7FswDxbAWh0" # Palava Hut
+        "usr-f5X9pGAJt2YOugC",
+        "usr-zbARQX9qqtQoF6E"
     ],
     "Google Forms":[
     ]
