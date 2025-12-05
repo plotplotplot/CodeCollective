@@ -6,6 +6,7 @@ sources = {
         "https://www.meetup.com/openanalyticsdc/",
         "https://www.meetup.com/meetup-group-xfwllgfg/",
         "https://www.meetup.com/bethesda-ted-talk-discussion-club/",
+        "https://www.meetup.com/washington-area-unity3d-users-group/"
 
     ],
     "Eventbrite":[
