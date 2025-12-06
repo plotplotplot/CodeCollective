@@ -36,54 +36,107 @@
 
   <!-- Scripts -->
   <script>
+    (function () {
+      const DEFAULT_CITY_OPTIONS = ['baltimore', 'westvirginia', 'hawaii', 'dc'];
+      const DEFAULT_CITY_DISPLAY_NAMES = {
+        baltimore: 'Baltimore',
+        westvirginia: 'West Virginia',
+        hawaii: 'Hawaii',
+        dc: 'Washington, D.C.',
+      };
 
-    // Generic image prefetching function
-    function prefetchImages(urls) {
-      if (!window.Promise || !window.fetch) return; // Skip if browser doesn't support
+      window.CALENDAR_CITY_OPTIONS = window.CALENDAR_CITY_OPTIONS || DEFAULT_CITY_OPTIONS;
+      window.CALENDAR_CITY_DISPLAY_NAMES = window.CALENDAR_CITY_DISPLAY_NAMES || DEFAULT_CITY_DISPLAY_NAMES;
 
-      urls.forEach(url => {
-        // Create link preload for important above-the-fold images
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'image';
-        link.href = url;
-        document.head.appendChild(link);
+      const cityOptions = window.CALENDAR_CITY_OPTIONS;
+      const cityDisplayNames = window.CALENDAR_CITY_DISPLAY_NAMES;
 
-        // Fetch all images to cache them
-        fetch(url, {
-          mode: 'no-cors',
-          cache: 'force-cache'
-        }).catch(() => { }); // Silent fail is okay for prefetch
-      });
-    }
+      function prefetchImages(urls) {
+        if (!window.Promise || !window.fetch) return;
 
-    // Function to get city from URL parameters
-    function getCityFromUrl() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const city = urlParams.get('city');
-      return city || 'baltimore'; // Default to baltimore if no city specified
-    }
+        urls.forEach(url => {
+          const link = document.createElement('link');
+          link.rel = 'preload';
+          link.as = 'image';
+          link.href = url;
+          document.head.appendChild(link);
 
-    // Update ICS link based on city parameter
-    function updateIcsLink() {
-      const city = getCityFromUrl();
-      const icsLink = document.querySelector('.download-button');
-      if (icsLink) {
-        icsLink.href = `https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/${city}/cc_events.ics`;
+          fetch(url, {
+            mode: 'no-cors',
+            cache: 'force-cache',
+          }).catch(() => { });
+        });
       }
-    }
 
-    // First, prefetch all critical static images
-    prefetchImages([
-      '/images/favicons/favicon.png',
-      '/images/WhatsApp.svg.webp',
-      '/images/github_icon.png',
-      // Add other static images used by your UI
-    ]);
+      function getCityDisplayName(city) {
+        return cityDisplayNames[city] || city.charAt(0).toUpperCase() + city.slice(1);
+      }
 
-    // Update ICS link on page load
-    document.addEventListener('DOMContentLoaded', updateIcsLink);
+      function getCityFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const city = urlParams.get('city');
+        return cityOptions.includes(city) ? city : 'baltimore';
+      }
 
+      function updateIcsLink() {
+        const city = getCityFromUrl();
+        const icsLink = document.querySelector('.download-button');
+        if (icsLink) {
+          const template = icsLink.dataset.icsTemplate || 'https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/{city}/cc_events.ics';
+          icsLink.href = template.replace('{city}', city);
+        }
+      }
+
+      function updateCityDetails() {
+        const city = getCityFromUrl();
+        const displayName = getCityDisplayName(city);
+        const cityNameEl = document.getElementById('calendar-city-name');
+        if (cityNameEl) {
+          cityNameEl.textContent = displayName;
+        }
+        const calendarSection = document.getElementById('calendar-section');
+        if (calendarSection) {
+          calendarSection.setAttribute('aria-label', `${displayName} Tech Events Calendar`);
+        }
+      }
+
+      function populateCitySelector() {
+        const select = document.getElementById('city-select');
+        if (!select) return;
+        select.innerHTML = '';
+
+        cityOptions.forEach(city => {
+          const option = document.createElement('option');
+          option.value = city;
+          option.textContent = getCityDisplayName(city);
+          select.appendChild(option);
+        });
+
+        const currentCity = getCityFromUrl();
+        select.value = currentCity;
+        select.addEventListener('change', () => {
+          const targetCity = select.value;
+          const url = new URL(window.location.href);
+          url.searchParams.set('city', targetCity);
+          window.location.href = url.toString();
+        });
+      }
+
+      function initializeCityControls() {
+        updateIcsLink();
+        updateCityDetails();
+        populateCitySelector();
+      }
+
+      prefetchImages([
+        '/images/favicons/favicon.png',
+        '/images/WhatsApp.svg.webp',
+        '/images/github_icon.png',
+        // Add other static images used by your UI
+      ]);
+
+      document.addEventListener('DOMContentLoaded', initializeCityControls);
+    })();
   </script>
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -126,18 +179,20 @@
     <section id="main" class="longform dark-mode" style="padding: 0; margin: 0;">
       <header class="header-container" style="text-align: center; padding: 20px 0;">
         <p style="margin-bottom: 8px; font-size: 1.2rem;">Code Collective brings you</p>
-        <h1 style="margin: 10px 0; font-size: 2.5rem;">A Baltimore Techonomics Calendar</h1>
-        <p style="margin-top: 8px; font-size: 1.1rem;">A unified calendar of tech events from Baltimore area meetup
-        <p style="margin-top: 8px; font-size: 1.1rem;">Also see our <a href="/balticonomy/">interactive index of BMSA Tech Groups</a>
-          </p>
-          <a href="https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/baltimore/cc_events.ics"
+        <h1 style="margin: 10px 0; font-size: 2.5rem;">A <span id="calendar-city-name">Baltimore</span> Techonomics Calendar</h1>
+        <div class="city-selector">
+          <label for="city-select">Show events for:</label>
+          <select id="city-select" aria-label="Select a city for the calendar"></select>
+        </div>
+          <a href="#"
+          data-ics-template="https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/{city}/cc_events.ics"
           class="download-button" target="_blank" rel="noopener noreferrer">
-          <i class="fas fa-calendar-alt" aria-hidden="true"></i> Add to Google Calendar
-        </a>
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i> Add to Google Calendar
+          </a>
       </header>
 
       <div class="container">
-        <section class="calendar-container" aria-label="Baltimore Tech Events Calendar">
+        <section id="calendar-section" class="calendar-container" aria-label="Baltimore Tech Events Calendar">
           <div id="loading" aria-live="polite">
             <i class="fas fa-spinner fa-spin"></i> Loading calendar events...
           </div>

@@ -53,11 +53,16 @@ function prefetchImages(urls) {
 }
 
 
+function getCityOptions() {
+  return window.CALENDAR_CITY_OPTIONS || ['baltimore', 'westvirginia', 'hawaii', 'dc'];
+}
+
 // Function to get city from URL parameters
 function getCityFromUrl() {
   const urlParams = new URLSearchParams(window.location.search);
   const city = urlParams.get('city');
-  return city || 'baltimore'; // Default to baltimore if no city specified
+  const cityOptions = getCityOptions();
+  return cityOptions.includes(city) ? city : 'baltimore'; // Default to baltimore if no city specified
 }
 
 // Fetch and parse event data
