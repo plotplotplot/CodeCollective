@@ -6,7 +6,8 @@ sources = {
         "https://www.meetup.com/openanalyticsdc/",
         "https://www.meetup.com/meetup-group-xfwllgfg/",
         "https://www.meetup.com/bethesda-ted-talk-discussion-club/",
-        "https://www.meetup.com/washington-area-unity3d-users-group/"
+        "https://www.meetup.com/washington-area-unity3d-users-group/",
+        "https://www.meetup.com/dc-code-coffee/"
 
     ],
     "Eventbrite":[
@@ -32,11 +33,15 @@ sources = {
         "https://luma.com/DCTechMeetup",
         "https://luma.com/vcdc",
         "https://luma.com/squadra",
+        "https://luma.com/filed-events",
+        "https://luma.com/pgpforcrypto",
+        "https://luma.com/bitcoindistrict"
     ],
     "Luma Users":[
         "usr-f5X9pGAJt2YOugC",
         "usr-zbARQX9qqtQoF6E",
         "usr-dwIy5y3nhtspeEz",
+        "usr-dH29J9OUY8BFf5c"
     ],
     "Google Forms":[
     ]
