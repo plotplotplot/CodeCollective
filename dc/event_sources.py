@@ -7,7 +7,9 @@ sources = {
         "https://www.meetup.com/meetup-group-xfwllgfg/",
         "https://www.meetup.com/bethesda-ted-talk-discussion-club/",
         "https://www.meetup.com/washington-area-unity3d-users-group/",
-        "https://www.meetup.com/dc-code-coffee/"
+        "https://www.meetup.com/dc-code-coffee/",
+        "https://www.meetup.com/dcprofessonals/",
+        "https://www.meetup.com/microsoft-cloud/"
 
     ],
     "Eventbrite":[
@@ -41,7 +43,8 @@ sources = {
         "usr-f5X9pGAJt2YOugC",
         "usr-zbARQX9qqtQoF6E",
         "usr-dwIy5y3nhtspeEz",
-        "usr-dH29J9OUY8BFf5c"
+        "usr-dH29J9OUY8BFf5c",
+        "usr-axOGhc5qFBuE3Zz"
     ],
     "Google Forms":[
     ]
