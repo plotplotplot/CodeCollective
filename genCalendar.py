@@ -16,6 +16,7 @@ import scrape_luma_user
 import scrape_mtc
 import scrape_bwtech
 import scrape_innovatemd
+import scrape_usgpo
 import json
 from ics import Calendar, Event
 import datetime
@@ -559,6 +560,12 @@ def main(city = "baltimore"):
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
     }
 
+    if city == "dc":
+        try: 
+            newEvents += scrape_usgpo.scrape_upcoming_events()
+        except:
+            pass
+        
     if city == "baltimore":
 
         gbc_events = scrape_gbc.scrape_gbc_events()

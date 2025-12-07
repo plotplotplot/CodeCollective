@@ -26,7 +26,7 @@ sources = {
         "https://www.meetup.com/profs-and-pints-baltimore/",
         "https://www.meetup.com/ai-enthusiasts/",
         "https://www.meetup.com/baltimore-tech-innovation/",
-        "https://www.meetup.com/cmap-online/"
+        "https://www.meetup.com/cmap-online/",
     ],
     "Eventbrite":[
         "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
@@ -43,7 +43,8 @@ sources = {
         "https://www.eventbrite.com/o/impact-hub-baltimore-8423440202",
         "https://www.eventbrite.com/o/a-prosperous-tomorrow-11875462384",
         "https://www.eventbrite.com/o/lets-go-113135073431",
-        "https://www.eventbrite.com/o/howard-county-office-of-workforce-development-88843319173"
+        "https://www.eventbrite.com/o/howard-county-office-of-workforce-development-88843319173",
+        "https://www.eventbrite.com/o/howard-county-economic-development-authority-2805856464"
     ],
     "Jotform":[
         #"https://form.jotform.com/251063812795157"
@@ -69,7 +70,8 @@ sources = {
         "usr-d4s75dZyC9VOXAd",
         "usr-iZFykYNctUzTFLd",
         "usr-A83YmR5Onz1uMdp", #https://luma.com/user/web3maryland
-        "usr-k0oO7FswDxbAWh0" # Palava Hut
+        "usr-k0oO7FswDxbAWh0", # Palava Hut
+        "usr-cTlmPNsi6jHYweP" # BioPark events
     ],
     "Google Forms":[
         "http://docs.google.com/forms/d/e/1FAIpQLSfAHwexta7vxLto1xmvBxFNawicAUtRrjTKqN0jHs25RjLCQg/viewform"

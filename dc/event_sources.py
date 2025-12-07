@@ -37,7 +37,9 @@ sources = {
         "https://luma.com/squadra",
         "https://luma.com/filed-events",
         "https://luma.com/pgpforcrypto",
-        "https://luma.com/bitcoindistrict"
+        "https://luma.com/bitcoindistrict",
+        "https://luma.com/stationdc",
+        "https://luma.com/theupskillinglabs"
     ],
     "Luma Users":[
         "usr-f5X9pGAJt2YOugC",
