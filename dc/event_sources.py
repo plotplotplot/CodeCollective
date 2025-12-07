@@ -9,7 +9,8 @@ sources = {
         "https://www.meetup.com/washington-area-unity3d-users-group/",
         "https://www.meetup.com/dc-code-coffee/",
         "https://www.meetup.com/dcprofessonals/",
-        "https://www.meetup.com/microsoft-cloud/"
+        "https://www.meetup.com/microsoft-cloud/",
+        "https://www.meetup.com/geo-dc/"
 
     ],
     "Eventbrite":[
@@ -47,7 +48,8 @@ sources = {
         "usr-dwIy5y3nhtspeEz",
         "usr-dH29J9OUY8BFf5c",
         "usr-axOGhc5qFBuE3Zz",
-        "usr-3pgVKlDt94iMvRx" # DC Tech Week
+        "usr-3pgVKlDt94iMvRx", # DC Tech Week
+        "usr-rEFlkqAdGOtbeWS" # Big Table Institute
     ],
     "Google Forms":[
     ]
