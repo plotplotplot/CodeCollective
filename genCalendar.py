@@ -912,10 +912,12 @@ def main(city = "baltimore"):
         json.dump(sorted_events, f, indent=4)
         print(f"Upcoming events saved to upcoming_events.json")
 
-    geocoded_payload, geocode_cache_changed = geocode_upcoming_events(city, geocode_cache)
-    if geocoded_payload is not None:
-        sorted_events = geocoded_payload
-    cache_updated = cache_updated or geocode_cache_changed
+    GEOCODE = False
+    if GEOCODE:
+        geocoded_payload, geocode_cache_changed = geocode_upcoming_events(city, geocode_cache)
+        if geocoded_payload is not None:
+            sorted_events = geocoded_payload
+        cache_updated = cache_updated or geocode_cache_changed
 
     # Save upcoming events to a file
     with open(os.path.join(city, "skipped_events.json"), "w+", encoding="utf-8") as f:
@@ -925,9 +927,10 @@ def main(city = "baltimore"):
     events_to_ics(sorted_events, city, output_file=os.path.join(city, "cc_events.ics"))
     os.system("cp baltimore/cc_events.ics .")
     os.system("cp baltimore/upcoming_events.json .")
-    generate_events_map_page(city)
-    if cache_updated:
-        save_geocode_cache(geocode_cache, cache_path)
+    if GEOCODE:
+        generate_events_map_page(city)
+        if cache_updated:
+            save_geocode_cache(geocode_cache, cache_path)
     genSimpleCalendar.main(city)
 
 if __name__ == "__main__":
