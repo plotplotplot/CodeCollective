@@ -10,7 +10,10 @@ sources = {
         "https://www.meetup.com/dc-code-coffee/",
         "https://www.meetup.com/dcprofessonals/",
         "https://www.meetup.com/microsoft-cloud/",
-        "https://www.meetup.com/geo-dc/"
+        "https://www.meetup.com/geo-dc/",
+        "https://www.meetup.com/cybersecurity-innovation-forum/",
+        "https://www.meetup.com/platform-engineers-washington-dc/",
+        "https://www.meetup.com/washington-dc-cyber-security-for-control-systems/"
 
     ],
     "Eventbrite":[

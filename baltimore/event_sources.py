@@ -27,6 +27,7 @@ sources = {
         "https://www.meetup.com/ai-enthusiasts/",
         "https://www.meetup.com/baltimore-tech-innovation/",
         "https://www.meetup.com/cmap-online/",
+        "https://www.meetup.com/cyber-steam-global-innovation-alliance/"
     ],
     "Eventbrite":[
         "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
@@ -44,7 +45,9 @@ sources = {
         "https://www.eventbrite.com/o/a-prosperous-tomorrow-11875462384",
         "https://www.eventbrite.com/o/lets-go-113135073431",
         "https://www.eventbrite.com/o/howard-county-office-of-workforce-development-88843319173",
-        "https://www.eventbrite.com/o/howard-county-economic-development-authority-2805856464"
+        "https://www.eventbrite.com/o/howard-county-economic-development-authority-2805856464",
+        "https://www.eventbrite.com/o/rmi-107139765",
+        "https://www.eventbrite.com/o/nachman-executive-consulting-77249254883"
     ],
     "Jotform":[
         #"https://form.jotform.com/251063812795157"
