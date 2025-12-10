@@ -16,6 +16,7 @@ import scrape_luma_user
 import scrape_mtc
 import scrape_bwtech
 import scrape_innovatemd
+import scrape_wssc
 import json
 from ics import Calendar, Event
 import datetime
@@ -662,6 +663,11 @@ def main(city = "baltimore"):
             newEvents += scrape_big.main()
         except Exception as e:
             print(f"Error fetching calendar events: {e}")
+
+        try:
+            newEvents += scrape_wssc.scrape_all_wssc_events()
+        except Exception as e:
+            print(f"Error fetching WSSC events: {e}")
 
     if city == "westvirginia":
 
