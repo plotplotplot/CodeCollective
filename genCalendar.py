@@ -17,6 +17,7 @@ import scrape_mtc
 import scrape_bwtech
 import scrape_innovatemd
 import scrape_wssc
+import scrape_usgpo
 import json
 from ics import Calendar, Event
 import datetime
@@ -560,6 +561,12 @@ def main(city = "baltimore"):
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
     }
 
+    if city == "dc":
+        try: 
+            newEvents += scrape_usgpo.scrape_upcoming_events()
+        except:
+            pass
+        
     if city == "baltimore":
 
         gbc_events = scrape_gbc.scrape_gbc_events()
@@ -918,10 +925,12 @@ def main(city = "baltimore"):
         json.dump(sorted_events, f, indent=4)
         print(f"Upcoming events saved to upcoming_events.json")
 
-    geocoded_payload, geocode_cache_changed = geocode_upcoming_events(city, geocode_cache)
-    if geocoded_payload is not None:
-        sorted_events = geocoded_payload
-    cache_updated = cache_updated or geocode_cache_changed
+    GEOCODE = False
+    if GEOCODE:
+        geocoded_payload, geocode_cache_changed = geocode_upcoming_events(city, geocode_cache)
+        if geocoded_payload is not None:
+            sorted_events = geocoded_payload
+        cache_updated = cache_updated or geocode_cache_changed
 
     # Save upcoming events to a file
     with open(os.path.join(city, "skipped_events.json"), "w+", encoding="utf-8") as f:
@@ -931,9 +940,10 @@ def main(city = "baltimore"):
     events_to_ics(sorted_events, city, output_file=os.path.join(city, "cc_events.ics"))
     os.system("cp baltimore/cc_events.ics .")
     os.system("cp baltimore/upcoming_events.json .")
-    generate_events_map_page(city)
-    if cache_updated:
-        save_geocode_cache(geocode_cache, cache_path)
+    if GEOCODE:
+        generate_events_map_page(city)
+        if cache_updated:
+            save_geocode_cache(geocode_cache, cache_path)
     genSimpleCalendar.main(city)
 
 if __name__ == "__main__":

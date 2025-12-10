@@ -26,7 +26,8 @@ sources = {
         "https://www.meetup.com/profs-and-pints-baltimore/",
         "https://www.meetup.com/ai-enthusiasts/",
         "https://www.meetup.com/baltimore-tech-innovation/",
-        "https://www.meetup.com/cmap-online/"
+        "https://www.meetup.com/cmap-online/",
+        "https://www.meetup.com/cyber-steam-global-innovation-alliance/"
     ],
     "Eventbrite":[
         "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
@@ -43,7 +44,10 @@ sources = {
         "https://www.eventbrite.com/o/impact-hub-baltimore-8423440202",
         "https://www.eventbrite.com/o/a-prosperous-tomorrow-11875462384",
         "https://www.eventbrite.com/o/lets-go-113135073431",
-        "https://www.eventbrite.com/o/howard-county-office-of-workforce-development-88843319173"
+        "https://www.eventbrite.com/o/howard-county-office-of-workforce-development-88843319173",
+        "https://www.eventbrite.com/o/howard-county-economic-development-authority-2805856464",
+        "https://www.eventbrite.com/o/rmi-107139765",
+        "https://www.eventbrite.com/o/nachman-executive-consulting-77249254883"
     ],
     "Jotform":[
         #"https://form.jotform.com/251063812795157"
@@ -52,7 +56,6 @@ sources = {
         "https://luma.com/2d1a4uwv"
     ],
     "Luma Orgs":[
-        "https://lu.ma/civic-tech-dc",
         "https://lu.ma/calendar/cal-vzms1nGZmYUUCrj",
         "https://lu.ma/Bmore_Climate",
         "https://lu.ma/blktechconnect",
@@ -61,16 +64,17 @@ sources = {
         "https://lu.ma/mtechumd",
         "https://luma.com/codecollective",
         "https://luma.com/bmore-on-rails",
-        "https://luma.com/LetsBMore"
+        "https://luma.com/LetsBMore",
+        "https://luma.com/MEIA"
     ],
     "Luma Users":[
         #"https://api.lu.ma/user/profile/events-hosting"
         "usr-tYdFPQYBiZY4T6B",
         "usr-d4s75dZyC9VOXAd",
         "usr-iZFykYNctUzTFLd",
-        "usr-dwIy5y3nhtspeEz",
         "usr-A83YmR5Onz1uMdp", #https://luma.com/user/web3maryland
-        "usr-k0oO7FswDxbAWh0" # Palava Hut
+        "usr-k0oO7FswDxbAWh0", # Palava Hut
+        "usr-cTlmPNsi6jHYweP" # BioPark events
     ],
     "Google Forms":[
         "http://docs.google.com/forms/d/e/1FAIpQLSfAHwexta7vxLto1xmvBxFNawicAUtRrjTKqN0jHs25RjLCQg/viewform"
