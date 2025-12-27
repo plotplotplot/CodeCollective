@@ -65,10 +65,24 @@ function getCityFromUrl() {
   return cityOptions.includes(city) ? city : 'baltimore'; // Default to baltimore if no city specified
 }
 
+function shouldStayOnCalendarView() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const viewPreference = (urlParams.get('view') || '').toLowerCase();
+
+  if (viewPreference === 'calendar' || viewPreference === 'desktop') {
+    sessionStorage.setItem('preferCalendarView', '1');
+    return true;
+  }
+
+  return sessionStorage.getItem('preferCalendarView') === '1';
+}
+
 // Fetch and parse event data
 document.addEventListener('DOMContentLoaded', function () {
   forceCardView = Boolean(window.FORCE_CALENDAR_CARDS);
-  isMobile = forceCardView ? true : isMobileDevice();
+  const stayOnCalendar = shouldStayOnCalendarView();
+  const mobileViewport = isMobileDevice();
+  isMobile = forceCardView ? true : (mobileViewport && !stayOnCalendar);
 
   if (!forceCardView && isMobile) {
     const query = window.location.search || '';
@@ -132,7 +146,8 @@ document.addEventListener('DOMContentLoaded', function () {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
         const wasMobile = isMobile;
-        isMobile = isMobileDevice();
+        const mobileResizeViewport = isMobileDevice();
+        isMobile = forceCardView ? true : (mobileResizeViewport && !shouldStayOnCalendarView());
 
         if (wasMobile !== isMobile) {
           if (isMobile) {

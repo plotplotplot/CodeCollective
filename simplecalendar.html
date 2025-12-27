@@ -43,6 +43,7 @@
         margin: 1rem 0;
         display: flex;
         justify-content: flex-end;
+        gap: 0.5rem;
       }
       .view-switch a {
         border: 1px solid rgba(255, 255, 255, 0.7);
@@ -82,6 +83,40 @@
         margin-top: 0.75rem;
         font-size: 0.95rem;
         color: var(--muted);
+      }
+      .city-bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.65rem;
+        margin: 1rem 0 0.5rem;
+      }
+      .city-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 999px;
+        padding: 0.35rem 0.85rem;
+        font-weight: 600;
+      }
+      .city-btn {
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        background: transparent;
+        color: var(--fg);
+        border-radius: 999px;
+        padding: 0.35rem 0.9rem;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: background 0.15s ease, transform 0.1s ease;
+      }
+      .city-btn:hover,
+      .city-btn:focus {
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .city-btn:active {
+        transform: translateY(1px);
       }
       .date-head {
         margin: 2rem 0 1rem;
@@ -187,6 +222,94 @@
         color: inherit;
         cursor: default;
       }
+      .city-modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+      }
+      .city-modal.open {
+        display: flex;
+      }
+      .city-modal__backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(6px);
+      }
+      .city-modal__dialog {
+        position: relative;
+        z-index: 1;
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        padding: 1.25rem 1.5rem;
+        width: min(460px, 92vw);
+        box-shadow: 0 18px 30px rgba(0, 0, 0, 0.35);
+      }
+      .city-modal__title {
+        margin: 0 0 0.4rem;
+        font-size: 1.35rem;
+      }
+      .city-modal__hint {
+        margin: 0 0 1rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .city-modal__label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.35rem;
+      }
+      .city-modal__select {
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: rgba(0, 0, 0, 0.25);
+        color: var(--fg);
+        padding: 0.5rem 0.65rem;
+        font-size: 1rem;
+      }
+      .city-modal__actions {
+        margin-top: 1.2rem;
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.6rem;
+      }
+      .city-modal__close {
+        position: absolute;
+        top: 0.35rem;
+        right: 0.35rem;
+        border: none;
+        background: transparent;
+        color: var(--fg);
+        font-size: 1.25rem;
+        cursor: pointer;
+      }
+      .btn-ghost,
+      .btn-primary {
+        border-radius: 10px;
+        padding: 0.5rem 0.85rem;
+        font-size: 0.95rem;
+        cursor: pointer;
+        border: 1px solid transparent;
+      }
+      .btn-ghost {
+        background: transparent;
+        border-color: rgba(255, 255, 255, 0.25);
+        color: var(--fg);
+      }
+      .btn-ghost:hover,
+      .btn-primary:hover {
+        filter: brightness(1.1);
+      }
+      .btn-primary {
+        background: #fff;
+        color: #0c2147;
+        font-weight: 700;
+      }
     </style>
   </head>
   <body>
@@ -204,10 +327,38 @@
         <h1>Upcoming Events</h1>
         <div id="status" class="status" aria-live="polite">Loading events…</div>
       </header>
+      <div class="city-bar">
+        <span class="city-chip">Showing <span id="currentCityLabel">Baltimore</span></span>
+        <button type="button" class="city-btn" id="openCityModal">Change city</button>
+      </div>
       <div class="view-switch">
         <a id="cardsViewLink" href="/calendar_cards.html">Switch to cards view</a>
+        <a id="calendarViewLink" href="/calendar.html?view=calendar">Switch to calendar view</a>
       </div>
       <main id="events"></main>
+    </div>
+    <div
+      id="cityModal"
+      class="city-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cityModalTitle"
+      hidden
+    >
+      <div class="city-modal__backdrop" data-close-modal></div>
+      <div class="city-modal__dialog">
+        <button type="button" class="city-modal__close" aria-label="Close city selection" data-close-modal>
+          ×
+        </button>
+        <h2 id="cityModalTitle" class="city-modal__title">Choose your city</h2>
+        <p class="city-modal__hint">Pick the city whose tech events you want to see.</p>
+        <label for="citySelect" class="city-modal__label">City</label>
+        <select id="citySelect" class="city-modal__select"></select>
+        <div class="city-modal__actions">
+          <button type="button" class="btn-ghost" data-close-modal>Cancel</button>
+          <button type="button" class="btn-primary" id="applyCityBtn">Show events</button>
+        </div>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -396,11 +547,148 @@
   </article>`;
       }
 
+      /* ---------- City helpers ---------- */
+      const CITY_OPTIONS = window.CALENDAR_CITY_OPTIONS || [
+        "baltimore",
+        "westvirginia",
+        "hawaii",
+        "dc",
+      ];
+      const CITY_DISPLAY_NAMES = window.CALENDAR_CITY_DISPLAY_NAMES || {
+        baltimore: "Baltimore",
+        westvirginia: "West Virginia",
+        hawaii: "Hawaii",
+        dc: "Washington, D.C.",
+      };
+      function getCityDisplayName(city) {
+        return (
+          CITY_DISPLAY_NAMES[city] ||
+          (city ? city.charAt(0).toUpperCase() + city.slice(1) : "Baltimore")
+        );
+      }
+
       /* ---------- URL parameter helpers ---------- */
       function getCityFromUrl() {
         const urlParams = new URLSearchParams(window.location.search);
         const city = urlParams.get('city');
-        return city || 'baltimore'; // Default to baltimore if no city specified
+        if (city && CITY_OPTIONS.includes(city)) return city;
+        return CITY_OPTIONS[0] || 'baltimore';
+      }
+      function setCityInUrl(city) {
+        const url = new URL(window.location.href);
+        url.searchParams.set("city", city);
+        window.history.replaceState({}, "", url);
+      }
+      function syncCardsLink(city) {
+        const link = document.getElementById("cardsViewLink");
+        if (!link) return;
+        const url = new URL(link.href || "/calendar_cards.html", window.location.href);
+        url.searchParams.set("city", city);
+        link.href = `${url.pathname}${url.search}`;
+      }
+      function syncCalendarLink(city) {
+        const link = document.getElementById("calendarViewLink");
+        if (!link) return;
+        const url = new URL(link.href || "/calendar.html", window.location.href);
+        url.searchParams.set("city", city);
+        link.href = `${url.pathname}${url.search}`;
+      }
+      function updateCityLabel(city) {
+        const label = document.getElementById("currentCityLabel");
+        if (label) {
+          label.textContent = getCityDisplayName(city);
+        }
+      }
+      function populateCitySelect(city) {
+        const select = document.getElementById("citySelect");
+        if (!select) return;
+        select.innerHTML = "";
+        CITY_OPTIONS.forEach((opt) => {
+          const option = document.createElement("option");
+          option.value = opt;
+          option.textContent = getCityDisplayName(opt);
+          select.appendChild(option);
+        });
+        select.value = city;
+      }
+
+      /* ---------- Modal controls ---------- */
+      function openCityModal() {
+        const modal = document.getElementById("cityModal");
+        if (!modal) return;
+        modal.classList.add("open");
+        modal.removeAttribute("hidden");
+        const select = document.getElementById("citySelect");
+        if (select) select.focus();
+      }
+      function closeCityModal() {
+        const modal = document.getElementById("cityModal");
+        if (!modal) return;
+        modal.classList.remove("open");
+        modal.setAttribute("hidden", "");
+      }
+      function bindCityModalControls() {
+        const openBtn = document.getElementById("openCityModal");
+        const applyBtn = document.getElementById("applyCityBtn");
+        const modal = document.getElementById("cityModal");
+        const select = document.getElementById("citySelect");
+        if (openBtn) openBtn.addEventListener("click", openCityModal);
+        if (applyBtn) {
+          applyBtn.addEventListener("click", () => {
+            if (!select) return;
+            const chosen = select.value;
+            if (!CITY_OPTIONS.includes(chosen)) return;
+            setCityInUrl(chosen);
+            updateCityLabel(chosen);
+            syncCardsLink(chosen);
+            syncCalendarLink(chosen);
+            loadAndRender();
+            closeCityModal();
+          });
+        }
+        if (modal) {
+          modal.addEventListener("click", (e) => {
+            if (e.target.dataset.closeModal !== undefined || e.target === modal) {
+              closeCityModal();
+            }
+          });
+        }
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") closeCityModal();
+        });
+      }
+
+      /* ---------- Event toggle wiring ---------- */
+      let toggleBound = false;
+      function bindToggleHandlers() {
+        if (toggleBound) return;
+        const main = document.getElementById("events");
+        if (!main) return;
+        main.addEventListener("click", (e) => {
+          const btn = e.target.closest(".toggle-btn");
+          if (!btn) return;
+          const targetId = btn.getAttribute("data-toggle");
+          const panel = document.getElementById(targetId);
+          if (!panel) return;
+
+          const isOpen = panel.classList.toggle("open");
+          if (isOpen) {
+            panel.removeAttribute("hidden");
+            btn.setAttribute("aria-expanded", "true");
+            btn.textContent = "–";
+            btn.setAttribute("aria-label", "Hide details");
+            const img = panel.querySelector("img.event-image[data-src]");
+            if (img && !img.getAttribute("src")) {
+              img.setAttribute("src", img.getAttribute("data-src"));
+            }
+          } else {
+            panel.setAttribute("hidden", "");
+            btn.setAttribute("aria-expanded", "false");
+            btn.textContent = "+";
+            btn.setAttribute("aria-label", "Show details");
+          }
+        });
+        toggleBound = true;
       }
 
       /* ---------- Main render ---------- */
@@ -409,6 +697,10 @@
         const main = document.getElementById("events");
         try {
           const city = getCityFromUrl();
+          updateCityLabel(city);
+          populateCitySelect(city);
+          syncCardsLink(city);
+          syncCalendarLink(city);
           const endpoint = `/${city}/upcoming_events.json`;
           const res = await fetch(endpoint, {
             cache: "no-store",
@@ -458,33 +750,8 @@
           main.innerHTML = chunks.join("\n");
           statusEl.textContent = `${events.length} event${
             events.length === 1 ? "" : "s"
-          } loaded.`;
+          } loaded for ${getCityDisplayName(city)}.`;
 
-          // Toggle & lazy image
-          main.addEventListener("click", (e) => {
-            const btn = e.target.closest(".toggle-btn");
-            if (!btn) return;
-            const targetId = btn.getAttribute("data-toggle");
-            const panel = document.getElementById(targetId);
-            if (!panel) return;
-
-            const isOpen = panel.classList.toggle("open");
-            if (isOpen) {
-              panel.removeAttribute("hidden");
-              btn.setAttribute("aria-expanded", "true");
-              btn.textContent = "–";
-              btn.setAttribute("aria-label", "Hide details");
-              const img = panel.querySelector("img.event-image[data-src]");
-              if (img && !img.getAttribute("src")) {
-                img.setAttribute("src", img.getAttribute("data-src"));
-              }
-            } else {
-              panel.setAttribute("hidden", "");
-              btn.setAttribute("aria-expanded", "false");
-              btn.textContent = "+";
-              btn.setAttribute("aria-label", "Show details");
-            }
-          });
         } catch (err) {
           document.getElementById("events").innerHTML = "";
           document.getElementById("status").textContent =
@@ -492,13 +759,10 @@
         }
       }
 
-      document.addEventListener("DOMContentLoaded", loadAndRender);
       document.addEventListener("DOMContentLoaded", () => {
-        const link = document.getElementById("cardsViewLink");
-        if (link) {
-          const query = window.location.search || "";
-          link.setAttribute("href", `/calendar_cards.html${query}`);
-        }
+        bindToggleHandlers();
+        bindCityModalControls();
+        loadAndRender();
       });
     </script>
   </body>
