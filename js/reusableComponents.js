@@ -6,7 +6,7 @@ class OurHeader extends HTMLElement {
                 <a href="/#main">Home</a>
                 <a href="/balticonomy/">Balticonomy</a>
                 <a href="/#get-involved">Join Us</a>
-                <a href="/#about-us">About Us</a>
+                <a href="/newsletter/">Newsletter</a>
                 </div>
             </nav>
         `
