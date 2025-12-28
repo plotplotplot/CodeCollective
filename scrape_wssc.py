@@ -270,18 +270,5 @@ def scrape_all_wssc_events() -> List[Dict]:
 
 # Example usage
 if __name__ == "__main__":
-    scraper = WSSCEventsScraper()
+    print(json.dumps(scrape_all_wssc_events(), indent=2))
     
-    # Scrape events for 2025
-    events_2025 = scraper.scrape(year="2025")
-    
-    # Save to JSON
-    scraper.save_to_json(events_2025, "wssc_events_2025.json")
-    
-    # Print first event as example
-    if events_2025:
-        print("\nFirst event example:")
-        print(json.dumps(events_2025[0], indent=2, default=str))
-    
-    # You can also scrape for other years
-    # events_2026 = scraper.scrape(year="2026")
