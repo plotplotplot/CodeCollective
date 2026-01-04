@@ -2,103 +2,93 @@ BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:hawaii Tech Events
 BEGIN:VEVENT
-DTSTAMP:20260103T003247Z
-DESCRIPTION:Low-key in-person meetup for people who are either in tech\, interested in starting a career in tech\, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako\, in the outside ca\n\nEvent Link: https://www.meetup.com/honolulu-tech-network/events/312455388/
-DTEND:20260105T050000Z
-LOCATION:Whole Foods Market\, 388 Kamakee St\, Honolulu\, HI us
-DTSTART:20260105T030000Z
-SUMMARY:Tech Meetup
-UID:51f39dd4-0505-47ca-82cb-410a18f1b1ef@51f3.org
-URL:https://www.meetup.com/honolulu-tech-network/events/312455388/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20260103T003247Z
-DESCRIPTION:See a collection of short films from the students at the School of Cinematic Arts at the University of Hawaiʻi at\n\nEvent Link: https://www.eventbrite.com/e/sustainability-film-series-student-film-showcase-tickets-1977679946959
-DTEND:20260201T050000Z
-LOCATION:Honolulu Museum of Art (HoMA)\, 900 South Beretania Street\, Honolulu\, HI\, 96814\, \,  
-DTSTART:20260201T030000Z
-SUMMARY:Sustainability Film Series: Student Film Showcase
-UID:92f44371-4e05-4e43-b89a-83ee5c1d21c3@92f4.org
-URL:https://www.eventbrite.com/e/sustainability-film-series-student-film-showcase-tickets-1977679946959
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20260103T003247Z
-DESCRIPTION:Get ready to level up your Scrum Master skills with the SAFe for Scrum Master 6.0 Certification - it's time to master your Agile\n\nEvent Link: https://www.eventbrite.com/e/safe-for-scrum-master-60-certification-ssm-scaled-agile-tickets-1976286183174
-DTEND:20260104T220000Z
-LOCATION:Unknown Location\, Unknown Address\, \,  
-DTSTART:20260103T140000Z
-SUMMARY:SAFe for Scrum Master 6.0 Certification (SSM) - Scaled Agile
-UID:59d1a333-e834-487d-bde2-4b5d41187e2c@59d1.org
-URL:https://www.eventbrite.com/e/safe-for-scrum-master-60-certification-ssm-scaled-agile-tickets-1976286183174
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20260103T003247Z
-DESCRIPTION:Join us at Hawaii Coworking in Waikiki for a fun kickoff celebration!\n\nGo to Luma event for more details and buy a ticket ($15\, includes dinner)\nhttps://luma.com/em3bk4mk\n\nPlease buy your ticket by Sa\n\nEvent Link: https://www.meetup.com/honolulu-tech-network/events/312469550/
-DTEND:20260111T060000Z
-LOCATION:Hawai'i Coworking\, 438 Hobron Ln\, Penthouse 1\, Honolulu\, HI us
-DTSTART:20260111T030000Z
-SUMMARY:New year\, new vibes! 🎉 Kick off 2026 with HTN & UXHI
-UID:6cf1bdbc-33d5-4f95-b968-f2f856be7aa3@6cf1.org
-URL:https://www.meetup.com/honolulu-tech-network/events/312469550/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20260103T003247Z
-DESCRIPTION:Join us on January 22nd\, 6:30–8:30pm for an evening of real-world AI engineering with local legend Miki Hardisty\, CEO & Co-Founder of Olelo Intelligence.\n\nMiki Hardisty is a seasoned technology execut\n\nEvent Link: https://www.meetup.com/oahuai/events/312395132/
-DTEND:20260123T063000Z
-LOCATION:JPG Media\, 441 Cooke Street\, Honolulu\, HI us
-DTSTART:20260123T043000Z
-SUMMARY:Miki Hardisty: "Why I'm Blowing up my Tech Architecture Every Six Months "
-UID:b322b7be-59db-478e-a20d-5f16e98affd6@b322.org
-URL:https://www.meetup.com/oahuai/events/312395132/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20260103T003247Z
-DESCRIPTION:Mele Hawaiʻi composed by Queen Liliʻuokalani and her siblings\, Nā Lani ʻEha\, performed by Walea and friends on kingdom-era\n\nEvent Link: https://www.eventbrite.com/e/onipaa-hawaiian-music-concert-tickets-1976669273006
-DTEND:20260125T053000Z
-LOCATION:Orvis Auditorium\, 2411 Dole St\, Honolulu\, HI\, 96826\, \,  
-DTSTART:20260125T033000Z
-SUMMARY:Onipa'a Hawaiian Music Concert
-UID:5fddbc3c-3b9a-4bf0-8135-339a5527fc7d@5fdd.org
-URL:https://www.eventbrite.com/e/onipaa-hawaiian-music-concert-tickets-1976669273006
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20260103T003247Z
-DESCRIPTION:Low-key in-person meetup for people who are either in tech\, interested in starting a career in tech\, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako\, in the outside ca\n\nEvent Link: https://www.meetup.com/honolulu-tech-network/events/312464962/
-DTEND:20260126T050000Z
-LOCATION:Whole Foods Market\, 388 Kamakee St\, Honolulu\, HI us
-DTSTART:20260126T030000Z
-SUMMARY:Tech Meetup
-UID:249328ce-37d7-4d23-a5c2-eb372487a84b@2493.org
-URL:https://www.meetup.com/honolulu-tech-network/events/312464962/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20260103T003247Z
+DTSTAMP:20260104T003903Z
 DESCRIPTION:Two open-source legends will be presenting at our February O‘ahu A.I. meetup:\n\n• From PCB to Production: Developing Embedded Systems with LLMs\n• A Data-Driven Approach to Balancing Quality\, Latency\, a\n\nEvent Link: https://www.meetup.com/oahuai/events/312528087/
 DTEND:20260221T063000Z
 LOCATION:Hawaii Coworking\, 438 Hobron Lane PH1\, Honolulu\, HI us
 DTSTART:20260221T043000Z
 SUMMARY:Open Source Legends on data-driven A.I. agents and LLM-assisted PCBs
-UID:b456cb31-5521-44b8-992d-b85295de5188@b456.org
+UID:aaf56998-08b4-412f-84eb-e9b21a877f73@aaf5.org
 URL:https://www.meetup.com/oahuai/events/312528087/
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20260103T003247Z
-DESCRIPTION:Low-key in-person meetup for people who are either in tech\, interested in starting a career in tech\, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako\, in the outside ca\n\nEvent Link: https://www.meetup.com/honolulu-tech-network/events/vpfrntyjccbxb/
-DTEND:20260119T050000Z
+DTSTAMP:20260104T003903Z
+DESCRIPTION:Low-key in-person meetup for people who are either in tech\, interested in starting a career in tech\, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako\, in the outside ca\n\nEvent Link: https://www.meetup.com/honolulu-tech-network/events/312455388/
+DTEND:20260105T050000Z
 LOCATION:Whole Foods Market\, 388 Kamakee St\, Honolulu\, HI us
-DTSTART:20260119T030000Z
+DTSTART:20260105T030000Z
 SUMMARY:Tech Meetup
-UID:dfb37b75-c81c-4069-b7db-ab1dd5cd0084@dfb3.org
-URL:https://www.meetup.com/honolulu-tech-network/events/vpfrntyjccbxb/
+UID:b2db21fe-d6ca-4505-a5c4-cda90aeba9ce@b2db.org
+URL:https://www.meetup.com/honolulu-tech-network/events/312455388/
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20260103T003247Z
+DTSTAMP:20260104T003903Z
 DESCRIPTION:Event Link: https://lu.ma/xhlobj5l
 DTEND:20260419T040000Z
 LOCATION:Kaimukī High School\, Kaimukī High School\, 2705 Kaimuki Ave\, Honolulu\, HI 96816\, USA\, \,  
 DTSTART:20260419T020000Z
 SUMMARY:2nd Annual National Civics Bee Hawaii State Finals
-UID:dd930ad8-709c-40b5-8337-2cb548a35b42@dd93.org
+UID:1ea76d3e-2c68-435e-ac23-e7ab29c740f5@1ea7.org
 URL:https://lu.ma/xhlobj5l
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260104T003903Z
+DESCRIPTION:Join us at Hawaii Coworking in Waikiki for a fun kickoff celebration!\n\nGo to Luma event for more details and buy a ticket ($15\, includes dinner)\nhttps://luma.com/em3bk4mk\n\nPlease buy your ticket by Sa\n\nEvent Link: https://www.meetup.com/honolulu-tech-network/events/312469550/
+DTEND:20260111T060000Z
+LOCATION:Hawai'i Coworking\, 438 Hobron Ln\, Penthouse 1\, Honolulu\, HI us
+DTSTART:20260111T030000Z
+SUMMARY:New year\, new vibes! 🎉 Kick off 2026 with HTN & UXHI
+UID:c55af324-a4df-42fc-9e29-ca2012952c93@c55a.org
+URL:https://www.meetup.com/honolulu-tech-network/events/312469550/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260104T003903Z
+DESCRIPTION:See a collection of short films from the students at the School of Cinematic Arts at the University of Hawaiʻi at\n\nEvent Link: https://www.eventbrite.com/e/sustainability-film-series-student-film-showcase-tickets-1977679946959
+DTEND:20260201T050000Z
+LOCATION:Honolulu Museum of Art (HoMA)\, 900 South Beretania Street\, Honolulu\, HI\, 96814\, \,  
+DTSTART:20260201T030000Z
+SUMMARY:Sustainability Film Series: Student Film Showcase
+UID:ec831921-fe76-4e7c-9c39-606d018ceb30@ec83.org
+URL:https://www.eventbrite.com/e/sustainability-film-series-student-film-showcase-tickets-1977679946959
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260104T003903Z
+DESCRIPTION:Low-key in-person meetup for people who are either in tech\, interested in starting a career in tech\, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako\, in the outside ca\n\nEvent Link: https://www.meetup.com/honolulu-tech-network/events/vpfrntyjccbxb/
+DTEND:20260119T050000Z
+LOCATION:Whole Foods Market\, 388 Kamakee St\, Honolulu\, HI us
+DTSTART:20260119T030000Z
+SUMMARY:Tech Meetup
+UID:7dd398bf-ee34-46df-8975-6b9f247a7e06@7dd3.org
+URL:https://www.meetup.com/honolulu-tech-network/events/vpfrntyjccbxb/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260104T003903Z
+DESCRIPTION:Join us on January 22nd\, 6:30–8:30pm for an evening of real-world AI engineering with local legend Miki Hardisty\, CEO & Co-Founder of Olelo Intelligence.\n\nMiki Hardisty is a seasoned technology execut\n\nEvent Link: https://www.meetup.com/oahuai/events/312395132/
+DTEND:20260123T063000Z
+LOCATION:JPG Media\, 441 Cooke Street\, Honolulu\, HI us
+DTSTART:20260123T043000Z
+SUMMARY:Miki Hardisty: "Why I'm Blowing up my Tech Architecture Every Six Months "
+UID:10342c13-d8f6-4789-b058-5c0a0ab79ce8@1034.org
+URL:https://www.meetup.com/oahuai/events/312395132/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260104T003903Z
+DESCRIPTION:Low-key in-person meetup for people who are either in tech\, interested in starting a career in tech\, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako\, in the outside ca\n\nEvent Link: https://www.meetup.com/honolulu-tech-network/events/312464962/
+DTEND:20260126T050000Z
+LOCATION:Whole Foods Market\, 388 Kamakee St\, Honolulu\, HI us
+DTSTART:20260126T030000Z
+SUMMARY:Tech Meetup
+UID:7a9d46c5-03d3-4e10-98f4-fb01eba61fdc@7a9d.org
+URL:https://www.meetup.com/honolulu-tech-network/events/312464962/
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260104T003903Z
+DESCRIPTION:Mele Hawaiʻi composed by Queen Liliʻuokalani and her siblings\, Nā Lani ʻEha\, performed by Walea and friends on kingdom-era\n\nEvent Link: https://www.eventbrite.com/e/onipaa-hawaiian-music-concert-tickets-1976669273006
+DTEND:20260125T053000Z
+LOCATION:Orvis Auditorium\, 2411 Dole St\, Honolulu\, HI\, 96826\, \,  
+DTSTART:20260125T033000Z
+SUMMARY:Onipa'a Hawaiian Music Concert
+UID:7f1ab7b2-0c8a-4248-9a8f-0f9f0a060545@7f1a.org
+URL:https://www.eventbrite.com/e/onipaa-hawaiian-music-concert-tickets-1976669273006
 END:VEVENT
 END:VCALENDAR
