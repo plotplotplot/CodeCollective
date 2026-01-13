@@ -1,11 +1,26 @@
 // Store all events globally
 let allEvents = [];
 let filteredEvents = [];
+let rawEvents = [];
 let eventGroups = new Set();
 let calendar;
 let currentView = 'dayGridMonth';
 let isMobile = false;
 let forceCardView = false;
+let activeTagSlugs = new Set();
+let calendarDisplayEvents = [];
+
+const LEGEND_PREFS_KEY = 'calendarLegendPrefs';
+const CATEGORY_LABELS = [
+  'Tech Skills',
+  'Economic Development',
+  'Infrastructure',
+  'Makerspace',
+  'Business',
+  'Politics',
+  'Finance',
+  'Code Collective & Partners'
+];
 
 // Utility helpers ---------------------------------------------------------
 function getTodayStart() {
@@ -29,6 +44,202 @@ function isEventOnOrAfterToday(dateInput, todayStart = getTodayStart()) {
 function isMobileDevice() {
   return window.matchMedia('(max-width: 768px)').matches;
   //return false;
+}
+
+function slugifyTag(tag) {
+  return String(tag || '')
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function applyTagClasses(element, tags) {
+  if (!element || !Array.isArray(tags) || tags.length === 0) return;
+
+  element.classList.add('tagged');
+  tags.forEach(tag => {
+    const slug = slugifyTag(tag);
+    if (slug) {
+      element.classList.add(`tag-${slug}`);
+    }
+  });
+}
+
+function getLegendPrefs(categories) {
+  const defaultTags = Array.isArray(categories) ? categories.map(slugifyTag) : [];
+  const defaults = {
+    hidden: false,
+    useTagColors: true,
+    selectedTags: defaultTags
+  };
+
+  try {
+    const stored = localStorage.getItem(LEGEND_PREFS_KEY);
+    if (!stored) return defaults;
+    const parsed = JSON.parse(stored);
+    return {
+      hidden: Boolean(parsed.hidden),
+      useTagColors: parsed.useTagColors !== false,
+      selectedTags: Array.isArray(parsed.selectedTags) ? parsed.selectedTags : defaultTags
+    };
+  } catch (error) {
+    return defaults;
+  }
+}
+
+function saveLegendPrefs() {
+  const prefs = {
+    hidden: document.body.classList.contains('legend-hidden'),
+    useTagColors: !document.body.classList.contains('tags-disabled'),
+    selectedTags: Array.from(activeTagSlugs)
+  };
+  try {
+    localStorage.setItem(LEGEND_PREFS_KEY, JSON.stringify(prefs));
+  } catch (error) {
+    // Ignore storage failures silently.
+  }
+}
+
+function buildLegend(categories) {
+  const legendItems = document.getElementById('calendar-legend-items');
+  if (!legendItems || !Array.isArray(categories)) return;
+
+  legendItems.innerHTML = '';
+  const prefs = getLegendPrefs(categories);
+  activeTagSlugs = new Set(prefs.selectedTags);
+
+  const controls = document.createElement('div');
+  controls.className = 'legend-controls';
+  controls.innerHTML = `
+    <label class="legend-item legend-toggle">
+      <input type="checkbox" id="toggle-tag-formatting" ${prefs.useTagColors ? 'checked' : ''} />
+      <span class="legend-text">Use tag colors</span>
+    </label>
+    <div class="legend-actions">
+      <button type="button" class="legend-action" data-action="all">Select all</button>
+      <button type="button" class="legend-action" data-action="none">Select none</button>
+      <button type="button" class="legend-action" data-action="hide">Hide legend</button>
+    </div>
+  `;
+  legendItems.appendChild(controls);
+
+  const list = document.createElement('div');
+  list.className = 'legend-list';
+  categories.forEach(label => {
+    const slug = slugifyTag(label);
+    const isChecked = activeTagSlugs.size === 0 ? true : activeTagSlugs.has(slug);
+    const item = document.createElement('label');
+    item.className = 'legend-item';
+    item.innerHTML = `
+      <input type="checkbox" data-tag="${slug}" ${isChecked ? 'checked' : ''} />
+      <span class="legend-swatch tag-${slug}"></span>
+      <span class="legend-text">${label}</span>
+    `;
+    list.appendChild(item);
+  });
+  legendItems.appendChild(list);
+
+  legendItems.addEventListener('change', event => {
+    if (event.target.matches('#toggle-tag-formatting')) {
+      setTagFormattingEnabled(event.target.checked);
+      saveLegendPrefs();
+      return;
+    }
+    if (!event.target.matches('input[type="checkbox"][data-tag]')) return;
+    updateActiveTagsFromLegend();
+    applyTagFilters();
+  });
+
+  legendItems.addEventListener('click', event => {
+    const actionBtn = event.target.closest('.legend-action');
+    if (!actionBtn) return;
+    const action = actionBtn.dataset.action;
+    if (action === 'all') {
+      setLegendCheckboxes(true);
+    } else if (action === 'none') {
+      setLegendCheckboxes(false);
+    } else if (action === 'hide') {
+      setLegendVisibility(true);
+    }
+  });
+
+  const visibilityToggle = document.getElementById('legend-visibility-toggle');
+  if (visibilityToggle) {
+    visibilityToggle.addEventListener('click', () => {
+      setLegendVisibility(false);
+    });
+  }
+
+  setTagFormattingEnabled(prefs.useTagColors);
+  setLegendVisibility(prefs.hidden, { save: false });
+}
+
+function setTagFormattingEnabled(enabled) {
+  document.body.classList.toggle('tags-disabled', !enabled);
+}
+
+function setLegendVisibility(hidden, options = {}) {
+  document.body.classList.toggle('legend-hidden', hidden);
+  const toggleButton = document.getElementById('legend-visibility-toggle');
+  if (toggleButton) {
+    toggleButton.textContent = hidden ? 'Show legend' : 'Hide legend';
+    toggleButton.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+  }
+  if (options.save !== false) {
+    saveLegendPrefs();
+  }
+}
+
+function setLegendCheckboxes(checked) {
+  const inputs = document.querySelectorAll('#calendar-legend-items input[type="checkbox"][data-tag]');
+  inputs.forEach(input => {
+    input.checked = checked;
+  });
+  updateActiveTagsFromLegend();
+  applyTagFilters();
+}
+
+function updateActiveTagsFromLegend() {
+  const inputs = document.querySelectorAll('#calendar-legend-items input[type="checkbox"][data-tag]');
+  activeTagSlugs = new Set(
+    Array.from(inputs)
+      .filter(input => input.checked)
+      .map(input => input.dataset.tag)
+  );
+}
+
+function eventMatchesTags(tags) {
+  if (!Array.isArray(tags) || tags.length === 0) return true;
+  if (!activeTagSlugs || activeTagSlugs.size === 0) return false;
+
+  return tags.some(tag => activeTagSlugs.has(slugifyTag(tag)));
+}
+
+function filterEventsByTags(events) {
+  return events.filter(event => eventMatchesTags(event.extendedProps?.tags));
+}
+
+function filterRawEventsByTags(events) {
+  return events.filter(event => eventMatchesTags(event.tags));
+}
+
+function applyTagFilters() {
+  const tagFilteredEvents = filterEventsByTags(allEvents);
+  calendarDisplayEvents = tagFilteredEvents;
+
+  if (isMobile) {
+    initializeMobileCards(tagFilteredEvents);
+  } else if (calendar) {
+    calendar.removeAllEvents();
+    calendar.addEventSource(tagFilteredEvents);
+    calendar.render();
+  } else {
+    initializeCalendar(tagFilteredEvents);
+  }
+
+  populateCodeCollectiveEvents(filterRawEventsByTags(rawEvents));
+  saveLegendPrefs();
 }
 // Generic image prefetching function (with unique URLs only)
 function prefetchImages(urls) {
@@ -102,7 +313,8 @@ document.addEventListener('DOMContentLoaded', function () {
       return response.json();
     })
     .then(events => {
-      allEvents = processEvents(events);
+      rawEvents = Array.isArray(events) ? events : [];
+      allEvents = processEvents(rawEvents);
 
       // Extract all unique event image URLs
       const eventImageUrls = allEvents
@@ -114,13 +326,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
       filteredEvents = [...allEvents]; // Make a copy for filtering
 
-      if (isMobile) {
-        initializeMobileCards(allEvents);
-      } else {
-        initializeCalendar(allEvents);
-      }
-
-      populateCodeCollectiveEvents(events);
+      buildLegend(CATEGORY_LABELS);
+      applyTagFilters();
 
       setupViewSelectors();
       document.getElementById('loading').style.display = 'none';
@@ -285,6 +492,9 @@ function createEventCard(event) {
       ` : ''}
   `;
 
+  const titleEl = card.querySelector('.card-title');
+  applyTagClasses(titleEl, event.extendedProps?.tags);
+
   // Process markdown for full description if needed
   if (description && needsMore) {
     const fullDescContainer = card.querySelector('.card-description-full');
@@ -382,7 +592,8 @@ function processEvents(eventsData) {
       url: event.url,
       extendedProps: {
         group: groupName,
-        imageUrl: event.imageUrl
+        imageUrl: event.imageUrl,
+        tags: Array.isArray(event.tags) ? event.tags : []
       },
       backgroundColor: "#0f0f0f0",
       borderColor: "#0f0f0f0",
@@ -469,6 +680,7 @@ function getRandomImageForDay(events, date) {
 // Initialize the FullCalendar (desktop only)
 function initializeCalendar(events) {
   if (isMobile) return;
+  calendarDisplayEvents = events;
 
   // Filter events to show only next 4 weeks starting from today
   const today = getTodayStart();
@@ -549,7 +761,7 @@ function initializeCalendar(events) {
       }
 
       // Get the latest event with an image for this day
-      const latestEvent = getRandomImageForDay(events, info.date);
+      const latestEvent = getRandomImageForDay(calendarDisplayEvents, info.date);
 
       if (latestEvent && latestEvent.extendedProps.imageUrl) {
         // Get the day cell element
@@ -566,6 +778,9 @@ function initializeCalendar(events) {
           const bgDiv = document.createElement('div');
           bgDiv.classList.add('fc-day-background');
           bgDiv.style.backgroundImage = `url(${latestEvent.extendedProps.imageUrl})`;
+          bgDiv.style.backgroundSize = 'cover';
+          bgDiv.style.backgroundPosition = 'center';
+          bgDiv.style.backgroundRepeat = 'no-repeat';
 
           // Add the background div as the first child of the day frame
           dayFrame.style.position = 'relative'; // Ensure positioning context
@@ -596,6 +811,7 @@ function initializeCalendar(events) {
       const titleEl = document.createElement('div');
       titleEl.classList.add('fc-event-title');
       titleEl.innerHTML = `${eventTime} ${info.event.title}`;
+      applyTagClasses(titleEl, info.event.extendedProps?.tags);
       eventEl.appendChild(titleEl);
 
       return { domNodes: [eventEl] };
@@ -662,7 +878,7 @@ function setupViewSelectors() {
 // Handle view changes in mobile mode
 function handleMobileViewChange(view) {
   const todayStart = getTodayStart();
-  const eventsToShow = allEvents.filter(event =>
+  const eventsToShow = filterEventsByTags(allEvents).filter(event =>
     isEventOnOrAfterToday(event.start, todayStart)
   );
 
