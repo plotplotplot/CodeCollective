@@ -19,6 +19,7 @@ import scrape_innovatemd
 import scrape_wssc
 import scrape_usgpo
 import scrape_gdg
+import tag_rules
 import json
 from ics import Calendar, Event
 import datetime
@@ -924,6 +925,15 @@ def main(city = "baltimore"):
         (e for e in unique_events if "startDate" in e),
         key=lambda e: est_timezone.localize(parse(e["startDate"])) if parse(e["startDate"]).tzinfo is None else parse(e["startDate"]),
     )
+
+    # add the categories
+    for event in sorted_events:
+        # find earliest match, then break
+        for url2tag in tag_rules.tag_rules_url:
+            urlpart, tag_list = url2tag
+            if urlpart in event.get("url", ""):
+                event["tags"] = tag_list
+                break
 
     # Save upcoming events to a file
     with open(os.path.join(city, "upcoming_events.json"), "w+", encoding="utf-8") as f:
