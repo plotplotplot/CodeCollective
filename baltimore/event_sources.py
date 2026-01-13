@@ -82,5 +82,8 @@ sources = {
     ],
     "Google Forms":[
         "http://docs.google.com/forms/d/e/1FAIpQLSfAHwexta7vxLto1xmvBxFNawicAUtRrjTKqN0jHs25RjLCQg/viewform"
+    ],
+    "GDGChapters":[
+        3047
     ]
 }

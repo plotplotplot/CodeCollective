@@ -18,6 +18,7 @@ import scrape_bwtech
 import scrape_innovatemd
 import scrape_wssc
 import scrape_usgpo
+import scrape_gdg
 import json
 from ics import Calendar, Event
 import datetime
@@ -554,6 +555,10 @@ def main(city = "baltimore"):
             newEvents += scrape_gform.scrape(URL)
         except Exception as e:
             print(f"Error fetching calendar events: {e}")
+
+    for ChapterID in sources.get("GDGChapters",[]):
+        print(f"Fetching GDG Chapter {ChapterID}")
+        newEvents += scrape_gdg.scrapeChapterID(ChapterID)
 
 
     # upcoming_events += scrape_equitech.scrape_equitech_tuesday()
