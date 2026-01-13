@@ -218,7 +218,7 @@ def scrapeChapterID(chapterID = 3047):
         visible_on_parent_chapter_only=False,
         timeout_s=10,
     )
-    scrape(cfg)
+    return scrape(cfg)
 
 def scrape(cfg):
 
