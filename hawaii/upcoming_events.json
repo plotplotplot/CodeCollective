@@ -16,7 +16,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Tech_Meetup.webp",
-        "scrapeTime": "2026-01-18 00:38:53.556042",
+        "scrapeTime": "2026-01-19 00:37:57.683287",
         "tags": [
             "Economic Development"
         ]
@@ -38,7 +38,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Miki_Hardisty__\"Why_I_m_Blowing_up_my_Tech_Architecture_Every_Six_Months_\".webp",
-        "scrapeTime": "2026-01-18 00:38:53.555786",
+        "scrapeTime": "2026-01-19 00:37:57.683072",
         "tags": [
             "Economic Development"
         ]
@@ -55,7 +55,7 @@
             "address": "2411 Dole St, Honolulu, HI, 96826"
         },
         "imageUrl": "/event_images/Onipa_a_Hawaiian_Music_Concert.webp",
-        "scrapeTime": "2026-01-18 00:38:53.556783",
+        "scrapeTime": "2026-01-19 00:37:57.684017",
         "tags": [
             "Business"
         ]
@@ -77,7 +77,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Tech_Meetup.webp",
-        "scrapeTime": "2026-01-18 00:38:53.556145",
+        "scrapeTime": "2026-01-19 00:37:57.683388",
         "tags": [
             "Economic Development"
         ]
@@ -94,7 +94,7 @@
             "address": "Unknown Address"
         },
         "imageUrl": "/event_images/[Free]_Become_a_Certified_Scrum_Master_or_Product_Owner__My_Agile_Guru_.webp",
-        "scrapeTime": "2026-01-18 00:38:53.556453",
+        "scrapeTime": "2026-01-19 00:37:57.683711",
         "tags": [
             "Business"
         ]
@@ -111,7 +111,7 @@
             "address": "Unknown Address"
         },
         "imageUrl": "/event_images/SAFe_for_Scrum_Master_6.0_Certification__SSM__-_Scaled_Agile.webp",
-        "scrapeTime": "2026-01-18 00:38:53.556560",
+        "scrapeTime": "2026-01-19 00:37:57.683812",
         "tags": [
             "Business"
         ]
@@ -128,7 +128,7 @@
             "address": "900 South Beretania Street, Honolulu, HI, 96814"
         },
         "imageUrl": "/event_images/Sustainability_Film_Series__Student_Film_Showcase.webp",
-        "scrapeTime": "2026-01-18 00:38:53.556892",
+        "scrapeTime": "2026-01-19 00:37:57.684120",
         "tags": [
             "Business"
         ]
@@ -150,7 +150,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Tech_Meetup.webp",
-        "scrapeTime": "2026-01-18 00:38:53.556247",
+        "scrapeTime": "2026-01-19 00:37:57.683488",
         "tags": [
             "Economic Development"
         ]
@@ -172,7 +172,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Tech_Meetup.webp",
-        "scrapeTime": "2026-01-18 00:38:53.556350",
+        "scrapeTime": "2026-01-19 00:37:57.683590",
         "tags": [
             "Economic Development"
         ]
@@ -189,7 +189,7 @@
             "address": "563 Kamoku Street, Honolulu, HI, 96826"
         },
         "imageUrl": "/event_images/Jodi_Kantor_\u2014_Truth_and_Power.webp",
-        "scrapeTime": "2026-01-18 00:38:53.556995",
+        "scrapeTime": "2026-01-19 00:37:57.684222",
         "tags": [
             "Business"
         ]
@@ -197,7 +197,7 @@
     {
         "id": "312528087",
         "name": "Open Source Legends on data-driven A.I. agents and LLM-assisted PCBs",
-        "description": "Two open-source legends will be presenting at our February O\u2018ahu A.I. meetup:\n\n* **From PCB to Production: Developing Embedded Systems with LLMs**\n* **A Data-Driven Approach to Balancing Quality, Latency, and Cost in AI Agents**\n\nIf you care about:\n\n* Bridging AI software and real-world hardware\n* Building agents that don\u2019t silently regress\n* Understanding what your AI systems are actually doing\n* Closing feedback loops between production and evaluation\n\nThis meetup is for you.\n\n**\ud83c\udf99\ufe0f Talk 1**\n**From PCB to Production: Developing Embedded Systems with LLMs**\nby Jonas Schnelli\n\n*Estimated time: 20 minutes*\nLLMs aren\u2019t just changing software \u2014 they\u2019re reshaping hardware and embedded development.\nJonas will walk through how modern AI tools are influencing the entire embedded workflow, from circuit boards to firmware to production devices.\n\n**What is a PCB?**\nPCB stands for *Printed Circuit Board*. It\u2019s the physical board that holds and connects electronic components (chips, resistors, capacitors, microcontrollers) using etched copper traces \u2014 the backbone of almost all modern electronics, from laptops and phones to ESP32 and IoT devices.\n\n***\n\n**\ud83c\udf99\ufe0f Talk 2**\n**A Data-Driven Approach to Balancing Quality, Latency, and Cost in AI Agents**\nby Nathan Marz\n\n*Estimated time: 60 minutes*\nLLMs are inherently unpredictable. A prompt change that fixes one case often breaks another you didn\u2019t test. When the input space is effectively all of human language, ad-hoc testing leads to fragile agents that fail under real-world usage.\nNathan will show how to build reliable AI agents through systematic, data-driven, iterative development. You\u2019ll see how to optimize across the quality-latency-cost tradeoff using production data, controlled experiments, and deep observability.\nThis talk covers:\n\n* Structured datasets with real inputs and \u201cgolden truth\u201d outputs\n* Avoiding circular logic when using LLMs to evaluate LLM output\n* Why evaluating individual steps of agent workflows matters\n* Tracing and telemetry requirements for AI agents\n* Automatically collecting datasets from production traffic\n* Online evaluation, alerting, and continuous feedback loops\n\n***\n\n**About Jonas Schnelli**\nJonas has been writing code for 30 years, spanning web apps, native iOS and Android, and Mac applications. He spent 8 years deep in Bitcoin Core\u2019s C++ internals before focusing on hardware engineering and embedded firmware.\nNow based in Hawai\u2018i, Jonas designs ESP32 devices and explores how AI tools are transforming embedded systems development.\nGitHub: [https://github.com/jonasschnelli](https://github.com/jonasschnelli)\n\n***\n\n**About Nathan Marz**\nNathan lives on O\u2018ahu and runs Red Planet Labs, a distributed company building Rama, a developer platform for scalable backends with far less code and infrastructure.\nHe created several influential open-source projects, most notably Apache Storm, one of the first systems to enable reliable large-scale real-time data processing. Nathan previously worked at Twitter, where he helped start core infrastructure teams, and he is the author of *Big Data: Principles and Best Practices of Scalable Realtime Data Systems*.\nOutside of work, Nathan enjoys hiking, stand-up comedy, and old movies.\nGitHub: [https://github.com/nathanmarz](https://github.com/nathanmarz)\n\n***\n\n\ud83c\udf3a This event is sponsored by Hawaii Coworking (https://hawaiicoworking.co) , Darshaun Nadeau (https://flowingblue.com) and Kevin Riggen (https://oahu.ai) .",
+        "description": "Two open-source legends (Nathan Marz & Jonas Schnelli) will be presenting at our February O\u2018ahu A.I. meetup:\n\n* **From PCB to Production: Developing Embedded Systems with LLMs**\n* **A Data-Driven Approach to Balancing Quality, Latency, and Cost in AI Agents**\n\nIf you care about:\n\n* Bridging AI software and real-world hardware\n* Building agents that don\u2019t silently regress\n* Understanding what your AI systems are actually doing\n* Closing feedback loops between production and evaluation\n\nThis meetup is for you.\n\n**\ud83c\udf99\ufe0f Talk 1**\n**From PCB to Production: Developing Embedded Systems with LLMs**\nby Jonas Schnelli\n\n*Estimated time: 20 minutes*\nLLMs aren\u2019t just changing software \u2014 they\u2019re reshaping hardware and embedded development.\nJonas will walk through how modern AI tools are influencing the entire embedded workflow, from circuit boards to firmware to production devices.\n\n**What is a PCB?**\nPCB stands for *Printed Circuit Board*. It\u2019s the physical board that holds and connects electronic components (chips, resistors, capacitors, microcontrollers) using etched copper traces \u2014 the backbone of almost all modern electronics, from laptops and phones to ESP32 and IoT devices.\n\n***\n\n**\ud83c\udf99\ufe0f Talk 2**\n**A Data-Driven Approach to Balancing Quality, Latency, and Cost in AI Agents**\nby Nathan Marz\n\n*Estimated time: 60 minutes*\nLLMs are inherently unpredictable. A prompt change that fixes one case often breaks another you didn\u2019t test. When the input space is effectively all of human language, ad-hoc testing leads to fragile agents that fail under real-world usage.\nNathan will show how to build reliable AI agents through systematic, data-driven, iterative development. You\u2019ll see how to optimize across the quality-latency-cost tradeoff using production data, controlled experiments, and deep observability.\nThis talk covers:\n\n* Structured datasets with real inputs and \u201cgolden truth\u201d outputs\n* Avoiding circular logic when using LLMs to evaluate LLM output\n* Why evaluating individual steps of agent workflows matters\n* Tracing and telemetry requirements for AI agents\n* Automatically collecting datasets from production traffic\n* Online evaluation, alerting, and continuous feedback loops\n\n***\n\n**About Jonas Schnelli**\nJonas has been writing code for 30 years, spanning web apps, native iOS and Android, and Mac applications. He spent 8 years deep in Bitcoin Core\u2019s C++ internals before focusing on hardware engineering and embedded firmware.\nNow based in Hawai\u2018i, Jonas designs ESP32 devices and explores how AI tools are transforming embedded systems development.\nGitHub: [https://github.com/jonasschnelli](https://github.com/jonasschnelli)\n\n***\n\n**About Nathan Marz**\nNathan lives on O\u2018ahu and runs Red Planet Labs, a distributed company building Rama, a developer platform for scalable backends with far less code and infrastructure.\nHe created several influential open-source projects, most notably Apache Storm, one of the first systems to enable reliable large-scale real-time data processing. Nathan previously worked at Twitter, where he helped start core infrastructure teams, and he is the author of *Big Data: Principles and Best Practices of Scalable Realtime Data Systems*.\nOutside of work, Nathan enjoys hiking, stand-up comedy, and old movies.\nGitHub: [https://github.com/nathanmarz](https://github.com/nathanmarz)\n\n***\n\n\ud83c\udf3a This event is sponsored by Hawaii Coworking (https://hawaiicoworking.co) , Darshaun Nadeau (https://flowingblue.com) and Kevin Riggen (https://oahu.ai) .",
         "startDate": "2026-02-20T18:30:00-10:00",
         "endTime": "2026-02-20T20:30:00-10:00",
         "url": "https://www.meetup.com/oahuai/events/312528087/",
@@ -211,7 +211,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Open_Source_Legends_on_data-driven_A.I._agents_and_LLM-assisted_PCBs.webp",
-        "scrapeTime": "2026-01-18 00:38:53.555936",
+        "scrapeTime": "2026-01-19 00:37:57.683182",
         "tags": [
             "Economic Development"
         ]
@@ -228,7 +228,7 @@
             "address": "Unknown Address"
         },
         "imageUrl": "/event_images/SAFe_for_Scrum_Master_6.0_Certification__SSM__-_Scaled_Agile.webp",
-        "scrapeTime": "2026-01-18 00:38:53.556665",
+        "scrapeTime": "2026-01-19 00:37:57.683914",
         "tags": [
             "Business"
         ]
@@ -247,7 +247,7 @@
         },
         "imageUrl": "/event_images/2nd_Annual_National_Civics_Bee_Hawaii_State_Finals.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-18 00:38:53.551345",
+        "scrapeTime": "2026-01-19 00:37:57.678356",
         "tags": [
             "Business"
         ]
