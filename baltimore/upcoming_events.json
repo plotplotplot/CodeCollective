@@ -1,52 +1,6 @@
 [
     {
-        "id": "311912073",
-        "name": "Nvidia Nsight GPU Profiling +KV Cache Efficiency +Context \"Platform\" Engineering",
-        "description": "**Zoom link**: [https://us02web.zoom.us/j/82308186562](https://us02web.zoom.us/j/82308186562)\n\n**Talk #0: Introductions and Meetup Updates**\nby Chris Fregly and Antje Barth\n*Best Selling O'Reilly book, \"AI Systems Performance Engineering\" is now available (eBook and physical!), 1000 pages, 200 figures, 700 examples!!!*\n\nAmazon: https://www.amazon.com/Systems-Performance-Engineering-Optimizing-Algorithms/dp/B0F47689K8/\n\nGitHub: https://github.com/cfregly/ai-performance-engineering\n\n**Talk #1: Diving deep into NVIDIA Nsight Systems GPU profiling tools for PyTorch LLM and computer vision workloads by Chaim Rand**\nIn this talk, Chaim Rand (repeat speaker on this webinar series!) revisits the NVIDIA Nsight profiling tools to augment the PyTorch Profiler for LLM and vision workloads. This talk is based on Chaim's recent blog posts on Optimizing Data Transfer in AI/ML Workloads [part 1](https://chaimrand.medium.com/optimizing-data-transfer-in-ai-ml-workloads-60df62fe1278) and [part 2](https://chaimrand.medium.com/optimizing-data-transfer-in-batched-ai-ml-inference-workloads-a9f4165208b8).\n\n**Talk #2: KV Cache Efficiency + Context \"Platform\" Engineering by Valentin Bercovici and Callan Fox (WekaIO)**\nThis presentation will include demos and code with a focus on improving KV-cache hit rates as well as introducing a methodology called Context \"Platform\" Engineering to design and optimize AI infrastructure for Agent Swarm Context at scale. Context Platform Engineering was recantly featured in the CES2026 keynote by Jensen Huang, CEO of NVIDIA. This presentation is related to a recent AIE CODE Summit [talk](https://www.startuphub.ai/ai-news/ai-video/2025/maximizing-kv-cache-hit-rates-wekas-open-source-context-platform-engineering/) in December 2025.\n\n**Zoom link**: [https://us02web.zoom.us/j/82308186562](https://us02web.zoom.us/j/82308186562)\n\n**Related Links**\nGithub Repo: [http://github.com/cfregly/ai-performance-engineering/](http://github.com/cfregly/ai-performance-engineering/)\nO'Reilly Book: [https://www.amazon.com/Systems-Performance-Engineering-Optimizing-Algorithms/dp/B0F47689K8/](https://www.amazon.com/Systems-Performance-Engineering-Optimizing-Algorithms/dp/B0F47689K8/)\nYouTube: [https://www.youtube.com/@AIPerformanceEngineering](https://www.youtube.com/@AIPerformanceEngineering)\nGenerative AI Free Course on DeepLearning.ai: [https://bit.ly/gllm](https://bit.ly/gllm)",
-        "startDate": "2026-01-19T12:00:00-05:00",
-        "endTime": "2026-01-19T13:00:00-05:00",
-        "url": "https://www.meetup.com/ai-performance-engineering-washington-dc/events/311912073/",
-        "status": "ACTIVE",
-        "source": null,
-        "location": {
-            "name": "Online event",
-            "address": "",
-            "city": "",
-            "state": "",
-            "country": ""
-        },
-        "imageUrl": "/event_images/Nvidia_Nsight_GPU_Profiling_+KV_Cache_Efficiency_+Context_\"Platform\"_Engineering.webp",
-        "scrapeTime": "2026-01-19 00:37:50.533907",
-        "tags": [
-            "Economic Development"
-        ]
-    },
-    {
-        "id": "4b0437f0ea111f8a",
-        "name": "Meditation",
-        "startDate": "2026-01-19T17:15:00+00:00",
-        "endTime": "2026-01-19T17:45:00.000Z",
-        "description": "",
-        "url": "https://lu.ma/s0uejsno",
-        "status": "ACTIVE",
-        "location": {
-            "name": "4 N Martin Luther King Jr Blvd",
-            "address": "4 N Martin Luther King Jr Blvd, Baltimore, MD 21201, USA",
-            "city": "Baltimore",
-            "state": "Maryland",
-            "country": "United States",
-            "latitude": 39.2892717,
-            "longitude": -76.6283342
-        },
-        "imageUrl": "/event_images/Meditation.webp",
-        "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:44.318987",
-        "tags": [
-            "Business"
-        ]
-    },
-    {
-        "id": "2aa060e8d81548e2a43cd489ac241912",
+        "id": "64cf32d860e54a53aba989edccde63f1",
         "name": "Advance Your Research, Inventions and Technologies with TEDCO\u2019s Innovation Engine",
         "startDate": "2026-01-20T12:00:00-05:00",
         "endDate": "",
@@ -61,7 +15,7 @@
         },
         "imageUrl": "/event_images/Advance_Your_Research,_Inventions_and_Technologies_with_TEDCO\u2019s_Innovation_Engine.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -83,7 +37,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Profs_&_Pints_Baltimore__Emotional_Literacy.webp",
-        "scrapeTime": "2026-01-19 00:37:50.534361",
+        "scrapeTime": "2026-01-20 00:34:37.569134",
         "tags": [
             "Economic Development"
         ]
@@ -101,10 +55,10 @@
         },
         "imageUrl": "/event_images/Baltimore_Climate_Tech_Meetup__Jan_2026_.webp",
         "source": "https://lu.ma/Bmore_Climate",
-        "scrapeTime": "2026-01-19 00:37:50.542006"
+        "scrapeTime": "2026-01-20 00:34:37.581892"
     },
     {
-        "id": "42d5c1c0db144b99a7128d45256e5248",
+        "id": "27d3f8a96ca84842822791651136f8f8",
         "name": "Transportation Think Tank \u2013 Shannetta Griffin, Executive Director and CEO \u2013 BWI Marshall Airport",
         "startDate": "2026-01-21T08:00:00-05:00",
         "endDate": "",
@@ -119,13 +73,13 @@
         },
         "imageUrl": "/event_images/Transportation_Think_Tank_\u2013_Shannetta_Griffin,_Executive_Director_and_CEO_\u2013_BWI_Marshall_Airport.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "id": "fcc742a9391f4d4e9030a8e0b98f08c9",
+        "id": "f8cb6853913940978231cf136d5633c7",
         "name": "TEDCO's Venture Development Open Forum",
         "startDate": "2026-01-21T12:00:00-05:00",
         "endDate": "",
@@ -140,7 +94,7 @@
         },
         "imageUrl": "/event_images/TEDCO_s_Venture_Development_Open_Forum.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -164,7 +118,7 @@
         },
         "imageUrl": "/event_images/Annapolis_Crypto_and_Policy_Happy_Hour.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:43.701679",
+        "scrapeTime": "2026-01-20 00:33:17.274651",
         "tags": [
             "Business"
         ]
@@ -188,7 +142,7 @@
         },
         "imageUrl": "/event_images/Yoga.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:44.319020",
+        "scrapeTime": "2026-01-20 00:33:17.627482",
         "tags": [
             "Business"
         ]
@@ -205,7 +159,7 @@
             "address": "6751 Columbia Gateway Drive, Columbia, MD, 21046"
         },
         "imageUrl": "/event_images/BRITE___Pitch_&_Present_Series.webp",
-        "scrapeTime": "2026-01-19 00:37:50.536371",
+        "scrapeTime": "2026-01-20 00:34:37.571044",
         "tags": [
             "Business"
         ]
@@ -227,7 +181,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Profs_&_Pints_Baltimore__Nightmares_and_Creativity.webp",
-        "scrapeTime": "2026-01-19 00:37:50.534461",
+        "scrapeTime": "2026-01-20 00:34:37.569233",
         "tags": [
             "Economic Development"
         ]
@@ -247,13 +201,13 @@
             "country": "US"
         },
         "imageUrl": "/event_images/ULI_Baltimore_Emerging_Trends_in_Real_Estate_2026.webp",
-        "scrapeTime": "2026-01-19 00:37:50.546468",
+        "scrapeTime": "2026-01-20 00:34:37.586372",
         "tags": [
             "Business"
         ]
     },
     {
-        "id": "6edfffa6b47344eb89a16b88cd55c599",
+        "id": "cb3e56c288e6478e8d1f0768cbc4201b",
         "name": "Cyber Roadshow Breakfast",
         "startDate": "2026-01-22T08:30:00-05:00",
         "endDate": "",
@@ -268,13 +222,13 @@
         },
         "imageUrl": "/event_images/Cyber_Roadshow_Breakfast.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "id": "67a14cc4c40f4f53907674defb35b9dc",
+        "id": "7adf068d82ea4f4b8f1cadceba554a9b",
         "name": "TEDCO\u2019s BRIDGE Program Open Forum",
         "startDate": "2026-01-22T10:00:00-05:00",
         "endDate": "",
@@ -289,7 +243,7 @@
         },
         "imageUrl": "/event_images/TEDCO\u2019s_BRIDGE_Program_Open_Forum.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -306,13 +260,13 @@
             "address": "Unknown Address"
         },
         "imageUrl": "/event_images/Business_Disaster_Workshop__Cyber_Safety_and_Threat_Prevention.webp",
-        "scrapeTime": "2026-01-19 00:37:50.536470",
+        "scrapeTime": "2026-01-20 00:34:37.571142",
         "tags": [
             "Business"
         ]
     },
     {
-        "id": "8b8d46272fdc4db581a074cdd76c81ea",
+        "id": "eb2eb6528a874a6aa8a11b0daa5433e9",
         "name": "Building Congress & Exchange: Young Professionals Panel Discussion",
         "startDate": "2026-01-22T16:00:00-05:00",
         "endDate": "",
@@ -327,13 +281,13 @@
         },
         "imageUrl": "/event_images/Building_Congress_&_Exchange__Young_Professionals_Panel_Discussion.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "id": "f17b2de23ed24cf68ed00911f13aea1f",
+        "id": "516c662d985c412ead0fee379b89a610",
         "name": "2026 Mountain Maryland PACE",
         "startDate": "2026-01-22T17:00:00-05:00",
         "endDate": "",
@@ -348,7 +302,7 @@
         },
         "imageUrl": "/event_images/2026_Mountain_Maryland_PACE.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -372,7 +326,7 @@
         },
         "imageUrl": "/event_images/BlockChain_and_Brews.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:43.229327",
+        "scrapeTime": "2026-01-20 00:33:16.670500",
         "tags": [
             "Business"
         ]
@@ -393,7 +347,7 @@
         },
         "imageUrl": "/event_images/Google_DeepMind__AI_Research_Foundations_\u2014_A_5-Week_Winter_Study_Group.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:48",
+        "scrapeTime": "2026-01-20 00:33:21",
         "tags": [
             "Code Collective & Partners"
         ]
@@ -415,7 +369,7 @@
             "country": ""
         },
         "imageUrl": null,
-        "scrapeTime": "2026-01-19 00:37:50.533137",
+        "scrapeTime": "2026-01-20 00:34:37.567903",
         "tags": [
             "Economic Development"
         ]
@@ -437,7 +391,7 @@
             "country": ""
         },
         "imageUrl": null,
-        "scrapeTime": "2026-01-19 00:37:50.533448",
+        "scrapeTime": "2026-01-20 00:34:37.568213",
         "tags": [
             "Economic Development"
         ]
@@ -456,7 +410,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.593244",
+        "scrapeTime": "2026-01-20 00:34:37.633032",
         "tags": [
             "Makerspace"
         ]
@@ -478,7 +432,7 @@
             "country": ""
         },
         "imageUrl": "/event_images/W51__Closing_Strong._Re-Imagining_Boldly..webp",
-        "scrapeTime": "2026-01-19 00:37:50.534779",
+        "scrapeTime": "2026-01-20 00:34:37.569528",
         "tags": [
             "Economic Development"
         ]
@@ -495,9 +449,24 @@
             "address": "101 N Haven St, Baltimore, MD, 21224"
         },
         "imageUrl": "/event_images/iGEM_Information_Session-_in_person_or_virtual_session.webp",
-        "scrapeTime": "2026-01-19 00:37:50.534980",
+        "scrapeTime": "2026-01-20 00:34:37.569748",
         "tags": [
             "Business"
+        ]
+    },
+    {
+        "id": "312956279",
+        "name": "Mingle Forward at K9 & Coffee",
+        "description": "We will start holding and scheduling Mingles more regularly going forward. I'm starting to streamline my endeavors and will be putting more effort into getting regular meetups going here.\n\nI'll want to introduce possible topics to contemplate like off-term redistricting and election voting reform.\n\nK9 & Coffee is a great little bar with great Detroit Style pizza. Let's get together and mingle!",
+        "startDate": "2026-01-25T13:00:00-05:00",
+        "endTime": "2026-01-25T15:00:00-05:00",
+        "url": "https://www.meetup.com/columbia-baltimore-mingle-meetup-group/events/312956279/",
+        "status": "ACTIVE",
+        "source": null,
+        "imageUrl": "/event_images/Mingle_Forward_at_K9_&_Coffee.webp",
+        "scrapeTime": "2026-01-20 00:34:37.568634",
+        "tags": [
+            "Economic Development"
         ]
     },
     {
@@ -519,7 +488,7 @@
         },
         "imageUrl": "/event_images/Meditation.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:44.319030",
+        "scrapeTime": "2026-01-20 00:33:17.627506",
         "tags": [
             "Business"
         ]
@@ -541,7 +510,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Profs_&_Pints_Baltimore__Japanese_Ghost_Stories.webp",
-        "scrapeTime": "2026-01-19 00:37:50.534561",
+        "scrapeTime": "2026-01-20 00:34:37.569331",
         "tags": [
             "Economic Development"
         ]
@@ -560,13 +529,13 @@
         },
         "imageUrl": "/event_images/Global_Game_Jam_2026.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:50.568420",
+        "scrapeTime": "2026-01-20 00:34:37.608414",
         "tags": [
             "Makerspace"
         ]
     },
     {
-        "id": "32a94c27e03345f8813f120a8d40f1cf",
+        "id": "bcde1e7294854cfb943c0d6d81e9162c",
         "name": "33rd Annual Martin Luther King, Jr. Convocation \u2013 Protecting Public Knowledge Spaces in Conversation with Carla Hayden, Ph.D.",
         "startDate": "2026-01-26T18:30:00-05:00",
         "endDate": "",
@@ -581,13 +550,13 @@
         },
         "imageUrl": "/event_images/33rd_Annual_Martin_Luther_King,_Jr._Convocation_\u2013_Protecting_Public_Knowledge_Spaces_in_Conversation_with_Carla_Hayden,_Ph.D..webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "id": "9f567976b3bb4d54a349a6eceed1d375",
+        "id": "0eb95ec3e7cf4c14aafc339b453ddaa4",
         "name": "2026 Vendor Procurement Fair hosted by Metro Small Business Program Office",
         "startDate": "2026-01-27T08:00:00-05:00",
         "endDate": "",
@@ -602,7 +571,7 @@
         },
         "imageUrl": "/event_images/2026_Vendor_Procurement_Fair_hosted_by_Metro_Small_Business_Program_Office.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -621,13 +590,13 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:12.265015",
+        "scrapeTime": "2026-01-20 00:33:52.102500",
         "tags": [
             "Business"
         ]
     },
     {
-        "id": "29411c5e1c8d4cd3ba66ed9d458d0ac4",
+        "id": "c5bf6fe4bc244f9ba8e8495c065a9e95",
         "name": "Maryland Tech Council: Introduction to Biopharma Manufacturing 1/27",
         "startDate": "2026-01-27T09:00:00-05:00",
         "endDate": "",
@@ -642,7 +611,7 @@
         },
         "imageUrl": "/event_images/Maryland_Tech_Council__Introduction_to_Biopharma_Manufacturing_1_27.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -659,7 +628,7 @@
             "address": "6751 Columbia Gateway Drive, Columbia, MD, 21046"
         },
         "imageUrl": "/event_images/Cyber_Howard_Accelerator_Cohort_II_Graduation_and_Demo_Day.webp",
-        "scrapeTime": "2026-01-19 00:37:50.536570",
+        "scrapeTime": "2026-01-20 00:34:37.571241",
         "tags": [
             "Business"
         ]
@@ -683,13 +652,13 @@
         },
         "imageUrl": "/event_images/Craft_&_Sip_Valentine_s_Day.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:44.319040",
+        "scrapeTime": "2026-01-20 00:33:17.627519",
         "tags": [
             "Business"
         ]
     },
     {
-        "id": "2efc7ff66a0b4a078af5b1f95d6f4ba2",
+        "id": "82a4a4648b5d4da3bffc5a6ecfc6a678",
         "name": "Howard County Chamber\u2019s Networking Mixer",
         "startDate": "2026-01-27T17:00:00-05:00",
         "endDate": "",
@@ -704,13 +673,13 @@
         },
         "imageUrl": "/event_images/Howard_County_Chamber\u2019s_Networking_Mixer.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "id": "263ba4745fea412589538f2b987b453a",
+        "id": "036813f27d2b48feb53dc12e2f2d2cc3",
         "name": "Anne Arundel Economic Development Corporation's (AAEDC)2026 Arundel Biz Expo",
         "startDate": "2026-01-28T08:30:00-05:00",
         "endDate": "",
@@ -725,7 +694,7 @@
         },
         "imageUrl": "/event_images/Anne_Arundel_Economic_Development_Corporation_s__AAEDC_2026_Arundel_Biz_Expo.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -742,13 +711,13 @@
             "address": "2604 Sisson Street, Baltimore, MD, 21211"
         },
         "imageUrl": "/event_images/The_Empowered_Alliance_Presents__Authority,_Clarity_&_Confidence.webp",
-        "scrapeTime": "2026-01-19 00:37:50.537583",
+        "scrapeTime": "2026-01-20 00:34:37.572247",
         "tags": [
             "Business"
         ]
     },
     {
-        "id": "d6f3f151b51d405084269ac2b75203d0",
+        "id": "fe228f408bde47fdbc8fe1ec7816e431",
         "name": "TEDCO's Investment Open Forum",
         "startDate": "2026-01-28T10:00:00-05:00",
         "endDate": "",
@@ -763,7 +732,7 @@
         },
         "imageUrl": "/event_images/TEDCO_s_Investment_Open_Forum.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -783,7 +752,7 @@
             "country": "US"
         },
         "imageUrl": "/event_images/AI_Policy_in_Practice__Shaping_Baltimore\u2019s_Innovation_Future.webp",
-        "scrapeTime": "2026-01-19 00:37:50.546571",
+        "scrapeTime": "2026-01-20 00:34:37.586473",
         "tags": [
             "Business"
         ]
@@ -807,7 +776,7 @@
         },
         "imageUrl": "/event_images/Yoga.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:44.319048",
+        "scrapeTime": "2026-01-20 00:33:17.627530",
         "tags": [
             "Business"
         ]
@@ -829,7 +798,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Profs_&_Pints_Baltimore__Satanic_Panics.webp",
-        "scrapeTime": "2026-01-19 00:37:50.534677",
+        "scrapeTime": "2026-01-20 00:34:37.569429",
         "tags": [
             "Economic Development"
         ]
@@ -850,7 +819,7 @@
         },
         "imageUrl": "/event_images/Sustainability_of_AI__Understanding_the_Energy,_Water,_and_Infrastructure_Impact.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:48",
+        "scrapeTime": "2026-01-20 00:33:21",
         "tags": [
             "Code Collective & Partners"
         ]
@@ -870,13 +839,13 @@
             "country": "US"
         },
         "imageUrl": "/event_images/Meet_the_State_2026.webp",
-        "scrapeTime": "2026-01-19 00:37:50.546689",
+        "scrapeTime": "2026-01-20 00:34:37.586591",
         "tags": [
             "Business"
         ]
     },
     {
-        "id": "a9f0c731ae4b46f68aa2f4b6be9305a6",
+        "id": "e94a093f41bf44b2a5091bcc96915bad",
         "name": "2026 Meet the State",
         "startDate": "2026-01-29T08:00:00-05:00",
         "endDate": "",
@@ -891,13 +860,13 @@
         },
         "imageUrl": "/event_images/2026_Meet_the_State.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "id": "66c3257ca51045a49b0cb0b02036abeb",
+        "id": "5ae8584f85414baf8b5232212e97f677",
         "name": "2026 Baltimore BizCon hosted by Baltimore City Chamber of Commerce in Partnership with Truist and Baltimore Community Lending",
         "startDate": "2026-01-29T09:00:00-05:00",
         "endDate": "",
@@ -912,7 +881,7 @@
         },
         "imageUrl": "/event_images/2026_Baltimore_BizCon_hosted_by_Baltimore_City_Chamber_of_Commerce_in_Partnership_with_Truist_and_Baltimore_Community_Lending.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -929,7 +898,7 @@
             "address": "Unknown Address"
         },
         "imageUrl": "/event_images/Separating_Business_from_Personal_Finances.webp",
-        "scrapeTime": "2026-01-19 00:37:50.536688",
+        "scrapeTime": "2026-01-20 00:34:37.571340",
         "tags": [
             "Business"
         ]
@@ -953,7 +922,7 @@
         },
         "imageUrl": "/event_images/Stem_&_Vine_Presents___The_Chemistry_of_Comfort.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:44.319056",
+        "scrapeTime": "2026-01-20 00:33:17.627539",
         "tags": [
             "Business"
         ]
@@ -974,7 +943,7 @@
         },
         "imageUrl": "/event_images/Google_DeepMind__AI_Research_Foundations_\u2014_A_5-Week_Winter_Study_Group.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:48",
+        "scrapeTime": "2026-01-20 00:33:21",
         "tags": [
             "Code Collective & Partners"
         ]
@@ -991,7 +960,7 @@
             "address": "12820 Long Green Pike, Hydes, MD, 21082"
         },
         "imageUrl": "/event_images/EmpowHER_Worthy_Book_Launch_Party.webp",
-        "scrapeTime": "2026-01-19 00:37:50.537699",
+        "scrapeTime": "2026-01-20 00:34:37.572345",
         "tags": [
             "Business"
         ]
@@ -1008,7 +977,7 @@
             "address": "101 N Haven St, Baltimore, MD, 21224"
         },
         "imageUrl": "/event_images/iGEM_Information_Session-_virtual_session.webp",
-        "scrapeTime": "2026-01-19 00:37:50.535080",
+        "scrapeTime": "2026-01-20 00:34:37.569846",
         "tags": [
             "Business"
         ]
@@ -1027,7 +996,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.594568",
+        "scrapeTime": "2026-01-20 00:34:37.634360",
         "tags": [
             "Makerspace"
         ]
@@ -1044,7 +1013,7 @@
             "address": "3011 Montebello Terrace, Baltimore, MD, 21214"
         },
         "imageUrl": "/event_images/Autism__&_ADHD_Unlocked__A_Parent_Empowerment_Workshop.webp",
-        "scrapeTime": "2026-01-19 00:37:50.536154",
+        "scrapeTime": "2026-01-20 00:34:37.570847",
         "tags": [
             "Business"
         ]
@@ -1066,7 +1035,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Baltimore_Code_&_Coffee_at_Digital_Harbor_Foundation.webp",
-        "scrapeTime": "2026-01-19 00:37:50.533243",
+        "scrapeTime": "2026-01-20 00:34:37.568009",
         "tags": [
             "Economic Development"
         ]
@@ -1088,7 +1057,7 @@
             "country": ""
         },
         "imageUrl": "/event_images/W52__Securing_the_Future__From_Awareness_to_Action__2026_.webp",
-        "scrapeTime": "2026-01-19 00:37:50.534878",
+        "scrapeTime": "2026-01-20 00:34:37.569647",
         "tags": [
             "Economic Development"
         ]
@@ -1105,7 +1074,7 @@
             "address": "101 N Haven St, Baltimore, MD, 21224"
         },
         "imageUrl": "/event_images/For_ages__7-12__Make_better_plastic_with_algae_string!.webp",
-        "scrapeTime": "2026-01-19 00:37:50.535178",
+        "scrapeTime": "2026-01-20 00:34:37.569945",
         "tags": [
             "Business"
         ]
@@ -1129,7 +1098,7 @@
         },
         "imageUrl": "/event_images/Meditation.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:44.319063",
+        "scrapeTime": "2026-01-20 00:33:17.627548",
         "tags": [
             "Business"
         ]
@@ -1148,7 +1117,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:12.265015",
+        "scrapeTime": "2026-01-20 00:33:52.102500",
         "tags": [
             "Business"
         ]
@@ -1167,7 +1136,7 @@
         },
         "imageUrl": "/event_images/Coalition_Coffee_.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:50.568521",
+        "scrapeTime": "2026-01-20 00:34:37.608514",
         "tags": [
             "Economic Development"
         ]
@@ -1191,7 +1160,7 @@
         },
         "imageUrl": "/event_images/MIX__Sustaining_Inclusive_Growth_Through_Shifting_Conditions.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:44.319070",
+        "scrapeTime": "2026-01-20 00:33:17.627592",
         "tags": [
             "Business"
         ]
@@ -1208,7 +1177,7 @@
             "address": "2119 York Road, Timonium, MD, 21093"
         },
         "imageUrl": "/event_images/Next_Chapter__Growth_Unlocked_\u2013_Nguyen_Roche_Sutton_Expansion_Celebration.webp",
-        "scrapeTime": "2026-01-19 00:37:50.537801",
+        "scrapeTime": "2026-01-20 00:34:37.572444",
         "tags": [
             "Business"
         ]
@@ -1227,7 +1196,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:12.265015",
+        "scrapeTime": "2026-01-20 00:33:52.102500",
         "tags": [
             "Business"
         ]
@@ -1246,7 +1215,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:12.265015",
+        "scrapeTime": "2026-01-20 00:33:52.102500",
         "tags": [
             "Business"
         ]
@@ -1266,13 +1235,13 @@
             "country": "US"
         },
         "imageUrl": "/event_images/GBC_Legislative_Priorities_Briefing.webp",
-        "scrapeTime": "2026-01-19 00:37:50.546792",
+        "scrapeTime": "2026-01-20 00:34:37.586696",
         "tags": [
             "Business"
         ]
     },
     {
-        "id": "761f3cb6d3bc409bad3dcf5594f5aadb",
+        "id": "f4fb910a4ee24c708f09f886c1cc79f7",
         "name": "FLC Member Connect: FedTech",
         "startDate": "2026-02-04T14:00:00-05:00",
         "endDate": "",
@@ -1287,7 +1256,7 @@
         },
         "imageUrl": "/event_images/FLC_Member_Connect__FedTech.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -1311,7 +1280,7 @@
         },
         "imageUrl": "/event_images/Yoga.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:44.319077",
+        "scrapeTime": "2026-01-20 00:33:17.627608",
         "tags": [
             "Business"
         ]
@@ -1328,7 +1297,7 @@
             "address": "1700 West 41st Street, Baltimore, MD, 21211"
         },
         "imageUrl": "/event_images/Feb_2026_RoboCEO_to_benefit_LET_S_GO.webp",
-        "scrapeTime": "2026-01-19 00:37:50.536271",
+        "scrapeTime": "2026-01-20 00:34:37.570945",
         "tags": [
             "Business"
         ]
@@ -1366,7 +1335,7 @@
         },
         "imageUrl": "/event_images/Building_Trustworthy_AI_for_Real-World_Systems.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:48",
+        "scrapeTime": "2026-01-20 00:33:21",
         "tags": [
             "Code Collective & Partners"
         ]
@@ -1390,7 +1359,7 @@
         },
         "imageUrl": "/event_images/Winter_Blues_Fest.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:44.319083",
+        "scrapeTime": "2026-01-20 00:33:17.627617",
         "tags": [
             "Business"
         ]
@@ -1408,7 +1377,7 @@
         },
         "imageUrl": "/event_images/Vicinity_Energy_Ideation_Event.webp",
         "source": "https://luma.com/MEIA",
-        "scrapeTime": "2026-01-19 00:37:50.545532"
+        "scrapeTime": "2026-01-20 00:34:37.585435"
     },
     {
         "name": "Monthly Lunch & Learn + Coworking Day with Monument Women\u2019s Creative Alliance",
@@ -1422,13 +1391,13 @@
         },
         "imageUrl": "/event_images/Monthly_Lunch_&_Learn_+_Coworking_Day_with_Monument_Women\u2019s_Creative_Alliance.webp",
         "status": "ACTIVE",
-        "scrapeTime": "2026-01-19 00:37:50.569143",
+        "scrapeTime": "2026-01-20 00:34:37.609126",
         "tags": [
             "Business"
         ]
     },
     {
-        "id": "91ba923ee54b4ae0a21ec6b2d0430fa7",
+        "id": "bc83094b36ec4bd68d61e5d867d706f7",
         "name": "HBCUniverse Summit 2026",
         "startDate": "2026-02-07T09:00:00-05:00",
         "endDate": "",
@@ -1443,7 +1412,7 @@
         },
         "imageUrl": "/event_images/HBCUniverse_Summit_2026.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -1460,7 +1429,7 @@
             "address": "10 East North Avenue, Baltimore, MD, 21202"
         },
         "imageUrl": "/event_images/Opening_Reception_for_\"Interior_Archives__Black_Abstraction\".webp",
-        "scrapeTime": "2026-01-19 00:37:50.535580",
+        "scrapeTime": "2026-01-20 00:34:37.570338",
         "tags": [
             "Business"
         ]
@@ -1477,32 +1446,37 @@
             "address": "10 East North Avenue, Baltimore, MD, 21202"
         },
         "imageUrl": "/event_images/Benito_Bowl_Watch_Party_&_Salsa_Social.webp",
-        "scrapeTime": "2026-01-19 00:37:50.535697",
+        "scrapeTime": "2026-01-20 00:34:37.570435",
         "tags": [
             "Business"
         ]
     },
     {
-        "id": "1872aa2b3107cdec",
-        "name": "UAS Project Night",
-        "startDate": "2026-02-09T19:00:00-05:00",
-        "endTime": "2026-02-09T22:00:00-05:00",
-        "description": "<br>Monday evenings, we will be open for Project Night - a night to work on, collaborate on, or brainstorm on whatever projects you're currently working on or interested in.<br>Don't have a project? Come see what others are working on and get involved or get ideas. If you have an concept for a group project, bring your ideas and seek out others to join you.<br><br>Project Night is a great opportunity to make progress on your projects as a regularly scheduled event. Anyone is welcome to work on projects any time the space is open, but a dedicated night--just for this--is really fantastic.<br><br>Please check out our COVID restrictions at:&nbsp;<a href=\"https://wiki.unallocatedspace.org/wiki/index.php?title=COVID-19_Reopening_Plan\" id=\"ow605\" __is_owner=\"true\">https://wiki.unallocatedspace.org/wiki/index.php?title=COVID-19_Reopening_Plan</a><br><br>Key: Bowie<br>Free and open to the public",
-        "url": "https://www.unallocatedspace.org/events/",
+        "id": "c4b5046e46c11d48",
+        "name": "Meditation",
+        "startDate": "2026-02-09T17:15:00+00:00",
+        "endTime": "2026-02-09T17:45:00.000Z",
+        "description": "",
+        "url": "https://lu.ma/w00wnd68",
         "status": "ACTIVE",
         "location": {
-            "name": "",
-            "address": ""
+            "name": "4 N Martin Luther King Jr Blvd",
+            "address": "4 N Martin Luther King Jr Blvd, Baltimore, MD 21201, USA",
+            "city": "Baltimore",
+            "state": "Maryland",
+            "country": "United States",
+            "latitude": 39.2892717,
+            "longitude": -76.6283342
         },
-        "imageUrl": "/event_images/UAS_Project_Night.webp",
-        "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.596828",
+        "imageUrl": "/event_images/Meditation.webp",
+        "recurring": false,
+        "scrapeTime": "2026-01-20 00:33:17.627626",
         "tags": [
-            "Makerspace"
+            "Business"
         ]
     },
     {
-        "id": "5c612c5ecfa74241846d9562cf34df2e",
+        "id": "0241550ac9154ce7bea5be6e644ad4b1",
         "name": "TEDCO's DefTech Monthly Office Hours",
         "startDate": "2026-02-10T10:00:00-05:00",
         "endDate": "",
@@ -1517,7 +1491,7 @@
         },
         "imageUrl": "/event_images/TEDCO_s_DefTech_Monthly_Office_Hours.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -1535,7 +1509,7 @@
         },
         "imageUrl": "/event_images/MIPS_February_Webinar.webp",
         "source": "https://lu.ma/mtechumd",
-        "scrapeTime": "2026-01-19 00:37:50.545218"
+        "scrapeTime": "2026-01-20 00:34:37.585125"
     },
     {
         "id": "2a46f095c933e0a703ef",
@@ -1551,7 +1525,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:12.265015",
+        "scrapeTime": "2026-01-20 00:33:52.102500",
         "tags": [
             "Business"
         ]
@@ -1573,13 +1547,13 @@
             "country": ""
         },
         "imageUrl": null,
-        "scrapeTime": "2026-01-19 00:37:50.533346",
+        "scrapeTime": "2026-01-20 00:34:37.568111",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "id": "8d015a06f6f44f178e9ff70b1cfb2c22",
+        "id": "89cb9d1847324c06810a868b52d4aad4",
         "name": "Howard County Chamber Lunchtime Networking Mixer",
         "startDate": "2026-02-11T11:30:00-05:00",
         "endDate": "",
@@ -1594,7 +1568,7 @@
         },
         "imageUrl": "/event_images/Howard_County_Chamber_Lunchtime_Networking_Mixer.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -1628,13 +1602,13 @@
             "address": "10 East North Avenue, Baltimore, MD, 21202"
         },
         "imageUrl": "/event_images/The_Network_Breakfast__Community_as_Power.webp",
-        "scrapeTime": "2026-01-19 00:37:50.535800",
+        "scrapeTime": "2026-01-20 00:34:37.570533",
         "tags": [
             "Business"
         ]
     },
     {
-        "id": "077a688307fe49c3b36a46bc22d0c9d3",
+        "id": "ab7d74c2fb1d4906827fc7a2fc0992ad",
         "name": "February Signature BWI Breakfast Series \u2013 Harry Coker, Jr.",
         "startDate": "2026-02-12T07:30:00-05:00",
         "endDate": "",
@@ -1649,13 +1623,13 @@
         },
         "imageUrl": "/event_images/February_Signature_BWI_Breakfast_Series_\u2013_Harry_Coker,_Jr..webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "id": "0703d70cceed4a1a800b271fa222a335",
+        "id": "26e34229bb6842e3809f5ec49c3fefd0",
         "name": "BEYA STEM DTX\u2122 Conference",
         "startDate": "2026-02-12T08:00:00-05:00",
         "endDate": "",
@@ -1670,13 +1644,13 @@
         },
         "imageUrl": "/event_images/BEYA_STEM_DTX\u2122_Conference.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "id": "22f5c2651ee34dbfbc26c9c3f9b2ede0",
+        "id": "c07f228f37f64531b41cab1ddd9cc516",
         "name": "BioHub Maryland, powered by MTC and Women in Bio Galentine\u2019s Happy Hour",
         "startDate": "2026-02-12T16:30:00-05:00",
         "endDate": "",
@@ -1691,7 +1665,7 @@
         },
         "imageUrl": "/event_images/BioHub_Maryland,_powered_by_MTC_and_Women_in_Bio_Galentine\u2019s_Happy_Hour.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -1708,7 +1682,7 @@
             "address": "6751 Columbia Gateway Drive, Columbia, MD, 21046"
         },
         "imageUrl": "/event_images/BRITE__Marketing_101_Series.webp",
-        "scrapeTime": "2026-01-19 00:37:50.536791",
+        "scrapeTime": "2026-01-20 00:34:37.571439",
         "tags": [
             "Business"
         ]
@@ -1725,7 +1699,7 @@
             "address": "11019 McCormick Road, Cockeysville, MD, 21031"
         },
         "imageUrl": "/event_images/The_Empowered_Alliance_Presents__Beyond_Burnout.webp",
-        "scrapeTime": "2026-01-19 00:37:50.537900",
+        "scrapeTime": "2026-01-20 00:34:37.572543",
         "tags": [
             "Business"
         ]
@@ -1742,7 +1716,7 @@
             "address": "101 N Haven St, Baltimore, MD, 21224"
         },
         "imageUrl": "/event_images/For_ages_10-14__The_Science_of_Tempering_Chocolate.webp",
-        "scrapeTime": "2026-01-19 00:37:50.535278",
+        "scrapeTime": "2026-01-20 00:34:37.570043",
         "tags": [
             "Business"
         ]
@@ -1764,7 +1738,7 @@
             "country": ""
         },
         "imageUrl": "/event_images/GPU,_CUDA,_and_PyTorch_Performance_Optimizations.webp",
-        "scrapeTime": "2026-01-19 00:37:50.534045",
+        "scrapeTime": "2026-01-20 00:34:37.568735",
         "tags": [
             "Economic Development"
         ]
@@ -1783,13 +1757,13 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:12.265015",
+        "scrapeTime": "2026-01-20 00:33:52.102500",
         "tags": [
             "Business"
         ]
     },
     {
-        "id": "4c99d9c34ec9468aa1b4d4492d77c386",
+        "id": "24aec19a6ca745da8f187cbe0c76019c",
         "name": "Microelectronics Commons Annual Meeting",
         "startDate": "2026-02-18T08:00:00-05:00",
         "endDate": "",
@@ -1804,13 +1778,13 @@
         },
         "imageUrl": "/event_images/Microelectronics_Commons_Annual_Meeting.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "id": "539de588b6514ffcb3b607a82cfbac15",
+        "id": "e99d1e9f24f64d3dbc862cae47087bef",
         "name": "MEDA 2026 Economic Development Day",
         "startDate": "2026-02-18T09:00:00-05:00",
         "endDate": "",
@@ -1825,7 +1799,7 @@
         },
         "imageUrl": "/event_images/MEDA_2026_Economic_Development_Day.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -1848,7 +1822,7 @@
         ]
     },
     {
-        "id": "fd2989a756d44bbf9e0462d9b67a7318",
+        "id": "0eb78905a65046dcb111b9f1ed18168e",
         "name": "TEDCO's Venture Development Open Forum",
         "startDate": "2026-02-18T12:00:00-05:00",
         "endDate": "",
@@ -1863,7 +1837,7 @@
         },
         "imageUrl": "/event_images/TEDCO_s_Venture_Development_Open_Forum.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -1880,13 +1854,13 @@
             "address": "6751 Columbia Gateway Drive, Columbia, MD, 21046"
         },
         "imageUrl": "/event_images/Sales_Summit_2026__Driving_Revenue_in_A_New_Economy.webp",
-        "scrapeTime": "2026-01-19 00:37:50.536890",
+        "scrapeTime": "2026-01-20 00:34:37.571536",
         "tags": [
             "Business"
         ]
     },
     {
-        "id": "ef5c081455e74588bb6f144d43beb103",
+        "id": "707c97b58b2443f9bcbe5f9e387005c4",
         "name": "TEDCO\u2019s BRIDGE Program Open Forum",
         "startDate": "2026-02-19T10:00:00-05:00",
         "endDate": "",
@@ -1901,13 +1875,13 @@
         },
         "imageUrl": "/event_images/TEDCO\u2019s_BRIDGE_Program_Open_Forum.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "id": "00ea5cb7a37141d3afcabf906573146b",
+        "id": "e7bf62d6970b4b6d91c5a798c43db586",
         "name": "Maryland Student Venture Showcase",
         "startDate": "2026-02-19T17:00:00-05:00",
         "endDate": "",
@@ -1922,7 +1896,7 @@
         },
         "imageUrl": "/event_images/Maryland_Student_Venture_Showcase.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -1941,7 +1915,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.593446",
+        "scrapeTime": "2026-01-20 00:34:37.633230",
         "tags": [
             "Makerspace"
         ]
@@ -1964,7 +1938,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.582538",
+        "scrapeTime": "2026-01-20 00:34:37.622454",
         "tags": [
             "Economic Development"
         ]
@@ -1983,7 +1957,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.597028",
+        "scrapeTime": "2026-01-20 00:34:37.636729",
         "tags": [
             "Makerspace"
         ]
@@ -2002,13 +1976,13 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:12.265015",
+        "scrapeTime": "2026-01-20 00:33:52.102500",
         "tags": [
             "Business"
         ]
     },
     {
-        "id": "0201e35b5eb64744b6a6680edb878c09",
+        "id": "f77dfe3800a246de9ddbc7804e9a00dd",
         "name": "BWI Business Partnership Leading with Purpose: Young Professionals Group",
         "startDate": "2026-02-25T08:00:00-05:00",
         "endDate": "",
@@ -2023,13 +1997,13 @@
         },
         "imageUrl": "/event_images/BWI_Business_Partnership_Leading_with_Purpose__Young_Professionals_Group.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "id": "2e99ee5145774e18a6cc455db152b16b",
+        "id": "af1b732242034d22adf22c6ace9953be",
         "name": "TEDCO's Investment Open Forum",
         "startDate": "2026-02-25T10:00:00-05:00",
         "endDate": "",
@@ -2044,13 +2018,13 @@
         },
         "imageUrl": "/event_images/TEDCO_s_Investment_Open_Forum.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "id": "fa909ef60ea543a29dc633111ad94b36",
+        "id": "43a23076e00548dfab0bcf614cfb9d50",
         "name": "Maryland Business Outlook 2026",
         "startDate": "2026-02-26T08:00:00-05:00",
         "endDate": "",
@@ -2065,13 +2039,13 @@
         },
         "imageUrl": "/event_images/Maryland_Business_Outlook_2026.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "id": "41461c9b799949d9b48fac4515ede8d9",
+        "id": "bf2a03e82a714417b09b5e5436218870",
         "name": "Precision Agriculture Technology Conference 2026",
         "startDate": "2026-02-26T09:00:00-05:00",
         "endDate": "",
@@ -2086,7 +2060,7 @@
         },
         "imageUrl": "/event_images/Precision_Agriculture_Technology_Conference_2026.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:49",
+        "scrapeTime": "2026-01-20 00:33:25",
         "tags": [
             "Economic Development"
         ]
@@ -2103,7 +2077,7 @@
         },
         "imageUrl": "/event_images/Built_with_Charm.webp",
         "status": "ACTIVE",
-        "scrapeTime": "2026-01-19 00:37:50.569244",
+        "scrapeTime": "2026-01-20 00:34:37.609228",
         "tags": [
             "Economic Development"
         ]
@@ -2125,7 +2099,7 @@
             "country": ""
         },
         "imageUrl": null,
-        "scrapeTime": "2026-01-19 00:37:50.533551",
+        "scrapeTime": "2026-01-20 00:34:37.568314",
         "tags": [
             "Economic Development"
         ]
@@ -2144,7 +2118,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.594790",
+        "scrapeTime": "2026-01-20 00:34:37.634570",
         "tags": [
             "Makerspace"
         ]
@@ -2161,7 +2135,7 @@
             "address": "6751 Columbia Gateway Drive, Columbia, MD, 21046"
         },
         "imageUrl": "/event_images/The_Black_Business_Bazaar_Powered_by_HCEDA.webp",
-        "scrapeTime": "2026-01-19 00:37:50.536989",
+        "scrapeTime": "2026-01-20 00:34:37.571655",
         "tags": [
             "Business"
         ]
@@ -2180,7 +2154,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.597128",
+        "scrapeTime": "2026-01-20 00:34:37.636829",
         "tags": [
             "Makerspace"
         ]
@@ -2199,7 +2173,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:12.265015",
+        "scrapeTime": "2026-01-20 00:33:52.102500",
         "tags": [
             "Business"
         ]
@@ -2218,7 +2192,7 @@
         },
         "imageUrl": "/event_images/Coalition_Coffee_.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:50.568621",
+        "scrapeTime": "2026-01-20 00:34:37.608633",
         "tags": [
             "Economic Development"
         ]
@@ -2252,7 +2226,7 @@
             "address": "6751 Columbia Gateway Drive, Columbia, MD, 21046"
         },
         "imageUrl": "/event_images/BRITE__Sales_101_Series.webp",
-        "scrapeTime": "2026-01-19 00:37:50.537089",
+        "scrapeTime": "2026-01-20 00:34:37.571754",
         "tags": [
             "Business"
         ]
@@ -2273,7 +2247,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.588484",
+        "scrapeTime": "2026-01-20 00:34:37.628365",
         "tags": [
             "Makerspace"
         ]
@@ -2292,7 +2266,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.585832",
+        "scrapeTime": "2026-01-20 00:34:37.625740",
         "tags": [
             "Tech Skills"
         ]
@@ -2313,7 +2287,7 @@
         },
         "imageUrl": "/event_images/Breaking_Boundaries__Women_Leading_in_Tech_&_Society_\u2013_IWD_2026_Keynote_with_Samvarthini_Thangadurai.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:48",
+        "scrapeTime": "2026-01-20 00:33:21",
         "tags": [
             "Code Collective & Partners"
         ]
@@ -2330,7 +2304,7 @@
         },
         "imageUrl": "/event_images/Monthly_Lunch_&_Learn_+_Coworking_Day_with_Monument_Women\u2019s_Creative_Alliance.webp",
         "status": "ACTIVE",
-        "scrapeTime": "2026-01-19 00:37:50.569432",
+        "scrapeTime": "2026-01-20 00:34:37.609421",
         "tags": [
             "Business"
         ]
@@ -2347,7 +2321,7 @@
             "address": "101 N Haven St, Baltimore, MD, 21224"
         },
         "imageUrl": "/event_images/For_Ages_6-13__Build_an_Ecosystem!.webp",
-        "scrapeTime": "2026-01-19 00:37:50.535380",
+        "scrapeTime": "2026-01-20 00:34:37.570141",
         "tags": [
             "Business"
         ]
@@ -2364,7 +2338,7 @@
             "address": "Unknown Address"
         },
         "imageUrl": "/event_images/Science_Slam!.webp",
-        "scrapeTime": "2026-01-19 00:37:50.535481",
+        "scrapeTime": "2026-01-20 00:34:37.570240",
         "tags": [
             "Business"
         ]
@@ -2383,7 +2357,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.597228",
+        "scrapeTime": "2026-01-20 00:34:37.636927",
         "tags": [
             "Makerspace"
         ]
@@ -2401,7 +2375,7 @@
         },
         "imageUrl": "/event_images/MIPS_March_Webinar.webp",
         "source": "https://lu.ma/mtechumd",
-        "scrapeTime": "2026-01-19 00:37:50.545329"
+        "scrapeTime": "2026-01-20 00:34:37.585233"
     },
     {
         "id": "99eb6455dfc14fbf",
@@ -2417,7 +2391,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.591271",
+        "scrapeTime": "2026-01-20 00:34:37.631131",
         "tags": [
             "Makerspace"
         ]
@@ -2436,7 +2410,7 @@
         },
         "imageUrl": "/event_images/UAS_Locksport_-_MD_TOOOL.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.596012",
+        "scrapeTime": "2026-01-20 00:34:37.635807",
         "tags": [
             "Makerspace"
         ]
@@ -2453,7 +2427,7 @@
             "address": "10 East North Avenue, Baltimore, MD, 21202"
         },
         "imageUrl": "/event_images/The_Network_Breakfast__Worker-ownership.webp",
-        "scrapeTime": "2026-01-19 00:37:50.535900",
+        "scrapeTime": "2026-01-20 00:34:37.570652",
         "tags": [
             "Business"
         ]
@@ -2472,7 +2446,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:12.265015",
+        "scrapeTime": "2026-01-20 00:33:52.102500",
         "tags": [
             "Business"
         ]
@@ -2491,7 +2465,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.594890",
+        "scrapeTime": "2026-01-20 00:34:37.634675",
         "tags": [
             "Makerspace"
         ]
@@ -2514,7 +2488,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.582861",
+        "scrapeTime": "2026-01-20 00:34:37.622776",
         "tags": [
             "Economic Development"
         ]
@@ -2536,7 +2510,7 @@
             "country": ""
         },
         "imageUrl": "/event_images/GPU,_CUDA,_and_PyTorch_Performance_Optimizations.webp",
-        "scrapeTime": "2026-01-19 00:37:50.534159",
+        "scrapeTime": "2026-01-20 00:34:37.568835",
         "tags": [
             "Economic Development"
         ]
@@ -2555,7 +2529,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:12.265015",
+        "scrapeTime": "2026-01-20 00:33:52.102500",
         "tags": [
             "Business"
         ]
@@ -2574,7 +2548,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.591370",
+        "scrapeTime": "2026-01-20 00:34:37.631229",
         "tags": [
             "Makerspace"
         ]
@@ -2595,7 +2569,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.588703",
+        "scrapeTime": "2026-01-20 00:34:37.628592",
         "tags": [
             "Makerspace"
         ]
@@ -2614,7 +2588,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.586031",
+        "scrapeTime": "2026-01-20 00:34:37.625937",
         "tags": [
             "Tech Skills"
         ]
@@ -2633,7 +2607,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.593662",
+        "scrapeTime": "2026-01-20 00:34:37.633428",
         "tags": [
             "Makerspace"
         ]
@@ -2656,7 +2630,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.582962",
+        "scrapeTime": "2026-01-20 00:34:37.622878",
         "tags": [
             "Economic Development"
         ]
@@ -2675,7 +2649,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.597426",
+        "scrapeTime": "2026-01-20 00:34:37.637124",
         "tags": [
             "Makerspace"
         ]
@@ -2692,7 +2666,7 @@
             "address": "6751 Columbia Gateway Drive, Columbia, MD, 21046"
         },
         "imageUrl": "/event_images/Fulton_Bank_Series__Personal_vs._Business_financials.webp",
-        "scrapeTime": "2026-01-19 00:37:50.537188",
+        "scrapeTime": "2026-01-20 00:34:37.571853",
         "tags": [
             "Business"
         ]
@@ -2711,7 +2685,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.591468",
+        "scrapeTime": "2026-01-20 00:34:37.631328",
         "tags": [
             "Makerspace"
         ]
@@ -2730,7 +2704,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:12.265015",
+        "scrapeTime": "2026-01-20 00:33:52.102500",
         "tags": [
             "Business"
         ]
@@ -2749,7 +2723,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:12.265015",
+        "scrapeTime": "2026-01-20 00:33:52.102500",
         "tags": [
             "Business"
         ]
@@ -2766,7 +2740,7 @@
             "address": "6751 Columbia Gateway Drive, Columbia, MD, 21046"
         },
         "imageUrl": "/event_images/Pitch_and_Mingle_Series__Investor_Showcase.webp",
-        "scrapeTime": "2026-01-19 00:37:50.537288",
+        "scrapeTime": "2026-01-20 00:34:37.571951",
         "tags": [
             "Business"
         ]
@@ -2788,7 +2762,7 @@
             "country": ""
         },
         "imageUrl": null,
-        "scrapeTime": "2026-01-19 00:37:50.533669",
+        "scrapeTime": "2026-01-20 00:34:37.568413",
         "tags": [
             "Economic Development"
         ]
@@ -2809,7 +2783,7 @@
         },
         "imageUrl": "/event_images/AI_for_a_Greener_Tomorrow__Interactive_Literacy_Workshop.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:48",
+        "scrapeTime": "2026-01-20 00:33:21",
         "tags": [
             "Code Collective & Partners"
         ]
@@ -2832,7 +2806,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.583063",
+        "scrapeTime": "2026-01-20 00:34:37.622978",
         "tags": [
             "Economic Development"
         ]
@@ -2851,7 +2825,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.597525",
+        "scrapeTime": "2026-01-20 00:34:37.637222",
         "tags": [
             "Makerspace"
         ]
@@ -2868,7 +2842,7 @@
             "address": "Unknown Address"
         },
         "imageUrl": "/event_images/BRITE_Bundle_Pass.webp",
-        "scrapeTime": "2026-01-19 00:37:50.537385",
+        "scrapeTime": "2026-01-20 00:34:37.572051",
         "tags": [
             "Business"
         ]
@@ -2887,7 +2861,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.591567",
+        "scrapeTime": "2026-01-20 00:34:37.631426",
         "tags": [
             "Makerspace"
         ]
@@ -2908,7 +2882,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.588911",
+        "scrapeTime": "2026-01-20 00:34:37.628816",
         "tags": [
             "Makerspace"
         ]
@@ -2927,7 +2901,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.586230",
+        "scrapeTime": "2026-01-20 00:34:37.626135",
         "tags": [
             "Tech Skills"
         ]
@@ -2946,7 +2920,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.593769",
+        "scrapeTime": "2026-01-20 00:34:37.633526",
         "tags": [
             "Makerspace"
         ]
@@ -2969,7 +2943,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.583163",
+        "scrapeTime": "2026-01-20 00:34:37.623077",
         "tags": [
             "Economic Development"
         ]
@@ -2988,7 +2962,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.597625",
+        "scrapeTime": "2026-01-20 00:34:37.637320",
         "tags": [
             "Makerspace"
         ]
@@ -3007,7 +2981,7 @@
         },
         "imageUrl": "/event_images/Coalition_Coffee_.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:50.568740",
+        "scrapeTime": "2026-01-20 00:34:37.608732",
         "tags": [
             "Economic Development"
         ]
@@ -3024,7 +2998,7 @@
             "address": "6751 Columbia Gateway Drive, Columbia, MD, 21046"
         },
         "imageUrl": "/event_images/HoCo_Higher_Accelerator__Fast_Track.webp",
-        "scrapeTime": "2026-01-19 00:37:50.537484",
+        "scrapeTime": "2026-01-20 00:34:37.572149",
         "tags": [
             "Business"
         ]
@@ -3041,7 +3015,7 @@
             "address": "5520 Research Park Drive, Baltimore, MD, 21228"
         },
         "imageUrl": "/event_images/Lunch_&_038;_Learn__Partnering_for_Success__Shortcuts_to_Achievable_and_Sustainable_Growth.webp",
-        "scrapeTime": "2026-01-08T15:46:45+00:00",
+        "scrapeTime": "2026-01-19T19:48:42+00:00",
         "tags": [
             "Economic Development"
         ]
@@ -3058,7 +3032,7 @@
             "address": "10 East North Avenue, Baltimore, MD, 21202"
         },
         "imageUrl": "/event_images/The_Network_Breakfast_on_Baltimore_Vacant_Reinvestment_Initiative.webp",
-        "scrapeTime": "2026-01-19 00:37:50.535998",
+        "scrapeTime": "2026-01-20 00:34:37.570749",
         "tags": [
             "Business"
         ]
@@ -3077,7 +3051,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.595093",
+        "scrapeTime": "2026-01-20 00:34:37.634886",
         "tags": [
             "Makerspace"
         ]
@@ -3100,7 +3074,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.583263",
+        "scrapeTime": "2026-01-20 00:34:37.623176",
         "tags": [
             "Economic Development"
         ]
@@ -3119,7 +3093,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.597745",
+        "scrapeTime": "2026-01-20 00:34:37.637419",
         "tags": [
             "Makerspace"
         ]
@@ -3138,7 +3112,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.591783",
+        "scrapeTime": "2026-01-20 00:34:37.631640",
         "tags": [
             "Makerspace"
         ]
@@ -3159,7 +3133,7 @@
         },
         "imageUrl": "/event_images/Google_DeepMind__AI_Research_Foundations_\u2014_A_5-Week_Spring_Study_Group.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:36:48",
+        "scrapeTime": "2026-01-20 00:33:21",
         "tags": [
             "Code Collective & Partners"
         ]
@@ -3178,7 +3152,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.593871",
+        "scrapeTime": "2026-01-20 00:34:37.633645",
         "tags": [
             "Makerspace"
         ]
@@ -3201,7 +3175,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.583363",
+        "scrapeTime": "2026-01-20 00:34:37.623275",
         "tags": [
             "Economic Development"
         ]
@@ -3223,7 +3197,7 @@
             "country": ""
         },
         "imageUrl": "/event_images/GPU,_CUDA,_and_PyTorch_Performance_Optimizations.webp",
-        "scrapeTime": "2026-01-19 00:37:50.534260",
+        "scrapeTime": "2026-01-20 00:34:37.568936",
         "tags": [
             "Economic Development"
         ]
@@ -3242,7 +3216,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.591882",
+        "scrapeTime": "2026-01-20 00:34:37.631739",
         "tags": [
             "Makerspace"
         ]
@@ -3264,7 +3238,7 @@
             "country": ""
         },
         "imageUrl": null,
-        "scrapeTime": "2026-01-19 00:37:50.533776",
+        "scrapeTime": "2026-01-20 00:34:37.568514",
         "tags": [
             "Economic Development"
         ]
@@ -3283,7 +3257,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.595195",
+        "scrapeTime": "2026-01-20 00:34:37.634987",
         "tags": [
             "Makerspace"
         ]
@@ -3306,7 +3280,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.583462",
+        "scrapeTime": "2026-01-20 00:34:37.623373",
         "tags": [
             "Economic Development"
         ]
@@ -3325,7 +3299,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.597946",
+        "scrapeTime": "2026-01-20 00:34:37.637635",
         "tags": [
             "Makerspace"
         ]
@@ -3344,7 +3318,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.591983",
+        "scrapeTime": "2026-01-20 00:34:37.631837",
         "tags": [
             "Makerspace"
         ]
@@ -3365,7 +3339,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.589315",
+        "scrapeTime": "2026-01-20 00:34:37.629211",
         "tags": [
             "Makerspace"
         ]
@@ -3384,7 +3358,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.586628",
+        "scrapeTime": "2026-01-20 00:34:37.626528",
         "tags": [
             "Tech Skills"
         ]
@@ -3403,7 +3377,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.593971",
+        "scrapeTime": "2026-01-20 00:34:37.633754",
         "tags": [
             "Makerspace"
         ]
@@ -3426,7 +3400,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.583561",
+        "scrapeTime": "2026-01-20 00:34:37.623473",
         "tags": [
             "Economic Development"
         ]
@@ -3445,7 +3419,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.598044",
+        "scrapeTime": "2026-01-20 00:34:37.637734",
         "tags": [
             "Makerspace"
         ]
@@ -3464,7 +3438,7 @@
         },
         "imageUrl": "/event_images/Coalition_Coffee_.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:50.568842",
+        "scrapeTime": "2026-01-20 00:34:37.608832",
         "tags": [
             "Economic Development"
         ]
@@ -3483,7 +3457,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.592088",
+        "scrapeTime": "2026-01-20 00:34:37.631935",
         "tags": [
             "Makerspace"
         ]
@@ -3494,7 +3468,7 @@
         "url": "https://innovationmaryland.org/the-product-scale-playbook",
         "status": "ACTIVE",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:34.762801",
+        "scrapeTime": "2026-01-20 00:34:15.598106",
         "description": "Product-market fit is just the beginning. The real challenge? Turning that early traction into repeatable growth, operational efficiency, and ultimately \u2014 market leadership. If you\u2019re a founder stuck in the \u201cmessy middle\u201d between proving your idea and building a scalable, investable company,The Product Scale Playbookis for you. This session is designed to help startup founders build theinfrastructure, systems, and teamsto support hyper-growth. Whether you\u2019re heading into a growth funding round or trying to break through a revenue plateau, you\u2019ll walk away with proven frameworks, actionable strategies, and expert insights acrossfinance, operations, sales, marketing, and technology. We\u2019re bringing together seasoned operators, growth architects, and scale-stage advisors to share what\u2019sreallyrequired to go from scrappy startup to category-defining company \u2014 and we\u2019re not holding anything back. (Speaker profiles will be updated as confirmed) Patent Insider\u00ae is a premier patent services firm where quality, professionalism, and service are the standard. We deliver IP solutions to patent related challenges. Clients choose us because the breadth of IP services they need is available, delivered innovatively, and always to the highest standards. At Patent Insider\u00ae, we are committed to long term relationships and your business success.",
         "location": {
             "name": "bwtech North",
@@ -3521,7 +3495,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.595295",
+        "scrapeTime": "2026-01-20 00:34:37.635087",
         "tags": [
             "Makerspace"
         ]
@@ -3544,7 +3518,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.583676",
+        "scrapeTime": "2026-01-20 00:34:37.623588",
         "tags": [
             "Economic Development"
         ]
@@ -3563,7 +3537,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.598144",
+        "scrapeTime": "2026-01-20 00:34:37.637833",
         "tags": [
             "Makerspace"
         ]
@@ -3582,7 +3556,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.592186",
+        "scrapeTime": "2026-01-20 00:34:37.632033",
         "tags": [
             "Makerspace"
         ]
@@ -3601,7 +3575,7 @@
         },
         "imageUrl": "/event_images/UAS_Locksport_-_MD_TOOOL.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.596211",
+        "scrapeTime": "2026-01-20 00:34:37.636003",
         "tags": [
             "Makerspace"
         ]
@@ -3622,7 +3596,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.589519",
+        "scrapeTime": "2026-01-20 00:34:37.629407",
         "tags": [
             "Makerspace"
         ]
@@ -3641,7 +3615,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.586847",
+        "scrapeTime": "2026-01-20 00:34:37.626747",
         "tags": [
             "Tech Skills"
         ]
@@ -3660,7 +3634,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.594070",
+        "scrapeTime": "2026-01-20 00:34:37.633859",
         "tags": [
             "Makerspace"
         ]
@@ -3683,28 +3657,31 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.583781",
+        "scrapeTime": "2026-01-20 00:34:37.623692",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "id": "6af9c2c33ac78fb7",
-        "name": "UAS Project Night",
-        "startDate": "2026-05-18T19:00:00-04:00",
-        "endTime": "2026-05-18T22:00:00-04:00",
-        "description": "<br>Monday evenings, we will be open for Project Night - a night to work on, collaborate on, or brainstorm on whatever projects you're currently working on or interested in.<br>Don't have a project? Come see what others are working on and get involved or get ideas. If you have an concept for a group project, bring your ideas and seek out others to join you.<br><br>Project Night is a great opportunity to make progress on your projects as a regularly scheduled event. Anyone is welcome to work on projects any time the space is open, but a dedicated night--just for this--is really fantastic.<br><br>Please check out our COVID restrictions at:&nbsp;<a href=\"https://wiki.unallocatedspace.org/wiki/index.php?title=COVID-19_Reopening_Plan\" id=\"ow605\" __is_owner=\"true\">https://wiki.unallocatedspace.org/wiki/index.php?title=COVID-19_Reopening_Plan</a><br><br>Key: Bowie<br>Free and open to the public",
-        "url": "https://www.unallocatedspace.org/events/",
+        "id": "nhvnttyjchbxb",
+        "name": "GPU, CUDA, and PyTorch Performance Optimizations",
+        "description": "**Zoom link**: [https://us02web.zoom.us/j/82308186562](https://us02web.zoom.us/j/82308186562)\n\n**Talk #0: Introductions and Meetup Updates**\nby Chris Fregly and Antje Barth\n\n**Talk #1: GPU, PyTorch, and CUDA Performance Optimizations**\n\n**Talk #2: GPU, PyTorch, and CUDA Performance Optimizations**\n\n**Zoom link**: [https://us02web.zoom.us/j/82308186562](https://us02web.zoom.us/j/82308186562)\n\n**Related Links**\nGithub Repo: [http://github.com/cfregly/ai-performance-engineering/](http://github.com/cfregly/ai-performance-engineering/)\nO'Reilly Book: [https://www.amazon.com/Systems-Performance-Engineering-Optimizing-Algorithms/dp/B0F47689K8/](https://www.amazon.com/Systems-Performance-Engineering-Optimizing-Algorithms/dp/B0F47689K8/)\nYouTube: [https://www.youtube.com/@AIPerformanceEngineering](https://www.youtube.com/@AIPerformanceEngineering)\nGenerative AI Free Course on DeepLearning.ai: [https://bit.ly/gllm](https://bit.ly/gllm)",
+        "startDate": "2026-05-18T12:00:00-04:00",
+        "endTime": "2026-05-18T13:00:00-04:00",
+        "url": "https://www.meetup.com/ai-performance-engineering-washington-dc/events/nhvnttyjchbxb/",
         "status": "ACTIVE",
+        "source": null,
         "location": {
-            "name": "",
-            "address": ""
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": ""
         },
-        "imageUrl": "/event_images/UAS_Project_Night.webp",
-        "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.598243",
+        "imageUrl": "/event_images/GPU,_CUDA,_and_PyTorch_Performance_Optimizations.webp",
+        "scrapeTime": "2026-01-20 00:34:37.569035",
         "tags": [
-            "Makerspace"
+            "Economic Development"
         ]
     },
     {
@@ -3721,7 +3698,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.592316",
+        "scrapeTime": "2026-01-20 00:34:37.632130",
         "tags": [
             "Makerspace"
         ]
@@ -3740,7 +3717,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:12.265015",
+        "scrapeTime": "2026-01-20 00:33:52.102500",
         "tags": [
             "Business"
         ]
@@ -3759,7 +3736,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.595394",
+        "scrapeTime": "2026-01-20 00:34:37.635186",
         "tags": [
             "Makerspace"
         ]
@@ -3782,7 +3759,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.583880",
+        "scrapeTime": "2026-01-20 00:34:37.623792",
         "tags": [
             "Economic Development"
         ]
@@ -3801,7 +3778,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.598345",
+        "scrapeTime": "2026-01-20 00:34:37.638044",
         "tags": [
             "Makerspace"
         ]
@@ -3820,7 +3797,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.592431",
+        "scrapeTime": "2026-01-20 00:34:37.632227",
         "tags": [
             "Makerspace"
         ]
@@ -3841,7 +3818,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.589737",
+        "scrapeTime": "2026-01-20 00:34:37.629624",
         "tags": [
             "Makerspace"
         ]
@@ -3860,7 +3837,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.587046",
+        "scrapeTime": "2026-01-20 00:34:37.626946",
         "tags": [
             "Tech Skills"
         ]
@@ -3879,7 +3856,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.594170",
+        "scrapeTime": "2026-01-20 00:34:37.633959",
         "tags": [
             "Makerspace"
         ]
@@ -3902,7 +3879,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.583981",
+        "scrapeTime": "2026-01-20 00:34:37.623892",
         "tags": [
             "Economic Development"
         ]
@@ -3921,7 +3898,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.598444",
+        "scrapeTime": "2026-01-20 00:34:37.638144",
         "tags": [
             "Makerspace"
         ]
@@ -3940,7 +3917,7 @@
         },
         "imageUrl": "/event_images/Coalition_Coffee_.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:50.568942",
+        "scrapeTime": "2026-01-20 00:34:37.608929",
         "tags": [
             "Economic Development"
         ]
@@ -3959,7 +3936,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.592531",
+        "scrapeTime": "2026-01-20 00:34:37.632325",
         "tags": [
             "Makerspace"
         ]
@@ -3978,7 +3955,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:12.265015",
+        "scrapeTime": "2026-01-20 00:33:52.102500",
         "tags": [
             "Business"
         ]
@@ -3997,7 +3974,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.595492",
+        "scrapeTime": "2026-01-20 00:34:37.635283",
         "tags": [
             "Makerspace"
         ]
@@ -4020,7 +3997,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.584083",
+        "scrapeTime": "2026-01-20 00:34:37.623992",
         "tags": [
             "Economic Development"
         ]
@@ -4039,7 +4016,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.598544",
+        "scrapeTime": "2026-01-20 00:34:37.638241",
         "tags": [
             "Makerspace"
         ]
@@ -4058,7 +4035,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.592631",
+        "scrapeTime": "2026-01-20 00:34:37.632423",
         "tags": [
             "Makerspace"
         ]
@@ -4077,7 +4054,7 @@
         },
         "imageUrl": "/event_images/UAS_Locksport_-_MD_TOOOL.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.596311",
+        "scrapeTime": "2026-01-20 00:34:37.636101",
         "tags": [
             "Makerspace"
         ]
@@ -4098,7 +4075,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.589942",
+        "scrapeTime": "2026-01-20 00:34:37.629823",
         "tags": [
             "Makerspace"
         ]
@@ -4117,7 +4094,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.587244",
+        "scrapeTime": "2026-01-20 00:34:37.627141",
         "tags": [
             "Tech Skills"
         ]
@@ -4136,7 +4113,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.594269",
+        "scrapeTime": "2026-01-20 00:34:37.634057",
         "tags": [
             "Makerspace"
         ]
@@ -4159,7 +4136,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.584183",
+        "scrapeTime": "2026-01-20 00:34:37.624089",
         "tags": [
             "Economic Development"
         ]
@@ -4178,7 +4155,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.598643",
+        "scrapeTime": "2026-01-20 00:34:37.638339",
         "tags": [
             "Makerspace"
         ]
@@ -4197,7 +4174,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.592751",
+        "scrapeTime": "2026-01-20 00:34:37.632522",
         "tags": [
             "Makerspace"
         ]
@@ -4216,7 +4193,7 @@
         },
         "imageUrl": "",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:12.265015",
+        "scrapeTime": "2026-01-20 00:33:52.102500",
         "tags": [
             "Business"
         ]
@@ -4235,7 +4212,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.595589",
+        "scrapeTime": "2026-01-20 00:34:37.635380",
         "tags": [
             "Makerspace"
         ]
@@ -4253,7 +4230,7 @@
         },
         "imageUrl": "/event_images/Tech_Unity_2026.webp",
         "source": "https://luma.com/codecollective",
-        "scrapeTime": "2026-01-19 00:37:50.545431"
+        "scrapeTime": "2026-01-20 00:34:37.585335"
     },
     {
         "id": "77a0e1361d00dcc1",
@@ -4269,7 +4246,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.598760",
+        "scrapeTime": "2026-01-20 00:34:37.638436",
         "tags": [
             "Makerspace"
         ]
@@ -4288,7 +4265,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.592850",
+        "scrapeTime": "2026-01-20 00:34:37.632638",
         "tags": [
             "Makerspace"
         ]
@@ -4309,7 +4286,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.590140",
+        "scrapeTime": "2026-01-20 00:34:37.630021",
         "tags": [
             "Makerspace"
         ]
@@ -4328,7 +4305,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.587440",
+        "scrapeTime": "2026-01-20 00:34:37.627340",
         "tags": [
             "Tech Skills"
         ]
@@ -4347,7 +4324,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.594369",
+        "scrapeTime": "2026-01-20 00:34:37.634165",
         "tags": [
             "Makerspace"
         ]
@@ -4370,7 +4347,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.584383",
+        "scrapeTime": "2026-01-20 00:34:37.624287",
         "tags": [
             "Economic Development"
         ]
@@ -4389,7 +4366,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.598859",
+        "scrapeTime": "2026-01-20 00:34:37.638533",
         "tags": [
             "Makerspace"
         ]
@@ -4408,7 +4385,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.592949",
+        "scrapeTime": "2026-01-20 00:34:37.632738",
         "tags": [
             "Makerspace"
         ]
@@ -4429,7 +4406,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.590242",
+        "scrapeTime": "2026-01-20 00:34:37.630119",
         "tags": [
             "Makerspace"
         ]
@@ -4448,7 +4425,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.587539",
+        "scrapeTime": "2026-01-20 00:34:37.627439",
         "tags": [
             "Tech Skills"
         ]
@@ -4467,7 +4444,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.595710",
+        "scrapeTime": "2026-01-20 00:34:37.635485",
         "tags": [
             "Makerspace"
         ]
@@ -4490,7 +4467,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.584484",
+        "scrapeTime": "2026-01-20 00:34:37.624387",
         "tags": [
             "Economic Development"
         ]
@@ -4509,7 +4486,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.598958",
+        "scrapeTime": "2026-01-20 00:34:37.638650",
         "tags": [
             "Makerspace"
         ]
@@ -4528,7 +4505,7 @@
         },
         "imageUrl": "/event_images/Coalition_Coffee_.webp",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:50.569043",
+        "scrapeTime": "2026-01-20 00:34:37.609027",
         "tags": [
             "Economic Development"
         ]
@@ -4547,7 +4524,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.593048",
+        "scrapeTime": "2026-01-20 00:34:37.632838",
         "tags": [
             "Makerspace"
         ]
@@ -4566,7 +4543,7 @@
         },
         "imageUrl": "/event_images/UAS_Locksport_-_MD_TOOOL.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.596410",
+        "scrapeTime": "2026-01-20 00:34:37.636199",
         "tags": [
             "Makerspace"
         ]
@@ -4587,7 +4564,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.590348",
+        "scrapeTime": "2026-01-20 00:34:37.630218",
         "tags": [
             "Makerspace"
         ]
@@ -4606,7 +4583,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.587639",
+        "scrapeTime": "2026-01-20 00:34:37.627538",
         "tags": [
             "Tech Skills"
         ]
@@ -4625,7 +4602,7 @@
         },
         "imageUrl": "/event_images/UAS_[Virtual]_Hackthebox_Working_Group.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.594469",
+        "scrapeTime": "2026-01-20 00:34:37.634263",
         "tags": [
             "Makerspace"
         ]
@@ -4648,7 +4625,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.584584",
+        "scrapeTime": "2026-01-20 00:34:37.624485",
         "tags": [
             "Economic Development"
         ]
@@ -4667,7 +4644,7 @@
         },
         "imageUrl": "/event_images/UAS_Project_Night.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.599056",
+        "scrapeTime": "2026-01-20 00:34:37.638749",
         "tags": [
             "Makerspace"
         ]
@@ -4686,7 +4663,7 @@
         },
         "imageUrl": "/event_images/UAS_Open_House.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.593146",
+        "scrapeTime": "2026-01-20 00:34:37.632935",
         "tags": [
             "Makerspace"
         ]
@@ -4707,7 +4684,7 @@
         },
         "imageUrl": "/event_images/UAS_UAS_Virtual_Happy_Hour.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.590449",
+        "scrapeTime": "2026-01-20 00:34:37.630316",
         "tags": [
             "Makerspace"
         ]
@@ -4726,7 +4703,7 @@
         },
         "imageUrl": "/event_images/Node_Open_Hack.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.587756",
+        "scrapeTime": "2026-01-20 00:34:37.627656",
         "tags": [
             "Tech Skills"
         ]
@@ -4745,7 +4722,7 @@
         },
         "imageUrl": "/event_images/UAS_Infosec_&_DC443_Meetup.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.595813",
+        "scrapeTime": "2026-01-20 00:34:37.635607",
         "tags": [
             "Makerspace"
         ]
@@ -4768,7 +4745,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.584703",
+        "scrapeTime": "2026-01-20 00:34:37.624602",
         "tags": [
             "Economic Development"
         ]
@@ -4791,7 +4768,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.584804",
+        "scrapeTime": "2026-01-20 00:34:37.624705",
         "tags": [
             "Economic Development"
         ]
@@ -4814,7 +4791,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.584905",
+        "scrapeTime": "2026-01-20 00:34:37.624815",
         "tags": [
             "Economic Development"
         ]
@@ -4837,7 +4814,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.585004",
+        "scrapeTime": "2026-01-20 00:34:37.624914",
         "tags": [
             "Economic Development"
         ]
@@ -4860,7 +4837,7 @@
         },
         "imageUrl": "/event_images/Casual_Coding,_Chat,_&_Coffee.webp",
         "recurring": true,
-        "scrapeTime": "2026-01-19 00:37:50.585104",
+        "scrapeTime": "2026-01-20 00:34:37.625012",
         "tags": [
             "Economic Development"
         ]
@@ -4871,7 +4848,7 @@
         "url": "https://innovationmaryland.org/the-playbook-for-a-perfect-exit",
         "status": "ACTIVE",
         "recurring": false,
-        "scrapeTime": "2026-01-19 00:37:35.690227",
+        "scrapeTime": "2026-01-20 00:34:16.663580",
         "description": "Whether you\u2019re dreaming of an acquisition, planning a merger, or imagining an IPO, one thing is certain:a great exit doesn\u2019t happen by accident.It\u2019s designed from day one. The Playbook for a Perfect Exitis a powerful, founder-focused session built to help you make smarter decisions today that lead to a more profitable, seamless exit tomorrow. Whether you\u2019re years away from selling \u2014 or you\u2019re getting ready to start the process \u2014 this session will equip you with the strategies, structures, and insight to maximize your outcome. You\u2019ll hear from seasoned M&A experts, exit planners, and founders who\u2019ve been through it \u2014 sharing both the wins and the lessons learned the hard way. (Speaker profiles will be updated as confirmed) Patent Insider\u00ae is a premier patent services firm where quality, professionalism, and service are the standard. We deliver IP solutions to patent related challenges. Clients choose us because the breadth of IP services they need is available, delivered innovatively, and always to the highest standards. At Patent Insider\u00ae, we are committed to long term relationships and your business success.",
         "location": {
             "name": "bwtech North",
