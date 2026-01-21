@@ -18,6 +18,7 @@ from requests.adapters import HTTPAdapter
 
 def fetch_calendar_events(ICS_URL, city, imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png", eventUrl="https://www.unallocatedspace.org", recurring=True, preface="GameDevs "):
     """Fetch and return calendar events in the standardized format."""
+    print(f"Fetching ICS from {ICS_URL}")
     fetch_from_web = True
     os.makedirs(city, exist_ok=True)
 
