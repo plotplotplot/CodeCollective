@@ -102,12 +102,17 @@ function saveLegendPrefs() {
 }
 
 function buildLegend(categories) {
-  const legendItems = document.getElementById('calendar-legend-items');
-  if (!legendItems || !Array.isArray(categories)) return;
-
-  legendItems.innerHTML = '';
   const prefs = getLegendPrefs(categories);
   activeTagSlugs = new Set(prefs.selectedTags);
+
+  const legendItems = document.getElementById('calendar-legend-items');
+  if (!legendItems || !Array.isArray(categories)) {
+    setTagFormattingEnabled(prefs.useTagColors);
+    setLegendVisibility(prefs.hidden, { save: false });
+    return;
+  }
+
+  legendItems.innerHTML = '';
 
   const controls = document.createElement('div');
   controls.className = 'legend-controls';
