@@ -84,6 +84,7 @@ def extract_location_from_text(text):
     return "Baltimore, MD"
 
 def scrape_baltimore_events(html_content=None, url="https://baltimoresistercities.org/events/"):
+    print("Scraping Sister Cities")
     """Scrape events from Baltimore Sister Cities events page"""
     if html_content is None and url:
         response = requests.get(url)
@@ -194,6 +195,7 @@ def scrape_baltimore_events(html_content=None, url="https://baltimoresistercitie
             
             events.append(event)
     
+    print(f"Got {len(events)} events")
     return events
 
 def main():
