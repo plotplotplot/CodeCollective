@@ -8,6 +8,7 @@ import scrape_ics
 import scrape_starTUp
 import scrape_tedco
 import scrape_jhuapl
+import scrape_baltsistercities
 import scrape_big
 import scrape_gform
 import scrape_luma_orgpage
@@ -593,6 +594,11 @@ def main(city = "baltimore"):
         except Exception as e:
             print(f"Error fetching tedco")
 
+
+        try:
+            newEvents += scrape_baltsistercities.scrape_baltimore_events()
+        except Exception as e:
+            print(f"Error fetching Sister Cities")
 
         try:
             newEvents += scrape_mtc.scrape_mtc_events()
