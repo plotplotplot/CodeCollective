@@ -401,6 +401,9 @@ h1 {
     background: transparent;
     max-width: 100%;
     overflow-x: hidden;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
 }
 
 .no-events-message {
@@ -481,7 +484,7 @@ h1 {
     cursor: pointer;
     transition: all 0.3s ease;
     overflow: hidden;
-    margin-bottom: 16px;
+    margin-bottom: 0;
     width: 100%;
     box-sizing: border-box;
 
@@ -489,11 +492,23 @@ h1 {
     background-color: #000;
 }
 
+@media (min-width: 900px) {
+    .mobile-cards-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1200px) {
+    .mobile-cards-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
 .card-title {
     margin: 0 0 6px 0 !important;
     font-size: 1.1rem;
     font-weight: 700;
-    color: #2c3e50;
+    color: #fff;
     line-height: 1.3;
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -667,59 +682,73 @@ h1 {
     border-radius: 4px;
 }
 
+.card-content.tag-tech-skills,
 .fc-event-title.tag-tech-skills,
-.card-title.tag-tech-skills,
 .legend-swatch.tag-tech-skills {
     background-color: #1d4ed8;
     color: #fff;
 }
 
+.card-content.tag-economic-development,
 .fc-event-title.tag-economic-development,
-.card-title.tag-economic-development,
 .legend-swatch.tag-economic-development {
     background-color: #136d34;
     color: #fff;
 }
 
+.card-content.tag-infrastructure,
 .fc-event-title.tag-infrastructure,
-.card-title.tag-infrastructure,
 .legend-swatch.tag-infrastructure {
     background-color: #334155;
     color: #fff;
 }
 
+.card-content.tag-makerspace,
 .fc-event-title.tag-makerspace,
-.card-title.tag-makerspace,
 .legend-swatch.tag-makerspace {
     background-color: #f59e0b;
     color: #1f2937;
 }
 
+.card-content.tag-business,
 .fc-event-title.tag-business,
-.card-title.tag-business,
 .legend-swatch.tag-business {
     background-color: #fc28f1;
     color: #000000;
 }
 
+.card-content.tag-politics,
 .fc-event-title.tag-politics,
-.card-title.tag-politics,
 .legend-swatch.tag-politics {
     background-color: #b91c1c;
     color: #fff;
 }
 
+.card-content.tag-finance,
 .fc-event-title.tag-finance,
-.card-title.tag-finance,
 .legend-swatch.tag-finance {
     background-color: #a16207;
     color: #fff;
 }
 
+.card-content.tag-code-collective-and-partners,
 .fc-event-title.tag-code-collective-and-partners,
-.card-title.tag-code-collective-and-partners,
 .legend-swatch.tag-code-collective-and-partners {
     background-color: #ffe600;
+    color: #000;
+}
+
+.card-content.tag-tech-skills .card-title,
+.card-content.tag-economic-development .card-title,
+.card-content.tag-infrastructure .card-title,
+.card-content.tag-politics .card-title,
+.card-content.tag-finance .card-title {
+    color: #fff;
+}
+
+.card-content.tag-makerspace .card-title,
+.card-content.tag-business .card-title,
+.card-content.tag-code-collective-and-partners .card-title {
     color: #000;
 }
 
@@ -843,10 +872,14 @@ h1 {
 
 .tags-disabled .card-title.tagged {
     background-color: transparent;
-    color: #2c3e50;
+    color: #fff;
     padding: 0;
     border-radius: 0;
     display: block;
+}
+
+.tags-disabled .card-content.tagged {
+    background-color: #000;
 }
 
 .tags-disabled .fc-event-title.tag-tech-skills,
@@ -861,14 +894,6 @@ h1 {
     color: #fff;
 }
 
-.tags-disabled .card-title.tag-tech-skills,
-.tags-disabled .card-title.tag-economic-development,
-.tags-disabled .card-title.tag-infrastructure,
-.tags-disabled .card-title.tag-makerspace,
-.tags-disabled .card-title.tag-business,
-.tags-disabled .card-title.tag-politics,
-.tags-disabled .card-title.tag-finance,
-.tags-disabled .card-title.tag-code-collective-and-partners {
-    background-color: transparent;
-    color: #2c3e50;
+.tags-disabled .card-content.tagged .card-title {
+    color: #fff;
 }

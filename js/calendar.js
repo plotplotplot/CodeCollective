@@ -497,8 +497,7 @@ function createEventCard(event) {
       ` : ''}
   `;
 
-  const titleEl = card.querySelector('.card-title');
-  applyTagClasses(titleEl, event.extendedProps?.tags);
+  applyTagClasses(card, event.extendedProps?.tags);
 
   // Process markdown for full description if needed
   if (description && needsMore) {
