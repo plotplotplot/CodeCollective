@@ -240,4 +240,4 @@ def main():
 if __name__ == "__main__":
     # Optionally save to file
     with open('baltimore_indie_games_events.json', 'w') as f:
-        f.write(scrape_baltimore_indie_games())
+        f.write(json.dumps(scrape_baltimore_indie_games(),indent=2))

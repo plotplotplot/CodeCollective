@@ -33,6 +33,82 @@
   <link rel="stylesheet" href="/css/master.css" />
   <link rel="stylesheet" href="/css/calendar.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    (function () {
+      const DEFAULT_CITY_OPTIONS = ['baltimore', 'westvirginia', 'hawaii', 'dc'];
+      const DEFAULT_CITY_DISPLAY_NAMES = {
+        baltimore: 'Baltimore',
+        westvirginia: 'West Virginia',
+        hawaii: 'Hawaii',
+        dc: 'Washington, D.C.',
+      };
+
+      window.CALENDAR_CITY_OPTIONS = window.CALENDAR_CITY_OPTIONS || DEFAULT_CITY_OPTIONS;
+      window.CALENDAR_CITY_DISPLAY_NAMES = window.CALENDAR_CITY_DISPLAY_NAMES || DEFAULT_CITY_DISPLAY_NAMES;
+
+      const cityOptions = window.CALENDAR_CITY_OPTIONS;
+      const cityDisplayNames = window.CALENDAR_CITY_DISPLAY_NAMES;
+
+      function getCityDisplayName(city) {
+        return cityDisplayNames[city] || city.charAt(0).toUpperCase() + city.slice(1);
+      }
+
+      function getCityFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const city = urlParams.get('city');
+        return cityOptions.includes(city) ? city : 'baltimore';
+      }
+
+      function updateIcsLink() {
+        const city = getCityFromUrl();
+        const icsLink = document.querySelector('.download-button');
+        if (icsLink) {
+          const template = icsLink.dataset.icsTemplate || 'https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/{city}/cc_events.ics';
+          icsLink.href = template.replace('{city}', city);
+        }
+      }
+
+      function updateCityDetails() {
+        const city = getCityFromUrl();
+        const displayName = getCityDisplayName(city);
+        const cityNameEl = document.getElementById('calendar-city-name');
+        if (cityNameEl) {
+          cityNameEl.textContent = displayName;
+        }
+      }
+
+      function populateCitySelector() {
+        const select = document.getElementById('city-select');
+        if (!select) return;
+        select.innerHTML = '';
+
+        cityOptions.forEach(city => {
+          const option = document.createElement('option');
+          option.value = city;
+          option.textContent = getCityDisplayName(city);
+          select.appendChild(option);
+        });
+
+        const currentCity = getCityFromUrl();
+        select.value = currentCity;
+        select.addEventListener('change', () => {
+          const targetCity = select.value;
+          const url = new URL(window.location.href);
+          url.searchParams.set('city', targetCity);
+          window.location.href = url.toString();
+        });
+      }
+
+      function initializeCityControls() {
+        updateIcsLink();
+        updateCityDetails();
+        populateCitySelector();
+      }
+
+      document.addEventListener('DOMContentLoaded', initializeCityControls);
+    })();
+  </script>
 </head>
 
 <body id="body">
@@ -55,10 +131,15 @@
     <section id="main" class="longform dark-mode" style="padding: 0; margin: 0;">
       <header class="header-container" style="text-align: center; padding: 20px 0;">
         <p style="margin-bottom: 8px; font-size: 1.2rem;">Code Collective brings you</p>
-        <h1 style="margin: 10px 0; font-size: 2.5rem;">Card-Based Baltimore Tech Calendar</h1>
+        <h1 style="margin: 10px 0; font-size: 2.5rem;">Card-Based <span id="calendar-city-name">Baltimore</span> Tech Calendar</h1>
         <p style="margin-top: 8px; font-size: 1.1rem;">Browse tech meetups and events in a scrollable card layout.</p>
         <p style="margin-top: 8px; font-size: 1.1rem;">Need the simple list instead? <a href="/simplecalendar.html">Visit the streamlined calendar.</a></p>
-        <a href="https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/baltimore/cc_events.ics"
+        <div class="city-selector">
+          <label for="city-select">Show events for:</label>
+          <select id="city-select" aria-label="Select a city for the calendar"></select>
+        </div>
+        <a href="#"
+          data-ics-template="https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/{city}/cc_events.ics"
           class="download-button" target="_blank" rel="noopener noreferrer">
           <i class="fas fa-calendar-alt" aria-hidden="true"></i> Add to Google Calendar
         </a>

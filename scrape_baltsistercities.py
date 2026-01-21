@@ -22,6 +22,16 @@ def parse_time_to_hour_minute(time_str):
         if len(parts) >= 2:
             start_time = parts[0].strip()
             end_time = parts[1].strip()
+
+            # If only one side has AM/PM, apply it to the other side.
+            start_has_meridiem = bool(re.search(r'\b(am|pm)\b', start_time))
+            end_has_meridiem = bool(re.search(r'\b(am|pm)\b', end_time))
+            if start_has_meridiem and not end_has_meridiem:
+                meridiem = re.search(r'\b(am|pm)\b', start_time).group(1)
+                end_time = f"{end_time}{meridiem}"
+            elif end_has_meridiem and not start_has_meridiem:
+                meridiem = re.search(r'\b(am|pm)\b', end_time).group(1)
+                start_time = f"{start_time}{meridiem}"
             
             # Parse start time
             start_hour, start_minute = parse_single_time(start_time)

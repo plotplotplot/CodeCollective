@@ -678,10 +678,11 @@ def main(city = "baltimore"):
         #except Exception as e:
         #    print(f"Error fetching calendar events: {e}")
 
-        try:
-            newEvents += scrape_big.main()
-        except Exception as e:
-            print(f"Error fetching calendar events: {e}")
+        #try:
+            #newEvents += scrape_big.main()
+        #    https://baltimoreindiegames.com/events/list/?ical=1
+        #except Exception as e:
+        #    print(f"Error fetching calendar events: {e}")
 
         try:
             newEvents += scrape_wssc.scrape_all_wssc_events()

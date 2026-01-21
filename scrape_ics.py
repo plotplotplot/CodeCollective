@@ -291,7 +291,7 @@ def get_event_dates(events):
 
 if __name__ == "__main__":
     calendar_events = fetch_calendar_events(
-        ICS_URL="https://wvbusinesslink.com/?post_type=tribe_events&ical=1&eventDisplay=list",
+        ICS_URL="https://baltimoreindiegames.com/events/list/?ical=1",
         imageURL="https://baltimoreindiegames.com/wp-content/uploads/2025/03/BIG_small.png",
         eventUrl="https://baltimoreindiegames.com/events/",
         city="westvirginia",

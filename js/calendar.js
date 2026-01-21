@@ -19,7 +19,8 @@ const CATEGORY_LABELS = [
   'Business',
   'Politics',
   'Finance',
-  'Code Collective & Partners'
+  'Code Collective & Partners',
+  'Other'
 ];
 
 // Utility helpers ---------------------------------------------------------
@@ -69,7 +70,7 @@ function applyTagClasses(element, tags) {
 function getLegendPrefs(categories) {
   const defaultTags = Array.isArray(categories) ? categories.map(slugifyTag) : [];
   const defaults = {
-    hidden: false,
+    hidden: true,
     useTagColors: true,
     selectedTags: defaultTags
   };
@@ -215,10 +216,17 @@ function updateActiveTagsFromLegend() {
 }
 
 function eventMatchesTags(tags) {
-  if (!Array.isArray(tags) || tags.length === 0) return true;
   if (!activeTagSlugs || activeTagSlugs.size === 0) return false;
+  const normalizedTags = Array.isArray(tags) ? tags.map(slugifyTag).filter(Boolean) : [];
 
-  return tags.some(tag => activeTagSlugs.has(slugifyTag(tag)));
+  if (normalizedTags.length === 0) {
+    return activeTagSlugs.has('other');
+  }
+
+  const matchesKnown = normalizedTags.some(tag => activeTagSlugs.has(tag));
+  if (matchesKnown) return true;
+
+  return activeTagSlugs.has('other');
 }
 
 function filterEventsByTags(events) {
