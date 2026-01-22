@@ -5,6 +5,13 @@ from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 import requests
 
+def extract_meridiem(time_str):
+    match = re.search(r'\b([ap])\s*\.?\s*m\.?\b', time_str, re.IGNORECASE)
+    if not match:
+        return None
+    return f"{match.group(1).lower()}m"
+
+
 def parse_time_to_hour_minute(time_str):
     """Convert time string like '7pm', '7:30pm', '5:30-7:30pm' to hour and minute"""
     if not time_str:
@@ -24,14 +31,17 @@ def parse_time_to_hour_minute(time_str):
             end_time = parts[1].strip()
 
             # If only one side has AM/PM, apply it to the other side.
-            start_has_meridiem = bool(re.search(r'\b(am|pm)\b', start_time))
-            end_has_meridiem = bool(re.search(r'\b(am|pm)\b', end_time))
-            if start_has_meridiem and not end_has_meridiem:
-                meridiem = re.search(r'\b(am|pm)\b', start_time).group(1)
-                end_time = f"{end_time}{meridiem}"
+            start_meridiem = extract_meridiem(start_time)
+            end_meridiem = extract_meridiem(end_time)
+            start_has_meridiem = start_meridiem is not None
+            end_has_meridiem = end_meridiem is not None
+            if not start_has_meridiem and not end_has_meridiem:
+                start_time = f"{start_time}pm"
+                end_time = f"{end_time}pm"
+            elif start_has_meridiem and not end_has_meridiem:
+                end_time = f"{end_time}{start_meridiem}"
             elif end_has_meridiem and not start_has_meridiem:
-                meridiem = re.search(r'\b(am|pm)\b', end_time).group(1)
-                start_time = f"{start_time}{meridiem}"
+                start_time = f"{start_time}{end_meridiem}"
             
             # Parse start time
             start_hour, start_minute = parse_single_time(start_time)
@@ -52,8 +62,9 @@ def parse_single_time(time_str):
     time_str = time_str.strip().lower()
     
     # Remove am/pm indicators and spaces
-    is_pm = 'pm' in time_str
-    time_str = time_str.replace('am', '').replace('pm', '').strip()
+    meridiem = extract_meridiem(time_str)
+    is_pm = meridiem == "pm"
+    time_str = re.sub(r'\b[ap]\s*\.?\s*m\.?\b', '', time_str).strip()
     
     # Extract numbers only (remove any non-numeric characters after digits)
     match = re.search(r'(\d{1,2})(?::(\d{2}))?', time_str)
