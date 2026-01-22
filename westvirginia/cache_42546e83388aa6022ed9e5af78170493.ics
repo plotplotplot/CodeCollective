@@ -1,6 +1,6 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//WV BusinessLink - ECPv6.15.12.2//NONSGML v1.0//EN
+PRODID:-//WV BusinessLink - ECPv6.15.14//NONSGML v1.0//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:WV BusinessLink
@@ -49,25 +49,47 @@ DTSTART:20271107T060000
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
-DTSTART;TZID=America/New_York:20260115T160000
-DTEND;TZID=America/New_York:20260115T180000
-DTSTAMP:20251122T105155
-CREATED:20250814T155130Z
-LAST-MODIFIED:20250814T155130Z
-UID:10001306-1768492800-1768500000@wvbusinesslink.com
-SUMMARY:UC Downtown Innovation Hub Networking Night
-DESCRIPTION:Join us for an engaging evening designed to build professional connections and develop essential networking skills. This event brings together students and industry representatives in a friendly\, relaxed setting—ideal for launching your future career path.
-URL:https://wvbusinesslink.com/event/uc-downtown-innovation-hub-networking-night/
-LOCATION:UC Downtown Innovation Hub\, 240 Capitol Street\, Charleston\, WV\, 25301\, United States
-CATEGORIES:student entrepreneurship
-ORGANIZER;CN="UC Downtown Innovation Hub":MAILTO:innovate@ucwv.edu
-GEO:38.3505388;-81.6336083
-X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=UC Downtown Innovation Hub 240 Capitol Street Charleston WV 25301 United States;X-APPLE-RADIUS=500;X-TITLE=240 Capitol Street:geo:-81.6336083,38.3505388
+DTSTART;TZID=America/New_York:20260129T180000
+DTEND;TZID=America/New_York:20260129T200000
+DTSTAMP:20260121T122154
+CREATED:20260115T143136Z
+LAST-MODIFIED:20260115T143136Z
+UID:10001363-1769709600-1769716800@wvbusinesslink.com
+SUMMARY:Start Managing Your Business Finances
+DESCRIPTION:Hosted by Partner Community Capital\, Part One of the Small Business & Entrepreneur’s Financial Success Series covers basic business finances. \nJoin us in this virtual workshop to learn about the basics of business finance\, including essential accounting concepts\, the chart of accounts\, and a comparison of the pros and cons of popular software options. \nThis workshop is designed for start-ups\, new business owners\, and anyone who wants to take control of their business finances. The workshop will provide a solid overview of business finances. Sound financial practices are key to getting your business ready for funding.
+URL:https://wvbusinesslink.com/event/start-managing-your-business-finances/
+CATEGORIES:Business Training,entrepreneur education,Finance
+ATTACH;FMTTYPE=image/png:https://wvbusinesslink.com/wp-content/uploads/2026/01/Header-image-2026-Virtual-Workshop-1.png
+ORGANIZER;CN="Partner Community Capital":MAILTO:largento@partnercapital.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260210T140000
+DTEND;TZID=America/New_York:20260210T150000
+DTSTAMP:20260121T122154
+CREATED:20260121T154351Z
+LAST-MODIFIED:20260121T154700Z
+UID:10001366-1770732000-1770735600@wvbusinesslink.com
+SUMMARY:West Virginia Entrepreneurship Ecosystem Monthly Meeting
+DESCRIPTION:[vc_row][vc_column][vc_column_text css=”” css_params=””]Join the West Virginia Entrepreneurship Ecosystem for our monthly virtual meeting\, where partners from across the state come together to share updates\, highlight resources\, and collaborate on ways to support entrepreneurs. This session includes brief presentations\, open discussion\, and opportunities to connect with others working to strengthen West Virginia’s entrepreneurial landscape. All are welcome![/vc_column_text][/vc_column][/vc_row]
+URL:https://wvbusinesslink.com/event/west-virginia-entrepreneurship-ecosystem-monthly-meeting/2026-02-10/
+LOCATION:Zoom Conference
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260216
+DTEND;VALUE=DATE:20260217
+DTSTAMP:20260121T122154
+CREATED:20260107T193349Z
+LAST-MODIFIED:20260107T193349Z
+UID:10001354-1771200000-1771286399@wvbusinesslink.com
+SUMMARY:IgniteWV Round 2 Competition
+DESCRIPTION:IgniteWV’s 2nd Round of Competition is held online.
+URL:https://wvbusinesslink.com/event/ignitewv-round-2-competition/
+ORGANIZER;CN="WVU Encova Center for Entrepreneurship":MAILTO:Tara.StClair@mail.wvu.edu
 END:VEVENT
 BEGIN:VEVENT
 DTSTART;TZID=America/New_York:20260217T160000
 DTEND;TZID=America/New_York:20260217T180000
-DTSTAMP:20251122T105155
+DTSTAMP:20260121T122154
 CREATED:20250814T155252Z
 LAST-MODIFIED:20250814T155252Z
 UID:10001307-1771344000-1771351200@wvbusinesslink.com
@@ -78,17 +100,93 @@ CATEGORIES:student entrepreneurship,Supporting Entrepreneurs
 ORGANIZER;CN="University of Charleston Russell and Martha Wehrle Innovation Center":MAILTO:davidramsburg@ucwv.edu
 END:VEVENT
 BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260217T170000
+DTEND;TZID=America/New_York:20260219T180000
+DTSTAMP:20260121T122154
+CREATED:20251204T145916Z
+LAST-MODIFIED:20251204T145916Z
+UID:10001341-1771347600-1771524000@wvbusinesslink.com
+SUMMARY:WV Outdoor Economy Summit
+DESCRIPTION:Hosted by The Nature Conservancy and the WVU Brad & Alys Smith Outdoor Economic Development Collaborative\, and proudly presented by the Charleston Convention & Visitors Bureau\, the West Virginia Outdoor Economy Summit is the state’s first cross-sector gathering focused on growing our $2.1 billion outdoor economy. \nJoin leaders from tourism\, conservation\, recreation\, entrepreneurship\, and community development on February 17–18\, 2026\, at the Charleston Coliseum & Convention Center\, to share ideas and shape West Virginia’s outdoor future. The momentum continues on February 19 at the State Capitol\, where we’ll showcase the strength and potential of West Virginia’s outdoor economy to lawmakers.
+URL:https://wvbusinesslink.com/event/wv-outdoor-economy-summit/
+LOCATION:Charleston Coliseum & Convention Center\, 200 Civic Center Dr\,\, Charleston\, WV\, 25301
+CATEGORIES:Bridging Innovation,Business Training,Celebration,Conference,Entrepreneurs,Grants,hospitality,Human Resources,Innovators,Manufacturing,Marketing,Networking,Sales,social media,Summit,Supporting Entrepreneurs,tourism,Workforce
+ATTACH;FMTTYPE=image/png:https://wvbusinesslink.com/wp-content/uploads/2025/11/Screenshot-2025-08-15-at-2.45.37-PM.png
+GEO:38.3564753;-81.6408384
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Charleston Coliseum & Convention Center 200 Civic Center Dr Charleston WV 25301;X-APPLE-RADIUS=500;X-TITLE=200 Civic Center Dr\,:geo:-81.6408384,38.3564753
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260401T170000
+DTEND;TZID=America/New_York:20260401T193000
+DTSTAMP:20260121T122154
+CREATED:20260107T193213Z
+LAST-MODIFIED:20260107T193213Z
+UID:10001356-1775062800-1775071800@wvbusinesslink.com
+SUMMARY:WVU Zinnstarter Pitch Competition
+DESCRIPTION:A pitch competition where WVU undergrads compete for over $20\,000 in prizes.
+URL:https://wvbusinesslink.com/event/wvu-zinnstarter-pitch-competition/
+LOCATION:WVU Launch Lab\, Morgantown\, WV\, 26505
+ORGANIZER;CN="WVU Morris L. Hayhurst LaunchLab":MAILTO:cwhite17@mail.wvu.edu
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260427
+DTEND;VALUE=DATE:20260428
+DTSTAMP:20260121T122154
+CREATED:20260107T195328Z
+LAST-MODIFIED:20260107T195328Z
+UID:10001357-1777248000-1777334399@wvbusinesslink.com
+SUMMARY:Bridging Innovation Week: WVU Innovation; Entrepreneurship on Campus Tour
+DESCRIPTION:A Tour of the WVU campus that emphasis Innovation and Entrepreneurship.
+URL:https://wvbusinesslink.com/event/bridging-innovation-week-wvu-innovation-entrepreneurship-on-campus-tour/
+END:VEVENT
+BEGIN:VEVENT
 DTSTART;VALUE=DATE:20260427
 DTEND;VALUE=DATE:20260502
-DTSTAMP:20251122T105155
+DTSTAMP:20260121T122154
 CREATED:20250409T202959Z
-LAST-MODIFIED:20250409T202959Z
+LAST-MODIFIED:20251231T161039Z
 UID:10001245-1777248000-1777679999@wvbusinesslink.com
 SUMMARY:Bridging Innovation Week 2026
-DESCRIPTION:Bridging Innovation Week is the state’s premier ​entrepreneurship event. The annual symposium ​advances entrepreneurship-led economic ​development by providing connection and education ​to business owners\, current and prospective ​entrepreneurs\, and entrepreneur serving ​organizations (ESOs) throughout West Virginia. \nWhether you’re just starting or looking to scale\, this is ​the place to explore entrepreneurship opportunities ​in the Mountain State! Location for 2026 will be announced at this years event in Shepherdstown\, WV. To learn more or to register for Bridging Innovation Week 2025 visit https://www.wveshipecosystem.com.
+DESCRIPTION:[vc_row][vc_column][vc_column_text css=”” css_params=””]Bridging Innovation Week is the state’s premier ​entrepreneurship event. The annual symposium ​advances entrepreneurship-led economic ​development by providing connection and education ​to business owners\, current and prospective ​entrepreneurs\, and entrepreneur serving ​organizations (ESOs) throughout West Virginia. \nWhether you’re just starting or looking to scale\, this is ​the place to explore entrepreneurship opportunities ​in the Mountain State! Join us in Morgantown\, WV on April 27 – May 1\, 2026. To learn more or to register for Bridging Innovation Week 2026 visit https://www.wveshipecosystem.com.[/vc_column_text][/vc_column][/vc_row]
 URL:https://wvbusinesslink.com/event/bridging-innovation-week-2026/
 CATEGORIES:Bridging Innovation,Conference,Entrepreneur Competitions,entrepreneur education,Entrepreneurs,Pitch Competition
 ATTACH;FMTTYPE=image/png:https://wvbusinesslink.com/wp-content/uploads/2024/06/bridging-innovation-logo-black.png
-ORGANIZER;CN="West Virginia Entrepreneurship Ecosystem":MAILTO:tara.stclair@mail.wvu.edu
+ORGANIZER;CN="West Virginia Entrepreneurship Ecosystem":MAILTO:connect@wveshipecosystem.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260428
+DTEND;VALUE=DATE:20260429
+DTSTAMP:20260121T122154
+CREATED:20260107T195022Z
+LAST-MODIFIED:20260107T195022Z
+UID:10001358-1777334400-1777420799@wvbusinesslink.com
+SUMMARY:Bridging Innovation Week: Entrepreneurship Ecosystem Conference
+DESCRIPTION:[vc_row][vc_column][vc_column_text css=”” css_params=””]See website for more details![/vc_column_text][/vc_column][/vc_row]
+URL:https://wvbusinesslink.com/event/bridging-innovation-week-entrepreneurship-ecosystem-conference/
+CATEGORIES:Bridging Innovation
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260429
+DTEND;VALUE=DATE:20260430
+DTSTAMP:20260121T122154
+CREATED:20260107T191247Z
+LAST-MODIFIED:20260107T191651Z
+UID:10001359-1777420800-1777507199@wvbusinesslink.com
+SUMMARY:Bridging Innovation Week: Competition Day
+DESCRIPTION:[vc_row][vc_column][vc_column_text css=”” css_params=””]Vantage Ventures Demos and IgniteWV Pitch Competition. \nSee website for more details[/vc_column_text][/vc_column][/vc_row]
+URL:https://wvbusinesslink.com/event/bridging-innovation-week-competition-day/
+CATEGORIES:Bridging Innovation
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260430
+DTEND;VALUE=DATE:20260501
+DTSTAMP:20260121T122154
+CREATED:20260107T191940Z
+LAST-MODIFIED:20260107T192622Z
+UID:10001360-1777507200-1777593599@wvbusinesslink.com
+SUMMARY:Bridging Innovation Week: Youth Entrepreneurship Day
+DESCRIPTION:[vc_row][vc_column][vc_column_text css=”” css_params=””]See the website for more details![/vc_column_text][/vc_column][/vc_row]
+URL:https://wvbusinesslink.com/event/bridging-innovation-week-youth-entrepreneurship-day/
+CATEGORIES:Bridging Innovation
 END:VEVENT
 END:VCALENDAR

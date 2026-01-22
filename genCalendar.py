@@ -629,11 +629,11 @@ def main(city = "baltimore"):
         try:
             newEvents += scrape_ics.fetch_calendar_events(
                 ICS_URL="https://baltimoreindiegames.com/events/list/?ical=1",
-                city=city,
                 imageURL="https://baltimoreindiegames.com/wp-content/uploads/2025/03/BIG_small.png",
                 eventUrl="https://baltimoreindiegames.com/events/",
-                recurring=False,
+                city="baltimore",
                 preface="",
+                recurring=False
             )
         except Exception as e:
             print(f"Error fetching calendar events: {e}")
