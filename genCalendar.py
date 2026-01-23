@@ -969,7 +969,7 @@ def main(city = "baltimore"):
     genSimpleCalendar.main(city)
 
 if __name__ == "__main__":
-    cities = ["baltimore", "westvirginia", "hawaii", "dc"]
+    cities = ["baltimore", "westvirginia", "hawaii", "dc", "pittsburgh"]
     if len(sys.argv) > 1:
         cities = sys.argv[1:]
     for city in cities:

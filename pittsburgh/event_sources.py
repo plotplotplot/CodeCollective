@@ -1,6 +1,7 @@
 sources = {
     "Meetup":[
-        #"https://www.meetup.com/baltimore-indie-game-developers-group/events/",
+        "https://www.meetup.com/code-and-coffee-pgh/",
+        "https://www.meetup.com/write-the-docs-pittsburgh/"
     ],
     "Eventbrite":[ #single events
         #"https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
