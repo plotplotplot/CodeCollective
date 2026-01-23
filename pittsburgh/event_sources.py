@@ -1,7 +1,9 @@
 sources = {
     "Meetup":[
         "https://www.meetup.com/code-and-coffee-pgh/",
-        "https://www.meetup.com/write-the-docs-pittsburgh/"
+        "https://www.meetup.com/write-the-docs-pittsburgh/",
+        "https://www.meetup.com/pydata-pittsburgh/",
+        "https://www.meetup.com/pgh-code-for-good/"
     ],
     "Eventbrite":[ #single events
         #"https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
