@@ -20,7 +20,6 @@ sources = {
         "https://www.meetup.com/Baltimore-Hackerspace/",
         "https://www.meetup.com/maryland-red-hat-user-group/",
         "https://www.meetup.com/columbia-politics-meetup-group/",
-        "https://www.meetup.com/dc-area-drone-user-group/",
         "https://www.meetup.com/ai-performance-engineering-washington-dc/",
         "https://www.meetup.com/philanthropicode/",
         "https://www.meetup.com/profs-and-pints-baltimore/",
@@ -47,7 +46,11 @@ sources = {
         "https://www.eventbrite.com/o/howard-county-office-of-workforce-development-88843319173",
         "https://www.eventbrite.com/o/howard-county-economic-development-authority-2805856464",
         "https://www.eventbrite.com/o/rmi-107139765",
-        "https://www.eventbrite.com/o/nachman-executive-consulting-77249254883"
+        "https://www.eventbrite.com/o/nachman-executive-consulting-77249254883",
+        "https://www.eventbrite.com/o/vashtiblue-jewelry-studio-120729155482",
+        "https://www.eventbrite.com/o/baltimore-robotics-center-14997527925",
+        "https://www.eventbrite.com/o/fight-blight-bmore-18309938620"
+
     ],
     "Jotform":[
         #"https://form.jotform.com/251063812795157"
@@ -78,5 +81,8 @@ sources = {
     ],
     "Google Forms":[
         "http://docs.google.com/forms/d/e/1FAIpQLSfAHwexta7vxLto1xmvBxFNawicAUtRrjTKqN0jHs25RjLCQg/viewform"
+    ],
+    "GDGChapters":[
+        3047
     ]
 }

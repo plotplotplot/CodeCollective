@@ -6,7 +6,7 @@ class OurHeader extends HTMLElement {
                 <a href="/#main">Home</a>
                 <a href="/balticonomy/">Balticonomy</a>
                 <a href="/#get-involved">Join Us</a>
-                <a href="/#about-us">About Us</a>
+                <a href="/newsletter/">Newsletter</a>
                 </div>
             </nav>
         `
@@ -38,19 +38,6 @@ class OurSocials extends HTMLElement {
                         <img
                             src="/images/element_logo.svg"
                             alt="Matrix icon"
-                            class="social__icon"
-                        />
-                    </button>
-                </a>
-                <a
-                    href="https://www.meetup.com/code-collective/"
-                    target="_blank"
-                    class="social__link"
-                >
-                    <button class="social__button">
-                        <img
-                            src="/images/meetup_icon.png"
-                            alt="Meetup icon"
                             class="social__icon"
                         />
                     </button>
@@ -125,6 +112,21 @@ class OurSocials extends HTMLElement {
     }
 }
 
+class CalendarLegend extends HTMLElement {
+    connectedCallback() {
+        this.innerHTML = `
+            <aside class="calendar-legend" aria-label="Event category filters">
+                <div class="legend-title">Filter by category:</div>
+                <div class="legend-items" id="calendar-legend-items"></div>
+            </aside>
+            <button type="button" id="legend-visibility-toggle" class="legend-toggle-button" aria-expanded="true">
+                Show legend
+            </button>
+        `;
+    }
+}
+
 customElements.define('our-header', OurHeader)
 customElements.define('our-footer', OurFooter)
 customElements.define('our-slack-link', OurSocials)
+customElements.define('calendar-legend', CalendarLegend)

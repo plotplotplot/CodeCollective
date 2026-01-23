@@ -8,6 +8,7 @@ import scrape_ics
 import scrape_starTUp
 import scrape_tedco
 import scrape_jhuapl
+import scrape_baltsistercities
 import scrape_big
 import scrape_gform
 import scrape_luma_orgpage
@@ -18,6 +19,8 @@ import scrape_bwtech
 import scrape_innovatemd
 import scrape_wssc
 import scrape_usgpo
+import scrape_gdg
+import tag_rules
 import json
 from ics import Calendar, Event
 import datetime
@@ -555,6 +558,10 @@ def main(city = "baltimore"):
         except Exception as e:
             print(f"Error fetching calendar events: {e}")
 
+    for ChapterID in sources.get("GDGChapters",[]):
+        print(f"Fetching GDG Chapter {ChapterID}")
+        newEvents += scrape_gdg.scrapeChapterID(ChapterID)
+
 
     # upcoming_events += scrape_equitech.scrape_equitech_tuesday()
     headers = {
@@ -589,6 +596,11 @@ def main(city = "baltimore"):
 
 
         try:
+            newEvents += scrape_baltsistercities.scrape_baltimore_events()
+        except Exception as e:
+            print(f"Error fetching Sister Cities")
+
+        try:
             newEvents += scrape_mtc.scrape_mtc_events()
         except Exception as e:
             print(f"Error fetching MTC")
@@ -617,11 +629,11 @@ def main(city = "baltimore"):
         try:
             newEvents += scrape_ics.fetch_calendar_events(
                 ICS_URL="https://baltimoreindiegames.com/events/list/?ical=1",
-                city=city,
                 imageURL="https://baltimoreindiegames.com/wp-content/uploads/2025/03/BIG_small.png",
                 eventUrl="https://baltimoreindiegames.com/events/",
-                recurring=False,
+                city="baltimore",
                 preface="",
+                recurring=False
             )
         except Exception as e:
             print(f"Error fetching calendar events: {e}")
@@ -666,10 +678,11 @@ def main(city = "baltimore"):
         #except Exception as e:
         #    print(f"Error fetching calendar events: {e}")
 
-        try:
-            newEvents += scrape_big.main()
-        except Exception as e:
-            print(f"Error fetching calendar events: {e}")
+        #try:
+            #newEvents += scrape_big.main()
+        #    https://baltimoreindiegames.com/events/list/?ical=1
+        #except Exception as e:
+        #    print(f"Error fetching calendar events: {e}")
 
         try:
             newEvents += scrape_wssc.scrape_all_wssc_events()
@@ -919,6 +932,15 @@ def main(city = "baltimore"):
         (e for e in unique_events if "startDate" in e),
         key=lambda e: est_timezone.localize(parse(e["startDate"])) if parse(e["startDate"]).tzinfo is None else parse(e["startDate"]),
     )
+
+    # add the categories
+    for event in sorted_events:
+        # find earliest match, then break
+        for url2tag in tag_rules.tag_rules_url:
+            urlpart, tag_list = url2tag
+            if urlpart in event.get("url", ""):
+                event["tags"] = tag_list
+                break
 
     # Save upcoming events to a file
     with open(os.path.join(city, "upcoming_events.json"), "w+", encoding="utf-8") as f:

@@ -21,6 +21,7 @@ sources = {
     "Eventbrite Orgs":[
         "https://www.eventbrite.com/o/tech-turn-up-32326719035",
         "https://www.eventbrite.com/o/georgetown-ventures-61649666833",
+        "https://www.eventbrite.com/o/georgetown-entrepreneurship-initiative-23347332259"
 
     ],
     "Jotform":[

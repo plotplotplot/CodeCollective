@@ -1,0 +1,147 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Baltimore Indie Games - ECPv6.15.14//NONSGML v1.0//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Baltimore Indie Games
+X-ORIGINAL-URL:https://baltimoreindiegames.com
+X-WR-CALDESC:Events for Baltimore Indie Games
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-Robots-Tag:noindex
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:America/New_York
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:20250309T070000
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:20251102T060000
+END:STANDARD
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:20260308T070000
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:20261101T060000
+END:STANDARD
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:20270314T070000
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:20271107T060000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260126T180000
+DTEND;TZID=America/New_York:20260201T170000
+DTSTAMP:20260121T205520
+CREATED:20251027T182318Z
+LAST-MODIFIED:20251027T182355Z
+UID:358-1769450400-1769965200@baltimoreindiegames.com
+SUMMARY:Global Game Jam 2026
+DESCRIPTION:Global Game Jam is the world’s largest game creation event … and directly serves 40\,000 game creators every year in 100+ countries. More than just a 48-hour game jam\, GGJ has been a starting point for hundreds of thousands of game developers around the world who have built successful\, sustainable careers in game development\, launched studios and created award-winning games. Throughout the year\, we work to support our community of jammers through community engagement\, partner jams and more. \nJoin BIG as we participate in GGJ 2026!
+URL:https://baltimoreindiegames.com/event/global-game-jam-2026/
+LOCATION:MD
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260207T100000
+DTEND;TZID=America/New_York:20260207T113000
+DTSTAMP:20260121T205520
+CREATED:20260102T164957Z
+LAST-MODIFIED:20260118T203810Z
+UID:407-1770458400-1770463800@baltimoreindiegames.com
+SUMMARY:BIG Online Meetup
+DESCRIPTION:We’re meeting on Discord! The link to join the Baltimore Indie Game Devs discord server will be in your Meetup RSVP message. \nJoin us to discuss game development\, talk shop\, and bounce ideas. Anyone with an interest in game design and development is welcome\, from beginners to veteran professionals. \nIf you participated in Global Game Jam\, come share the games you made! \nIf you’re working on a game\, you’re welcome to show it and ask for feedback. There will be plenty of time to chat and talk shop\, too.
+URL:https://baltimoreindiegames.com/event/online-meetup-9/
+LOCATION:MD
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260221T100000
+DTEND;TZID=America/New_York:20260221T113000
+DTSTAMP:20260121T205520
+CREATED:20260102T164846Z
+LAST-MODIFIED:20260118T203817Z
+UID:405-1771668000-1771673400@baltimoreindiegames.com
+SUMMARY:BIG In-Person/Online Meetup (East Columbia Branch Library) [Postmortem: Desktop Golf]
+DESCRIPTION:In-person is at the East Columbia Branch Library in the Marvin Thomas Room. \nJoin us IN-PERSON or ONLINE. Anyone with an interest in game design and development is welcome\, from beginners to veteran professionals. \nWe will be meeting in the Marvin Thomas Room at the East Columbia Branch Library (6600 Cradlerock Way). (Not an official Howard County Library System event.) \nThe developer of Desktop Golf will give a postmortem talk on the game. \nIf you want to attend virtually\, the Discord server link is provided in the main monthly (1st of the month) meetup details. An organizer will ensure that a laptop is provided on-site to connect the Discord attendees with those physically on-site. It takes us a few minutes to set up the projector\, so hold tight when you join the Discord voice chat channel. We’ll be there soon!
+URL:https://baltimoreindiegames.com/event/in-person-online-meetup-east-columbia-branch-library/
+LOCATION:East Columbia Branch
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260307T100000
+DTEND;TZID=America/New_York:20260307T113000
+DTSTAMP:20260121T205520
+CREATED:20260118T203735Z
+LAST-MODIFIED:20260118T203735Z
+UID:421-1772877600-1772883000@baltimoreindiegames.com
+SUMMARY:BIG Online Meetup
+DESCRIPTION:ONLINE MEETUP USING DISCORD. (Discord link visible after RSVPing on Meetup.) \nWe’re meeting on Discord! The link to join the Baltimore Indie Game Devs discord server will be in your RSVP message. \nAlso join us to discuss game development\, talk shop\, and bounce ideas. Anyone with an interest in game design and development is welcome\, from beginners to veteran professionals. \nIf you’re working on a game\, you’re welcome to show it and ask for feedback. There will be plenty of time to chat and talk shop\, too. \nhttps://www.meetup.com/baltimore-indie-game-developers-group/events/312946945
+URL:https://baltimoreindiegames.com/event/big-online-meetup/
+LOCATION:MD
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260309T000000
+DTEND;TZID=America/New_York:20260313T235959
+DTSTAMP:20260121T205520
+CREATED:20251130T151611Z
+LAST-MODIFIED:20251130T151611Z
+UID:373-1773014400-1773446399@baltimoreindiegames.com
+SUMMARY:GDC Festival of Gaming
+DESCRIPTION:Game Developers Conference Festival of Gaming
+URL:https://baltimoreindiegames.com/event/gdc-festival-of-gaming/
+LOCATION:MD
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260313T000000
+DTEND;TZID=America/New_York:20260315T235959
+DTSTAMP:20260121T205520
+CREATED:20251222T155149Z
+LAST-MODIFIED:20251222T155350Z
+UID:398-1773360000-1773619199@baltimoreindiegames.com
+SUMMARY:Awesome Con
+DESCRIPTION:The Indie Showcase is taking over an entire salon at Awesome Con and we want YOU to be there! \nWe have TONS of space this year and welcome any game in any form be it a traditional PC\, alt.ctrl\, homebrew\, console\, etc. As long as it’s in a playable state\, we want to show it off! \nYour showcase space is free and you’ll be given 3 badges\, a 6ft table\, 4 chairs\, and access to a power drop to work with. \nAwesome Con is the perfect place to get feedback on a new prototype or fine tune your main project before launch. The convention reaches a broad audience\, especially in the family and youth demographic. Awesome Con is also a great “training wheels” event if you’ve never shown a game in a convention setting before. Did we mention it’s free to show? \nThe submission deadline to Sunday\, January 18th. Click the button below to apply and please share the link out to any fellow developers who may be interested! If you know of a school program\, STEAM\, or game dev club that would also be interested in showing off\, have them email la****@*****st.org. \nhttps://docs.google.com/forms/d/e/1FAIpQLSc47Vfltb7LTLezZbZPj-S8ReP7Ry62L-9jFlJS1sXvrHvm9Q/viewform
+URL:https://baltimoreindiegames.com/event/awesome-con/
+LOCATION:Walter E. Washington Convention Center\, 801 Mt Vernon Pl NW\, Washington\, DC\, 20001\, United States
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260321T110000
+DTEND;TZID=America/New_York:20260321T170000
+DTSTAMP:20260121T205520
+CREATED:20260119T011659Z
+LAST-MODIFIED:20260119T011739Z
+UID:434-1774090800-1774112400@baltimoreindiegames.com
+SUMMARY:MoComCon 2026
+DESCRIPTION:Montgomery County Public Libraries is celebrating 10-years of MoComCon this March! \nMoComCon is a FREE celebration of all things comics\, graphic novels\, and fandoms! \nAs part of this year’s programming\, MoComCon is hosting a Gaming Industry Panel to give attendees an inside look at the world of video game creation and development.\n\nPanel Details:\n\nTopic: The Gaming Industry – Insights from Creators\n\nFormat: 45-minute panel (10-15-minute presentation per group\, followed by Q&A)\n\nAudience: Gamers\, aspiring developers\, and pop culture enthusiasts\n\n  \nFriday\, March 20\, 2026\nBlackRock Center for the Arts\n6:00 PM – 8: 00 PM\nEvening event for Teens & Adults \nSaturday\, March 21\, 2026\nGermantown Library\n10:00 AM – 4:00 PM\nKid & Family friendly events \nSaturday\, March 21\, 2026\nBlackRock Center for the Arts\n11:00 AM – 5:00 PM\nEvents for Teens & Adults
+URL:https://baltimoreindiegames.com/event/mocomcon-2026/
+LOCATION:Black Rock Center for the Arts\, 12901 Town Commons Dr\, Germantown\, MD\, 20874\, United States
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260606T110000
+DTEND;TZID=America/New_York:20260606T170000
+DTSTAMP:20260121T205520
+CREATED:20251216T003403Z
+LAST-MODIFIED:20251216T003403Z
+UID:387-1780743600-1780765200@baltimoreindiegames.com
+SUMMARY:Indie Game Fest
+DESCRIPTION:The Enoch Pratt Free Library hosts the annual Indie Video Game Fest\, a curated\, curious\, and creative exhibition of Independent Video Games from the DMV area. \nIndie Video Game Fest is an annual one-day event that brings together gamers\, developers\, and video game industry insiders to play\, discuss\, and celebrate independent video games from across the DMV area. \nAs part of the event\, we host exciting guest speakers from the video game industry. These talks focus on the creation of video games\, the video game industry\, and what working in it is like. Previous speakers include Jason Schreier\, Chris Bratt\, and Jake Solomon. \nIf you’re an indie game developer who’s interested in showing your game\, complete the submission form at the link below before February 28\, 2026\, at 5 pm: \nhttps://www.prattlibrary.org/indie-game-fest \n 
+URL:https://baltimoreindiegames.com/event/indie-game-fest-2/
+LOCATION:Enoch Pratt Free Library\, 400 Cathedral Street\, Baltimore\, MD\, 21201\, United States
+END:VEVENT
+END:VCALENDAR

@@ -11,6 +11,8 @@ from pprint import pprint
 # Constants
 TIMEZONE = pytz.timezone("America/New_York")
 CACHE_MAX_AGE = timedelta(days=1)
+import re, urllib.parse
+
 
 import re
 from urllib3.util.retry import Retry
@@ -18,13 +20,16 @@ from requests.adapters import HTTPAdapter
 
 def fetch_calendar_events(ICS_URL, city, imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png", eventUrl="https://www.unallocatedspace.org", recurring=True, preface="GameDevs "):
     """Fetch and return calendar events in the standardized format."""
+    print(f"Fetching ICS from {ICS_URL}")
     fetch_from_web = True
     os.makedirs(city, exist_ok=True)
 
     # Always prefer https
     ICS_URL = re.sub(r"^http://", "https://", ICS_URL.strip())
+    url = ICS_URL
+    token = re.sub(r'[^A-Za-z0-9._-]+','_', (urllib.parse.urlsplit(url if '://' in url else 'https://'+url).hostname or '').split('.',1)[0]).strip('._-') or 'file'
 
-    CACHE_FILENAME = os.path.join(city, f"cache_{hashlib.md5(ICS_URL.encode()).hexdigest()}.ics")
+    CACHE_FILENAME = os.path.join(city, f"cache_{token}.ics")
 
     # Check if cached file exists and is recent
     if os.path.exists(CACHE_FILENAME):
@@ -291,10 +296,10 @@ def get_event_dates(events):
 
 if __name__ == "__main__":
     calendar_events = fetch_calendar_events(
-        ICS_URL="https://wvbusinesslink.com/?post_type=tribe_events&ical=1&eventDisplay=list",
+        ICS_URL="https://baltimoreindiegames.com/events/list/?ical=1",
         imageURL="https://baltimoreindiegames.com/wp-content/uploads/2025/03/BIG_small.png",
         eventUrl="https://baltimoreindiegames.com/events/",
-        city="westvirginia",
+        city="baltimore",
         preface="",
         recurring=False
     )
