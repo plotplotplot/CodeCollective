@@ -41,6 +41,7 @@ from geocode_cache import (
 )
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
+import unicodedata
 
 # Define the timezone for EST
 est_timezone = pytz.timezone("America/New_York")
@@ -163,6 +164,21 @@ def parse_markdown_to_plain_text(markdown_text):
     text = re.sub(r"^\d+\.\s*(.*)$", r"\1", text, flags=re.MULTILINE)  # Numbered lists
 
     return text.strip()
+
+
+def sanitize_event_name(name, max_length=80):
+    """Return an ASCII-only, safe name for storing event assets."""
+    if not name:
+        name = "event"
+
+    normalized = unicodedata.normalize("NFKD", name)
+    ascii_name = normalized.encode("ascii", "ignore").decode("ascii")
+    sanitized = re.sub(r"[^A-Za-z0-9]+", "_", ascii_name).strip("_")
+
+    if not sanitized:
+        sanitized = "event"
+
+    return sanitized[:max_length]
 
 
 def events_to_ics(events_json, city, output_file="baltimore_tech_events.ics"):
@@ -718,18 +734,7 @@ def main(city = "baltimore"):
         if "imageUrl" in event and event["imageUrl"]:
             image_url = event["imageUrl"]
 
-            # Create a valid filename with all spaces replaced by underscores
-            safe_event_name = (
-                event["name"]
-                .replace(" ", "_")
-                .replace("/", "_")
-                .replace("\\", "_")
-                .replace("'", "_")
-                .replace(":", "_")
-                .replace("(", "_")
-                .replace(")", "_")
-                .replace("#", "_")
-            )
+            safe_event_name = sanitize_event_name(event.get("name"))
             image_filename = f"event_images/{safe_event_name}.webp"
 
             # Update event data with local path
@@ -740,8 +745,6 @@ def main(city = "baltimore"):
                 continue
 
             try:
-                extension = extract_proper_extension(image_url)
-
                 response = requests.get(image_url, headers=headers, timeout=10)
                 response.raise_for_status()
 
@@ -969,7 +972,7 @@ def main(city = "baltimore"):
     genSimpleCalendar.main(city)
 
 if __name__ == "__main__":
-    cities = ["baltimore", "westvirginia", "hawaii", "dc"]
+    cities = ["baltimore", "westvirginia", "hawaii", "dc", "pittsburgh"]
     if len(sys.argv) > 1:
         cities = sys.argv[1:]
     for city in cities:
