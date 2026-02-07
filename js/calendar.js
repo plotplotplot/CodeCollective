@@ -427,7 +427,7 @@ function initializeMobileCards(events) {
 }
 
 // Create individual event card with expandable description
-function toggleDescription(button) {
+function toggleCardDescription(button) {
   const card = button.closest('.card-content');
   const shortDesc = card.querySelector('.card-description-short');
   const fullDesc = card.querySelector('.card-description-full');
@@ -500,7 +500,7 @@ function createEventCard(event) {
         <div class="card-description">
           <div class="card-description-short">${shortDesc}</div>
           <div class="card-description-full markdown-content" style="display: none;"></div>
-          ${needsMore ? '<button class="more-btn" onclick="toggleDescription(this)"><i class="fas fa-chevron-down"></i> More</button>' : ''}
+          ${needsMore ? '<button class="more-btn" onclick="toggleCardDescription(this)"><i class="fas fa-chevron-down"></i> More</button>' : ''}
         </div>
       ` : ''}
   `;
@@ -511,7 +511,11 @@ function createEventCard(event) {
   if (description && needsMore) {
     const fullDescContainer = card.querySelector('.card-description-full');
     if (fullDescContainer) {
-      fullDescContainer.innerHTML = marked.parse(description);
+      if (window.marked && typeof window.marked.parse === 'function') {
+        fullDescContainer.innerHTML = marked.parse(description);
+      } else {
+        fullDescContainer.textContent = description;
+      }
     }
   }
 
@@ -1027,7 +1031,7 @@ function populateCodeCollectiveEvents(events) {
       showMoreBtn.className = 'cc-show-more-btn';
       showMoreBtn.id = `${eventId}-btn`;
       showMoreBtn.textContent = 'Show more';
-      showMoreBtn.onclick = () => toggleDescription(eventId);
+      showMoreBtn.onclick = () => toggleCcDescription(eventId);
 
       descriptionDiv.appendChild(fullDesc);
       descriptionDiv.appendChild(showMoreBtn);
@@ -1045,7 +1049,7 @@ function populateCodeCollectiveEvents(events) {
 }
 
 // Toggle function for show more/less
-function toggleDescription(eventId) {
+function toggleCcDescription(eventId) {
   const shortDiv = document.getElementById(`${eventId}-short`);
   const fullDiv = document.getElementById(`${eventId}-full`);
   const btn = document.getElementById(`${eventId}-btn`);
