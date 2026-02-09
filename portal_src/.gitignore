@@ -1,0 +1,42 @@
+.kilocode
+
+# Dependencies
+**/node_modules/
+
+# Build output
+**/dist/
+**/dist-ssr/
+**/build/
+**/.vite/
+
+# Test / coverage output
+**/coverage/
+
+# Logs
+logs/
+**/*.log
+
+# Local env / secrets
+.env
+.env.*
+!.env.example
+
+# Tooling caches
+**/*.tsbuildinfo
+**/.eslintcache
+**/.npm/
+**/.pnpm-store/
+
+# OS / editor files
+.DS_Store
+**/.idea/
+**/.vscode/*
+!**/.vscode/extensions.json
+
+editme.py
+ubuntu-24.04.3-desktop-amd64.iso
+get-docker*
+*__pycache__
+
+webapp*
+web/package-lock.json
