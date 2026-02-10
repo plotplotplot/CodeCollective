@@ -13,7 +13,8 @@ sources = {
         "https://www.meetup.com/geo-dc/",
         "https://www.meetup.com/cybersecurity-innovation-forum/",
         "https://www.meetup.com/platform-engineers-washington-dc/",
-        "https://www.meetup.com/washington-dc-cyber-security-for-control-systems/"
+        "https://www.meetup.com/washington-dc-cyber-security-for-control-systems/",
+        "https://www.meetup.com/producttank-washington-dc/"
 
     ],
     "Eventbrite":[
@@ -44,7 +45,10 @@ sources = {
         "https://luma.com/pgpforcrypto",
         "https://luma.com/bitcoindistrict",
         "https://luma.com/stationdc",
-        "https://luma.com/theupskillinglabs"
+        "https://luma.com/theupskillinglabs",
+        "https://luma.com/aic-dc-2-9",
+        "https://luma.com/dcnightowls",
+        "https://luma.com/seecinstitute"
     ],
     "Luma Users":[
         "usr-f5X9pGAJt2YOugC",
