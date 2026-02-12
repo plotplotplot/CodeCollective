@@ -14,7 +14,7 @@ VITE_KEYCLOAK_SERVER_URL = os.getenv("VITE_KEYCLOAK_SERVER_URL", "")
 VITE_KEYCLOAK_CLIENT_ID = os.getenv("VITE_KEYCLOAK_CLIENT_ID", "")
 
 
-def run(NETWORK_NAME):
+def run(NETWORK_NAME, prefix: str = ""):
     os.makedirs(webapp_build_dir, exist_ok=True)
     os.makedirs(webapp_android_dir, exist_ok=True)
     os.makedirs(os.path.join(webapp_build_dir, "node_modules"), exist_ok=True)
@@ -24,7 +24,7 @@ def run(NETWORK_NAME):
     webapp_build = dict(
         image="node:23",
         detach=True,  # Runs the container in detached mode
-        name=f"webapp_build",
+        name=f"{prefix}webapp-build",
         network=NETWORK_NAME,
         restart_policy={"Name": "no"},
         volumes={
@@ -54,7 +54,7 @@ def run(NETWORK_NAME):
     webapp_android_build = dict(
         image="ghcr.io/cirruslabs/android-sdk:34",
         detach=True,
-        name="webapp_android_build",
+        name=f"{prefix}webapp-android-build",
         network=NETWORK_NAME,
         restart_policy={"Name": "no"},
         volumes={
@@ -101,7 +101,7 @@ def run(NETWORK_NAME):
     webapp = dict(
         image="node:23",
         detach=True,  # Runs the container in detached mode
-        name=f"webapp",
+        name=f"{prefix}webapp",
         network=NETWORK_NAME,
         restart_policy={"Name": "always"},
         volumes={

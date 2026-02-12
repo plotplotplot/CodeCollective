@@ -4,11 +4,11 @@ import { Footer } from './Footer'
 
 export function AppLayout() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg-page)', display: 'flex', flexDirection: 'column' }}>
+    <div className="portal-shell">
       <Header />
-      <main style={{ padding: '40px 24px' }}>
-        <div className="container">
-        <Outlet />
+      <main className="portal-main">
+        <div className="portal-container">
+          <Outlet />
         </div>
       </main>
       <Footer />

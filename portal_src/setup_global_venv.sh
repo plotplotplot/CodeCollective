@@ -55,6 +55,13 @@ PY
     # Make `pip` always use this venv (prevents PEP 668 system pip errors)
     alias pip='python -m pip'
     alias pip3='python -m pip'
+
+    # Show venv in prompt once per session
+    if [[ -n "${VIRTUAL_ENV:-}" ]] && [[ -z "${GLOBAL_VENV_PROMPT_SET:-}" ]]; then
+      VENV_NAME="$(basename "$VIRTUAL_ENV")"
+      PS1="(${VENV_NAME}) $PS1"
+      export GLOBAL_VENV_PROMPT_SET=1
+    fi
   fi
 fi
 # --- End auto-activate global Python venv ---

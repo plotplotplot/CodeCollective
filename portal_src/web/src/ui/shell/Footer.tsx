@@ -1,24 +1,18 @@
-import { Link } from 'react-router-dom'
-
 export function Footer() {
   return (
-    <footer
-      style={{
-        marginTop: 'auto',
-        borderTop: '1px solid #d4d1c2',
-        background: '#f3f0dd',
-        padding: '1.25rem 2rem',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: '0.75rem',
-      }}
-    >
-      <span className="muted">© 2026 Ballot</span>
-      <Link to="/about" style={{ color: '#1a1a1a', textDecoration: 'none', fontWeight: 500 }}>
-        About us
-      </Link>
+    <footer className="portal-footer">
+      <div className="portal-footer-inner">
+        <div>
+          <div className="portal-brand-title">Code Collective</div>
+          <div className="portal-brand-sub">Economic commons, operationalized.</div>
+        </div>
+        <div className="portal-footer-links">
+          <a href="/pidp">Identity</a>
+          <a href="/cockroach">Ledger</a>
+          <a href="/spicedb">Policy DB</a>
+        </div>
+        <span>© 2026 Code Collective</span>
+      </div>
     </footer>
   )
 }

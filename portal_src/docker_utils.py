@@ -204,6 +204,66 @@ def run_container(config):
     return DOCKER_CLIENT.containers.run(**config)
 
 
+def init_cockroach(
+    container_name: str,
+    sql_port: int = 26257,
+    insecure: bool = True,
+    retries: int = 5,
+    delay: int = 1,
+) -> bool:
+    """Initialize a CockroachDB cluster (idempotent)."""
+    flags = ["--insecure"] if insecure else []
+    host = f"127.0.0.1:{sql_port}"
+    init_cmd = ["cockroach", "init", *flags, f"--host={host}"]
+    quick_check_cmd = ["cockroach", "sql", *flags, f"--host={host}", "-e", "select 1"]
+
+    # Fast check: if SQL works, cluster is already initialized.
+    try:
+        container = DOCKER_CLIENT.containers.get(container_name)
+        result = container.exec_run(quick_check_cmd, stdout=True, stderr=True, demux=True)
+        if isinstance(result, tuple):
+            exit_code, _ = result
+        else:
+            exit_code = getattr(result, "exit_code", None)
+        if exit_code == 0:
+            print("CockroachDB already initialized.")
+            return True
+    except Exception:
+        pass
+
+    for attempt in range(1, retries + 1):
+        try:
+            container = DOCKER_CLIENT.containers.get(container_name)
+            result = container.exec_run(init_cmd, stdout=True, stderr=True, demux=True)
+            if isinstance(result, tuple):
+                exit_code, output = result
+            else:
+                exit_code = getattr(result, "exit_code", None)
+                output = getattr(result, "output", b"")
+            if isinstance(output, tuple):
+                stdout, stderr = output
+                output_bytes = b""
+                if stdout:
+                    output_bytes += stdout
+                if stderr:
+                    output_bytes += stderr
+            else:
+                output_bytes = output if isinstance(output, (bytes, bytearray)) else str(output).encode("utf-8")
+            output_text = output_bytes.decode("utf-8", errors="replace")
+            if exit_code == 0:
+                print("CockroachDB initialized.")
+                return True
+            if "already initialized" in output_text.lower():
+                print("CockroachDB already initialized.")
+                return True
+        except Exception as e:
+            print(f"Cockroach init attempt {attempt}/{retries} failed: {e}")
+        time.sleep(delay)
+
+    print("CockroachDB init did not succeed after retries.")
+    return False
+
+
 def wait_for_db(network, db_url, db_user="postgres", max_attempts=30, delay=2):
     print(f"Using db_url: {db_url}")
     print(f"Waiting for the database to respond on {db_url}...")
@@ -609,8 +669,13 @@ def initializeFiles(srcdir = here):
     # Check if we are in a GitHub Actions environment
     in_github_actions = os.getenv("GITHUB_ACTIONS") == "true"
     print(in_github_actions)
-    envFile = os.path.join(srcdir, "editme.py")
-    envExampleFile = os.path.join(srcdir, "editme.example.py")
+    for filename in os.listdir(srcdir):
+        if filename.endswith("editme.example.py"):
+            envExampleFile = os.path.join(srcdir, filename)
+            envFile = envExampleFile.replace("example.","")
+            break
+    if not envExampleFile:
+        raise Exception("envfile not found")
     if not os.path.isfile(envFile):
         shutil.copy(envExampleFile, envFile)
         print("editme.py file did not exist and has been created. Please edit it to update the necessary values, then re-run this script.")

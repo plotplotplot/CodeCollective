@@ -1,6 +1,7 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom'
 import { AppLayout } from '../shell/AppLayout'
 import App from '../../App'
+import { EconomicOpsPage } from '../views/EconomicOpsPage'
 import { AuthCallbackPage } from '../views/AuthCallbackPage'
 import { InitiativeDetailPage } from '../views/InitiativeDetailPage'
 import { InitiativeSignPage } from '../views/InitiativeSignPage'
@@ -30,6 +31,7 @@ export function createAppRouter() {
   return createBrowserRouter(
     [
       { path: '/', element: <App /> },
+      { path: '/ecops', element: <EconomicOpsPage /> },
       { path: '/auth/callback', element: <AuthCallbackPage /> },
       // If someone hits the physical file path in S3/CloudFront, redirect to the SPA root.
       { path: '/index.html', element: <Navigate to="/" replace /> },

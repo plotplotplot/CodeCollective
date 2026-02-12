@@ -34,14 +34,25 @@ def run(network_name: str = "BALLOT", prefix: str = "") -> None:
             str(here): {"bind": "/app", "mode": "rw"},
         },
         environment={
-            "BALLOT_REDIS_HOST": f"{prefix}redis",
-            "BALLOT_REDIS_PORT": "6379",
-            "PIDP_BASE_URL": "http://pidp:8000",
+            "REDIS_HOST": f"{prefix}redis",
+            "REDIS_PORT": "6379",
             "PIDP_JWKS_URL": "http://pidp:8000/.well-known/jwks.json",
+            "PIDP_BASE_URL": "http://pidp:8000",
             "PIDP_JWT_ISSUER": os.getenv("PIDP_JWT_ISSUER"),
             "PIDP_JWT_AUDIENCE": os.getenv("PIDP_JWT_AUDIENCE"),
+            "COCKROACH_DB_URL": (
+                f"cockroachdb+psycopg2://{editme.COCKROACH_USER}@{prefix}cockroach:"
+                f"{editme.COCKROACH_SQL_PORT}/{editme.COCKROACH_DB}"
+                f"?sslmode={'disable' if editme.COCKROACH_INSECURE else 'require'}"
+            ),
+            "COCKROACH_ASYNC_URL": (
+                f"postgresql://{editme.COCKROACH_USER}@{prefix}cockroach:"
+                f"{editme.COCKROACH_SQL_PORT}/{editme.COCKROACH_DB}"
+                f"?sslmode={'disable' if editme.COCKROACH_INSECURE else 'require'}"
+            ),
             "SPICEDB_HTTP_URL": "http://spicedb:8443",
             "SPICEDB_PRESHARED_KEY": editme.SPICEDB_PRESHARED_KEY,
+            "ORG_ADMIN_USER_IDS": os.getenv("ORG_ADMIN_USER_IDS", ""),
             "WATCHFILES_FORCE_POLLING": "true",
             "MODERATOR_EMAILS": os.getenv("MODERATOR_EMAILS", "julian2@julian2.edu"),
         },

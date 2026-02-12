@@ -4,10 +4,11 @@ here = Path(os.path.abspath(os.path.dirname(__file__)))
 nginx_dir = here / "nginx"
 webapp_dir = here / "web"
 static_dir = here / "static"
-NETWORK_NAME = "BALLOT"
+NETWORK_NAME = "PORTAL"
 import docker_utils
 from nginx.run import run as nginx_run
-from PIdP.run import run as pidp_run
+from pidp.run import run as pidp_run
+from ubi.run import run as ubi_run
 import importlib.util
 from web.run import run as web_run
 
@@ -50,13 +51,13 @@ def ensure_pidp_image() -> None:
             return
     print("Building pidp image from PIdP/Dockerfile...")
     docker_utils.DOCKER_CLIENT.images.build(
-        path=str(here / "PIdP"),
+        path=str(here / "pidp"),
         tag="pidp",
     )
 
 ensure_pidp_image()
-def _load_ballot_backend_run():
-    backend_run_path = here / "ballot-backend" / "run.py"
+def run_org_backend():
+    backend_run_path = here / "org-backend" / "run.py"
     spec = importlib.util.spec_from_file_location("ballot_backend_run", backend_run_path)
     if spec and spec.loader:
         module = importlib.util.module_from_spec(spec)
@@ -147,10 +148,11 @@ docker_utils.run_container(MINIO)
 # ----------------------------
 # CockroachDB (distributed SQL)
 # ----------------------------
+COCKROACH_HOST = f"{prefix}cockroach"
 COCKROACH = dict(
     image="cockroachdb/cockroach",
     detach=True,
-    name=prefix + "cockroach",
+    name=COCKROACH_HOST,
     network=NETWORK_NAME,
     restart_policy={"Name": "always"},
     # Optional: expose to host for local dev tooling
@@ -159,7 +161,7 @@ COCKROACH = dict(
         "8080/tcp": editme.COCKROACH_HTTP_PORT,    # Admin UI
     },
     command=[
-        "start-single-node",
+        "start",
         *(
             ["--insecure"]
             if editme.COCKROACH_INSECURE
@@ -167,6 +169,8 @@ COCKROACH = dict(
         ),
         f"--listen-addr=0.0.0.0:{editme.COCKROACH_SQL_PORT}",
         f"--http-addr=0.0.0.0:{editme.COCKROACH_HTTP_PORT}",
+        f"--advertise-addr={COCKROACH_HOST}:{editme.COCKROACH_SQL_PORT}",
+        f"--join={COCKROACH_HOST}:{editme.COCKROACH_SQL_PORT}",
     ],
     volumes={
         prefix + "COCKROACH_DATA": {
@@ -185,17 +189,22 @@ COCKROACH = dict(
     },
 )
 docker_utils.run_container(COCKROACH)
+docker_utils.init_cockroach(
+    container_name=COCKROACH_HOST,
+    sql_port=editme.COCKROACH_SQL_PORT,
+    insecure=editme.COCKROACH_INSECURE,
+)
 
 # Handy internal endpoints (for your backend config)
 REDIS_URL = f"redis://{prefix}redis:6379/0"
 MINIO_S3_ENDPOINT = f"http://{prefix}minio:9000"
 MINIO_CONSOLE = f"http://{prefix}minio:9001"
 COCKROACH_SQL_URL = (
-    f"postgresql://{editme.COCKROACH_USER}@{prefix}cockroach:"
+    f"postgresql://{editme.COCKROACH_USER}@{COCKROACH_HOST}:"
     f"{editme.COCKROACH_SQL_PORT}/{editme.COCKROACH_DB}"
     f"?sslmode={'disable' if editme.COCKROACH_INSECURE else 'require'}"
 )
-COCKROACH_HTTP = f"http://{prefix}cockroach:{editme.COCKROACH_HTTP_PORT}"
+COCKROACH_HTTP = f"http://{COCKROACH_HOST}:{editme.COCKROACH_HTTP_PORT}"
 
 
 # 1) Postgres datastore for SpiceDB
@@ -295,7 +304,8 @@ SPICEDB = dict(
 )
 docker_utils.run_container(SPICEDB)
 
-ballot_backend_run = _load_ballot_backend_run()
+ballot_backend_run = run_org_backend()
 ballot_backend_run(NETWORK_NAME, prefix)
-web_run(NETWORK_NAME)
+ubi_run(NETWORK_NAME, prefix)
+web_run(NETWORK_NAME, prefix)
 nginx_run(NETWORK_NAME, prefix)
