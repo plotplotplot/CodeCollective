@@ -20,6 +20,15 @@
   <meta property="og:title" content="Code Collective | Organizing Tech Labor" />
   <meta property="og:description"
     content="Organizing tech labor in Baltimore and sharing a community-wide tech events calendar." />
+  <meta property="og:image" content="https://codecollective.us/images/general_encircled_banner.webp" />
+  <meta property="og:image:alt" content="Code Collective banner" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Code Collective | Coding a better economy" />
+  <meta name="twitter:description"
+    content="Baltimore-based tech labor organization with a unified events calendar, workforce development, and advocacy." />
+  <meta name="twitter:image" content="https://codecollective.us/images/general_encircled_banner.webp" />
 
   <!-- Favicon -->
   <link rel="icon" href="/images/favicons/favicon.png" />
@@ -33,10 +42,26 @@
   <link rel="stylesheet" href="/css/carousel.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Code Collective",
+      "url": "https://codecollective.us/",
+      "logo": "https://codecollective.us/images/favicons/favicon.png",
+      "description": "Baltimore-based tech labor organization providing a unified tech events calendar, workforce development, and advocacy.",
+      "slogan": "Coding a better economy",
+      "areaServed": "Baltimore, MD",
+      "sameAs": [
+        "https://codecollective.us/newsletter/"
+      ]
+    }
+  </script>
+
 </head>
 
 <body id="body">
-  <video id="bg-video" autoplay loop muted playsinline>
+  <video id="bg-video" autoplay loop muted playsinline poster="/images/general_encircled_banner.webp">
     <source src="/videos/craig_baltimore_video.mp4" type="video/mp4" media="(max-width: 768px)">
     <source src="/videos/baltimorenight_15s_crossfaded.mp4" type="video/mp4">
     Your browser does not support the video tag.
@@ -55,8 +80,19 @@
   <main id="wrapper" class="longform dark-mode" style="padding: 0; margin: 0;">
     <section id="main" class="longform dark-mode" style="padding: 0; margin: 0;">
       <section class="about-us" id="about-us" aria-label="About Code Collective">
-        
-      <img src="/images/version_control_basic/version_control_code_collective.webp">
+
+      <h1>Code Collective</h1>
+      <p><strong>Coding a better economy.</strong></p>
+      <p>Code Collective is a Baltimore-based tech labor organization providing a unified calendar of local tech events,
+        workforce development programs, and advocacy to strengthen the region's tech economy.</p>
+      <ul>
+        <li>Location: Baltimore, MD</li>
+        <li>Focus: Tech labor organizing, workforce development, and community events</li>
+        <li>Offerings: Events calendar, volunteer organizing, community meetups</li>
+        <li>Contact: <a href="mailto:julian@codecollective.us">julian@codecollective.us</a></li>
+      </ul>
+
+      <img src="/images/version_control_basic/version_control_code_collective.webp" alt="Version Control Basic Proficiency banner" loading="lazy" decoding="async">
       <h2>Workforce Development</h2>
       <p>The free <strong>Version Control Basic Proficiency</strong> exists to promote collaboration among coders and
         artists of the Baltimore Metropolis. Learning Version Control will enable you to collaborate effectively with
@@ -121,11 +157,10 @@
           </div>
       </div>
       
-      <p></p><a href="/newsletter/techunity2025.html"><strong>Tech Unity</strong></a> was a first-of-its-kind cookout designed to unite the forces of the Baltimore
+      <a href="/newsletter/techunity2025.html"><strong>Tech Unity</strong></a> was a first-of-its-kind cookout designed to unite the forces of the Baltimore
         Metropolitan Tech Economy on June 28th, 2025.</p>
 
-      <h1>Code Collective</h1>
-        <img src = "/images/general_encircled_banner.webp">
+        <img src="/images/general_encircled_banner.webp" alt="Code Collective banner" loading="lazy" decoding="async">
       <h2>Economic Branding</h2>
       <p>We want the people of Baltimore Metropolis to be seen for what they are: Authentic, Virtuous, Peaceful, and
         Capable. Masters of logistics, we boast one of the most valuable maritime ports in the world. Our city is a
@@ -133,8 +168,7 @@
         capable in the areas of gaming, silicon design, engineering, and – as circumstance may occasion – the tools of
         modern warfare. We present the following as the flag of the Baltimore Metropolis, representing our peaceful
         strengths:</p>
-        <p></p>
-        <img src="/images/tech_unity/flag.png" style="border-radius: 1rem;">
+        <img src="/images/tech_unity/flag.png" alt="Flag of the Baltimore Metropolis" style="border-radius: 1rem;" loading="lazy" decoding="async">
 
       <h2>Advocacy</h2>
       <p>Our people are experiencing degraded employment in terms of wages and peaceful end-goals. These issues stem
@@ -156,16 +190,16 @@
       </ol>
       </section>
 
-      <h1 style="margin: 10px 0; font-size: 4vw; text-align: center">Code Collective Events</h1>
+      <h2 style="margin: 10px 0; font-size: 4vw; text-align: center">Code Collective Events</h2>
       <section class="code-collective-events" aria-label="Code Collective Events">
         <div id="code-collective-events-container">
           <!-- Events will be populated by JavaScript -->
         </div>
       </section>
 
-      <section class="about-us" id="about-us" aria-label="About Code Collective">
+      <section class="about-us" id="organizers" aria-label="Organizers">
 
-        <h1>Organizers</h1>
+        <h2>Organizers</h2>
         <div class="card">
           <div class="imageBox">
             <div class="imageInn">
@@ -183,7 +217,7 @@
         <section class="longform dark-mode" id="get-involved">
 
 
-          <h1>We're "hiring"!</h1>
+          <h2>We're "hiring"!</h2>
 
           <p>Join Code Collective as a Volunteer Organizer and help us bring Baltimore's tech community together for
             positive social change.</p>
@@ -209,6 +243,16 @@
           <p>We look forward to hearing from you!</p>
         </section>
 
+      </section>
+
+      <section class="about-us" id="faq" aria-label="Frequently Asked Questions">
+        <h2>FAQ</h2>
+        <h3>What is Code Collective?</h3>
+        <p>A Baltimore-based tech labor organization focused on community building, workforce development, and advocacy.</p>
+        <h3>How do I find tech events in Baltimore?</h3>
+        <p>Use the unified calendar and event listings on this site to browse local meetups, hackathons, and community events.</p>
+        <h3>How can I get involved?</h3>
+        <p>Join as a volunteer organizer or reach out by email to learn about upcoming opportunities.</p>
       </section>
     </section>
 
