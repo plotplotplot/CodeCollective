@@ -855,6 +855,13 @@ function initializeCalendar(events) {
       return { domNodes: [eventEl] };
     },
     eventDidMount: function (info) {
+      if (isFeaturedSource(info.event.extendedProps?.source)) {
+        const dayCell = info.el.closest('.fc-daygrid-day');
+        if (dayCell) {
+          dayCell.classList.add('source-codecollective-luma-day');
+        }
+      }
+
       // Add tooltips to events
       const tooltip = document.createElement('div');
       tooltip.classList.add('event-tooltip');
