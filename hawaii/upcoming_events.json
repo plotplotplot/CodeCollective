@@ -1,27 +1,5 @@
 [
     {
-        "id": "312528087",
-        "name": "Open Source Legends on data-driven A.I. agents and LLM-assisted PCBs",
-        "description": "Two open-source legends (Nathan Marz & Jonas Schnelli) will be presenting at our February O\u2018ahu A.I. meetup:\n\n* **From PCB to Production: Developing Embedded Systems with LLMs**\n* **A Data-Driven Approach to Balancing Quality, Latency, and Cost in AI Agents**\n\nIf you care about:\n\n* Bridging AI software and real-world hardware\n* Building agents that don\u2019t silently regress\n* Understanding what your AI systems are actually doing\n* Closing feedback loops between production and evaluation\n\nThis meetup is for you.\n\n**\ud83c\udf99\ufe0f Talk 1**\n**From PCB to Production: Developing Embedded Systems with LLMs**\nby Jonas Schnelli\n\n*Estimated time: 20 minutes*\nLLMs aren\u2019t just changing software \u2014 they\u2019re reshaping hardware and embedded development.\nJonas will walk through how modern AI tools are influencing the entire embedded workflow, from circuit boards to firmware to production devices.\n\n**What is a PCB?**\nPCB stands for *Printed Circuit Board*. It\u2019s the physical board that holds and connects electronic components (chips, resistors, capacitors, microcontrollers) using etched copper traces \u2014 the backbone of almost all modern electronics, from laptops and phones to ESP32 and IoT devices.\n\n***\n\n**\ud83c\udf99\ufe0f Talk 2**\n**A Data-Driven Approach to Balancing Quality, Latency, and Cost in AI Agents**\nby Nathan Marz\n\n*Estimated time: 60 minutes*\nLLMs are inherently unpredictable. A prompt change that fixes one case often breaks another you didn\u2019t test. When the input space is effectively all of human language, ad-hoc testing leads to fragile agents that fail under real-world usage.\nNathan will show how to build reliable AI agents through systematic, data-driven, iterative development. You\u2019ll see how to optimize across the quality-latency-cost tradeoff using production data, controlled experiments, and deep observability.\nThis talk covers:\n\n* Structured datasets with real inputs and \u201cgolden truth\u201d outputs\n* Avoiding circular logic when using LLMs to evaluate LLM output\n* Why evaluating individual steps of agent workflows matters\n* Tracing and telemetry requirements for AI agents\n* Automatically collecting datasets from production traffic\n* Online evaluation, alerting, and continuous feedback loops\n\n***\n\n**About Jonas Schnelli**\nJonas has been writing code for 30 years, spanning web apps, native iOS and Android, and Mac applications. He spent 8 years deep in Bitcoin Core\u2019s C++ internals before focusing on hardware engineering and embedded firmware.\nNow based in Hawai\u2018i, Jonas designs ESP32 devices and explores how AI tools are transforming embedded systems development.\nGitHub: [https://github.com/jonasschnelli](https://github.com/jonasschnelli)\n\n***\n\n**About Nathan Marz**\nNathan lives on O\u2018ahu and runs Red Planet Labs, a distributed company building Rama, a developer platform for scalable backends with far less code and infrastructure.\nHe created several influential open-source projects, most notably Apache Storm, one of the first systems to enable reliable large-scale real-time data processing. Nathan previously worked at Twitter, where he helped start core infrastructure teams, and he is the author of *Big Data: Principles and Best Practices of Scalable Realtime Data Systems*.\nOutside of work, Nathan enjoys hiking, stand-up comedy, and old movies.\nGitHub: [https://github.com/nathanmarz](https://github.com/nathanmarz)\n\n***\n\n\ud83c\udf3a This event is sponsored by Hawaii Coworking (https://hawaiicoworking.co) , Darshaun Nadeau (https://flowingblue.com) and Kevin Riggen (https://oahu.ai) .",
-        "startDate": "2026-02-20T18:30:00-10:00",
-        "endTime": "2026-02-20T20:30:00-10:00",
-        "url": "https://www.meetup.com/oahuai/events/312528087/",
-        "status": "ACTIVE",
-        "source": null,
-        "location": {
-            "name": "Hawaii Coworking",
-            "address": "444 Hobron Ln. Penthouse 1 ,  Honolulu HI 96815",
-            "city": "Honolulu",
-            "state": "HI",
-            "country": "us"
-        },
-        "imageUrl": "/event_images/Open_Source_Legends_on_data_driven_A_I_agents_and_LLM_assisted_PCBs.webp",
-        "scrapeTime": "2026-02-16 03:34:44.890446",
-        "tags": [
-            "Economic Development"
-        ]
-    },
-    {
         "id": "313184030",
         "name": "Tech Meetup",
         "description": "Low-key in-person meetup for people who are either in tech, interested in starting a career in tech, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako, in the outside cafe seating.\n\nMore info on the Honolulu Tech Network website:\n[https://honolulu.network/~tech](https://honolulu.network/~tech/)\n\nThere's usually no real set topic, often people ask what we talk about so here's a sampling of common topics:\n\n* AI\n* ChatGPT\n* Career stuff\n* Other tech communities and events\n* 3D printing\n* VR/AR\n* Web development\n* Agile\n* What places exist in Honolulu and where they are\n* Renewable energy",
@@ -38,7 +16,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Tech_Meetup.webp",
-        "scrapeTime": "2026-02-16 03:34:44.890564",
+        "scrapeTime": "2026-02-22 06:34:41.443409",
         "tags": [
             "Economic Development"
         ]
@@ -55,7 +33,7 @@
             "address": "900 South Beretania Street, Honolulu, HI, 96814"
         },
         "imageUrl": "/event_images/Film_Screening_An_Inconvenient_Truth_20th_Anniversary.webp",
-        "scrapeTime": "2026-02-16 03:34:44.891014",
+        "scrapeTime": "2026-02-22 06:34:41.444001",
         "tags": [
             "Business"
         ]
@@ -72,7 +50,7 @@
             "address": "Unknown Address"
         },
         "imageUrl": "/event_images/SAFe_for_Scrum_Master_6_0_Certification_SSM_Scaled_Agile.webp",
-        "scrapeTime": "2026-02-16 03:34:44.890910",
+        "scrapeTime": "2026-02-22 06:34:41.443868",
         "tags": [
             "Business"
         ]
@@ -94,18 +72,35 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Tech_Meetup.webp",
-        "scrapeTime": "2026-02-16 03:34:44.890698",
+        "scrapeTime": "2026-02-22 06:34:41.443523",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "id": "krpvvtyjcfblb",
+        "name": "Juliet and Kelly Starrett: Built to Move",
+        "description": "Learn essential habits for lifelong mobility with world-class movement experts Kelly and Juliet Starrett, authors of Built to",
+        "startDate": "2026-03-05T18:30:00-10:00",
+        "endTime": "2026-03-05T20:30:00-1000",
+        "url": "https://www.eventbrite.com/e/juliet-and-kelly-starrett-built-to-move-tickets-1983145339094",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Bilger Hall",
+            "address": "2545 McCarthy Mall, Honolulu, HI, 96822"
+        },
+        "imageUrl": "/event_images/Juliet_and_Kelly_Starrett_Built_to_Move.webp",
+        "scrapeTime": "2026-02-22 06:34:41.444116",
+        "tags": [
+            "Business"
+        ]
+    },
+    {
+        "id": "313393921",
         "name": "Tech Meetup",
         "description": "Low-key in-person meetup for people who are either in tech, interested in starting a career in tech, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako, in the outside cafe seating.\n\nMore info on the Honolulu Tech Network website:\n[https://honolulu.network/~tech](https://honolulu.network/~tech/)\n\nThere's usually no real set topic, often people ask what we talk about so here's a sampling of common topics:\n\n* AI\n* ChatGPT\n* Career stuff\n* Other tech communities and events\n* 3D printing\n* VR/AR\n* Web development\n* Agile\n* What places exist in Honolulu and where they are\n* Renewable energy",
         "startDate": "2026-03-08T17:00:00-10:00",
         "endTime": "2026-03-08T19:00:00-10:00",
-        "url": "https://www.meetup.com/honolulu-tech-network/events/krpvvtyjcfblb/",
+        "url": "https://www.meetup.com/honolulu-tech-network/events/313393921/",
         "status": "ACTIVE",
         "source": null,
         "location": {
@@ -116,7 +111,29 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Tech_Meetup.webp",
-        "scrapeTime": "2026-02-16 03:34:44.890808",
+        "scrapeTime": "2026-02-22 06:34:41.443643",
+        "tags": [
+            "Economic Development"
+        ]
+    },
+    {
+        "id": "krpvvtyjcfbtb",
+        "name": "Tech Meetup",
+        "description": "Low-key in-person meetup for people who are either in tech, interested in starting a career in tech, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako, in the outside cafe seating.\n\nMore info on the Honolulu Tech Network website:\n[https://honolulu.network/~tech](https://honolulu.network/~tech/)\n\nThere's usually no real set topic, often people ask what we talk about so here's a sampling of common topics:\n\n* AI\n* ChatGPT\n* Career stuff\n* Other tech communities and events\n* 3D printing\n* VR/AR\n* Web development\n* Agile\n* What places exist in Honolulu and where they are\n* Renewable energy",
+        "startDate": "2026-03-15T17:00:00-10:00",
+        "endTime": "2026-03-15T19:00:00-10:00",
+        "url": "https://www.meetup.com/honolulu-tech-network/events/krpvvtyjcfbtb/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Whole Foods Market",
+            "address": "388 Kamakee St",
+            "city": "Honolulu",
+            "state": "HI",
+            "country": "us"
+        },
+        "imageUrl": "/event_images/Tech_Meetup.webp",
+        "scrapeTime": "2026-02-22 06:34:41.443756",
         "tags": [
             "Economic Development"
         ]
@@ -135,9 +152,31 @@
         },
         "imageUrl": "/event_images/2nd_Annual_National_Civics_Bee_Hawaii_State_Finals.webp",
         "recurring": false,
-        "scrapeTime": "2026-02-16 03:34:44.886802",
+        "scrapeTime": "2026-02-22 06:34:40.988984",
         "tags": [
             "Business"
+        ]
+    },
+    {
+        "id": "313386202",
+        "name": "Future Builders: Leading Hawai'i's Tech Renaissance",
+        "description": "Did you know that Hawai'i has a rich youth robotics scene?\n\nWhen **Hawai\u02bbi\u2019s robotics teams compete at the world championships**, they\u2019re not just building robots\u2014they\u2019re building the skills our islands need. Join us for an afternoon **celebrating their achievements** and **connecting students, job seekers, career-changers, and local companies** investing in Hawai\u02bbi\u2019s tech future. With robot demos!\n\n\\-\\-\\-\n\n**10am** *Tech Job Fair*\nConnect with Hawai'i companies hiring in software, clean energy, construction tech, and more.\n\n**11:30am** *Pupus by Poke for the People*\nMusubi, ahi rolls and vegan options from the legendary Poke for the People.\n\n**12:30pm** *Youth Robotics Showcase*\nWatch Hawai'i's VEX IQ teams demonstrate their championship robots. See the problem-solving, collaboration, and technical skill that took them from Honolulu garages to competing against 800+ teams worldwide.\n\n**1:30pm** *Panel Discussion*\nQ&A Style Panel for youth robotics leaders, tech mentors and robotics entrepreneurs.\n\n**2:15pm** *Mahalos & Goodbyes*\nBeach time!\n\n\\-\\-\\-\n\nOur showcase features local robotics startups, teams from [Island Robotics ](https://www.friendsofislandrobotics.org/) and coaches like **Jared Haiola**, who has guided dozens of Hale'iwa students to VEX IQ World Championships over the past decade. His students don't just learn robotics\u2014they learn to solve problems with limited resources, collaborate under pressure, and build things that work.\n\n**Free Admission** *For Families & Individuals*\nBring your kids. Let them see what's possible when Hawai'i's youth get the right tools and mentorship. Let them talk to the teams. Let them imagine themselves building the technology our islands need.\n\n**Become a Sponsor** *Reach out!*\nKevin@Oahu.AI\n\n\\-\\-\\-\\-\\-\n*We will be checking registrations at the door. Keiki are welcome and do not need to be registered for the event. Organizers may refuse entry or remove attendees to maintain a safe environment. Mahalo for understanding.*\n\\-\\-\\-\\-\n\n*If you share your mobile number on an O'ahu A.I. event form, we may text you about event reminders and updates. Msg frequency varies. Msg and data rates may apply. Reply STOP to opt out. See www.oahu.ai/privacy*",
+        "startDate": "2026-05-16T10:00:00-10:00",
+        "endTime": "2026-05-16T14:15:00-10:00",
+        "url": "https://www.meetup.com/oahuai/events/313386202/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Entrepreneurs Sandbox",
+            "address": "643 Ilalo St",
+            "city": "Honolulu",
+            "state": "HI",
+            "country": "us"
+        },
+        "imageUrl": "/event_images/Future_Builders_Leading_Hawai_i_s_Tech_Renaissance.webp",
+        "scrapeTime": "2026-02-22 06:34:41.443288",
+        "tags": [
+            "Economic Development"
         ]
     }
 ]
