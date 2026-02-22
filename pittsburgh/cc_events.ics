@@ -1,64 +1,90 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:pittsburgh Tech Events
+PRODID:-//pittsburgh Tech Events//CodeCollective//
+METHOD:PUBLISH
 BEGIN:VEVENT
-DTSTAMP:20260216T033512Z
-DESCRIPTION:Every second Saturday\, our inclusive coding group Code & Coffee meets at Prototype PGH in Oakland from 1:30pm to 3:30pm! 💻☕\n\nCode & Coffee is a monthly opportunity for you to practice your skills\, mee\n\nEvent Link: https://www.meetup.com/code-and-coffee-pgh/events/zqsqvtyjcgbpb/
-DTEND:20260411T193000Z
-LOCATION:Prototype PGH\, 460 Melwood Ave #208\, Pittsburgh\, PA us
-DTSTART:20260411T173000Z
-SUMMARY:Code & Coffee
-UID:b0892630-b4ac-4202-ac09-09184d291c39@b089.org
-URL:https://www.meetup.com/code-and-coffee-pgh/events/zqsqvtyjcgbpb/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20260216T033512Z
-DESCRIPTION:Every second Saturday\, our inclusive coding group Code & Coffee meets at Prototype PGH in Oakland from 1:30pm to 3:30pm! 💻☕\n\nCode & Coffee is a monthly opportunity for you to practice your skills\, mee\n\nEvent Link: https://www.meetup.com/code-and-coffee-pgh/events/zqsqvtyjchbmb/
-DTEND:20260509T193000Z
-LOCATION:Prototype PGH\, 460 Melwood Ave #208\, Pittsburgh\, PA us
-DTSTART:20260509T173000Z
-SUMMARY:Code & Coffee
-UID:398de735-0932-4d1a-bb8f-0d33ab6a0c8f@398d.org
-URL:https://www.meetup.com/code-and-coffee-pgh/events/zqsqvtyjchbmb/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20260216T033512Z
-DESCRIPTION:Characterizing the Transient Universe with the Pitt-Google Alert Broker\n\nPyData Pittsburgh is excited to host our first event of 2026: Characterizing the Transient Universe with the Pitt-Google Alert \n\nEvent Link: https://www.meetup.com/pydata-pittsburgh/events/313112837/
-DTEND:20260226T020000Z
-LOCATION:Allegheny Observatory\, 159 Riverview Ave\, Pittsburgh\, PA 15214\, Pittsburgh\, PA us
-DTSTART:20260226T000000Z
-SUMMARY:Characterizing the Transient Universe with the Pitt-Google Alert Broker
-UID:c6ba86fd-7c23-4ba5-9893-112e823b7ae0@c6ba.org
+SUMMARY:Characterizing the Transient Universe with the Pitt-Google Alert B
+ roker
+DTSTART:20260225T190000
+DTEND:20260225T210000
+DTSTAMP:20260222T063518Z
+UID:313112837-1771742118.513093@codecollective
+DESCRIPTION:Characterizing the Transient Universe with the Pitt-Google Ale
+ rt Broker\n\nPyData Pittsburgh is excited to host our first event of 2026:
+  Characterizing the Transient Universe with the Pitt-Google Alert \n\nEven
+ t Link: https://www.meetup.com/pydata-pittsburgh/events/313112837/
+LOCATION:Allegheny Observatory\, 159 Riverview Ave\, Pittsburgh\, PA 15214
+ \, Pittsburgh\, PA us
 URL:https://www.meetup.com/pydata-pittsburgh/events/313112837/
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20260216T033512Z
-DESCRIPTION:Every second Saturday\, our inclusive coding group Code & Coffee meets at Prototype PGH in Oakland from 1:30pm to 3:30pm! 💻☕\n\nCode & Coffee is a monthly opportunity for you to practice your skills\, mee\n\nEvent Link: https://www.meetup.com/code-and-coffee-pgh/events/312469525/
-DTEND:20260314T193000Z
-LOCATION:Prototype PGH\, 460 Melwood Ave #208\, Pittsburgh\, PA us
-DTSTART:20260314T173000Z
 SUMMARY:Code & Coffee
-UID:215dc671-893c-4a2b-9722-138abc2f42b3@215d.org
+DTSTART:20260314T133000
+DTEND:20260314T153000
+DTSTAMP:20260222T063518Z
+UID:312469525-1771742118.51383@codecollective
+DESCRIPTION:Every second Saturday\, our inclusive coding group Code & Coff
+ ee meets at Prototype PGH in Oakland from 1:30pm to 3:30pm! 💻☕\n\nCod
+ e & Coffee is a monthly opportunity for you to practice your skills\, mee\
+ n\nEvent Link: https://www.meetup.com/code-and-coffee-pgh/events/312469525
+ /
+LOCATION:Prototype PGH\, 460 Melwood Ave #208\, Pittsburgh\, PA us
 URL:https://www.meetup.com/code-and-coffee-pgh/events/312469525/
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20260216T033512Z
-DESCRIPTION:Join us Thursday\, March 26th\, for a powerhouse Python talk from Christopher Pitstick\, Senior Software Engineer at Latitude AI. In 2024\, Christopher installed a Tesla solar array expecting clean energy\n\nEvent Link: https://www.meetup.com/pydata-pittsburgh/events/312753508/
-DTEND:20260327T000000Z
+SUMMARY:An Unexpected Journey: Life Lessons from Conquering Tesla Solar wi
+ th Python
+DTSTART:20260326T180000
+DTEND:20260326T200000
+DTSTAMP:20260222T063518Z
+UID:312753508-1771742118.514333@codecollective
+DESCRIPTION:Join us Thursday\, March 26th\, for a powerhouse Python talk f
+ rom Christopher Pitstick\, Senior Software Engineer at Latitude AI. In 202
+ 4\, Christopher installed a Tesla solar array expecting clean energy\n\nEv
+ ent Link: https://www.meetup.com/pydata-pittsburgh/events/312753508/
 LOCATION:CoLab18\, 100 South Commons\, Suite 100A\, Pittsburgh\, pa us
-DTSTART:20260326T220000Z
-SUMMARY:An Unexpected Journey: Life Lessons from Conquering Tesla Solar with Python
-UID:20fb1e0f-5aaf-48e2-ae3a-d6c625112f03@20fb.org
 URL:https://www.meetup.com/pydata-pittsburgh/events/312753508/
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20260216T033512Z
-DESCRIPTION:Every second Saturday\, our inclusive coding group Code & Coffee meets at Prototype PGH in Oakland from 1:30pm to 3:30pm! 💻☕\n\nCode & Coffee is a monthly opportunity for you to practice your skills\, mee\n\nEvent Link: https://www.meetup.com/code-and-coffee-pgh/events/zqsqvtyjcjbrb/
-DTEND:20260613T193000Z
-LOCATION:Prototype PGH\, 460 Melwood Ave #208\, Pittsburgh\, PA us
-DTSTART:20260613T173000Z
 SUMMARY:Code & Coffee
-UID:2b680b86-0e69-4a26-aaa3-96ba8e0cd9cc@2b68.org
+DTSTART:20260411T133000
+DTEND:20260411T153000
+DTSTAMP:20260222T063518Z
+UID:zqsqvtyjcgbpb-1771742118.514965@codecollective
+DESCRIPTION:Every second Saturday\, our inclusive coding group Code & Coff
+ ee meets at Prototype PGH in Oakland from 1:30pm to 3:30pm! 💻☕\n\nCod
+ e & Coffee is a monthly opportunity for you to practice your skills\, mee\
+ n\nEvent Link: https://www.meetup.com/code-and-coffee-pgh/events/zqsqvtyjc
+ gbpb/
+LOCATION:Prototype PGH\, 460 Melwood Ave #208\, Pittsburgh\, PA us
+URL:https://www.meetup.com/code-and-coffee-pgh/events/zqsqvtyjcgbpb/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Code & Coffee
+DTSTART:20260509T133000
+DTEND:20260509T153000
+DTSTAMP:20260222T063518Z
+UID:zqsqvtyjchbmb-1771742118.515429@codecollective
+DESCRIPTION:Every second Saturday\, our inclusive coding group Code & Coff
+ ee meets at Prototype PGH in Oakland from 1:30pm to 3:30pm! 💻☕\n\nCod
+ e & Coffee is a monthly opportunity for you to practice your skills\, mee\
+ n\nEvent Link: https://www.meetup.com/code-and-coffee-pgh/events/zqsqvtyjc
+ hbmb/
+LOCATION:Prototype PGH\, 460 Melwood Ave #208\, Pittsburgh\, PA us
+URL:https://www.meetup.com/code-and-coffee-pgh/events/zqsqvtyjchbmb/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Code & Coffee
+DTSTART:20260613T133000
+DTEND:20260613T153000
+DTSTAMP:20260222T063518Z
+UID:zqsqvtyjcjbrb-1771742118.515888@codecollective
+DESCRIPTION:Every second Saturday\, our inclusive coding group Code & Coff
+ ee meets at Prototype PGH in Oakland from 1:30pm to 3:30pm! 💻☕\n\nCod
+ e & Coffee is a monthly opportunity for you to practice your skills\, mee\
+ n\nEvent Link: https://www.meetup.com/code-and-coffee-pgh/events/zqsqvtyjc
+ jbrb/
+LOCATION:Prototype PGH\, 460 Melwood Ave #208\, Pittsburgh\, PA us
 URL:https://www.meetup.com/code-and-coffee-pgh/events/zqsqvtyjcjbrb/
 END:VEVENT
 END:VCALENDAR

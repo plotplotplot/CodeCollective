@@ -1,34 +1,18 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:westvirginia Tech Events
+PRODID:-//westvirginia Tech Events//CodeCollective//
+METHOD:PUBLISH
 BEGIN:VEVENT
-DTSTAMP:20260216T033439Z
-DESCRIPTION:Still working on the details!\n\nEvent Link: https://wvbusinesslink.com/event/uc-fail-fest/
-DTEND:20260217T230000Z
-LOCATION:\,  
-DTSTART:20260217T210000Z
-SUMMARY:UC Fail Fest
-UID:b1ca7eaf-842c-44f8-be06-a6cf5bcc42e9@b1ca.org
-URL:https://wvbusinesslink.com/event/uc-fail-fest/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20260216T033439Z
-DESCRIPTION:Hosted by The Nature Conservancy and the WVU Brad & Alys Smith Outdoor Economic Development Collaborative\, and proudly presented by the Charleston Convention & Visitors Bureau\, the West Virginia Outdo\n\nEvent Link: https://wvbusinesslink.com/event/wv-outdoor-economy-summit/
-DTEND:20260219T230000Z
-LOCATION:Charleston Coliseum & Convention Center\, 200 Civic Center Dr\,\, Charleston\, WV\, 25301\, Charleston Coliseum & Convention Center\, 200 Civic Center Dr\,\, Charleston\, WV\, 25301\, \,  
-DTSTART:20260217T220000Z
-SUMMARY:WV Outdoor Economy Summit
-UID:f8f4d7b2-f12a-4cdf-810c-245a25b3c56c@f8f4.org
-URL:https://wvbusinesslink.com/event/wv-outdoor-economy-summit/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20260216T033439Z
-DESCRIPTION:A pitch competition where WVU undergrads compete for over $20\,000 in prizes.\n\nEvent Link: https://wvbusinesslink.com/event/wvu-zinnstarter-pitch-competition/
-DTEND:20260401T233000Z
-LOCATION:WVU Launch Lab\, Morgantown\, WV\, 26505\, WVU Launch Lab\, Morgantown\, WV\, 26505\, \,  
-DTSTART:20260401T210000Z
 SUMMARY:WVU Zinnstarter Pitch Competition
-UID:9aa4cf1f-fe7c-4303-9497-fc19a93ebfc2@9aa4.org
+DTSTART:20260401T170000
+DTEND:20260401T193000
+DTSTAMP:20260222T063433Z
+UID:d436c89754d1ef7f-1771742073.905991@codecollective
+DESCRIPTION:A pitch competition where WVU undergrads compete for over $20\
+ ,000 in prizes.\n\nEvent Link: https://wvbusinesslink.com/event/wvu-zinnst
+ arter-pitch-competition/
+LOCATION:WVU Launch Lab\, Morgantown\, WV\, 26505\, WVU Launch Lab\, Morga
+ ntown\, WV\, 26505\, \,  
 URL:https://wvbusinesslink.com/event/wvu-zinnstarter-pitch-competition/
 END:VEVENT
 END:VCALENDAR
