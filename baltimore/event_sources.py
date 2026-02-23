@@ -69,7 +69,8 @@ sources = {
         "https://luma.com/codecollective",
         "https://luma.com/bmore-on-rails",
         "https://luma.com/LetsBMore",
-        "https://luma.com/MEIA"
+        "https://luma.com/MEIA",
+        "https://luma.com/umbcche"
     ],
     "Luma Users":[
         #"https://api.lu.ma/user/profile/events-hosting"
