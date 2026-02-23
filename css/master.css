@@ -221,8 +221,8 @@
 }
 
 #main.dark-mode h3 {
-    color: #87CEEB;
-    border-bottom: solid 2px white;
+    color: #b8e7ff;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.45);
 }
 
 #main.dark-mode h4 {
@@ -255,20 +255,19 @@
 /* Adding list indentation and styles for ul and ol */
 #main ul,
 #main ol {
-    padding-left: 1em;
-    /* Adds indentation to both unordered and ordered lists */
-    margin-left: 1em;
-    /* Adjust the margin if needed */
+    margin: 0.4rem 0 1rem 1.2rem;
+    padding-left: 0.8rem;
 }
 
 /* Ensuring bullets for ul 
 #main ul {
     list-style-type: disc; 
 }*/
-p {
-  text-indent: 2em; /* Adjust the value as needed (1em = ~16px) */
-  margin: 0; /* Optional: Remove default margins if needed */
-  padding: 0; /* Optional: Remove default padding if needed */
+#main p {
+  text-indent: 0;
+  line-height: 1.45;
+  margin: 0.35rem 0 0.55rem;
+  padding: 0;
 }
 
 b, strong, .bold-text {
@@ -279,7 +278,8 @@ b, strong, .bold-text {
 /* Styling the li elements */
 #main li {
     list-style-type: disc;
-    /* Bullets for unordered list items */
+    margin: 0.22rem 0;
+    line-height: 1.35;
 }
 
 /* Additional styling for ordered list items */
@@ -650,16 +650,14 @@ button:focus {
 
 #wrapper h2 {
   color: rgb(0, 0, 255);
-  font-size: 1.2em;
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  margin: 1.25rem 0 0.6rem;
 }
 
 /* Mobile */
 @media (max-width: 600px) {
   #wrapper h1 {
     font-size: 5vw;
-  }
-  #wrapper h2 {
-    font-size: 0.7em;
   }
 }
 
@@ -1152,8 +1150,8 @@ button:focus {
 .about-us {
   margin: 2rem 0.5rem; /* Small side margins on mobile */
   background-color: #002a61;
-  padding: 1rem 0;
-  border-radius: 3rem;
+  padding: 1.5rem 1.25rem;
+  border-radius: 2rem;
 }
 
 /* About hero layout */
@@ -1214,8 +1212,8 @@ button:focus {
 @media (min-width: 768px) {
   .about-us {
     margin: 2rem  auto;       /* Center it horizontally */
-    max-width: 800px;     /* Limit width on desktop */
-    padding: 2rem 1rem;   /* Add more padding on desktop */
+    max-width: 900px;     /* Limit width on desktop */
+    padding: 2rem 1.75rem;   /* Add more padding on desktop */
   }
 }
 

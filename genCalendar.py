@@ -22,7 +22,6 @@ import scrape_usgpo
 import scrape_gdg
 import tag_rules
 import json
-from ics import Calendar, Event
 import datetime
 import pytz
 from bs4 import BeautifulSoup
@@ -183,12 +182,21 @@ def sanitize_event_name(name, max_length=80):
 
 def events_to_ics(events_json, city, output_file="baltimore_tech_events.ics"):
     """
-    Convert event JSON data to ICS format and save to a file
-
+    Convert event JSON data to ICS format and save to a file using icalendar library
+    
     Args:
         events_json (str or list): JSON string or list of event dictionaries
         output_file (str): Path to save the ICS file
     """
+    # Try to import icalendar
+    try:
+        from icalendar import Calendar, Event as ICalEvent
+        icalendar_available = True
+    except ImportError:
+        print("ERROR: icalendar library not available. Cannot generate ICS file.")
+        print("Please install icalendar: pip install icalendar")
+        return None
+    
     # Parse JSON if it's a string
     if isinstance(events_json, str):
         events = json.loads(events_json)
@@ -197,26 +205,32 @@ def events_to_ics(events_json, city, output_file="baltimore_tech_events.ics"):
 
     # Create a new calendar
     cal = Calendar()
-    cal.creator = f"{city} Tech Events"
+    cal.add('prodid', f'-//{city} Tech Events//CodeCollective//')
+    cal.add('version', '2.0')
+    cal.add('method', 'PUBLISH')
 
+    event_count = 0
+    
     # Add each event to the calendar
     for event_data in events:
-        event = Event()
-
+        # Create event
+        event = ICalEvent()
+        
         # Set basic event properties
-        event.name = event_data.get("name", "Unnamed Event")
-        event.created = datetime.datetime.now(datetime.timezone.utc)
-
-        # Process description - use BeautifulSoup for HTML extraction
+        event.add('summary', event_data.get("name", "Unnamed Event"))
+        event.add('uid', f"{event_data.get('id', '')}-{datetime.datetime.now().timestamp()}@codecollective")
+        event.add('dtstamp', datetime.datetime.now(datetime.timezone.utc))
+        
+        # Process description
         description = event_data.get("description", "")
-
+        
         # First extract clean text from HTML using BeautifulSoup
         clean_description = extract_text_from_html(description)
-
+        
         # Then parse any remaining markdown
         plain_description = parse_markdown_to_plain_text(clean_description)
         plain_description = plain_description[:200]
-
+        
         # Add location and URL information to description
         location_info = event_data.get("location", {})
         location_str = ""
@@ -229,67 +243,74 @@ def events_to_ics(events_json, city, output_file="baltimore_tech_events.ics"):
             location_str = ", ".join(
                 [p for p in location_parts if p and p.strip() and p.strip() != ", "]
             )
-
+        
         # Add group name if available
         group_name = event_data.get("group", "")
         group_info = f"\n\nGroup: {group_name}" if group_name else ""
-
+        
         # Add event URL if available
         event_url = event_data.get("url", "")
         url_info = f"\n\nEvent Link: {event_url}" if event_url else ""
-
+        
         # Combine all information for the description (plain text only)
         full_description = f"{plain_description}{group_info}{url_info}".strip()
-
+        
         # Ensure description is not empty
         if not full_description:
             full_description = "No description available"
-
-        event.description = full_description
-
+        
+        event.add('description', full_description)
+        
         # Set date/time information
         start_str = event_data.get("startDate")
         end_str = event_data.get("endTime")
-
+        
         if start_str:
             # Parse ISO format dates
             try:
                 start_time = parse(start_str)
-                event.begin = start_time
-
+                # Make timezone aware if needed
+                if start_time.tzinfo is None:
+                    start_time = est_timezone.localize(start_time)
+                
+                event.add('dtstart', start_time)
+                
                 if end_str:
                     end_time = parse(end_str)
-                    event.end = end_time
+                    if end_time.tzinfo is None:
+                        end_time = est_timezone.localize(end_time)
+                    event.add('dtend', end_time)
                 else:
                     # Default to 2 hours if no end time specified
-                    event.end = start_time + datetime.timedelta(hours=2)
-
+                    event.add('dtend', start_time + datetime.timedelta(hours=2))
+                    
             except ValueError as e:
-                print(f"Error parsing date for event {event.name}: {e}")
+                print(f"Error parsing date for event {event_data.get('name', 'Unknown')}: {e}")
                 print(f"Start date string: {start_str}")
                 if end_str:
                     print(f"End date string: {end_str}")
                 continue
         else:
-            print(f"Warning: Event '{event.name}' has no start date, skipping...")
+            print(f"Warning: Event '{event_data.get('name', 'Unknown')}' has no start date, skipping...")
             continue
-
+        
         # Set location
         if location_str:
-            event.location = location_str
-
+            event.add('location', location_str)
+        
         # Set URL
         if event_url:
-            event.url = event_url
-
+            event.add('url', event_url)
+        
         # Add to calendar
-        cal.events.add(event)
+        cal.add_component(event)
+        event_count += 1
 
     # Write the calendar to a file
-    with open(output_file, "w", encoding="utf-8") as f:
-        f.write(str(cal))
+    with open(output_file, "wb") as f:
+        f.write(cal.to_ical())
 
-    print(f"Calendar with {len(cal.events)} events saved to {output_file}")
+    print(f"Calendar with {event_count} events saved to {output_file}")
     return output_file
 
 

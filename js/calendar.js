@@ -9,6 +9,7 @@ let isMobile = false;
 let forceCardView = false;
 let activeTagSlugs = new Set();
 let calendarDisplayEvents = [];
+const FEATURED_SOURCE_URL = 'https://luma.com/codecollective';
 
 const LEGEND_PREFS_KEY = 'calendarLegendPrefs';
 const CATEGORY_LABELS = [
@@ -53,6 +54,17 @@ function slugifyTag(tag) {
     .replace(/&/g, 'and')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
+}
+
+function normalizeSourceUrl(url) {
+  return String(url || '')
+    .trim()
+    .toLowerCase()
+    .replace(/\/+$/, '');
+}
+
+function isFeaturedSource(url) {
+  return normalizeSourceUrl(url) === FEATURED_SOURCE_URL;
 }
 
 function applyTagClasses(element, tags) {
@@ -506,6 +518,9 @@ function createEventCard(event) {
   `;
 
   applyTagClasses(card, event.extendedProps?.tags);
+  if (isFeaturedSource(event.extendedProps?.source)) {
+    card.classList.add('source-codecollective-luma');
+  }
 
   // Process markdown for full description if needed
   if (description && needsMore) {
@@ -609,7 +624,8 @@ function processEvents(eventsData) {
       extendedProps: {
         group: groupName,
         imageUrl: event.imageUrl,
-        tags: Array.isArray(event.tags) ? event.tags : []
+        tags: Array.isArray(event.tags) ? event.tags : [],
+        source: event.source || ''
       },
       backgroundColor: "#0f0f0f0",
       borderColor: "#0f0f0f0",
@@ -744,6 +760,9 @@ function initializeCalendar(events) {
     },
 
     events: events, // Use all events (validRange will filter the display)
+    eventClassNames: function (arg) {
+      return isFeaturedSource(arg.event.extendedProps?.source) ? ['source-codecollective-luma'] : [];
+    },
     eventClick: function (info) {
       // Allow ctrl/cmd click to open in a new tab
       if (info.jsEvent.ctrlKey || info.jsEvent.metaKey) {
@@ -826,6 +845,9 @@ function initializeCalendar(events) {
       // Add title with time
       const titleEl = document.createElement('div');
       titleEl.classList.add('fc-event-title');
+      if (isFeaturedSource(info.event.extendedProps?.source)) {
+        titleEl.classList.add('source-codecollective-luma-title');
+      }
       titleEl.innerHTML = `${eventTime} ${info.event.title}`;
       applyTagClasses(titleEl, info.event.extendedProps?.tags);
       eventEl.appendChild(titleEl);
@@ -833,6 +855,13 @@ function initializeCalendar(events) {
       return { domNodes: [eventEl] };
     },
     eventDidMount: function (info) {
+      if (isFeaturedSource(info.event.extendedProps?.source)) {
+        const dayCell = info.el.closest('.fc-daygrid-day');
+        if (dayCell) {
+          dayCell.classList.add('source-codecollective-luma-day');
+        }
+      }
+
       // Add tooltips to events
       const tooltip = document.createElement('div');
       tooltip.classList.add('event-tooltip');

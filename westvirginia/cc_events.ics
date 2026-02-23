@@ -1,34 +1,18 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:westvirginia Tech Events
+PRODID:-//westvirginia Tech Events//CodeCollective//
+METHOD:PUBLISH
 BEGIN:VEVENT
-DTSTAMP:20260216T004305Z
-DESCRIPTION:Hosted by The Nature Conservancy and the WVU Brad & Alys Smith Outdoor Economic Development Collaborative\, and proudly presented by the Charleston Convention & Visitors Bureau\, the West Virginia Outdo\n\nEvent Link: https://wvbusinesslink.com/event/wv-outdoor-economy-summit/
-DTEND:20260219T230000Z
-LOCATION:Charleston Coliseum & Convention Center\, 200 Civic Center Dr\,\, Charleston\, WV\, 25301\, Charleston Coliseum & Convention Center\, 200 Civic Center Dr\,\, Charleston\, WV\, 25301\, \,  
-DTSTART:20260217T220000Z
-SUMMARY:WV Outdoor Economy Summit
-UID:408fd588-a7c9-477e-a1e8-162f9c79c1a0@408f.org
-URL:https://wvbusinesslink.com/event/wv-outdoor-economy-summit/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20260216T004305Z
-DESCRIPTION:A pitch competition where WVU undergrads compete for over $20\,000 in prizes.\n\nEvent Link: https://wvbusinesslink.com/event/wvu-zinnstarter-pitch-competition/
-DTEND:20260401T233000Z
-LOCATION:WVU Launch Lab\, Morgantown\, WV\, 26505\, WVU Launch Lab\, Morgantown\, WV\, 26505\, \,  
-DTSTART:20260401T210000Z
 SUMMARY:WVU Zinnstarter Pitch Competition
-UID:9a99d423-6fcb-4bd4-885d-09c263fa197d@9a99.org
+DTSTART:20260401T170000
+DTEND:20260401T193000
+DTSTAMP:20260223T004307Z
+UID:d436c89754d1ef7f-1771807387.524976@codecollective
+DESCRIPTION:A pitch competition where WVU undergrads compete for over $20\
+ ,000 in prizes.\n\nEvent Link: https://wvbusinesslink.com/event/wvu-zinnst
+ arter-pitch-competition/
+LOCATION:WVU Launch Lab\, Morgantown\, WV\, 26505\, WVU Launch Lab\, Morga
+ ntown\, WV\, 26505\, \,  
 URL:https://wvbusinesslink.com/event/wvu-zinnstarter-pitch-competition/
-END:VEVENT
-BEGIN:VEVENT
-DTSTAMP:20260216T004305Z
-DESCRIPTION:Still working on the details!\n\nEvent Link: https://wvbusinesslink.com/event/uc-fail-fest/
-DTEND:20260217T230000Z
-LOCATION:\,  
-DTSTART:20260217T210000Z
-SUMMARY:UC Fail Fest
-UID:bd1a73f8-ad4b-4aa9-8c9a-5834a4fbd34e@bd1a.org
-URL:https://wvbusinesslink.com/event/uc-fail-fest/
 END:VEVENT
 END:VCALENDAR

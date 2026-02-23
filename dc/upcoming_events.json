@@ -1,436 +1,5 @@
 [
     {
-        "id": "313081951",
-        "name": "OpenClaw/MoltBot/ClawdBot/MCP + NVFP4 Low Precision for AI System Optimizations",
-        "description": "**Zoom link**: [https://us02web.zoom.us/j/82308186562](https://us02web.zoom.us/j/82308186562)\n\n**Talk #0: Introductions and Meetup Updates [5 mins]**\nby Chris Fregly and Antje Barth\n\n**Talk #1: OpenClaw/MoltBot/ClawdBot/MCP for GPU Kernel and AI System Optimizations [10 mins]** by Chris Fregly\n\nIn this demo, Chris will demonstrate how to use both MCP and OpenClaw (formerly all the other names used in the talk title!) to optimize GPU kernels and complete end-to-end AI systems.\n\nRelated Link: Github Repo for these tools: [https://github.com/cfregly/ai-performance-engineering/](https://github.com/cfregly/ai-performance-engineering/)\n\n**Talk #2: Unlocking NVFP4: Low Precision Numerics on NVIDIA Blackwell [30-45 mins]** by Riccardo Mereu @ Verda.com\n\nIn this talk, Riccardo dives deep into low-precision numerics, model quantization algorithms, on NVIDIA Blackwell including NVFP4 (vs. MXFP4), per-block scaling, per-tensor scaling, mixed precision, and much more!\n\nRelated link: GPU Mode NVFP4 GEMM kernel competition blog post by Daniel Obolensky: [https://obolensky.xyz/blog/nvfp4_gemm_kernel_explanation/](https://obolensky.xyz/blog/nvfp4_gemm_kernel_explanation/)\n\n**Zoom link**: [https://us02web.zoom.us/j/82308186562](https://us02web.zoom.us/j/82308186562)\n\n**Related Links**\nGithub Repo: [http://github.com/cfregly/ai-performance-engineering/](http://github.com/cfregly/ai-performance-engineering/)\nO'Reilly Book: [https://www.amazon.com/Systems-Performance-Engineering-Optimizing-Algorithms/dp/B0F47689K8/](https://www.amazon.com/Systems-Performance-Engineering-Optimizing-Algorithms/dp/B0F47689K8/)\nYouTube: [https://www.youtube.com/@AIPerformanceEngineering](https://www.youtube.com/@AIPerformanceEngineering)\nGenerative AI Free Course on DeepLearning.ai: [https://bit.ly/gllm](https://bit.ly/gllm)",
-        "startDate": "2026-02-16T12:00:00-05:00",
-        "endTime": "2026-02-16T13:00:00-05:00",
-        "url": "https://www.meetup.com/ai-performance-engineering-washington-dc/events/313081951/",
-        "status": "ACTIVE",
-        "source": null,
-        "location": {
-            "name": "Online event",
-            "address": "",
-            "city": "",
-            "state": "",
-            "country": ""
-        },
-        "imageUrl": "/event_images/OpenClaw_MoltBot_ClawdBot_MCP_NVFP4_Low_Precision_for_AI_System_Optimizations.webp",
-        "scrapeTime": "2026-02-16 00:43:37.767130",
-        "tags": [
-            "Economic Development"
-        ]
-    },
-    {
-        "name": "STATION DC Drones Meetup",
-        "description": "STATION DC Drones Meetup",
-        "startDate": "2026-02-17T10:00:00-05:00",
-        "endTime": "2026-02-17T12:00:00.000-05:00",
-        "url": "https://luma.com/15aqfl9s",
-        "status": "ACTIVE",
-        "location": {
-            "name": "STATION DC",
-            "address": "STATION DC, Washington, District of Columbia"
-        },
-        "imageUrl": "/event_images/STATION_DC_Drones_Meetup.webp",
-        "source": "https://luma.com/stationdc",
-        "scrapeTime": "2026-02-16 00:43:37.773721"
-    },
-    {
-        "id": "312979568",
-        "name": "AIA: An Open-Source Semantic Framework for Universally Interpretable Impact Data",
-        "description": "Climate and sustainability projects generate vast amounts of impact data \u2014 but too often, that data is hard to compare, integrate, or audit. Different projects use different terms, schemas, and structures \u2014 even when they are measuring the same underlying phenomena. This fragmentation creates friction for integrators and limits meaningful, global, cross-platform impact accounting.\n\nOn 17 February 2026 at 08:00 AM Pacific, the LFDT CA2-SIG Standards Working Group will present the [Anthropogenic Impact Accounting (AIA) ontology suite](https://www.lfdecentralizedtrust.org/blog/climate-action-official-release-of-the-anthropogenic-impact-accounting-ontology-suite), an open-source semantic framework designed to address this challenge. Developed over four years through rigorous bi-weekly working sessions and multiple redrafting cycles, the AIA suite provides a coherent and extensible foundation for expressing impact data in a universally interpretable way.\n\nThe first public release of AIA, published on 16 September 2025, comprises four modular, W3ID-registered ontologies:\n\\- claimont \\([https://w3id.org/claimont](https://w3id.org/claimont)): Semantics for claims, claimants, evidence, and attestations\n\\- infocomm \\([https://w3id.org/infocomm](https://w3id.org/infocomm)): Communication primitives for structured information exchange\n\\- impactont \\([https://w3id.org/impactont](https://w3id.org/impactont)): Foundational concepts for modeling impact relationships\n\\- aiao \\([https://w3id.org/aiao](https://w3id.org/aiao)): An integrated framework for anthropogenic impact accounting\n\nJoin us for an overview of how AIA can help your impact data become more interoperable, auditable, and reusable!",
-        "startDate": "2026-02-17T11:00:00-05:00",
-        "endTime": "2026-02-17T12:00:00-05:00",
-        "url": "https://www.meetup.com/lfdt-washington-dc/events/312979568/",
-        "status": "ACTIVE",
-        "source": null,
-        "location": {
-            "name": "Online event",
-            "address": "",
-            "city": "",
-            "state": "",
-            "country": ""
-        },
-        "imageUrl": "/event_images/AIA_An_Open_Source_Semantic_Framework_for_Universally_Interpretable_Impact_Data.webp",
-        "scrapeTime": "2026-02-16 00:43:37.767560",
-        "tags": [
-            "Economic Development"
-        ]
-    },
-    {
-        "id": "312537969",
-        "name": "Building the Microsoft Frontier AI Firm with Autonomous Agents",
-        "description": "This masterclass explores how Microsoft Frontier AI solutions on the Microsoft Cloud enable organizations to become Frontier AI Firms using AI-ready infrastructure, modernized workloads and intelligent data platforms to power agentic AI with the context, accuracy and scalability required for real-world execution.\n\n**Event Details:**\n**Date:** Feb17, 2026\n**Time:** 12 PM- 2 PM EST\n**Register Here For FREE:** [https://cutt.ly/2tsMRdGr](https://cutt.ly/2tsMRdGr)\n\nYou\u2019ll see how these foundations seamlessly integrate with Microsoft Copilot across Microsoft 365 and Dynamics 365, and why governance, identity, and security must be embedded by design as AI autonomy grows. Join this LIVE online session to gain practical insights, proven best practices, and clear next steps to build a confident, secure, and future-ready AI organization.\n\n**NOTE: \"ALL REGISTRATIONS WILL BE PROVIDED WITH DIGITAL ACHEIVEMENT BADGES ISSUED DIRECTLY FROM MICROSOFT\"**\n\n**What you will learn:**\n\n* Understanding the Frontier AI Firm\n* Frontier AI Solutions on Microsoft Cloud\n* Modernization for Agentic AI\n* Security, Governance, and Trust\n* Q&A + Next Steps with the Instructor\n\n**Register Today** and secure your spot - See You in the Masterclass",
-        "startDate": "2026-02-17T12:00:00-05:00",
-        "endTime": "2026-02-17T14:00:00-05:00",
-        "url": "https://www.meetup.com/meetup-group-xfwllgfg/events/312537969/",
-        "status": "ACTIVE",
-        "source": null,
-        "location": {
-            "name": "Online event",
-            "address": "",
-            "city": "",
-            "state": "",
-            "country": ""
-        },
-        "imageUrl": "/event_images/Building_the_Microsoft_Frontier_AI_Firm_with_Autonomous_Agents.webp",
-        "scrapeTime": "2026-02-16 00:43:37.768420",
-        "tags": [
-            "Economic Development"
-        ]
-    },
-    {
-        "name": "Data Viz DC: 30 Day Chart Challenge",
-        "description": "Data Viz DC: 30 Day Chart Challenge",
-        "startDate": "2026-02-17T17:30:00-05:00",
-        "endTime": "2026-02-17T20:00:00.000-05:00",
-        "url": "https://luma.com/wggc3w3p",
-        "status": "ACTIVE",
-        "location": {
-            "name": "2112 Pennsylvania Ave NW",
-            "address": "2112 Pennsylvania Ave NW, Washington, District of Columbia",
-            "latitude": 38.9014628,
-            "longitude": -77.0480082
-        },
-        "imageUrl": "/event_images/Data_Viz_DC_30_Day_Chart_Challenge.webp",
-        "source": "https://luma.com/DC2",
-        "scrapeTime": "2026-02-16 00:43:37.771713"
-    },
-    {
-        "id": "0a7404b614f1ae8b",
-        "name": "Conservation Cocktails: A CXL Happy Hour",
-        "startDate": "2026-02-17T23:00:00+00:00",
-        "endTime": "2026-02-18T01:00:00.000Z",
-        "description": "",
-        "url": "https://lu.ma/flx1t19f",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Restaurante Barrio Begonias",
-            "address": "Restaurante Barrio Begonias, Av. las Begonias 419, San Isidro 15046, Peru",
-            "city": "San Isidro",
-            "state": "Provincia de Lima",
-            "country": "Peru",
-            "latitude": -12.0922621,
-            "longitude": -77.024035
-        },
-        "imageUrl": "/event_images/Conservation_Cocktails_A_CXL_Happy_Hour.webp",
-        "recurring": false,
-        "scrapeTime": "2026-02-16 00:43:26.513081",
-        "tags": [
-            "Business"
-        ]
-    },
-    {
-        "name": "DMV Women & Bitcoin: Building Technology for the Future | PubKey DC",
-        "description": "DMV Women & Bitcoin: Building Technology for the Future | PubKey DC",
-        "startDate": "2026-02-17T18:30:00-05:00",
-        "endTime": "2026-02-17T20:30:00.000-05:00",
-        "url": "https://luma.com/kn3txa1n",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Pubkey",
-            "address": "Pubkey, Washington, District of Columbia"
-        },
-        "imageUrl": "/event_images/DMV_Women_Bitcoin_Building_Technology_for_the_Future_PubKey_DC.webp",
-        "source": "https://luma.com/bitcoindistrict",
-        "scrapeTime": "2026-02-16 00:43:37.773396"
-    },
-    {
-        "id": "312774021",
-        "name": "Workshop: CREDEBL For Decentralized Identity and Verifiable Credentials",
-        "description": "As adoption of Decentralized Identity (DID) and Verifiable Credentials (VCs) accelerates across governments, education, enterprises, and regulated industries, developers and organizations need open, interoperable, and production-ready infrastructure to build trusted digital ecosystems.\n\nThis webinar introduces [CREDEBL](https://github.com/credebl/), an LF Decentralized Trust project, and walks participants through how to get started quickly, understand the architecture, and explore real-world use cases - all backed by open standards and community-driven development.\n\nWhether you are a developer, architect, policy stakeholder, system integrator, or ecosystem partner, this session will help you move from concepts to implementation.\n\n**What We\u2019ll Cover**\n\n* The Problem: Fragmented Digital Trust : Why identity, credentials, and verification remain siloed - and how this limits interoperability, privacy, and adoption.\n* The Foundation: Verifiable Credentials & Decentralized Identity : A brief overview of DIDs, VCs, DIDComm, OID4VC, trust frameworks and where CREDEBL fits within the LFDT ecosystem.\n* The Platform: CREDEBL Architecture : Core components, issuer\u2013holder\u2013verifier flows, APIs, and deployment models.\n* Getting Started Fast: One-Click / Minimal-Config Setup : Live walkthrough of setting up CREDEBL and running end-to-end credential flows.\n* Live Demo: Issuance & Verification in Action : Creating DIDs, issuing credentials, wallet interactions, and verification scenarios.\n* Real-World Adoption & Ecosystem Use Cases : Education, digital identity, enterprise and public-sector use cases.\n* Community, Governance & Roadmap : Open-source contribution model, roadmap, and how to get involved with the CREDEBL and LFDT community.",
-        "startDate": "2026-02-18T11:00:00-05:00",
-        "endTime": "2026-02-18T13:00:00-05:00",
-        "url": "https://www.meetup.com/lfdt-washington-dc/events/312774021/",
-        "status": "ACTIVE",
-        "source": null,
-        "location": {
-            "name": "Online event",
-            "address": "",
-            "city": "",
-            "state": "",
-            "country": ""
-        },
-        "imageUrl": "/event_images/Workshop_CREDEBL_For_Decentralized_Identity_and_Verifiable_Credentials.webp",
-        "scrapeTime": "2026-02-16 00:43:37.767684",
-        "tags": [
-            "Economic Development"
-        ]
-    },
-    {
-        "id": "313080564",
-        "name": "Google Gemini in Practice: From Use Case to Business Impact.",
-        "description": "**[Google Gemini in Practice: From Use Case to Business Impact](https://www.netcomlearning.com/webinar/google-gemini-in-practice-from-use-case-to-business-impact.?advid=1196&utm_source=meetup&utm_medium=organic_social&utm_campaign=google_gemini_in_practice_from_use_case_to_business_impact.&utm_content=organic_listing&utm_term=sa)**\n\nA concise, hands-on masterclass for leaders and builders. Start from real business needs and turn them into deliverable AI workflows on Google Cloud. Learn when to use **RAG**, **agent tool-calling**, or **multimodal** inputs, ground with **BigQuery/Drive/Docs**, and prototype **evaluated, governed, and scalable** solutions on **Vertex AI**\u2014with ready-to-use templates for scoping, evaluation, guardrails, and ROI.\n\n**Click here to book a seat for yourself in this informative session:** **[LINK](https://www.netcomlearning.com/webinar/google-gemini-in-practice-from-use-case-to-business-impact.?advid=1196&utm_source=meetup&utm_medium=organic_social&utm_campaign=google_gemini_in_practice_from_use_case_to_business_impact.&utm_content=organic_listing&utm_term=sa)**",
-        "startDate": "2026-02-18T12:00:00-05:00",
-        "endTime": "2026-02-18T14:00:00-05:00",
-        "url": "https://www.meetup.com/meetup-group-xfwllgfg/events/313080564/",
-        "status": "ACTIVE",
-        "source": null,
-        "location": {
-            "name": "Online event",
-            "address": "",
-            "city": "",
-            "state": "",
-            "country": ""
-        },
-        "imageUrl": "/event_images/Google_Gemini_in_Practice_From_Use_Case_to_Business_Impact.webp",
-        "scrapeTime": "2026-02-16 00:43:37.768522",
-        "tags": [
-            "Economic Development"
-        ]
-    },
-    {
-        "name": "AI Basics Part 1",
-        "description": "",
-        "startDate": "2026-02-18T14:30:00-05:00",
-        "endTime": "2026-02-18T16:30:00.000-05:00",
-        "url": "",
-        "status": "ACTIVE",
-        "location": {
-            "name": "901 G Street Northwest",
-            "address": "901 G Street Northwest"
-        },
-        "imageUrl": "",
-        "source": "https://luma.com/theupskillinglabs",
-        "scrapeTime": "2026-02-16 00:43:37.774232"
-    },
-    {
-        "id": "313119162",
-        "name": "Agentic AI Multimodal MonthlyMixer - Where Agents Minds Meet",
-        "description": "Join the global gathering of AI builders, researchers, and enthusiasts pushing the boundaries of agentic systems and multimodal intelligence.\nConnect every month for organic networking, 1-on-1 video chats, and powerful peer-to-peer exchanges across a flexible, open chat-based platform.\n**Watch how it works**: [https://youtu.be/trmf6Gqs6FM](https://www.youtube.com/watch?v=trmf6Gqs6FM)\nWhat Is the **Agentic AI Multimodal** #MonthlyMixer?\nThe **Agentic AI Multimodal MonthlyMixer** is a self-led, virtual networking event built for the ever-evolving AI community. Held on a Slack-like platform, this event is **unmoderated and open-format**, giving you full control to explore conversations, meet new minds, and share your work with others who \u201cget it.\u201d\nFrom autonomous agents to multimodal AI, this mixer is the go-to online space for researchers, engineers, founders, and curious learners working at the frontier of machine intelligence.\n**Who It\u2019s For:**\n\n* AI & ML researchers building agent-based systems\n* Engineers and developers experimenting with LLMs and multimodal models\n* Founders and startup teams innovating with AI tools\n* Students, hobbyists, and professionals exploring applied AI\n* AI community managers, mentors, and tech evangelists\n\nWhether you're here to **collaborate, hire, share, or simply learn** \u2014 this mixer offers a space to grow your AI network month by month.\nChannels You'll Explore:\nOnce inside, you\u2019ll find themed group chats designed to make it easy to dive in:\n\n* **[#general](https://teamtaoindia.slack.com/archives/C04SYEPNHH6)** \u2013 For intros, casual chat, and major community announcements\n* **#networking** \u2013 Drop your portfolio, project, startup, or agent demo\n* **#intros** \u2013 Share your background, interests, and goals\n* **#help-wanted** \u2013 Ask for or offer help with AI, code, design, research & more\n* **#industry-room-tech** \u2013 Deep discussions on the latest tools, models, and frameworks in AI\n\nAnd yes \u2014 you can instantly jump into **1-on-1 video or text conversations** with anyone you meet.\nWhen & Where?\n\n* **Every third Wednesday of the month**\n* **5:00 PM \u2013 7:00 PM (your local time)**\n* **Register from the platform here - [https://events.tao.ai/pod/analytics.club/cont-4d55c8eg78pg](https://events.tao.ai/pod/analytics.club/cont-4d55c8eg78pg)**\n\nNo Zoom. No formal agenda. Just real people, real tech, real connections.\n**Why You Shouldn\u2019t Miss It:**\n\n* Global network of agentic AI practitioners and researchers\n* Self-guided 1-on-1 connections and peer-led topic chats\n* Showcase your work, explore partnerships, or ask for feedback\n* Return monthly to reconnect and keep the conversation going\n* A low-pressure space to think out loud with fellow innovators\n\nQuestions or Feedback?\nReach out any time at: [https://noworkerleftbehind.org/event_support](https://noworkerleftbehind.org/event_support)\n**Useful Links**\n\n* **Explainer Video**: [https://youtu.be/trmf6Gqs6FM](https://youtu.be/trmf6Gqs6FM)\n* **Need help?** [https://noworkerleftbehind.org/event_support](https://noworkerleftbehind.org/event_support)\n\n**Hashtags:**\n#AgenticAI #MultimodalAI #MonthlyMixer #AICommunity #AIMeetup #LLMNetworking #AutonomousAgents #AIBuilderMeetup #MachineLearningNetworking #VirtualAIMixer #AIIndustryEvents #ConnectWithAI #thefutureofAI\u2014together.",
-        "startDate": "2026-02-18T17:00:00-05:00",
-        "endTime": "2026-02-18T19:00:00-05:00",
-        "url": "https://www.meetup.com/openanalyticsdc/events/313119162/",
-        "status": "ACTIVE",
-        "source": null,
-        "location": {
-            "name": "Online event",
-            "address": "",
-            "city": "",
-            "state": "",
-            "country": ""
-        },
-        "imageUrl": "/event_images/Agentic_AI_Multimodal_MonthlyMixer_Where_Agents_Minds_Meet.webp",
-        "scrapeTime": "2026-02-16 00:43:37.768009",
-        "tags": [
-            "Economic Development"
-        ]
-    },
-    {
-        "name": "Entrepreneurship in Dermatology",
-        "description": "Join the Entrepreneurship in Health initiative for a panel discussion on innovation in the field of dermatology! Location: MSB",
-        "startDate": "2026-02-18T18:00:00-05:00",
-        "endTime": "2026-02-18T19:00:00-0500",
-        "url": "https://www.eventbrite.com/e/entrepreneurship-in-dermatology-tickets-1981082606405",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Georgetown University McDonough School of Business",
-            "address": "3700 O St NW, Washington, DC, 20057"
-        },
-        "imageUrl": "/event_images/Entrepreneurship_in_Dermatology.webp",
-        "scrapeTime": "2026-02-16 00:43:37.769913",
-        "tags": [
-            "Business"
-        ]
-    },
-    {
-        "id": "313186823",
-        "name": "Cybersecurity Masterclass: How AI is Redefining Cyber Defense",
-        "description": "**[AI is reshaping the cyber threat landscape, for both attackers and defenders.](https://www.netcomlearning.com/webinar/how-ai-is-redefining-cyber-defense-cybersecurity-masterclass?advid=1196&utm_source=meetup&utm_medium=event&utm_content=organic_listing&utm_term=at)**\nThis masterclass explores how AI-driven attacks target critical systems, data, and trust, and how organizations can stay ahead. Learn how attackers exploit AI, how to detect and mitigate these threats, and which frameworks strengthen modern cyber defenses.\n\n**What you\u2019ll learn:**\n\n* AI\u2019s role in modern cybersecurity\n* Risks and business impact of AI-powered attacks\n* Gaps in existing security defenses\n* How AI enhances threat detection and response\n* Strategies to build stronger AI-driven defenses\n\n**[Register now to strengthen your cyber resilience.](https://www.netcomlearning.com/webinar/how-ai-is-redefining-cyber-defense-cybersecurity-masterclass?advid=1196&utm_source=meetup&utm_medium=event&utm_content=organic_listing&utm_term=at)**",
-        "startDate": "2026-02-19T12:00:00-05:00",
-        "endTime": "2026-02-19T14:00:00-05:00",
-        "url": "https://www.meetup.com/meetup-group-xfwllgfg/events/313186823/",
-        "status": "ACTIVE",
-        "source": null,
-        "location": {
-            "name": "Online event",
-            "address": "",
-            "city": "",
-            "state": "",
-            "country": ""
-        },
-        "imageUrl": "/event_images/Cybersecurity_Masterclass_How_AI_is_Redefining_Cyber_Defense.webp",
-        "scrapeTime": "2026-02-16 00:43:37.768625",
-        "tags": [
-            "Economic Development"
-        ]
-    },
-    {
-        "id": "312353495",
-        "name": "5 key principles of modern apps: From operations to design and delivery",
-        "description": "\\***Please**[ ](https://platformengineering.org/events/5-key-principals-of-modern-apps-from-operations-to-design-and-delivery-2026-02-19?utm_source=meetup)**[register here](https://platformengineering.org/events/5-key-principals-of-modern-apps-from-operations-to-design-and-delivery-2026-02-19?utm_source=meetup)**[ ](https://platformengineering.org/events/5-key-principals-of-modern-apps-from-operations-to-design-and-delivery-2026-02-19?utm_source=meetup)\n\nModern applications aren\u2019t just \u201clift-and-shift\u201d workloads running in Kubernetes. They\u2019re built on a set of principles that span architecture, delivery, operations, and platform readiness. In this webinar, we\u2019ll break down each of these principles and connect them to concrete examples.\n\n\\- Recognize and apply the 5 core principles of modern applications across design\\, delivery\\, and operations\\.\n\\- Learn how GitOps\\, observability\\, and zero\\-trust security fit together into a coherent operating model\\.\n\\- See an example of these principles in practice\\.\n\nAfter a 30-minute talk there\u2019ll be a 15-minute Q&A, for which we encourage you to submit questions in advance.\n\nA webinar recording and related materials will be shared with all attendees after the event.\n_____________________\n**Speaker:**\n**Jad El-Zein - Technologist @ VMware by Broadcom**\n\nJad El-Zein is a technology leader with more than 26 years of experience in the IT industry, covering technology adoption, implementation, and the development of advanced emerging solutions. His background includes 11 years with Lockheed Martin Corp and over 15 years at VMware and Broadcom.\n\nJad has led major IT transformation initiatives for U.S. Federal agencies and global enterprises. His expertise spans full-stack datacenter and cloud architectures, systems and network engineering, cloud management and automation, AI and ML development, and modern application platforms. He is the inventor of two U.S. patents focused on machine learning approaches to cloud optimization.\n\nHe is also experienced in technical writing, technical marketing, and product marketing, and is recognized as a speaker, mentor, team leader, and advocate for the technology community.",
-        "startDate": "2026-02-19T13:00:00-05:00",
-        "endTime": "2026-02-19T14:00:00-05:00",
-        "url": "https://www.meetup.com/platform-engineers-washington-dc/events/312353495/",
-        "status": "ACTIVE",
-        "source": null,
-        "location": {
-            "name": "Online event",
-            "address": "",
-            "city": "",
-            "state": "",
-            "country": ""
-        },
-        "imageUrl": "/event_images/5_key_principles_of_modern_apps_From_operations_to_design_and_delivery.webp",
-        "scrapeTime": "2026-02-16 00:43:37.769464",
-        "tags": [
-            "Economic Development"
-        ]
-    },
-    {
-        "name": "Cowork. Co-learn. Co-survive the job market.",
-        "description": "",
-        "startDate": "2026-02-19T13:00:00-05:00",
-        "endTime": "2026-02-19T17:00:00.000-05:00",
-        "url": "",
-        "status": "ACTIVE",
-        "location": {
-            "name": "901 G Street Northwest",
-            "address": "901 G Street Northwest"
-        },
-        "imageUrl": "",
-        "source": "https://luma.com/theupskillinglabs",
-        "scrapeTime": "2026-02-16 00:43:37.774334"
-    },
-    {
-        "name": "Georgetown Entrepreneurship Spring Rocket Pitch 2026",
-        "description": "Georgetown's biannual elevator pitch competition open to all students, with two-minute pitches judged by experts for multiple cash",
-        "startDate": "2026-02-19T17:00:00-05:00",
-        "endTime": "2026-02-19T19:00:00-0500",
-        "url": "https://www.eventbrite.com/e/georgetown-entrepreneurship-spring-rocket-pitch-2026-tickets-1979744933389",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Lohrfink Auditorium",
-            "address": "3613-3625 Canal Road Northwest, Washington, DC, 20007"
-        },
-        "imageUrl": "/event_images/Georgetown_Entrepreneurship_Spring_Rocket_Pitch_2026.webp",
-        "scrapeTime": "2026-02-16 00:43:37.770014",
-        "tags": [
-            "Business"
-        ]
-    },
-    {
-        "id": "cdcf8360a2f1fcae",
-        "name": "District Angels Monthly Deal Room - February",
-        "startDate": "2026-02-20T21:00:00+00:00",
-        "endTime": "2026-02-20T22:00:00.000Z",
-        "description": "",
-        "url": "https://lu.ma/v2pcxpf3",
-        "status": "ACTIVE",
-        "location": {
-            "name": "",
-            "address": "",
-            "city": "",
-            "state": "",
-            "country": "",
-            "latitude": "",
-            "longitude": ""
-        },
-        "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_February.webp",
-        "recurring": false,
-        "scrapeTime": "2026-02-16 00:43:26.864073",
-        "tags": [
-            "Business"
-        ]
-    },
-    {
-        "id": "313177835",
-        "name": "FRIDAY Professionals Networking HourS",
-        "description": "All professionals in the DMV and MidAtlantic area are invited!\n\nThis event is to every and each professional in different industry, sector and specialization to grow, interact, and learn from each other. It is designed to provide a professional environment, to meet other professionals, to broaden one's career. It is also for those interested in careers and are studying or intend to enter the dynamic world of global professionalism.\n\n***GRAB A BOOZE OR A BITE AND YOU WILL BE SET TO ENJOY THE EVENT. YOU NEED TO GET AT LEAST A DRINK OR FOOD:) To get the event going and show support. We know that you like our events. P.S. : We have non-alcoholic drinks as well.***\n\nWe have a tiny venue and we hit capacity often and early arrival is suggested.\n\nWe have the discretion to decide entry.\n\nHOW IT WORKS : We will give out name tags and you write your name and your industry/sector/specialization. However we don't guarantee the availability of a partner in that area. DON'T FORGET TO BRING YOUR BUSINESS CARD.\n\nRules to abide :\n\n1. Event is free and 21+ (bring ID).\n2. Be respectful to your counterparts and give them a chance to connect with others as well.\n3. We all are professionals in one or two fields and be willing to share your knowledge and experience to others and try to accommodate as much as possible.\n4. If you don't belong the other person's required specialization, LEAVE THEM ALONE.\n5. Rude or aggressive members are removed from the group at an organizers discretion.\n6. This is a face-to-face networking event. DO NOT try to arrange an online meeting, by using the comment box or direct message.\n7. Most of our members complained about people writing in the comment box. Since it sends notification to all attendees. If you have any questions, send a message to the organizers. Don't write in the comment box.\n8. We have ZERO TOLERANCE for solicitation. We don't allow anyone to run their own agenda at the Event. If you are interested to promote/sponsor/collaborate; contact us via (info@merevents.com).\n9. When you get there, we will greet you and take you to your respective group.\n10. ***Please be patient for the first 30 minutes, up until we form a group with your respective industry/sector.***\n\n***AFTER THE SOCIAL, WE HIT THE DANCE FLOOR! BRING YOUR DANCING SHOES, WE WILL DANCE THE NIGHT AWAY!***\n\n\\- Come one\\, come all; this is the most friendliest event you have ever attended\\!\n\\- Feel free to invite your friends\\. They don't necessarily have to be a member\\.\n\\- Celebrate your birthdays or your moments in life with us\\.\n\n***N.B. : We have ZERO TOLERANCE for solicitation. We don't allow anyone to run their own agenda at the Event. If you are interested to promote/sponsor/collaborate; contact us via ([info@merevents.com](http://info@merevents.com/)).***\n\n**FOR FURTHER INFO, REFER THE EVENTBRITELINK. IT RULES.**\n\nhttp://photos1.meetupstatic.com/photos/event/a/1/d/1/600_443321425.jpeg\n\nhttp://photos2.meetupstatic.com/photos/event/d/3/2/b/600_449154059.jpeg\n\nhttp://photos1.meetupstatic.com/photos/event/3/e/7/a/600_448335994.jpeg\n\nhttp://photos1.meetupstatic.com/photos/event/e/0/2/6/600_448197382.jpeg\n\nhttp://photos1.meetupstatic.com/photos/event/d/d/1/7/600_448196599.jpeg\n\nhttp://photos2.meetupstatic.com/photos/event/3/2/8/e/600_434712942.jpeg\n\nhttp://photos4.meetupstatic.com/photos/event/3/2/9/a/600_434712954.jpeg",
-        "startDate": "2026-02-20T17:00:00-05:00",
-        "endTime": "2026-02-20T19:00:00-05:00",
-        "url": "https://www.meetup.com/dcprofessonals/events/313177835/",
-        "status": "ACTIVE",
-        "source": null,
-        "location": {
-            "name": "Lucky bar",
-            "address": "1221 Connecticut ave NW",
-            "city": "Washington",
-            "state": "DC",
-            "country": "us"
-        },
-        "imageUrl": "/event_images/FRIDAY_Professionals_Networking_HourS.webp",
-        "scrapeTime": "2026-02-16 00:43:37.768953",
-        "tags": [
-            "Economic Development"
-        ]
-    },
-    {
-        "id": "312966264",
-        "name": "Friday Social AND Club Hopping [AT LUCKY BAR]",
-        "description": "Socialize, mingle and dance the night away, your memorable one, rubbing your shoulder with DC's party snobs.\n\n***GRAB A DRINK AND YOU ARE ALL SET TO ENJOY THE EVENT. YOU NEED TO GET AT LEAST A DRINK OR FOOD :) To get the event going and show support. We know that you like our events. P.S. : We have non-alcoholic drinks as well.***\n\nWe have a tiny venue and we hit capacity often and early arrival is suggested.\n\nWe have the discretion to decide entry.\n\n***AFTER THE SOCIAL, WE HIT THE DANCE FLOOR! BRING YOUR DANCING SHOES, WE WILL DANCE THE NIGHT AWAY!***\n\n**This is also a wicked 'MeRtUp'!**\n\n**What is MERTUP?:) Mer + Meetup = Mertup.**\n\n**Mer is known as the Meetup guy. He likes to connect people and his fans coined that name for him. So, at his events, everyone will become a Wing Person to everyone:) When you get get there, we will introduce you to someone and you will be responsible to introduce that person to another person. That is MERTUP!**\n\nWe will have specials, including our usual suspect MERtini:)\n\n* Come one, come all; YOU COULD FLY SOLO TOO:) This is the most friendliest event you have ever attended!\n* Feel free to invite your friends. They don't necessarily have to be a member\n* Ideal for either you are new in town or not, to make friends and acquaintances\n* RSVP on Meetup is required. That is how we check you in.\n* We will have a registration station and check you in.\n\n**DEETS :**\n\n**Cover is $20. But it is FREE with RSVP.**\n\n***\\*Registration/PREGAME : 8:00PM-9:00PM***\n***You'll receive your wristband . If you can't make it by 10pm TEXT/EMAIL YOUR QR CODE to a friend, so that they can pick everything up for you.***\n\n***Also, you can text us at (202) 368-1878, after 10pm. So that we would let you know which club we are at.***\n\n***But the party and specials continue till 3AM!***\n\n**YOU NEED OUR WRISTBANDS FOR A FREE ENTRY AT THE CLUBS.**\n\n***\\- Celebrate your birthday or your moments \\(Graduation\\, Anniversary\\, Promotion\\, Retirement\\, Bachelorette/Bridal parties\\,\\.\\.\\.\\.etc\\) in life with us\\!***\n\n***\\- For bottle specials\\, table reservation and girls night out TEXT 202\\-368\\-1878\\.***\n\n***\\~\\~\\~\\~\\~CHECK-IN DETAILS\\~\\~\\~\\~\\~\\~\\~\\~***\n***1\\. You need our wristband to get the specials\\.***\n***2\\. Photo ID: Everyone will be required to have a valid photo ID with them in order to enter\\. If you forget your ID\\, you will not be allowed in\\.***\n\nDress code : Chick/Stylish/Elegant (all the clubs enforce dress code)\n\n##### **DRESS CODE STRICTLY ENFORCED**\n\nWe ask that you approach your wardrobe deliberately. No Athletic Clothing or excessively baggy clothing. Keep it chic, smart and classy! Jeans are allowed.\n\nAcceptable Mens shorts include those with belt loops.\n\nUnacceptable Attire:\n\n1. Athletic Clothing: This Includes gym attire, sweatpants, yoga pants, and tracksuits\n2. Baggy Clothing: Clothing that is excessively loose-fitting or oversized, such as baggy jeans, sagging sweatpants or oversized t-shirts.\n3. Sportswear: Jerseys, team logos, and other sport-specific attire\n4. Beachwear: shorts, tank tops, swimwear, and revealing clothing\n5. Flip Flops: Open-toe sandals, thong sandals, and flip flops are not allowed\n6. Timberlands and Steel Toed Shoes.\n\nEvent is 21+\n\n***Why do we stuck at one, whereas we can party at many?!:)***\n\n***Fellas it is hard to pass on this.***\n\nPayment Instructions :\n\n1\\. Click on the ticket link and 'Pay Now' button\\, after RSVPing\\. Then hit the button\\.\n2\\. Verify correct dollar amount for number of people you're paying for\\.\n**3\\. If you don't have a Paypal account\\, click \"Pay with a Debit or Credit Card\"\\.**\n4\\. If you have a Paypal account\\, simply log in\\, and pay as you normally would via Paypal\\.\n\n**How to Unblock the Pop-up Blocker on Your Phone**\n\nMany of our patrons advised us that they have a Pop-up Blocker on their iPhones and it hinders them from buying tickets. To unblock, please follow the following steps :\n\nFor Safari Users :\n1\\. Go to Settings\\.\n2\\. Scroll down to Safari and click on it\\.\n3\\. Select Block Pop\\-ups and turn it off\\.\n\nFor Google Chrome Users :\n1\\. Open Google Chrome\\.\n2\\. Click on the three dots and you will see many options\\.\n3\\. Click on Settings\\.\n4\\. Scroll down to content settings\\.\n5\\. Select Block Pop\\-ups and turn it off\\.\n\nRefund & Ticket Resell Policy\n\nAll sales are final. We only refund the full amount, if the event is canceled. If it is rescheduled, we will send an email to ticket holders advising that. A full refund will be given to those that let us know within 2 calendar days of the update email, if you are unable to make it on the new date. No refunds will be given after that time.\n\nHowever, you can sell your ticket to someone else if you are unable to attend. Please, feel free to post in the comment box for the event, that you have a ticket for sale. Work out payment between yourselves, and have the seller only send the organizers a message, letting us know the full name of the person taking your spot. You must let us know two hours before the RSVP close time, on the day of the event.\n\nhttp://photos2.meetupstatic.com/photos/event/9/9/2/600_431462450.jpeg\n\nhttp://photos3.meetupstatic.com/photos/event/8/e/5/600_431462277.jpeg\n\nhttp://photos1.meetupstatic.com/photos/event/9/a/b/600_431462475.jpeg",
-        "startDate": "2026-02-20T20:00:00-05:00",
-        "endTime": "2026-02-20T22:00:00-05:00",
-        "url": "https://www.meetup.com/dcprofessonals/events/312966264/",
-        "status": "ACTIVE",
-        "source": null,
-        "location": {
-            "name": "Lucky bar",
-            "address": "1221 Connecticut ave NW",
-            "city": "Washington",
-            "state": "DC",
-            "country": "us"
-        },
-        "imageUrl": "/event_images/Friday_Social_AND_Club_Hopping_AT_LUCKY_BAR.webp",
-        "scrapeTime": "2026-02-16 00:43:37.769054",
-        "tags": [
-            "Economic Development"
-        ]
-    },
-    {
-        "name": "Podcast Discussion: Spatial Intelligence is the Next Frontier in AI | Dr. Fei-Fei Li",
-        "description": "Podcast Discussion: Spatial Intelligence is the Next Frontier in AI | Dr. Fei-Fei Li",
-        "startDate": "2026-02-21T15:00:00-05:00",
-        "endTime": "2026-02-21T17:00:00.000-05:00",
-        "url": "https://luma.com/cbmp3v4k",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Washington, District of Columbia",
-            "address": "Register to See Address"
-        },
-        "imageUrl": "/event_images/Podcast_Discussion_Spatial_Intelligence_is_the_Next_Frontier_in_AI_Dr_Fei_Fei_Li.webp",
-        "source": "https://luma.com/ai-discussion-club",
-        "scrapeTime": "2026-02-16 00:43:37.772227"
-    },
-    {
-        "id": "313286998",
-        "name": "SATURDAY Professionals Networking HourS",
-        "description": "All professionals in the DMV and MidAtlantic area are invited!\n\nThis event is to every and each professional in different industry, sector and specialization to grow, interact, and learn from each other. It is designed to provide a professional environment, to meet other professionals, to broaden one's career. It is also for those interested in careers and are studying or intend to enter the dynamic world of global professionalism.\n\n***GRAB A BOOZE OR A BITE AND YOU WILL BE SET TO ENJOY THE EVENT. YOU NEED TO GET AT LEAST A DRINK OR FOOD:) To get the event going and show support. We know that you like our events. P.S. : We have non-alcoholic drinks as well.***\n\nWe have a tiny venue and we hit capacity often and early arrival is suggested.\n\nWe have the discretion to decide entry.\n\nHOW IT WORKS : We will give out name tags and you write your name and your industry/sector/specialization. However we don't guarantee the availability of a partner in that area. DON'T FORGET TO BRING YOUR BUSINESS CARD.\n\nRules to abide :\n\n1. Event is free and 21+ (bring ID).\n2. Be respectful to your counterparts and give them a chance to connect with others as well.\n3. We all are professionals in one or two fields and be willing to share your knowledge and experience to others and try to accommodate as much as possible.\n4. If you don't belong the other person's required specialization, LEAVE THEM ALONE.\n5. Rude or aggressive members are removed from the group at an organizers discretion.\n6. This is a face-to-face networking event. DO NOT try to arrange an online meeting, by using the comment box or direct message.\n7. Most of our members complained about people writing in the comment box. Since it sends notification to all attendees. If you have any questions, send a message to the organizers. Don't write in the comment box.\n8. We have ZERO TOLERANCE for solicitation. We don't allow anyone to run their own agenda at the Event. If you are interested to promote/sponsor/collaborate; contact us via ([info@merevents.com](mailto:info@merevents.com)).\n9. When you get there, we will greet you and take you to your respective group.\n10. ***Please be patient for the first 30 minutes, up until we form a group with your respective industry/sector.***\n\n***AFTER THE SOCIAL, WE HIT THE DANCE FLOOR! BRING YOUR DANCING SHOES, WE WILL DANCE THE NIGHT AWAY!***\n\n\\- Come one\\, come all; this is the most friendliest event you have ever attended\\!\n\\- Feel free to invite your friends\\. They don't necessarily have to be a member\\.\n\\- Celebrate your birthdays or your moments in life with us\\.\n\n***N.B. : We have ZERO TOLERANCE for solicitation. We don't allow anyone to run their own agenda at the Event. If you are interested to promote/sponsor/collaborate; contact us via ([info@merevents.com](http://info@merevents.com/)).***\n\n**FOR FURTHER INFO, REFER THE EVENTBRITELINK. IT RULES.**\n\n[)\n\n[)\n\n[)\n\n[)\n\n[)\n\n[)\n\n[)\n\nhttp://photos1.meetupstatic.com/photos/event/a/1/d/1/600_443321425.jpeg",
-        "startDate": "2026-02-21T17:00:00-05:00",
-        "endTime": "2026-02-21T19:00:00-05:00",
-        "url": "https://www.meetup.com/dcprofessonals/events/313286998/",
-        "status": "ACTIVE",
-        "source": null,
-        "location": {
-            "name": "Lucky bar",
-            "address": "1221 Connecticut ave NW",
-            "city": "Washington",
-            "state": "DC",
-            "country": "us"
-        },
-        "imageUrl": "/event_images/SATURDAY_Professionals_Networking_HourS.webp",
-        "scrapeTime": "2026-02-16 00:43:37.769157",
-        "tags": [
-            "Economic Development"
-        ]
-    },
-    {
-        "name": "SDC VIP",
-        "description": "SDC VIP",
-        "startDate": "2026-02-23T10:00:00-05:00",
-        "endTime": "2026-02-23T12:00:00.000-05:00",
-        "url": "https://luma.com/sgi2k5f0",
-        "status": "ACTIVE",
-        "location": {
-            "name": "STATION DC",
-            "address": "STATION DC, Washington, District of Columbia"
-        },
-        "imageUrl": "/event_images/SDC_VIP.webp",
-        "source": "https://luma.com/stationdc",
-        "scrapeTime": "2026-02-16 00:43:37.773823"
-    },
-    {
         "id": "312551068",
         "name": "Microsoft AI Prompt Engineering Masterclass: Prompt Like a Pro",
         "description": "**Are you getting consistent, high-quality results from Microsoft 365 Copilot?**\nJoin us for a LIVE, instructor-led session designed to help professionals use Copilot more effectively across Word, Excel, PowerPoint, Outlook, and Teams.\n\n**Event Details:**\n**Date:** Feb 23, 2026\n**Time:** 12 PM- 2 PM EST\n**Register Here For FREE:** [https://cutt.ly/ftdiSDiD](https://cutt.ly/ftdiSDiD)\n\nYou\u2019ll learn practical prompting techniques, see real-world demos, and gain the confidence to apply Copilot effectively in your daily workflows\n\n**NOTE: \"ALL REGISTRATIONS WILL BE PROVIDED WITH DIGITAL ACHEIVEMENT BADGES ISSUED DIRECTLY FROM MICROSOFT\"**\n\n**What you will learn:**\n\n* How Microsoft 365 Copilot fits into daily work and productivity\n* Practical prompting techniques for Word, Excel, PowerPoint, Outlook and Teams\n* Ways to improve workflows using Copilot and AI-driven insights\n* Best practices for collaboration and content creation with Copilot\n* Q&A + Next Steps with the Instructor.\n\n**Register Today** and secure your spot - See You in the Masterclass",
@@ -447,7 +16,7 @@
             "country": ""
         },
         "imageUrl": "/event_images/Microsoft_AI_Prompt_Engineering_Masterclass_Prompt_Like_a_Pro.webp",
-        "scrapeTime": "2026-02-16 00:43:37.768748",
+        "scrapeTime": "2026-02-23 00:43:40.076811",
         "tags": [
             "Economic Development"
         ]
@@ -460,12 +29,12 @@
         "url": "https://luma.com/3jrquz8a",
         "status": "ACTIVE",
         "location": {
-            "name": "Georgetown University Capitol Campus",
-            "address": "Georgetown University Capitol Campus, Washington, District of Columbia"
+            "name": "Washington, District of Columbia",
+            "address": "Register to See Address"
         },
         "imageUrl": "/event_images/Global_Shocks_Local_Costs_The_New_Energy_Reality.webp",
         "source": "https://luma.com/seecinstitute",
-        "scrapeTime": "2026-02-16 00:43:37.774769"
+        "scrapeTime": "2026-02-23 00:43:40.091339"
     },
     {
         "name": "DC BitPlebs #2",
@@ -480,7 +49,29 @@
         },
         "imageUrl": "/event_images/DC_BitPlebs_2.webp",
         "source": "https://luma.com/bitcoindistrict",
-        "scrapeTime": "2026-02-16 00:43:37.773498"
+        "scrapeTime": "2026-02-23 00:43:40.083612"
+    },
+    {
+        "id": "313300296",
+        "name": "AI Deep Dive Series (Virtual) - Build Reliable AI apps with Observability",
+        "description": "**Important**: Register on the [event website](https://www.aicamp.ai/event/eventdetails/W2026022410) to receive joining link. (rsvp on meetup will NOT receive joining link).\n\nThis is virtual event for our AI global community, please double-check your local time.\nCan't make it live? Register anyway to receive the webinar recording.\n\n**Description:**\nWelcome to the weekly AI Deep Dive Webinar Series. Join us for deep dive tech talks on AI, hands-on experiences on code labs, workshops, and networking with speakers & fellow developers from all over the world.\n\n**Tech Talk: Build Reliable AI apps with Observability, Validations and Evaluations**\n**Speaker:** Hoc Phan (Okahu)\n**Abstract:** As generative AI moves from experimentation to enterprise deployment, reliability becomes critical. This session outlines a strategic approach to building robust AI apps using Monocle for observability, Okahu\u2019s VS Code Extension for diagnostics, and Okahu Cloud for workflow evaluation. Discover how to create AI systems that are not only innovative but also predictable and trustworthy.\n\n**Speakers/Topics:**\nStay tuned as we are updating speakers and schedules. If you have a keen interest in speaking to our community, we invite you to submit topics for consideration: [Submit Topics](https://forms.gle/JkMt91CZRtoJBSFUA)\n\n**More upcoming sessions:**\n\n* Feb 12: [AI DevTalks Live with Google Cloud (Ep 10) - Building Multi-Agent Pipelines with Google ADK](https://www.aicamp.ai/event/eventdetails/W2026021205)\n* Feb 18: [AI DevTalks Live with Google Cloud - Ep 11](https://www.aicamp.ai/event/eventdetails/W2026021817)\n* Feb 26: [AI Deep Dive Series (Virtual) - Agent Memory - Part 2](https://www.aicamp.ai/event/eventdetails/W2026022610)\n* Mar 4: [AI DevTalks Live with Google Cloud - Ep 12](https://www.aicamp.ai/event/eventdetails/W2026030417)\n\n**Local and Global AI Community on Discord**\n[Join us](https://discord.gg/2DySXfHTFX) on discord for local and global AI tech community:\n\n* Events chat: chat and connect with speakers and global and local attendees;\n* Learning AI: events, learning materials, study groups;\n* Startups: innovation, projects collaborations, founders/co-founders;\n* Jobs and Careers: job openings, post resumes, hiring managers\n*",
+        "startDate": "2026-02-24T13:00:00-05:00",
+        "endTime": "2026-02-24T14:00:00-05:00",
+        "url": "https://www.meetup.com/dc-ai-llms/events/313300296/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": ""
+        },
+        "imageUrl": "/event_images/AI_Deep_Dive_Series_Virtual_Build_Reliable_AI_apps_with_Observability.webp",
+        "scrapeTime": "2026-02-23 00:43:40.080017",
+        "tags": [
+            "Economic Development"
+        ]
     },
     {
         "name": "Defense Tech DC 012",
@@ -495,7 +86,7 @@
         },
         "imageUrl": "/event_images/Defense_Tech_DC_012.webp",
         "source": "https://luma.com/defense-tech-dc",
-        "scrapeTime": "2026-02-16 00:43:37.771485"
+        "scrapeTime": "2026-02-23 00:43:40.081944"
     },
     {
         "name": " Cool/Scary AI: Neighborhoods Edition  ",
@@ -510,25 +101,7 @@
         },
         "imageUrl": "",
         "source": "https://luma.com/theupskillinglabs",
-        "scrapeTime": "2026-02-16 00:43:37.774437"
-    },
-    {
-        "name": "PGP* for Crypto Briefings and Roundtable Discussion",
-        "description": "PGP* for Crypto Briefings and Roundtable Discussion",
-        "startDate": "2026-02-25T09:00:00-05:00",
-        "endTime": "2026-02-25T11:30:00.000-05:00",
-        "url": "https://luma.com/pgpforcrypto20260225",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Washington, District of Columbia",
-            "address": "Register to See Address"
-        },
-        "imageUrl": "/event_images/PGP_for_Crypto_Briefings_and_Roundtable_Discussion.webp",
-        "source": "https://luma.com/pgpforcrypto",
-        "scrapeTime": "2026-02-16 00:43:37.773090",
-        "tags": [
-            "Finance"
-        ]
+        "scrapeTime": "2026-02-23 00:43:40.088196"
     },
     {
         "id": "313027218",
@@ -547,10 +120,47 @@
             "country": ""
         },
         "imageUrl": "/event_images/Nightstream_Provable_Coroutines_for_Containers_and_Contracts.webp",
-        "scrapeTime": "2026-02-16 00:43:37.767804",
+        "scrapeTime": "2026-02-23 00:43:40.075875",
         "tags": [
             "Economic Development"
         ]
+    },
+    {
+        "id": "312804467",
+        "name": "Building Secure & Governed GenAI Applications with Amazon Bedrock",
+        "description": "**Free Live Webinar - [Building Secure & Governed GenAI Applications with Amazon Bedrock](https://www.netcomlearning.com/webinar/building-secure-governed-gen-ai-applications-with-amazon-bedrock?advid=1196&utm_source=meetup&utm_medium=events_platform&utm_campaign=building_secure_%26_governed_genai_applications_with_amazon_bedrock)**\n\nGenerative AI is transforming how enterprises innovate - but scaling AI in production demands a security-first, governed, and compliant foundation. Join us for an insightful 2-hour live session where AWS professionals, architects, and AI builders will learn how to deploy **Amazon Bedrock-powered GenAI applications** with enterprise-grade security, governance, and responsible AI controls.\n\n**Date:** January 22, 2026\n**Time:** 12 PM EST \\| 120 minutes\n**Save Your Seat - [Register Now](https://www.netcomlearning.com/webinar/building-secure-governed-gen-ai-applications-with-amazon-bedrock?advid=1196&utm_source=meetup&utm_medium=events_platform&utm_campaign=building_secure_%26_governed_genai_applications_with_amazon_bedrock)**\n\n### **In this session, you\u2019ll learn:**\n\n* Core principles of secure and governed GenAI on AWS\n* Key Amazon Bedrock capabilities for enterprise AI adoption\n* IAM policy design for model access and data protection\n* Network, data privacy, and AI workload security patterns\n* Governance frameworks, guardrails, and responsible AI best practices\n* Scaling Bedrock applications with compliance and observability in mind\n\nJoin this live webinar to learn how AWS enables organizations to build **trusted, secure, and enterprise-approved GenAI applications** without compromising innovation or speed.\n\nReserve your free spot now \u2013 **limited seats available!**",
+        "startDate": "2026-02-25T12:00:00-05:00",
+        "endTime": "2026-02-25T14:00:00-05:00",
+        "url": "https://www.meetup.com/meetup-group-xfwllgfg/events/312804467/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": ""
+        },
+        "imageUrl": "/event_images/Building_Secure_Governed_GenAI_Applications_with_Amazon_Bedrock.webp",
+        "scrapeTime": "2026-02-23 00:43:40.076925",
+        "tags": [
+            "Economic Development"
+        ]
+    },
+    {
+        "name": "AI Upskilling: Practical Tools to Boost Your Career and Daily Life",
+        "description": "",
+        "startDate": "2026-02-25T12:00:00-05:00",
+        "endTime": "2026-02-25T13:00:00.000-05:00",
+        "url": "",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Online Event",
+            "address": ""
+        },
+        "imageUrl": "",
+        "source": "https://luma.com/theupskillinglabs",
+        "scrapeTime": "2026-02-23 00:43:40.088308"
     },
     {
         "id": "312472374",
@@ -569,7 +179,7 @@
             "country": ""
         },
         "imageUrl": "/event_images/Why_most_migrations_fail_The_untold_costs_impacting_platform_teams.webp",
-        "scrapeTime": "2026-02-16 00:43:37.769565",
+        "scrapeTime": "2026-02-23 00:43:40.079544",
         "tags": [
             "Economic Development"
         ]
@@ -587,7 +197,7 @@
         },
         "imageUrl": "",
         "source": "https://luma.com/theupskillinglabs",
-        "scrapeTime": "2026-02-16 00:43:37.774540"
+        "scrapeTime": "2026-02-23 00:43:40.088415"
     },
     {
         "name": "Prompt Engineering & Introduction to Agentic Workflows",
@@ -602,22 +212,7 @@
         },
         "imageUrl": "/event_images/Prompt_Engineering_Introduction_to_Agentic_Workflows.webp",
         "source": "https://luma.com/theupskillinglabs",
-        "scrapeTime": "2026-02-16 00:43:37.774644"
-    },
-    {
-        "name": "COCKTAILS & COMPLIANCE WITH VANTA",
-        "description": "COCKTAILS & COMPLIANCE WITH VANTA",
-        "startDate": "2026-02-25T17:00:00-05:00",
-        "endTime": "2026-02-25T19:00:00.000-05:00",
-        "url": "https://luma.com/hyprdmy0",
-        "status": "ACTIVE",
-        "location": {
-            "name": "STATION DC",
-            "address": "STATION DC, Washington, District of Columbia"
-        },
-        "imageUrl": "/event_images/COCKTAILS_COMPLIANCE_WITH_VANTA.webp",
-        "source": "https://luma.com/stationdc",
-        "scrapeTime": "2026-02-16 00:43:37.773925"
+        "scrapeTime": "2026-02-23 00:43:40.088525"
     },
     {
         "name": "Project Night at Prefect",
@@ -633,8 +228,8 @@
             "longitude": -77.0480082
         },
         "imageUrl": "/event_images/Project_Night_at_Prefect.webp",
-        "source": "https://lu.ma/civic-tech-dc",
-        "scrapeTime": "2026-02-16 00:43:37.771379",
+        "source": "https://luma.com/theupskillinglabs",
+        "scrapeTime": "2026-02-23 00:43:40.088634",
         "tags": [
             "Tech Skills"
         ]
@@ -656,27 +251,75 @@
             "country": ""
         },
         "imageUrl": "/event_images/ZK_Learning_Group_FRI_Fast_Reed_Solomon_IOP_of_Proximity.webp",
-        "scrapeTime": "2026-02-16 00:43:37.767907",
+        "scrapeTime": "2026-02-23 00:43:40.075988",
         "tags": [
             "Economic Development"
         ]
     },
     {
-        "name": "How We Win 2.0: Technology & Washington, DC",
-        "description": "How We Win 2.0: Technology & Washington, DC",
-        "startDate": "2026-02-26T14:00:00-05:00",
-        "endTime": "2026-02-26T18:30:00.000-05:00",
-        "url": "https://luma.com/6uiap23f",
+        "id": "312918279",
+        "name": "From SD-WAN to SASE: Cisco\u2019s Blueprint for Secure Enterprise Networking",
+        "description": "**Strengthen Your Core Security Skills** \u2013 [Free Live Session](https://www.netcomlearning.com/webinar/From-SD-WAN-to-SASE-Cisco-Blueprint-for-Secure-Enterprise-Networking?advid=1196&utm_source=meetup&utm_medium=event&utm_campaign=cisco_blueprint_for_secure_enterprise_networking).\n\nSecurity is no longer just a concern for security teams, it impacts every role in tech, from networking and cloud to operations, DevOps, and IT leadership.\n\nThis free live session is designed to give you clear, practical insight into the core security concepts used across modern enterprises, including identity security, SOC operations, and firewall fundamentals.\n\nWhether you\u2019re an engineer, analyst, architect, manager, or someone exploring security as a career path, this session will help you understand how today\u2019s security environments really work without deep theory or complex labs.\nRegister here to secure your free spot- [Link](https://www.netcomlearning.com/webinar/From-SD-WAN-to-SASE-Cisco-Blueprint-for-Secure-Enterprise-Networking?advid=1196&utm_source=meetup&utm_medium=event&utm_campaign=cisco_blueprint_for_secure_enterprise_networking)\n\nWhat You\u2019ll Learn.\n\n* How identity-based access strengthens modern security.\n* The role of SOC teams in detecting and responding to threats.\n* Essentials of modern firewall and network defense.\n* How these areas connect to protect enterprise environments.\n\nThis is a short, focused, and practical session perfect if you want real-world clarity you can apply immediately.",
+        "startDate": "2026-02-26T12:00:00-05:00",
+        "endTime": "2026-02-26T13:00:00-05:00",
+        "url": "https://www.meetup.com/meetup-group-xfwllgfg/events/312918279/",
         "status": "ACTIVE",
+        "source": null,
         "location": {
-            "name": "STATION DC",
-            "address": "STATION DC, Washington, District of Columbia"
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": ""
         },
-        "imageUrl": "/event_images/How_We_Win_2_0_Technology_Washington_DC.webp",
-        "source": "https://luma.com/stationdc",
-        "scrapeTime": "2026-02-16 00:43:37.774028",
+        "imageUrl": "/event_images/From_SD_WAN_to_SASE_Ciscos_Blueprint_for_Secure_Enterprise_Networking.webp",
+        "scrapeTime": "2026-02-23 00:43:40.077035",
         "tags": [
-            "Tech Skills"
+            "Economic Development"
+        ]
+    },
+    {
+        "id": "313400888",
+        "name": "Skillshare #3: Our Favorite Advocacy Assets and Sample Packages ",
+        "description": "Join us for our 3rd Skillshare Thursday session with Corrie Green!\n\nOn this call, we will be loading up our favorite assets from the asset store and showcasing their features to level up your game from character controllers to HDRP forests.\n\nWe will also be taking a look at some sample packages from old to new to dive into and learn from including assets from *Keijiro Takahashi*. With potential time at the end for a bonus peak at future content.\n\nHope to see you there!",
+        "startDate": "2026-02-26T12:00:00-05:00",
+        "endTime": "2026-02-26T13:00:00-05:00",
+        "url": "https://www.meetup.com/washington-area-unity3d-users-group/events/313400888/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": ""
+        },
+        "imageUrl": "/event_images/Skillshare_3_Our_Favorite_Advocacy_Assets_and_Sample_Packages.webp",
+        "scrapeTime": "2026-02-23 00:43:40.077484",
+        "tags": [
+            "Economic Development"
+        ]
+    },
+    {
+        "id": "313370200",
+        "name": "AI Deep Dive Series (Virtual) - The Architecture Behind Self-Evolving AI Agents",
+        "description": "**Important**: Register on the [Event Website](https://www.aicamp.ai/event/eventdetails/W2026022610) to receive joining link. (rsvp on meetup will NOT receive joining link).\nThis is virtual event for our AI global community, please double-check your local time.\nCan't make it live? Register anyway to receive the webinar recording.\n\n**Description:**\nWelcome to the weekly AI Deep Dive Webinar Series. Join us for deep dive tech talks on AI, hands-on experiences on code labs, workshops, and networking with speakers & fellow developers from all over the world.\n\n**Tech Talk: The Architecture Behind Self-Evolving AI Agents**\n**Speaker:** Chris Latimer (Vectorize)\n**Abstract:** Every agent framework today treats memory as an afterthought, stuff some documents in a vector database, retrieve chunks, hope for the best. The result is agents that are perpetually starting from zero. They don't learn from experience. They don't notice patterns. But real intelligence requires more than retrieval. It requires learning.\nIn this talk, I'll show how we built Hindsight, an open-source agent memory system that gives agents the ability to learn and improve on their own over time.\n\n**Speakers/Topics:**\nStay tuned as we are updating speakers and schedules. If you have a keen interest in speaking to our community, we invite you to submit topics for consideration: [Submit Topics](https://forms.gle/JkMt91CZRtoJBSFUA)\n\n**Venue:**\nvirtual, join from anywhere.\n\n**Sponsors:**\nWe are actively seeking sponsors to support AI developers community. Whether it is by offering venue spaces, providing food, or cash sponsorship. Sponsors will not only speak at the meetups, receive prominent recognition, but also gain exposure to our extensive membership base of 500K+ worldwide.\n\n**More upcoming sessions:**\n\n* Feb 18: [AI DevTalks Live with Google Cloud - Ep 11](https://www.aicamp.ai/event/eventdetails/W2026021817)\n* Feb 26: [AI Deep Dive Series (Virtual) - Agent Memory - Part 2](https://www.aicamp.ai/event/eventdetails/W2026022610)\n* Mar 4: [AI DevTalks Live with Google Cloud - Ep 12](https://www.aicamp.ai/event/eventdetails/W2026030417)\n\n**Local and Global AI Community on Discord**\n[Join us](https://discord.gg/2DySXfHTFX) on discord for local and global AI tech community:\n\\- Events chat: chat and connect with speakers and global and local attendees;\n\\- Learning AI: events\\, learning materials\\, study groups;\n\\- Startups: innovation\\, projects collaborations\\, founders/co\\-founders;\n\\- Jobs and Careers: job openings\\, post resumes\\, hiring managers",
+        "startDate": "2026-02-26T13:00:00-05:00",
+        "endTime": "2026-02-26T14:00:00-05:00",
+        "url": "https://www.meetup.com/dc-ai-llms/events/313370200/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": ""
+        },
+        "imageUrl": "/event_images/AI_Deep_Dive_Series_Virtual_The_Architecture_Behind_Self_Evolving_AI_Agents.webp",
+        "scrapeTime": "2026-02-23 00:43:40.080127",
+        "tags": [
+            "Economic Development"
         ]
     },
     {
@@ -696,7 +339,7 @@
             "country": ""
         },
         "imageUrl": "/event_images/AIDataTech_Connect_Global_Virtual_Networking_Event_for_AI_Data_Tech_Pros.webp",
-        "scrapeTime": "2026-02-16 00:43:37.768111",
+        "scrapeTime": "2026-02-23 00:43:40.076321",
         "tags": [
             "Economic Development"
         ]
@@ -704,7 +347,7 @@
     {
         "id": "312898885",
         "name": "February Cloud & AI Meetup",
-        "description": "# \ud83d\ude80Ready to level up your cybersecurity game?\n\n**Join Cloudforce on Thursday, February 26 at 5:00 PM** for **Cybersecurity in the Microsoft Cloud**, a focused session on the core security essentials every organization needs to protect its cloud environment.\n\nAs threats grow more sophisticated and AI-driven attacks become the norm, understanding the fundamentals of securing Microsoft 365 is critical. This session will walk you through the practical building blocks of a strong security foundation\u2014ensuring your identity, data, and collaboration tools remain protected.\n\n**Event Details:**\n**\ud83d\udcc5 When:** February 26th\\, 2026 \\| 5:00 PM \u2013 7:00 PM\n**\ud83d\udccd Where:** Cloudforce HQ: 120 Waterfront St, Suite 500 \u00b7 National Harbor, MD\n\n\ud83c\udfa4 **Speaker Lineup:**\n\n* Corey J\\. Lee \\| Security CTO at Microsoft\n* Edward Krosel \\| Senior Cloud Solutions Administrator at Cloudforce\n* Husein Sharaf \\| CEO & Founder at Cloudforce\n\n\u2728 Don\u2019t miss this chance to connect with peers, share ideas, and get inspired for the year ahead.\n\n**\u2705 RSVP today to claim your spot!**\n\n**Questions?** Reach out at events@gocloudforce.com",
+        "description": "# \ud83d\ude80Ready to level up your cybersecurity game?\n\n**Join Cloudforce on Thursday, February 26 at 5:00 PM** for **Cybersecurity in the Microsoft Cloud**, a focused session on the core security essentials every organization needs to protect its cloud environment.\n\nAs threats grow more sophisticated and AI-driven attacks become the norm, understanding the fundamentals of securing Microsoft 365 is critical. This session will walk you through the practical building blocks of a strong security foundation\u2014ensuring your identity, data, and collaboration tools remain protected.\n\n**Event Details:**\n**\ud83d\udcc5 When:** February 26th\\, 2026 \\| 5:00 PM \u2013 7:00 PM\n**\ud83d\udccd Where:** Cloudforce HQ: 120 Waterfront St, Suite 500 \u00b7 National Harbor, MD\n\n\ud83c\udfa4 **Speaker Lineup:**\n\n* Corey J\\. Lee \\| Security CTO at Microsoft\n* Hasib Munib \\| Microsoft Certified Trainer \\(MCT\\) \\- Azure Infrastructure & Security Consultant\n* Rhoddy McKown \\| Cloud Security SME\\, Unit Lead at Cloudforce\n* Husein Sharaf \\| CEO & Founder at Cloudforce\n\n\u2728 Don\u2019t miss this chance to connect with peers, share ideas, and get inspired for the year ahead.\n\n**\u2705 RSVP today to claim your spot!**\n\n**Questions?** Reach out at events@gocloudforce.com",
         "startDate": "2026-02-26T17:00:00-05:00",
         "endTime": "2026-02-26T19:00:00-05:00",
         "url": "https://www.meetup.com/microsoft-cloud/events/312898885/",
@@ -718,10 +361,25 @@
             "country": "us"
         },
         "imageUrl": "/event_images/February_Cloud_AI_Meetup.webp",
-        "scrapeTime": "2026-02-16 00:43:37.769260",
+        "scrapeTime": "2026-02-23 00:43:40.079313",
         "tags": [
             "Economic Development"
         ]
+    },
+    {
+        "name": "How We Win 2.0: COCKTAILS & COMPLIANCE WITH VANTA",
+        "description": "How We Win 2.0: COCKTAILS & COMPLIANCE WITH VANTA",
+        "startDate": "2026-02-26T17:00:00-05:00",
+        "endTime": "2026-02-26T19:00:00.000-05:00",
+        "url": "https://luma.com/hyprdmy0",
+        "status": "ACTIVE",
+        "location": {
+            "name": "STATION DC",
+            "address": "STATION DC, Washington, District of Columbia"
+        },
+        "imageUrl": "/event_images/How_We_Win_2_0_COCKTAILS_COMPLIANCE_WITH_VANTA.webp",
+        "source": "https://luma.com/stationdc",
+        "scrapeTime": "2026-02-23 00:43:40.084070"
     },
     {
         "name": "Missions + Markets #05: The CVC Playbook",
@@ -736,7 +394,51 @@
         },
         "imageUrl": "/event_images/Missions_Markets_05_The_CVC_Playbook.webp",
         "source": "https://luma.com/vcdc",
-        "scrapeTime": "2026-02-16 00:43:37.772874"
+        "scrapeTime": "2026-02-23 00:43:40.083283"
+    },
+    {
+        "id": "313312141",
+        "name": "Microsoft Security Copilot in Defender Masterclass: Next-Gen Protection",
+        "description": "Modern cyber defense isn\u2019t just about stopping threats it\u2019s about responding with speed and intelligence.\n\n**Date:** Feb 27, 2026\n**Time:** 10AM- 12PM EST\n**[Click Here For FREE](https://www.netcomlearning.com/webinar/Msft-Security-Copilot-in-Defender-Masterclass?advid=1196&utm_source=meetup&utm_medium=organic_social&utm_content=master_classes&utm_term_product=vendor_microsoft)**\n\nThis LIVE session explores how Microsoft Security Copilot works with Microsoft 365 Defender to transform threat detection, accelerate investigations, and automate incident response using generative AI.\n**NOTE: \"ALL REGISTRATIONS WILL BE PROVIDED WITH DIGITAL ACHEIVEMENT BADGES ISSUED DIRECTLY FROM MICROSOFT\"**\n**What you will learn:**\n\n* Introduction to Microsoft Security Copilot in Defender\n* Overview of Microsoft 365 Defender Security Capabilities\n* Administering Microsoft Defender for Endpoint\n* AI-Powered Threat Hunting and Incident Investigation\n* Automating Security Response with Copilot + ASR Rules\n* Best Practices, Real-World Use Cases + Live Q&A\n\n**[Register Today](https://www.netcomlearning.com/webinar/Msft-Security-Copilot-in-Defender-Masterclass?advid=1196&utm_source=meetup&utm_medium=organic_social&utm_content=master_classes&utm_term_product=vendor_microsoft)** and secure your spot - See You in the Masterclass!!",
+        "startDate": "2026-02-27T10:00:00-05:00",
+        "endTime": "2026-02-27T12:00:00-05:00",
+        "url": "https://www.meetup.com/meetup-group-xfwllgfg/events/313312141/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": ""
+        },
+        "imageUrl": "/event_images/Microsoft_Security_Copilot_in_Defender_Masterclass_Next_Gen_Protection.webp",
+        "scrapeTime": "2026-02-23 00:43:40.077152",
+        "tags": [
+            "Economic Development"
+        ]
+    },
+    {
+        "id": "313317447",
+        "name": "Professionals Networking HourS",
+        "description": "All professionals in the DMV and MidAtlantic area are invited!\n\nThis event is to every and each professional in different industry, sector and specialization to grow, interact, and learn from each other. It is designed to provide a professional environment, to meet other professionals, to broaden one's career. It is also for those interested in careers and are studying or intend to enter the dynamic world of global professionalism.\n\n***GRAB A BOOZE OR A BITE AND YOU WILL BE SET TO ENJOY THE EVENT. YOU NEED TO GET AT LEAST A DRINK OR FOOD:) To get the event going and show support. We know that you like our events. P.S. : We have non-alcoholic drinks as well.***\n\nWe have a tiny venue and we hit capacity often and early arrival is suggested.\n\nWe have the discretion to decide entry.\n\nHOW IT WORKS : We will give out name tags and you write your name and your industry/sector/specialization. However we don't guarantee the availability of a partner in that area. DON'T FORGET TO BRING YOUR BUSINESS CARD.\n\nRules to abide :\n\n1. Event is free and 21+ (bring ID).\n2. Be respectful to your counterparts and give them a chance to connect with others as well.\n3. We all are professionals in one or two fields and be willing to share your knowledge and experience to others and try to accommodate as much as possible.\n4. If you don't belong the other person's required specialization, LEAVE THEM ALONE.\n5. Rude or aggressive members are removed from the group at an organizers discretion.\n6. This is a face-to-face networking event. DO NOT try to arrange an online meeting, by using the comment box or direct message.\n7. Most of our members complained about people writing in the comment box. Since it sends notification to all attendees. If you have any questions, send a message to the organizers. Don't write in the comment box.\n8. We have ZERO TOLERANCE for solicitation. We don't allow anyone to run their own agenda at the Event. If you are interested to promote/sponsor/collaborate; contact us via ([info@merevents.com](mailto:info@merevents.com)).\n9. When you get there, we will greet you and take you to your respective group.\n10. ***Please be patient for the first 30 minutes, up until we form a group with your respective industry/sector.***\n\n***AFTER THE SOCIAL, WE HIT THE DANCE FLOOR! BRING YOUR DANCING SHOES, WE WILL DANCE THE NIGHT AWAY!***\n\n\\- Come one\\, come all; this is the most friendliest event you have ever attended\\!\n\\- Feel free to invite your friends\\. They don't necessarily have to be a member\\.\n\\- Celebrate your birthdays or your moments in life with us\\.\n\n***N.B. : We have ZERO TOLERANCE for solicitation. We don't allow anyone to run their own agenda at the Event. If you are interested to promote/sponsor/collaborate; contact us via ([info@merevents.com](http://info@merevents.com/)).***\n\n**FOR FURTHER INFO, REFER THE EVENTBRITELINK. IT RULES.**\n\n[)\n\n[)\n\n[)\n\n[)\n\n[)\n\n[)\n\n[)",
+        "startDate": "2026-02-27T17:00:00-05:00",
+        "endTime": "2026-02-27T19:00:00-05:00",
+        "url": "https://www.meetup.com/dcprofessonals/events/313317447/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Lucky bar",
+            "address": "1221 Connecticut ave NW",
+            "city": "Washington",
+            "state": "DC",
+            "country": "us"
+        },
+        "imageUrl": "/event_images/Professionals_Networking_HourS.webp",
+        "scrapeTime": "2026-02-23 00:43:40.077596",
+        "tags": [
+            "Economic Development"
+        ]
     },
     {
         "name": "Coffee & Bitcoin DC: National Cathedral Grounds",
@@ -751,7 +453,7 @@
         },
         "imageUrl": "/event_images/Coffee_Bitcoin_DC_National_Cathedral_Grounds.webp",
         "source": "https://luma.com/bitcoindistrict",
-        "scrapeTime": "2026-02-16 00:43:37.773600"
+        "scrapeTime": "2026-02-23 00:43:40.083741"
     },
     {
         "id": "312856232",
@@ -770,7 +472,29 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Podcast_Discussion_Peak_Performance_via_Deliberate_Practice.webp",
-        "scrapeTime": "2026-02-16 00:43:37.768851",
+        "scrapeTime": "2026-02-23 00:43:40.077265",
+        "tags": [
+            "Economic Development"
+        ]
+    },
+    {
+        "id": "311955659",
+        "name": "Saturday Professionals Networking HourS ",
+        "description": "All professionals in the DMV and MidAtlantic area are invited!\n\nThis event is to every and each professional in different industry, sector and specialization to grow, interact, and learn from each other. It is designed to provide a professional environment, to meet other professionals, to broaden one's career. It is also for those interested in careers and are studying or intend to enter the dynamic world of global professionalism.\n\n***GRAB A BOOZE OR A BITE AND YOU WILL BE SET TO ENJOY THE EVENT. YOU NEED TO GET AT LEAST A DRINK OR FOOD:) To get the event going and show support. We know that you like our events. P.S. : We have non-alcoholic drinks as well.***\n\nWe have a tiny venue and we hit capacity often and early arrival is suggested.\n\nWe have the discretion to decide entry.\n\nHOW IT WORKS : We will give out name tags and you write your name and your industry/sector/specialization. However we don't guarantee the availability of a partner in that area. DON'T FORGET TO BRING YOUR BUSINESS CARD.\n\nRules to abide :\n\n1. Event is free and 21+ (bring ID).\n2. Be respectful to your counterparts and give them a chance to connect with others as well.\n3. We all are professionals in one or two fields and be willing to share your knowledge and experience to others and try to accommodate as much as possible.\n4. If you don't belong the other person's required specialization, LEAVE THEM ALONE.\n5. Rude or aggressive members are removed from the group at an organizers discretion.\n6. This is a face-to-face networking event. DO NOT try to arrange an online meeting, by using the comment box or direct message.\n7. Most of our members complained about people writing in the comment box. Since it sends notification to all attendees. If you have any questions, send a message to the organizers. Don't write in the comment box.\n8. We have ZERO TOLERANCE for solicitation. We don't allow anyone to run their own agenda at the Event. If you are interested to promote/sponsor/collaborate; contact us via (info@merevents.com).\n9. When you get there, we will greet you and take you to your respective group.\n10. ***Please be patient for the first 30 minutes, up until we form a group with your respective industry/sector.***\n\n***AFTER THE SOCIAL, WE HIT THE DANCE FLOOR! BRING YOUR DANCING SHOES, WE WILL DANCE THE NIGHT AWAY!***\n\n\\- Come one\\, come all; this is the most friendliest event you have ever attended\\!\n\\- Feel free to invite your friends\\. They don't necessarily have to be a member\\.\n\\- Celebrate your birthdays or your moments in life with us\\.\n\n***N.B. : We have ZERO TOLERANCE for solicitation. We don't allow anyone to run their own agenda at the Event. If you are interested to promote/sponsor/collaborate; contact us via ([info@merevents.com](http://info@merevents.com/)).***\n\n**FOR FURTHER INFO, REFER THE EVENTBRITELINK. IT RULES.**\n\nhttp://photos1.meetupstatic.com/photos/event/a/1/d/1/600_443321425.jpeg\n\nhttp://photos2.meetupstatic.com/photos/event/d/3/2/b/600_449154059.jpeg\n\nhttp://photos1.meetupstatic.com/photos/event/3/e/7/a/600_448335994.jpeg\n\nhttp://photos1.meetupstatic.com/photos/event/e/0/2/6/600_448197382.jpeg\n\nhttp://photos1.meetupstatic.com/photos/event/d/d/1/7/600_448196599.jpeg\n\nhttp://photos2.meetupstatic.com/photos/event/3/2/8/e/600_434712942.jpeg\n\nhttp://photos4.meetupstatic.com/photos/event/3/2/9/a/600_434712954.jpeg",
+        "startDate": "2026-02-28T17:00:00-05:00",
+        "endTime": "2026-02-28T18:30:00-05:00",
+        "url": "https://www.meetup.com/dcprofessonals/events/311955659/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Refer Eventbrite Ticket Link",
+            "address": "Washington DC",
+            "city": "Washington DC",
+            "state": "DC",
+            "country": "us"
+        },
+        "imageUrl": "/event_images/Saturday_Professionals_Networking_HourS.webp",
+        "scrapeTime": "2026-02-23 00:43:40.077840",
         "tags": [
             "Economic Development"
         ]
@@ -788,7 +512,44 @@
         },
         "imageUrl": "/event_images/STATION_DC_Chess_Club.webp",
         "source": "https://luma.com/stationdc",
-        "scrapeTime": "2026-02-16 00:43:37.774130"
+        "scrapeTime": "2026-02-23 00:43:40.087851"
+    },
+    {
+        "name": "STATION DC Hypersonics Meetup",
+        "description": "STATION DC Hypersonics Meetup",
+        "startDate": "2026-03-03T10:00:00-05:00",
+        "endTime": "2026-03-03T12:00:00.000-05:00",
+        "url": "https://luma.com/5b7snrzg",
+        "status": "ACTIVE",
+        "location": {
+            "name": "STATION DC",
+            "address": "STATION DC, Washington, District of Columbia"
+        },
+        "imageUrl": "/event_images/STATION_DC_Hypersonics_Meetup.webp",
+        "source": "https://luma.com/stationdc",
+        "scrapeTime": "2026-02-23 00:43:40.087972"
+    },
+    {
+        "id": "313334820",
+        "name": "Trusted AI Agents by Design: From Trust Ecosystems to Authority Continuity",
+        "description": "Rapid innovation in agentic AI is opening up real potential. But agents don't just forward intent, they create it. When an agent makes the decisions that matter, trust can't be assumed, it has to be designed in. And once agents cross organizational boundaries, decentralized trust infrastructure has a critical role to play.\n\nThis session brings together two complementary pieces tackling that fundamental challenge, followed by a panel. This is the timeframe to get things right. Join us.\n\n**5:00 PM Opening & Framing** \u2013 Shane Deconinck\n\n**5:10 PM Running AI Agent Protocols over Trust Spanning Protocol** \u2013 Wenjing Chu\nHow TMCP and TA2A bring secure, interoperable communication to AI agent ecosystems, built on the Trust Spanning Protocol.\n\n**5:35 PM Authority Is Continuous** \u2013 Nicola Gallo\nIntroducing PIC (Provenance Identity Continuity Protocol) and its Proof of Continuity as an emerging security primitive for distributed transactions and agent chains.\n\n**6:00 PM Closing Panel: Connecting the Layers** \u2013 Moderated by Shane Deconinck\nWe'll discuss how the proposed solutions fit together, which pieces are still missing, how they align with existing standards and ongoing work in the space, and what's needed to move from specification to adoption, with plenty of room for interaction.\n\n**Learn more:**\n[TSP: Strengthening Trust in Human and AI Interactions (PDF)](https://trustoverip.org/wp-content/uploads/TSP_-Strengthening-Trust-in-Human-and-AI-Interactions.pdf)\n[PIC Protocol](https://www.pic-protocol.org/)",
+        "startDate": "2026-03-03T11:00:00-05:00",
+        "endTime": "2026-03-03T12:30:00-05:00",
+        "url": "https://www.meetup.com/lfdt-washington-dc/events/313334820/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": ""
+        },
+        "imageUrl": "/event_images/Trusted_AI_Agents_by_Design_From_Trust_Ecosystems_to_Authority_Continuity.webp",
+        "scrapeTime": "2026-02-23 00:43:40.076099",
+        "tags": [
+            "Economic Development"
+        ]
     },
     {
         "name": "Data Engineering & Context Engineering for AI",
@@ -805,7 +566,44 @@
         },
         "imageUrl": "/event_images/Data_Engineering_Context_Engineering_for_AI.webp",
         "source": "https://luma.com/DC2",
-        "scrapeTime": "2026-02-16 00:43:37.771818"
+        "scrapeTime": "2026-02-23 00:43:40.082168"
+    },
+    {
+        "id": "313225643",
+        "name": "From Protocol to Practice: MCP Server Integration with Hyperledger Fabric",
+        "description": "Dear LF Decentralized Trust Community Members,\n\nJoin us for a webinar with Walmart, an LFDT General member, on March 4th.\n\nAs AI-powered tools become integral to development workflows, there's a growing need for standardized, secure ways to connect them with complex systems like blockchains. This webinar introduces the Model Context Protocol (MCP) - what it is, why it matters, and how it simplifies interactions between AI systems and external tools. We'll explain how MCP servers provide a structured, protocol-driven approach for exposing capabilities and workflows to AI clients, then demonstrate practical integration with Hyperledger Fabric networks and chaincode. The session will show how MCP reduces complexity, improves discoverability of Fabric capabilities, and enables faster, more intuitive development through AI-assisted workflows, making Hyperledger Fabric more accessible and productive for developers in the AI era.\nThe webinar will take place on Wednesday, March 4th at 7AM PT/ 10AM ET/16:00 CET/8:30 PM IST. You are welcome to register here: https://zoom.us/webinar/register/8716754539090/WN_2TC3Vu2XQ4S3vF1Z9mE3eg",
+        "startDate": "2026-03-04T10:00:00-05:00",
+        "endTime": "2026-03-04T11:00:00-05:00",
+        "url": "https://www.meetup.com/lfdt-washington-dc/events/313225643/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": ""
+        },
+        "imageUrl": "/event_images/From_Protocol_to_Practice_MCP_Server_Integration_with_Hyperledger_Fabric.webp",
+        "scrapeTime": "2026-02-23 00:43:40.076210",
+        "tags": [
+            "Economic Development"
+        ]
+    },
+    {
+        "name": "STATION DC Transportation and Infastructure Meetup",
+        "description": "STATION DC Transportation and Infastructure Meetup",
+        "startDate": "2026-03-04T10:00:00-05:00",
+        "endTime": "2026-03-04T12:00:00.000-05:00",
+        "url": "https://luma.com/bzow417u",
+        "status": "ACTIVE",
+        "location": {
+            "name": "STATION DC",
+            "address": "STATION DC, Washington, District of Columbia"
+        },
+        "imageUrl": "/event_images/STATION_DC_Transportation_and_Infastructure_Meetup.webp",
+        "source": "https://luma.com/stationdc",
+        "scrapeTime": "2026-02-23 00:43:40.088084"
     },
     {
         "id": "313332097",
@@ -824,7 +622,7 @@
             "country": ""
         },
         "imageUrl": "/event_images/TechConnect_Global_Virtual_Job_Networking_Event_for_Data_AI_and_Tech_Pros.webp",
-        "scrapeTime": "2026-02-16 00:43:37.768214",
+        "scrapeTime": "2026-02-23 00:43:40.076431",
         "tags": [
             "Economic Development"
         ]
@@ -842,7 +640,29 @@
         },
         "imageUrl": "/event_images/DC_Tech_Meetup_95_Healthtech_Edition.webp",
         "source": "https://luma.com/DCTechMeetup",
-        "scrapeTime": "2026-02-16 00:43:37.772771"
+        "scrapeTime": "2026-02-23 00:43:40.083173"
+    },
+    {
+        "id": "313439209",
+        "name": "AI DevTalks Live with Google Cloud - Ep 12",
+        "description": "**Important**: Register on the [Event Website](https://www.aicamp.ai/event/eventdetails/W2026030417) to receive joining link. (rsvp on meetup will NOT receive joining link).\n\nThis is virtual event for our global community, please double check your local time. Can't make it live? Register anyway! We'll send you a recording of the webinar after the event.\n\n**Description:**\nJoin us for the AI DevTalks Live - Learn Build and Innovate, a virtual event series presented in collaboration with Google Cloud.\n\nHappening every week, this series brings you leading experts from Google Cloud to share the latest insights and practical knowledge on AI, LLMs, and AI Agents. This is virtual event for our AI global community, please double-check your local time. Can't make it live? Register anyway to receive the webinar recording.\n\nEach session includes \u25b6\ufe0f a deep-dive talk, live demo, \ud83e\uddd1\u200d\ud83d\udcbb hands-on code labs, and \ud83e\udd1d networking with speakers and a global tech community (developers, engineers, startup founders and tech leaders).\n\n**Tech Talk: Agentic RAG with Vector Search 2.0 and ADK**\n**Speaker:** Kaz Sato (Google)\n**Abstract:** Build a production-ready Agentic RAG system in minutes. This session shows how to combine Vertex AI Vector Search 2.0's auto-embeddings and hybrid search with ADK's reasoning layer. Using a travel agent demo, you'll learn to parse natural language into semantic queries and structured filters\u2014transforming a simple search API into an AI assistant that understands intent and orchestrates searches.\n\n**Upcoming and Past Sessions**\n\n* Feb 24: [AI Deep Dive Series (Virtual) - Build Reliable AI apps with Observability](https://www.aicamp.ai/event/eventdetails/W2026022410)\n* Feb 26: [AI Deep Dive Series (Virtual) - Agent Memory - Part 2](https://www.aicamp.ai/event/eventdetails/W2026022610)\n* Recordings for all past episodes: [Link](https://www.youtube.com/playlist?list=PLutB-DANVpnSK0bn9acp3Y2wUUS0Z5tDK)\n\n**Local and Global AI Community on Discord**\n[Join us](https://discord.gg/2DySXfHTFX) on discord for local and global AI tech community:\n\n* Events chat: chat and connect with speakers and global and local attendees;\n* Learning AI: events, learning materials, study groups;\n* Startups: innovation, projects collaborations, founders/co-founders;\n* Jobs and Careers: job openings, post resumes, hiring managers.",
+        "startDate": "2026-03-04T20:00:00-05:00",
+        "endTime": "2026-03-04T21:00:00-05:00",
+        "url": "https://www.meetup.com/dc-ai-llms/events/313439209/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": ""
+        },
+        "imageUrl": "/event_images/AI_DevTalks_Live_with_Google_Cloud_Ep_12.webp",
+        "scrapeTime": "2026-02-23 00:43:40.080238",
+        "tags": [
+            "Economic Development"
+        ]
     },
     {
         "id": "313078120",
@@ -861,7 +681,7 @@
             "country": ""
         },
         "imageUrl": "/event_images/AI_benchmarks_What_Jellyfish_learned_from_analyzing_20_million_PRs.webp",
-        "scrapeTime": "2026-02-16 00:43:37.769699",
+        "scrapeTime": "2026-02-23 00:43:40.079657",
         "tags": [
             "Economic Development"
         ]
@@ -883,7 +703,51 @@
             "country": ""
         },
         "imageUrl": "/event_images/CyberConnect_Virtual_Career_Networking_Hub_for_Cybersecurity_Pros.webp",
-        "scrapeTime": "2026-02-16 00:43:37.768318",
+        "scrapeTime": "2026-02-23 00:43:40.076543",
+        "tags": [
+            "Economic Development"
+        ]
+    },
+    {
+        "id": "313268121",
+        "name": "AnalyticsCLUB JobExpo Virtual Business, Data & Technology Job Expo",
+        "description": "**What is FirstFridayFair Monthly Job Fair?**\n\n[FirstFridayFair Monthly Job Fair](https://events.tao.ai/pod/analytics.club/6j382kbpcnvd) is a **global virtual job fair and remote hiring event** hosted by the [Analytics.CLUB](Analytics.CLUB) community. This **online job fair platform** brings together **professionals, employers, recruiters, and career coaches** for an immersive, **self-managed career networking experience**.\n\n\ud83c\udfa5 **New to FirstFridayFair? Watch our explainer video here:** [https://youtu.be/NlLaCfOjosk](https://youtu.be/NlLaCfOjosk)\n**Where and When?**\n\ud83d\udccd Online at [https://events.tao.ai/pod/analytics.club/6j382kbpcnvd](https://events.tao.ai/pod/analytics.club/6j382kbpcnvd)\n\ud83d\uddd3 First Friday of the month\n\u23f0 11:00 AM - 2:00 PM (Local Time Zone)\n\ud83c\udf0d Open to participants globally\n\n\ud83c\udf0d **Who should join?**\n\n* **Job Seekers:** Looking for their next big break in **remote or local roles**.\n* **Employers & Recruiters:** Eager to find top talent across industries.\n* **Service Providers & Career Coaches:** Supporting professionals with tools, tips, and resources.\n* **Career Enthusiasts & Explorers:** Wishing to expand their network and knowledge.\n\n\ud83d\udcac **Where does the event take place?**\nThis interactive event is hosted on a **Slack-like community chat platform**, making it easy to **join from anywhere** and interact in **real-time group chats and 1-1 video or text conversations**.\n\ud83d\ude80 **What can you do at the event?**\nAttendees can explore several themed **Slack job fair channels** designed for **job networking, peer-to-peer support, and industry discussions**:\n\n* **General:** Intros, announcements, and casual networking.\n* **Networking:** Showcase your portfolio, startup, or job pitch.\n* **Intros:** Meet others, share your career path, and connect personally.\n* **Help Wanted:** Offer your skills or seek help from others.\n* **Industry Room Tech:** Discuss the latest in programming, software, and tech trends.\n\nAdditionally, attendees can engage in:\n\n* **1-1 video and text chats** with other attendees, recruiters, or service providers.\n* Visit the **virtual job openings board** to browse active listings and **connect with recruiters online**.\n* Participate in **live job fair chat**, where you can ask career-related questions, get **online resume tips**, and explore ways to stand out in the hiring process.\n\n\u2753 **Why join FirstFridayFair Monthly Job Fair?**\n\n* Access **global job networking events** right from your device.\n* Explore **virtual hiring events** designed for professionals seeking flexibility and growth.\n* Engage in meaningful conversations and discover **remote hiring opportunities**.\n* Take advantage of a **self-managed and open community platform**, allowing you to connect at your own pace.\n* Use the dedicated channels to **showcase your skills, ask questions, and build lasting professional connections**.\n\n**Have Questions or Suggestions?**\nWe\u2019d love to help: [https://noworkerleftbehind.org/event_support](https://noworkerleftbehind.org/event_support)",
+        "startDate": "2026-03-06T11:00:00-05:00",
+        "endTime": "2026-03-06T14:00:00-05:00",
+        "url": "https://www.meetup.com/openanalyticsdc/events/313268121/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": ""
+        },
+        "imageUrl": "/event_images/AnalyticsCLUB_JobExpo_Virtual_Business_Data_Technology_Job_Expo.webp",
+        "scrapeTime": "2026-02-23 00:43:40.076654",
+        "tags": [
+            "Economic Development"
+        ]
+    },
+    {
+        "id": "313416583",
+        "name": "Professionals Networking HourS",
+        "description": "All professionals in the DMV and MidAtlantic area are invited!\n\nThis event is to every and each professional in different industry, sector and specialization to grow, interact, and learn from each other. It is designed to provide a professional environment, to meet other professionals, to broaden one's career. It is also for those interested in careers and are studying or intend to enter the dynamic world of global professionalism.\n\n***GRAB A BOOZE OR A BITE AND YOU WILL BE SET TO ENJOY THE EVENT. YOU NEED TO GET AT LEAST A DRINK OR FOOD:) To get the event going and show support. We know that you like our events. P.S. : We have non-alcoholic drinks as well.***\n\nWe have a tiny venue and we hit capacity often and early arrival is suggested.\n\nWe have the discretion to decide entry.\n\nHOW IT WORKS : We will give out name tags and you write your name and your industry/sector/specialization. However we don't guarantee the availability of a partner in that area. DON'T FORGET TO BRING YOUR BUSINESS CARD.\n\nRules to abide :\n\n1. Event is free and 21+ (bring ID).\n2. Be respectful to your counterparts and give them a chance to connect with others as well.\n3. We all are professionals in one or two fields and be willing to share your knowledge and experience to others and try to accommodate as much as possible.\n4. If you don't belong the other person's required specialization, LEAVE THEM ALONE.\n5. Rude or aggressive members are removed from the group at an organizers discretion.\n6. This is a face-to-face networking event. DO NOT try to arrange an online meeting, by using the comment box or direct message.\n7. Most of our members complained about people writing in the comment box. Since it sends notification to all attendees. If you have any questions, send a message to the organizers. Don't write in the comment box.\n8. We have ZERO TOLERANCE for solicitation. We don't allow anyone to run their own agenda at the Event. If you are interested to promote/sponsor/collaborate; contact us via ([info@merevents.com](mailto:info@merevents.com)).\n9. When you get there, we will greet you and take you to your respective group.\n10. ***Please be patient for the first 30 minutes, up until we form a group with your respective industry/sector.***\n\n***AFTER THE SOCIAL, WE HIT THE DANCE FLOOR! BRING YOUR DANCING SHOES, WE WILL DANCE THE NIGHT AWAY!***\n\n\\- Come one\\, come all; this is the most friendliest event you have ever attended\\!\n\\- Feel free to invite your friends\\. They don't necessarily have to be a member\\.\n\\- Celebrate your birthdays or your moments in life with us\\.\n\n***N.B. : We have ZERO TOLERANCE for solicitation. We don't allow anyone to run their own agenda at the Event. If you are interested to promote/sponsor/collaborate; contact us via ([info@merevents.com](http://info@merevents.com/)).***\n\n**FOR FURTHER INFO, REFER THE EVENTBRITELINK. IT RULES.**\n\n[)\n\n[)\n\n[)\n\n[)\n\n[)\n\n[)\n\n[)",
+        "startDate": "2026-03-06T17:00:00-05:00",
+        "endTime": "2026-03-06T19:00:00-05:00",
+        "url": "https://www.meetup.com/dcprofessonals/events/313416583/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Lucky bar",
+            "address": "1221 Connecticut ave NW",
+            "city": "Washington",
+            "state": "DC",
+            "country": "us"
+        },
+        "imageUrl": "/event_images/Professionals_Networking_HourS.webp",
+        "scrapeTime": "2026-02-23 00:43:40.079189",
         "tags": [
             "Economic Development"
         ]
@@ -901,7 +765,7 @@
         },
         "imageUrl": "/event_images/Podcast_Discussion_Dario_Amodei_We_are_near_the_end_of_the_exponential.webp",
         "source": "https://luma.com/ai-discussion-club",
-        "scrapeTime": "2026-02-16 00:43:37.772337",
+        "scrapeTime": "2026-02-23 00:43:40.082606",
         "tags": [
             "Code Collective & Partners"
         ]
@@ -923,10 +787,42 @@
             "country": ""
         },
         "imageUrl": "/event_images/How_to_benchmark_your_platform_Quantify_your_pain_solve_it.webp",
-        "scrapeTime": "2026-02-16 00:43:37.769810",
+        "scrapeTime": "2026-02-23 00:43:40.079791",
         "tags": [
             "Economic Development"
         ]
+    },
+    {
+        "name": "Intersection of Entrepreneurship and Sustainability",
+        "description": "A conversation featuring Daniela Fernandez, founder & CEO of",
+        "startDate": "2026-03-12T17:00:00-04:00",
+        "endTime": "2026-03-12T18:00:00-0400",
+        "url": "https://www.eventbrite.com/e/intersection-of-entrepreneurship-and-sustainability-tickets-1983467702291",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Rafik B. Hariri Building",
+            "address": "Rafik B. Hariri Building, Washington, DC, 20057"
+        },
+        "imageUrl": "/event_images/Intersection_of_Entrepreneurship_and_Sustainability.webp",
+        "scrapeTime": "2026-02-23 00:43:40.080349",
+        "tags": [
+            "Business"
+        ]
+    },
+    {
+        "name": "Coffee & Bitcoin VA: McLean",
+        "description": "Coffee & Bitcoin VA: McLean",
+        "startDate": "2026-03-14T10:30:00-04:00",
+        "endTime": "2026-03-14T12:30:00.000-04:00",
+        "url": "https://luma.com/c3jhfmms",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Sunday Morning Bakehouse - McLean",
+            "address": "Sunday Morning Bakehouse - McLean, McLean, Virginia"
+        },
+        "imageUrl": "/event_images/Coffee_Bitcoin_VA_McLean.webp",
+        "source": "https://luma.com/bitcoindistrict",
+        "scrapeTime": "2026-02-23 00:43:40.083852"
     },
     {
         "name": "Podcast Discussion: Google: The AI Company",
@@ -941,7 +837,7 @@
         },
         "imageUrl": "/event_images/Podcast_Discussion_Google_The_AI_Company.webp",
         "source": "https://luma.com/ai-discussion-club",
-        "scrapeTime": "2026-02-16 00:43:37.772441"
+        "scrapeTime": "2026-02-23 00:43:40.082735"
     },
     {
         "name": "Girlies in Tech Dinner pt. 7 <3 | Washington, DC Edition | Shaw",
@@ -956,7 +852,29 @@
         },
         "imageUrl": "/event_images/Girlies_in_Tech_Dinner_pt_7_3_Washington_DC_Edition_Shaw.webp",
         "source": "https://luma.com/girliesintechdinner",
-        "scrapeTime": "2026-02-16 00:43:37.771921"
+        "scrapeTime": "2026-02-23 00:43:40.082279"
+    },
+    {
+        "id": "313475699",
+        "name": "Ted Talk Discussion: Why Having Fun Is the Secret to a Healthier Life",
+        "description": "**To receive future event updates, register on Luma:**\n[https://luma.com/tv3fhasq](https://luma.com/tv3fhasq)\n\nHave you had your daily dose of fun? It's not just enjoyable, it's also essential for your health and happiness, says science journalist Catherine Price. She proposes a new definition of fun -- what she calls \"true fun\" -- and shares easy, evidence-backed ways to weave playfulness, flow and connection into your everyday life.\n\n**Please watch this YouTube video before joining the discussion:**\n[https://www.youtube.com/watch?v=iMBJrvEwv8s](https://www.youtube.com/watch?v=iMBJrvEwv8s)\n\nIf more than 10 people join the discussion, we will break out into smaller groups. **(max 10 people per group)**\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\n1. **True fun is a visceral feeling of being illuminated from within rather than just a leisure activity. How can we better distinguish between activities that merely pass the time and those that truly make us feel radiant?**\n2. **Playfulness involves a lighthearted attitude of doing things for their own sake without worrying about the outcome. How might our community change if we collectively lowered our guards and let go of the need for perfection?**\n3. **Most peak fun memories involve a shared experience that helps us feel united with others. In a polarized world, how can the pursuit of fun serve as a bridge to connect us as human beings?**\n4. **Fun requires a state of flow where we are so engaged that we lose track of time. What environments can we create together that naturally encourage us to be fully present and focused on the moment?**\n5. **Prioritizing fun acts as a legitimate health intervention by reducing stress and promoting social bonding. How would we shift our schedules if we viewed joyful moments as essential to our physical and mental well-being?**\n6. **Constant digital distractions interrupt our flow and prevent us from forming real-world connections. What boundaries can we set with our devices to ensure we remain available for spontaneous moments of joy?**\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n\nTo provide an enjoyable experience for fellow participants, here are three ground rules during discussion events:\n\n1. Step up and step back. (If you feel that you\u2019ve been talking too much, step back to listen more. If you feel that you\u2019ve been relatively quiet, step up to share your perspective or ask a question)\n2. Listen to understand, not to respond.\n3. Be open-minded and value differences.",
+        "startDate": "2026-03-15T15:00:00-04:00",
+        "endTime": "2026-03-15T16:30:00-04:00",
+        "url": "https://www.meetup.com/bethesda-growth-mindset-salon/events/313475699/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Panera Bread",
+            "address": "7201 Wisconsin Ave.",
+            "city": "Bethesda",
+            "state": "MD",
+            "country": "us"
+        },
+        "imageUrl": "/event_images/Ted_Talk_Discussion_Why_Having_Fun_Is_the_Secret_to_a_Healthier_Life.webp",
+        "scrapeTime": "2026-02-23 00:43:40.077374",
+        "tags": [
+            "Economic Development"
+        ]
     },
     {
         "id": "313336740",
@@ -975,7 +893,7 @@
             "country": ""
         },
         "imageUrl": "/event_images/Third_Annual_Financial_Services_Symposium_Innovation_Regulation_Risk_2026.webp",
-        "scrapeTime": "2026-02-16 00:43:37.769361",
+        "scrapeTime": "2026-02-23 00:43:40.079431",
         "tags": [
             "Economic Development"
         ]
@@ -993,13 +911,13 @@
         },
         "imageUrl": "/event_images/Building_in_the_Beltway_Demystifying_Defense_Appropriations.webp",
         "source": "https://luma.com/squadra",
-        "scrapeTime": "2026-02-16 00:43:37.772984"
+        "scrapeTime": "2026-02-23 00:43:40.083504"
     },
     {
-        "id": "4278a97e7a00e601",
+        "id": "d37c9023516b974b",
         "name": "District Angels Monthly Deal Room - March",
-        "startDate": "2026-03-20T20:00:00+00:00",
-        "endTime": "2026-03-20T21:00:00.000Z",
+        "startDate": "2026-03-20T18:00:00+00:00",
+        "endTime": "2026-03-20T19:00:00.000Z",
         "description": "",
         "url": "https://lu.ma/1lpyeacy",
         "status": "ACTIVE",
@@ -1014,7 +932,7 @@
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_March.webp",
         "recurring": false,
-        "scrapeTime": "2026-02-16 00:43:26.864105",
+        "scrapeTime": "2026-02-23 00:43:29.847034",
         "tags": [
             "Business"
         ]
@@ -1032,7 +950,7 @@
         },
         "imageUrl": "/event_images/Podcast_Discussion_The_Secrets_of_Claude_Code.webp",
         "source": "https://luma.com/ai-discussion-club",
-        "scrapeTime": "2026-02-16 00:43:37.772544"
+        "scrapeTime": "2026-02-23 00:43:40.082846"
     },
     {
         "id": "313297547",
@@ -1051,7 +969,7 @@
             "country": ""
         },
         "imageUrl": "/event_images/NVIDIA_GTC_2026_Conf_Recap_Evolution_of_Flash_Attention_v1_v4_Optimizations.webp",
-        "scrapeTime": "2026-02-16 00:43:37.767249",
+        "scrapeTime": "2026-02-23 00:43:40.075398",
         "tags": [
             "Economic Development"
         ]
@@ -1069,24 +987,50 @@
         },
         "imageUrl": "/event_images/Defense_Tech_DC_013.webp",
         "source": "https://luma.com/defense-tech-dc",
-        "scrapeTime": "2026-02-16 00:43:37.771590"
+        "scrapeTime": "2026-02-23 00:43:40.082057"
     },
     {
-        "name": "PGP* for Crypto Briefings and Roundtable Discussion",
-        "description": "PGP* for Crypto Briefings and Roundtable Discussion",
-        "startDate": "2026-03-25T09:00:00-04:00",
-        "endTime": "2026-03-25T11:30:00.000-04:00",
-        "url": "https://luma.com/pgpforcrypto2026032525",
+        "id": "2026-03-26-CDTF",
+        "name": "Congressional Data Task Force",
+        "description": "The Congressional Data Task Force will hold a public meeting on Thursday, March 26, 2026, from 2:00 PM to 4:00 PM ET.",
+        "startDate": "2026-03-26T14:00:00-05:00",
+        "endTime": "2026-03-26T16:00:00-05:00",
+        "url": "https://usgpo.github.io/innovation/events/2026-03-26-CDTF/",
         "status": "ACTIVE",
+        "source": "https://usgpo.github.io/innovation/events/2026-03-26-CDTF/",
         "location": {
-            "name": "Washington, District of Columbia",
-            "address": "Register to See Address"
+            "name": "Hybrid",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": ""
         },
-        "imageUrl": "/event_images/PGP_for_Crypto_Briefings_and_Roundtable_Discussion.webp",
-        "source": "https://luma.com/pgpforcrypto",
-        "scrapeTime": "2026-02-16 00:43:37.773192",
+        "imageUrl": null,
+        "scrapeTime": "2026-02-23 00:43:39.901763",
         "tags": [
-            "Finance"
+            "Tech Skills"
+        ]
+    },
+    {
+        "id": "313396980",
+        "name": "Operationalizing AI Agents in regulated industries for scale and safety",
+        "description": "Please **[register here!](https://platformengineering.org/events/operationalizing-ai-agents-in-regulated-industries-for-scale-and-safety-2026-03-31?utm_source=meetup)**\n\nJoin an in-depth session for platform teams in regulated industries as we explore how to run AI coding agents in real production environments. Learn why governance is an infrastructure problem, how workspace-level controls enable speed at scale, and what it takes to operationalize AI agents without sacrificing security, compliance, or auditability at the most secure industries around.\n\nIn this webinar, we will discuss:\n\n* How regulated teams move AI coding agents from experimentation to production with infrastructure-first governance.\n* How workspace-level controls, human/agent privilege separation, and early visibility enable safe, compliant scale.\n* How to design and roll out an agent-ready platform (control plane, boundaries, human-in-the-loop) and measure ROI, auditability, and cost.\n\nAfter a 30-minute talk there\u2019ll be a 15-minute Q&A, for which we encourage you to submit questions in advance.\nA webinar recording and related materials will be shared with all attendees after the event.\n______________\n**Speaker:**\n**Sam Barlien - Head of Ecosystem @ Platform Engineering**\n\nSam Barlien is a community organiser for the Platform Engineering Community. He is a tech nerd, and has been involved in tech communities for more than 10 years. He helps manage Platform Weekly, co-hosts PlatformCon, and drives the community Ambassador program, blog and Youtube channel.",
+        "startDate": "2026-03-31T13:00:00-04:00",
+        "endTime": "2026-03-31T14:00:00-04:00",
+        "url": "https://www.meetup.com/platform-engineers-washington-dc/events/313396980/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": ""
+        },
+        "imageUrl": "/event_images/Operationalizing_AI_Agents_in_regulated_industries_for_scale_and_safety.webp",
+        "scrapeTime": "2026-02-23 00:43:40.079903",
+        "tags": [
+            "Economic Development"
         ]
     },
     {
@@ -1102,7 +1046,42 @@
         },
         "imageUrl": "/event_images/Podcast_Discussion_Ilya_Sutskever_on_Superintelligence.webp",
         "source": "https://luma.com/ai-discussion-club",
-        "scrapeTime": "2026-02-16 00:43:37.772648"
+        "scrapeTime": "2026-02-23 00:43:40.082956"
+    },
+    {
+        "name": "Entrepreneurship in Health Pitch Challenge & Reception",
+        "description": "Join the Entrepreneurship in Health initiative for our 2nd annual Entrepreneurship in Health Pitch Challenge & Networking",
+        "startDate": "2026-04-07T17:30:00-04:00",
+        "endTime": "2026-04-07T20:30:00-0400",
+        "url": "https://www.eventbrite.com/e/entrepreneurship-in-health-pitch-challenge-reception-tickets-1982644816016",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Lohrfink Auditorium",
+            "address": "3613-3625 Canal Road Northwest, Washington, DC, 20007"
+        },
+        "imageUrl": "/event_images/Entrepreneurship_in_Health_Pitch_Challenge_Reception.webp",
+        "scrapeTime": "2026-02-23 00:43:40.080459",
+        "tags": [
+            "Business"
+        ]
+    },
+    {
+        "name": "vcIQ: Cybersecurity Founder Session",
+        "description": "vcIQ: Cybersecurity Founder Session",
+        "startDate": "2026-04-08T10:00:00-04:00",
+        "endTime": "2026-04-08T11:30:00.000-04:00",
+        "url": "https://luma.com/vcIQ-Cybersecurity",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Register to See Address",
+            "address": "Register to See Address"
+        },
+        "imageUrl": "/event_images/vcIQ_Cybersecurity_Founder_Session.webp",
+        "source": "https://luma.com/vcdc",
+        "scrapeTime": "2026-02-23 00:43:40.083393",
+        "tags": [
+            "Tech Skills"
+        ]
     },
     {
         "id": "da063f7a13b8bf32",
@@ -1123,7 +1102,7 @@
         },
         "imageUrl": "/event_images/DC_DAO_Community_Call.webp",
         "recurring": false,
-        "scrapeTime": "2026-02-16 00:43:27.307955",
+        "scrapeTime": "2026-02-23 00:43:30.183079",
         "tags": [
             "Business"
         ]
@@ -1141,25 +1120,7 @@
         },
         "imageUrl": "/event_images/Girlies_in_Tech_Dinner_pt_8_3_Washington_DC_BDAY_Edition_Foggy_Bottom.webp",
         "source": "https://luma.com/girliesintechdinner",
-        "scrapeTime": "2026-02-16 00:43:37.772023"
-    },
-    {
-        "name": "PGP* for Crypto Briefings and Roundtable Discussion",
-        "description": "PGP* for Crypto Briefings and Roundtable Discussion",
-        "startDate": "2026-04-15T09:00:00-04:00",
-        "endTime": "2026-04-15T11:30:00.000-04:00",
-        "url": "https://luma.com/pgpforcrypto20260415",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Washington, District of Columbia",
-            "address": "Register to See Address"
-        },
-        "imageUrl": "/event_images/PGP_for_Crypto_Briefings_and_Roundtable_Discussion.webp",
-        "source": "https://luma.com/pgpforcrypto",
-        "scrapeTime": "2026-02-16 00:43:37.773293",
-        "tags": [
-            "Finance"
-        ]
+        "scrapeTime": "2026-02-23 00:43:40.082389"
     },
     {
         "id": "b9c71105f98ebfa5",
@@ -1180,9 +1141,27 @@
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_April.webp",
         "recurring": false,
-        "scrapeTime": "2026-02-16 00:43:26.864116",
+        "scrapeTime": "2026-02-23 00:43:29.847061",
         "tags": [
             "Business"
+        ]
+    },
+    {
+        "name": "Podcast Discussion: Reshuffle: How AI Changes the Entire System of Work",
+        "description": "Podcast Discussion: Reshuffle: How AI Changes the Entire System of Work",
+        "startDate": "2026-04-18T15:00:00-04:00",
+        "endTime": "2026-04-18T17:00:00.000-04:00",
+        "url": "https://luma.com/49xrugfx",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Washington, District of Columbia",
+            "address": "Register to See Address"
+        },
+        "imageUrl": "/event_images/Podcast_Discussion_Reshuffle_How_AI_Changes_the_Entire_System_of_Work.webp",
+        "source": "https://luma.com/ai-discussion-club",
+        "scrapeTime": "2026-02-23 00:43:40.083065",
+        "tags": [
+            "Makerspace"
         ]
     },
     {
@@ -1202,7 +1181,7 @@
             "country": ""
         },
         "imageUrl": "/event_images/GPU_CUDA_and_PyTorch_Performance_Optimizations.webp",
-        "scrapeTime": "2026-02-16 00:43:37.767354",
+        "scrapeTime": "2026-02-23 00:43:40.075513",
         "tags": [
             "Economic Development"
         ]
@@ -1226,7 +1205,7 @@
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_May.webp",
         "recurring": false,
-        "scrapeTime": "2026-02-16 00:43:26.864124",
+        "scrapeTime": "2026-02-23 00:43:29.847073",
         "tags": [
             "Business"
         ]
@@ -1244,7 +1223,7 @@
         },
         "imageUrl": "/event_images/Girlies_in_Tech_Dinner_pt_9_3_Washington_DC_Edition_West_End.webp",
         "source": "https://luma.com/girliesintechdinner",
-        "scrapeTime": "2026-02-16 00:43:37.772125"
+        "scrapeTime": "2026-02-23 00:43:40.082498"
     },
     {
         "id": "313297566",
@@ -1263,7 +1242,51 @@
             "country": ""
         },
         "imageUrl": "/event_images/GPU_CUDA_and_PyTorch_Performance_Optimizations.webp",
-        "scrapeTime": "2026-02-16 00:43:37.767457",
+        "scrapeTime": "2026-02-23 00:43:40.075625",
+        "tags": [
+            "Economic Development"
+        ]
+    },
+    {
+        "id": "2026-06-11-CDTF",
+        "name": "Congressional Data Task Force",
+        "description": "The Congressional Data Task Force will hold a public meeting on Thursday, June 11, 2026, from 2:00 PM to 4:00 PM ET.",
+        "startDate": "2026-06-11T14:00:00-05:00",
+        "endTime": "2026-06-11T16:00:00-05:00",
+        "url": "https://usgpo.github.io/innovation/events/2026-06-11-CDTF/",
+        "status": "ACTIVE",
+        "source": "https://usgpo.github.io/innovation/events/2026-06-11-CDTF/",
+        "location": {
+            "name": "Hybrid",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": ""
+        },
+        "imageUrl": null,
+        "scrapeTime": "2026-02-23 00:43:39.901763",
+        "tags": [
+            "Tech Skills"
+        ]
+    },
+    {
+        "id": "313297578",
+        "name": "GPU, CUDA, and PyTorch Performance Optimizations",
+        "description": "**Zoom link**: [https://us02web.zoom.us/j/82308186562](https://us02web.zoom.us/j/82308186562)\n\n**Talk #0: Introductions and Meetup Updates**\nby Chris Fregly and Antje Barth\n\n**Talk #1: GPU, PyTorch, and CUDA Performance Optimizations**\n\n**Talk #2: GPU, PyTorch, and CUDA Performance Optimizations**\n\n**Zoom link**: [https://us02web.zoom.us/j/82308186562](https://us02web.zoom.us/j/82308186562)\n\n**Related Links**\nGithub Repo: [http://github.com/cfregly/ai-performance-engineering/](http://github.com/cfregly/ai-performance-engineering/)\nO'Reilly Book: [https://www.amazon.com/Systems-Performance-Engineering-Optimizing-Algorithms/dp/B0F47689K8/](https://www.amazon.com/Systems-Performance-Engineering-Optimizing-Algorithms/dp/B0F47689K8/)\nYouTube: [https://www.youtube.com/@AIPerformanceEngineering](https://www.youtube.com/@AIPerformanceEngineering)\nGenerative AI Free Course on DeepLearning.ai: [https://bit.ly/gllm](https://bit.ly/gllm)",
+        "startDate": "2026-06-15T12:00:00-04:00",
+        "endTime": "2026-06-15T13:00:00-04:00",
+        "url": "https://www.meetup.com/ai-performance-engineering-washington-dc/events/313297578/",
+        "status": "ACTIVE",
+        "source": null,
+        "location": {
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": ""
+        },
+        "imageUrl": "/event_images/GPU_CUDA_and_PyTorch_Performance_Optimizations.webp",
+        "scrapeTime": "2026-02-23 00:43:40.075764",
         "tags": [
             "Economic Development"
         ]
@@ -1287,7 +1310,7 @@
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_June.webp",
         "recurring": false,
-        "scrapeTime": "2026-02-16 00:43:26.864132",
+        "scrapeTime": "2026-02-23 00:43:29.847081",
         "tags": [
             "Business"
         ]
@@ -1311,7 +1334,7 @@
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_July.webp",
         "recurring": false,
-        "scrapeTime": "2026-02-16 00:43:26.864140",
+        "scrapeTime": "2026-02-23 00:43:29.847087",
         "tags": [
             "Business"
         ]
@@ -1335,7 +1358,7 @@
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_August.webp",
         "recurring": false,
-        "scrapeTime": "2026-02-16 00:43:26.864147",
+        "scrapeTime": "2026-02-23 00:43:29.847094",
         "tags": [
             "Business"
         ]
@@ -1359,7 +1382,7 @@
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_September.webp",
         "recurring": false,
-        "scrapeTime": "2026-02-16 00:43:26.864155",
+        "scrapeTime": "2026-02-23 00:43:29.847100",
         "tags": [
             "Business"
         ]
@@ -1383,7 +1406,7 @@
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_October.webp",
         "recurring": false,
-        "scrapeTime": "2026-02-16 00:43:26.864162",
+        "scrapeTime": "2026-02-23 00:43:29.847106",
         "tags": [
             "Business"
         ]
@@ -1407,7 +1430,53 @@
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_November.webp",
         "recurring": false,
-        "scrapeTime": "2026-02-16 00:43:26.864170",
+        "scrapeTime": "2026-02-23 00:43:29.847112",
+        "tags": [
+            "Business"
+        ]
+    },
+    {
+        "id": "2026-12-03-CDTF",
+        "name": "Congressional Data Task Force",
+        "description": "The Congressional Data Task Force will hold a public meeting on Thursday, December 3, 2026, from 2:00 PM to 4:00 PM ET.",
+        "startDate": "2026-12-03T14:00:00-05:00",
+        "endTime": "2026-12-03T16:00:00-05:00",
+        "url": "https://usgpo.github.io/innovation/events/2026-12-03-CDTF/",
+        "status": "ACTIVE",
+        "source": "https://usgpo.github.io/innovation/events/2026-12-03-CDTF/",
+        "location": {
+            "name": "Hybrid",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": ""
+        },
+        "imageUrl": null,
+        "scrapeTime": "2026-02-23 00:43:39.901763",
+        "tags": [
+            "Tech Skills"
+        ]
+    },
+    {
+        "id": "03572bd8e4c62793",
+        "name": "District Angels Monthly Deal Room - December",
+        "startDate": "2026-12-18T21:00:00+00:00",
+        "endTime": "2026-12-18T22:00:00.000Z",
+        "description": "",
+        "url": "https://lu.ma/v9nw6ebv",
+        "status": "ACTIVE",
+        "location": {
+            "name": "",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "latitude": "",
+            "longitude": ""
+        },
+        "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_December.webp",
+        "recurring": false,
+        "scrapeTime": "2026-02-23 00:43:29.847119",
         "tags": [
             "Business"
         ]

@@ -14,7 +14,8 @@ sources = {
         "https://www.meetup.com/cybersecurity-innovation-forum/",
         "https://www.meetup.com/platform-engineers-washington-dc/",
         "https://www.meetup.com/washington-dc-cyber-security-for-control-systems/",
-        "https://www.meetup.com/producttank-washington-dc/"
+        "https://www.meetup.com/producttank-washington-dc/",
+        "https://www.meetup.com/dc-ai-llms/"
 
     ],
     "Eventbrite":[
@@ -48,7 +49,8 @@ sources = {
         "https://luma.com/theupskillinglabs",
         "https://luma.com/aic-dc-2-9",
         "https://luma.com/dcnightowls",
-        "https://luma.com/seecinstitute"
+        "https://luma.com/seecinstitute",
+        "https://luma.com/dc-ai-lab"
     ],
     "Luma Users":[
         "usr-f5X9pGAJt2YOugC",

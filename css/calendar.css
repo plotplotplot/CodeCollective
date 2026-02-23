@@ -752,6 +752,625 @@ h1 {
     color: #000;
 }
 
+@keyframes ccMetalShineSweep {
+    0% {
+        transform: translateX(-130%) skewX(-22deg);
+        opacity: 0;
+    }
+    35% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateX(160%) skewX(-22deg);
+        opacity: 0;
+    }
+}
+
+@keyframes ccSparkleTwinkle {
+    0%, 100% {
+        opacity: 0.25;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes ccSparklePulse {
+    0%, 100% {
+        opacity: 0.35;
+        transform: scale(0.95);
+    }
+    50% {
+        opacity: 0.95;
+        transform: scale(1.08);
+    }
+}
+
+@keyframes ccSparklesFall {
+    0% {
+        transform: translateY(-30%);
+    }
+    100% {
+        transform: translateY(130%);
+    }
+}
+
+@keyframes ccMetalGradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes ccBorderChase {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes ccGlowPulse {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(0, 102, 204, 0.5), 0 0 20px rgba(0, 102, 204, 0.3), 0 0 30px rgba(0, 102, 204, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 102, 204, 0.8), 0 0 40px rgba(0, 102, 204, 0.5), 0 0 60px rgba(0, 102, 204, 0.2);
+    }
+}
+
+@keyframes ccSparkleBurst {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(180deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes ccShimmerWave {
+    0% {
+        background-position: -200% 50%;
+    }
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+@keyframes ccFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes ccRainbowBorder {
+    0% {
+        border-color: #ff0000;
+    }
+    16% {
+        border-color: #ff9900;
+    }
+    33% {
+        border-color: #ffff00;
+    }
+    50% {
+        border-color: #00ff00;
+    }
+    66% {
+        border-color: #0000ff;
+    }
+    83% {
+        border-color: #9900ff;
+    }
+    100% {
+        border-color: #ff0000;
+    }
+}
+
+.card-content.source-codecollective-luma {
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #0066cc;
+    background:
+        radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.4), transparent 45%),
+        linear-gradient(140deg, #003366 0%, #0066cc 28%, #3399ff 49%, #66b3ff 72%, #99ccff 100%);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.3) inset,
+        0 10px 24px rgba(0, 51, 102, 0.45);
+}
+
+.card-content.source-codecollective-luma > * {
+    position: relative;
+    z-index: 2;
+}
+
+.card-content.source-codecollective-luma::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(
+        from 0deg,
+        rgba(0, 102, 204, 0.15) 0deg,
+        rgba(0, 102, 204, 0.15) 300deg,
+        rgba(102, 179, 255, 0.95) 330deg,
+        rgba(0, 102, 204, 1) 360deg
+    );
+    animation: ccBorderChase 1.4s linear infinite;
+    pointer-events: none;
+    z-index: 3;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    padding: 2px;
+}
+
+.card-content.source-codecollective-luma::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -45%;
+    width: 42%;
+    background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.85) 45%, transparent 100%);
+    animation: ccMetalShineSweep 4.4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.card-content.source-codecollective-luma .card-title,
+.card-content.source-codecollective-luma .card-description-short,
+.card-content.source-codecollective-luma .card-description-full,
+.card-content.source-codecollective-luma .card-time {
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.card-content.source-codecollective-luma .card-time {
+    font-weight: 700;
+    color: #e6f2ff;
+}
+
+.card-content.source-codecollective-luma .card-location {
+    color: #cce6ff;
+}
+
+/* Enhanced Code Collective Event Styles with Sparkle Effects */
+.card-content.source-codecollective-luma {
+    animation: ccGlowPulse 3s ease-in-out infinite, ccFloat 4s ease-in-out infinite;
+}
+
+.card-content.source-codecollective-luma:hover {
+    animation: ccGlowPulse 1s ease-in-out infinite, ccFloat 2s ease-in-out infinite, ccRainbowBorder 3s linear infinite;
+    transform: scale(1.02);
+    z-index: 10;
+}
+
+/* Sparkle particles for Code Collective cards */
+.card-content.source-codecollective-luma .sparkle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: inherit;
+}
+
+.card-content.source-codecollective-luma .sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(102, 179, 255, 0.8) 70%, transparent 100%);
+    border-radius: 50%;
+    animation: ccSparkleTwinkle 2s infinite;
+}
+
+.card-content.source-codecollective-luma .sparkle:nth-child(1) {
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.card-content.source-codecollective-luma .sparkle:nth-child(2) {
+    top: 25%;
+    left: 85%;
+    animation-delay: 0.5s;
+}
+
+.card-content.source-codecollective-luma .sparkle:nth-child(3) {
+    top: 65%;
+    left: 20%;
+    animation-delay: 1s;
+}
+
+.card-content.source-codecollective-luma .sparkle:nth-child(4) {
+    top: 75%;
+    left: 75%;
+    animation-delay: 1.5s;
+}
+
+.card-content.source-codecollective-luma .sparkle:nth-child(5) {
+    top: 40%;
+    left: 50%;
+    animation-delay: 0.8s;
+}
+
+/* Enhanced title with shimmer effect */
+.card-content.source-codecollective-luma .card-title {
+    background: linear-gradient(90deg, 
+        #ffffff 0%, 
+        #e6f2ff 25%, 
+        #cce6ff 50%, 
+        #e6f2ff 75%, 
+        #ffffff 100%);
+    background-size: 200% 100%;
+    animation: ccShimmerWave 3s linear infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 10px rgba(0, 102, 204, 0.5);
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.fc-event.source-codecollective-luma {
+    position: relative;
+    overflow: visible;
+    border: 2px solid #0066cc !important;
+    background: linear-gradient(140deg, #003366 0%, #0066cc 33%, #3399ff 51%, #66b3ff 72%, #99ccff 100%) !important;
+    background-size: 220% 220% !important;
+    animation: ccMetalGradientShift 3.2s ease-in-out infinite, ccGlowPulse 4s ease-in-out infinite !important;
+    box-shadow: 0 4px 12px rgba(0, 51, 102, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.3) inset !important;
+    z-index: 8;
+}
+
+.fc-event.source-codecollective-luma::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    bottom: -20%;
+    left: -40%;
+    width: 40%;
+    background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.78) 52%, transparent 100%);
+    animation: ccMetalShineSweep 3.8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.fc-event.source-codecollective-luma::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(
+        from 0deg,
+        rgba(255, 230, 0, 0.06) 0deg,
+        rgba(255, 230, 0, 0.06) 305deg,
+        rgba(255, 242, 122, 0.95) 332deg,
+        rgba(255, 230, 0, 1) 360deg
+    );
+    animation: ccBorderChase 1.2s linear infinite;
+    pointer-events: none;
+    z-index: 10001;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    padding: 2px;
+}
+
+.fc-daygrid-day.source-codecollective-luma-day .fc-daygrid-day-frame {
+    position: relative;
+    overflow: visible;
+}
+
+.fc-daygrid-day.source-codecollective-luma-day .fc-daygrid-day-frame::after {
+    content: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -35%;
+    height: 170%;
+    background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.95) 0 1.1px, transparent 1.7px),
+        radial-gradient(circle, rgba(255, 244, 200, 0.82) 0 1.2px, transparent 1.8px),
+        radial-gradient(circle, rgba(255, 255, 255, 0.85) 0 0.9px, transparent 1.5px);
+    background-size: 38px 56px, 52px 72px, 70px 94px;
+    background-position: 0 0, 18px 10px, 30px 22px;
+    opacity: 0.95;
+    animation: none;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+.fc-event.source-codecollective-luma .fc-event-title.source-codecollective-luma-title {
+    background: linear-gradient(140deg, #003366 0%, #0066cc 30%, #3399ff 50%, #66b3ff 75%, #99ccff 100%);
+    background-size: 220% 220%;
+    animation: ccMetalGradientShift 2.6s ease-in-out infinite, ccShimmerWave 4s linear infinite;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    text-shadow: 0 0 8px rgba(0, 102, 204, 0.5);
+    font-weight: 800;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.3px;
+}
+
+/* Enhanced hover effects for calendar events */
+.fc-event.source-codecollective-luma:hover {
+    animation: ccMetalGradientShift 1.5s ease-in-out infinite, ccGlowPulse 1s ease-in-out infinite, ccFloat 2s ease-in-out infinite !important;
+    transform: translateY(-4px) scale(1.05) !important;
+    box-shadow: 0 8px 24px rgba(0, 102, 204, 0.4), 0 0 0 2px rgba(255, 255, 255, 0.5) inset !important;
+    z-index: 20 !important;
+}
+
+/* Sparkle burst effect on hover */
+.fc-event.source-codecollective-luma:hover::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(102, 179, 255, 0.7) 30%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    animation: ccSparkleBurst 0.6s ease-out forwards;
+    pointer-events: none;
+    z-index: -1;
+    border-radius: inherit;
+}
+
+/* Special premium Code Collective events */
+.fc-event.source-codecollective-luma.premium {
+    border: 3px solid #ffe600 !important;
+    background: linear-gradient(45deg, 
+        #636f82 0%, 
+        #d7dde9 25%, 
+        #ffffff 50%, 
+        #b0bac9 75%, 
+        #586274 100%) !important;
+    background-size: 300% 300% !important;
+    animation: ccMetalGradientShift 2s ease-in-out infinite, ccGlowPulse 3s ease-in-out infinite, ccRainbowBorder 5s linear infinite !important;
+    box-shadow: 0 6px 20px rgba(255, 230, 0, 0.5), 0 0 30px rgba(255, 230, 0, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.4) inset !important;
+}
+
+.fc-event.source-codecollective-luma.premium::after {
+    background: conic-gradient(
+        from 0deg,
+        #ff0000 0deg,
+        #ff9900 60deg,
+        #ffff00 120deg,
+        #00ff00 180deg,
+        #0000ff 240deg,
+        #9900ff 300deg,
+        #ff0000 360deg
+    );
+    animation: ccBorderChase 0.8s linear infinite !important;
+    opacity: 0.8;
+}
+
+/* Day highlighting for Code Collective events */
+.fc-daygrid-day.has-codecollective-event {
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(0, 102, 204, 0.05) 100%) !important;
+    position: relative;
+}
+
+.fc-daygrid-day.has-codecollective-event::before {
+    content: "★";
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    color: #0066cc;
+    font-size: 12px;
+    text-shadow: 0 0 4px rgba(0, 102, 204, 0.8);
+    z-index: 5;
+    animation: ccSparkleTwinkle 2s infinite;
+}
+
+/* Enhanced legend for Code Collective */
+.legend-swatch.tag-code-collective-and-partners {
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #0066cc;
+    background: linear-gradient(45deg, #0066cc 0%, #66b3ff 50%, #0066cc 100%);
+    background-size: 200% 200%;
+    animation: ccMetalGradientShift 3s ease-in-out infinite;
+    box-shadow: 0 0 8px rgba(0, 102, 204, 0.5);
+}
+
+.legend-swatch.tag-code-collective-and-partners::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+    transform: rotate(30deg);
+    animation: ccMetalShineSweep 3s ease-in-out infinite;
+}
+
+.legend-item.tag-code-collective-and-partners {
+    font-weight: 700;
+    color: #66b3ff;
+    text-shadow: 0 0 4px rgba(0, 102, 204, 0.5);
+}
+
+/* Code Collective Events Section Styling */
+.code-collective-events {
+    padding: 40px 20px;
+    background: linear-gradient(135deg, rgba(0, 42, 97, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
+    border-top: 3px solid #0066cc;
+    border-bottom: 3px solid #0066cc;
+    margin: 40px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.code-collective-events::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #0066cc, transparent);
+    animation: ccShimmerWave 3s linear infinite;
+}
+
+#code-collective-events-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cc-event-card {
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(0, 42, 97, 0.2) 100%);
+    border: 2px solid #0066cc;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+    animation: ccFloat 6s ease-in-out infinite;
+}
+
+.cc-event-card:nth-child(2n) {
+    animation-delay: 1s;
+}
+
+.cc-event-card:nth-child(3n) {
+    animation-delay: 2s;
+}
+
+.cc-event-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 102, 204, 0.3), 0 0 40px rgba(0, 102, 204, 0.2);
+    animation: ccGlowPulse 1s ease-in-out infinite, ccFloat 3s ease-in-out infinite;
+    z-index: 10;
+}
+
+.cc-event-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.event-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid #0066cc;
+}
+
+.cc-event-card-content {
+    padding: 20px;
+}
+
+.cc-event-card-title {
+    margin: 0 0 12px 0;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #66b3ff;
+    background: linear-gradient(90deg, #0066cc 0%, #66b3ff 50%, #0066cc 100%);
+    background-size: 200% 100%;
+    animation: ccShimmerWave 4s linear infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 10px rgba(0, 102, 204, 0.3);
+}
+
+.cc-event-card-date {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cc-event-card-date::before {
+    content: "📅";
+    font-size: 1rem;
+}
+
+.cc-event-card-location {
+    color: #a1c6ff;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cc-event-card-location::before {
+    content: "📍";
+    font-size: 1rem;
+}
+
+.cc-event-card-description {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.cc-show-more-btn {
+    background: linear-gradient(135deg, #0066cc 0%, #3399ff 100%);
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cc-show-more-btn:hover {
+    background: linear-gradient(135deg, #3399ff 0%, #66b3ff 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 102, 204, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #code-collective-events-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .cc-event-card {
+        animation: ccFloat 8s ease-in-out infinite;
+    }
+}
+
 .calendar-legend {
     position: fixed !important;
     left: 16px !important;
