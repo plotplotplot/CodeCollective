@@ -3,25 +3,11 @@ VERSION:2.0
 PRODID:-//dc Tech Events//CodeCollective//
 METHOD:PUBLISH
 BEGIN:VEVENT
-SUMMARY:AI Deep Dive Series (Virtual) - Build Reliable AI apps with Observ
- ability
-DTSTART:20260224T130000
-DTEND:20260224T140000
-DTSTAMP:20260224T004112Z
-UID:313300296-1771893672.890826@codecollective
-DESCRIPTION:Important: Register on the event website to receive joining li
- nk. (rsvp on meetup will NOT receive joining link).\n\nThis is virtual eve
- nt for our AI global community\, please double-check your local tim\n\nEve
- nt Link: https://www.meetup.com/dc-ai-llms/events/313300296/
-LOCATION:Online event\, \,  
-URL:https://www.meetup.com/dc-ai-llms/events/313300296/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:Nightstream: Provable Coroutines for Containers and Contracts
 DTSTART:20260225T110000
 DTEND:20260225T120000
-DTSTAMP:20260224T004112Z
-UID:313027218-1771893672.891574@codecollective
+DTSTAMP:20260225T004547Z
+UID:313027218-1771980347.46718@codecollective
 DESCRIPTION:Nightstream is a proof system capable of proving infinite stre
  ams of computation\, modeled as coroutines via a post-quantum lattice-base
  d zkVM. It supports multiple opcodes sets including riscv\, but ha\n\nEven
@@ -33,8 +19,8 @@ BEGIN:VEVENT
 SUMMARY:Building Secure & Governed GenAI Applications with Amazon Bedrock
 DTSTART:20260225T120000
 DTEND:20260225T140000
-DTSTAMP:20260224T004112Z
-UID:312804467-1771893672.89201@codecollective
+DTSTAMP:20260225T004547Z
+UID:312804467-1771980347.467773@codecollective
 DESCRIPTION:Free Live Webinar - Building Secure & Governed GenAI Applicati
  ons with Amazon Bedrock\n\nGenerative AI is transforming how enterprises i
  nnovate - but scaling AI in production demands a security-first\, g\n\nEve
@@ -43,12 +29,21 @@ LOCATION:Online event\, \,
 URL:https://www.meetup.com/meetup-group-xfwllgfg/events/312804467/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:AI Upskilling: Practical Tools to Boost Your Career and Daily Life
+DTSTART:20260225T120000
+DTEND:20260225T130000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.468428@codecollective
+DESCRIPTION:No description available
+LOCATION:Online Event\, \,  
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Why most migrations fail: The untold costs impacting platform team
  s
 DTSTART:20260225T130000
 DTEND:20260225T140000
-DTSTAMP:20260224T004112Z
-UID:312472374-1771893672.892771@codecollective
+DTSTAMP:20260225T004547Z
+UID:312472374-1771980347.468829@codecollective
 DESCRIPTION:\\* Please register here\n\nJoin Loreli Cadapan and Ajay Chank
  ramath as they break down the unexpected consequences teams face during pl
  atform and tooling migrations\, why modernization efforts often crea\n\nEv
@@ -62,8 +57,8 @@ BEGIN:VEVENT
 SUMMARY:(CS)²AI Online™ Replay: An Approach To Disaster Recovery in OT
 DTSTART:20260225T130000
 DTEND:20260225T143000
-DTSTAMP:20260224T004112Z
-UID:313495512-1771893672.893347@codecollective
+DTSTAMP:20260225T004547Z
+UID:313495512-1771980347.46945@codecollective
 DESCRIPTION:Be sure to register to catch this gem from our video vault: ht
  tps://events.zoom.us/ev/AsR-B9SnauFCbBx1wjQe5uMXcQoZ73UsXUC1gZwdmg4_i5GflB
  E7\\~AswkF4l91_W4qWyTWacPXmrKTbRm9Zru-PXcLjsYQ9cbEF_mCR5_enNeoJkD\n\nEvent
@@ -77,8 +72,8 @@ BEGIN:VEVENT
 SUMMARY:Georgetown Leonsis Venture Lab Wellness Initiative
 DTSTART:20260225T130000
 DTEND:20260225T140000
-DTSTAMP:20260224T004112Z
-UID:-1771893672.893988@codecollective
+DTSTAMP:20260225T004547Z
+UID:-1771980347.470101@codecollective
 DESCRIPTION:Join Us for A Wellness Experience Dedicated to our Leonsis Ven
  ture Lab Startup\n\nEvent Link: https://www.eventbrite.com/e/georgetown-le
  onsis-venture-lab-wellness-initiative-tickets-1983794583000
@@ -88,11 +83,45 @@ URL:https://www.eventbrite.com/e/georgetown-leonsis-venture-lab-wellness-i
  nitiative-tickets-1983794583000
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:AI Basics Part 2
+DTSTART:20260225T143000
+DTEND:20260225T163000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.470513@codecollective
+DESCRIPTION:No description available
+LOCATION:901 G Street Northwest\, 901 G Street Northwest\, \,  
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Prompt Engineering & Introduction to Agentic Workflows
+DTSTART:20260225T150000
+DTEND:20260225T170000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.470734@codecollective
+DESCRIPTION:Prompt Engineering & Introduction to Agentic Workflows\n\nEven
+ t Link: https://luma.com/5lvossrl
+LOCATION:Microsoft Innovation Hub\, 1300 Wilson Blvd\, 14th Floor\, Arling
+ ton\, VA 22209\, Microsoft Innovation Hub\, 1300 Wilson Blvd\, 14th Floor\
+ , Arlington\, VA 22209\, \,  
+URL:https://luma.com/5lvossrl
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Project Night at Prefect
+DTSTART:20260225T180000
+DTEND:20260225T203000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.471112@codecollective
+DESCRIPTION:Project Night at Prefect\n\nEvent Link: https://luma.com/fnai8
+ zxh
+LOCATION:2112 Pennsylvania Ave NW\, 2112 Pennsylvania Ave NW\, Washington\
+ , District of Columbia\, \,  
+URL:https://luma.com/fnai8zxh
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:ZK Learning Group: FRI (Fast Reed-Solomon IOP of Proximity)
 DTSTART:20260226T120000
 DTEND:20260226T130000
-DTSTAMP:20260224T004112Z
-UID:312749908-1771893672.894377@codecollective
+DTSTAMP:20260225T004547Z
+UID:312749908-1771980347.471516@codecollective
 DESCRIPTION:A learning group for zero knowledge and SNARK application deve
  lopment.\n\nA learning group for zero knowledge and SNARK application deve
  lopment.\n\nDuring the year we will systematically explore different\n\nEv
@@ -105,8 +134,8 @@ SUMMARY:From SD-WAN to SASE: Cisco’s Blueprint for Secure Enterprise Net
  working
 DTSTART:20260226T120000
 DTEND:20260226T130000
-DTSTAMP:20260224T004112Z
-UID:312918279-1771893672.894783@codecollective
+DTSTAMP:20260225T004547Z
+UID:312918279-1771980347.471913@codecollective
 DESCRIPTION:Strengthen Your Core Security Skills – Free Live Session.\n\
  nSecurity is no longer just a concern for security teams\, it impacts ever
  y role in tech\, from networking and cloud to operations\, DevOps\, and \n
@@ -119,8 +148,8 @@ BEGIN:VEVENT
 SUMMARY:Skillshare #3: Our Favorite Advocacy Assets and Sample Packages 
 DTSTART:20260226T120000
 DTEND:20260226T130000
-DTSTAMP:20260224T004112Z
-UID:313400888-1771893672.895278@codecollective
+DTSTAMP:20260225T004547Z
+UID:313400888-1771980347.472422@codecollective
 DESCRIPTION:Join us for our 3rd Skillshare Thursday session with Corrie Gr
  een!\n\nOn this call\, we will be loading up our favorite assets from the 
  asset store and showcasing their features to level up your game fro\n\nEve
@@ -135,8 +164,8 @@ SUMMARY:AI Deep Dive Series (Virtual) - The Architecture Behind Self-Evolv
  ing AI Agents
 DTSTART:20260226T130000
 DTEND:20260226T140000
-DTSTAMP:20260224T004112Z
-UID:313370200-1771893672.895703@codecollective
+DTSTAMP:20260225T004547Z
+UID:313370200-1771980347.472804@codecollective
 DESCRIPTION:Important: Register on the Event Website to receive joining li
  nk. (rsvp on meetup will NOT receive joining link).\nThis is virtual event
   for our AI global community\, please double-check your local time\n\nEven
@@ -149,8 +178,8 @@ SUMMARY:AIDataTech Connect: Global Virtual Networking Event for AI\, Data
  & Tech Pros
 DTSTART:20260226T170000
 DTEND:20260226T190000
-DTSTAMP:20260224T004112Z
-UID:313243849-1771893672.896236@codecollective
+DTSTAMP:20260225T004547Z
+UID:313243849-1771980347.473324@codecollective
 DESCRIPTION:Are you working in artificial intelligence\, data science\, or
   machine learning? Whether you're a developer\, researcher\, startup found
  er\, or aspiring tech enthusiast — AIDataTech Connect is your go-to A\n\
@@ -162,8 +191,8 @@ BEGIN:VEVENT
 SUMMARY:February Cloud & AI Meetup
 DTSTART:20260226T170000
 DTEND:20260226T190000
-DTSTAMP:20260224T004112Z
-UID:312898885-1771893672.896863@codecollective
+DTSTAMP:20260225T004547Z
+UID:312898885-1771980347.473948@codecollective
 DESCRIPTION:Ready to level up your cybersecurity game?\n\nJoin Cloudforce 
  on Thursday\, February 26 at 5:00 PM for Cybersecurity in the Microsoft Cl
  oud\, a focused session on the core security essentials every organi\n\nEv
@@ -173,11 +202,34 @@ LOCATION:Cloudforce HQ\, 120 Waterfront St\, Suite 500\, National Harbor\,
 URL:https://www.meetup.com/microsoft-cloud/events/312898885/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:How We Win 2.0: COCKTAILS & COMPLIANCE WITH VANTA
+DTSTART:20260226T170000
+DTEND:20260226T190000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.47444@codecollective
+DESCRIPTION:How We Win 2.0: COCKTAILS & COMPLIANCE WITH VANTA\n\nEvent Lin
+ k: https://luma.com/hyprdmy0
+LOCATION:STATION DC\, STATION DC\, Washington\, District of Columbia\, \, 
+  
+URL:https://luma.com/hyprdmy0
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Missions + Markets #05: The CVC Playbook
+DTSTART:20260226T173000
+DTEND:20260226T193000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.474811@codecollective
+DESCRIPTION:Missions + Markets #05: The CVC Playbook\n\nEvent Link: https:
+ //luma.com/e56fzl33
+LOCATION:Arlington\, Virginia\, Register to See Address\, \,  
+URL:https://luma.com/e56fzl33
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:ETH Denver Recap Happy Hour with DC DAO and Stand With Crypto
 DTSTART:20260226T230000Z
 DTEND:20260227T010000Z
-DTSTAMP:20260224T004112Z
-UID:02169a66c783081e-1771893672.897347@codecollective
+DTSTAMP:20260225T004547Z
+UID:02169a66c783081e-1771980347.475168@codecollective
 DESCRIPTION:Event Link: https://lu.ma/enik29jm
 LOCATION:WHINO\, WHINO\, 4238 Wilson Blvd Second Floor\, Arlington\, VA 22
  203\, USA\, Arlington\, Virginia United States
@@ -188,8 +240,8 @@ SUMMARY:Microsoft Security Copilot in Defender Masterclass: Next-Gen Prote
  ction
 DTSTART:20260227T100000
 DTEND:20260227T120000
-DTSTAMP:20260224T004112Z
-UID:313312141-1771893672.897578@codecollective
+DTSTAMP:20260225T004547Z
+UID:313312141-1771980347.475411@codecollective
 DESCRIPTION:Modern cyber defense isn’t just about stopping threats it’
  s about responding with speed and intelligence.\n\nDate: Feb 27\, 2026\nTi
  me: 10AM- 12PM EST\nClick Here For FREE\n\nThis LIVE session explores how 
@@ -202,8 +254,8 @@ BEGIN:VEVENT
 SUMMARY:Professionals Networking HourS
 DTSTART:20260227T170000
 DTEND:20260227T190000
-DTSTAMP:20260224T004112Z
-UID:313317447-1771893672.898075@codecollective
+DTSTAMP:20260225T004547Z
+UID:313317447-1771980347.475911@codecollective
 DESCRIPTION:All professionals in the DMV and MidAtlantic area are invited!
  \n\nThis event is to every and each professional in different industry\, s
  ector and specialization to grow\, interact\, and learn from each oth\n\nE
@@ -212,11 +264,23 @@ LOCATION:Lucky bar\, 1221 Connecticut ave NW\, Washington\, DC us
 URL:https://www.meetup.com/dcprofessonals/events/313317447/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:Coffee & Bitcoin DC: National Cathedral Grounds
+DTSTART:20260228T100000
+DTEND:20260228T120000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.476496@codecollective
+DESCRIPTION:Coffee & Bitcoin DC: National Cathedral Grounds\n\nEvent Link:
+  https://luma.com/g4a1tknf
+LOCATION:Open City at the National Cathedral\, Open City at the National C
+ athedral\, Washington\, District of Columbia\, \,  
+URL:https://luma.com/g4a1tknf
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Podcast Discussion: Peak Performance via Deliberate Practice
 DTSTART:20260228T150000
 DTEND:20260228T163000
-DTSTAMP:20260224T004112Z
-UID:312856232-1771893672.898659@codecollective
+DTSTAMP:20260225T004547Z
+UID:312856232-1771980347.476867@codecollective
 DESCRIPTION:To receive future event updates\, register on Luma:\nhttps://l
  uma.com/6qii7007\n\nLet's discuss a podcast by Anders Ericsson\, author of
   the renowned book "Peak: Secrets from the New Science of Expertise".\n\nE
@@ -229,8 +293,8 @@ BEGIN:VEVENT
 SUMMARY:SATURDAY Professionals Networking HourS
 DTSTART:20260228T170000
 DTEND:20260228T190000
-DTSTAMP:20260224T004112Z
-UID:313498963-1771893672.899207@codecollective
+DTSTAMP:20260225T004547Z
+UID:313498963-1771980347.477441@codecollective
 DESCRIPTION:All professionals in the DMV and MidAtlantic area are invited!
  \n\nThis event is to every and each professional in different industry\, s
  ector and specialization to grow\, interact\, and learn from each oth\n\nE
@@ -239,12 +303,47 @@ LOCATION:Lucky bar\, 1221 Connecticut ave NW\, Washington\, DC us
 URL:https://www.meetup.com/dcprofessonals/events/313498963/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:STATION DC Chess Club
+DTSTART:20260302T170000
+DTEND:20260302T190000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.478005@codecollective
+DESCRIPTION:STATION DC Chess Club\n\nEvent Link: https://luma.com/e80cf459
+LOCATION:STATION DC\, STATION DC\, Washington\, District of Columbia\, \, 
+  
+URL:https://luma.com/e80cf459
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:DC Nightowls Open Coworking w/ AI Collective
+DTSTART:20260302T193000
+DTEND:20260302T220000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.47838@codecollective
+DESCRIPTION:DC Nightowls Open Coworking w/ AI Collective\n\nEvent Link: ht
+ tps://luma.com/nlzk491l
+LOCATION:Washington\, District of Columbia\, Register to See Address\, \, 
+  
+URL:https://luma.com/nlzk491l
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:STATION DC Hypersonics Meetup
+DTSTART:20260303T100000
+DTEND:20260303T120000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.478818@codecollective
+DESCRIPTION:STATION DC Hypersonics Meetup\n\nEvent Link: https://luma.com/
+ 5b7snrzg
+LOCATION:STATION DC\, STATION DC\, Washington\, District of Columbia\, \, 
+  
+URL:https://luma.com/5b7snrzg
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Trusted AI Agents by Design: From Trust Ecosystems to Authority Co
  ntinuity
 DTSTART:20260303T110000
 DTEND:20260303T123000
-DTSTAMP:20260224T004112Z
-UID:313334820-1771893672.899789@codecollective
+DTSTAMP:20260225T004547Z
+UID:313334820-1771980347.479176@codecollective
 DESCRIPTION:Rapid innovation in agentic AI is opening up real potential. B
  ut agents don't just forward intent\, they create it. When an agent makes 
  the decisions that matter\, trust can't be assumed\, it has to be d\n\nEve
@@ -253,12 +352,24 @@ LOCATION:Online event\, \,
 URL:https://www.meetup.com/lfdt-washington-dc/events/313334820/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:Data Engineering & Context Engineering for AI
+DTSTART:20260303T173000
+DTEND:20260303T200000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.479671@codecollective
+DESCRIPTION:Data Engineering & Context Engineering for AI\n\nEvent Link: h
+ ttps://luma.com/l1epj9r3
+LOCATION:2112 Pennsylvania Ave NW\, 2112 Pennsylvania Ave NW\, Washington\
+ , District of Columbia\, \,  
+URL:https://luma.com/l1epj9r3
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:From Protocol to Practice: MCP Server Integration with Hyperledger
   Fabric
 DTSTART:20260304T100000
 DTEND:20260304T110000
-DTSTAMP:20260224T004112Z
-UID:313225643-1771893672.900262@codecollective
+DTSTAMP:20260225T004547Z
+UID:313225643-1771980347.480047@codecollective
 DESCRIPTION:Dear LF Decentralized Trust Community Members\,\n\nJoin us for
   a webinar with Walmart\, an LFDT General member\, on March 4th.\n\nAs AI-
  powered tools become integral to development workflows\, there's a growi\n
@@ -267,12 +378,24 @@ LOCATION:Online event\, \,
 URL:https://www.meetup.com/lfdt-washington-dc/events/313225643/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:STATION DC Transportation and Infastructure Meetup
+DTSTART:20260304T100000
+DTEND:20260304T120000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.48049@codecollective
+DESCRIPTION:STATION DC Transportation and Infastructure Meetup\n\nEvent Li
+ nk: https://luma.com/bzow417u
+LOCATION:STATION DC\, STATION DC\, Washington\, District of Columbia\, \, 
+  
+URL:https://luma.com/bzow417u
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:TechConnect: Global Virtual Job & Networking Event for Data\, AI\,
   and Tech Pros
 DTSTART:20260304T160000
 DTEND:20260304T180000
-DTSTAMP:20260224T004112Z
-UID:313332097-1771893672.9007@codecollective
+DTSTAMP:20260225T004547Z
+UID:313332097-1771980347.480852@codecollective
 DESCRIPTION:Calling all developers\, AI engineers\, software architects\, 
  data scientists\, DevOps professionals\, and tech enthusiasts — TechConn
  ect is your ultimate destination for career growth\, project showcasing\,\
@@ -281,11 +404,23 @@ LOCATION:Online event\, \,
 URL:https://www.meetup.com/openanalyticsdc/events/313332097/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:DC Tech Meetup #95: Healthtech Edition
+DTSTART:20260304T173000
+DTEND:20260304T200000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.481517@codecollective
+DESCRIPTION:DC Tech Meetup #95: Healthtech Edition\n\nEvent Link: https://
+ luma.com/dctm95
+LOCATION:Martin Luther King Jr. Memorial Library\, Martin Luther King Jr. 
+ Memorial Library\, Washington\, District of Columbia\, \,  
+URL:https://luma.com/dctm95
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:AI DevTalks Live with Google Cloud - Ep 12
 DTSTART:20260304T200000
 DTEND:20260304T210000
-DTSTAMP:20260224T004112Z
-UID:313439209-1771893672.901359@codecollective
+DTSTAMP:20260225T004547Z
+UID:313439209-1771980347.481878@codecollective
 DESCRIPTION:Important: Register on the Event Website to receive joining li
  nk. (rsvp on meetup will NOT receive joining link).\n\nThis is virtual eve
  nt for our global community\, please double check your local time. \n\nEve
@@ -298,8 +433,8 @@ SUMMARY:AI benchmarks: What Jellyfish learned from analyzing 20 million PR
  s
 DTSTART:20260305T130000
 DTEND:20260305T140000
-DTSTAMP:20260224T004112Z
-UID:313078120-1771893672.90189@codecollective
+DTSTAMP:20260225T004547Z
+UID:313078120-1771980347.482421@codecollective
 DESCRIPTION:Please register here\n\nAI is transforming software engineerin
  g\, but results rarely match the hype. Why do some teams double productivi
  ty while others stall? Join Jellyfish researchers Nicholas Arcolano\n\nEve
@@ -314,8 +449,8 @@ SUMMARY:CyberConnect: Virtual Career & Networking Hub for Cybersecurity Pr
  os
 DTSTART:20260305T160000
 DTEND:20260305T180000
-DTSTAMP:20260224T004112Z
-UID:313347546-1771893672.902409@codecollective
+DTSTAMP:20260225T004547Z
+UID:313347546-1771980347.482917@codecollective
 DESCRIPTION:Whether you're a SOC analyst\, red teamer\, threat intelligenc
  e expert\, or just breaking into the field — CyberConnect is your global
   destination for building meaningful connections and exploring opport\n\nE
@@ -328,8 +463,8 @@ SUMMARY:AnalyticsCLUB JobExpo Virtual Business\, Data & Technology Job Exp
  o
 DTSTART:20260306T110000
 DTEND:20260306T140000
-DTSTAMP:20260224T004112Z
-UID:313268121-1771893672.90305@codecollective
+DTSTAMP:20260225T004547Z
+UID:313268121-1771980347.483592@codecollective
 DESCRIPTION:What is FirstFridayFair Monthly Job Fair?\n\nFirstFridayFair M
  onthly Job Fair is a global virtual job fair and remote hiring event hoste
  d by the Analytics.CLUB community. This online job fair platform b\n\nEven
@@ -341,8 +476,8 @@ BEGIN:VEVENT
 SUMMARY:Professionals Networking HourS
 DTSTART:20260306T170000
 DTEND:20260306T190000
-DTSTAMP:20260224T004112Z
-UID:313416583-1771893672.903779@codecollective
+DTSTAMP:20260225T004547Z
+UID:313416583-1771980347.484218@codecollective
 DESCRIPTION:All professionals in the DMV and MidAtlantic area are invited!
  \n\nThis event is to every and each professional in different industry\, s
  ector and specialization to grow\, interact\, and learn from each oth\n\nE
@@ -351,11 +486,37 @@ LOCATION:Lucky bar\, 1221 Connecticut ave NW\, Washington\, DC us
 URL:https://www.meetup.com/dcprofessonals/events/313416583/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:Podcast Discussion: Dario Amodei “We are near the end of the exp
+ onential”
+DTSTART:20260307T150000
+DTEND:20260307T170000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.484793@codecollective
+DESCRIPTION:Podcast Discussion: Dario Amodei “We are near the end of the
+  exponential”\n\nEvent Link: https://luma.com/4ygdg5av
+LOCATION:Washington\, District of Columbia\, Register to See Address\, \, 
+  
+URL:https://luma.com/4ygdg5av
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Professionals Networking HourS
+DTSTART:20260307T170000
+DTEND:20260307T190000
+DTSTAMP:20260225T004547Z
+UID:313253325-1771980347.485168@codecollective
+DESCRIPTION:All professionals in the DMV and MidAtlantic area are invited!
+ \n\nThis event is to every and each professional in different industry\, s
+ ector and specialization to grow\, interact\, and learn from each oth\n\nE
+ vent Link: https://www.meetup.com/dcprofessonals/events/313253325/
+LOCATION:Lucky bar\, 1221 Connecticut ave NW\, Washington\, DC us
+URL:https://www.meetup.com/dcprofessonals/events/313253325/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:From Learning Chaos to Workforce Capability at Scale
 DTSTART:20260311T130000
 DTEND:20260311T140000
-DTSTAMP:20260224T004112Z
-UID:313399470-1771893672.904367@codecollective
+DTSTAMP:20260225T004547Z
+UID:313399470-1771980347.485748@codecollective
 DESCRIPTION:From Learning Chaos to Workforce Capability: How Enterprises A
  ctually Build Skills at Scale\n\nAs enterprises invest heavily in AI\, clo
  ud\, and emerging technologies\, many still struggle to translate lea\n\nE
@@ -367,8 +528,8 @@ BEGIN:VEVENT
 SUMMARY:How to benchmark your platform: Quantify your pain (& solve it)
 DTSTART:20260312T140000
 DTEND:20260312T150000
-DTSTAMP:20260224T004112Z
-UID:312863110-1771893672.904869@codecollective
+DTSTAMP:20260225T004547Z
+UID:312863110-1771980347.486246@codecollective
 DESCRIPTION:\\* Please register here\n\nThe majority of platform teams are
   struggling with bad alignment\, missing success metrics & ROI proof\, or 
  low adoption / weak developer experience\, and more. Join Mallory Haig\n\n
@@ -381,9 +542,9 @@ END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Intersection of Entrepreneurship and Sustainability
 DTSTART:20260312T170000
-DTEND:20260312T180000
-DTSTAMP:20260224T004112Z
-UID:-1771893672.905397@codecollective
+DTEND:20260312T181500
+DTSTAMP:20260225T004547Z
+UID:-1771980347.486787@codecollective
 DESCRIPTION:A conversation featuring Daniela Fernandez\, founder & CEO of\
  n\nEvent Link: https://www.eventbrite.com/e/intersection-of-entrepreneursh
  ip-and-sustainability-tickets-1983467702291
@@ -393,12 +554,48 @@ URL:https://www.eventbrite.com/e/intersection-of-entrepreneurship-and-sust
  ainability-tickets-1983467702291
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:Coffee & Bitcoin VA: McLean
+DTSTART:20260314T103000
+DTEND:20260314T123000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.487151@codecollective
+DESCRIPTION:Coffee & Bitcoin VA: McLean\n\nEvent Link: https://luma.com/c3
+ jhfmms
+LOCATION:Sunday Morning Bakehouse - McLean\, Sunday Morning Bakehouse - Mc
+ Lean\, McLean\, Virginia\, \,  
+URL:https://luma.com/c3jhfmms
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Podcast Discussion: Google: The AI Company
+DTSTART:20260314T150000
+DTEND:20260314T170000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.487533@codecollective
+DESCRIPTION:Podcast Discussion: Google: The AI Company\n\nEvent Link: http
+ s://luma.com/s2fj2dsb
+LOCATION:Washington\, District of Columbia\, Register to See Address\, \, 
+  
+URL:https://luma.com/s2fj2dsb
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Girlies in Tech Dinner pt. 7 <3 | Washington\, DC Edition | Shaw
+DTSTART:20260314T173000
+DTEND:20260314T190000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.487892@codecollective
+DESCRIPTION:Girlies in Tech Dinner pt. 7 <3 | Washington\, DC Edition | Sh
+ aw\n\nEvent Link: https://luma.com/qsjdx9cr
+LOCATION:Washington\, District of Columbia\, Register to See Address\, \, 
+  
+URL:https://luma.com/qsjdx9cr
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Ted Talk Discussion: Why Having Fun Is the Secret to a Healthier L
  ife
 DTSTART:20260315T150000
 DTEND:20260315T163000
-DTSTAMP:20260224T004112Z
-UID:313475699-1771893672.905767@codecollective
+DTSTAMP:20260225T004547Z
+UID:313475699-1771980347.488247@codecollective
 DESCRIPTION:To receive future event updates\, register on Luma:\nhttps://l
  uma.com/tv3fhasq\n\nHave you had your daily dose of fun? It's not just enj
  oyable\, it's also essential for your health and happiness\, says scie\n\n
@@ -408,12 +605,28 @@ LOCATION:Panera Bread\, 7201 Wisconsin Ave.\, Bethesda\, MD us
 URL:https://www.meetup.com/bethesda-growth-mindset-salon/events/313475699/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:Infra governance for rule breakers: How to make guardrails invisib
+ le
+DTSTART:20260318T140000
+DTEND:20260318T150000
+DTSTAMP:20260225T004547Z
+UID:313506484-1771980347.488903@codecollective
+DESCRIPTION:Join us for Infra governance for rule breakers: How to make gu
+ ardrails invisible.\n\nStop being the "Department of No." Modern infrastru
+ cture governance should feel like a smooth highway\, not a series o\n\nEve
+ nt Link: https://www.meetup.com/platform-engineers-washington-dc/events/31
+ 3506484/
+LOCATION:Online event\, \,  
+URL:https://www.meetup.com/platform-engineers-washington-dc/events/3135064
+ 84/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Third Annual Financial Services Symposium:  Innovation\, Regulatio
  n\, Risk 2026
 DTSTART:20260319T083000
 DTEND:20260319T173000
-DTSTAMP:20260224T004112Z
-UID:313336740-1771893672.906314@codecollective
+DTSTAMP:20260225T004547Z
+UID:313336740-1771980347.489485@codecollective
 DESCRIPTION:Please RSVP here and in Meetup\n\nThird Annual Financial Servi
  ces Symposium: Innovation\, Regulation and Risk in 2026\n\nThursday\, Marc
  h 19th\n8:30am -- 5:30pm ET\nArlington\, VA\nIn Person and Online\n\nRegis
@@ -424,22 +637,46 @@ URL:https://www.meetup.com/cybersecurity-innovation-forum/events/313336740
  /
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:Building in the Beltway: Demystifying Defense Appropriations
+DTSTART:20260319T163000
+DTEND:20260319T180000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.490716@codecollective
+DESCRIPTION:Building in the Beltway: Demystifying Defense Appropriations\n
+ \nEvent Link: https://luma.com/2zathwvv
+LOCATION:Washington\, District of Columbia\, Register to See Address\, \, 
+  
+URL:https://luma.com/2zathwvv
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - March
 DTSTART:20260320T180000Z
 DTEND:20260320T190000Z
-DTSTAMP:20260224T004112Z
-UID:d37c9023516b974b-1771893672.907509@codecollective
+DTSTAMP:20260225T004547Z
+UID:d37c9023516b974b-1771980347.491099@codecollective
 DESCRIPTION:Event Link: https://lu.ma/1lpyeacy
 LOCATION:\,  
 URL:https://lu.ma/1lpyeacy
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Podcast Discussion: The Secrets of Claude Code
+DTSTART:20260321T150000
+DTEND:20260321T170000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.491322@codecollective
+DESCRIPTION:Podcast Discussion: The Secrets of Claude Code\n\nEvent Link: 
+ https://luma.com/z0w3n0vk
+LOCATION:Washington\, District of Columbia\, Register to See Address\, \, 
+  
+URL:https://luma.com/z0w3n0vk
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:NVIDIA GTC 2026 Conf Recap + Evolution of Flash Attention v1-v4 Op
  timizations
 DTSTART:20260323T120000
 DTEND:20260323T130000
-DTSTAMP:20260224T004112Z
-UID:313297547-1771893672.907732@codecollective
+DTSTAMP:20260225T004547Z
+UID:313297547-1771980347.491712@codecollective
 DESCRIPTION:Zoom link: https://us02web.zoom.us/j/82308186562\n\nTalk #0: I
  ntroductions and Meetup Updates\nby Chris Fregly and Antje Barth\n\nTalk #
  1: NVIDIA GTC 2026 AI Conference Recap by Chris Fregly\n\nIn this talk\,\n
@@ -450,11 +687,22 @@ URL:https://www.meetup.com/ai-performance-engineering-washington-dc/events
  /313297547/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:Defense Tech DC 013
+DTSTART:20260324T173000
+DTEND:20260324T193000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.492171@codecollective
+DESCRIPTION:Defense Tech DC 013\n\nEvent Link: https://luma.com/ohrlrxz0
+LOCATION:Washington\, District of Columbia\, Register to See Address\, \, 
+  
+URL:https://luma.com/ohrlrxz0
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Congressional Data Task Force
 DTSTART:20260326T140000
 DTEND:20260326T160000
-DTSTAMP:20260224T004112Z
-UID:2026-03-26-CDTF-1771893672.908183@codecollective
+DTSTAMP:20260225T004547Z
+UID:2026-03-26-CDTF-1771980347.492553@codecollective
 DESCRIPTION:The Congressional Data Task Force will hold a public meeting o
  n Thursday\, March 26\, 2026\, from 2:00 PM to 4:00 PM ET.\n\nEvent Link: 
  https://usgpo.github.io/innovation/events/2026-03-26-CDTF/
@@ -462,27 +710,23 @@ LOCATION:Hybrid\, \,
 URL:https://usgpo.github.io/innovation/events/2026-03-26-CDTF/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Operationalizing AI Agents in regulated industries for scale and s
- afety
-DTSTART:20260331T130000
-DTEND:20260331T140000
-DTSTAMP:20260224T004112Z
-UID:313396980-1771893672.908561@codecollective
-DESCRIPTION:Please register here!\n\nJoin an in-depth session for platform
-  teams in regulated industries as we explore how to run AI coding agents i
- n real production environments. Learn why governance is an infrast\n\nEven
- t Link: https://www.meetup.com/platform-engineers-washington-dc/events/313
- 396980/
-LOCATION:Online event\, \,  
-URL:https://www.meetup.com/platform-engineers-washington-dc/events/3133969
- 80/
+SUMMARY:Podcast Discussion: Ilya Sutskever on Superintelligence
+DTSTART:20260404T150000
+DTEND:20260404T170000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.492912@codecollective
+DESCRIPTION:Podcast Discussion: Ilya Sutskever on Superintelligence\n\nEve
+ nt Link: https://luma.com/0ivhcynu
+LOCATION:Washington\, District of Columbia\, Register to See Address\, \, 
+  
+URL:https://luma.com/0ivhcynu
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:Entrepreneurship in Health Pitch Challenge & Reception
 DTSTART:20260407T173000
 DTEND:20260407T203000
-DTSTAMP:20260224T004112Z
-UID:-1771893672.90904@codecollective
+DTSTAMP:20260225T004547Z
+UID:-1771980347.493267@codecollective
 DESCRIPTION:Join the Entrepreneurship in Health initiative for our 2nd ann
  ual Entrepreneurship in Health Pitch Challenge & Networking\n\nEvent Link:
   https://www.eventbrite.com/e/entrepreneurship-in-health-pitch-challenge-r
@@ -493,31 +737,68 @@ URL:https://www.eventbrite.com/e/entrepreneurship-in-health-pitch-challeng
  e-reception-tickets-1982644816016
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:vcIQ: Cybersecurity Founder Session
+DTSTART:20260408T100000
+DTEND:20260408T113000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.49365@codecollective
+DESCRIPTION:vcIQ: Cybersecurity Founder Session\n\nEvent Link: https://lum
+ a.com/vcIQ-Cybersecurity
+LOCATION:Arlington\, Virginia\, Register to See Address\, \,  
+URL:https://luma.com/vcIQ-Cybersecurity
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:🌐 DC DAO Community Call!
 DTSTART:20260408T200000Z
 DTEND:20260408T210000Z
-DTSTAMP:20260224T004112Z
-UID:da063f7a13b8bf32-1771893672.909424@codecollective
+DTSTAMP:20260225T004547Z
+UID:da063f7a13b8bf32-1771980347.494001@codecollective
 DESCRIPTION:Event Link: https://lu.ma/hgsllby4
 LOCATION:\,  
 URL:https://lu.ma/hgsllby4
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:Girlies in Tech Dinner pt. 8 <3 | Washington\, DC + BDAY Edition |
+  Foggy Bottom
+DTSTART:20260411T173000
+DTEND:20260411T193000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.494222@codecollective
+DESCRIPTION:Girlies in Tech Dinner pt. 8 <3 | Washington\, DC + BDAY Editi
+ on | Foggy Bottom\n\nEvent Link: https://luma.com/3hl5bd07
+LOCATION:Washington\, District of Columbia\, Register to See Address\, \, 
+  
+URL:https://luma.com/3hl5bd07
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - April
 DTSTART:20260417T200000Z
 DTEND:20260417T210000Z
-DTSTAMP:20260224T004112Z
-UID:b9c71105f98ebfa5-1771893672.909644@codecollective
+DTSTAMP:20260225T004547Z
+UID:b9c71105f98ebfa5-1771980347.494608@codecollective
 DESCRIPTION:Event Link: https://lu.ma/j7t1enkv
 LOCATION:\,  
 URL:https://lu.ma/j7t1enkv
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:Podcast Discussion: Reshuffle: How AI Changes the Entire System of
+  Work
+DTSTART:20260418T150000
+DTEND:20260418T170000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.494825@codecollective
+DESCRIPTION:Podcast Discussion: Reshuffle: How AI Changes the Entire Syste
+ m of Work\n\nEvent Link: https://luma.com/49xrugfx
+LOCATION:Washington\, District of Columbia\, Register to See Address\, \, 
+  
+URL:https://luma.com/49xrugfx
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:GPU\, CUDA\, and PyTorch Performance Optimizations
 DTSTART:20260420T120000
 DTEND:20260420T130000
-DTSTAMP:20260224T004112Z
-UID:313297554-1771893672.909854@codecollective
+DTSTAMP:20260225T004547Z
+UID:313297554-1771980347.495184@codecollective
 DESCRIPTION:Zoom link: https://us02web.zoom.us/j/82308186562\n\nTalk #0: I
  ntroductions and Meetup Updates\nby Chris Fregly and Antje Barth\n\nTalk #
  1: GPU\, PyTorch\, and CUDA Performance Optimizations\n\nTalk #2: GPU\, Py
@@ -531,18 +812,31 @@ BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - May
 DTSTART:20260515T200000Z
 DTEND:20260515T210000Z
-DTSTAMP:20260224T004112Z
-UID:bdfe6d4d188ae506-1771893672.910248@codecollective
+DTSTAMP:20260225T004547Z
+UID:bdfe6d4d188ae506-1771980347.495596@codecollective
 DESCRIPTION:Event Link: https://lu.ma/hvvtjl54
 LOCATION:\,  
 URL:https://lu.ma/hvvtjl54
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:Girlies in Tech Dinner pt. 9 <3 | Washington\, DC Edition | West E
+ nd
+DTSTART:20260516T173000
+DTEND:20260516T193000
+DTSTAMP:20260225T004547Z
+UID:-1771980347.495813@codecollective
+DESCRIPTION:Girlies in Tech Dinner pt. 9 <3 | Washington\, DC Edition | We
+ st End\n\nEvent Link: https://luma.com/9ydbjacv
+LOCATION:Washington\, District of Columbia\, Register to See Address\, \, 
+  
+URL:https://luma.com/9ydbjacv
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:GPU\, CUDA\, and PyTorch Performance Optimizations
 DTSTART:20260518T120000
 DTEND:20260518T130000
-DTSTAMP:20260224T004112Z
-UID:313297566-1771893672.910485@codecollective
+DTSTAMP:20260225T004547Z
+UID:313297566-1771980347.496169@codecollective
 DESCRIPTION:Zoom link: https://us02web.zoom.us/j/82308186562\n\nTalk #0: I
  ntroductions and Meetup Updates\nby Chris Fregly and Antje Barth\n\nTalk #
  1: GPU\, PyTorch\, and CUDA Performance Optimizations\n\nTalk #2: GPU\, Py
@@ -556,8 +850,8 @@ BEGIN:VEVENT
 SUMMARY:Congressional Data Task Force
 DTSTART:20260611T140000
 DTEND:20260611T160000
-DTSTAMP:20260224T004112Z
-UID:2026-06-11-CDTF-1771893672.910877@codecollective
+DTSTAMP:20260225T004547Z
+UID:2026-06-11-CDTF-1771980347.496605@codecollective
 DESCRIPTION:The Congressional Data Task Force will hold a public meeting o
  n Thursday\, June 11\, 2026\, from 2:00 PM to 4:00 PM ET.\n\nEvent Link: h
  ttps://usgpo.github.io/innovation/events/2026-06-11-CDTF/
@@ -568,8 +862,8 @@ BEGIN:VEVENT
 SUMMARY:GPU\, CUDA\, and PyTorch Performance Optimizations
 DTSTART:20260615T120000
 DTEND:20260615T130000
-DTSTAMP:20260224T004112Z
-UID:313297578-1771893672.911227@codecollective
+DTSTAMP:20260225T004547Z
+UID:313297578-1771980347.496971@codecollective
 DESCRIPTION:Zoom link: https://us02web.zoom.us/j/82308186562\n\nTalk #0: I
  ntroductions and Meetup Updates\nby Chris Fregly and Antje Barth\n\nTalk #
  1: GPU\, PyTorch\, and CUDA Performance Optimizations\n\nTalk #2: GPU\, Py
@@ -583,8 +877,8 @@ BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - June
 DTSTART:20260619T200000Z
 DTEND:20260619T210000Z
-DTSTAMP:20260224T004112Z
-UID:68a1cbac38c4d02c-1771893672.911632@codecollective
+DTSTAMP:20260225T004547Z
+UID:68a1cbac38c4d02c-1771980347.497376@codecollective
 DESCRIPTION:Event Link: https://lu.ma/01uejl6b
 LOCATION:\,  
 URL:https://lu.ma/01uejl6b
@@ -593,8 +887,8 @@ BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - July
 DTSTART:20260717T200000Z
 DTEND:20260717T210000Z
-DTSTAMP:20260224T004112Z
-UID:642b3ec55c1e54c6-1771893672.911849@codecollective
+DTSTAMP:20260225T004547Z
+UID:642b3ec55c1e54c6-1771980347.497599@codecollective
 DESCRIPTION:Event Link: https://lu.ma/zkdjact1
 LOCATION:\,  
 URL:https://lu.ma/zkdjact1
@@ -603,8 +897,8 @@ BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - August
 DTSTART:20260821T200000Z
 DTEND:20260821T210000Z
-DTSTAMP:20260224T004112Z
-UID:c2af83ff0ad8e7b6-1771893672.912069@codecollective
+DTSTAMP:20260225T004547Z
+UID:c2af83ff0ad8e7b6-1771980347.497883@codecollective
 DESCRIPTION:Event Link: https://lu.ma/2t76ncmw
 LOCATION:\,  
 URL:https://lu.ma/2t76ncmw
@@ -613,8 +907,8 @@ BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - September
 DTSTART:20260918T200000Z
 DTEND:20260918T210000Z
-DTSTAMP:20260224T004112Z
-UID:0cc8af09188895b0-1771893672.912277@codecollective
+DTSTAMP:20260225T004547Z
+UID:0cc8af09188895b0-1771980347.498096@codecollective
 DESCRIPTION:Event Link: https://lu.ma/i0320ymf
 LOCATION:\,  
 URL:https://lu.ma/i0320ymf
@@ -623,8 +917,8 @@ BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - October
 DTSTART:20261016T200000Z
 DTEND:20261016T210000Z
-DTSTAMP:20260224T004112Z
-UID:74d878cd34db0cd4-1771893672.912504@codecollective
+DTSTAMP:20260225T004547Z
+UID:74d878cd34db0cd4-1771980347.498306@codecollective
 DESCRIPTION:Event Link: https://lu.ma/yi17uy3d
 LOCATION:\,  
 URL:https://lu.ma/yi17uy3d
@@ -633,8 +927,8 @@ BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - November
 DTSTART:20261120T210000Z
 DTEND:20261120T220000Z
-DTSTAMP:20260224T004112Z
-UID:f1159b04cc132efd-1771893672.912709@codecollective
+DTSTAMP:20260225T004547Z
+UID:f1159b04cc132efd-1771980347.498537@codecollective
 DESCRIPTION:Event Link: https://lu.ma/39mmm70h
 LOCATION:\,  
 URL:https://lu.ma/39mmm70h
@@ -643,8 +937,8 @@ BEGIN:VEVENT
 SUMMARY:Congressional Data Task Force
 DTSTART:20261203T140000
 DTEND:20261203T160000
-DTSTAMP:20260224T004112Z
-UID:2026-12-03-CDTF-1771893672.912914@codecollective
+DTSTAMP:20260225T004547Z
+UID:2026-12-03-CDTF-1771980347.498747@codecollective
 DESCRIPTION:The Congressional Data Task Force will hold a public meeting o
  n Thursday\, December 3\, 2026\, from 2:00 PM to 4:00 PM ET.\n\nEvent Link
  : https://usgpo.github.io/innovation/events/2026-12-03-CDTF/
@@ -655,8 +949,8 @@ BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - December
 DTSTART:20261218T210000Z
 DTEND:20261218T220000Z
-DTSTAMP:20260224T004112Z
-UID:03572bd8e4c62793-1771893672.915749@codecollective
+DTSTAMP:20260225T004547Z
+UID:03572bd8e4c62793-1771980347.499114@codecollective
 DESCRIPTION:Event Link: https://lu.ma/v9nw6ebv
 LOCATION:\,  
 URL:https://lu.ma/v9nw6ebv
