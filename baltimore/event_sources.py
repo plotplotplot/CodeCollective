@@ -67,6 +67,7 @@ sources = {
         "https://lu.ma/user/web3dc",
         "https://lu.ma/user/charmcityjs",
         "https://lu.ma/mtechumd",
+        "https://luma.com/calendar/cal-MVw6HVCN4MEFaNV", # new MTECH
         "https://luma.com/codecollective",
         "https://luma.com/bmore-on-rails",
         "https://luma.com/LetsBMore",
