@@ -26,7 +26,8 @@ sources = {
         "https://www.meetup.com/ai-enthusiasts/",
         "https://www.meetup.com/baltimore-tech-innovation/",
         "https://www.meetup.com/cmap-online/",
-        "https://www.meetup.com/cyber-steam-global-innovation-alliance/"
+        "https://www.meetup.com/cyber-steam-global-innovation-alliance/",
+        "https://www.meetup.com/marylandforwardparty/"
     ],
     "Eventbrite":[
         "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
