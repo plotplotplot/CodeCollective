@@ -1,92 +1,93 @@
-import os
-from bs4 import BeautifulSoup
-from urllib.parse import urljoin
 import datetime
+from pathlib import Path
+from urllib.parse import urljoin, urlparse
 
-# Base URL of your site
+from bs4 import BeautifulSoup
+
 BASE_URL = "https://codecollective.us"
-# Directory where index.html is located
-HTML_FILE = "index.html"
-# Output sitemap file
 SITEMAP_FILE = "sitemap.xml"
-# Subdirectories to include
-SUBDIRS = ["/personnel", "/newsletter"]
+ROOT_DIR = Path(".")
+EXCLUDED_DIRS = {
+    ".git",
+    "__pycache__",
+    "audio",
+    "css",
+    "data",
+    "event_images",
+    "fonts",
+    "images",
+    "js",
+    "legacy",
+    "levatel",
+    "m",
+    "portal_src",
+    "templates",
+}
+EXCLUDED_FILES = {
+    "geocode_cache.html",
+    "meetup_past.html",
+    "out.txt",
+}
 
-def extract_local_links(base_url, html_file):
-    local_links = set()  # Use a set to avoid duplicates
-    
-    # Check if index.html exists
-    if not os.path.isfile(html_file):
-        print(f"{html_file} not found.")
-        return local_links
-    
-    # Read and parse the HTML
-    with open(html_file, "r", encoding="utf-8") as file:
-        soup = BeautifulSoup(file, "html.parser")
-    
-    # Find all anchor tags with href attribute
-    for link in soup.find_all("a", href=True):
-        href = link["href"]
-        # Only consider local links
-        if href.startswith("/") or href.startswith("."):
-            full_url = urljoin(base_url, href)
-            local_links.add(full_url)
-    
-    return local_links
 
-def include_base_directory_html(base_url, base_dir="."):
-    """Add all HTML files in the base directory to the links"""
-    base_html_links = set()
-    
-    # Find all HTML files in the base directory (not subdirectories)
-    for file in os.listdir(base_dir):
-        if file.endswith('.html') and os.path.isfile(os.path.join(base_dir, file)):
-            if file == 'index.html':
-                # Root index.html maps to the base URL
-                base_html_links.add(base_url)
-            else:
-                # Other HTML files get their filename as the URL
-                file_url = urljoin(base_url, file)
-                base_html_links.add(file_url)
-    
-    return base_html_links
+def iter_public_html_files(root_dir: Path):
+    for path in root_dir.rglob("*.html"):
+        rel_parts = path.relative_to(root_dir).parts
+        if any(part in EXCLUDED_DIRS for part in rel_parts):
+            continue
+        if path.name in EXCLUDED_FILES:
+            continue
+        yield path
 
-def include_subdirectories(base_url, subdirs):
-    """Add subdirectory URLs to the list of links"""
-    subdir_links = set()
-    
-    for subdir in subdirs:
-        # Add the main subdirectory URL
-        subdir_url = urljoin(base_url, subdir)
-        subdir_links.add(subdir_url)
-        
-        # Check if the subdirectory exists locally
-        local_subdir = subdir.lstrip('/')  # Remove leading slash for local path
-        if os.path.isdir(local_subdir):
-            # Walk through the subdirectory to find HTML files
-            for root, dirs, files in os.walk(local_subdir):
-                for file in files:
-                    if file.endswith('.html'):
-                        # Create relative path
-                        rel_path = os.path.join(root, file)
-                        # Convert to URL and add to links
-                        file_url = urljoin(base_url, rel_path.replace(os.sep, '/'))
-                        subdir_links.add(file_url)
-    
-    return subdir_links
+
+def read_html(path: Path) -> BeautifulSoup:
+    with path.open("r", encoding="utf-8") as file:
+        return BeautifulSoup(file, "html.parser")
+
+
+def should_include(path: Path) -> bool:
+    soup = read_html(path)
+
+    robots = soup.find("meta", attrs={"name": "robots"})
+    if robots and "noindex" in robots.get("content", "").lower():
+        return False
+
+    canonical = soup.find("link", attrs={"rel": "canonical"})
+    if canonical:
+        href = canonical.get("href", "").strip()
+        if href:
+            parsed = urlparse(href)
+            if parsed.netloc and parsed.netloc != "codecollective.us":
+                return False
+
+    return True
+
+
+def path_to_url(base_url: str, path: Path, root_dir: Path) -> str:
+    rel_path = path.relative_to(root_dir).as_posix()
+    if rel_path == "index.html":
+        return f"{base_url}/"
+    if path.name == "index.html":
+        return f"{base_url}/{path.parent.as_posix()}/"
+    return urljoin(f"{base_url}/", rel_path)
+
+
+def collect_urls(base_url: str, root_dir: Path):
+    urls = set()
+    for path in iter_public_html_files(root_dir):
+        if should_include(path):
+            urls.add(path_to_url(base_url, path, root_dir))
+    return urls
 
 def generate_sitemap(links, output_file):
-    # Get current date in W3C datetime format for <lastmod> tag
     current_date = datetime.datetime.now().strftime("%Y-%m-%d")
-    
-    # XML header for sitemap
+
     sitemap_header = """<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 """
-    
-    # Generate URL entries
+
     url_entries = ""
-    for link in sorted(links):  # Sort for consistent output
+    for link in sorted(links):
         url_entries += f"""  <url>
     <loc>{link}</loc>
     <lastmod>{current_date}</lastmod>
@@ -94,39 +95,21 @@ def generate_sitemap(links, output_file):
     <priority>0.8</priority>
   </url>
 """
-    
-    # XML footer
+
     sitemap_footer = """</urlset>
 """
-    
-    # Write the sitemap to file
+
     with open(output_file, "w", encoding="utf-8") as file:
         file.write(sitemap_header)
         file.write(url_entries)
         file.write(sitemap_footer)
-    
+
     print(f"Sitemap generated: {output_file}")
 
-# Main process
 if __name__ == "__main__":
-    # Step 1: Include all HTML files in the base directory
-    all_links = include_base_directory_html(BASE_URL)
-    
-    # Step 2: Extract all local links from index.html (if it exists)
-    if os.path.isfile(HTML_FILE):
-        local_links = extract_local_links(BASE_URL, HTML_FILE)
-        all_links.update(local_links)
-    
-    # Step 3: Include subdirectory links
-    subdir_links = include_subdirectories(BASE_URL, SUBDIRS)
-    all_links.update(subdir_links)
-    
-    # Step 4: Generate the sitemap.xml file
+    all_links = collect_urls(BASE_URL, ROOT_DIR)
     if all_links:
         generate_sitemap(all_links, SITEMAP_FILE)
         print(f"Total URLs in sitemap: {len(all_links)}")
-        print("URLs included:")
-        for url in sorted(all_links):
-            print(f"  - {url}")
     else:
         print("No links found.")
