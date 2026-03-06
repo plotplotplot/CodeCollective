@@ -27,7 +27,8 @@ sources = {
         "https://www.meetup.com/baltimore-tech-innovation/",
         "https://www.meetup.com/cmap-online/",
         "https://www.meetup.com/cyber-steam-global-innovation-alliance/",
-        "https://www.meetup.com/marylandforwardparty/"
+        "https://www.meetup.com/marylandforwardparty/",
+        "https://www.meetup.com/charm-city-angels-capital-coffee/"
     ],
     "Eventbrite":[
         "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
