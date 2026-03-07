@@ -50,6 +50,7 @@ sources = {
         "https://luma.com/aic-dc-2-9",
         "https://luma.com/dcnightowls",
         "https://luma.com/seecinstitute",
+        "https://lu.ma/user/web3dc",
         "https://luma.com/dc-ai-lab"
     ],
     "Luma Users":[

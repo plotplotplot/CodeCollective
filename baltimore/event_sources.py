@@ -66,7 +66,6 @@ sources = {
         "https://lu.ma/calendar/cal-vzms1nGZmYUUCrj",
         "https://lu.ma/Bmore_Climate",
         "https://luma.com/blk-tech-connect-baltimore",
-        "https://lu.ma/user/web3dc",
         "https://lu.ma/user/charmcityjs",
         "https://lu.ma/mtechumd",
         "https://luma.com/calendar/cal-MVw6HVCN4MEFaNV", # new MTECH
