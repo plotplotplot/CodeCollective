@@ -1,0 +1,1311 @@
+  const DATA_URL = 'https://mgaleg.maryland.gov/2026rs/misc/billsmasterlist/legislation.json';
+  const LOCAL_DATA_URL = '/data/maryland_bills_2026.json';
+  const SPONSOR_DIRECTORY_URL = '/data/mga_sponsors_2026.json';
+  const FILTERS_STORAGE_KEY = 'mdbillsFiltersV1';
+  const DATA_SOURCES = [
+    {
+      label: 'local-cache',
+      url: LOCAL_DATA_URL
+    },
+    {
+      label: 'corsproxy',
+      url: `https://corsproxy.io/?${encodeURIComponent(DATA_URL)}`
+    }
+  ];
+
+  const billsTableBody = document.getElementById('bills-table-body');
+  const billFilterInput = document.getElementById('bill-filter');
+  const sponsorFilterInput = document.getElementById('sponsor-filter');
+  const categoryFilterInput = document.getElementById('category-filter');
+  const searchClearButtons = [...document.querySelectorAll('.search-clear')];
+  const sponsorTableBody = document.getElementById('sponsor-table-body');
+  const categoryTableBody = document.getElementById('category-table-body');
+  const billCount = document.getElementById('bill-count');
+  const billUpdated = document.getElementById('bill-updated');
+  const statusMessage = document.getElementById('status-message');
+  const resetFiltersButton = document.getElementById('reset-filters');
+
+  const billModal = document.getElementById('bill-modal');
+  const billModalTitle = document.getElementById('bill-modal-title');
+  const billModalContent = document.getElementById('bill-modal-content');
+  const billModalClose = document.getElementById('bill-modal-close');
+  const hoverCard = document.getElementById('hover-card');
+
+  let allBills = [];
+  let preparedBills = [];
+  let activeSponsor = '';
+  let activeCategory = '';
+  let activeBill = null;
+  let sponsorDirectory = [];
+  let sponsorStats = new Map();
+  let hoverState = null;
+  let sortColumn = '';
+  let sortDirection = ''; // 'asc', 'desc', or ''
+
+  const COLUMN_FONT_SIZE_CONFIG = {
+    sponsor: { min: 10, max: 20, step: 1, default: 14, storageKey: 'mdbillsFontSizeSponsor' },
+    category: { min: 10, max: 20, step: 1, default: 14, storageKey: 'mdbillsFontSizeCategory' },
+    bills: { min: 10, max: 20, step: 1, default: 14, storageKey: 'mdbillsFontSizeBills' }
+  };
+
+  const columnFontSizes = {
+    sponsor: COLUMN_FONT_SIZE_CONFIG.sponsor.default,
+    category: COLUMN_FONT_SIZE_CONFIG.category.default,
+    bills: COLUMN_FONT_SIZE_CONFIG.bills.default
+  };
+
+  function loadColumnFontSizes() {
+    for (const [column, config] of Object.entries(COLUMN_FONT_SIZE_CONFIG)) {
+      try {
+        const saved = localStorage.getItem(config.storageKey);
+        if (saved) {
+          const parsed = parseInt(saved, 10);
+          if (!Number.isNaN(parsed) && parsed >= config.min && parsed <= config.max) {
+            columnFontSizes[column] = parsed;
+          }
+        }
+      } catch {
+        // Ignore storage errors
+      }
+    }
+    applyColumnFontSizes();
+  }
+
+  function applyColumnFontSizes() {
+    for (const [column, size] of Object.entries(columnFontSizes)) {
+      const element = document.getElementById(`${column}-column`);
+      if (element) {
+        element.style.setProperty('--column-font-size', `${size}px`);
+      }
+    }
+  }
+
+  function applyColumnFontSize(column) {
+    const element = document.getElementById(`${column}-column`);
+    if (element) {
+      element.style.setProperty('--column-font-size', `${columnFontSizes[column]}px`);
+    }
+  }
+
+  function persistColumnFontSize(column) {
+    try {
+      const config = COLUMN_FONT_SIZE_CONFIG[column];
+      if (config) {
+        localStorage.setItem(config.storageKey, String(columnFontSizes[column]));
+      }
+    } catch {
+      // Ignore storage errors
+    }
+  }
+
+  function increaseColumnFontSize(column) {
+    const config = COLUMN_FONT_SIZE_CONFIG[column];
+    if (config && columnFontSizes[column] < config.max) {
+      columnFontSizes[column] = Math.min(config.max, columnFontSizes[column] + config.step);
+      applyColumnFontSize(column);
+      persistColumnFontSize(column);
+    }
+  }
+
+  function decreaseColumnFontSize(column) {
+    const config = COLUMN_FONT_SIZE_CONFIG[column];
+    if (config && columnFontSizes[column] > config.min) {
+      columnFontSizes[column] = Math.max(config.min, columnFontSizes[column] - config.step);
+      applyColumnFontSize(column);
+      persistColumnFontSize(column);
+    }
+  }
+
+  function loadPersistedFilters() {
+    try {
+      const raw = localStorage.getItem(FILTERS_STORAGE_KEY);
+      if (!raw) {
+        return { billQuery: '', sponsorQuery: '', categoryQuery: '', sponsor: '', category: '' };
+      }
+      const parsed = JSON.parse(raw);
+      return {
+        billQuery: String(parsed.billQuery || ''),
+        sponsorQuery: String(parsed.sponsorQuery || ''),
+        categoryQuery: String(parsed.categoryQuery || ''),
+        sponsor: String(parsed.sponsor || ''),
+        category: String(parsed.category || '')
+      };
+    } catch {
+      return { billQuery: '', sponsorQuery: '', categoryQuery: '', sponsor: '', category: '' };
+    }
+  }
+
+  function persistFilters() {
+    localStorage.setItem(FILTERS_STORAGE_KEY, JSON.stringify({
+      billQuery: billFilterInput.value || '',
+      sponsorQuery: sponsorFilterInput.value || '',
+      categoryQuery: categoryFilterInput.value || '',
+      sponsor: activeSponsor,
+      category: activeCategory
+    }));
+  }
+
+  function clearPersistedFilters() {
+    localStorage.removeItem(FILTERS_STORAGE_KEY);
+  }
+
+  function formatDate(value) {
+    if (!value) {
+      return '';
+    }
+
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) {
+      return value;
+    }
+
+    return parsed.toLocaleString(undefined, {
+      dateStyle: 'medium',
+      timeStyle: value.includes('T') ? 'short' : undefined
+    });
+  }
+
+  function summarizeSubjects(subjects) {
+    return (subjects || []).map((subject) => subject.Name).filter(Boolean);
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#39;');
+  }
+
+  function formatHearingDate(bill) {
+    const hearingFields = [
+      bill.HearingDateTimePrimaryHouseOfOrigin,
+      bill.HearingDateTimeSecondaryHouseOfOrigin,
+      bill.HearingDateTimePrimaryOppositeHouse,
+      bill.HearingDateTimeSecondaryOppositeHouse
+    ];
+    const dates = hearingFields
+      .filter(Boolean)
+      .map((d) => new Date(d))
+      .filter((d) => !Number.isNaN(d.getTime()))
+      .sort((a, b) => a - b);
+    return dates.length ? dates[0].toLocaleDateString(undefined, { dateStyle: 'medium' }) : '';
+  }
+
+  function searchableText(bill) {
+    return [
+      bill.BillNumber,
+      bill.CrossfileBillNumber,
+      bill.Title,
+      bill.Status,
+      bill.SponsorPrimary,
+      bill.Synopsis,
+      bill.CommitteePrimaryOrigin,
+      bill.CommitteePrimaryOpposite,
+      bill.BillType,
+      bill.BillVersion,
+      formatHearingDate(bill),
+      ...summarizeSubjects(bill.BroadSubjects),
+      ...summarizeSubjects(bill.NarrowSubjects),
+      ...(bill.Sponsors || []).map((sponsor) => sponsor.Name)
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .toLowerCase();
+  }
+
+  function extractCategories(bill) {
+    const names = [
+      ...summarizeSubjects(bill.BroadSubjects),
+      ...summarizeSubjects(bill.NarrowSubjects)
+    ];
+    return [...new Set(names.map((name) => String(name || '').trim()).filter(Boolean))];
+  }
+
+  function buildPreparedBills(bills) {
+    return bills.map((bill, index) => ({
+      index,
+      bill,
+      searchText: searchableText(bill),
+      sponsor: String(bill.SponsorPrimary || '').trim(),
+      categories: extractCategories(bill)
+    }));
+  }
+
+  function updateSearchClearButtons() {
+    for (const button of searchClearButtons) {
+      const targetId = button.dataset.clearTarget;
+      const target = targetId ? document.getElementById(targetId) : null;
+      const hasValue = Boolean(target && target.value.trim());
+      button.classList.toggle('visible', hasValue);
+    }
+  }
+
+  function renderSponsorTable() {
+    hideHoverCard();
+    const sponsorQuery = sponsorFilterInput.value.trim().toLowerCase();
+    const sponsorCounts = new Map();
+    for (const bill of allBills) {
+      const sponsor = String(bill.SponsorPrimary || 'Unknown sponsor').trim() || 'Unknown sponsor';
+      sponsorCounts.set(sponsor, (sponsorCounts.get(sponsor) || 0) + 1);
+    }
+
+    const rows = [...sponsorCounts.entries()]
+      .filter(([sponsor]) => !sponsorQuery || sponsor.toLowerCase().includes(sponsorQuery))
+      .sort((a, b) => (b[1] - a[1]) || a[0].localeCompare(b[0]))
+      .map(([sponsor, count]) => `
+        <div class="list-row">
+          <button type="button" class="sponsor-button${sponsor === activeSponsor ? ' active' : ''}" data-sponsor="${escapeHtml(sponsor)}">
+            ${escapeHtml(sponsor)}
+          </button>
+          <span class="list-count">${count.toLocaleString()}</span>
+        </div>
+      `)
+      .join('');
+
+    sponsorTableBody.innerHTML = rows || '<div class="list-row"><span>No sponsor data available.</span><span class="list-count">0</span></div>';
+  }
+
+  function renderCategoryTable() {
+    hideHoverCard();
+    const categoryQuery = categoryFilterInput.value.trim().toLowerCase();
+    const relevantBills = preparedBills.filter((entry) => !activeSponsor || entry.sponsor === activeSponsor);
+    const categoryCounts = new Map();
+
+    for (const entry of relevantBills) {
+      const categories = entry.categories.length ? entry.categories : ['Uncategorized'];
+      for (const category of categories) {
+        categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
+      }
+    }
+
+    if (activeCategory && !categoryCounts.has(activeCategory)) {
+      activeCategory = '';
+    }
+
+    const rows = [...categoryCounts.entries()]
+      .filter(([category]) => !categoryQuery || category.toLowerCase().includes(categoryQuery))
+      .sort((a, b) => (b[1] - a[1]) || a[0].localeCompare(b[0]))
+      .map(([category, count]) => `
+        <div class="list-row">
+          <button type="button" class="sponsor-button${category === activeCategory ? ' active' : ''}" data-category="${escapeHtml(category)}">
+            ${escapeHtml(category)}
+          </button>
+          <span class="list-count">${count.toLocaleString()}</span>
+        </div>
+      `)
+      .join('');
+
+    categoryTableBody.innerHTML = rows || '<div class="list-row"><span>No category data available.</span><span class="list-count">0</span></div>';
+  }
+
+  function updateActiveSponsor(nextSponsor) {
+    activeSponsor = activeSponsor === nextSponsor ? '' : nextSponsor;
+    renderSponsorTable();
+    renderCategoryTable();
+    persistFilters();
+    renderBills();
+  }
+
+  function updateActiveCategory(nextCategory) {
+    activeCategory = activeCategory === nextCategory ? '' : nextCategory;
+    renderCategoryTable();
+    persistFilters();
+    renderBills();
+  }
+
+  function createBillRowMarkup(entry) {
+    const { bill, index } = entry;
+    return `
+      <tr>
+        <td class="bill-number-cell" data-bill-index="${index}">${escapeHtml(bill.BillNumber || 'N/A')}</td>
+        <td>
+          <p class="bill-title">
+            <button type="button" class="bill-title-button" data-bill-index="${index}">
+              ${escapeHtml(bill.Title || 'Untitled Bill')}
+            </button>
+          </p>
+        </td>
+        <td>
+          <button type="button" class="bill-sponsor-button" data-sponsor-name="${escapeHtml(String(bill.SponsorPrimary || 'Unknown sponsor').trim() || 'Unknown sponsor')}">
+            ${escapeHtml(bill.SponsorPrimary || 'Unknown sponsor')}
+          </button>
+        </td>
+        <td>${escapeHtml(bill.Status || 'Status unavailable')}</td>
+        <td>${escapeHtml(formatHearingDate(bill) || 'N/A')}</td>
+      </tr>
+    `;
+  }
+
+  function stringifyValue(value) {
+    if (value === null || value === undefined || value === '') {
+      return 'N/A';
+    }
+    if (Array.isArray(value)) {
+      return value.length ? value.join(', ') : 'N/A';
+    }
+    if (typeof value === 'object') {
+      return JSON.stringify(value);
+    }
+    return String(value);
+  }
+
+  function normalizePersonName(value) {
+    return String(value || '')
+      .toLowerCase()
+      .replace(/\b(senator|delegate)\b/g, '')
+      .replace(/[^a-z0-9,\s]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function expandNameCandidates(name) {
+    const clean = normalizePersonName(name);
+    if (!clean) {
+      return [];
+    }
+    const out = new Set([clean]);
+    if (clean.includes(',')) {
+      const [last, first] = clean.split(',').map((part) => part.trim()).filter(Boolean);
+      if (first && last) {
+        out.add(`${first} ${last}`.trim());
+      }
+    }
+    return [...out];
+  }
+
+  function findDirectoryRecordBySponsorName(sponsorName) {
+    if (!sponsorDirectory.length) {
+      return null;
+    }
+    const targets = expandNameCandidates(sponsorName);
+    if (!targets.length) {
+      return null;
+    }
+
+    // First pass: exact normalized matches against heading and slug.
+    for (const rec of sponsorDirectory) {
+      const heading = normalizePersonName(rec.name_heading || '');
+      const slug = normalizePersonName(String(rec.slug || '').replace(/[0-9]+$/g, ''));
+      if (targets.includes(heading) || targets.includes(slug)) {
+        return rec;
+      }
+    }
+
+    // Second pass: last-name fallback if unique.
+    const targetLast = targets[0].split(' ').filter(Boolean).at(-1);
+    if (!targetLast) {
+      return null;
+    }
+    const matches = sponsorDirectory.filter((rec) => {
+      const headingTokens = normalizePersonName(rec.name_heading || '').split(' ').filter(Boolean);
+      return headingTokens.at(-1) === targetLast;
+    });
+    return matches.length === 1 ? matches[0] : null;
+  }
+
+  function getImageSource(imageRecord) {
+    if (!imageRecord) {
+      return '';
+    }
+    if (imageRecord.path) {
+      return String(imageRecord.path);
+    }
+    if (imageRecord.base64 && imageRecord.mime_type) {
+      return `data:${imageRecord.mime_type};base64,${imageRecord.base64}`;
+    }
+    return '';
+  }
+
+  function buildSponsorImageMarkup(sponsorName, directoryRecord) {
+    if (!directoryRecord) {
+      return '';
+    }
+    const portraitSrc = getImageSource(directoryRecord.portrait_image);
+    const standardizedSrc = getImageSource(directoryRecord.standardized_district_map_image);
+    const districtSrc = getImageSource(directoryRecord.district_map_image);
+    const blocks = [];
+    if (portraitSrc) {
+      blocks.push(`
+        <figure>
+          <img alt="Sponsor portrait for ${escapeHtml(sponsorName)}" src="${escapeHtml(portraitSrc)}">
+          <figcaption>Portrait</figcaption>
+        </figure>
+      `);
+    }
+    if (standardizedSrc) {
+      blocks.push(`
+        <figure>
+          <img alt="Standardized Maryland district map for ${escapeHtml(sponsorName)}" src="${escapeHtml(standardizedSrc)}">
+          <figcaption>Maryland District Context Map</figcaption>
+        </figure>
+      `);
+    }
+    if (districtSrc) {
+      blocks.push(`
+        <figure>
+          <img alt="District map for ${escapeHtml(sponsorName)}" src="${escapeHtml(districtSrc)}">
+          <figcaption>Source District Map</figcaption>
+        </figure>
+      `);
+    }
+    return blocks.length ? `<section class="hover-card-images">${blocks.join('')}</section>` : '';
+  }
+
+  function truncateText(text, maxLength) {
+    const normalized = String(text || '').replace(/\s+/g, ' ').trim();
+    if (!normalized) {
+      return '';
+    }
+    if (normalized.length <= maxLength) {
+      return normalized;
+    }
+    return `${normalized.slice(0, Math.max(0, maxLength - 1)).trimEnd()}…`;
+  }
+
+  function rebuildSponsorStats() {
+    const nextStats = new Map();
+    for (const bill of allBills) {
+      const primary = String(bill.SponsorPrimary || 'Unknown sponsor').trim() || 'Unknown sponsor';
+      if (!nextStats.has(primary)) {
+        nextStats.set(primary, { primaryCount: 0, involvedCount: 0 });
+      }
+      nextStats.get(primary).primaryCount += 1;
+
+      const participants = new Set([primary]);
+      for (const sponsor of (bill.Sponsors || [])) {
+        const name = String(sponsor.Name || '').trim();
+        if (name) {
+          participants.add(name);
+        }
+      }
+      for (const name of participants) {
+        if (!nextStats.has(name)) {
+          nextStats.set(name, { primaryCount: 0, involvedCount: 0 });
+        }
+        nextStats.get(name).involvedCount += 1;
+      }
+    }
+    sponsorStats = nextStats;
+  }
+
+  function inferMarylandRegionFromCounty(countyValue) {
+    const value = String(countyValue || '').toLowerCase();
+    if (!value) {
+      return '';
+    }
+    if (value.includes('allegany') || value.includes('garrett') || value.includes('washington')) {
+      return 'Western Maryland';
+    }
+    if (value.includes('cecil') || value.includes('kent') || value.includes('queen anne')
+      || value.includes('caroline') || value.includes('talbot') || value.includes('dorchester')
+      || value.includes('wicomico') || value.includes('somerset') || value.includes('worcester')) {
+      return 'Eastern Shore';
+    }
+    if (value.includes('calvert') || value.includes('charles') || value.includes('st. mary')
+      || value.includes('st mary')) {
+      return 'Southern Maryland';
+    }
+    if (value.includes('anne arundel') || value.includes('baltimore') || value.includes('howard')
+      || value.includes('harford') || value.includes('carroll') || value.includes('frederick')
+      || value.includes('montgomery') || value.includes('prince george')) {
+      return 'Central Maryland';
+    }
+    return 'Maryland';
+  }
+
+  function buildSponsorHoverMarkup(sponsorName) {
+    const directoryRecord = findDirectoryRecordBySponsorName(sponsorName);
+    const stats = sponsorStats.get(sponsorName) || { primaryCount: 0, involvedCount: 0 };
+    const imageMarkup = buildSponsorImageMarkup(sponsorName, directoryRecord);
+    const metaParts = [];
+    if (directoryRecord?.party) {
+      metaParts.push(String(directoryRecord.party));
+    }
+    if (directoryRecord?.chamber) {
+      metaParts.push(String(directoryRecord.chamber));
+    }
+    if (directoryRecord?.district) {
+      metaParts.push(`District ${directoryRecord.district}`);
+    }
+    if (directoryRecord?.county) {
+      metaParts.push(String(directoryRecord.county));
+    }
+    const region = inferMarylandRegionFromCounty(directoryRecord?.county || '');
+    if (region) {
+      metaParts.push(region);
+    }
+    return `
+      <p class="hover-card-kicker">Sponsor</p>
+      <h3>${escapeHtml(sponsorName)}</h3>
+      <p class="hover-card-meta">Primary bills: ${stats.primaryCount.toLocaleString()} | Bills involved: ${stats.involvedCount.toLocaleString()}</p>
+      ${metaParts.length ? `<p class="hover-card-meta">${escapeHtml(metaParts.join(' | '))}</p>` : ''}
+      ${imageMarkup}
+    `;
+  }
+
+  function buildBillHoverMarkup(bill) {
+    const sponsorName = String(bill.SponsorPrimary || 'Unknown sponsor').trim() || 'Unknown sponsor';
+    const synopsis = String(bill.Synopsis || '').trim();
+    const categories = extractCategories(bill).slice(0, 3);
+    return `
+      <p class="hover-card-kicker">Bill</p>
+      <h3>${escapeHtml(bill.BillNumber || 'N/A')} ${escapeHtml(bill.Title || '')}</h3>
+      <p class="hover-card-meta">Sponsor: ${escapeHtml(sponsorName)}</p>
+      <p class="hover-card-meta">Status: ${escapeHtml(bill.Status || 'Status unavailable')}</p>
+      <p class="hover-card-meta">Hearing: ${escapeHtml(formatHearingDate(bill) || 'N/A')}</p>
+      ${categories.length ? `<p class="hover-card-meta hover-card-meta-accent">Subjects: ${escapeHtml(categories.join(' | '))}</p>` : ''}
+      ${synopsis ? `<p>${escapeHtml(synopsis)}</p>` : ''}
+    `;
+  }
+
+  function buildCategoryHoverMarkup(categoryName) {
+    const relevantEntries = preparedBills
+      .filter((entry) => !activeSponsor || entry.sponsor === activeSponsor)
+      .filter((entry) => categoryName === 'Uncategorized'
+        ? entry.categories.length === 0
+        : entry.categories.includes(categoryName));
+
+    const statuses = new Map();
+    const sponsors = new Map();
+    for (const entry of relevantEntries) {
+      const bill = entry.bill;
+      const status = String(bill.Status || 'Unknown').trim() || 'Unknown';
+      statuses.set(status, (statuses.get(status) || 0) + 1);
+      const sponsor = String(bill.SponsorPrimary || 'Unknown sponsor').trim() || 'Unknown sponsor';
+      sponsors.set(sponsor, (sponsors.get(sponsor) || 0) + 1);
+    }
+
+    const topStatuses = [...statuses.entries()]
+      .sort((a, b) => (b[1] - a[1]) || a[0].localeCompare(b[0]))
+      .slice(0, 5)
+      .map(([name, count]) => `${name} (${count})`);
+    const topSponsors = [...sponsors.entries()]
+      .sort((a, b) => (b[1] - a[1]) || a[0].localeCompare(b[0]))
+      .slice(0, 5)
+      .map(([name, count]) => `${name} (${count})`);
+
+    const billTitles = relevantEntries
+      .slice(0, 5)
+      .map((entry) => `${entry.bill.BillNumber || 'N/A'}: ${truncateText(entry.bill.Title, 60)}`);
+
+    return `
+      <p class="hover-card-kicker">Category</p>
+      <h3>${escapeHtml(categoryName)}</h3>
+      <p class="hover-card-meta">Bills in category: ${relevantEntries.length.toLocaleString()}</p>
+      ${activeSponsor ? `<p class="hover-card-meta">Sponsor filter: ${escapeHtml(activeSponsor)}</p>` : ''}
+      ${billTitles.length ? `<p class="hover-card-meta hover-card-meta-accent">Bill titles:</p><p class="hover-card-meta">${billTitles.map((t) => escapeHtml(t)).join('<br>')}</p>` : ''}
+      ${topStatuses.length ? `<p class="hover-card-meta hover-card-meta-accent">Top statuses: ${escapeHtml(topStatuses.join(' | '))}</p>` : ''}
+      ${topSponsors.length ? `<p class="hover-card-meta">Top sponsors: ${escapeHtml(topSponsors.join(' | '))}</p>` : ''}
+    `;
+  }
+
+  function positionHoverCard(clientX, clientY) {
+    if (!hoverCard) {
+      return;
+    }
+    const gap = 12;
+    const rect = hoverCard.getBoundingClientRect();
+    let left = clientX + gap;
+    let top = clientY + gap;
+    if (left + rect.width > window.innerWidth - 8) {
+      left = clientX - rect.width - gap;
+    }
+    if (top + rect.height > window.innerHeight - 8) {
+      top = clientY - rect.height - gap;
+    }
+    left = Math.max(8, Math.min(left, window.innerWidth - rect.width - 8));
+    top = Math.max(8, Math.min(top, window.innerHeight - rect.height - 8));
+    hoverCard.style.left = `${left}px`;
+    hoverCard.style.top = `${top}px`;
+  }
+
+  function showHoverCard(markup, clientX, clientY) {
+    if (!hoverCard || billModal.classList.contains('open')) {
+      return;
+    }
+    hoverCard.innerHTML = markup;
+    hoverCard.classList.remove('left-overlay');
+    hoverCard.classList.remove('right-overlay');
+    hoverCard.style.height = '';
+    hoverCard.style.maxHeight = '';
+    hoverCard.classList.add('open');
+    hoverCard.setAttribute('aria-hidden', 'false');
+    positionHoverCard(clientX, clientY);
+  }
+
+  function positionLeftOverlayCard() {
+    if (!hoverCard) {
+      return;
+    }
+    const left = 10;
+    const top = 84;
+    const height = Math.max(220, window.innerHeight - top - 10);
+    hoverCard.style.left = `${left}px`;
+    hoverCard.style.top = `${top}px`;
+    hoverCard.style.height = `${height}px`;
+    hoverCard.style.maxHeight = `${height}px`;
+  }
+
+  function positionRightOverlayCard() {
+    if (!hoverCard) {
+      return;
+    }
+    const top = 84;
+    const height = Math.max(220, window.innerHeight - top - 10);
+    const width = hoverCard.offsetWidth;
+    const rightGap = 10;
+    const left = Math.max(10, window.innerWidth - width - rightGap);
+    hoverCard.style.left = `${left}px`;
+    hoverCard.style.top = `${top}px`;
+    hoverCard.style.height = `${height}px`;
+    hoverCard.style.maxHeight = `${height}px`;
+  }
+
+  function hideHoverCard() {
+    if (!hoverCard) {
+      return;
+    }
+    hoverCard.classList.remove('open');
+    hoverCard.classList.remove('left-overlay');
+    hoverCard.classList.remove('right-overlay');
+    hoverCard.setAttribute('aria-hidden', 'true');
+    hoverCard.innerHTML = '';
+    hoverState = null;
+  }
+
+  function showSponsorHover(sponsorName, side = 'left') {
+    hoverState = { type: 'sponsor', name: sponsorName };
+    showHoverCard(buildSponsorHoverMarkup(sponsorName), 14, 120);
+    if (side === 'right') {
+      hoverCard.classList.add('right-overlay');
+      positionRightOverlayCard();
+    } else {
+      hoverCard.classList.add('left-overlay');
+      positionLeftOverlayCard();
+    }
+  }
+
+  function showCategoryHover(categoryName) {
+    hoverState = { type: 'category', name: categoryName };
+    showHoverCard(buildCategoryHoverMarkup(categoryName), 14, 120);
+    hoverCard.classList.add('right-overlay');
+    positionRightOverlayCard();
+  }
+
+  function showBillHover(bill, positionSource) {
+    hoverState = { type: 'bill', id: bill.BillID || bill.BillNumber || '' };
+    showHoverCard(buildBillHoverMarkup(bill), 14, 120);
+    hoverCard.classList.add('left-overlay');
+    positionLeftOverlayCard();
+  }
+
+  function renderBillModal(bill) {
+    const broad = summarizeSubjects(bill.BroadSubjects);
+    const narrow = summarizeSubjects(bill.NarrowSubjects);
+    const sponsors = (bill.Sponsors || []).map((s) => s.Name).filter(Boolean);
+    const fields = [
+      ['Bill Number', bill.BillNumber],
+      ['Crossfile Bill Number', bill.CrossfileBillNumber],
+      ['Title', bill.Title],
+      ['Status', bill.Status],
+      ['Primary Sponsor', bill.SponsorPrimary],
+      ['Sponsors', sponsors],
+      ['Synopsis', bill.Synopsis],
+      ['Year/Session', bill.YearAndSession],
+      ['Bill Type', bill.BillType],
+      ['Bill Version', bill.BillVersion],
+      ['Committee (Origin)', bill.CommitteePrimaryOrigin],
+      ['Committee (Opposite)', bill.CommitteePrimaryOpposite],
+      ['First Reading (House of Origin)', formatDate(bill.FirstReadingDateHouseOfOrigin)],
+      ['Status Current As Of', formatDate(bill.StatusCurrentAsOf)],
+      ['Broad Subjects', broad],
+      ['Narrow Subjects', narrow]
+    ];
+
+    const knownKeys = new Set([
+      'BillID',
+      'BillNumber',
+      'CrossfileBillNumber',
+      'Title',
+      'Status',
+      'SponsorPrimary',
+      'Sponsors',
+      'Synopsis',
+      'YearAndSession',
+      'BillType',
+      'BillVersion',
+      'CommitteePrimaryOrigin',
+      'CommitteePrimaryOpposite',
+      'FirstReadingDateHouseOfOrigin',
+      'StatusCurrentAsOf',
+      'BroadSubjects',
+      'NarrowSubjects'
+    ]);
+
+    for (const [key, value] of Object.entries(bill)) {
+      if (!knownKeys.has(key)) {
+        fields.push([key, value]);
+      }
+    }
+
+    billModalTitle.textContent = bill.BillNumber
+      ? `${bill.BillNumber} Details`
+      : 'Bill Details';
+    billModalContent.innerHTML = `
+      <table class="bill-detail-table">
+        <tbody>
+          ${fields.map(([label, value]) => `
+            <tr>
+              <th>${escapeHtml(label)}</th>
+              <td>${escapeHtml(stringifyValue(value))}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
+  }
+
+  function openBillModal(bill) {
+    activeBill = bill;
+    renderBillModal(bill);
+    billModal.classList.add('open');
+    billModalClose.focus();
+  }
+
+  function billIncludesSponsor(bill, sponsorName) {
+    if ((String(bill.SponsorPrimary || '').trim() || 'Unknown sponsor') === sponsorName) {
+      return true;
+    }
+    const listedSponsors = (bill.Sponsors || []).map((s) => String(s.Name || '').trim());
+    return listedSponsors.includes(sponsorName);
+  }
+
+  function renderSponsorModal(sponsorName) {
+    const involvedBills = allBills.filter((bill) => billIncludesSponsor(bill, sponsorName));
+    const primaryBills = allBills.filter((bill) => (String(bill.SponsorPrimary || '').trim() || 'Unknown sponsor') === sponsorName);
+    const sponsorRecords = [];
+    for (const bill of involvedBills) {
+      for (const sponsor of (bill.Sponsors || [])) {
+        if (String(sponsor.Name || '').trim() === sponsorName) {
+          sponsorRecords.push(sponsor);
+        }
+      }
+    }
+
+    const statusCounts = new Map();
+    const categoryCounts = new Map();
+    for (const bill of involvedBills) {
+      const status = String(bill.Status || 'Unknown').trim() || 'Unknown';
+      statusCounts.set(status, (statusCounts.get(status) || 0) + 1);
+      const categories = extractCategories(bill);
+      const categoryList = categories.length ? categories : ['Uncategorized'];
+      for (const category of categoryList) {
+        categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
+      }
+    }
+
+    const extraRecordValues = new Map();
+    for (const record of sponsorRecords) {
+      for (const [key, value] of Object.entries(record)) {
+        if (key === 'Name') {
+          continue;
+        }
+        if (!extraRecordValues.has(key)) {
+          extraRecordValues.set(key, new Set());
+        }
+        extraRecordValues.get(key).add(stringifyValue(value));
+      }
+    }
+
+    const fields = [
+      ['Sponsor Name', sponsorName],
+      ['Primary Sponsored Bills', primaryBills.length.toLocaleString()],
+      ['All Bills Involved', involvedBills.length.toLocaleString()],
+      ['Primary Bill Numbers', primaryBills.map((bill) => bill.BillNumber).filter(Boolean)],
+      ['All Bill Numbers', involvedBills.map((bill) => bill.BillNumber).filter(Boolean)],
+      ['Status Breakdown', [...statusCounts.entries()].sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k} (${v})`)],
+      ['Category Breakdown', [...categoryCounts.entries()].sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k} (${v})`)],
+      ['Sponsor Record Count', sponsorRecords.length.toLocaleString()]
+    ];
+
+    for (const [key, values] of extraRecordValues.entries()) {
+      fields.push([`Sponsor ${key}`, [...values]]);
+    }
+
+    const directoryRecord = findDirectoryRecordBySponsorName(sponsorName);
+    let imageSection = '';
+    if (directoryRecord) {
+      fields.push(['Directory Name', directoryRecord.name_heading || 'N/A']);
+      fields.push(['Chamber', directoryRecord.chamber || 'N/A']);
+      fields.push(['District', directoryRecord.district || 'N/A']);
+      fields.push(['County', directoryRecord.county || 'N/A']);
+      fields.push(['Party', directoryRecord.party || 'N/A']);
+      fields.push(['Committee Assignment(s)', directoryRecord.committee_assignments || []]);
+      fields.push(['Contact Emails', directoryRecord.contact_emails || []]);
+      fields.push(['Annapolis Info', directoryRecord.annapolis_info || []]);
+      fields.push(['Interim Info', directoryRecord.interim_info || []]);
+      fields.push(['MGA Detail URL', directoryRecord.detail_url || 'N/A']);
+
+      const imageBlocks = [];
+      const portraitSrc = getImageSource(directoryRecord.portrait_image);
+      if (portraitSrc) {
+        imageBlocks.push(`
+          <figure>
+            <img alt="Sponsor portrait for ${escapeHtml(sponsorName)}" src="${escapeHtml(portraitSrc)}">
+            <figcaption>Portrait</figcaption>
+          </figure>
+        `);
+      }
+      const standardizedSrc = getImageSource(directoryRecord.standardized_district_map_image);
+      if (standardizedSrc) {
+        imageBlocks.push(`
+          <figure>
+            <img alt="Standardized Maryland district map for ${escapeHtml(sponsorName)}" src="${escapeHtml(standardizedSrc)}">
+            <figcaption>Maryland District Context Map</figcaption>
+          </figure>
+        `);
+      }
+      const districtSrc = getImageSource(directoryRecord.district_map_image);
+      if (districtSrc) {
+        imageBlocks.push(`
+          <figure>
+            <img alt="District map for ${escapeHtml(sponsorName)}" src="${escapeHtml(districtSrc)}">
+            <figcaption>Source District Map</figcaption>
+          </figure>
+        `);
+      }
+
+      if (imageBlocks.length) {
+        imageSection = `<section class="sponsor-modal-images">${imageBlocks.join('')}</section>`;
+      }
+    }
+
+    billModalTitle.textContent = `Sponsor: ${sponsorName}`;
+    billModalContent.innerHTML = `
+      ${imageSection}
+      <table class="bill-detail-table">
+        <tbody>
+          ${fields.map(([label, value]) => `
+            <tr>
+              <th>${escapeHtml(label)}</th>
+              <td>${escapeHtml(stringifyValue(value))}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
+  }
+
+  function openSponsorModal(sponsorName) {
+    hideHoverCard();
+    activeBill = null;
+    renderSponsorModal(sponsorName);
+    billModal.classList.add('open');
+    billModalClose.focus();
+  }
+
+  function closeBillModal() {
+    activeBill = null;
+    billModal.classList.remove('open');
+  }
+
+  function getSortValue(entry, column) {
+    const { bill } = entry;
+    switch (column) {
+      case 'billNumber':
+        return String(bill.BillNumber || '').toLowerCase();
+      case 'title':
+        return String(bill.Title || '').toLowerCase();
+      case 'sponsor':
+        return String(bill.SponsorPrimary || '').toLowerCase();
+      case 'status':
+        return String(bill.Status || '').toLowerCase();
+      case 'hearingDate': {
+        const dateStr = formatHearingDate(bill);
+        return dateStr ? new Date(dateStr).getTime() : Number.POSITIVE_INFINITY;
+      }
+      default:
+        return '';
+    }
+  }
+
+  function sortEntries(entries, column, direction) {
+    if (!column || !direction) {
+      return entries;
+    }
+    const sorted = [...entries];
+    sorted.sort((a, b) => {
+      const aVal = getSortValue(a, column);
+      const bVal = getSortValue(b, column);
+      if (aVal < bVal) return direction === 'asc' ? -1 : 1;
+      if (aVal > bVal) return direction === 'asc' ? 1 : -1;
+      return 0;
+    });
+    return sorted;
+  }
+
+  function updateSortIndicators() {
+    document.querySelectorAll('.bills-table th.sortable').forEach((th) => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.sort === sortColumn) {
+        if (sortDirection === 'asc') {
+          th.classList.add('sort-asc');
+        } else if (sortDirection === 'desc') {
+          th.classList.add('sort-desc');
+        }
+      }
+    });
+  }
+
+  function cycleSort(column) {
+    if (sortColumn === column) {
+      // Cycle: asc -> desc -> none
+      if (sortDirection === 'asc') {
+        sortDirection = 'desc';
+      } else if (sortDirection === 'desc') {
+        sortColumn = '';
+        sortDirection = '';
+      }
+    } else {
+      sortColumn = column;
+      sortDirection = 'asc';
+    }
+    updateSortIndicators();
+    renderBills();
+  }
+
+  function renderBills() {
+    hideHoverCard();
+    const query = billFilterInput.value.trim().toLowerCase();
+    let filteredEntries = preparedBills
+      .filter((entry) => !activeSponsor || entry.sponsor === activeSponsor)
+      .filter((entry) => !activeCategory
+        || entry.categories.includes(activeCategory)
+        || (activeCategory === 'Uncategorized' && entry.categories.length === 0))
+      .filter((entry) => !query || entry.searchText.includes(query));
+
+    filteredEntries = sortEntries(filteredEntries, sortColumn, sortDirection);
+
+    billCount.textContent = `${filteredEntries.length.toLocaleString()} of ${allBills.length.toLocaleString()} bills shown`;
+    statusMessage.textContent = filteredEntries.length
+      ? ''
+      : 'No bills matched that filter.';
+
+    billsTableBody.innerHTML = filteredEntries.length
+      ? filteredEntries.map(createBillRowMarkup).join('')
+      : '<tr><td colspan="5">No bills matched that filter.</td></tr>';
+  }
+
+  function resetFilters() {
+    activeSponsor = '';
+    activeCategory = '';
+    sortColumn = '';
+    sortDirection = '';
+    billFilterInput.value = '';
+    sponsorFilterInput.value = '';
+    categoryFilterInput.value = '';
+    clearPersistedFilters();
+    updateSortIndicators();
+    renderSponsorTable();
+    renderCategoryTable();
+    renderBills();
+    updateSearchClearButtons();
+  }
+
+  async function fetchBillsData() {
+    const errors = [];
+
+    for (const source of DATA_SOURCES) {
+      try {
+        const response = await fetch(source.url, { cache: 'no-store' });
+        if (!response.ok) {
+          throw new Error(`status ${response.status}`);
+        }
+
+        // Some proxies return JSON as plain text, so parse defensively.
+        const text = await response.text();
+        const parsed = JSON.parse(text);
+        if (!Array.isArray(parsed)) {
+          throw new Error('unexpected payload shape');
+        }
+
+        return { bills: parsed, source: source.label };
+      } catch (error) {
+        errors.push(`${source.label}: ${error.message}`);
+      }
+    }
+
+    throw new Error(errors.join(' | '));
+  }
+
+  async function loadBills() {
+    try {
+      // Load sponsor directory data for richer sponsor modal details.
+      try {
+        const sponsorResp = await fetch(SPONSOR_DIRECTORY_URL, { cache: 'no-store' });
+        if (sponsorResp.ok) {
+          const sponsorPayload = await sponsorResp.json();
+          sponsorDirectory = Array.isArray(sponsorPayload.records) ? sponsorPayload.records : [];
+        }
+      } catch (sponsorErr) {
+        console.warn('Sponsor directory unavailable:', sponsorErr);
+      }
+
+      const persisted = loadPersistedFilters();
+      const { bills, source } = await fetchBillsData();
+      allBills = bills;
+      preparedBills = buildPreparedBills(allBills);
+      rebuildSponsorStats();
+      billFilterInput.value = persisted.billQuery;
+      sponsorFilterInput.value = persisted.sponsorQuery;
+      categoryFilterInput.value = persisted.categoryQuery;
+      activeSponsor = persisted.sponsor;
+      activeCategory = persisted.category;
+      const sponsorSet = new Set(allBills.map((bill) => String(bill.SponsorPrimary || '').trim() || 'Unknown sponsor'));
+      if (activeSponsor && !sponsorSet.has(activeSponsor)) {
+        activeSponsor = '';
+      }
+      renderSponsorTable();
+      renderCategoryTable();
+      persistFilters();
+      updateSearchClearButtons();
+      const latestTimestamp = allBills
+        .map((bill) => bill.StatusCurrentAsOf)
+        .filter(Boolean)
+        .sort()
+        .at(-1);
+
+      billUpdated.textContent = latestTimestamp
+        ? `Data current as of ${formatDate(latestTimestamp)}`
+        : '';
+      statusMessage.textContent = source === 'corsproxy'
+        ? 'Loaded via fallback proxy because browser CORS blocks direct source on localhost.'
+        : '';
+      renderBills();
+    } catch (error) {
+      statusMessage.textContent = `Unable to load Maryland bill data: ${error.message}`;
+      billCount.textContent = '0 bills shown';
+      billUpdated.textContent = '';
+    }
+  }
+
+  billFilterInput.addEventListener('input', renderBills);
+  billFilterInput.addEventListener('input', persistFilters);
+  billFilterInput.addEventListener('input', updateSearchClearButtons);
+  sponsorFilterInput.addEventListener('input', renderSponsorTable);
+  sponsorFilterInput.addEventListener('input', persistFilters);
+  sponsorFilterInput.addEventListener('input', updateSearchClearButtons);
+  categoryFilterInput.addEventListener('input', renderCategoryTable);
+  categoryFilterInput.addEventListener('input', persistFilters);
+  categoryFilterInput.addEventListener('input', updateSearchClearButtons);
+  for (const button of searchClearButtons) {
+    button.addEventListener('click', () => {
+      const targetId = button.dataset.clearTarget;
+      const target = targetId ? document.getElementById(targetId) : null;
+      if (!target) {
+        return;
+      }
+      target.value = '';
+      target.focus();
+      if (target === billFilterInput) {
+        renderBills();
+      } else if (target === sponsorFilterInput) {
+        renderSponsorTable();
+      } else if (target === categoryFilterInput) {
+        renderCategoryTable();
+      }
+      persistFilters();
+      updateSearchClearButtons();
+    });
+  }
+  sponsorTableBody.addEventListener('click', (event) => {
+    const button = event.target.closest('.sponsor-button');
+    if (!button) {
+      return;
+    }
+    updateActiveSponsor(button.dataset.sponsor || '');
+  });
+  categoryTableBody.addEventListener('click', (event) => {
+    const button = event.target.closest('.sponsor-button');
+    if (!button) {
+      return;
+    }
+    updateActiveCategory(button.dataset.category || '');
+  });
+  billsTableBody.addEventListener('click', (event) => {
+    const sponsorButton = event.target.closest('.bill-sponsor-button');
+    if (sponsorButton) {
+      openSponsorModal(sponsorButton.dataset.sponsorName || 'Unknown sponsor');
+      return;
+    }
+
+    const button = event.target.closest('.bill-title-button');
+    if (!button) {
+      return;
+    }
+    const index = Number(button.dataset.billIndex);
+    const bill = Number.isInteger(index) ? allBills[index] : null;
+    if (bill) {
+      hideHoverCard();
+      openBillModal(bill);
+    }
+  });
+  sponsorTableBody.addEventListener('mouseover', (event) => {
+    const button = event.target.closest('.sponsor-button');
+    if (!button) {
+      return;
+    }
+    const sponsorName = String(button.dataset.sponsor || '').trim();
+    if (!sponsorName) {
+      return;
+    }
+    showSponsorHover(sponsorName, 'right');
+  });
+  sponsorTableBody.addEventListener('mousemove', (event) => {
+    if (!hoverState || !hoverCard.classList.contains('open')
+      || hoverCard.classList.contains('left-overlay')
+      || hoverCard.classList.contains('right-overlay')) {
+      return;
+    }
+    positionHoverCard(event.clientX, event.clientY);
+  });
+  sponsorTableBody.addEventListener('mouseleave', hideHoverCard);
+  sponsorTableBody.addEventListener('focusin', (event) => {
+    const button = event.target.closest('.sponsor-button');
+    if (!button) {
+      return;
+    }
+    const sponsorName = String(button.dataset.sponsor || '').trim();
+    if (sponsorName) {
+      showSponsorHover(sponsorName, 'right');
+    }
+  });
+  sponsorTableBody.addEventListener('focusout', hideHoverCard);
+  categoryTableBody.addEventListener('mouseover', (event) => {
+    const button = event.target.closest('.sponsor-button');
+    if (!button) {
+      return;
+    }
+    const categoryName = String(button.dataset.category || '').trim();
+    if (!categoryName) {
+      return;
+    }
+    showCategoryHover(categoryName);
+  });
+  categoryTableBody.addEventListener('mouseleave', hideHoverCard);
+  categoryTableBody.addEventListener('focusin', (event) => {
+    const button = event.target.closest('.sponsor-button');
+    if (!button) {
+      return;
+    }
+    const categoryName = String(button.dataset.category || '').trim();
+    if (categoryName) {
+      showCategoryHover(categoryName);
+    }
+  });
+  categoryTableBody.addEventListener('focusout', hideHoverCard);
+  billsTableBody.addEventListener('mouseover', (event) => {
+    const sponsorButton = event.target.closest('.bill-sponsor-button');
+    if (sponsorButton) {
+      const sponsorName = String(sponsorButton.dataset.sponsorName || '').trim();
+      if (sponsorName) {
+        showSponsorHover(sponsorName, 'left');
+      }
+      return;
+    }
+    const billTarget = event.target.closest('[data-bill-index]');
+    if (!billTarget) {
+      hideHoverCard();
+      return;
+    }
+    const index = Number(billTarget.dataset.billIndex);
+    const bill = Number.isInteger(index) ? allBills[index] : null;
+    if (bill) {
+      showBillHover(bill, billTarget);
+    }
+  });
+  billsTableBody.addEventListener('mousemove', (event) => {
+    if (!hoverState || !hoverCard.classList.contains('open')
+      || hoverCard.classList.contains('left-overlay')
+      || hoverCard.classList.contains('right-overlay')) {
+      return;
+    }
+    positionHoverCard(event.clientX, event.clientY);
+  });
+  billsTableBody.addEventListener('mouseleave', hideHoverCard);
+  billsTableBody.addEventListener('focusin', (event) => {
+    const sponsorButton = event.target.closest('.bill-sponsor-button');
+    if (sponsorButton) {
+      const sponsorName = String(sponsorButton.dataset.sponsorName || '').trim();
+      if (sponsorName) {
+        showSponsorHover(sponsorName, 'left');
+      }
+      return;
+    }
+    const billTarget = event.target.closest('[data-bill-index]');
+    if (!billTarget) {
+      return;
+    }
+    const index = Number(billTarget.dataset.billIndex);
+    const bill = Number.isInteger(index) ? allBills[index] : null;
+    if (bill) {
+      showBillHover(bill, billTarget);
+    }
+  });
+  billsTableBody.addEventListener('focusout', hideHoverCard);
+  billModalClose.addEventListener('click', closeBillModal);
+  billModal.addEventListener('click', (event) => {
+    if (event.target === billModal) {
+      closeBillModal();
+    }
+  });
+  window.addEventListener('scroll', hideHoverCard, { passive: true });
+  window.addEventListener('resize', hideHoverCard);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && billModal.classList.contains('open')) {
+      closeBillModal();
+    }
+    if (event.key === 'Escape' && hoverCard.classList.contains('open')) {
+      hideHoverCard();
+    }
+  });
+  resetFiltersButton.addEventListener('click', resetFilters);
+
+  // Font size button handlers for each column
+  document.querySelectorAll('.font-size-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const column = btn.dataset.column;
+      const action = btn.dataset.action;
+      if (column && action) {
+        if (action === 'up') {
+          increaseColumnFontSize(column);
+        } else if (action === 'down') {
+          decreaseColumnFontSize(column);
+        }
+      }
+    });
+  });
+
+  // Sortable header click handlers
+  document.querySelectorAll('.bills-table th.sortable').forEach((th) => {
+    th.addEventListener('click', () => {
+      const column = th.dataset.sort;
+      if (column) {
+        cycleSort(column);
+      }
+    });
+    th.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        const column = th.dataset.sort;
+        if (column) {
+          cycleSort(column);
+        }
+      }
+    });
+  });
+
+  loadColumnFontSizes();
+  loadBills();
