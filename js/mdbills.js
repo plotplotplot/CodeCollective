@@ -17,6 +17,7 @@
   const billFilterInput = document.getElementById('bill-filter');
   const sponsorFilterInput = document.getElementById('sponsor-filter');
   const categoryFilterInput = document.getElementById('category-filter');
+  const upcomingOnlyToggle = document.getElementById('upcoming-only-toggle');
   const searchClearButtons = [...document.querySelectorAll('.search-clear')];
   const sponsorTableBody = document.getElementById('sponsor-table-body');
   const categoryTableBody = document.getElementById('category-table-body');
@@ -39,8 +40,10 @@
   let sponsorDirectory = [];
   let sponsorStats = new Map();
   let hoverState = null;
+  let hoverSwapTimer = null;
   let sortColumn = '';
   let sortDirection = ''; // 'asc', 'desc', or ''
+  let showUpcomingOnly = false;
 
   const COLUMN_FONT_SIZE_CONFIG = {
     sponsor: { min: 10, max: 20, step: 1, default: 14, storageKey: 'mdbillsFontSizeSponsor' },
@@ -53,6 +56,10 @@
     category: COLUMN_FONT_SIZE_CONFIG.category.default,
     bills: COLUMN_FONT_SIZE_CONFIG.bills.default
   };
+
+  function syncBillsDisplayFontSize() {
+    document.documentElement.style.setProperty('--bills-font-size', `${columnFontSizes.bills}px`);
+  }
 
   function loadColumnFontSizes() {
     for (const [column, config] of Object.entries(COLUMN_FONT_SIZE_CONFIG)) {
@@ -78,12 +85,16 @@
         element.style.setProperty('--column-font-size', `${size}px`);
       }
     }
+    syncBillsDisplayFontSize();
   }
 
   function applyColumnFontSize(column) {
     const element = document.getElementById(`${column}-column`);
     if (element) {
       element.style.setProperty('--column-font-size', `${columnFontSizes[column]}px`);
+    }
+    if (column === 'bills') {
+      syncBillsDisplayFontSize();
     }
   }
 
@@ -120,7 +131,14 @@
     try {
       const raw = localStorage.getItem(FILTERS_STORAGE_KEY);
       if (!raw) {
-        return { billQuery: '', sponsorQuery: '', categoryQuery: '', sponsor: '', category: '' };
+        return {
+          billQuery: '',
+          sponsorQuery: '',
+          categoryQuery: '',
+          sponsor: '',
+          category: '',
+          upcomingOnly: false
+        };
       }
       const parsed = JSON.parse(raw);
       return {
@@ -128,10 +146,18 @@
         sponsorQuery: String(parsed.sponsorQuery || ''),
         categoryQuery: String(parsed.categoryQuery || ''),
         sponsor: String(parsed.sponsor || ''),
-        category: String(parsed.category || '')
+        category: String(parsed.category || ''),
+        upcomingOnly: parsed.upcomingOnly === true || parsed.upcomingOnly === 'true'
       };
     } catch {
-      return { billQuery: '', sponsorQuery: '', categoryQuery: '', sponsor: '', category: '' };
+      return {
+        billQuery: '',
+        sponsorQuery: '',
+        categoryQuery: '',
+        sponsor: '',
+        category: '',
+        upcomingOnly: false
+      };
     }
   }
 
@@ -141,7 +167,8 @@
       sponsorQuery: sponsorFilterInput.value || '',
       categoryQuery: categoryFilterInput.value || '',
       sponsor: activeSponsor,
-      category: activeCategory
+      category: activeCategory,
+      upcomingOnly: showUpcomingOnly
     }));
   }
 
@@ -178,19 +205,41 @@
       .replaceAll("'", '&#39;');
   }
 
-  function formatHearingDate(bill) {
+  function getEarliestHearingDate(bill) {
     const hearingFields = [
       bill.HearingDateTimePrimaryHouseOfOrigin,
       bill.HearingDateTimeSecondaryHouseOfOrigin,
       bill.HearingDateTimePrimaryOppositeHouse,
       bill.HearingDateTimeSecondaryOppositeHouse
     ];
+
     const dates = hearingFields
       .filter(Boolean)
-      .map((d) => new Date(d))
-      .filter((d) => !Number.isNaN(d.getTime()))
+      .map((value) => new Date(value))
+      .filter((date) => !Number.isNaN(date.getTime()))
       .sort((a, b) => a - b);
-    return dates.length ? dates[0].toLocaleDateString(undefined, { dateStyle: 'medium' }) : '';
+
+    return dates[0] || null;
+  }
+
+  function toDateOnlyTimestamp(date) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
+  }
+
+  function isUpcomingBill(bill) {
+    const hearingDate = getEarliestHearingDate(bill);
+    if (!hearingDate) {
+      return false;
+    }
+
+    const today = new Date();
+    const todayTs = toDateOnlyTimestamp(today);
+    return toDateOnlyTimestamp(hearingDate) >= todayTs;
+  }
+
+  function formatHearingDate(bill) {
+    const hearingDate = getEarliestHearingDate(bill);
+    return hearingDate ? hearingDate.toLocaleDateString(undefined, { dateStyle: 'medium' }) : '';
   }
 
   function searchableText(bill) {
@@ -424,33 +473,32 @@
     }
     const portraitSrc = getImageSource(directoryRecord.portrait_image);
     const standardizedSrc = getImageSource(directoryRecord.standardized_district_map_image);
-    const districtSrc = getImageSource(directoryRecord.district_map_image);
-    const blocks = [];
-    if (portraitSrc) {
-      blocks.push(`
-        <figure>
-          <img alt="Sponsor portrait for ${escapeHtml(sponsorName)}" src="${escapeHtml(portraitSrc)}">
-          <figcaption>Portrait</figcaption>
-        </figure>
-      `);
-    }
     if (standardizedSrc) {
-      blocks.push(`
-        <figure>
-          <img alt="Standardized Maryland district map for ${escapeHtml(sponsorName)}" src="${escapeHtml(standardizedSrc)}">
-          <figcaption>Maryland District Context Map</figcaption>
-        </figure>
-      `);
+      return `
+        <section class="hover-card-images sponsor-hover-media">
+          <figure class="hover-map-figure">
+            <img class="hover-map-image" alt="Standardized Maryland district map for ${escapeHtml(sponsorName)}" src="${escapeHtml(standardizedSrc)}">
+            <figcaption>Maryland District Context Map</figcaption>
+          </figure>
+          ${portraitSrc ? `
+            <figure class="hover-portrait-overlay">
+              <img class="hover-portrait-image" alt="Sponsor portrait for ${escapeHtml(sponsorName)}" src="${escapeHtml(portraitSrc)}">
+            </figure>
+          ` : ''}
+        </section>
+      `;
     }
-    if (districtSrc) {
-      blocks.push(`
-        <figure>
-          <img alt="District map for ${escapeHtml(sponsorName)}" src="${escapeHtml(districtSrc)}">
-          <figcaption>Source District Map</figcaption>
-        </figure>
-      `);
+    if (portraitSrc) {
+      return `
+        <section class="hover-card-images sponsor-hover-media">
+          <figure class="hover-map-figure">
+            <img class="hover-map-image" alt="Sponsor portrait for ${escapeHtml(sponsorName)}" src="${escapeHtml(portraitSrc)}">
+            <figcaption>Portrait</figcaption>
+          </figure>
+        </section>
+      `;
     }
-    return blocks.length ? `<section class="hover-card-images">${blocks.join('')}</section>` : '';
+    return '';
   }
 
   function truncateText(text, maxLength) {
@@ -625,7 +673,26 @@
     if (!hoverCard || billModal.classList.contains('open')) {
       return;
     }
-    hoverCard.innerHTML = markup;
+    const nextMarkup = `<div class="hover-card-content">${markup}</div>`;
+    if (hoverCard.classList.contains('open') && hoverCard.innerHTML !== nextMarkup) {
+      if (hoverSwapTimer) {
+        clearTimeout(hoverSwapTimer);
+        hoverSwapTimer = null;
+      }
+      hoverCard.classList.add('is-swapping');
+      hoverSwapTimer = window.setTimeout(() => {
+        hoverCard.innerHTML = nextMarkup;
+        hoverCard.classList.remove('is-swapping');
+        hoverSwapTimer = null;
+        const isOverlayMode = hoverCard.classList.contains('left-overlay')
+          || hoverCard.classList.contains('right-overlay');
+        if (!isOverlayMode) {
+          positionHoverCard(clientX, clientY);
+        }
+      }, 80);
+    } else {
+      hoverCard.innerHTML = nextMarkup;
+    }
     hoverCard.classList.remove('left-overlay');
     hoverCard.classList.remove('right-overlay');
     hoverCard.style.height = '';
@@ -667,9 +734,14 @@
     if (!hoverCard) {
       return;
     }
+    if (hoverSwapTimer) {
+      clearTimeout(hoverSwapTimer);
+      hoverSwapTimer = null;
+    }
     hoverCard.classList.remove('open');
     hoverCard.classList.remove('left-overlay');
     hoverCard.classList.remove('right-overlay');
+    hoverCard.classList.remove('is-swapping');
     hoverCard.setAttribute('aria-hidden', 'true');
     hoverCard.innerHTML = '';
     hoverState = null;
@@ -867,15 +939,6 @@
           </figure>
         `);
       }
-      const districtSrc = getImageSource(directoryRecord.district_map_image);
-      if (districtSrc) {
-        imageBlocks.push(`
-          <figure>
-            <img alt="District map for ${escapeHtml(sponsorName)}" src="${escapeHtml(districtSrc)}">
-            <figcaption>Source District Map</figcaption>
-          </figure>
-        `);
-      }
 
       if (imageBlocks.length) {
         imageSection = `<section class="sponsor-modal-images">${imageBlocks.join('')}</section>`;
@@ -923,8 +986,8 @@
       case 'status':
         return String(bill.Status || '').toLowerCase();
       case 'hearingDate': {
-        const dateStr = formatHearingDate(bill);
-        return dateStr ? new Date(dateStr).getTime() : Number.POSITIVE_INFINITY;
+        const hearingDate = getEarliestHearingDate(bill);
+        return hearingDate ? toDateOnlyTimestamp(hearingDate) : Number.POSITIVE_INFINITY;
       }
       default:
         return '';
@@ -984,6 +1047,7 @@
       .filter((entry) => !activeCategory
         || entry.categories.includes(activeCategory)
         || (activeCategory === 'Uncategorized' && entry.categories.length === 0))
+      .filter((entry) => !showUpcomingOnly || isUpcomingBill(entry.bill))
       .filter((entry) => !query || entry.searchText.includes(query));
 
     filteredEntries = sortEntries(filteredEntries, sortColumn, sortDirection);
@@ -1006,6 +1070,10 @@
     billFilterInput.value = '';
     sponsorFilterInput.value = '';
     categoryFilterInput.value = '';
+    showUpcomingOnly = false;
+    if (upcomingOnlyToggle) {
+      upcomingOnlyToggle.checked = false;
+    }
     clearPersistedFilters();
     updateSortIndicators();
     renderSponsorTable();
@@ -1061,6 +1129,10 @@
       billFilterInput.value = persisted.billQuery;
       sponsorFilterInput.value = persisted.sponsorQuery;
       categoryFilterInput.value = persisted.categoryQuery;
+      showUpcomingOnly = Boolean(persisted.upcomingOnly);
+      if (upcomingOnlyToggle) {
+        upcomingOnlyToggle.checked = showUpcomingOnly;
+      }
       activeSponsor = persisted.sponsor;
       activeCategory = persisted.category;
       const sponsorSet = new Set(allBills.map((bill) => String(bill.SponsorPrimary || '').trim() || 'Unknown sponsor'));
@@ -1100,6 +1172,13 @@
   categoryFilterInput.addEventListener('input', renderCategoryTable);
   categoryFilterInput.addEventListener('input', persistFilters);
   categoryFilterInput.addEventListener('input', updateSearchClearButtons);
+  if (upcomingOnlyToggle) {
+    upcomingOnlyToggle.addEventListener('change', () => {
+      showUpcomingOnly = upcomingOnlyToggle.checked;
+      persistFilters();
+      renderBills();
+    });
+  }
   for (const button of searchClearButtons) {
     button.addEventListener('click', () => {
       const targetId = button.dataset.clearTarget;
@@ -1272,6 +1351,73 @@
     }
   });
   resetFiltersButton.addEventListener('click', resetFilters);
+
+  // Column resize functionality
+  (function initColumnResize() {
+    const table = document.querySelector('.bills-table');
+    if (!table) return;
+
+    let isResizing = false;
+    let currentTh = null;
+    let startX = 0;
+    let startWidth = 0;
+    let nextTh = null;
+    let nextStartWidth = 0;
+
+    function onMouseDown(e) {
+      const handle = e.target.closest('.resize-handle');
+      if (!handle) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      currentTh = handle.parentElement;
+      nextTh = currentTh.nextElementSibling;
+      isResizing = true;
+      startX = e.pageX;
+      startWidth = currentTh.offsetWidth;
+      if (nextTh) {
+        nextStartWidth = nextTh.offsetWidth;
+      }
+
+      handle.classList.add('resizing');
+      document.body.style.cursor = 'col-resize';
+      document.body.style.userSelect = 'none';
+    }
+
+    function onMouseMove(e) {
+      if (!isResizing || !currentTh) return;
+
+      const diff = e.pageX - startX;
+      const newWidth = startWidth + diff;
+      const minWidth = 60;
+
+      if (newWidth >= minWidth) {
+        currentTh.style.width = `${newWidth}px`;
+        if (nextTh && nextStartWidth - diff >= minWidth) {
+          nextTh.style.width = `${nextStartWidth - diff}px`;
+        }
+      }
+    }
+
+    function onMouseUp() {
+      if (!isResizing) return;
+
+      isResizing = false;
+      if (currentTh) {
+        const handle = currentTh.querySelector('.resize-handle');
+        if (handle) handle.classList.remove('resizing');
+      }
+      currentTh = null;
+      nextTh = null;
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    }
+
+    table.addEventListener('mousedown', onMouseDown);
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  })();
 
   // Font size button handlers for each column
   document.querySelectorAll('.font-size-btn').forEach((btn) => {
