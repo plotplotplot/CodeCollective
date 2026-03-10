@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Code Collective | Tech Events Calendar & Tech Labor Organization</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Code Collective organizes tech labor and provides a unified calendar of local tech meetups, hackathons, and tech community events." />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://codecollective.us/calendar.html" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://codecollective.us/calendar.html" />
+  <meta property="og:site_name" content="Code Collective" />
+  <meta property="og:title" content="Code Collective | Tech Events Calendar" />
+  <meta property="og:description"
+    content="A community-wide tech events calendar." />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/favicons/favicon.png" />
+
+  <link rel="preload" href="/css/master.css" as="style">
+  <link rel="preload" href="/css/calendar.css" as="style">
+  <link rel="preload" href="/data/maryland_bills_2026.json" as="fetch" crossorigin="anonymous">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/master.css" />
+  <link rel="stylesheet" href="/css/calendar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bills-font-size: 14px;
+    }
+
+    .hover-card {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: min(360px, calc(100vw - 20px));
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: linear-gradient(180deg, rgba(14, 29, 61, 0.98), rgba(6, 14, 30, 0.98));
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.48);
+      z-index: 9998;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.12s ease, transform 0.12s ease;
+      color: #fff;
+      text-align: left;
+    }
+
+    .hover-card.open {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hover-card-content {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.14s ease, transform 0.14s ease;
+    }
+
+    .hover-card.is-swapping .hover-card-content {
+      opacity: 0.28;
+      transform: translateY(2px);
+    }
+
+    .hover-card.left-overlay {
+      width: min(50vw, calc(100vw - 20px));
+      max-width: 760px;
+      min-width: 380px;
+      z-index: 9999;
+      overflow: auto;
+      border-radius: 14px;
+    }
+
+    .hover-card.right-overlay {
+      width: min(50vw, calc(100vw - 20px));
+      max-width: 760px;
+      min-width: 380px;
+      z-index: 9999;
+      overflow: auto;
+      border-radius: 14px;
+    }
+
+    .hover-card h3 {
+      margin: 0 0 6px;
+      font-size: 1.5rem;
+      line-height: 1.3;
+      border: 0 !important;
+    }
+
+    .hover-card p {
+      margin: 0 0 6px;
+      font-size: 1.16rem;
+      line-height: 1.4;
+      text-indent: 0;
+    }
+
+    .hover-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .hover-card.left-overlay h3 {
+      font-size: calc(var(--bills-font-size) * 1.5);
+    }
+
+    .hover-card.left-overlay p {
+      font-size: calc(var(--bills-font-size) * 1.16);
+    }
+
+    .hover-card.left-overlay .hover-card-kicker {
+      font-size: calc(var(--bills-font-size) * 0.94);
+    }
+
+    .hover-card-kicker {
+      margin: 0 0 6px;
+      font-size: 0.94rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .hover-card-meta {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .hover-card-meta-accent {
+      color: #ffd45f;
+      font-weight: 700;
+    }
+
+    .hover-card img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: contain;
+      background: rgba(0, 0, 0, 0.18);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      margin: 8px 0 6px;
+      display: block;
+    }
+
+    .hover-card-images {
+      display: grid;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .hover-card-images figure {
+      margin: 0;
+    }
+
+    .hover-card-images figcaption {
+      margin-top: 2px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .hover-card-images.sponsor-hover-media {
+      position: relative;
+      display: block;
+      margin-top: 10px;
+      height: min(64vh, 640px);
+      min-height: 260px;
+    }
+
+    .hover-card-images.sponsor-hover-media .hover-map-figure {
+      margin: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hover-card-images.sponsor-hover-media .hover-map-image {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      object-fit: contain;
+      background: transparent;
+      margin: 0;
+      flex: 1;
+    }
+
+    .hover-card-images.sponsor-hover-media .hover-map-figure figcaption {
+      margin-top: 6px;
+    }
+
+    .hover-card-images.sponsor-hover-media .hover-portrait-overlay {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: min(26%, 170px);
+      max-width: 170px;
+      min-width: 80px;
+      margin: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .hover-card-images.sponsor-hover-media .hover-portrait-image {
+      width: 100%;
+      height: auto;
+      max-height: 170px;
+      object-fit: cover;
+      margin: 0;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.45);
+      background: rgba(6, 14, 30, 0.88);
+    }
+
+    .bills-shell {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 12px 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    body .bills-shell.calendar-legend {
+      position: fixed !important;
+      left: 50% !important;
+      top: max(80px, 10vh) !important;
+      right: auto !important;
+      bottom: auto !important;
+      transform: translateX(-50%);
+      z-index: 10050 !important;
+      width: min(92vw, 1100px);
+      max-height: min(76vh, 700px);
+      margin: 0;
+      background: #000;
+      border: 2px solid #ffe600;
+      border-radius: 12px;
+      overflow: hidden;
+      backdrop-filter: blur(6px);
+      display: flex !important;
+      flex-direction: column !important;
+      flex-wrap: nowrap !important;
+      align-items: stretch !important;
+      justify-content: flex-start !important;
+      gap: 0 !important;
+      padding: 12px 16px !important;
+      max-width: none !important;
+    }
+
+    /* Prevent body scrolling when legend is visible */
+    body:not(.legend-hidden) {
+      overflow: hidden;
+    }
+
+    #legend-visibility-toggle.legend-toggle-button {
+      z-index: 10051 !important;
+    }
+
+    .bills-titlebar {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      margin: 0;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 230, 0, 0.2);
+    }
+
+    .bills-title-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .bills-title-right {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .bills-titlebar h2 {
+      margin: 0;
+      font-size: clamp(1.05rem, 1.8vw, 1.4rem);
+      line-height: 1.2;
+      border: 0 !important;
+    }
+
+    .toolbar-reset {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .bills-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+    }
+
+    .insights-grid {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      min-height: 0;
+      flex: 1;
+      overflow-y: auto;
+      gap: 12px;
+    }
+
+    .column-panel {
+      position: relative;
+      isolation: isolate;
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.32);
+      overflow: hidden;
+      display: block;
+      min-height: 0;
+      margin-bottom: 12px;
+      width: 100%;
+    }
+
+    .list-panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .search-wrap {
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .column-search {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      padding: 8px 10px;
+      font: inherit;
+      font-size: 0.9rem;
+    }
+
+    .column-search::placeholder {
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .list-panel-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      overflow-y: auto;
+      min-height: 0;
+      max-height: 190px;
+    }
+
+    .list-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .sponsor-button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      text-align: left;
+      font: inherit;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1.35;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .sponsor-button.active {
+      color: #ffd45f;
+      font-weight: 700;
+    }
+
+    .list-count {
+      color: rgba(255, 255, 255, 0.75);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      padding-top: 1px;
+    }
+
+    .bills-table-wrap {
+      overflow-y: auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      max-height: 230px;
+    }
+
+    @media (max-width: 900px) {
+      body .bills-shell.calendar-legend {
+        width: min(94vw, 94vw);
+        max-height: min(74vh, 620px);
+        top: max(70px, 8vh) !important;
+        left: 50% !important;
+        right: auto !important;
+        bottom: auto !important;
+      }
+    }
+  </style>
+
+  <!-- Scripts -->
+  <script>
+    (function () {
+      const DEFAULT_CITY_OPTIONS = ['baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh'];
+      const DEFAULT_CITY_DISPLAY_NAMES = {
+        baltimore: 'Baltimore',
+        westvirginia: 'West Virginia',
+        hawaii: 'Hawaii',
+        dc: 'Washington, D.C.',
+        pittsburgh: 'Pittsburgh',
+      };
+
+      window.CALENDAR_CITY_OPTIONS = window.CALENDAR_CITY_OPTIONS || DEFAULT_CITY_OPTIONS;
+      window.CALENDAR_CITY_DISPLAY_NAMES = window.CALENDAR_CITY_DISPLAY_NAMES || DEFAULT_CITY_DISPLAY_NAMES;
+
+      const cityOptions = window.CALENDAR_CITY_OPTIONS;
+      const cityDisplayNames = window.CALENDAR_CITY_DISPLAY_NAMES;
+
+      function prefetchImages(urls) {
+        if (!window.Promise || !window.fetch) return;
+
+        urls.forEach(url => {
+          const link = document.createElement('link');
+          link.rel = 'preload';
+          link.as = 'image';
+          link.href = url;
+          document.head.appendChild(link);
+
+          fetch(url, {
+            mode: 'no-cors',
+            cache: 'force-cache',
+          }).catch(() => { });
+        });
+      }
+
+      function getCityDisplayName(city) {
+        return cityDisplayNames[city] || city.charAt(0).toUpperCase() + city.slice(1);
+      }
+
+      function getCityFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const city = urlParams.get('city');
+        return cityOptions.includes(city) ? city : 'baltimore';
+      }
+
+      function updateIcsLink() {
+        const city = getCityFromUrl();
+        const icsLink = document.querySelector('.download-button');
+        if (icsLink) {
+          const template = icsLink.dataset.icsTemplate || 'https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/{city}/cc_events.ics';
+          icsLink.href = template.replace('{city}', city);
+        }
+      }
+
+      function updateCityDetails() {
+        const city = getCityFromUrl();
+        const displayName = getCityDisplayName(city);
+        const cityNameEl = document.getElementById('calendar-city-name');
+        if (cityNameEl) {
+          cityNameEl.textContent = displayName;
+        }
+        const calendarSection = document.getElementById('calendar-section');
+        if (calendarSection) {
+          calendarSection.setAttribute('aria-label', `${displayName} Tech Events Calendar`);
+        }
+      }
+
+      function populateCitySelector() {
+        const select = document.getElementById('city-select');
+        if (!select) return;
+        select.innerHTML = '';
+
+        cityOptions.forEach(city => {
+          const option = document.createElement('option');
+          option.value = city;
+          option.textContent = getCityDisplayName(city);
+          select.appendChild(option);
+        });
+
+        const currentCity = getCityFromUrl();
+        select.value = currentCity;
+        select.addEventListener('change', () => {
+          const targetCity = select.value;
+          const url = new URL(window.location.href);
+          url.searchParams.set('city', targetCity);
+          window.location.href = url.toString();
+        });
+      }
+
+      function initializeCityControls() {
+        updateIcsLink();
+        updateCityDetails();
+        populateCitySelector();
+      }
+
+      prefetchImages([
+        '/images/favicons/favicon.png',
+        '/images/WhatsApp.svg.webp',
+        '/images/github_icon.png',
+        // Add other static images used by your UI
+      ]);
+
+      document.addEventListener('DOMContentLoaded', initializeCityControls);
+    })();
+  </script>
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Code Collective",
+    "url": "https://codecollective.us",
+    "description": "Organizing tech labor and maintaining a Baltimore tech events calendar.",
+    "location": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Baltimore",
+        "addressRegion": "MD",
+        "addressCountry": "US"
+      }
+    }
+  }
+  </script>
+</head>
+
+<body id="body" class="legend-hidden">
+  <video id="bg-video" autoplay loop muted playsinline>
+  <source src="/videos/craig_baltimore_video.mp4" type="video/mp4" media="(max-width: 768px)">
+  <source src="/videos/baltimorenight_15s_crossfaded.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+
+  <nav class="main-nav" aria-label="Main Navigation">
+    <div class="navbar dark-mode">
+      <a href="/#main">Home</a>
+      <a href="/platform.html">Platform</a>
+      <a href="/calendar.html?city=baltimore">Calendar</a>
+      <a href="/projects.html">Projects</a>
+    </div>
+  </nav>
+
+  <main id="wrapper" class="longform dark-mode" style="padding: 0; margin: 0;">
+    <section id="main" class="longform dark-mode" style="padding: 0; margin: 0;">
+      <header class="header-container" style="text-align: center; padding: 20px 0;">
+        <p style="margin-bottom: 8px; font-size: 1.2rem;">Code Collective brings you</p>
+        <h1 style="margin: 10px 0; font-size: 2.5rem;">The Maryland Legislative Session Calendar</h1>
+      </header>
+
+      <section class="bills-shell calendar-legend" aria-label="Bill hearing filters">
+        <section class="bills-titlebar">
+          <div class="bills-title-left">
+            <h2>Filter Bill Hearings</h2>
+            <div class="bills-meta">
+              <span id="bill-filter-count">Loading hearings...</span>
+            </div>
+          </div>
+          <div class="bills-title-right">
+            <button id="hide-filters" type="button" class="toolbar-reset">Hide Filters</button>
+            <button id="reset-filters" type="button" class="toolbar-reset">Reset Filters</button>
+          </div>
+        </section>
+
+        <section class="insights-grid">
+          <section class="column-panel" aria-label="Primary sponsor hearing counts" id="sponsor-column">
+            <div class="list-panel-head">
+              <span>Primary Sponsor</span>
+              <span>Hearings</span>
+            </div>
+            <div class="search-wrap">
+              <input id="sponsor-filter" class="column-search" type="search" placeholder="Search sponsors" autocomplete="off" />
+            </div>
+            <div id="sponsor-table-body" class="list-panel-body">
+              <div class="list-row"><span>Loading sponsors...</span><span class="list-count">...</span></div>
+            </div>
+          </section>
+          <section class="column-panel" aria-label="Category hearing counts" id="category-column">
+            <div class="list-panel-head">
+              <span>Category</span>
+              <span>Hearings</span>
+            </div>
+            <div class="search-wrap">
+              <input id="category-filter" class="column-search" type="search" placeholder="Search categories" autocomplete="off" />
+            </div>
+            <div id="category-table-body" class="list-panel-body">
+              <div class="list-row"><span>Loading categories...</span><span class="list-count">...</span></div>
+            </div>
+          </section>
+          <section class="column-panel" aria-label="Hearing list" id="bills-column">
+            <div class="list-panel-head">
+              <span>Hearings</span>
+              <span>Date</span>
+            </div>
+            <div class="search-wrap">
+              <input id="bill-filter" class="column-search" type="search" placeholder="Search bills by title, sponsor, status, category" autocomplete="off" />
+            </div>
+            <div id="bills-table-body" class="bills-table-wrap">
+              <div class="list-row"><span>Loading hearings...</span><span class="list-count">...</span></div>
+            </div>
+          </section>
+        </section>
+      </section>
+
+      <div class="container">
+        <section id="calendar-section" class="calendar-container" aria-label="Baltimore Tech Events Calendar">
+          <div id="loading" aria-live="polite">
+            <i class="fas fa-spinner fa-spin"></i> Loading calendar events...
+          </div>
+          <div id="calendar"></div>
+        </section>
+      </div>
+
+
+      <h1 style="margin: 10px 0; font-size: 4vw; text-align: center"> Events</h1>
+      <section class="code-collective-events" aria-label="Events">
+        <div id="code-collective-events-container">
+          <!-- Events will be populated by JavaScript -->
+        </div>
+      </section>
+    </section>
+
+    <script src="/js/mdbillscalendar.js"></script>
+    </section>
+
+  </main>
+
+  <our-footer></our-footer>
+  <our-slack-link></our-slack-link>
+  <button type="button" id="legend-visibility-toggle" class="legend-toggle-button" aria-expanded="true">
+    Show legend
+  </button>
+  <div id="hover-card" class="hover-card" role="tooltip" aria-hidden="true"></div>
+
+</body>
+
+<script type="module" src="/js/reusableComponents.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+</html>
