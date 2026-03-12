@@ -16,7 +16,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Code_Coffee.webp",
-        "scrapeTime": "2026-03-11 00:40:14.754366",
+        "scrapeTime": "2026-03-12 00:36:58.779226",
         "tags": [
             "Economic Development"
         ]
@@ -24,7 +24,7 @@
     {
         "id": "312753508",
         "name": "An Unexpected Journey: Life Lessons from Conquering Tesla Solar with Python",
-        "description": "Join us Thursday, March 26th, for a powerhouse Python talk from Christopher Pitstick, Senior Software Engineer at Latitude AI. In 2024, Christopher installed a Tesla solar array expecting clean energy and lower bills. Instead, he got a masterclass in persistence, reverse engineering, and why you should never trust a system you can't monitor. Bringing laptops is encouraged for a live interactive surprise at the start of the session!\n\nTesla's Powerwall/Inverter ecosystem is powerful but notoriously opaque\u2014out of the box it tells you very little about what's happening on your roof. When a weird beeping noise caused Christopher to suspect something was wrong, he built his own monitoring solution with PyPowerwall (an open-source library) utilizing Grafana, InfluxDB, and a Raspberry Pi. The shocking result? He discovered hundreds of kWh in lost production annually.\n\n**Time:**\n6:00 pm \u2013 Doors Open\n6:30 pm \u2013 Talk, An Unexpected Journey: Life Lessons from Conquering Tesla Solar with Python\n\n**About the Talk:**\n\nThis talk isn't just about debugging solar panels, nor is it entirely about Python! It's about the unexpected lessons you learn when you trust your instincts and refuse to accept \"it's working fine\" as an answer:\n\n* Contributing to open source when the tools you need don't quite exist yet\n* Bridging domains\u2014how a software engineer learns just enough electrical/RF engineering to be dangerous\n* Navigating warranty claims and contractor relationships with data as your ally\n* The right-to-repair movement, and why closed ecosystems hurt consumers\n* When to dig deeper vs. when to ship (spoiler: he chose poorly several times)\n* Why Python's ecosystem makes it the perfect Swiss Army knife for uniting a vast array of disciplines and communities.\n\nYou'll see real code, real dashboards, real mistakes, and the very unscientific art of \"vibe-coding\" your way through iptable rules at 2am. Does the system get fixed? Does he recover his lost production? Is the blade Narsil reforged? Come find out!\n\n**About the venue:**\n\nSpecial thanks to **CoLab18,** our generous venue sponsor! CoLab18 is a vibrant digital-literacy lab and collaboration space nestled within Nova Place on Pittsburgh\u2019s North Side. CoLab18 is designed to foster inclusive innovation, education, and workforce development, and serves as a hub for community groups, nonprofits, and educational workshops, offering access to technology, training, and public programming.\n\nFor **directions and parking** information, [see the CoLab18 directions link.](https://www.colab18.org/use-the-space/directions/)\n\n**Additional information:** If parking in the Nova Place Garage, use garage entrance 3 or 4, \"Visitor Parking\" located on South Commons. Follow signs that lead to the pay station and take the \"Concourse\" Elevators to P for Plaza, the main concourse of Nova Place. CoLab18 is towards your left once you exit the elevators.\n\nIf utilizing street parking or any street entrances, please use any of the glass door entrances to enter the Plaza Level inside the Main Concourse of Nova Place.\n\n**\u2728\u2705 Take the PyData Pittsburgh Member Survey! \u2705 \u2728**\nThanks for being part of our community! This quick survey will help shape future PyData Pittsburgh events. **[Take the Survey HERE!](https://tally.so/r/3xAOGo)**",
+        "description": "Join us Thursday, March 26th, for a powerhouse Python talk from Christopher Pitstick, Senior Software Engineer at Latitude AI. In 2024, Christopher installed a Tesla solar array expecting clean energy and lower bills. Instead, he got a masterclass in persistence, reverse engineering, and why you should never trust a system you can't monitor. Bringing laptops is encouraged for a live interactive surprise at the start of the session!\n\nTesla's Powerwall/Inverter ecosystem is powerful but notoriously opaque\u2014out of the box it tells you very little about what's happening on your roof. When a weird beeping noise caused Christopher to suspect something was wrong, he built his own monitoring solution with PyPowerwall (an open-source library) utilizing Grafana, InfluxDB, and a Raspberry Pi. The shocking result? He discovered hundreds of kWh in lost production annually.\n\n**Time:**\n6:00 pm \u2013 Doors Open\n6:30 pm \u2013 Talk, An Unexpected Journey: Life Lessons from Conquering Tesla Solar with Python\n\n**About the Talk:**\n\nThis talk isn't just about debugging solar panels, nor is it entirely about Python! It's about the unexpected lessons you learn when you trust your instincts and refuse to accept \"it's working fine\" as an answer:\n\n* Contributing to open source when the tools you need don't quite exist yet\n* How OSS acts as a lever to change the world, and tips & tricks for contributing to OSS\n* Bridging domains\u2014how a software engineer learns just enough electrical/RF engineering to be dangerous\n* Navigating warranty claims and contractor relationships with data as your ally\n* The right-to-repair movement, and why closed ecosystems hurt consumers\n* Community and \"going together\" wins over going it alone\n* When to dig deeper vs. when to ship (spoiler: he chose poorly several times)\n* Why Python's ecosystem makes it the perfect Swiss Army knife for uniting a vast array of disciplines and communities\n* In the age of AI and vibe coding, what is it that makes software engineers truly valuable?\n\nChris will also touch on the electrical engineering side of the debugging adventure. He had to use scraps of documentation, a multimeter, and some good ole' fashion ingenuity to investigate the circuitry. He will also discuss the sheer madness that is debugging Wi-Fi signals, and why Tesla's solar inverters are effectively vehicles without wheels. An open question he'd love help from the community on: how do you actually track down the interference source inside a noisy power electronics system like this? Apparently it\u2019s hard\u2026 but Pittsburgh has some pretty serious hardware hackers.\n\nYou'll see real code, real dashboards, real mistakes, and the very unscientific art of \"vibe-coding\" your way through iptable rules at 2am. Does the system get fixed? Does he recover his lost production? Is the blade Narsil reforged? Come find out!\n\n**About the venue:**\n\nSpecial thanks to **CoLab18,** our generous venue sponsor! CoLab18 is a vibrant digital-literacy lab and collaboration space nestled within Nova Place on Pittsburgh\u2019s North Side. CoLab18 is designed to foster inclusive innovation, education, and workforce development, and serves as a hub for community groups, nonprofits, and educational workshops, offering access to technology, training, and public programming.\n\nFor **directions and parking** information, [see the CoLab18 directions link.](https://www.colab18.org/use-the-space/directions/)\n\n**Additional information:** If parking in the Nova Place Garage, use garage entrance 3 or 4, \"Visitor Parking\" located on South Commons. Follow signs that lead to the pay station and take the \"Concourse\" Elevators to P for Plaza, the main concourse of Nova Place. CoLab18 is towards your left once you exit the elevators.\n\nIf utilizing street parking or any street entrances, please use any of the glass door entrances to enter the Plaza Level inside the Main Concourse of Nova Place.\n\n**\u2728\u2705 Take the PyData Pittsburgh Member Survey! \u2705 \u2728**\nThanks for being part of our community! This quick survey will help shape future PyData Pittsburgh events. **[Take the Survey HERE!](https://tally.so/r/3xAOGo)**",
         "startDate": "2026-03-26T18:00:00-04:00",
         "endTime": "2026-03-26T20:00:00-04:00",
         "url": "https://www.meetup.com/pydata-pittsburgh/events/312753508/",
@@ -38,7 +38,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/An_Unexpected_Journey_Life_Lessons_from_Conquering_Tesla_Solar_with_Python.webp",
-        "scrapeTime": "2026-03-11 00:40:14.754776",
+        "scrapeTime": "2026-03-12 00:36:58.779694",
         "tags": [
             "Economic Development"
         ]
@@ -60,7 +60,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Code_Coffee.webp",
-        "scrapeTime": "2026-03-11 00:40:14.754472",
+        "scrapeTime": "2026-03-12 00:36:58.779340",
         "tags": [
             "Economic Development"
         ]
@@ -82,7 +82,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Code_Coffee.webp",
-        "scrapeTime": "2026-03-11 00:40:14.754573",
+        "scrapeTime": "2026-03-12 00:36:58.779451",
         "tags": [
             "Economic Development"
         ]
@@ -104,7 +104,7 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Code_Coffee.webp",
-        "scrapeTime": "2026-03-11 00:40:14.754674",
+        "scrapeTime": "2026-03-12 00:36:58.779583",
         "tags": [
             "Economic Development"
         ]
