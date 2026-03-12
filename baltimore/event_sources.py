@@ -73,7 +73,8 @@ sources = {
         "https://luma.com/bmore-on-rails",
         "https://luma.com/LetsBMore",
         "https://luma.com/MEIA",
-        "https://luma.com/umbcche"
+        "https://luma.com/umbcche",
+        "https://luma.com/SGLang-meetups"
     ],
     "Luma Users":[
         #"https://api.lu.ma/user/profile/events-hosting"
