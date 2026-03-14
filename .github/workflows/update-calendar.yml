@@ -46,6 +46,16 @@ jobs:
             python baltimore/testimony/fetch_bills.py
           fi
 
+      - name: Refresh USAJOBS cache
+        if: ${{ secrets.USAJOBS_API_KEY != '' && (secrets.USAJOBS_USER_AGENT != '' || secrets.USAJOBS_EMAIL != '') }}
+        env:
+          USAJOBS_API_KEY: ${{ secrets.USAJOBS_API_KEY }}
+          USAJOBS_USER_AGENT: ${{ secrets.USAJOBS_USER_AGENT }}
+          USAJOBS_EMAIL: ${{ secrets.USAJOBS_EMAIL }}
+          USAJOBS_MAX_AGE_DAYS: '7'
+        run: |
+          ./usa/refresh_usajobs_search.sh
+
       - name: Run genCalendar.py
         run: |
           python genCalendar.py

@@ -296,7 +296,7 @@ def write_json_and_gzip(payload: dict[str, Any], output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     compact_json = json.dumps(payload, separators=(",", ":"), ensure_ascii=False)
     output_path.write_text(compact_json, encoding="utf-8")
-    gzip_path = output_path.with_suffix(output_path.suffix + ".gz")
+    gzip_path = gzip_path_for(output_path)
     with gzip.open(gzip_path, "wt", encoding="utf-8") as handle:
         handle.write(compact_json)
 
@@ -327,6 +327,15 @@ def is_fresh_output(path: Path, max_age_days: int) -> bool:
     except FileNotFoundError:
         return False
     return age_seconds <= max_age_days * 86400
+
+
+def gzip_path_for(path: Path) -> Path:
+    return path.with_suffix(path.suffix + ".gz")
+
+
+def frontend_outputs_are_fresh(path: Path, max_age_days: int) -> bool:
+    gzip_path = gzip_path_for(path)
+    return is_fresh_output(path, max_age_days) and is_fresh_output(gzip_path, max_age_days)
 
 
 def build_headers() -> dict[str, str]:
@@ -545,9 +554,9 @@ def main() -> int:
         if not args.force_refresh and not args.input_json:
             cached_full_payload = maybe_use_cached_full_payload(output_path, args.max_age_days)
             if cached_full_payload is not None:
-                if is_fresh_output(frontend_output_path, args.max_age_days):
+                if frontend_outputs_are_fresh(frontend_output_path, args.max_age_days):
                     print(
-                        f"Skipping lean rewrite; existing frontend dump is newer than {args.max_age_days} days.",
+                        f"Skipping lean rewrite; existing frontend dump and gzip are newer than {args.max_age_days} days.",
                         file=sys.stderr,
                         flush=True,
                     )
