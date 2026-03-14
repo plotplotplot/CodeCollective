@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Code Collective | USAJOBS Tracker</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Browse a locally cached USAJOBS export with agency, category, and closing-date filters." />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://codecollective.us/baltimore/bills/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://codecollective.us/baltimore/bills/" />
+  <meta property="og:site_name" content="Code Collective" />
+  <meta property="og:title" content="Code Collective | USAJOBS Tracker" />
+  <meta property="og:description"
+    content="Browse a locally cached USAJOBS export with agency, category, and closing-date filters." />
+  <meta property="og:image" content="https://codecollective.us/images/general_encircled_banner.webp" />
+  <meta property="og:image:alt" content="Code Collective banner" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Code Collective | USAJOBS Tracker" />
+  <meta name="twitter:description"
+    content="Browse a locally cached USAJOBS export with agency, category, and closing-date filters." />
+  <meta name="twitter:image" content="https://codecollective.us/images/general_encircled_banner.webp" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/favicons/favicon.png" />
+
+  <link rel="preload" href="/css/master.css" as="style">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/master.css" />
+  <link rel="stylesheet" href="/css/carousel.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bills-font-size: 16px;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #wrapper,
+    #main {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .bills-shell {
+      max-width: 100%;
+      margin: 0 auto;
+      height: calc(100vh - 76px);
+      padding: 12px 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bills-titlebar {
+      display: flex;
+      align-items: center;
+      gap: 6px 10px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 0;
+    }
+
+    .bills-titlebar h1 {
+      margin: 0;
+      font-size: clamp(1.18rem, 1.9vw, 1.65rem);
+      line-height: 1.08;
+      border: 0 !important;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .panel-header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    .header-check input[type="checkbox"] {
+      margin: 0;
+      width: 15px;
+      height: 15px;
+      accent-color: #ffcf66;
+      cursor: pointer;
+    }
+
+    .font-size-controls {
+      display: flex;
+      gap: 3px;
+      align-items: center;
+    }
+
+    .font-size-btn {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      padding: 4px 8px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      line-height: 1;
+      min-width: 24px;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .font-size-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .font-size-btn:focus {
+      outline: 2px solid #ffcf66;
+      outline-offset: 2px;
+    }
+
+    .font-size-btn:active {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Column-specific font sizes */
+    #sponsor-column {
+      --column-font-size: 16px;
+    }
+
+    #category-column {
+      --column-font-size: 16px;
+    }
+
+    #bills-column {
+      --column-font-size: 16px;
+    }
+
+    #sponsor-column .list-panel-body,
+    #sponsor-column .list-panel-body .sponsor-button,
+    #sponsor-column .list-panel-body .list-count {
+      font-size: var(--column-font-size);
+    }
+
+    #category-column .list-panel-body,
+    #category-column .list-panel-body .sponsor-button,
+    #category-column .list-panel-body .list-count {
+      font-size: var(--column-font-size);
+    }
+
+    #bills-column .bills-table-wrap,
+    #bills-column .bills-table-wrap .bill-title,
+    #bills-column .bills-table-wrap .bill-title-button,
+    #bills-column .bills-table-wrap .bill-sponsor-button,
+    #bills-column .bills-table-wrap td,
+    #bills-column .bills-table-wrap th {
+      font-size: var(--column-font-size);
+    }
+
+    .toolbar-reset {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 7px 12px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font: inherit;
+      line-height: 1.1;
+      cursor: pointer;
+    }
+
+    .bills-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.92rem;
+      line-height: 1.1;
+    }
+
+    .status-message {
+      margin: 0;
+      color: #fff;
+      min-height: 1.25rem;
+      font-size: 1rem;
+    }
+
+    .insights-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: minmax(220px, 1fr) 14px minmax(220px, 1fr) 14px minmax(0, 2fr);
+      margin: 0;
+      align-items: stretch;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .column-panel {
+      position: relative;
+      isolation: isolate;
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.32);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .panel-resize-handle {
+      position: relative;
+      width: 14px;
+      min-height: 0;
+      height: 100%;
+      z-index: 5;
+      cursor: col-resize;
+      background: transparent;
+      align-self: stretch;
+    }
+
+    .panel-resize-handle:hover,
+    .panel-resize-handle.resizing {
+      background: linear-gradient(180deg, rgba(255, 207, 102, 0), rgba(255, 207, 102, 0.28), rgba(255, 207, 102, 0));
+    }
+
+    .panel-resize-handle::after {
+      content: "";
+      position: absolute;
+      top: 16px;
+      bottom: 16px;
+      left: 50%;
+      width: 2px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .column-search {
+      width: 100%;
+      margin: 0 0 10px;
+      padding: 10px 38px 10px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .column-search::placeholder {
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .search-wrap {
+      position: relative;
+      margin: 0 0 10px;
+    }
+
+    .search-wrap .column-search {
+      margin: 0;
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 2px 4px;
+      border-radius: 6px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .search-clear.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .list-panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 0 0 10px;
+      margin: 0 0 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .panel-mode-toggle {
+      appearance: none;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      font-weight: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .panel-mode-toggle:hover,
+    .panel-mode-toggle:focus {
+      color: #ffcf66;
+      outline: none;
+    }
+
+    .panel-mode-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 0.7rem;
+      line-height: 1;
+      transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+    }
+
+    .panel-mode-toggle:hover .panel-mode-icon,
+    .panel-mode-toggle:focus .panel-mode-icon,
+    .panel-mode-toggle[aria-expanded="true"] .panel-mode-icon {
+      border-color: rgba(255, 207, 102, 0.55);
+      background: rgba(255, 207, 102, 0.14);
+    }
+
+    .panel-mode-toggle[aria-expanded="true"] .panel-mode-icon {
+      transform: rotate(180deg);
+    }
+
+    .panel-mode-label {
+      display: inline-block;
+    }
+
+    .list-panel-body {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+    }
+
+    .list-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    #sponsor-column .list-row,
+    #category-column .list-row {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    #category-column.filters-open #category-search-wrap {
+      display: none;
+    }
+
+    .category-advanced-filters {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .advanced-filter-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    .advanced-filter-label {
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .advanced-filter-input,
+    .advanced-filter-select {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font: inherit;
+      padding: 10px 12px;
+    }
+
+    .advanced-filter-select option {
+      color: #10151f;
+    }
+
+    .advanced-filter-histogram {
+      display: grid;
+      gap: 10px;
+    }
+
+    .advanced-filter-histogram-values {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.9rem;
+      line-height: 1.1;
+    }
+
+    .advanced-filter-histogram-bars {
+      display: grid;
+      grid-template-columns: repeat(var(--histogram-count, 1), minmax(0, 1fr));
+      align-items: end;
+      gap: 4px;
+      height: 92px;
+    }
+
+    .advanced-filter-bar {
+      appearance: none;
+      display: flex;
+      align-items: flex-end;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+      min-width: 0;
+    }
+
+    .advanced-filter-bar-column {
+      display: block;
+      width: 100%;
+      min-height: 10px;
+      border-radius: 8px 8px 4px 4px;
+      background: rgba(255, 255, 255, 0.18);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .advanced-filter-bar:hover .advanced-filter-bar-column,
+    .advanced-filter-bar:focus .advanced-filter-bar-column {
+      background: rgba(255, 207, 102, 0.55);
+      transform: translateY(-2px);
+    }
+
+    .advanced-filter-bar.active .advanced-filter-bar-column {
+      background: linear-gradient(90deg, #ffd978 0%, #ffcf66 55%, #ffbe3b 100%);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+    }
+
+    .advanced-filter-histogram-axis {
+      display: grid;
+      grid-template-columns: repeat(var(--histogram-count, 1), minmax(0, 1fr));
+      gap: 4px;
+      align-items: start;
+    }
+
+    .advanced-filter-axis-label {
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 0.66rem;
+      line-height: 1;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .advanced-filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .advanced-filter-chip {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .advanced-filter-chip.active {
+      background: #ffcf66;
+      border-color: #ffcf66;
+      color: #10151f;
+      font-weight: 700;
+    }
+
+    .advanced-filter-meta {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+
+    .advanced-filter-reset {
+      justify-self: start;
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      padding: 7px 12px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .list-count {
+      width: 72px;
+      min-width: 72px;
+      text-align: right;
+      white-space: nowrap;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .list-row .sponsor-button {
+      flex: 1;
+      min-width: 0;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sponsor-button {
+      appearance: none;
+      display: inline-block;
+      max-width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      vertical-align: middle;
+    }
+
+    .sponsor-button.active {
+      background: #ffcf66;
+      color: #10151f;
+      font-weight: 700;
+      border-color: #ffcf66;
+    }
+
+    .bills-table-wrap {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .column-panel,
+    .list-panel-body,
+    .bills-table-wrap,
+    .bill-modal-dialog {
+      scrollbar-width: thin;
+      scrollbar-color: #ffcf66 rgba(255, 255, 255, 0.08);
+    }
+
+    .column-panel::-webkit-scrollbar,
+    .list-panel-body::-webkit-scrollbar,
+    .bills-table-wrap::-webkit-scrollbar,
+    .bill-modal-dialog::-webkit-scrollbar {
+      width: 14px;
+      height: 14px;
+    }
+
+    .column-panel::-webkit-scrollbar-button,
+    .list-panel-body::-webkit-scrollbar-button,
+    .bills-table-wrap::-webkit-scrollbar-button,
+    .bill-modal-dialog::-webkit-scrollbar-button {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+
+    .column-panel::-webkit-scrollbar-track,
+    .list-panel-body::-webkit-scrollbar-track,
+    .bills-table-wrap::-webkit-scrollbar-track,
+    .bill-modal-dialog::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .column-panel::-webkit-scrollbar-thumb,
+    .list-panel-body::-webkit-scrollbar-thumb,
+    .bills-table-wrap::-webkit-scrollbar-thumb,
+    .bill-modal-dialog::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #ffd978 0%, #ffcf66 55%, #ffbe3b 100%);
+      border-radius: 999px;
+      border: 2px solid rgba(14, 22, 45, 0.55);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.24);
+    }
+
+    .column-panel::-webkit-scrollbar-thumb:hover,
+    .list-panel-body::-webkit-scrollbar-thumb:hover,
+    .bills-table-wrap::-webkit-scrollbar-thumb:hover,
+    .bill-modal-dialog::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #ffe08f 0%, #ffd267 55%, #ffc13f 100%);
+    }
+
+    .bills-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 16px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(17, 34, 73, 0.94), rgba(5, 12, 28, 0.95));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      table-layout: fixed;
+    }
+
+    .bills-table th,
+    .bills-table td {
+      padding: 12px 10px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 1.05rem;
+      line-height: 1.3;
+    }
+
+    .bills-table th {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      background: rgba(8, 18, 42, 0.98);
+      z-index: 1;
+    }
+
+    .bills-table th.sortable {
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.15s ease;
+    }
+
+    .bills-table th.sortable:hover {
+      color: #ffcf66;
+    }
+
+    .bills-table th.sortable:focus {
+      outline: 2px solid #ffcf66;
+      outline-offset: -2px;
+    }
+
+    .bills-table th.resizable {
+      position: relative;
+    }
+
+    .bills-table th.resizable .resize-handle {
+      position: absolute;
+      right: -3px;
+      top: 0;
+      bottom: 0;
+      width: 10px;
+      cursor: col-resize;
+      background: transparent;
+      z-index: 2;
+    }
+
+    .bills-table th.resizable .resize-handle:hover,
+    .bills-table th.resizable .resize-handle.resizing {
+      background: rgba(255, 207, 102, 0.4);
+    }
+
+    .bills-table th.resizable:last-child .resize-handle {
+      display: none;
+    }
+
+    body.is-resizing-columns,
+    body.is-resizing-columns * {
+      cursor: col-resize !important;
+      user-select: none !important;
+    }
+
+    .sort-indicator {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      margin-left: 6px;
+      vertical-align: middle;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .bills-table th.sort-asc .sort-indicator {
+      opacity: 1;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 5px solid #ffcf66;
+    }
+
+    .bills-table th.sort-desc .sort-indicator {
+      opacity: 1;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid #ffcf66;
+    }
+
+    .bills-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .bill-number-cell {
+      position: relative;
+      color: #ffcf66;
+    }
+
+    .bill-number-copy {
+      position: relative;
+      appearance: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+      width: 100%;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .bill-number-copy:focus {
+      outline: 2px solid #ffcf66;
+      outline-offset: 4px;
+      border-radius: 6px;
+    }
+
+    .bill-number-label {
+      font-size: 0.68rem;
+      line-height: 1.1;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.64);
+    }
+
+    .bill-number-value {
+      display: block;
+      max-width: 100%;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #ffcf66;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    .bill-number-toast {
+      position: absolute;
+      top: 50%;
+      left: calc(100% + 8px);
+      transform: translateY(-50%) translateX(-4px);
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 207, 102, 0.96);
+      color: #10151f;
+      font-size: 0.72rem;
+      font-weight: 700;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.14s ease, transform 0.14s ease;
+    }
+
+    .bill-number-copy.is-copied .bill-number-toast {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+
+    .bill-title {
+      margin: 0;
+      font-weight: 600;
+      line-height: 1.3;
+      font-size: inherit;
+    }
+
+    .bill-title-button {
+      appearance: none;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: #fff;
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-size: 1.08rem;
+      line-height: 1.3;
+    }
+
+    .bill-sponsor-button {
+      appearance: none;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      font: inherit;
+      text-align: left;
+      font-size: 1.08rem;
+      line-height: 1.3;
+    }
+
+    .hover-card {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: min(360px, calc(100vw - 20px));
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: linear-gradient(180deg, rgba(14, 29, 61, 0.98), rgba(6, 14, 30, 0.98));
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.48);
+      z-index: 9998;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.12s ease, transform 0.12s ease;
+      color: #fff;
+      text-align: left;
+    }
+
+    .hover-card.open {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hover-card-content {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.14s ease, transform 0.14s ease;
+    }
+
+    .hover-card.is-swapping .hover-card-content {
+      opacity: 0.28;
+      transform: translateY(2px);
+    }
+
+    .hover-card.left-overlay {
+      width: min(50vw, calc(100vw - 20px));
+      max-width: 760px;
+      min-width: 380px;
+      z-index: 9999;
+      overflow: auto;
+      border-radius: 14px;
+    }
+
+    .hover-card.right-overlay {
+      width: min(50vw, calc(100vw - 20px));
+      max-width: 760px;
+      min-width: 380px;
+      z-index: 9999;
+      overflow: auto;
+      border-radius: 14px;
+    }
+
+    .hover-card h3 {
+      margin: 0 0 6px;
+      font-size: 1.5rem;
+      line-height: 1.3;
+      border: 0 !important;
+    }
+
+    .hover-card p {
+      margin: 0 0 6px;
+      font-size: 1.16rem;
+      line-height: 1.4;
+      text-indent: 0;
+    }
+
+    .hover-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .hover-card.left-overlay h3 {
+      font-size: calc(var(--bills-font-size) * 1.5);
+    }
+
+    .hover-card.left-overlay p {
+      font-size: calc(var(--bills-font-size) * 1.16);
+    }
+
+    .hover-card.left-overlay .hover-card-kicker {
+      font-size: calc(var(--bills-font-size) * 0.94);
+    }
+
+    .hover-card-kicker {
+      margin: 0 0 6px;
+      font-size: 0.94rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .hover-card-meta {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .hover-card-meta-accent {
+      color: #ffd45f;
+      font-weight: 700;
+    }
+
+    .hover-card-list {
+      margin: 8px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .hover-card-list li {
+      display: grid;
+      gap: 2px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hover-card-list-file {
+      color: #ffd45f;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .hover-card-list-title {
+      color: #fff;
+      line-height: 1.35;
+    }
+
+    .hover-card-list-meta {
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 0.95em;
+      line-height: 1.3;
+    }
+
+    .hover-card img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: contain;
+      background: rgba(0, 0, 0, 0.18);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      margin: 8px 0 6px;
+      display: block;
+    }
+
+    .hover-card-images {
+      display: grid;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .hover-card-images figure {
+      margin: 0;
+    }
+
+    .hover-card-images figcaption {
+      margin-top: 2px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .hover-card-images.sponsor-hover-media {
+      position: relative;
+      display: block;
+      margin-top: 10px;
+      height: min(64vh, 640px);
+      min-height: 260px;
+    }
+
+    .hover-card-images.sponsor-hover-media .hover-map-figure {
+      margin: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hover-card-images.sponsor-hover-media .hover-map-image {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      object-fit: contain;
+      background: transparent;
+      margin: 0;
+      flex: 1;
+    }
+
+    .hover-card-images.sponsor-hover-media .hover-map-figure figcaption {
+      margin-top: 6px;
+    }
+
+    .hover-card-images.sponsor-hover-media .hover-portrait-overlay {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: min(26%, 170px);
+      max-width: 170px;
+      min-width: 80px;
+      margin: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .hover-card-images.sponsor-hover-media .hover-portrait-image {
+      width: 100%;
+      height: auto;
+      max-height: 170px;
+      object-fit: cover;
+      margin: 0;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.45);
+      background: rgba(6, 14, 30, 0.88);
+    }
+
+    .bill-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.72);
+      z-index: 9999;
+    }
+
+    .bill-modal.open {
+      display: flex;
+    }
+
+    .bill-modal-dialog {
+      width: min(960px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: linear-gradient(180deg, rgba(17, 34, 73, 0.98), rgba(5, 12, 28, 0.98));
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+      padding: 18px;
+      font-size: var(--bills-font-size);
+    }
+
+    #bill-modal .bill-modal-dialog,
+    #bill-modal .bill-modal-dialog * {
+      color: #fff !important;
+    }
+
+    .bill-modal-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .bill-modal-head h2 {
+      margin: 0;
+      font-size: calc(var(--bills-font-size) * 1.25);
+      line-height: 1.35;
+    }
+
+    .bill-modal-close {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      padding: 8px 10px;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .bill-detail-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .bill-detail-table th,
+    .bill-detail-table td {
+      padding: 10px 8px;
+      vertical-align: top;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .bill-detail-table th {
+      width: 220px;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: calc(var(--bills-font-size) * 0.82);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .sponsor-modal-images {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      margin-top: 14px;
+    }
+
+    .sponsor-modal-images img {
+      width: 100%;
+      max-height: 360px;
+      object-fit: contain;
+      background: transparent;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      display: block;
+    }
+
+    .sponsor-modal-images figcaption {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.85) !important;
+    }
+
+    @media (max-width: 700px) {
+      .bills-shell {
+        height: calc(100vh - 70px);
+        padding: 10px 12px 12px;
+      }
+
+      .insights-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .panel-resize-handle {
+        display: none;
+      }
+
+      .bills-titlebar {
+        gap: 4px 8px;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Code Collective",
+      "url": "https://codecollective.us/",
+      "logo": "https://codecollective.us/images/favicons/favicon.png",
+      "description": "Baltimore-based tech labor organization providing a unified tech events calendar, workforce development, and advocacy.",
+      "slogan": "Coding a better economy",
+      "areaServed": "Baltimore, MD",
+      "sameAs": [
+        "https://codecollective.us/newsletter/"
+      ]
+    }
+  </script>
+
+</head>
+
+<body id="body">
+  <video id="bg-video" autoplay loop muted playsinline poster="/images/general_encircled_banner.webp">
+    <source src="/videos/craig_baltimore_video.mp4" type="video/mp4" media="(max-width: 768px)">
+    <source src="/videos/baltimorenight_15s_crossfaded.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+
+  <nav class="main-nav" aria-label="Main Navigation">
+    <div class="navbar dark-mode">
+      <a href="/#main">Home</a>
+      <a href="/platform.html">Platform</a>
+      <a href="/calendar.html?city=baltimore">Calendar</a>
+      <a href="/projects.html">Projects</a>
+    </div>
+  </nav>
+
+  <main id="wrapper" class="longform dark-mode" style="padding: 0; margin: 0;">
+    <section id="main" class="longform dark-mode" style="padding: 0; margin: 0;">
+      <div class="bills-shell">
+        <section class="bills-titlebar">
+          <h1>USAJOBS Listings</h1>
+          <div class="bills-meta">
+            <span id="bill-count">Loading records...</span>
+            <span id="bill-updated"></span>
+          </div>
+          <div class="toolbar-actions">
+            <button id="reset-filters" type="button" class="toolbar-reset">Reset Filters</button>
+          </div>
+        </section>
+
+        <section class="insights-grid">
+          <section class="column-panel" aria-label="Agency record counts" id="sponsor-column">
+            <div class="list-panel-head">
+              <span>Agency</span>
+              <div class="panel-header-right">
+                <div class="font-size-controls">
+                  <button type="button" class="font-size-btn" data-column="sponsor" data-action="down" aria-label="Decrease sponsor font size">−</button>
+                  <button type="button" class="font-size-btn" data-column="sponsor" data-action="up" aria-label="Increase sponsor font size">+</button>
+                </div>
+                <span>Jobs</span>
+              </div>
+            </div>
+            <div class="search-wrap">
+              <input id="sponsor-filter" class="column-search" type="search" placeholder="Search agencies" autocomplete="off" />
+              <button type="button" class="search-clear" data-clear-target="sponsor-filter" aria-label="Clear agency search">X</button>
+            </div>
+            <div id="sponsor-table-body" class="list-panel-body">
+              <div class="list-row"><span>Loading agencies...</span><span class="list-count">...</span></div>
+            </div>
+          </section>
+          <div class="panel-resize-handle" data-grid-resize="sponsor" aria-hidden="true"></div>
+          <section class="column-panel" aria-label="Job category counts" id="category-column">
+            <div class="list-panel-head">
+              <button type="button" id="category-mode-toggle" class="panel-mode-toggle" aria-expanded="false">
+                <span class="panel-mode-icon" aria-hidden="true">▾</span>
+                <span class="panel-mode-label">Category / Hiring Path</span>
+              </button>
+              <div class="panel-header-right">
+                <div class="font-size-controls">
+                  <button type="button" class="font-size-btn" data-column="category" data-action="down" aria-label="Decrease category font size">−</button>
+                  <button type="button" class="font-size-btn" data-column="category" data-action="up" aria-label="Increase category font size">+</button>
+                </div>
+                <span>Jobs</span>
+              </div>
+            </div>
+            <div class="search-wrap" id="category-search-wrap">
+              <input id="category-filter" class="column-search" type="search" placeholder="Search categories or hiring paths" autocomplete="off" />
+              <button type="button" class="search-clear" data-clear-target="category-filter" aria-label="Clear category search">X</button>
+            </div>
+            <div id="category-table-body" class="list-panel-body">
+              <div class="list-row"><span>Loading categories...</span><span class="list-count">...</span></div>
+            </div>
+          </section>
+          <div class="panel-resize-handle" data-grid-resize="category" aria-hidden="true"></div>
+          <section class="column-panel" aria-live="polite" id="bills-column">
+            <div class="list-panel-head">
+              <span>Jobs</span>
+              <div class="panel-header-right">
+                <div class="font-size-controls">
+                  <button type="button" class="font-size-btn" data-column="bills" data-action="down" aria-label="Decrease bills font size">−</button>
+                  <button type="button" class="font-size-btn" data-column="bills" data-action="up" aria-label="Increase bills font size">+</button>
+                </div>
+                <label class="header-check" for="upcoming-only-toggle">
+                  <input id="upcoming-only-toggle" type="checkbox" />
+                  Open jobs only
+                </label>
+              </div>
+            </div>
+            <div class="search-wrap">
+              <input id="bill-filter" class="column-search" type="search" placeholder="Search jobs by ID, title, agency, location, category" autocomplete="off" />
+              <button type="button" class="search-clear" data-clear-target="bill-filter" aria-label="Clear job search">X</button>
+            </div>
+            <section class="bills-table-wrap">
+              <table class="bills-table">
+                <thead>
+                  <tr>
+                    <th class="sortable resizable" data-sort="billNumber" tabindex="0" role="button" aria-label="Sort by position ID">Position ID <span class="sort-indicator"></span><span class="resize-handle"></span></th>
+                    <th class="sortable resizable" data-sort="title" tabindex="0" role="button" aria-label="Sort by title">Title <span class="sort-indicator"></span><span class="resize-handle"></span></th>
+                    <th class="sortable resizable" data-sort="sponsor" tabindex="0" role="button" aria-label="Sort by agency">Agency <span class="sort-indicator"></span><span class="resize-handle"></span></th>
+                    <th class="sortable resizable" data-sort="status" tabindex="0" role="button" aria-label="Sort by status">Status <span class="sort-indicator"></span><span class="resize-handle"></span></th>
+                    <th class="sortable resizable" data-sort="hearingDate" tabindex="0" role="button" aria-label="Sort by close date">Closing Date <span class="sort-indicator"></span></th>
+                  </tr>
+                </thead>
+                <tbody id="bills-table-body">
+                  <tr><td colspan="5">Loading jobs...</td></tr>
+                </tbody>
+              </table>
+            </section>
+          </section>
+        </section>
+
+        <p id="status-message" class="status-message" aria-live="polite">Loading USAJOBS data...</p>
+      </div>
+    </section>
+
+  </main>
+
+  <section id="bill-modal" class="bill-modal" role="dialog" aria-modal="true" aria-labelledby="bill-modal-title">
+    <div class="bill-modal-dialog">
+      <div class="bill-modal-head">
+        <h2 id="bill-modal-title">Job Details</h2>
+        <button type="button" id="bill-modal-close" class="bill-modal-close">Close</button>
+      </div>
+      <div id="bill-modal-content"></div>
+    </div>
+  </section>
+  <div id="hover-card" class="hover-card" role="tooltip" aria-hidden="true"></div>
+
+  <our-footer></our-footer>
+  <our-slack-link></our-slack-link>
+
+</body>
+
+<script type="module" src="/js/reusableComponents.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="jobs.js"></script>
+
+</html>
