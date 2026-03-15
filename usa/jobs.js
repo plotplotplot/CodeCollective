@@ -627,26 +627,96 @@ function matchesGradeRange(entry, system, minValue, maxValue) {
   return !(entryMax < parsedMin || entryMin > parsedMax);
 }
 
+function entryMatchesBaseFilters(entry, state, options = {}) {
+  const { ignoreSponsor = false, ignoreCategory = false } = options;
+  if (state.upcomingOnly && entry.statusLower !== 'open') {
+    return false;
+  }
+  if (!ignoreSponsor && state.sponsor && entry.sponsor !== state.sponsor) {
+    return false;
+  }
+  if (!ignoreCategory && state.category && !entry.categoriesWithFallback.includes(state.category)) {
+    return false;
+  }
+  if (state.query && !entry.searchText.includes(state.query)) {
+    return false;
+  }
+  return true;
+}
+
+function entryMatchesAdvancedFilters(entry, state) {
+  const hasGsFilter = !Number.isNaN(Number.parseInt(state.gsMin, 10)) && !Number.isNaN(Number.parseInt(state.gsMax, 10));
+  const hasClFilter = !Number.isNaN(Number.parseInt(state.clMin, 10)) && !Number.isNaN(Number.parseInt(state.clMax, 10));
+  if (hasGsFilter || hasClFilter) {
+    const matchesGs = hasGsFilter && matchesGradeRange(entry, 'GS', state.gsMin, state.gsMax);
+    const matchesCl = hasClFilter && matchesGradeRange(entry, 'CL', state.clMin, state.clMax);
+    if (!matchesGs && !matchesCl) {
+      return false;
+    }
+  }
+  if (state.location && !entry.locations.includes(state.location)) {
+    return false;
+  }
+  if (state.securityClearance && entry.securityClearance !== state.securityClearance) {
+    return false;
+  }
+  if (state.remoteMode === 'remote' && !entry.remoteEligible) {
+    return false;
+  }
+  if (state.remoteMode === 'onsite' && entry.remoteEligible) {
+    return false;
+  }
+  return true;
+}
+
+function getSponsorCountEntries() {
+  const state = getFullFilterState();
+  const entries = [];
+  for (const entry of preparedBills) {
+    if (!entryMatchesBaseFilters(entry, state, { ignoreSponsor: true })) {
+      continue;
+    }
+    if (!entryMatchesAdvancedFilters(entry, state)) {
+      continue;
+    }
+    entries.push(entry);
+  }
+  return entries;
+}
+
 function renderSponsorTable() {
   const sponsorQuery = sponsorFilterInput.value.trim().toLowerCase();
-  const counts = new Map();
+  const filteredCounts = new Map();
+  const totalCounts = new Map();
 
-  for (const bill of allBills) {
-    const sponsor = String(bill.agency || bill.organization_name || 'Unknown agency').trim() || 'Unknown agency';
-    counts.set(sponsor, (counts.get(sponsor) || 0) + 1);
+  for (const entry of preparedBills) {
+    totalCounts.set(entry.sponsor, (totalCounts.get(entry.sponsor) || 0) + 1);
   }
 
-  const rows = [...counts.entries()]
+  for (const entry of getSponsorCountEntries()) {
+    filteredCounts.set(entry.sponsor, (filteredCounts.get(entry.sponsor) || 0) + 1);
+  }
+
+  if (activeSponsor && !filteredCounts.has(activeSponsor)) {
+    activeSponsor = '';
+  }
+
+  const rows = [...filteredCounts.entries()]
+    .filter(([, count]) => count > 0)
     .filter(([name]) => !sponsorQuery || name.toLowerCase().includes(sponsorQuery))
     .sort((a, b) => (b[1] - a[1]) || a[0].localeCompare(b[0]))
-    .map(([name, count]) => `
+    .map(([name, count]) => {
+      const totalCount = totalCounts.get(name) || 0;
+      const isFilteredCount = count < totalCount;
+      return `
       <div class="list-row">
         <button type="button" class="sponsor-button${name === activeSponsor ? ' active' : ''}" data-sponsor="${escapeHtml(name)}">
           ${escapeHtml(name)}
         </button>
-        <span class="list-count">${count.toLocaleString()}</span>
+        <span class="list-count${isFilteredCount ? ' filtered' : ''}">${count.toLocaleString()}</span>
       </div>
-    `)
+    `;
+    })
     .join('');
 
   sponsorTableBody.innerHTML = rows || '<div class="list-row"><span>No sponsor data available.</span><span class="list-count">0</span></div>';
@@ -699,16 +769,7 @@ function getBaseFilteredEntries() {
 
   const entries = [];
   for (const entry of preparedBills) {
-    if (state.upcomingOnly && entry.statusLower !== 'open') {
-      continue;
-    }
-    if (state.sponsor && entry.sponsor !== state.sponsor) {
-      continue;
-    }
-    if (state.category && !entry.categoriesWithFallback.includes(state.category)) {
-      continue;
-    }
-    if (state.query && !entry.searchText.includes(state.query)) {
+    if (!entryMatchesBaseFilters(entry, state)) {
       continue;
     }
     entries.push(entry);
@@ -728,25 +789,7 @@ function getFilteredEntries() {
 
   const entries = [];
   for (const entry of getBaseFilteredEntries()) {
-    const hasGsFilter = !Number.isNaN(Number.parseInt(state.gsMin, 10)) && !Number.isNaN(Number.parseInt(state.gsMax, 10));
-    const hasClFilter = !Number.isNaN(Number.parseInt(state.clMin, 10)) && !Number.isNaN(Number.parseInt(state.clMax, 10));
-    if (hasGsFilter || hasClFilter) {
-      const matchesGs = hasGsFilter && matchesGradeRange(entry, 'GS', state.gsMin, state.gsMax);
-      const matchesCl = hasClFilter && matchesGradeRange(entry, 'CL', state.clMin, state.clMax);
-      if (!matchesGs && !matchesCl) {
-        continue;
-      }
-    }
-    if (state.location && !entry.locations.includes(state.location)) {
-      continue;
-    }
-    if (state.securityClearance && entry.securityClearance !== state.securityClearance) {
-      continue;
-    }
-    if (state.remoteMode === 'remote' && !entry.remoteEligible) {
-      continue;
-    }
-    if (state.remoteMode === 'onsite' && entry.remoteEligible) {
+    if (!entryMatchesAdvancedFilters(entry, state)) {
       continue;
     }
     entries.push(entry);
@@ -892,6 +935,7 @@ function createBillRowMarkup(entry) {
 }
 
 function renderBills() {
+  renderSponsorTable();
   const filteredEntries = sortEntries(getFilteredEntries());
   billsTableBody.innerHTML = filteredEntries.map(createBillRowMarkup).join('')
     || '<tr><td colspan="5">No USAJOBS records matched these filters.</td></tr>';

@@ -736,6 +736,14 @@ def main(city = "baltimore"):
             preface="",
             recurring=False
         )
+
+    if city == "virtual":
+        try:
+            scrape_abwippm = importlib.import_module("virtual.scrape_ABWIPPM")
+            newEvents += scrape_abwippm.scrape_events()
+        except Exception as e:
+            print(f"Error fetching ABWIPPM events: {e}")
+
     invalid_events = []
 
     # Convert all datetime strings in newEvents to timezone-aware datetime objects
@@ -993,7 +1001,7 @@ def main(city = "baltimore"):
     genSimpleCalendar.main(city)
 
 if __name__ == "__main__":
-    cities = ["baltimore", "westvirginia", "hawaii", "dc", "pittsburgh"]
+    cities = ["baltimore", "westvirginia", "hawaii", "dc", "pittsburgh", "virtual"]
     if len(sys.argv) > 1:
         cities = sys.argv[1:]
     for city in cities:
