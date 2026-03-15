@@ -133,4 +133,28 @@ def collect_events(city="baltimore"):
     except Exception as e:
         print(f"Error fetching WSSC events: {e}")
 
+    try:
+        scrape_bluewaterbaltimore = importlib.import_module("baltimore.scrape_bluewaterbaltimore")
+        new_events += scrape_bluewaterbaltimore.scrape_events(city=city)
+    except Exception as e:
+        print(f"Error fetching Blue Water Baltimore events: {e}")
+
+    try:
+        scrape_waterfrontpartnership = importlib.import_module("baltimore.scrape_waterfrontpartnership")
+        new_events += scrape_waterfrontpartnership.scrape_events()
+    except Exception as e:
+        print(f"Error fetching Waterfront Partnership events: {e}")
+
+    try:
+        scrape_chesapeakewea = importlib.import_module("baltimore.scrape_chesapeakewea")
+        new_events += scrape_chesapeakewea.scrape_events()
+    except Exception as e:
+        print(f"Error fetching Chesapeake WEA events: {e}")
+
+    try:
+        scrape_csawwa = importlib.import_module("baltimore.scrape_csawwa")
+        new_events += scrape_csawwa.scrape_events()
+    except Exception as e:
+        print(f"Error fetching CSAWWA events: {e}")
+
     return new_events

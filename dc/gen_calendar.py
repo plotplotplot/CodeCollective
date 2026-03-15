@@ -18,4 +18,10 @@ def collect_events(city="dc"):
     except Exception:
         pass
 
+    try:
+        scrape_dcwater = importlib.import_module("dc.scrape_dcwater")
+        new_events += scrape_dcwater.scrape_events()
+    except Exception:
+        pass
+
     return new_events

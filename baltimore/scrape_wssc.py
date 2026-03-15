@@ -1,10 +1,11 @@
 import requests
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 import re
 from bs4 import BeautifulSoup
 from typing import List, Dict, Optional
 import uuid
+from zoneinfo import ZoneInfo
 
 
 class WSSCEventsScraper:
@@ -12,10 +13,11 @@ class WSSCEventsScraper:
         self.base_url = "https://www.wsscwater.com"
         self.ajax_endpoint = "/views/ajax"
         self.events_page = "/events"
+        self.eastern_tz = ZoneInfo("America/New_York")
     
     def fetch_events_page(self) -> Optional[str]:
         """Return the HTML for the main events page."""
-        response = requests.get(f"{self.base_url}{self.events_page}")
+        response = requests.get(f"{self.base_url}{self.events_page}", timeout=30)
         if response.status_code != 200:
             print(f"Failed to fetch events page: {response.status_code}")
             return None
@@ -66,7 +68,7 @@ class WSSCEventsScraper:
             'Referer': f"{self.base_url}{self.events_page}"
         }
         
-        response = requests.post(ajax_url, data=form_data, headers=headers)
+        response = requests.post(ajax_url, data=form_data, headers=headers, timeout=30)
         
         if response.status_code != 200:
             print(f"Failed to fetch AJAX data: {response.status_code}")
@@ -132,6 +134,17 @@ class WSSCEventsScraper:
                 events.append(event)
         
         return events
+
+    def should_skip_event(self, title: str, event_type: str, description: str) -> bool:
+        """Filter out non-event closures and holiday notices."""
+        haystacks = [title.lower(), event_type.lower(), description.lower()]
+        if any("holiday" in text for text in haystacks):
+            return True
+        if any("closed" in text for text in haystacks):
+            return True
+        if any("administrative offices are closed" in text for text in haystacks):
+            return True
+        return False
     
     def parse_event_article(self, article) -> Optional[Dict]:
         """Parse a single event article"""
@@ -176,6 +189,9 @@ class WSSCEventsScraper:
             
             # Generate a unique ID from the URL
             event_id = str(uuid.uuid5(uuid.NAMESPACE_URL, full_url)) if full_url else str(uuid.uuid4())
+
+            if self.should_skip_event(title, event_type, description):
+                return None
             
             # Format the event data
             formatted_event = {
@@ -204,12 +220,8 @@ class WSSCEventsScraper:
     def parse_iso_date(self, date_str: str) -> str:
         """Convert date string to ISO 8601 format with timezone"""
         try:
-            # Parse the UTC date string
             dt = datetime.fromisoformat(date_str.replace('Z', '+00:00'))
-            # Convert to Eastern Time (UTC-4 or UTC-5 depending on DST)
-            # For simplicity, we'll keep UTC and add timezone offset
-            # You could add proper timezone conversion here
-            return dt.isoformat() + '-04:00'  # Assuming Eastern Time
+            return dt.astimezone(self.eastern_tz).isoformat()
         except ValueError:
             return date_str
     
@@ -217,13 +229,14 @@ class WSSCEventsScraper:
         """Add one hour to a date string"""
         try:
             dt = datetime.fromisoformat(date_str.replace('Z', '+00:00'))
-            dt = dt.replace(hour=dt.hour + 1)
-            return dt.isoformat() + '-04:00'
-        except:
+            return (dt + timedelta(hours=1)).astimezone(self.eastern_tz).isoformat()
+        except ValueError:
             return date_str
     
-    def scrape(self, year: str = "2025") -> List[Dict]:
+    def scrape(self, year: Optional[str] = None) -> List[Dict]:
         """Main scraping method"""
+        if not year:
+            year = str(datetime.now(self.eastern_tz).year)
         print(f"Scraping WSSC Water events for {year}...")
         events = self.fetch_events_data(year)
         print(f"Found {len(events)} events")
@@ -249,9 +262,18 @@ class WSSCEventsScraper:
         for year in years:
             year_events = self.fetch_events_data(year=year, view_dom_id=view_dom_id, page_html=page_html)
             all_events.extend(year_events)
+
+        deduped_events: List[Dict] = []
+        seen_ids = set()
+        for event in all_events:
+            event_id = event.get("id")
+            if event_id in seen_ids:
+                continue
+            seen_ids.add(event_id)
+            deduped_events.append(event)
         
-        print(f"Scraped {len(all_events)} events across {len(years)} year filters")
-        return all_events
+        print(f"Scraped {len(deduped_events)} events across {len(years)} year filters")
+        return deduped_events
     
     def save_to_json(self, events: List[Dict], filename: str = "wssc_events.json"):
         """Save events to JSON file"""
@@ -260,7 +282,7 @@ class WSSCEventsScraper:
         print(f"Events saved to {filename}")
 
 
-def scrape_wssc_events(year: str = "2025") -> List[Dict]:
+def scrape_wssc_events(year: Optional[str] = None) -> List[Dict]:
     scraper = WSSCEventsScraper()
     return scraper.scrape(year)
 

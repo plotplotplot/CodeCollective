@@ -67,28 +67,117 @@ JOB_CATEGORY_CODES="${USAJOBS_JOB_CATEGORY_CODES:-}"
 SCHEDULE_CODES="${USAJOBS_POSITION_SCHEDULE_TYPE_CODES:-}"
 HIRING_PATHS="${USAJOBS_HIRING_PATHS:-}"
 
-should_skip_refresh() {
+payload_epoch() {
+  local target_path="$1"
+  python3 - "${target_path}" <<'PY'
+import json
+import os
+import sys
+from datetime import datetime, UTC
+
+path = sys.argv[1]
+if not os.path.exists(path):
+    print("")
+    raise SystemExit(0)
+
+try:
+    with open(path, encoding="utf-8") as handle:
+        payload = json.load(handle)
+except Exception:
+    payload = {}
+
+fetched_at = str(payload.get("fetched_at") or "").strip()
+if fetched_at:
+    try:
+        dt = datetime.fromisoformat(fetched_at.replace("Z", "+00:00")).astimezone(UTC)
+        print(int(dt.timestamp()))
+        raise SystemExit(0)
+    except ValueError:
+        pass
+
+print(int(os.path.getmtime(path)))
+PY
+}
+
+payload_fetched_at() {
+  local target_path="$1"
+  python3 - "${target_path}" <<'PY'
+import json
+import os
+import sys
+from datetime import datetime, UTC
+
+path = sys.argv[1]
+if not os.path.exists(path):
+    print("")
+    raise SystemExit(0)
+
+try:
+    with open(path, encoding="utf-8") as handle:
+        payload = json.load(handle)
+except Exception:
+    payload = {}
+
+fetched_at = str(payload.get("fetched_at") or "").strip()
+if fetched_at:
+    print(fetched_at)
+else:
+    dt = datetime.fromtimestamp(os.path.getmtime(path), tz=UTC)
+    print(dt.replace(microsecond=0).isoformat().replace("+00:00", "Z"))
+PY
+}
+
+describe_payload_age() {
+  local target_path="$1"
+  local label="$2"
+  local epoch
+  epoch="$(payload_epoch "${target_path}")"
+  if [[ -z "${epoch}" ]]; then
+    echo "${label}: no cached data found."
+    return
+  fi
+
+  local now age_seconds age_days fetched_at
+  now="$(date +%s)"
+  age_seconds=$(( now - epoch ))
+  age_days="$(python3 - <<PY
+age_seconds = ${age_seconds}
+print(f"{age_seconds / 86400:.2f}")
+PY
+)"
+  fetched_at="$(payload_fetched_at "${target_path}")"
+  echo "${label}: fetched_at=${fetched_at} age_days=${age_days}"
+}
+
+payload_is_fresh() {
   local target_path="$1"
   if [[ "${FORCE_REFRESH}" == "1" || ! -f "${target_path}" ]]; then
     return 1
   fi
 
-  local now
-  local modified
+  local now epoch
   now="$(date +%s)"
-  modified="$(stat -c %Y "${target_path}")"
+  epoch="$(payload_epoch "${target_path}")"
+  if [[ -z "${epoch}" ]]; then
+    return 1
+  fi
 
-  if (( now - modified < MAX_AGE_DAYS * 86400 )); then
+  if (( now - epoch < MAX_AGE_DAYS * 86400 )); then
     return 0
   fi
 
   return 1
 }
 
-if should_skip_refresh "${OUTPUT_PATH}" && should_skip_refresh "${FRONTEND_OUTPUT_PATH}"; then
+describe_payload_age "${OUTPUT_PATH}" "Full USAJOBS cache"
+describe_payload_age "${FRONTEND_OUTPUT_PATH}" "Frontend USAJOBS cache"
+
+if payload_is_fresh "${OUTPUT_PATH}" && payload_is_fresh "${FRONTEND_OUTPUT_PATH}"; then
   echo "USAJOBS cache is newer than ${MAX_AGE_DAYS} day(s); skipping refresh."
   exit 0
 fi
+
+echo "USAJOBS cache is stale or incomplete; refreshing now."
 
 prompt_secret "USAJOBS_API_KEY" "Enter USAJOBS API key"
 : "${USAJOBS_USER_AGENT:=${USAJOBS_EMAIL:-}}"
@@ -142,3 +231,6 @@ done
 
 cd "${SCRIPT_DIR}"
 python3 "${SCRIPT_DIR}/fetch_jobs_search.py" "${args[@]}"
+
+describe_payload_age "${OUTPUT_PATH}" "Full USAJOBS cache after refresh"
+describe_payload_age "${FRONTEND_OUTPUT_PATH}" "Frontend USAJOBS cache after refresh"

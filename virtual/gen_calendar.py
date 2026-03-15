@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import importlib
 import json
 from pathlib import Path
 import sys
@@ -12,15 +13,27 @@ if str(ROOT_DIR) not in sys.path:
 
 import genSimpleCalendar
 
-from scrape_ABWIPPM import scrape_events
-
-
 def write_json(path: Path, payload):
     path.write_text(json.dumps(payload, indent=4), encoding="utf-8")
 
 
+def collect_events(city=CITY):
+    new_events = []
+
+    scrape_abwippm = importlib.import_module("virtual.scrape_ABWIPPM")
+    new_events += scrape_abwippm.scrape_events()
+
+    try:
+        scrape_water_is_life = importlib.import_module("virtual.scrape_water_is_life")
+        new_events += scrape_water_is_life.scrape_events()
+    except Exception as exc:
+        print(f"Skipping Water Is Life events: {exc}")
+
+    return new_events
+
+
 def main():
-    events = scrape_events()
+    events = collect_events()
     events.sort(key=lambda event: event.get("startDate", ""))
 
     write_json(CITY_DIR / "upcoming_events.json", events)
