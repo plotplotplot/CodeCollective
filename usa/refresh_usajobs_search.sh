@@ -49,11 +49,6 @@ prompt_value() {
   export "${var_name}=${current_value}"
 }
 
-prompt_secret "USAJOBS_API_KEY" "Enter USAJOBS API key"
-: "${USAJOBS_USER_AGENT:=${USAJOBS_EMAIL:-}}"
-prompt_value "USAJOBS_USER_AGENT" "Enter USAJOBS user agent email"
-export USAJOBS_API_KEY USAJOBS_USER_AGENT
-
 OUTPUT_PATH="${USAJOBS_SEARCH_OUTPUT_PATH:-${SCRIPT_DIR}/data/usajobs.json}"
 FRONTEND_OUTPUT_PATH="${USAJOBS_FRONTEND_OUTPUT_PATH:-${SCRIPT_DIR}/data/usajobs-lite.json}"
 WHO_MAY_APPLY="${USAJOBS_WHO_MAY_APPLY:-}"
@@ -71,6 +66,34 @@ ORGANIZATIONS="${USAJOBS_ORGANIZATIONS:-}"
 JOB_CATEGORY_CODES="${USAJOBS_JOB_CATEGORY_CODES:-}"
 SCHEDULE_CODES="${USAJOBS_POSITION_SCHEDULE_TYPE_CODES:-}"
 HIRING_PATHS="${USAJOBS_HIRING_PATHS:-}"
+
+should_skip_refresh() {
+  local target_path="$1"
+  if [[ "${FORCE_REFRESH}" == "1" || ! -f "${target_path}" ]]; then
+    return 1
+  fi
+
+  local now
+  local modified
+  now="$(date +%s)"
+  modified="$(stat -c %Y "${target_path}")"
+
+  if (( now - modified < MAX_AGE_DAYS * 86400 )); then
+    return 0
+  fi
+
+  return 1
+}
+
+if should_skip_refresh "${OUTPUT_PATH}" && should_skip_refresh "${FRONTEND_OUTPUT_PATH}"; then
+  echo "USAJOBS cache is newer than ${MAX_AGE_DAYS} day(s); skipping refresh."
+  exit 0
+fi
+
+prompt_secret "USAJOBS_API_KEY" "Enter USAJOBS API key"
+: "${USAJOBS_USER_AGENT:=${USAJOBS_EMAIL:-}}"
+prompt_value "USAJOBS_USER_AGENT" "Enter USAJOBS user agent email"
+export USAJOBS_API_KEY USAJOBS_USER_AGENT
 
 args=(
   "--output" "${OUTPUT_PATH}"

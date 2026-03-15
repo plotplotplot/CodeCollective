@@ -47,7 +47,6 @@ jobs:
           fi
 
       - name: Refresh USAJOBS cache
-        if: ${{ secrets.USAJOBS_API_KEY != '' && (secrets.USAJOBS_USER_AGENT != '' || secrets.USAJOBS_EMAIL != '') }}
         env:
           USAJOBS_API_KEY: ${{ secrets.USAJOBS_API_KEY }}
           USAJOBS_USER_AGENT: ${{ secrets.USAJOBS_USER_AGENT }}
