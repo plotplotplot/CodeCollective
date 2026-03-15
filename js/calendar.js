@@ -290,7 +290,7 @@ function prefetchImages(urls) {
 
 
 function getCityOptions() {
-  return window.CALENDAR_CITY_OPTIONS || ['baltimore', 'westvirginia', 'hawaii', 'dc'];
+  return window.CALENDAR_CITY_OPTIONS || ['baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh', 'virtual'];
 }
 
 // Function to get city from URL parameters

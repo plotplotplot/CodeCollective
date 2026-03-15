@@ -1,24 +1,13 @@
 import scrape_meetup
 import scrape_eventbrite
 import scrape_jotform
-import scrape_spark
-import scrape_gbc
 import scrape_luma
 import scrape_ics
-import scrape_starTUp
-import scrape_tedco
-import scrape_jhuapl
-import scrape_baltsistercities
-import scrape_big
 import scrape_gform
 import scrape_luma_orgpage
 import scrape_luma_calendar
 import scrape_luma_user
 import scrape_mtc
-import scrape_bwtech
-import scrape_innovatemd
-import scrape_wssc
-import scrape_usgpo
 import scrape_gdg
 import tag_rules
 import json
@@ -30,6 +19,7 @@ import scrape_eventbrite_org
 import markdown
 from dateutil.parser import parse
 import sys
+import importlib
 import genSimpleCalendar
 from events_map_generator import generate_events_map_page
 from geocode_cache import (
@@ -525,8 +515,6 @@ def main(city = "baltimore"):
     geocode_cache = load_geocode_cache(cache_path)
     cache_updated = False
 
-    import importlib
-
     module = importlib.import_module(f"{city}.event_sources")
     sources = module.sources
 
@@ -606,125 +594,12 @@ def main(city = "baltimore"):
     }
 
     if city == "dc":
-        try: 
-            newEvents += scrape_usgpo.scrape_upcoming_events()
-        except:
-            pass
+        dc_gen_calendar = importlib.import_module("dc.gen_calendar")
+        newEvents += dc_gen_calendar.collect_events(city)
         
     if city == "baltimore":
-
-        gbc_events = scrape_gbc.scrape_gbc_events()
-        newEvents += gbc_events
-        try:
-            newEvents += scrape_ics.fetch_calendar_events(
-                ICS_URL="http://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics",
-                imageURL="https://www.baltimorenode.org/wp-content/uploads/2013/11/node-logo.png",
-                city=city,
-                eventUrl="https://baltimorenode.org/events/",
-                preface="Node ",
-            )
-        except Exception as e:
-            print(f"Error fetching calendar events: {e}")
-
-        try:
-            newEvents += scrape_tedco.scrape_tedco_events(months=2)
-        except Exception as e:
-            print(f"Error fetching tedco")
-
-
-        try:
-            newEvents += scrape_baltsistercities.scrape_baltimore_events()
-        except Exception as e:
-            print(f"Error fetching Sister Cities")
-
-        try:
-            newEvents += scrape_mtc.scrape_mtc_events()
-        except Exception as e:
-            print(f"Error fetching MTC")
-
-        try:
-            newEvents += scrape_ics.fetch_calendar_events(
-                ICS_URL="https://calendar.google.com/calendar/ical/unallocatedspacehq@gmail.com/public/basic.ics",
-                imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png",
-                city=city,
-                eventUrl="https://www.unallocatedspace.org/events/",
-                preface="UAS ",
-            )
-        except Exception as e:
-            print(f"Error fetching calendar events: {e}")
-
-        try:
-            newEvents += scrape_ics.processICS(
-                CACHE_FILENAME="maryland-stem-festival-96ecc18ef7d.ics",
-                imageURL="https://marylandstemfestival.org/wp-content/uploads/2024/06/Family-Feud-group-Pix-1-scaled-e1717876361661.jpeg",
-                eventUrl="https://marylandstemfestival.org/events/month/",
-                preface="STEMFest ",
-            )
-        except Exception as e:
-            print(f"Error fetching calendar events: {e}")
-
-        try:
-            newEvents += scrape_ics.fetch_calendar_events(
-                ICS_URL="https://baltimoreindiegames.com/events/list/?ical=1",
-                imageURL="https://baltimoreindiegames.com/wp-content/uploads/2025/03/BIG_small.png",
-                eventUrl="https://baltimoreindiegames.com/events/",
-                city="baltimore",
-                preface="",
-                recurring=False
-            )
-        except Exception as e:
-            print(f"Error fetching calendar events: {e}")
-
-        try:
-            newEvents += scrape_ics.fetch_calendar_events(
-                ICS_URL="https://calendar.google.com/calendar/ical/c_be274545c6e9af174fab0df99319a3c47f1be77a013450babf6d03e90396a064%40group.calendar.google.com/public/basic.ics",
-                city=city,
-                imageURL="https://static.wixstatic.com/media/8dc51b_7123df01d68e47a1b4b717c89ad4aea7~mv2.png/v1/fill/w_223,h_90,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/BDEC%20(1).png",
-                eventUrl="https://www.digitalequitybaltimore.org/general-clean",
-                recurring=False,
-                preface="",
-            )
-        except Exception as e:
-            print(f"Error fetching calendar events: {e}")
-
-
-        try:
-            newEvents += scrape_spark.scrape_spark_events()
-        except Exception as e:
-            print(f"Error fetching calendar events: {e}")
-
-        try:
-            newEvents += scrape_bwtech.scrape_events()
-        except Exception as e:
-            print(f"Error fetching calendar events: {e}")
-
-        try:
-            newEvents += scrape_starTUp.scrape_towson_events()
-        except Exception as e:
-            print(f"Error fetching calendar events: {e}")
-
-        try:
-            newEvents += scrape_innovatemd.scrape_all()
-        except Exception as e:
-            print(f"Error fetching calendar events: {e}")
-
-
-        # JHUAPL excluded because of too many events external to Baltimore tech scene
-        #try:
-        #    newEvents += scrape_jhuapl.scrape_jhu_events()
-        #except Exception as e:
-        #    print(f"Error fetching calendar events: {e}")
-
-        #try:
-            #newEvents += scrape_big.main()
-        #    https://baltimoreindiegames.com/events/list/?ical=1
-        #except Exception as e:
-        #    print(f"Error fetching calendar events: {e}")
-
-        try:
-            newEvents += scrape_wssc.scrape_all_wssc_events()
-        except Exception as e:
-            print(f"Error fetching WSSC events: {e}")
+        baltimore_gen_calendar = importlib.import_module("baltimore.gen_calendar")
+        newEvents += baltimore_gen_calendar.collect_events(city)
 
     if city == "westvirginia":
 

@@ -28,7 +28,8 @@ sources = {
         "https://www.meetup.com/cmap-online/",
         "https://www.meetup.com/cyber-steam-global-innovation-alliance/",
         "https://www.meetup.com/marylandforwardparty/",
-        "https://www.meetup.com/charm-city-angels-capital-coffee/"
+        "https://www.meetup.com/charm-city-angels-capital-coffee/",
+        "https://www.meetup.com/baltimore-black-techies-meetup/"
     ],
     "Eventbrite":[
         "https://www.eventbrite.com/e/tential-tech-tuesday-tickets-1366415157519",
@@ -53,7 +54,8 @@ sources = {
         "https://www.eventbrite.com/o/baltimore-robotics-center-14997527925",
         "https://www.eventbrite.com/o/fight-blight-bmore-18309938620",
         "https://www.eventbrite.com/o/79181486483",
-        "https://www.eventbrite.com/o/34179073381"
+        "https://www.eventbrite.com/o/34179073381",
+        "https://www.eventbrite.com/o/11070919734"
 
     ],
     "Jotform":[
