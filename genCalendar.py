@@ -20,6 +20,8 @@ import markdown
 from dateutil.parser import parse
 import sys
 import importlib
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import traceback
 import genSimpleCalendar
 from events_map_generator import generate_events_map_page
 from geocode_cache import (
@@ -31,9 +33,365 @@ from geocode_cache import (
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
 import unicodedata
+from urllib.parse import parse_qs, urlparse
 
 # Define the timezone for EST
 est_timezone = pytz.timezone("America/New_York")
+
+SOURCE_KIND_CONCURRENCY = {
+    "meetup": 1,
+    "eventbrite_org": 1,
+    "eventbrite_event": 2,
+    "luma_org": 2,
+    "luma_calendar": 2,
+    "luma_user": 2,
+    "luma_event": 3,
+    "jotform": 3,
+    "google_form": 3,
+    "gdg": 3,
+    "unknown": 2,
+}
+
+
+def merge_tags(*tag_lists):
+    merged = []
+    seen = set()
+
+    for tag_list in tag_lists:
+        if not tag_list:
+            continue
+        for tag in tag_list:
+            if not tag:
+                continue
+            if tag in seen:
+                continue
+            seen.add(tag)
+            merged.append(tag)
+
+    return merged
+
+
+def normalize_source_entry(entry, legacy_kind=None):
+    if isinstance(entry, dict):
+        normalized = dict(entry)
+        normalized.setdefault("url", "")
+        normalized["tags"] = list(normalized.get("tags") or [])
+        return normalized
+
+    if legacy_kind == "Luma Users" and isinstance(entry, str) and not entry.startswith("http"):
+        return {
+            "url": f"https://api.lu.ma/user/profile/events-hosting?user_api_id={entry}",
+            "tags": [],
+            "user_api_id": entry,
+        }
+
+    if isinstance(entry, str):
+        return {"url": entry, "tags": []}
+
+    if isinstance(entry, int) and legacy_kind == "GDGChapters":
+        return {
+            "url": f"https://gdg.community.dev/chapter/{entry}",
+            "tags": [],
+            "chapter_id": entry,
+        }
+
+    return {"url": str(entry), "tags": []}
+
+
+def flatten_sources(raw_sources):
+    if isinstance(raw_sources, list):
+        return [normalize_source_entry(entry) for entry in raw_sources]
+
+    flattened = []
+    for legacy_kind, entries in (raw_sources or {}).items():
+        for entry in entries:
+            normalized = normalize_source_entry(entry, legacy_kind=legacy_kind)
+            normalized.setdefault("legacy_kind", legacy_kind)
+            flattened.append(normalized)
+    return flattened
+
+
+def infer_source_kind(source_url):
+    if not source_url:
+        return None
+
+    parsed = urlparse(source_url)
+    host = parsed.netloc.lower()
+    path = parsed.path or ""
+    segments = [segment for segment in path.split("/") if segment]
+
+    if "meetup.com" in host:
+        return "meetup"
+
+    if "eventbrite." in host:
+        if path.startswith("/o/") or path.startswith("/cc/"):
+            return "eventbrite_org"
+        return "eventbrite_event"
+
+    if "jotform.com" in host:
+        return "jotform"
+
+    if (host == "forms.gle") or (host == "docs.google.com" and "/forms/" in path):
+        return "google_form"
+
+    if host == "api.lu.ma" and path == "/user/profile/events-hosting":
+        return "luma_user"
+
+    if host in {"lu.ma", "luma.com"}:
+        if path.startswith("/calendar/"):
+            return "luma_calendar"
+        if path.startswith("/user/"):
+            return "luma_org"
+        if len(segments) == 1 and re.fullmatch(r"[A-Za-z0-9]{8}", segments[0]):
+            return "luma_event"
+        if len(segments) == 1:
+            return "luma_org"
+
+    if "gdg.community.dev" in host:
+        return "gdg"
+
+    return None
+
+
+def extract_luma_user_id(source):
+    if source.get("user_api_id"):
+        return source["user_api_id"]
+
+    parsed = urlparse(source.get("url", ""))
+    query = parse_qs(parsed.query)
+    values = query.get("user_api_id")
+    return values[0] if values else None
+
+
+def extract_gdg_chapter_id(source):
+    if source.get("chapter_id"):
+        return source["chapter_id"]
+
+    match = re.search(r"/chapter/(\d+)", source.get("url", ""))
+    if match:
+        return int(match.group(1))
+
+    return None
+
+
+def coerce_events(payload):
+    if not payload:
+        return []
+    if isinstance(payload, list):
+        return [event for event in payload if isinstance(event, dict) and not event.get("error")]
+    if isinstance(payload, dict):
+        return [] if payload.get("error") else [payload]
+    return []
+
+
+def apply_source_metadata(events, source):
+    normalized_events = coerce_events(events)
+    source_url = source.get("url", "")
+    source_tags = source.get("tags", [])
+
+    for event in normalized_events:
+        event["tags"] = merge_tags(source_tags, event.get("tags"))
+        if source_url:
+            event.setdefault("source", source_url)
+            event["source_url"] = source_url
+
+    return normalized_events
+
+
+def source_pattern_details(source):
+    parsed = urlparse(source.get("url", ""))
+    segments = [segment for segment in parsed.path.split("/") if segment]
+    return {
+        "url": source.get("url", ""),
+        "host": parsed.netloc.lower(),
+        "path": parsed.path,
+        "path_segments": segments,
+    }
+
+
+def build_error_entry(city, stage, error, source_url=None, source_kind=None, scraper=None, context=None):
+    entry = {
+        "timestamp": datetime.datetime.now(est_timezone).isoformat(),
+        "city": city,
+        "stage": stage,
+        "error": str(error),
+    }
+    if source_url:
+        entry["source_url"] = source_url
+    if source_kind:
+        entry["source_kind"] = source_kind
+    if scraper:
+        entry["scraper"] = scraper
+    if context:
+        entry["context"] = context
+    if isinstance(error, BaseException):
+        entry["error_type"] = type(error).__name__
+        entry["traceback"] = traceback.format_exc()
+    return entry
+
+
+def fetch_events_from_source(source, city):
+    source_url = source.get("url", "")
+    source_kind = infer_source_kind(source_url)
+    unmatched_sources = []
+    error_entries = []
+
+    try:
+        if source_kind == "meetup":
+            print(f"Fetching events from {source_url}")
+            upcoming_page_content = scrape_meetup.fetch_meetup_page(source_url)
+            meetup_token = sanitize_event_name(source_url, max_length=48)
+            meetup_cache_path = os.path.join(city, f"meetup_upcoming_{meetup_token}.html")
+            with open(meetup_cache_path, "w+", encoding="utf-8") as f:
+                f.write(upcoming_page_content)
+
+            upcoming_next_data = scrape_meetup.extract_next_data(upcoming_page_content)
+            events = scrape_meetup.parse_meetup_events(
+                upcoming_next_data,
+                include_past=False,
+                source_url=source_url,
+            )
+            return apply_source_metadata(events, source), unmatched_sources, error_entries
+
+        if source_kind == "eventbrite_event":
+            print(f"Fetching events from {source_url}")
+            return apply_source_metadata(
+                scrape_eventbrite.parse_eventbrite_event(source_url),
+                source,
+            ), unmatched_sources, error_entries
+
+        if source_kind == "eventbrite_org":
+            print(f"Fetching org events from {source_url}")
+            return apply_source_metadata(
+                scrape_eventbrite_org.scrape_eventbrite_organizer(source_url),
+                source,
+            ), unmatched_sources, error_entries
+
+        if source_kind == "jotform":
+            print(f"Fetching events from {source_url}")
+            return apply_source_metadata(
+                scrape_jotform.parse_jotform_event(source_url),
+                source,
+            ), unmatched_sources, error_entries
+
+        if source_kind == "luma_event":
+            print(f"Fetching events from {source_url}")
+            return apply_source_metadata(
+                scrape_luma.parse_luma_event_page(source_url),
+                source,
+            ), unmatched_sources, error_entries
+
+        if source_kind == "luma_user":
+            user_api_id = extract_luma_user_id(source)
+            if not user_api_id:
+                unmatched_sources.append(
+                    {
+                        **source_pattern_details(source),
+                        "reason": "missing_luma_user_api_id",
+                    }
+                )
+                return [], unmatched_sources, error_entries
+            print(f"Fetching events from {source_url}")
+            return apply_source_metadata(
+                scrape_luma_user.fetch_and_convert_luma_events(user_api_id),
+                source,
+            ), unmatched_sources, error_entries
+
+        if source_kind == "luma_org":
+            print(f"Fetching events from {source_url}")
+            return apply_source_metadata(
+                scrape_luma_orgpage.fetch_and_parse_luma_events(source_url),
+                source,
+            ), unmatched_sources, error_entries
+
+        if source_kind == "luma_calendar":
+            print(f"Fetching events from {source_url}")
+            return apply_source_metadata(
+                scrape_luma_calendar.scrape(source_url),
+                source,
+            ), unmatched_sources, error_entries
+
+        if source_kind == "google_form":
+            print(f"Fetching events from {source_url}")
+            return apply_source_metadata(scrape_gform.scrape(source_url), source), unmatched_sources, error_entries
+
+        if source_kind == "gdg":
+            chapter_id = extract_gdg_chapter_id(source)
+            if chapter_id is None:
+                unmatched_sources.append(
+                    {
+                        **source_pattern_details(source),
+                        "reason": "missing_gdg_chapter_id",
+                    }
+                )
+                return [], unmatched_sources, error_entries
+            print(f"Fetching GDG Chapter {chapter_id}")
+            return apply_source_metadata(scrape_gdg.scrapeChapterID(chapter_id), source), unmatched_sources, error_entries
+
+        unmatched_sources.append(
+            {
+                **source_pattern_details(source),
+                "reason": "unknown_source_pattern",
+            }
+        )
+        return [], unmatched_sources, error_entries
+
+    except Exception as e:
+        print(e)
+        error_entries.append(
+            build_error_entry(
+                city=city,
+                stage="source_fetch",
+                error=e,
+                source_url=source_url,
+                source_kind=source_kind or "unknown",
+            )
+        )
+        return [], unmatched_sources, error_entries
+
+
+def fetch_all_sources(sources, city, max_workers=6):
+    if not sources:
+        return [], [], []
+
+    new_events = []
+    unmatched_sources = []
+    scrape_errors = []
+
+    grouped_sources = {}
+    for index, source in enumerate(sources):
+        source_kind = infer_source_kind(source.get("url", "")) or "unknown"
+        grouped_sources.setdefault(source_kind, []).append((index, source))
+
+    ordered_results = []
+    futures = {}
+    executors = []
+
+    try:
+        for source_kind, grouped_entries in grouped_sources.items():
+            kind_limit = SOURCE_KIND_CONCURRENCY.get(source_kind, SOURCE_KIND_CONCURRENCY["unknown"])
+            worker_count = max(1, min(kind_limit, max_workers, len(grouped_entries)))
+            executor = ThreadPoolExecutor(max_workers=worker_count)
+            executors.append(executor)
+
+            for index, source in grouped_entries:
+                future = executor.submit(fetch_events_from_source, source, city)
+                futures[future] = index
+
+        for future in as_completed(futures):
+            index = futures[future]
+            events, unmatched, errors = future.result()
+            ordered_results.append((index, events, unmatched, errors))
+    finally:
+        for executor in executors:
+            executor.shutdown(wait=True)
+
+    for _, events, unmatched, errors in sorted(ordered_results, key=lambda item: item[0]):
+        new_events.extend(events)
+        unmatched_sources.extend(unmatched)
+        scrape_errors.extend(errors)
+
+    return new_events, unmatched_sources, scrape_errors
 
 
 def parse_markdown_to_html(text):
@@ -516,76 +874,28 @@ def main(city = "baltimore"):
     cache_updated = False
 
     module = importlib.import_module(f"{city}.event_sources")
-    sources = module.sources
+    sources = flatten_sources(module.sources)
+    source_events, unmatched_sources, scrape_errors = fetch_all_sources(sources, city)
+    newEvents += source_events
 
-    # Loop through each meetup URL
-    for MEETUP_URL in sources.get("Meetup", []):
-        print(f"Fetching events from {MEETUP_URL}")
-        # Fetch upcoming events
-        upcoming_page_content = scrape_meetup.fetch_meetup_page(MEETUP_URL)
-        with open(os.path.join(city, "meetup_upcoming.html"), "w+", encoding="utf-8") as f:
-            f.write(upcoming_page_content)
+    unmatched_sources_path = os.path.join(city, "unmatched_source_patterns.json")
+    with open(unmatched_sources_path, "w+", encoding="utf-8") as f:
+        json.dump(unmatched_sources, f, indent=4)
+    if unmatched_sources:
+        print(f"Unmatched source patterns saved to {unmatched_sources_path}")
 
-        # Extract the __NEXT_DATA__ JSON for upcoming events
-        upcoming_next_data = scrape_meetup.extract_next_data(upcoming_page_content)
-
-        # Parse upcoming events
-        newEvents += scrape_meetup.parse_meetup_events(
-            upcoming_next_data, include_past=True
+    def error_logger(stage, error, source_url=None, source_kind=None, scraper=None, context=None):
+        entry = build_error_entry(
+            city=city,
+            stage=stage,
+            error=error,
+            source_url=source_url,
+            source_kind=source_kind,
+            scraper=scraper,
+            context=context,
         )
-
-    for EVENTBRITE_URL in sources.get("Eventbrite", []):
-        try:
-            print(f"Fetching events from {EVENTBRITE_URL}")
-            newEvents += scrape_eventbrite.parse_eventbrite_event(EVENTBRITE_URL)
-        except Exception as e:
-            print(e)
-
-    for EVENTBRITE_URL in sources.get("Eventbrite Orgs", []):
-        try:
-            print(f"Fetching org events from {EVENTBRITE_URL}")
-            newEvents += scrape_eventbrite_org.scrape_eventbrite_organizer(
-                EVENTBRITE_URL
-            )
-        except Exception as e:
-            print(e)
-
-    for JOTFORM_URL in sources.get("Jotform", []):
-        print(f"Fetching events from {JOTFORM_URL}")
-        newEvents += [scrape_jotform.parse_jotform_event(JOTFORM_URL)]
-
-    for LUMA_URL in sources.get("Luma", []):
-        print(f"Fetching events from {LUMA_URL}")
-        newEvents += [scrape_luma.parse_luma_event_page(LUMA_URL)]
-
-    for LUMA_URL in sources.get("Luma Users", []):
-        print(f"Fetching events from {LUMA_URL}")
-        newEvents += scrape_luma_user.fetch_and_convert_luma_events(LUMA_URL)
-
-    for LUMA_URL in sources.get("Luma Orgs", []):
-        print(f"Fetching events from {LUMA_URL}")
-        try:
-            newEvents += scrape_luma_orgpage.fetch_and_parse_luma_events(LUMA_URL)
-        except Exception as e:
-            print(f"Error fetching Luma events from {LUMA_URL}: {e}")
-
-    for LUMA_URL in sources.get("Luma Calendars", []):
-        print(f"Fetching events from {LUMA_URL}")
-        try:
-            newEvents += scrape_luma_calendar.scrape(LUMA_URL)
-        except Exception as e:
-            print(f"Error fetching Luma events from {LUMA_URL}: {e}")
-
-    for URL in sources.get("Google Forms", []):
-        print(f"Fetching events from {URL}")
-        try:
-            newEvents += scrape_gform.scrape(URL)
-        except Exception as e:
-            print(f"Error fetching calendar events: {e}")
-
-    for ChapterID in sources.get("GDGChapters",[]):
-        print(f"Fetching GDG Chapter {ChapterID}")
-        newEvents += scrape_gdg.scrapeChapterID(ChapterID)
+        scrape_errors.append(entry)
+        return entry
 
 
     # upcoming_events += scrape_equitech.scrape_equitech_tuesday()
@@ -595,11 +905,11 @@ def main(city = "baltimore"):
 
     if city == "dc":
         dc_gen_calendar = importlib.import_module("dc.gen_calendar")
-        newEvents += dc_gen_calendar.collect_events(city)
+        newEvents += dc_gen_calendar.collect_events(city, error_logger=error_logger)
         
     if city == "baltimore":
         baltimore_gen_calendar = importlib.import_module("baltimore.gen_calendar")
-        newEvents += baltimore_gen_calendar.collect_events(city)
+        newEvents += baltimore_gen_calendar.collect_events(city, error_logger=error_logger)
 
     if city == "westvirginia":
 
@@ -618,6 +928,7 @@ def main(city = "baltimore"):
             newEvents += scrape_abwippm.scrape_events()
         except Exception as e:
             print(f"Error fetching ABWIPPM events: {e}")
+            error_logger("city_collect", e, scraper="virtual.scrape_ABWIPPM")
 
     invalid_events = []
 
@@ -631,6 +942,7 @@ def main(city = "baltimore"):
                 event["startDate"] = start_dt.isoformat()
             except Exception as e:
                 print(f"Error converting datetime for event {event.get('name', 'Unknown')}: {e}")
+                error_logger("normalize_datetime", e, context={"event_name": event.get("name", "Unknown")})
 
     # Download images for each event
     for event in newEvents:
@@ -665,11 +977,18 @@ def main(city = "baltimore"):
 
             except Exception as e:
                 print(f"Failed to process image for event {event['name']}: {e}")
+                error_logger(
+                    "image_download",
+                    e,
+                    source_url=image_url,
+                    context={"event_name": event.get("name", "Unknown")},
+                )
                 # revert url
                 event["imageUrl"] = image_url
 
     nonerror_newevents = []
     time_now = datetime.datetime.now(est_timezone)
+    today_date = time_now.date()
 
     for event in newEvents:
         startDate = event.get("startDate")
@@ -693,7 +1012,7 @@ def main(city = "baltimore"):
             invalid_events += [event]
             continue
 
-        if startDateTime > time_now:
+        if startDateTime.date() >= today_date:
             nonerror_newevents += [event]
         else:
             event["invalid_reason"] = 'Already happened'
@@ -730,7 +1049,7 @@ def main(city = "baltimore"):
         # Make startDateTime timezone-aware if it's naive
         if startDateTime.tzinfo is None:
             startDateTime = est_timezone.localize(startDateTime)
-        if startDateTime > time_now:
+        if startDateTime.date() >= today_date:
             upcoming_existing_events_in_file += [event]
 
     existing_sigs = [get_event_signature(e) for e in upcoming_existing_events_in_file]
@@ -843,11 +1162,13 @@ def main(city = "baltimore"):
     # add the categories
     for event in sorted_events:
         # find earliest match, then break
+        inferred_tags = []
         for url2tag in tag_rules.tag_rules_url:
             urlpart, tag_list = url2tag
             if urlpart in event.get("url", ""):
-                event["tags"] = tag_list
+                inferred_tags = tag_list
                 break
+        event["tags"] = merge_tags(event.get("tags"), inferred_tags)
 
     # Save upcoming events to a file
     with open(os.path.join(city, "upcoming_events.json"), "w+", encoding="utf-8") as f:
@@ -865,6 +1186,12 @@ def main(city = "baltimore"):
     with open(os.path.join(city, "skipped_events.json"), "w+", encoding="utf-8") as f:
         json.dump(invalid_events, f, indent=4)
         print(f"Upcoming events saved to skipped_events.json")
+
+    scrape_errors_path = os.path.join(city, "scrape_errors.json")
+    with open(scrape_errors_path, "w+", encoding="utf-8") as f:
+        json.dump(scrape_errors, f, indent=4)
+    if scrape_errors:
+        print(f"Scrape errors saved to {scrape_errors_path}")
 
     events_to_ics(sorted_events, city, output_file=os.path.join(city, "cc_events.ics"))
     os.system("cp baltimore/cc_events.ics .")

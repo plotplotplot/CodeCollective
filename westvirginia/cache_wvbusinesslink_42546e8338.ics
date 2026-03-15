@@ -1,0 +1,271 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//WV BusinessLink - ECPv6.15.17.1//NONSGML v1.0//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:WV BusinessLink
+X-ORIGINAL-URL:https://wvbusinesslink.com
+X-WR-CALDESC:Events for WV BusinessLink
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-Robots-Tag:noindex
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:America/New_York
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:20250309T070000
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:20251102T060000
+END:STANDARD
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:20260308T070000
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:20261101T060000
+END:STANDARD
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:20270314T070000
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:20271107T060000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260318T100000
+DTEND;TZID=America/New_York:20260318T103000
+DTSTAMP:20260313T121314
+CREATED:20260227T183520Z
+LAST-MODIFIED:20260227T183520Z
+UID:10001396-1773828000-1773829800@wvbusinesslink.com
+SUMMARY:Your Small Business Dream Team: SBA + SBDC Overview
+DESCRIPTION:Discover how the U.S. Small Business Administration (SBA) and Small Business Development Center (SBDC) work together to support entrepreneurs at every stage of business. Join us on National SBDC Day to learn about funding opportunities\, advising services\, and free resources designed to help you start\, grow\, and succeed.
+URL:https://wvbusinesslink.com/event/your-small-business-dream-team-sba-sbdc-overview/
+LOCATION:Zoom Conference
+CATEGORIES:Entrepreneurs,Supporting Entrepreneurs
+ATTACH;FMTTYPE=image/png:https://wvbusinesslink.com/wp-content/uploads/2026/02/SBA-SBDC.png
+ORGANIZER;CN="WV SBDC":MAILTO:askme@wv.gov
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260318T113000
+DTEND;TZID=America/New_York:20260318T123000
+DTSTAMP:20260313T121314
+CREATED:20260309T142401Z
+LAST-MODIFIED:20260309T142401Z
+UID:10001398-1773833400-1773837000@wvbusinesslink.com
+SUMMARY:Planning for a Healthy Business
+DESCRIPTION:Spring is around the corner and it’s the ideal time to discover essential planning skills for business success.\nWe’ll focus on the vital role of planning in successful business ownership. Whether participants are just beginning or already on their entrepreneurial journey\, this class inspires them to explore and address essential questions that support building and sustaining a thriving business for the long term. Join the West Virginia District Office of the U.S. Small Business Administration (SBA) and the West Virginia Small Business Administration for the series Money Smart for Small Business. This series provides a practical introduction to starting and managing a business that is ideal for both aspiring and established entrepreneurs. The series was developed jointly by the Federal Deposit Insurance Corporation (FIDC) and the SBA. Each virtual session comes with a practical workbook guide. Sessions are Wednesdays at 11:30 am beginning March 18\, 2026\, through May 27\, 2026. Register for the sessions that fit your schedule and needs. These sessions will not be recorded.
+URL:https://wvbusinesslink.com/event/planning-for-a-healthy-business/
+LOCATION:Microsoft Teams
+CATEGORIES:Business Training
+ATTACH;FMTTYPE=image/png:https://wvbusinesslink.com/wp-content/uploads/2026/03/Money-Smart-Planning-eventbrite.png
+ORGANIZER;CN="U.S. Small Business Administration":MAILTO:wvinfo@sba.gov
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260319T140000
+DTEND;TZID=America/New_York:20260319T150000
+DTSTAMP:20260313T121314
+CREATED:20260303T205005Z
+LAST-MODIFIED:20260303T205005Z
+UID:10001397-1773928800-1773932400@wvbusinesslink.com
+SUMMARY:The Defense Production Act (DPA Title III)
+DESCRIPTION:The Defense Production Act (DPA) authorizes the President to ensure availability of certain supplies for defense\, essential civilian\, and homeland security requirements. The DPA Title III provides incentives to develop\, maintain\, modernize\, and expand production capacity and critical technologies. DPA Title III establishes guaranteed loans\, purchase commitments\, grants\, and subsidies to expand production capacity and supplies. DPA Title III helps contractors receive loans\, direct investments\, purchase commitments and other assistance to help in bolstering the supply chain. We will provide you with a full overview of DPA Title III programs and resources as a small business contractor. \nThis APEX Accelerator is funded in part through a cooperative agreement with the Department of Defense.
+URL:https://wvbusinesslink.com/event/the-defense-production-act-dpa-title-iii/
+LOCATION:Zoom Webinar
+CATEGORIES:Government,Sales/Procurement,Webinar
+ATTACH;FMTTYPE=image/jpeg:https://wvbusinesslink.com/wp-content/uploads/2026/03/New-RCAC-APEX-Logo-5-15-24.jpg
+ORGANIZER;CN="RCAC APEX Accelerator":MAILTO:kpriddy@rcacwv.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260324T120000
+DTEND;TZID=America/New_York:20260324T130000
+DTSTAMP:20260313T121314
+CREATED:20260227T141345Z
+LAST-MODIFIED:20260227T141345Z
+UID:10001394-1774353600-1774357200@wvbusinesslink.com
+SUMMARY:Utilizing E-Tools
+DESCRIPTION:The General Services Administration (GSA) offers a suite of integrated e-tools to make the acquisition process more efficient for small businesses. These complimentary e-tools help you perform market research\, locate contracting opportunities\, and more. Join the GSA Office of Small and Disadvantaged Business Utilization (OSDBU) and the West Virginia Apex Accelerator as they team to introduce GSA’s e-tools and methods for your business to gain an advantage in achieving acquisition efficiency. \nThis APEX Accelerator is funded in part through a cooperative agreement with the Department of Defense.
+URL:https://wvbusinesslink.com/event/utilizing-e-tools/
+LOCATION:Zoom Webinar
+CATEGORIES:Government,Sales/Procurement,Webinar
+ATTACH;FMTTYPE=image/jpeg:https://wvbusinesslink.com/wp-content/uploads/2026/02/New-RCAC-APEX-Logo-5-15-24-1.jpg
+ORGANIZER;CN="RCAC APEX Accelerator":MAILTO:kpriddy@rcacwv.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260325T113000
+DTEND;TZID=America/New_York:20260325T123000
+DTSTAMP:20260313T121314
+CREATED:20260309T142444Z
+LAST-MODIFIED:20260309T142444Z
+UID:10001399-1774438200-1774441800@wvbusinesslink.com
+SUMMARY:Small Business Banking Services
+DESCRIPTION:Learn about small business financing options\, other banking services\, and fraud prevention in this practical workshop designed to help your business thrive. \nThere are various financing options and funding sources available\, and we’ll compare what banks and alternative lenders can provide to help businesses succeed. There are a diverse range of other banking services available including advanced account features like reporting and bundling\, innovative payment solutions\, and merchant services that can support business growth. Lastly\, we’ll review the best guidance available for safeguarding your business by recognizing and preventing fraud and scams. \nJoin the West Virginia District Office of the U.S. Small Business Administration (SBA) and the West Virginia Small Business Administration for the series Money Smart for Small Business. This series provides a practical introduction to starting and managing a business that is ideal for both aspiring and established entrepreneurs. The series was developed jointly by the Federal Deposit Insurance Corporation (FIDC) and the SBA. Each virtual session comes with a practical workbook guide. Sessions are Wednesdays at 11:30 am beginning March 18\, 2026\, through May 27\, 2026. Register for the sessions that fit your schedule and needs. These sessions will not be recorded.
+URL:https://wvbusinesslink.com/event/small-business-banking-services/
+LOCATION:Microsoft Teams
+CATEGORIES:Business Training
+ATTACH;FMTTYPE=image/png:https://wvbusinesslink.com/wp-content/uploads/2026/03/Money-Smart-Banking.png
+ORGANIZER;CN="U.S. Small Business Administration":MAILTO:wvinfo@sba.gov
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260325T160000
+DTEND;TZID=America/New_York:20260325T180000
+DTSTAMP:20260313T121314
+CREATED:20250814T155252Z
+LAST-MODIFIED:20260209T180427Z
+UID:10001307-1774454400-1774461600@wvbusinesslink.com
+SUMMARY:UC Fail Fest
+DESCRIPTION:Still working on the details!
+URL:https://wvbusinesslink.com/event/uc-fail-fest/
+CATEGORIES:student entrepreneurship,Supporting Entrepreneurs
+ORGANIZER;CN="University of Charleston Russell and Martha Wehrle Innovation Center":MAILTO:davidramsburg@ucwv.edu
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260326T120000
+DTEND;TZID=America/New_York:20260326T130000
+DTSTAMP:20260313T121314
+CREATED:20260217T152252Z
+LAST-MODIFIED:20260217T152252Z
+UID:10001388-1774526400-1774530000@wvbusinesslink.com
+SUMMARY:Thinking Outside The Lunchbox: Film Industry Opportunities for Small Businesses
+DESCRIPTION:“Film Industry Opportunities for Small Business” \nSpeakers: \n    Robert Tinnell | Founder – Allegheny Image Factory\n    Jeffery Tinnell | Founder – Allegheny Image Factory\n    Meghan Smith\, Manager\, Business Development at WV Economic Development \nModerator: \n    Jamie Cope – Executive Director of Innovation
+URL:https://wvbusinesslink.com/event/thinking-outside-the-lunchbox-film-industry-opportunities-for-small-businesses/
+LOCATION:UC Downtown Innovation Hub\, 240 Capitol Street\, Charleston\, WV\, 25301\, United States
+CATEGORIES:Business Training,entrepreneur education
+ORGANIZER;CN="UC Downtown Innovation Hub":MAILTO:innovate@ucwv.edu
+GEO:38.3505388;-81.6336083
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=UC Downtown Innovation Hub 240 Capitol Street Charleston WV 25301 United States;X-APPLE-RADIUS=500;X-TITLE=240 Capitol Street:geo:-81.6336083,38.3505388
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260401T113000
+DTEND;TZID=America/New_York:20260401T143000
+DTSTAMP:20260313T121314
+CREATED:20260309T142521Z
+LAST-MODIFIED:20260309T142521Z
+UID:10001400-1775043000-1775053800@wvbusinesslink.com
+SUMMARY:Money Smart: Organizational Types
+DESCRIPTION:Pros and Cons of Business Structures\nConfused about the type of business structure you should use? Explore with us the pros and cons of each type to determine which organizational type best fits your small business goals.\nWe’ll explore the unique characteristics\, benefits\, and potential drawbacks of:\n• Sole Proprietorship\n• Partnerships\n• Limited Liability Company (LLC)\n• C-Corporation\n• S-Corporation \nJoin the West Virginia District Office of the U.S. Small Business Administration (SBA) and the West Virginia Small Business Administration for the series Money Smart for Small Business. This series provides a practical introduction to starting and managing a business that is ideal for both aspiring and established entrepreneurs. The series was developed jointly by the Federal Deposit Insurance Corporation (FIDC) and the SBA. Each virtual session comes with a practical workbook guide. Sessions are Wednesdays at 11:30 am beginning March 18\, 2026\, through May 27\, 2026. Register for the sessions that fit your schedule and needs. These sessions will not be recorded.
+URL:https://wvbusinesslink.com/event/money-smart-organizational-types/
+LOCATION:Microsoft Teams
+CATEGORIES:Business Training
+ATTACH;FMTTYPE=image/png:https://wvbusinesslink.com/wp-content/uploads/2026/03/Money-Smart-Organizational-Types.png
+ORGANIZER;CN="U.S. Small Business Administration":MAILTO:wvinfo@sba.gov
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260401T170000
+DTEND;TZID=America/New_York:20260401T193000
+DTSTAMP:20260313T121314
+CREATED:20260107T193213Z
+LAST-MODIFIED:20260107T193213Z
+UID:10001356-1775062800-1775071800@wvbusinesslink.com
+SUMMARY:WVU Zinnstarter Pitch Competition
+DESCRIPTION:A pitch competition where WVU undergrads compete for over $20\,000 in prizes.
+URL:https://wvbusinesslink.com/event/wvu-zinnstarter-pitch-competition/
+LOCATION:WVU Launch Lab\, Morgantown\, WV\, 26505
+ORGANIZER;CN="WVU Morris L. Hayhurst LaunchLab":MAILTO:cwhite17@mail.wvu.edu
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260408T113000
+DTEND;TZID=America/New_York:20260408T143000
+DTSTAMP:20260313T121314
+CREATED:20260309T142630Z
+LAST-MODIFIED:20260309T142630Z
+UID:10001401-1775647800-1775658600@wvbusinesslink.com
+SUMMARY:Money Smart: Recordkeeping
+DESCRIPTION:Learn practical recordkeeping skills and tools to make smarter decisions and streamline your small business operations.\nWe’ll cover:\n• Essential recordkeeping practices\n• How these recordkeeping methods function in everyday operations\n• Exploring software solutions designed to simplify small business recordkeeping \nJoin the West Virginia District Office of the U.S. Small Business Administration (SBA) and the West Virginia Small Business Administration for the series Money Smart for Small Business. This series provides a practical introduction to starting and managing a business that is ideal for both aspiring and established entrepreneurs. The series was developed jointly by the Federal Deposit Insurance Corporation (FIDC) and the SBA. Each virtual session comes with a practical workbook guide. Sessions are Wednesdays at 11:30 am beginning March 18\, 2026\, through May 27\, 2026. Register for the sessions that fit your schedule and needs. These sessions will not be recorded.
+URL:https://wvbusinesslink.com/event/money-smart-recordkeeping/
+LOCATION:Microsoft Teams
+CATEGORIES:Business Training
+ATTACH;FMTTYPE=image/png:https://wvbusinesslink.com/wp-content/uploads/2026/03/Money-Smart-Recordkeeping-2.png
+ORGANIZER;CN="U.S. Small Business Administration":MAILTO:wvinfo@sba.gov
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260414T140000
+DTEND;TZID=America/New_York:20260414T150000
+DTSTAMP:20260313T121314
+CREATED:20260121T154351Z
+LAST-MODIFIED:20260121T154700Z
+UID:10001368-1776175200-1776178800@wvbusinesslink.com
+SUMMARY:West Virginia Entrepreneurship Ecosystem Monthly Meeting
+DESCRIPTION:[vc_row][vc_column][vc_column_text css=”” css_params=””]Join the West Virginia Entrepreneurship Ecosystem for our monthly virtual meeting\, where partners from across the state come together to share updates\, highlight resources\, and collaborate on ways to support entrepreneurs. This session includes brief presentations\, open discussion\, and opportunities to connect with others working to strengthen West Virginia’s entrepreneurial landscape. All are welcome![/vc_column_text][/vc_column][/vc_row]
+URL:https://wvbusinesslink.com/event/west-virginia-entrepreneurship-ecosystem-monthly-meeting/2026-04-14/
+LOCATION:Zoom Conference
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260427
+DTEND;VALUE=DATE:20260428
+DTSTAMP:20260313T121314
+CREATED:20260107T195328Z
+LAST-MODIFIED:20260107T195328Z
+UID:10001357-1777248000-1777334399@wvbusinesslink.com
+SUMMARY:Bridging Innovation Week: WVU Innovation; Entrepreneurship on Campus Tour
+DESCRIPTION:A Tour of the WVU campus that emphasis Innovation and Entrepreneurship.
+URL:https://wvbusinesslink.com/event/bridging-innovation-week-wvu-innovation-entrepreneurship-on-campus-tour/
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260427
+DTEND;VALUE=DATE:20260502
+DTSTAMP:20260313T121314
+CREATED:20250409T202959Z
+LAST-MODIFIED:20251231T161039Z
+UID:10001245-1777248000-1777679999@wvbusinesslink.com
+SUMMARY:Bridging Innovation Week 2026
+DESCRIPTION:[vc_row][vc_column][vc_column_text css=”” css_params=””]Bridging Innovation Week is the state’s premier ​entrepreneurship event. The annual symposium ​advances entrepreneurship-led economic ​development by providing connection and education ​to business owners\, current and prospective ​entrepreneurs\, and entrepreneur serving ​organizations (ESOs) throughout West Virginia. \nWhether you’re just starting or looking to scale\, this is ​the place to explore entrepreneurship opportunities ​in the Mountain State! Join us in Morgantown\, WV on April 27 – May 1\, 2026. To learn more or to register for Bridging Innovation Week 2026 visit https://www.wveshipecosystem.com.[/vc_column_text][/vc_column][/vc_row]
+URL:https://wvbusinesslink.com/event/bridging-innovation-week-2026/
+CATEGORIES:Bridging Innovation,Conference,Entrepreneur Competitions,entrepreneur education,Entrepreneurs,Pitch Competition
+ATTACH;FMTTYPE=image/png:https://wvbusinesslink.com/wp-content/uploads/2024/06/bridging-innovation-logo-black.png
+ORGANIZER;CN="West Virginia Entrepreneurship Ecosystem":MAILTO:connect@wveshipecosystem.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260428
+DTEND;VALUE=DATE:20260429
+DTSTAMP:20260313T121314
+CREATED:20260107T195022Z
+LAST-MODIFIED:20260107T195022Z
+UID:10001358-1777334400-1777420799@wvbusinesslink.com
+SUMMARY:Bridging Innovation Week: Entrepreneurship Ecosystem Conference
+DESCRIPTION:[vc_row][vc_column][vc_column_text css=”” css_params=””]See website for more details![/vc_column_text][/vc_column][/vc_row]
+URL:https://wvbusinesslink.com/event/bridging-innovation-week-entrepreneurship-ecosystem-conference/
+CATEGORIES:Bridging Innovation
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260429
+DTEND;VALUE=DATE:20260430
+DTSTAMP:20260313T121314
+CREATED:20260107T191247Z
+LAST-MODIFIED:20260107T191651Z
+UID:10001359-1777420800-1777507199@wvbusinesslink.com
+SUMMARY:Bridging Innovation Week: Competition Day
+DESCRIPTION:[vc_row][vc_column][vc_column_text css=”” css_params=””]Vantage Ventures Demos and IgniteWV Pitch Competition. \nSee website for more details[/vc_column_text][/vc_column][/vc_row]
+URL:https://wvbusinesslink.com/event/bridging-innovation-week-competition-day/
+CATEGORIES:Bridging Innovation
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20260430
+DTEND;VALUE=DATE:20260501
+DTSTAMP:20260313T121314
+CREATED:20260107T191940Z
+LAST-MODIFIED:20260107T192622Z
+UID:10001360-1777507200-1777593599@wvbusinesslink.com
+SUMMARY:Bridging Innovation Week: Youth Entrepreneurship Day
+DESCRIPTION:[vc_row][vc_column][vc_column_text css=”” css_params=””]See the website for more details![/vc_column_text][/vc_column][/vc_row]
+URL:https://wvbusinesslink.com/event/bridging-innovation-week-youth-entrepreneurship-day/
+CATEGORIES:Bridging Innovation
+END:VEVENT
+END:VCALENDAR

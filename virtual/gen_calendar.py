@@ -17,17 +17,24 @@ def write_json(path: Path, payload):
     path.write_text(json.dumps(payload, indent=4), encoding="utf-8")
 
 
-def collect_events(city=CITY):
+def collect_events(city=CITY, error_logger=None):
     new_events = []
 
-    scrape_abwippm = importlib.import_module("virtual.scrape_ABWIPPM")
-    new_events += scrape_abwippm.scrape_events()
+    try:
+        scrape_abwippm = importlib.import_module("virtual.scrape_ABWIPPM")
+        new_events += scrape_abwippm.scrape_events()
+    except Exception as exc:
+        print(f"Skipping ABWIPPM events: {exc}")
+        if error_logger:
+            error_logger("city_collect", exc, scraper="virtual.scrape_ABWIPPM")
 
     try:
         scrape_water_is_life = importlib.import_module("virtual.scrape_water_is_life")
         new_events += scrape_water_is_life.scrape_events()
     except Exception as exc:
         print(f"Skipping Water Is Life events: {exc}")
+        if error_logger:
+            error_logger("city_collect", exc, scraper="virtual.scrape_water_is_life")
 
     return new_events
 

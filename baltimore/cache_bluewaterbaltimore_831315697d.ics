@@ -1,0 +1,320 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Blue Water Baltimore - ECPv6.6.4.2//NONSGML v1.0//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Blue Water Baltimore
+X-ORIGINAL-URL:https://bluewaterbaltimore.org
+X-WR-CALDESC:Events for Blue Water Baltimore
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+X-Robots-Tag:noindex
+X-PUBLISHED-TTL:PT1H
+BEGIN:VTIMEZONE
+TZID:America/New_York
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:20260308T070000
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:20261101T060000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260318T190000
+DTEND;TZID=America/New_York:20260318T200000
+DTSTAMP:20260315T182848
+CREATED:20260225T182246Z
+LAST-MODIFIED:20260225T182448Z
+UID:10000420-1773860400-1773864000@bluewaterbaltimore.org
+SUMMARY:Intro to Native Plants + Basic Design Principles
+DESCRIPTION:Kick of the planting season with our experts at Herring Run Nursery! Join us for a chat about native plants and basic design principles to get you started in 2026. We will touch on the importance of native plants\, types of conservation landscapes\, and how you can use native plants at home. The presentation will last about 45 minutes with plenty of time for Q&A. \n\n\n\nSign up by clicking the ‘register’ button below!
+URL:https://bluewaterbaltimore.org/event/intro-to-native-plants-basic-design-principles/
+ATTACH;FMTTYPE=image/png:https://bluewaterbaltimore.org/wp-content/uploads/2026/02/Website-Event.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260319T110000
+DTEND;TZID=America/New_York:20260319T140000
+DTSTAMP:20260315T182848
+CREATED:20260217T203102Z
+LAST-MODIFIED:20260310T155717Z
+UID:10000402-1773918000-1773928800@bluewaterbaltimore.org
+SUMMARY:Morrell Park Tree Planting
+DESCRIPTION:Get your hands dirty for clean water and a greener Baltimore! Join Blue Water Baltimore staff as we plant trees along the streets of Baltimore City. Volunteers new to planting trees and expert TreeKeepers alike are welcome to attend. Our tree planting projects are rain or shine\, and we recommend closed-toed shoes and clothing that is appropriate for the weather and getting dirty. Hats\, sunblock\, and sunglasses are strongly encouraged. We ask volunteers to bring a reusable water bottle to reduce waste. We provide work gloves\, hand tools\, and snacks but feel free to bring your own if you prefer.  \n\n\n\nNote: Please complete the registration form for each attendee\, including those under 18. All attendees are required to complete a waiver\, and all attendees under 18 must have a paper waiver signed by a parent or guardian. Instructions for completing the waivers will be emailed to you after registering. Please be sure to review this email before the event. Our tree plantings are best suited for youths in middle school or above. \n\n\n\nNote: Exact location to be determined. We will update this page ASAP with a location\, and send all registered participants a meeting address ahead of this event. \n\n\n\nRegister Here!
+URL:https://bluewaterbaltimore.org/event/tbd-morrell-park-tree-planting-2/
+ATTACH;FMTTYPE=image/jpeg:https://bluewaterbaltimore.org/wp-content/uploads/2025/08/20240427_110101-3-scaled-e1755817161183.jpg
+ORGANIZER;CN="Questions about this event?":MAILTO:volunteer@bluewaterbaltimore.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260322T150000
+DTEND;TZID=America/New_York:20260322T210000
+DTSTAMP:20260315T182848
+CREATED:20260302T174340Z
+LAST-MODIFIED:20260303T170522Z
+UID:10000423-1774191600-1774213200@bluewaterbaltimore.org
+SUMMARY:Dine & Donate: Blue Pit BBQ
+DESCRIPTION:Mark your calendar\, invite your friends\, and prepare your stomach! In honor of World Water Day\, generous community partner Blue Pit BBQ in Hampden will donate 15% of their dine-in sales. \n\n\n\nWorld Water Day serves as a global call to action to address the water crisis and protect ecosystems. All of the funds raised for Blue Water Baltimore go directly to monitoring our waterways for pollution\, advocating for stronger environmental laws\, cleaning up tons (literally) of trash\, and reducing polluted runoff. And\, our staff and board will be dining in throughout the day\, so make sure you say hello! \n\n\n\nDig in for a good cause\, and let’s put our resources together to protect the environment. We suggest a double order of the mac and cheese.
+URL:https://bluewaterbaltimore.org/event/dine-donate-blue-pit-bbq/
+LOCATION:Blue Pit BBQ\, 1601 Union Avenue\, Baltimore\, Maryland\, 21211\, United States
+ATTACH;FMTTYPE=image/png:https://bluewaterbaltimore.org/wp-content/uploads/2026/03/Blue-Pit-DIne-Donate.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260324T193000
+DTEND;TZID=America/New_York:20260324T203000
+DTSTAMP:20260315T182848
+CREATED:20260306T184507Z
+LAST-MODIFIED:20260306T184509Z
+UID:10000424-1774380600-1774384200@bluewaterbaltimore.org
+SUMMARY:Audubon x BWB: Build a Bird Habitat
+DESCRIPTION:This is the four-part webinar series brings together experts from Audubon Mid-Atlantic and Blue Water Baltimore’s Herring Run Nursery to guide you through building a bird habitat for your home or community.  \n\n\n\nEach session covers a different topic around bird-friendly garden design and planting. You are welcome to join us for one\, several\, or all of the webinars throughout the spring: \n\n\n\nMarch 24: Introduction to Habitat Gardening for Birds \n\n\n\nApril 14: Plan and Prep Your Bird Habitat Garden (with BWB) \n\n\n\nApril 21: Design Your Bird Habitat Garden (with BWB) \n\n\n\nApril 28: Sustaining your Bird Habitat Garden
+URL:https://bluewaterbaltimore.org/event/audubon-x-bwb-build-a-bird-habitat/2026-03-24/
+ATTACH;FMTTYPE=image/png:https://bluewaterbaltimore.org/wp-content/uploads/2026/03/Bird-Habitat-Gardening-webinar-series-Spring-2026-2-e1772822666997.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260325T110000
+DTEND;TZID=America/New_York:20260325T140000
+DTSTAMP:20260315T182848
+CREATED:20260224T225035Z
+LAST-MODIFIED:20260306T162059Z
+UID:10000413-1774436400-1774447200@bluewaterbaltimore.org
+SUMMARY:Morrell Park Tree Planting
+DESCRIPTION:Get your hands dirty for clean water and a greener Baltimore! Join Blue Water Baltimore staff as we plant trees along the streets of Baltimore City. Volunteers new to planting trees and expert TreeKeepers alike are welcome to attend. Our tree planting projects are rain or shine\, and we recommend closed-toed shoes and clothing that is appropriate for the weather and getting dirty. Hats\, sunblock\, and sunglasses are strongly encouraged. We ask volunteers to bring a reusable water bottle to reduce waste. We provide work gloves\, hand tools\, and snacks but feel free to bring your own if you prefer.  \n\n\n\nNote: Please complete the registration form for each attendee\, including those under 18. All attendees are required to complete a waiver\, and all attendees under 18 must have a paper waiver signed by a parent or guardian. Instructions for completing the waivers will be emailed to you after registering. Please be sure to review this email before the event. Our tree plantings are best suited for youths in middle school or above. \n\n\n\nNote: Exact location to be determined. We will update this page ASAP with a location\, and send all registered participants a meeting address ahead of this event. \n\n\n\nRegister Here!
+URL:https://bluewaterbaltimore.org/event/tbd-morrell-park-tree-planting-3/
+ATTACH;FMTTYPE=image/jpeg:https://bluewaterbaltimore.org/wp-content/uploads/2025/02/i-HCTxPqn-XL-e1771973865136.jpg
+ORGANIZER;CN="Questions about this event?":MAILTO:volunteer@bluewaterbaltimore.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260328T090000
+DTEND;TZID=America/New_York:20260328T120000
+DTSTAMP:20260315T182848
+CREATED:20260224T225040Z
+LAST-MODIFIED:20260306T162122Z
+UID:10000404-1774688400-1774699200@bluewaterbaltimore.org
+SUMMARY:Morrell Park Tree Planting
+DESCRIPTION:Get your hands dirty for clean water and a greener Baltimore! Join Blue Water Baltimore staff as we plant trees along the streets of Baltimore City. Volunteers new to planting trees and expert TreeKeepers alike are welcome to attend. Our tree planting projects are rain or shine\, and we recommend closed-toed shoes and clothing that is appropriate for the weather and getting dirty. Hats\, sunblock\, and sunglasses are strongly encouraged. We ask volunteers to bring a reusable water bottle to reduce waste. We provide work gloves\, hand tools\, and snacks but feel free to bring your own if you prefer.  \n\n\n\nNote: Please complete the registration form for each attendee\, including those under 18. All attendees are required to complete a waiver\, and all attendees under 18 must have a paper waiver signed by a parent or guardian. Instructions for completing the waivers will be emailed to you after registering. Please be sure to review this email before the event. Our tree plantings are best suited for youths in middle school or above. \n\n\n\nNote: Exact location to be determined. We will update this page ASAP with a location\, and send all registered participants a meeting address ahead of this event. \n\n\n\nRegister Here!
+URL:https://bluewaterbaltimore.org/event/tbd-morrell-park-tree-planting-4/
+ATTACH;FMTTYPE=image/jpeg:https://bluewaterbaltimore.org/wp-content/uploads/2025/02/IMG_0552-scaled-e1771973954244.jpg
+ORGANIZER;CN="Questions about this event?":MAILTO:volunteer@bluewaterbaltimore.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260401T110000
+DTEND;TZID=America/New_York:20260401T140000
+DTSTAMP:20260315T182848
+CREATED:20260224T225048Z
+LAST-MODIFIED:20260306T162235Z
+UID:10000405-1775041200-1775052000@bluewaterbaltimore.org
+SUMMARY:Morrell Park Tree Planting
+DESCRIPTION:Get your hands dirty for clean water and a greener Baltimore! Join Blue Water Baltimore staff as we plant trees along the streets of Baltimore City. Volunteers new to planting trees and expert TreeKeepers alike are welcome to attend. Our tree planting projects are rain or shine\, and we recommend closed-toed shoes and clothing that is appropriate for the weather and getting dirty. Hats\, sunblock\, and sunglasses are strongly encouraged. We ask volunteers to bring a reusable water bottle to reduce waste. We provide work gloves\, hand tools\, and snacks but feel free to bring your own if you prefer.  \n\n\n\nNote: Please complete the registration form for each attendee\, including those under 18. All attendees are required to complete a waiver\, and all attendees under 18 must have a paper waiver signed by a parent or guardian. Instructions for completing the waivers will be emailed to you after registering. Please be sure to review this email before the event. Our tree plantings are best suited for youths in middle school or above. \n\n\n\nNote: Exact location to be determined. We will update this page ASAP with a location\, and send all registered participants a meeting address ahead of this event. \n\n\n\nRegister Here!
+URL:https://bluewaterbaltimore.org/event/tbd-morrell-park-tree-planting-5/
+ATTACH;FMTTYPE=image/jpeg:https://bluewaterbaltimore.org/wp-content/uploads/2025/02/IMG_0537-scaled-e1755816520863.jpg
+ORGANIZER;CN="Questions about this event?":MAILTO:volunteer@bluewaterbaltimore.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260403T110000
+DTEND;TZID=America/New_York:20260403T140000
+DTSTAMP:20260315T182848
+CREATED:20260224T225055Z
+LAST-MODIFIED:20260306T162230Z
+UID:10000407-1775214000-1775224800@bluewaterbaltimore.org
+SUMMARY:Morrell Park Tree Planting
+DESCRIPTION:Get your hands dirty for clean water and a greener Baltimore! Join Blue Water Baltimore staff as we plant trees along the streets of Baltimore City. Volunteers new to planting trees and expert TreeKeepers alike are welcome to attend. Our tree planting projects are rain or shine\, and we recommend closed-toed shoes and clothing that is appropriate for the weather and getting dirty. Hats\, sunblock\, and sunglasses are strongly encouraged. We ask volunteers to bring a reusable water bottle to reduce waste. We provide work gloves\, hand tools\, and snacks but feel free to bring your own if you prefer.  \n\n\n\nNote: Please complete the registration form for each attendee\, including those under 18. All attendees are required to complete a waiver\, and all attendees under 18 must have a paper waiver signed by a parent or guardian. Instructions for completing the waivers will be emailed to you after registering. Please be sure to review this email before the event. Our tree plantings are best suited for youths in middle school or above. \n\n\n\nNote: Exact location to be determined. We will update this page ASAP with a location\, and send all registered participants a meeting address ahead of this event. \n\n\n\nRegister Here!
+URL:https://bluewaterbaltimore.org/event/tbd-morrell-park-tree-planting-6/
+ATTACH;FMTTYPE=image/jpeg:https://bluewaterbaltimore.org/wp-content/uploads/2025/08/20240427_110101-3-scaled-e1755817161183.jpg
+ORGANIZER;CN="Questions about this event?":MAILTO:volunteer@bluewaterbaltimore.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260407T110000
+DTEND;TZID=America/New_York:20260407T140000
+DTSTAMP:20260315T182848
+CREATED:20260217T203051Z
+LAST-MODIFIED:20260306T162225Z
+UID:10000403-1775559600-1775570400@bluewaterbaltimore.org
+SUMMARY:Morrell Park Tree Planting
+DESCRIPTION:Get your hands dirty for clean water and a greener Baltimore! Join Blue Water Baltimore staff as we plant trees along the streets of Baltimore City. Volunteers new to planting trees and expert TreeKeepers alike are welcome to attend. Our tree planting projects are rain or shine\, and we recommend closed-toed shoes and clothing that is appropriate for the weather and getting dirty. Hats\, sunblock\, and sunglasses are strongly encouraged. We ask volunteers to bring a reusable water bottle to reduce waste. We provide work gloves\, hand tools\, and snacks but feel free to bring your own if you prefer.  \n\n\n\nNote: Please complete the registration form for each attendee\, including those under 18. All attendees are required to complete a waiver\, and all attendees under 18 must have a paper waiver signed by a parent or guardian. Instructions for completing the waivers will be emailed to you after registering. Please be sure to review this email before the event. Our tree plantings are best suited for youths in middle school or above. \n\n\n\nNote: Exact location to be determined. We will update this page ASAP with a location\, and send all registered participants a meeting address ahead of this event. \n\n\n\nRegister Here!
+URL:https://bluewaterbaltimore.org/event/tbd-morrell-park-tree-planting/
+ATTACH;FMTTYPE=image/jpeg:https://bluewaterbaltimore.org/wp-content/uploads/2025/02/i-HCTxPqn-XL-e1771973865136.jpg
+ORGANIZER;CN="Questions about this event?":MAILTO:volunteer@bluewaterbaltimore.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260409T110000
+DTEND;TZID=America/New_York:20260409T140000
+DTSTAMP:20260315T182848
+CREATED:20260224T225106Z
+LAST-MODIFIED:20260306T162221Z
+UID:10000408-1775732400-1775743200@bluewaterbaltimore.org
+SUMMARY:Morrell Park Tree Planting
+DESCRIPTION:Get your hands dirty for clean water and a greener Baltimore! Join Blue Water Baltimore staff as we plant trees along the streets of Baltimore City. Volunteers new to planting trees and expert TreeKeepers alike are welcome to attend. Our tree planting projects are rain or shine\, and we recommend closed-toed shoes and clothing that is appropriate for the weather and getting dirty. Hats\, sunblock\, and sunglasses are strongly encouraged. We ask volunteers to bring a reusable water bottle to reduce waste. We provide work gloves\, hand tools\, and snacks but feel free to bring your own if you prefer.  \n\n\n\nNote: Please complete the registration form for each attendee\, including those under 18. All attendees are required to complete a waiver\, and all attendees under 18 must have a paper waiver signed by a parent or guardian. Instructions for completing the waivers will be emailed to you after registering. Please be sure to review this email before the event. Our tree plantings are best suited for youths in middle school or above. \n\n\n\nNote: Exact location to be determined. We will update this page ASAP with a location\, and send all registered participants a meeting address ahead of this event. \n\n\n\nRegister Here!
+URL:https://bluewaterbaltimore.org/event/tbd-morrell-park-tree-planting-7/
+ATTACH;FMTTYPE=image/jpeg:https://bluewaterbaltimore.org/wp-content/uploads/2025/02/IMG_0552-scaled-e1771973954244.jpg
+ORGANIZER;CN="Questions about this event?":MAILTO:volunteer@bluewaterbaltimore.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260414T110000
+DTEND;TZID=America/New_York:20260414T140000
+DTSTAMP:20260315T182848
+CREATED:20260224T225114Z
+LAST-MODIFIED:20260306T162216Z
+UID:10000409-1776164400-1776175200@bluewaterbaltimore.org
+SUMMARY:Morrell Park Tree Planting
+DESCRIPTION:Get your hands dirty for clean water and a greener Baltimore! Join Blue Water Baltimore staff as we plant trees along the streets of Baltimore City. Volunteers new to planting trees and expert TreeKeepers alike are welcome to attend. Our tree planting projects are rain or shine\, and we recommend closed-toed shoes and clothing that is appropriate for the weather and getting dirty. Hats\, sunblock\, and sunglasses are strongly encouraged. We ask volunteers to bring a reusable water bottle to reduce waste. We provide work gloves\, hand tools\, and snacks but feel free to bring your own if you prefer.  \n\n\n\nNote: Please complete the registration form for each attendee\, including those under 18. All attendees are required to complete a waiver\, and all attendees under 18 must have a paper waiver signed by a parent or guardian. Instructions for completing the waivers will be emailed to you after registering. Please be sure to review this email before the event. Our tree plantings are best suited for youths in middle school or above. \n\n\n\nNote: Exact location to be determined. We will update this page ASAP with a location\, and send all registered participants a meeting address ahead of this event. \n\n\n\nRegister Here!
+URL:https://bluewaterbaltimore.org/event/tbd-morrell-park-tree-planting-8/
+ATTACH;FMTTYPE=image/jpeg:https://bluewaterbaltimore.org/wp-content/uploads/2025/02/IMG_0537-scaled-e1755816520863.jpg
+ORGANIZER;CN="Questions about this event?":MAILTO:volunteer@bluewaterbaltimore.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260414T193000
+DTEND;TZID=America/New_York:20260414T203000
+DTSTAMP:20260315T182848
+CREATED:20260306T184507Z
+LAST-MODIFIED:20260306T184509Z
+UID:10000425-1776195000-1776198600@bluewaterbaltimore.org
+SUMMARY:Audubon x BWB: Build a Bird Habitat
+DESCRIPTION:This is the four-part webinar series brings together experts from Audubon Mid-Atlantic and Blue Water Baltimore’s Herring Run Nursery to guide you through building a bird habitat for your home or community.  \n\n\n\nEach session covers a different topic around bird-friendly garden design and planting. You are welcome to join us for one\, several\, or all of the webinars throughout the spring: \n\n\n\nMarch 24: Introduction to Habitat Gardening for Birds \n\n\n\nApril 14: Plan and Prep Your Bird Habitat Garden (with BWB) \n\n\n\nApril 21: Design Your Bird Habitat Garden (with BWB) \n\n\n\nApril 28: Sustaining your Bird Habitat Garden
+URL:https://bluewaterbaltimore.org/event/audubon-x-bwb-build-a-bird-habitat/2026-04-14/
+ATTACH;FMTTYPE=image/png:https://bluewaterbaltimore.org/wp-content/uploads/2026/03/Bird-Habitat-Gardening-webinar-series-Spring-2026-2-e1772822666997.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260416T110000
+DTEND;TZID=America/New_York:20260416T140000
+DTSTAMP:20260315T182848
+CREATED:20260224T225121Z
+LAST-MODIFIED:20260306T162210Z
+UID:10000411-1776337200-1776348000@bluewaterbaltimore.org
+SUMMARY:Morrell Park Tree Planting
+DESCRIPTION:Get your hands dirty for clean water and a greener Baltimore! Join Blue Water Baltimore staff as we plant trees along the streets of Baltimore City. Volunteers new to planting trees and expert TreeKeepers alike are welcome to attend. Our tree planting projects are rain or shine\, and we recommend closed-toed shoes and clothing that is appropriate for the weather and getting dirty. Hats\, sunblock\, and sunglasses are strongly encouraged. We ask volunteers to bring a reusable water bottle to reduce waste. We provide work gloves\, hand tools\, and snacks but feel free to bring your own if you prefer.  \n\n\n\nNote: Please complete the registration form for each attendee\, including those under 18. All attendees are required to complete a waiver\, and all attendees under 18 must have a paper waiver signed by a parent or guardian. Instructions for completing the waivers will be emailed to you after registering. Please be sure to review this email before the event. Our tree plantings are best suited for youths in middle school or above. \n\n\n\nNote: Exact location to be determined. We will update this page ASAP with a location\, and send all registered participants a meeting address ahead of this event. \n\n\n\nRegister Here!
+URL:https://bluewaterbaltimore.org/event/tbd-morrell-park-tree-planting-9/
+ATTACH;FMTTYPE=image/jpeg:https://bluewaterbaltimore.org/wp-content/uploads/2025/08/20240427_110101-3-scaled-e1755817161183.jpg
+ORGANIZER;CN="Questions about this event?":MAILTO:volunteer@bluewaterbaltimore.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260421T193000
+DTEND;TZID=America/New_York:20260421T203000
+DTSTAMP:20260315T182848
+CREATED:20260306T184507Z
+LAST-MODIFIED:20260306T184509Z
+UID:10000426-1776799800-1776803400@bluewaterbaltimore.org
+SUMMARY:Audubon x BWB: Build a Bird Habitat
+DESCRIPTION:This is the four-part webinar series brings together experts from Audubon Mid-Atlantic and Blue Water Baltimore’s Herring Run Nursery to guide you through building a bird habitat for your home or community.  \n\n\n\nEach session covers a different topic around bird-friendly garden design and planting. You are welcome to join us for one\, several\, or all of the webinars throughout the spring: \n\n\n\nMarch 24: Introduction to Habitat Gardening for Birds \n\n\n\nApril 14: Plan and Prep Your Bird Habitat Garden (with BWB) \n\n\n\nApril 21: Design Your Bird Habitat Garden (with BWB) \n\n\n\nApril 28: Sustaining your Bird Habitat Garden
+URL:https://bluewaterbaltimore.org/event/audubon-x-bwb-build-a-bird-habitat/2026-04-21/
+ATTACH;FMTTYPE=image/png:https://bluewaterbaltimore.org/wp-content/uploads/2026/03/Bird-Habitat-Gardening-webinar-series-Spring-2026-2-e1772822666997.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260422T110000
+DTEND;TZID=America/New_York:20260422T140000
+DTSTAMP:20260315T182848
+CREATED:20260224T225127Z
+LAST-MODIFIED:20260306T162206Z
+UID:10000412-1776855600-1776866400@bluewaterbaltimore.org
+SUMMARY:Morrell Park Earth Day Tree Planting
+DESCRIPTION:Get your hands dirty for clean water and a greener Baltimore! Join Blue Water Baltimore staff as we plant trees along the streets of Baltimore City. Volunteers new to planting trees and expert TreeKeepers alike are welcome to attend. Our tree planting projects are rain or shine\, and we recommend closed-toed shoes and clothing that is appropriate for the weather and getting dirty. Hats\, sunblock\, and sunglasses are strongly encouraged. We ask volunteers to bring a reusable water bottle to reduce waste. We provide work gloves\, hand tools\, and snacks but feel free to bring your own if you prefer.  \n\n\n\nNote: Please complete the registration form for each attendee\, including those under 18. All attendees are required to complete a waiver\, and all attendees under 18 must have a paper waiver signed by a parent or guardian. Instructions for completing the waivers will be emailed to you after registering. Please be sure to review this email before the event. Our tree plantings are best suited for youths in middle school or above. \n\n\n\nNote: Exact location to be determined. We will update this page ASAP with a location\, and send all registered participants a meeting address ahead of this event. \n\n\n\nRegister Here!
+URL:https://bluewaterbaltimore.org/event/tbd-morrell-park-earth-day-tree-planting/
+ATTACH;FMTTYPE=image/jpeg:https://bluewaterbaltimore.org/wp-content/uploads/2025/02/i-QggSBvV-XL-e1755817234807.jpg
+ORGANIZER;CN="Questions about this event?":MAILTO:volunteer@bluewaterbaltimore.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260425T090000
+DTEND;TZID=America/New_York:20260425T120000
+DTSTAMP:20260315T182848
+CREATED:20260224T225132Z
+LAST-MODIFIED:20260306T162201Z
+UID:10000414-1777107600-1777118400@bluewaterbaltimore.org
+SUMMARY:Morrell Park Tree Planting
+DESCRIPTION:Get your hands dirty for clean water and a greener Baltimore! Join Blue Water Baltimore staff as we plant trees along the streets of Baltimore City. Volunteers new to planting trees and expert TreeKeepers alike are welcome to attend. Our tree planting projects are rain or shine\, and we recommend closed-toed shoes and clothing that is appropriate for the weather and getting dirty. Hats\, sunblock\, and sunglasses are strongly encouraged. We ask volunteers to bring a reusable water bottle to reduce waste. We provide work gloves\, hand tools\, and snacks but feel free to bring your own if you prefer.  \n\n\n\nNote: Please complete the registration form for each attendee\, including those under 18. All attendees are required to complete a waiver\, and all attendees under 18 must have a paper waiver signed by a parent or guardian. Instructions for completing the waivers will be emailed to you after registering. Please be sure to review this email before the event. Our tree plantings are best suited for youths in middle school or above. \n\n\n\nNote: Exact location to be determined. We will update this page ASAP with a location\, and send all registered participants a meeting address ahead of this event. \n\n\n\nRegister Here!
+URL:https://bluewaterbaltimore.org/event/tbd-morrell-park-tree-planting-10/
+ATTACH;FMTTYPE=image/jpeg:https://bluewaterbaltimore.org/wp-content/uploads/2025/02/i-HCTxPqn-XL-e1771973865136.jpg
+ORGANIZER;CN="Questions about this event?":MAILTO:volunteer@bluewaterbaltimore.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260428T193000
+DTEND;TZID=America/New_York:20260428T203000
+DTSTAMP:20260315T182848
+CREATED:20260306T184507Z
+LAST-MODIFIED:20260306T184509Z
+UID:10000427-1777404600-1777408200@bluewaterbaltimore.org
+SUMMARY:Audubon x BWB: Build a Bird Habitat
+DESCRIPTION:This is the four-part webinar series brings together experts from Audubon Mid-Atlantic and Blue Water Baltimore’s Herring Run Nursery to guide you through building a bird habitat for your home or community.  \n\n\n\nEach session covers a different topic around bird-friendly garden design and planting. You are welcome to join us for one\, several\, or all of the webinars throughout the spring: \n\n\n\nMarch 24: Introduction to Habitat Gardening for Birds \n\n\n\nApril 14: Plan and Prep Your Bird Habitat Garden (with BWB) \n\n\n\nApril 21: Design Your Bird Habitat Garden (with BWB) \n\n\n\nApril 28: Sustaining your Bird Habitat Garden
+URL:https://bluewaterbaltimore.org/event/audubon-x-bwb-build-a-bird-habitat/2026-04-28/
+ATTACH;FMTTYPE=image/png:https://bluewaterbaltimore.org/wp-content/uploads/2026/03/Bird-Habitat-Gardening-webinar-series-Spring-2026-2-e1772822666997.png
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260429T110000
+DTEND;TZID=America/New_York:20260429T140000
+DTSTAMP:20260315T182848
+CREATED:20260224T225139Z
+LAST-MODIFIED:20260306T162156Z
+UID:10000415-1777460400-1777471200@bluewaterbaltimore.org
+SUMMARY:Morrell Park Tree Planting
+DESCRIPTION:Get your hands dirty for clean water and a greener Baltimore! Join Blue Water Baltimore staff as we plant trees along the streets of Baltimore City. Volunteers new to planting trees and expert TreeKeepers alike are welcome to attend. Our tree planting projects are rain or shine\, and we recommend closed-toed shoes and clothing that is appropriate for the weather and getting dirty. Hats\, sunblock\, and sunglasses are strongly encouraged. We ask volunteers to bring a reusable water bottle to reduce waste. We provide work gloves\, hand tools\, and snacks but feel free to bring your own if you prefer.  \n\n\n\nNote: Please complete the registration form for each attendee\, including those under 18. All attendees are required to complete a waiver\, and all attendees under 18 must have a paper waiver signed by a parent or guardian. Instructions for completing the waivers will be emailed to you after registering. Please be sure to review this email before the event. Our tree plantings are best suited for youths in middle school or above. \n\n\n\nNote: Exact location to be determined. We will update this page ASAP with a location\, and send all registered participants a meeting address ahead of this event. \n\n\n\nRegister Here!
+URL:https://bluewaterbaltimore.org/event/tbd-morrell-park-tree-planting-11/
+ATTACH;FMTTYPE=image/jpeg:https://bluewaterbaltimore.org/wp-content/uploads/2025/02/IMG_0552-scaled-e1771973954244.jpg
+ORGANIZER;CN="Questions about this event?":MAILTO:volunteer@bluewaterbaltimore.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260501T110000
+DTEND;TZID=America/New_York:20260501T140000
+DTSTAMP:20260315T182848
+CREATED:20260224T225144Z
+LAST-MODIFIED:20260306T162151Z
+UID:10000416-1777633200-1777644000@bluewaterbaltimore.org
+SUMMARY:Morrell Park Tree Planting
+DESCRIPTION:Get your hands dirty for clean water and a greener Baltimore! Join Blue Water Baltimore staff as we plant trees along the streets of Baltimore City. Volunteers new to planting trees and expert TreeKeepers alike are welcome to attend. Our tree planting projects are rain or shine\, and we recommend closed-toed shoes and clothing that is appropriate for the weather and getting dirty. Hats\, sunblock\, and sunglasses are strongly encouraged. We ask volunteers to bring a reusable water bottle to reduce waste. We provide work gloves\, hand tools\, and snacks but feel free to bring your own if you prefer.  \n\n\n\nNote: Please complete the registration form for each attendee\, including those under 18. All attendees are required to complete a waiver\, and all attendees under 18 must have a paper waiver signed by a parent or guardian. Instructions for completing the waivers will be emailed to you after registering. Please be sure to review this email before the event. Our tree plantings are best suited for youths in middle school or above. \n\n\n\nNote: Exact location to be determined. We will update this page ASAP with a location\, and send all registered participants a meeting address ahead of this event. \n\n\n\nRegister Here!
+URL:https://bluewaterbaltimore.org/event/tbd-morrell-park-tree-planting-12/
+ATTACH;FMTTYPE=image/jpeg:https://bluewaterbaltimore.org/wp-content/uploads/2025/02/IMG_0537-scaled-e1755816520863.jpg
+ORGANIZER;CN="Questions about this event?":MAILTO:volunteer@bluewaterbaltimore.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260505T110000
+DTEND;TZID=America/New_York:20260505T140000
+DTSTAMP:20260315T182848
+CREATED:20260224T225151Z
+LAST-MODIFIED:20260306T162146Z
+UID:10000417-1777978800-1777989600@bluewaterbaltimore.org
+SUMMARY:Morrell Park Tree Planting
+DESCRIPTION:Get your hands dirty for clean water and a greener Baltimore! Join Blue Water Baltimore staff as we plant trees along the streets of Baltimore City. Volunteers new to planting trees and expert TreeKeepers alike are welcome to attend. Our tree planting projects are rain or shine\, and we recommend closed-toed shoes and clothing that is appropriate for the weather and getting dirty. Hats\, sunblock\, and sunglasses are strongly encouraged. We ask volunteers to bring a reusable water bottle to reduce waste. We provide work gloves\, hand tools\, and snacks but feel free to bring your own if you prefer.  \n\n\n\nNote: Please complete the registration form for each attendee\, including those under 18. All attendees are required to complete a waiver\, and all attendees under 18 must have a paper waiver signed by a parent or guardian. Instructions for completing the waivers will be emailed to you after registering. Please be sure to review this email before the event. Our tree plantings are best suited for youths in middle school or above. \n\n\n\nNote: Exact location to be determined. We will update this page ASAP with a location\, and send all registered participants a meeting address ahead of this event. \n\n\n\nRegister Here!
+URL:https://bluewaterbaltimore.org/event/tbd-morrell-park-tree-planting-13/
+ATTACH;FMTTYPE=image/jpeg:https://bluewaterbaltimore.org/wp-content/uploads/2025/08/20240427_110101-3-scaled-e1755817161183.jpg
+ORGANIZER;CN="Questions about this event?":MAILTO:volunteer@bluewaterbaltimore.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260506T170000
+DTEND;TZID=America/New_York:20260506T193000
+DTSTAMP:20260315T182848
+CREATED:20260226T175115Z
+LAST-MODIFIED:20260226T175310Z
+UID:10000422-1778086800-1778095800@bluewaterbaltimore.org
+SUMMARY:State of the Watershed
+DESCRIPTION:Join us for a first look at our most recent year of water quality data\, and hear directly from your Baltimore Harbor Waterkeeper and our partners about what we’re doing (and what YOU can do) to help improve our water. \n\n\n\nTickets and more information coming soon!
+URL:https://bluewaterbaltimore.org/event/state-of-the-watershed/
+LOCATION:IMET\, 701 East Pratt Street\, Baltimore\, Maryland\, 21202
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260507T110000
+DTEND;TZID=America/New_York:20260507T140000
+DTSTAMP:20260315T182848
+CREATED:20260224T225156Z
+LAST-MODIFIED:20260310T160007Z
+UID:10000418-1778151600-1778162400@bluewaterbaltimore.org
+SUMMARY:Morrell Park Tree Planting
+DESCRIPTION:Get your hands dirty for clean water and a greener Baltimore! Join Blue Water Baltimore staff as we plant trees along the streets of Baltimore City. Volunteers new to planting trees and expert TreeKeepers alike are welcome to attend. Our tree planting projects are rain or shine\, and we recommend closed-toed shoes and clothing that is appropriate for the weather and getting dirty. Hats\, sunblock\, and sunglasses are strongly encouraged. We ask volunteers to bring a reusable water bottle to reduce waste. We provide work gloves\, hand tools\, and snacks but feel free to bring your own if you prefer.  \n\n\n\nNote: Please complete the registration form for each attendee\, including those under 18. All attendees are required to complete a waiver\, and all attendees under 18 must have a paper waiver signed by a parent or guardian. Instructions for completing the waivers will be emailed to you after registering. Please be sure to review this email before the event. Our tree plantings are best suited for youths in middle school or above. \n\n\n\nNote: Exact location to be determined. We will update this page ASAP with a location\, and send all registered participants a meeting address ahead of this event. \n\n\n\nRegister Here!
+URL:https://bluewaterbaltimore.org/event/tbd-morrell-park-tree-planting-14/
+ATTACH;FMTTYPE=image/jpeg:https://bluewaterbaltimore.org/wp-content/uploads/2025/02/i-HCTxPqn-XL-e1771973865136.jpg
+ORGANIZER;CN="Questions about this event?":MAILTO:volunteer@bluewaterbaltimore.org
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20260512T110000
+DTEND;TZID=America/New_York:20260512T140000
+DTSTAMP:20260315T182848
+CREATED:20260224T225200Z
+LAST-MODIFIED:20260306T162131Z
+UID:10000419-1778583600-1778594400@bluewaterbaltimore.org
+SUMMARY:Morrell Park Tree Planting
+DESCRIPTION:Get your hands dirty for clean water and a greener Baltimore! Join Blue Water Baltimore staff as we plant trees along the streets of Baltimore City. Volunteers new to planting trees and expert TreeKeepers alike are welcome to attend. Our tree planting projects are rain or shine\, and we recommend closed-toed shoes and clothing that is appropriate for the weather and getting dirty. Hats\, sunblock\, and sunglasses are strongly encouraged. We ask volunteers to bring a reusable water bottle to reduce waste. We provide work gloves\, hand tools\, and snacks but feel free to bring your own if you prefer.  \n\n\n\nNote: Please complete the registration form for each attendee\, including those under 18. All attendees are required to complete a waiver\, and all attendees under 18 must have a paper waiver signed by a parent or guardian. Instructions for completing the waivers will be emailed to you after registering. Please be sure to review this email before the event. Our tree plantings are best suited for youths in middle school or above. \n\n\n\nNote: Exact location to be determined. We will update this page ASAP with a location\, and send all registered participants a meeting address ahead of this event. \n\n\n\nRegister Here!
+URL:https://bluewaterbaltimore.org/event/tbd-morrell-park-tree-planting-15/
+ATTACH;FMTTYPE=image/jpeg:https://bluewaterbaltimore.org/wp-content/uploads/2025/02/IMG_0552-scaled-e1771973954244.jpg
+ORGANIZER;CN="Questions about this event?":MAILTO:volunteer@bluewaterbaltimore.org
+END:VEVENT
+END:VCALENDAR

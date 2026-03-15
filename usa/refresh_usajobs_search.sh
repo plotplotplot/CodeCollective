@@ -67,13 +67,67 @@ JOB_CATEGORY_CODES="${USAJOBS_JOB_CATEGORY_CODES:-}"
 SCHEDULE_CODES="${USAJOBS_POSITION_SCHEDULE_TYPE_CODES:-}"
 HIRING_PATHS="${USAJOBS_HIRING_PATHS:-}"
 
+gzip_path_for() {
+  local target_path="$1"
+  echo "${target_path}.gz"
+}
+
+inflate_json_from_gzip_if_needed() {
+  local target_path="$1"
+  local gzip_path
+  gzip_path="$(gzip_path_for "${target_path}")"
+
+  if [[ ! -f "${gzip_path}" ]]; then
+    return
+  fi
+
+  if [[ -f "${target_path}" && "${target_path}" -nt "${gzip_path}" ]]; then
+    return
+  fi
+
+  python3 - "${gzip_path}" "${target_path}" <<'PY'
+import gzip
+import sys
+from pathlib import Path
+
+gzip_path = Path(sys.argv[1])
+target_path = Path(sys.argv[2])
+target_path.parent.mkdir(parents=True, exist_ok=True)
+
+with gzip.open(gzip_path, "rt", encoding="utf-8") as source:
+    target_path.write_text(source.read(), encoding="utf-8")
+PY
+  echo "Inflated cache from ${gzip_path} -> ${target_path}"
+}
+
+payload_source_path() {
+  local target_path="$1"
+  local gzip_path
+  gzip_path="$(gzip_path_for "${target_path}")"
+
+  if [[ -f "${target_path}" ]]; then
+    echo "${target_path}"
+    return
+  fi
+
+  if [[ -f "${gzip_path}" ]]; then
+    echo "${gzip_path}"
+    return
+  fi
+
+  echo ""
+}
+
 payload_epoch() {
   local target_path="$1"
-  python3 - "${target_path}" <<'PY'
+  local source_path
+  source_path="$(payload_source_path "${target_path}")"
+  python3 - "${source_path}" <<'PY'
 import json
 import os
 import sys
 from datetime import datetime, UTC
+import gzip
 
 path = sys.argv[1]
 if not os.path.exists(path):
@@ -81,7 +135,8 @@ if not os.path.exists(path):
     raise SystemExit(0)
 
 try:
-    with open(path, encoding="utf-8") as handle:
+    opener = gzip.open if path.endswith(".gz") else open
+    with opener(path, "rt", encoding="utf-8") as handle:
         payload = json.load(handle)
 except Exception:
     payload = {}
@@ -101,11 +156,14 @@ PY
 
 payload_fetched_at() {
   local target_path="$1"
-  python3 - "${target_path}" <<'PY'
+  local source_path
+  source_path="$(payload_source_path "${target_path}")"
+  python3 - "${source_path}" <<'PY'
 import json
 import os
 import sys
 from datetime import datetime, UTC
+import gzip
 
 path = sys.argv[1]
 if not os.path.exists(path):
@@ -113,7 +171,8 @@ if not os.path.exists(path):
     raise SystemExit(0)
 
 try:
-    with open(path, encoding="utf-8") as handle:
+    opener = gzip.open if path.endswith(".gz") else open
+    with opener(path, "rt", encoding="utf-8") as handle:
         payload = json.load(handle)
 except Exception:
     payload = {}
@@ -168,6 +227,9 @@ payload_is_fresh() {
 
   return 1
 }
+
+inflate_json_from_gzip_if_needed "${OUTPUT_PATH}"
+inflate_json_from_gzip_if_needed "${FRONTEND_OUTPUT_PATH}"
 
 describe_payload_age "${OUTPUT_PATH}" "Full USAJOBS cache"
 describe_payload_age "${FRONTEND_OUTPUT_PATH}" "Frontend USAJOBS cache"

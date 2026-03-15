@@ -25,6 +25,22 @@ jobs:
         run: |
           pip install -r requirements.txt
 
+      - name: Compute USAJOBS cache key
+        id: usajobs_cache_key
+        run: |
+          echo "key=usajobs-gz-${{ runner.os }}-$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore USAJOBS gzip cache
+        id: usajobs_cache_restore
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            usa/data/usajobs.json.gz
+            usa/data/usajobs-lite.json.gz
+          key: ${{ steps.usajobs_cache_key.outputs.key }}
+          restore-keys: |
+            usajobs-gz-${{ runner.os }}-
+
       - name: Determine whether to refresh Baltimore profile images
         id: baltimore_images
         run: |
@@ -54,6 +70,15 @@ jobs:
           USAJOBS_MAX_AGE_DAYS: '7'
         run: |
           ./usa/refresh_usajobs_search.sh
+
+      - name: Save USAJOBS gzip cache
+        if: always() && steps.usajobs_cache_restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            usa/data/usajobs.json.gz
+            usa/data/usajobs-lite.json.gz
+          key: ${{ steps.usajobs_cache_restore.outputs.cache-primary-key }}
 
       - name: Run genCalendar.py
         run: |

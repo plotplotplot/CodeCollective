@@ -27,7 +27,10 @@ def fetch_calendar_events(ICS_URL, city, imageURL="https://www.unallocatedspace.
     # Always prefer https
     ICS_URL = re.sub(r"^http://", "https://", ICS_URL.strip())
     url = ICS_URL
-    token = re.sub(r'[^A-Za-z0-9._-]+','_', (urllib.parse.urlsplit(url if '://' in url else 'https://'+url).hostname or '').split('.',1)[0]).strip('._-') or 'file'
+    parsed_url = urllib.parse.urlsplit(url if '://' in url else 'https://' + url)
+    host_token = re.sub(r'[^A-Za-z0-9._-]+', '_', (parsed_url.hostname or '').split('.', 1)[0]).strip('._-') or 'file'
+    url_hash = hashlib.md5(ICS_URL.encode("utf-8")).hexdigest()[:10]
+    token = f"{host_token}_{url_hash}"
 
     CACHE_FILENAME = os.path.join(city, f"cache_{token}.ics")
 
