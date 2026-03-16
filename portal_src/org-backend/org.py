@@ -1,4 +1,5 @@
-from fastapi import FastAPI, HTTPException, Depends, status, BackgroundTasks
+from fastapi import FastAPI, HTTPException, Depends, status, BackgroundTasks, Request
+from fastapi.encoders import jsonable_encoder
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel, validator, Field
 from typing import List, Optional, Dict, Any, Set, Annotated
@@ -182,7 +183,11 @@ class Account(Base):
     portfolio = relationship("PortfolioHolding", back_populates="account")
     insurance_policies = relationship("InsurancePolicy", back_populates="account")
     fiscal_votes = relationship("FiscalVote", back_populates="account")
-    edit_requests = relationship("EditRequest", back_populates="account")
+    edit_requests = relationship(
+        "EditRequest",
+        foreign_keys="EditRequest.account_id",
+        back_populates="account",
+    )
 
 class Transaction(Base):
     """Financial transaction record with double-entry accounting"""
@@ -507,7 +512,11 @@ class EditRequest(Base):
     )
     
     # Relationships
-    account = relationship("Account", back_populates="edit_requests")
+    account = relationship(
+        "Account",
+        foreign_keys=[account_id],
+        back_populates="edit_requests",
+    )
     reviewer = relationship("Account", foreign_keys=[reviewed_by])
 
 # ============= PYDANTIC MODELS =============
@@ -544,6 +553,26 @@ class AccountResponse(BaseModel):
     class Config:
         from_attributes = True
 
+class AccountListItemResponse(BaseModel):
+    id: uuid.UUID
+    entity_type: EntityType
+    name: str
+    email: str
+    balance: Decimal
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+class MoneySupplyPointResponse(BaseModel):
+    timestamp: datetime
+    total_supply: Decimal
+
+class MoneySupplyHistoryResponse(BaseModel):
+    points: List[MoneySupplyPointResponse]
+    current_total_supply: Decimal
+    currency: str
+
 class TransactionCreate(BaseModel):
     to_account_id: Optional[uuid.UUID] = None
     amount: Decimal = Field(..., gt=0)
@@ -567,6 +596,31 @@ class TransactionResponse(BaseModel):
     class Config:
         from_attributes = True
         allow_population_by_field_name = True
+
+class RecentTransactionResponse(BaseModel):
+    id: uuid.UUID
+    timestamp: datetime
+    transaction_type: TransactionType
+    amount: Decimal
+    currency: str
+    description: str
+    from_account_id: Optional[uuid.UUID] = None
+    to_account_id: Optional[uuid.UUID] = None
+    from_account_name: Optional[str] = None
+    to_account_name: Optional[str] = None
+
+class AccountAutomationResponse(BaseModel):
+    account_id: uuid.UUID
+    name: str
+    email: str
+    balance: Decimal
+    currency: str
+    account_endpoint: str
+    incoming_transactions_endpoint: str
+    all_transactions_endpoint: str
+    send_payment_endpoint: str
+    send_url_template: str
+    updated_at: datetime
 
 class StockCreate(BaseModel):
     company_name: str = Field(..., min_length=1, max_length=255)
@@ -613,6 +667,29 @@ class FiscalVoteCreate(BaseModel):
 class TaxEstimate(BaseModel):
     taxable_income: Decimal = Field(..., ge=0)
     tax_year: int
+
+class UBIRuntimeSettingsResponse(BaseModel):
+    interval_seconds: int
+    dena_annual: Decimal
+    dena_precision: int
+    entity_types: List[str]
+    updated_at: datetime
+    updated_by: Optional[str] = None
+
+class UBIRuntimeSettingsUpdate(BaseModel):
+    interval_seconds: Optional[int] = Field(None, ge=1, le=86400)
+    dena_annual: Optional[Decimal] = Field(None, ge=Decimal("0"))
+    dena_precision: Optional[int] = Field(None, ge=0, le=12)
+    entity_types: Optional[List[str]] = None
+
+    @validator("entity_types")
+    def validate_entity_types(cls, value):
+        if value is None:
+            return value
+        cleaned = [item.strip() for item in value if item and item.strip()]
+        if not cleaned:
+            raise ValueError("entity_types must contain at least one value")
+        return cleaned
 
 # ============= DATABASE DEPENDENCY =============
 
@@ -683,6 +760,86 @@ class Database:
 
 # Initialize database
 db = Database()
+
+DEFAULT_UBI_INTERVAL_SECONDS = int(os.environ.get("UBI_INTERVAL_SECONDS", "60"))
+DEFAULT_DENA_ANNUAL = Decimal(os.environ.get("DENA_ANNUAL", "1"))
+DEFAULT_DENA_PRECISION = int(os.environ.get("DENA_PRECISION", "6"))
+DEFAULT_UBI_ENTITY_TYPES = [
+    item.strip()
+    for item in os.environ.get("UBI_ENTITY_TYPES", "individual").split(",")
+    if item.strip()
+]
+
+
+async def ensure_ubi_runtime_settings_table() -> None:
+    entity_csv = ",".join(DEFAULT_UBI_ENTITY_TYPES or ["individual"])
+    async with db.async_pool.acquire() as conn:
+        await conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS ubi_runtime_settings (
+                id INT PRIMARY KEY CHECK (id = 1),
+                interval_seconds INT NOT NULL,
+                dena_annual DECIMAL(20, 6) NOT NULL,
+                dena_precision INT NOT NULL,
+                entity_types TEXT NOT NULL,
+                updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+                updated_by TEXT
+            )
+            """
+        )
+        await conn.execute(
+            """
+            INSERT INTO ubi_runtime_settings (id, interval_seconds, dena_annual, dena_precision, entity_types, updated_by)
+            VALUES (1, $1, $2, $3, $4, 'org-backend-bootstrap')
+            ON CONFLICT (id) DO NOTHING
+            """,
+            DEFAULT_UBI_INTERVAL_SECONDS,
+            float(DEFAULT_DENA_ANNUAL),
+            DEFAULT_DENA_PRECISION,
+            entity_csv,
+        )
+
+
+def _default_ubi_runtime_settings() -> dict:
+    return {
+        "interval_seconds": DEFAULT_UBI_INTERVAL_SECONDS,
+        "dena_annual": DEFAULT_DENA_ANNUAL,
+        "dena_precision": DEFAULT_DENA_PRECISION,
+        "entity_types": DEFAULT_UBI_ENTITY_TYPES or ["individual"],
+        "updated_at": datetime.now(timezone.utc),
+        "updated_by": None,
+    }
+
+
+def _parse_entity_types_csv(value: str) -> list[str]:
+    parsed = [item.strip() for item in (value or "").split(",") if item.strip()]
+    return parsed or ["individual"]
+
+
+async def get_ubi_runtime_settings() -> dict:
+    try:
+        await ensure_ubi_runtime_settings_table()
+        async with db.async_pool.acquire() as conn:
+            row = await conn.fetchrow(
+                """
+                SELECT interval_seconds, dena_annual, dena_precision, entity_types, updated_at, updated_by
+                FROM ubi_runtime_settings
+                WHERE id = 1
+                """
+            )
+    except Exception as exc:
+        logger.warning(f"UBI runtime settings unavailable, using defaults: {exc}")
+        return _default_ubi_runtime_settings()
+    if not row:
+        return _default_ubi_runtime_settings()
+    return {
+        "interval_seconds": int(row["interval_seconds"]),
+        "dena_annual": Decimal(str(row["dena_annual"])),
+        "dena_precision": int(row["dena_precision"]),
+        "entity_types": _parse_entity_types_csv(str(row["entity_types"])),
+        "updated_at": row["updated_at"],
+        "updated_by": row["updated_by"],
+    }
 
 
 def _spicedb_enabled() -> bool:
@@ -799,6 +956,7 @@ async def lifespan(app: FastAPI):
     # Create tables if they don't exist
     Base.metadata.create_all(bind=db.engine)
     logger.info("Database tables verified/created")
+    await ensure_ubi_runtime_settings_table()
 
     # SpiceDB schema + admin bootstrap
     try:
@@ -880,7 +1038,9 @@ async def get_current_user(
             session.add(account)
             session.commit()
 
-        is_admin = await _spicedb_check_admin(user_id)
+        # Allow an explicit env-based admin override for recovery/bootstrap.
+        # This keeps admin access possible even if SpiceDB is unavailable/misconfigured.
+        is_admin = user_id in ORG_ADMIN_USER_IDS or await _spicedb_check_admin(user_id)
         return {
             "id": str(account.id),
             "email": account.email,
@@ -1076,6 +1236,35 @@ async def get_my_account(
     
     return account
 
+@app.get("/api/accounts/me/automation", response_model=AccountAutomationResponse)
+async def get_my_account_automation(
+    request: Request,
+    current_user: dict = Depends(get_current_user),
+    session: Session = Depends(get_db),
+):
+    """Automation-friendly account discovery endpoint for receive/payment workflows."""
+    if current_user.get("is_anonymous"):
+        raise HTTPException(status_code=401, detail="Authentication required")
+
+    account = session.query(Account).filter_by(email=current_user["email"]).first()
+    if not account:
+        raise HTTPException(status_code=404, detail="Account not found")
+
+    base = str(request.base_url).rstrip("/")
+    return {
+        "account_id": account.id,
+        "name": account.name,
+        "email": account.email,
+        "balance": account.balance,
+        "currency": SYSTEM_CURRENCY,
+        "account_endpoint": f"{base}/api/accounts/me",
+        "incoming_transactions_endpoint": f"{base}/api/accounts/me/transactions/incoming?limit=50",
+        "all_transactions_endpoint": f"{base}/api/accounts/me/transactions?limit=50",
+        "send_payment_endpoint": f"{base}/api/transactions",
+        "send_url_template": f"{base}/send?to={account.id}&amount={{amount}}",
+        "updated_at": account.updated_at,
+    }
+
 @app.get("/api/accounts/{account_id}", response_model=AccountResponse)
 async def get_account(
     account_id: uuid.UUID,
@@ -1087,6 +1276,88 @@ async def get_account(
         raise HTTPException(status_code=404, detail="Account not found")
     
     return account
+
+@app.get("/api/accounts", response_model=List[AccountListItemResponse])
+async def list_accounts(
+    current_user: dict = Depends(get_current_user),
+    session: Session = Depends(get_db),
+    q: str = "",
+    sort: str = "balance_desc",
+    limit: int = 500,
+):
+    """List accounts for directory/search views."""
+    if current_user.get("is_anonymous"):
+        raise HTTPException(status_code=401, detail="Authentication required")
+
+    safe_limit = max(1, min(limit, 2000))
+    query = session.query(Account)
+
+    if q.strip():
+        needle = f"%{q.strip()}%"
+        query = query.filter(
+            (Account.name.ilike(needle)) | (Account.email.ilike(needle))
+        )
+
+    if sort == "balance_asc":
+        query = query.order_by(Account.balance.asc(), Account.name.asc())
+    elif sort == "name_asc":
+        query = query.order_by(Account.name.asc())
+    elif sort == "name_desc":
+        query = query.order_by(Account.name.desc())
+    else:
+        query = query.order_by(Account.balance.desc(), Account.name.asc())
+
+    return query.limit(safe_limit).all()
+
+@app.get("/api/admin/accounts", response_model=List[AccountListItemResponse])
+async def list_admin_accounts(
+    current_user: dict = Depends(get_current_user),
+    credentials: HTTPAuthorizationCredentials = Depends(security),
+    session: Session = Depends(get_db),
+):
+    """List admin accounts by resolving PIDP users and SpiceDB admin membership."""
+    if current_user.get("is_anonymous"):
+        raise HTTPException(status_code=401, detail="Authentication required")
+    if not credentials:
+        raise HTTPException(status_code=401, detail="Authentication required")
+
+    token = credentials.credentials
+    try:
+        async with httpx.AsyncClient(timeout=10) as client:
+            resp = await client.get(
+                f"{PIDP_BASE_URL}/auth/users",
+                params={"email": "%"},
+                headers={"Authorization": f"Bearer {token}"},
+            )
+        if not resp.is_success:
+            raise HTTPException(status_code=resp.status_code, detail="Unable to resolve PIDP users")
+        pidp_users = resp.json() if isinstance(resp.json(), list) else []
+    except HTTPException:
+        raise
+    except Exception as exc:
+        logger.error(f"Failed to load PIDP users for admin list: {exc}")
+        raise HTTPException(status_code=503, detail="Unable to load admin list")
+
+    admin_emails: set[str] = set()
+    for pidp_user in pidp_users:
+        pidp_id = str(pidp_user.get("id") or "").strip()
+        email = str(pidp_user.get("email") or "").strip().lower()
+        if not pidp_id or not email:
+            continue
+        is_admin = pidp_id in ORG_ADMIN_USER_IDS or await _spicedb_check_admin(pidp_id)
+        if is_admin:
+            admin_emails.add(email)
+
+    if not admin_emails:
+        return []
+
+    admins = (
+        session.query(Account)
+        .filter(func.lower(Account.email).in_(admin_emails))
+        .order_by(Account.balance.desc(), Account.name.asc())
+        .all()
+    )
+    return admins
 
 @app.patch("/api/accounts/me", response_model=AccountResponse)
 async def update_account(
@@ -1245,6 +1516,75 @@ async def get_my_transactions(
     
     return transactions
 
+@app.get("/api/accounts/me/transactions/incoming", response_model=List[TransactionResponse])
+async def get_my_incoming_transactions(
+    current_user: dict = Depends(get_current_user),
+    session: Session = Depends(get_db),
+    since: Optional[datetime] = None,
+    limit: int = 50,
+):
+    """Get incoming transactions only for current user, suitable for polling automation."""
+    if current_user.get("is_anonymous"):
+        raise HTTPException(status_code=401, detail="Authentication required")
+
+    account = session.query(Account).filter_by(email=current_user["email"]).first()
+    if not account:
+        raise HTTPException(status_code=404, detail="Account not found")
+
+    safe_limit = max(1, min(limit, 500))
+    query = session.query(Transaction).filter(Transaction.to_account_id == account.id)
+    if since is not None:
+        query = query.filter(Transaction.timestamp >= since)
+    return query.order_by(Transaction.timestamp.desc()).limit(safe_limit).all()
+
+@app.get("/api/transactions/recent", response_model=List[RecentTransactionResponse])
+async def get_recent_transactions(
+    current_user: dict = Depends(get_current_user),
+    session: Session = Depends(get_db),
+    limit: int = 10,
+):
+    """Get most recent transactions across the org ledger."""
+    if current_user.get("is_anonymous"):
+        raise HTTPException(status_code=401, detail="Authentication required")
+
+    safe_limit = max(1, min(limit, 100))
+    txns = (
+        session.query(Transaction)
+        .order_by(Transaction.timestamp.desc())
+        .limit(safe_limit)
+        .all()
+    )
+    if not txns:
+        return []
+
+    account_ids: set[uuid.UUID] = set()
+    for txn in txns:
+        if txn.from_account_id:
+            account_ids.add(txn.from_account_id)
+        if txn.to_account_id:
+            account_ids.add(txn.to_account_id)
+
+    account_name_map: dict[uuid.UUID, str] = {}
+    if account_ids:
+        rows = session.query(Account.id, Account.name).filter(Account.id.in_(account_ids)).all()
+        account_name_map = {row.id: row.name for row in rows}
+
+    return [
+        {
+            "id": txn.id,
+            "timestamp": txn.timestamp,
+            "transaction_type": txn.transaction_type,
+            "amount": txn.amount,
+            "currency": txn.currency,
+            "description": txn.description,
+            "from_account_id": txn.from_account_id,
+            "to_account_id": txn.to_account_id,
+            "from_account_name": account_name_map.get(txn.from_account_id) if txn.from_account_id else None,
+            "to_account_name": account_name_map.get(txn.to_account_id) if txn.to_account_id else None,
+        }
+        for txn in txns
+    ]
+
 # ============= UBI ENDPOINTS =============
 
 @app.get("/api/ubi/eligibility")
@@ -1294,6 +1634,61 @@ async def get_ubi_eligibility(
         "last_payment_amount": eligibility.last_payment_amount,
         "total_payments_received": eligibility.total_payments_received
     }
+
+@app.get("/api/ubi/settings", response_model=UBIRuntimeSettingsResponse)
+async def get_ubi_settings(
+    current_user: dict = Depends(get_current_user),
+):
+    """Read runtime UBI settings used by the UBI worker."""
+    if current_user.get("is_anonymous"):
+        raise HTTPException(status_code=401, detail="Authentication required")
+    return await get_ubi_runtime_settings()
+
+@app.patch("/api/ubi/settings", response_model=UBIRuntimeSettingsResponse)
+async def update_ubi_settings(
+    payload: UBIRuntimeSettingsUpdate,
+    current_user: dict = Depends(get_current_user),
+):
+    """Update runtime UBI settings used by the UBI worker."""
+    if current_user.get("is_anonymous"):
+        raise HTTPException(status_code=401, detail="Authentication required")
+    if not current_user.get("is_admin"):
+        raise HTTPException(status_code=403, detail="Admin access required")
+
+    updates = payload.dict(exclude_unset=True)
+    if not updates:
+        return await get_ubi_runtime_settings()
+
+    interval_seconds = updates.get("interval_seconds")
+    dena_annual = updates.get("dena_annual")
+    dena_precision = updates.get("dena_precision")
+    entity_types = updates.get("entity_types")
+    entity_types_csv = ",".join(entity_types) if entity_types is not None else None
+
+    try:
+        await ensure_ubi_runtime_settings_table()
+        async with db.async_pool.acquire() as conn:
+            await conn.execute(
+                """
+                UPDATE ubi_runtime_settings
+                SET interval_seconds = COALESCE($1, interval_seconds),
+                    dena_annual = COALESCE($2, dena_annual),
+                    dena_precision = COALESCE($3, dena_precision),
+                    entity_types = COALESCE($4, entity_types),
+                    updated_at = NOW(),
+                    updated_by = $5
+                WHERE id = 1
+                """,
+                interval_seconds,
+                float(dena_annual) if dena_annual is not None else None,
+                dena_precision,
+                entity_types_csv,
+                current_user.get("email"),
+            )
+    except Exception as exc:
+        logger.error(f"Failed to update UBI settings: {exc}")
+        raise HTTPException(status_code=503, detail="UBI settings service temporarily unavailable")
+    return await get_ubi_runtime_settings()
 
 async def process_ubi_payment(account_id: uuid.UUID, amount: Decimal):
     """Process UBI payment asynchronously"""
@@ -1955,9 +2350,9 @@ async def get_system_metrics():
                 COUNT(*) as total_accounts,
                 AVG(balance) as average_balance,
                 SUM(balance) as total_money_supply,
-                COUNT(CASE WHEN entity_type = 'individual' THEN 1 END) as individual_accounts,
-                COUNT(CASE WHEN entity_type = 'business' THEN 1 END) as business_accounts,
-                COUNT(CASE WHEN entity_type = 'nonprofit' THEN 1 END) as nonprofit_accounts
+                COUNT(CASE WHEN LOWER(entity_type::text) = 'individual' THEN 1 END) as individual_accounts,
+                COUNT(CASE WHEN LOWER(entity_type::text) = 'business' THEN 1 END) as business_accounts,
+                COUNT(CASE WHEN LOWER(entity_type::text) = 'nonprofit' THEN 1 END) as nonprofit_accounts
             FROM accounts
         """)
         
@@ -1968,8 +2363,8 @@ async def get_system_metrics():
             SELECT 
                 COUNT(*) as total_transactions,
                 SUM(amount) as total_transaction_volume,
-                COUNT(CASE WHEN transaction_type = 'ubi_payment' THEN 1 END) as ubi_payments,
-                COUNT(CASE WHEN transaction_type = 'tax_payment' THEN 1 END) as tax_payments
+                COUNT(CASE WHEN LOWER(transaction_type::text) = 'ubi_payment' THEN 1 END) as ubi_payments,
+                COUNT(CASE WHEN LOWER(transaction_type::text) = 'tax_payment' THEN 1 END) as tax_payments
             FROM transactions
             WHERE timestamp > NOW() - INTERVAL '30 days'
         """)
@@ -1988,10 +2383,13 @@ async def get_system_metrics():
         
         metrics.update(dict(result))
         
+        # Normalize DB numerics (e.g., Decimal) for cache/storage compatibility.
+        encoded_metrics = jsonable_encoder(metrics)
+
         # Cache for 5 minutes
-        db.redis_client.setex(cache_key, 300, json.dumps(metrics))
+        db.redis_client.setex(cache_key, 300, json.dumps(encoded_metrics))
         
-        return metrics
+        return encoded_metrics
 
 @app.get("/api/system/metrics")
 async def get_system_metrics_endpoint():
@@ -2004,6 +2402,90 @@ async def get_system_metrics_endpoint():
     metrics["currency"] = SYSTEM_CURRENCY
     
     return metrics
+
+@app.get("/api/system/money-supply/history", response_model=MoneySupplyHistoryResponse)
+async def get_money_supply_history(
+    current_user: dict = Depends(get_current_user),
+    session: Session = Depends(get_db),
+    days: int = 365,
+    bucket: str = "day",
+):
+    """Get total Dena in circulation as a time series."""
+    if current_user.get("is_anonymous"):
+        raise HTTPException(status_code=401, detail="Authentication required")
+
+    safe_days = max(1, min(days, 3650))
+    if bucket not in {"hour", "day", "week"}:
+        raise HTTPException(status_code=400, detail="bucket must be one of: hour, day, week")
+    now = datetime.now(timezone.utc)
+    start_time = now - timedelta(days=safe_days)
+
+    def floor_bucket(dt: datetime) -> datetime:
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        else:
+            dt = dt.astimezone(timezone.utc)
+        if bucket == "hour":
+            return dt.replace(minute=0, second=0, microsecond=0)
+        if bucket == "week":
+            monday = dt - timedelta(days=dt.weekday())
+            return monday.replace(hour=0, minute=0, second=0, microsecond=0)
+        return dt.replace(hour=0, minute=0, second=0, microsecond=0)
+
+    step = timedelta(hours=1) if bucket == "hour" else timedelta(days=7) if bucket == "week" else timedelta(days=1)
+
+    current_total_supply = Decimal("0")
+    tx_rows: list[tuple[datetime, Any, Any, Decimal]] = []
+    try:
+        current_total_supply = Decimal(
+            str(session.query(func.coalesce(func.sum(Account.balance), 0)).scalar() or 0)
+        )
+        tx_rows = (
+            session.query(Transaction.timestamp, Transaction.from_account_id, Transaction.to_account_id, Transaction.amount)
+            .filter(Transaction.timestamp >= start_time)
+            .order_by(Transaction.timestamp.asc())
+            .all()
+        )
+    except Exception as exc:
+        logger.error(f"Money supply history query failed, serving fallback series: {exc}")
+
+    delta_by_bucket: dict[datetime, Decimal] = {}
+    for timestamp, from_account_id, to_account_id, amount in tx_rows:
+        b = floor_bucket(timestamp)
+        delta = Decimal("0")
+        if from_account_id is None and to_account_id is not None:
+            delta = Decimal(str(amount or 0))
+        elif from_account_id is not None and to_account_id is None:
+            delta = -Decimal(str(amount or 0))
+        if delta:
+            delta_by_bucket[b] = delta_by_bucket.get(b, Decimal("0")) + delta
+
+    start_bucket = floor_bucket(start_time)
+    end_bucket = floor_bucket(now)
+    buckets: list[datetime] = []
+    cursor = start_bucket
+    while cursor <= end_bucket:
+        buckets.append(cursor)
+        cursor += step
+
+    window_delta = sum((delta_by_bucket.get(b, Decimal("0")) for b in buckets), Decimal("0"))
+    running_total = current_total_supply - window_delta
+
+    points: list[dict[str, Any]] = []
+    for b in buckets:
+        running_total += delta_by_bucket.get(b, Decimal("0"))
+        points.append(
+            {
+                "timestamp": b,
+                "total_supply": running_total,
+            }
+        )
+
+    return {
+        "points": points,
+        "current_total_supply": current_total_supply,
+        "currency": SYSTEM_CURRENCY,
+    }
 
 # ============= UTILITY FUNCTIONS =============
 

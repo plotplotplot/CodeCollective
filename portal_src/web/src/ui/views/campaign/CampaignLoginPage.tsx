@@ -9,6 +9,7 @@ export function CampaignLoginPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const nextUrl = window.location.href
 
   useEffect(() => {
     document.title = 'ballot-sign • Campaign manager login'
@@ -27,7 +28,7 @@ export function CampaignLoginPage() {
       <div style={{ display: 'grid', gap: '0.6rem' }}>
         <div style={{ display: 'grid', gap: '0.5rem' }}>
           <a
-            href="/pidp/auth/google/login"
+            href={`/pidp/auth/google/login?next=${encodeURIComponent(nextUrl)}`}
             style={{
               display: 'inline-flex',
               justifyContent: 'center',
@@ -43,7 +44,7 @@ export function CampaignLoginPage() {
             Continue with Google
           </a>
           <a
-            href="/pidp/auth/github/login"
+            href={`/pidp/auth/github/login?next=${encodeURIComponent(nextUrl)}`}
             style={{
               display: 'inline-flex',
               justifyContent: 'center',

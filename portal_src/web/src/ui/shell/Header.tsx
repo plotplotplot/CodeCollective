@@ -1,12 +1,12 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../../app/AppProviders'
 
 export function Header() {
   const { role, user, logout } = useAuth()
   const displayName = user?.displayName || user?.email || 'Signed in'
-  const location = useLocation()
-  const nextUrl = `${window.location.origin}${location.pathname}${location.search}`
+  const accountSettingsPath = role === 'campaign_manager' ? '/campaign/account' : '/constituent/account'
+  const nextUrl = window.location.href
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement | null>(null)
 
@@ -34,9 +34,10 @@ export function Header() {
           </div>
         </Link>
         <nav className="portal-nav">
-          <a href="#overview">Overview</a>
-          <a href="#equities">Equities</a>
-          <a href="#insurance">Insurance</a>
+          <Link to="/">Overview</Link>
+          <Link to="/send">Send</Link>
+          <Link to="/receive">Receive</Link>
+          <Link to="/create">Create</Link>
           <Link to="/ecops">EcOps</Link>
           <a href="/pidp">Identity</a>
           <a href="/cockroach">Ledger</a>
@@ -56,7 +57,7 @@ export function Header() {
               </button>
               {menuOpen && (
                 <div className="portal-user-menu">
-                  <a href="/pidp">Account settings</a>
+                  <Link to={accountSettingsPath}>Account settings</Link>
                   <button type="button" onClick={logout}>
                     Sign out
                   </button>

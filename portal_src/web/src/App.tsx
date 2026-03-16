@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type WheelEvent } from 'react'
 import { useAuth } from './app/AppProviders'
 import { Header } from './ui/shell/Header'
 import { Footer } from './ui/shell/Footer'
@@ -52,8 +52,30 @@ type InsurancePolicy = {
 }
 
 type BalancePoint = { timestamp: string; balance: number }
+type BalanceEvent = { time: number; balance: number }
+
+const HOUR_MS = 60 * 60 * 1000
+const DAY_MS = 24 * HOUR_MS
+const YEAR_MS = 365 * DAY_MS
+const MIN_TIMEFRAME_MS = HOUR_MS
+const MAX_TIMEFRAME_MS = 5 * YEAR_MS
+const DEFAULT_TIMEFRAME_MS = 30 * DAY_MS
+
+const TIMEFRAME_PRESETS: Array<{ label: string; durationMs: number }> = [
+  { label: '1H', durationMs: HOUR_MS },
+  { label: '1W', durationMs: 7 * DAY_MS },
+  { label: '1M', durationMs: 30 * DAY_MS },
+  { label: '1Y', durationMs: YEAR_MS },
+  { label: '3Y', durationMs: 3 * YEAR_MS },
+  { label: '5Y', durationMs: 5 * YEAR_MS },
+]
 
 const numberFormat = new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 })
+
+function toFiniteNumber(value: unknown, fallback = 0): number {
+  const parsed = typeof value === 'number' ? value : Number(value)
+  return Number.isFinite(parsed) ? parsed : fallback
+}
 
 function formatNumber(value?: number | null) {
   if (value === null || value === undefined) return '—'
@@ -86,8 +108,13 @@ export default function App() {
   const [portfolio, setPortfolio] = useState<Portfolio | null>(null)
   const [policies, setPolicies] = useState<InsurancePolicy[]>([])
   const [error, setError] = useState<string | null>(null)
+  const [timeframeMs, setTimeframeMs] = useState<number>(DEFAULT_TIMEFRAME_MS)
+  const [activePresetLabel, setActivePresetLabel] = useState<string>('1M')
 
-  const authHeaders = token ? { Authorization: `Bearer ${token}` } : {}
+  const withAuthHeader = (base: Record<string, string> = {}): Record<string, string> => {
+    if (token) return { ...base, Authorization: `Bearer ${token}` }
+    return base
+  }
 
   useEffect(() => {
     if (role === 'guest' || !token) return
@@ -95,10 +122,10 @@ export default function App() {
     async function load() {
       try {
         const [accountData, txData, portfolioData, policyData] = await Promise.all([
-          orgFetch<Account>('/api/accounts/me', { headers: authHeaders }),
-          orgFetch<Transaction[]>('/api/accounts/me/transactions', { headers: authHeaders }),
-          orgFetch<Portfolio>('/api/portfolio', { headers: authHeaders }),
-          orgFetch<InsurancePolicy[]>('/api/insurance/policies', { headers: authHeaders }),
+          orgFetch<Account>('/api/accounts/me', { headers: withAuthHeader() }),
+          orgFetch<Transaction[]>('/api/accounts/me/transactions', { headers: withAuthHeader() }),
+          orgFetch<Portfolio>('/api/portfolio', { headers: withAuthHeader() }),
+          orgFetch<InsurancePolicy[]>('/api/insurance/policies', { headers: withAuthHeader() }),
         ])
         if (cancelled) return
         setAccount(accountData)
@@ -117,45 +144,87 @@ export default function App() {
     }
   }, [role, token])
 
-  const balanceSeries = useMemo<BalancePoint[]>(() => {
+  const balanceEvents = useMemo<BalanceEvent[]>(() => {
     if (!account) return []
-    if (!transactions.length) return [{ timestamp: new Date().toISOString(), balance: account.balance }]
+    if (!transactions.length) return []
+    const accountBalance = toFiniteNumber(account.balance)
     const sorted = [...transactions].sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime())
     const deltaFor = (tx: Transaction) => {
-      if (tx.to_account_id === account.id) return tx.amount
-      if (tx.from_account_id === account.id) return -tx.amount
+      const amount = toFiniteNumber(tx.amount)
+      if (tx.to_account_id === account.id) return amount
+      if (tx.from_account_id === account.id) return -amount
       return 0
     }
-    let startBalance = account.balance
+    let startBalance = accountBalance
     for (let i = sorted.length - 1; i >= 0; i -= 1) {
       startBalance -= deltaFor(sorted[i])
     }
     let running = startBalance
-    const points: BalancePoint[] = []
+    const points: BalanceEvent[] = []
     for (const tx of sorted) {
       running += deltaFor(tx)
-      points.push({ timestamp: tx.timestamp, balance: running })
+      points.push({ time: new Date(tx.timestamp).getTime(), balance: running })
     }
-    return points.slice(-40)
+    return points
   }, [account, transactions])
+
+  const balanceSeries = useMemo<BalancePoint[]>(() => {
+    if (!account) return []
+    const pointCount = 120
+    const now = Date.now()
+    const start = now - timeframeMs
+    const interval = timeframeMs / (pointCount - 1)
+    const firstTrackedAt = balanceEvents[0]?.time ?? Number.POSITIVE_INFINITY
+
+    let eventIndex = 0
+    let currentBalance = 0
+    const points: BalancePoint[] = []
+
+    for (let i = 0; i < pointCount; i += 1) {
+      const ts = start + interval * i
+      if (ts < firstTrackedAt) {
+        points.push({ timestamp: new Date(ts).toISOString(), balance: 0 })
+        continue
+      }
+      while (eventIndex < balanceEvents.length && balanceEvents[eventIndex].time <= ts) {
+        currentBalance = balanceEvents[eventIndex].balance
+        eventIndex += 1
+      }
+      points.push({ timestamp: new Date(ts).toISOString(), balance: currentBalance })
+    }
+    return points
+  }, [account, balanceEvents, timeframeMs])
 
   const chartPath = useMemo(() => {
     if (!balanceSeries.length) return ''
     const width = 600
     const height = 180
     const padding = 16
-    const values = balanceSeries.map((point) => point.balance)
+    const values = balanceSeries.map((point) => toFiniteNumber(point.balance))
     const minVal = Math.min(...values)
     const maxVal = Math.max(...values)
     const range = maxVal - minVal || 1
-    return balanceSeries
+    const path = balanceSeries
       .map((point, index) => {
         const x = padding + (index / (balanceSeries.length - 1 || 1)) * (width - padding * 2)
-        const y = height - padding - ((point.balance - minVal) / range) * (height - padding * 2)
+        const y = height - padding - ((toFiniteNumber(point.balance) - minVal) / range) * (height - padding * 2)
         return `${index === 0 ? 'M' : 'L'}${x},${y}`
       })
       .join(' ')
+    return path.includes('NaN') ? '' : path
   }, [balanceSeries])
+
+  const onChartWheel = (event: WheelEvent<HTMLDivElement>) => {
+    event.preventDefault()
+    const zoomScale = Math.exp(event.deltaY * 0.0015)
+    setTimeframeMs((prev) => {
+      const next = prev * zoomScale
+      if (next < MIN_TIMEFRAME_MS) return MIN_TIMEFRAME_MS
+      if (next > MAX_TIMEFRAME_MS) return MAX_TIMEFRAME_MS
+      return next
+    })
+    setActivePresetLabel('')
+  }
 
   return (
     <div className="portal-shell">
@@ -177,8 +246,25 @@ export default function App() {
           </section>
 
           <section className="portal-section">
-            <h2>Balance over time</h2>
-            <div className="portal-card">
+            <div className="portal-section-header">
+              <h2>Balance over time</h2>
+              <div className="portal-timeframe-controls">
+                {TIMEFRAME_PRESETS.map((preset) => (
+                  <button
+                    key={preset.label}
+                    type="button"
+                    className={`portal-timeframe-button ${activePresetLabel === preset.label ? 'active' : ''}`}
+                    onClick={() => {
+                      setTimeframeMs(preset.durationMs)
+                      setActivePresetLabel(preset.label)
+                    }}
+                  >
+                    {preset.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="portal-card" onWheel={onChartWheel}>
               {balanceSeries.length === 0 ? (
                 <div className="portal-muted">No transactions yet.</div>
               ) : (
@@ -186,6 +272,7 @@ export default function App() {
                   <path d={chartPath} fill="none" stroke="#0b1a33" strokeWidth="2" />
                 </svg>
               )}
+              <div className="portal-muted">Use mouse wheel over chart to smoothly zoom timeframe.</div>
             </div>
           </section>
 
