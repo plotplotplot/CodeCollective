@@ -1,6 +1,6 @@
 sources = [
-    {"url": "https://www.meetup.com/code-and-coffee-pgh/", "tags": []},
-    {"url": "https://www.meetup.com/write-the-docs-pittsburgh/", "tags": []},
-    {"url": "https://www.meetup.com/pydata-pittsburgh/", "tags": []},
-    {"url": "https://www.meetup.com/pgh-code-for-good/", "tags": []},
+    {"url": "https://www.meetup.com/code-and-coffee-pgh/", "tags": ["Tech Skills", "Software Development", "Tech Community"]},
+    {"url": "https://www.meetup.com/write-the-docs-pittsburgh/", "tags": ["Tech Skills", "Technical Writing", "Software Development"]},
+    {"url": "https://www.meetup.com/pydata-pittsburgh/", "tags": ["Tech Skills", "Python", "Data Science"]},
+    {"url": "https://www.meetup.com/pgh-code-for-good/", "tags": ["Tech Community", "Community Organizing", "Software Development"]},
 ]

@@ -1,0 +1,20 @@
+{
+  "default_map": "maslow_needs",
+  "maps": [
+    {
+      "id": "maslow_needs",
+      "label": "Maslow Needs",
+      "path": "/data/category_maps/maslow_needs.json"
+    },
+    {
+      "id": "community_sectors",
+      "label": "Community Sectors",
+      "path": "/data/category_maps/community_sectors.json"
+    },
+    {
+      "id": "tech_only",
+      "label": "Tech Only",
+      "path": "/data/category_maps/tech_only.json"
+    }
+  ]
+}

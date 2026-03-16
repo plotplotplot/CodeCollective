@@ -9,7 +9,6 @@ import scrape_luma_calendar
 import scrape_luma_user
 import scrape_mtc
 import scrape_gdg
-import tag_rules
 import json
 import datetime
 import pytz
@@ -61,9 +60,7 @@ def merge_tags(*tag_lists):
         if not tag_list:
             continue
         for tag in tag_list:
-            if not tag:
-                continue
-            if tag in seen:
+            if not tag or tag in seen:
                 continue
             seen.add(tag)
             merged.append(tag)
@@ -75,6 +72,13 @@ def normalize_source_entry(entry, legacy_kind=None):
     if isinstance(entry, dict):
         normalized = dict(entry)
         normalized.setdefault("url", "")
+        normalized.setdefault("group_name", "")
+        normalized["orgImageUrl"] = (
+            normalized.get("orgImageUrl")
+            or normalized.get("org_image_url")
+            or normalized.get("image_url")
+            or ""
+        )
         normalized["tags"] = list(normalized.get("tags") or [])
         return normalized
 
@@ -82,20 +86,24 @@ def normalize_source_entry(entry, legacy_kind=None):
         return {
             "url": f"https://api.lu.ma/user/profile/events-hosting?user_api_id={entry}",
             "tags": [],
+            "group_name": "",
+            "orgImageUrl": "",
             "user_api_id": entry,
         }
 
     if isinstance(entry, str):
-        return {"url": entry, "tags": []}
+        return {"url": entry, "tags": [], "group_name": "", "orgImageUrl": ""}
 
     if isinstance(entry, int) and legacy_kind == "GDGChapters":
         return {
             "url": f"https://gdg.community.dev/chapter/{entry}",
             "tags": [],
+            "group_name": "",
+            "orgImageUrl": "",
             "chapter_id": entry,
         }
 
-    return {"url": str(entry), "tags": []}
+    return {"url": str(entry), "tags": [], "group_name": "", "orgImageUrl": ""}
 
 
 def flatten_sources(raw_sources):
@@ -188,12 +196,18 @@ def apply_source_metadata(events, source):
     normalized_events = coerce_events(events)
     source_url = source.get("url", "")
     source_tags = source.get("tags", [])
+    source_group = source.get("group_name", "")
+    org_image_url = source.get("orgImageUrl") or source.get("org_image_url") or source.get("image_url") or ""
 
     for event in normalized_events:
         event["tags"] = merge_tags(source_tags, event.get("tags"))
         if source_url:
             event.setdefault("source", source_url)
             event["source_url"] = source_url
+        if source_group:
+            event.setdefault("source_group", source_group)
+        if org_image_url:
+            event.setdefault("orgImageUrl", org_image_url)
 
     return normalized_events
 
@@ -293,7 +307,7 @@ def fetch_events_from_source(source, city):
                 return [], unmatched_sources, error_entries
             print(f"Fetching events from {source_url}")
             return apply_source_metadata(
-                scrape_luma_user.fetch_and_convert_luma_events(user_api_id),
+                scrape_luma_user.fetch_and_convert_luma_events(user_api_id, fallback_url=source_url),
                 source,
             ), unmatched_sources, error_entries
 
@@ -1158,17 +1172,6 @@ def main(city = "baltimore"):
         (e for e in unique_events if "startDate" in e),
         key=lambda e: est_timezone.localize(parse(e["startDate"])) if parse(e["startDate"]).tzinfo is None else parse(e["startDate"]),
     )
-
-    # add the categories
-    for event in sorted_events:
-        # find earliest match, then break
-        inferred_tags = []
-        for url2tag in tag_rules.tag_rules_url:
-            urlpart, tag_list = url2tag
-            if urlpart in event.get("url", ""):
-                inferred_tags = tag_list
-                break
-        event["tags"] = merge_tags(event.get("tags"), inferred_tags)
 
     # Save upcoming events to a file
     with open(os.path.join(city, "upcoming_events.json"), "w+", encoding="utf-8") as f:

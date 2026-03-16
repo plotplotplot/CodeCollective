@@ -12,6 +12,94 @@ import scrape_ics
 import scrape_mtc
 
 
+ICS_SOURCES = [
+    {
+        "url": "https://baltimorenode.org/events/",
+        "ics_url": "http://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics",
+        "orgImageUrl": "https://www.baltimorenode.org/wp-content/uploads/2013/11/node-logo.png",
+        "tags": ["Makerspace"],
+        "group_name": "Baltimore Node",
+        "preface": "Node ",
+    },
+    {
+        "url": "https://catonsvillepres.org/events/",
+        "ics_url": "https://catonsvillepres.org/events/?ical=1",
+        "orgImageUrl": "https://catonsvillepres.org/wp-content/uploads/2023/02/social-sharing.png",
+        "tags": ["Religion"],
+        "group_name": "Catonsville Presbyterian Church",
+    },
+    {
+        "url": "https://taqwa.net/events/",
+        "ics_url": "https://calendar.google.com/calendar/ical/daraltaqwamd%40gmail.com/public/basic.ics",
+        "orgImageUrl": "https://taqwa.net/wp-content/uploads/2023/03/logo-w.png",
+        "tags": ["Religion"],
+        "group_name": "Dar Al-Taqwa",
+    },
+    {
+        "url": "https://ggwo.org/gg-events/",
+        "ics_url": "https://ggwo.org/gg-events/?ical=1",
+        "orgImageUrl": "https://ggwo.org/wp-content/uploads/2018/11/ggwo-logo-with-world-wide-local-church-800-162-png1.png",
+        "tags": ["Religion"],
+        "group_name": "Greater Grace World Outreach",
+    },
+    {
+        "url": "https://incarnationbmore.org/events/",
+        "ics_url": "https://incarnationbmore.org/events/?ical=1",
+        "orgImageUrl": "https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
+        "tags": ["Religion"],
+        "group_name": "Cathedral of the Incarnation",
+    },
+    {
+        "url": "https://jagganathtemple.org/events/",
+        "ics_url": "https://jagganathtemple.org/events/?ical=1",
+        "orgImageUrl": "https://jagganathtemple.org/wp-content/uploads/2025/11/cropped-Jagannath-Temple-of-North-America-1.png",
+        "tags": ["Religion"],
+        "group_name": "Jagannath Temple of North America",
+    },
+    {
+        "url": "https://www.unallocatedspace.org/events/",
+        "ics_url": "https://calendar.google.com/calendar/ical/unallocatedspacehq@gmail.com/public/basic.ics",
+        "orgImageUrl": "https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png",
+        "tags": ["Makerspace"],
+        "group_name": "Unallocated Space",
+        "preface": "UAS ",
+    },
+    {
+        "url": "https://baltimoreindiegames.com/events/",
+        "ics_url": "https://baltimoreindiegames.com/events/list/?ical=1",
+        "orgImageUrl": "https://baltimoreindiegames.com/wp-content/uploads/2025/03/BIG_small.png",
+        "tags": ["Tech Skills"],
+        "group_name": "Baltimore Indie Games",
+        "recurring": False,
+    },
+    {
+        "url": "https://www.digitalequitybaltimore.org/general-clean",
+        "ics_url": "https://calendar.google.com/calendar/ical/c_be274545c6e9af174fab0df99319a3c47f1be77a013450babf6d03e90396a064%40group.calendar.google.com/public/basic.ics",
+        "orgImageUrl": "https://static.wixstatic.com/media/8dc51b_7123df01d68e47a1b4b717c89ad4aea7~mv2.png/v1/fill/w_223,h_90,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/BDEC%20(1).png",
+        "tags": ["Economic Development"],
+        "group_name": "Digital Equity Baltimore",
+        "recurring": False,
+    },
+    {
+        "url": "https://calendar.google.com/calendar/u/0/r?cid=c_35ce051bfecc3ebd59f7776829ca549d2dd38e8ab2a50b07bd4243cb1c218c72@group.calendar.google.com",
+        "ics_url": "https://calendar.google.com/calendar/ical/c_35ce051bfecc3ebd59f7776829ca549d2dd38e8ab2a50b07bd4243cb1c218c72%40group.calendar.google.com/public/basic.ics",
+        "orgImageUrl": "https://chesapeakeclimate.org/wp-content/uploads/2022/02/CCAN-Logo-2022-300RGB-wht-e1643743097559.png",
+        "tags": ["Water"],
+        "group_name": "CCAN Baltimore",
+        "recurring": False,
+    },
+]
+
+PROCESS_ICS_SOURCES = [
+    {
+        "cache_filename": "maryland-stem-festival-96ecc18ef7d.ics",
+        "url": "https://marylandstemfestival.org/events/month/",
+        "orgImageUrl": "https://marylandstemfestival.org/wp-content/uploads/2024/06/Family-Feud-group-Pix-1-scaled-e1717876361661.jpeg",
+        "tags": ["Tech Skills"],
+        "group_name": "Maryland STEM Festival",
+        "preface": "STEMFest ",
+    },
+]
 def merge_tags(*tag_lists):
     merged = []
     seen = set()
@@ -28,7 +116,7 @@ def merge_tags(*tag_lists):
     return merged
 
 
-def apply_source_tags(events, source_url, source_tags):
+def apply_source_tags(events, source_url, source_tags, source_group="", org_image_url=""):
     if not events:
         return []
 
@@ -40,8 +128,33 @@ def apply_source_tags(events, source_url, source_tags):
         if source_url:
             event.setdefault("source", source_url)
             event["source_url"] = source_url
+        if source_group:
+            event.setdefault("source_group", source_group)
+        if org_image_url:
+            event.setdefault("orgImageUrl", org_image_url)
 
     return normalized_events
+
+
+def fetch_ics_source(source, city):
+    return scrape_ics.fetch_calendar_events(
+        ICS_URL=source["ics_url"],
+        city=city,
+        imageURL=source.get("orgImageUrl") or source.get("image_url", "https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png"),
+        eventUrl=source["url"],
+        recurring=source.get("recurring", True),
+        preface=source.get("preface", ""),
+    )
+
+
+def fetch_cached_ics_source(source):
+    return scrape_ics.processICS(
+        CACHE_FILENAME=source["cache_filename"],
+        imageURL=source.get("orgImageUrl") or source.get("image_url", "https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png"),
+        eventUrl=source["url"],
+        recurring=source.get("recurring", True),
+        preface=source.get("preface", ""),
+    )
 
 
 def collect_events(city="baltimore", error_logger=None):
@@ -64,139 +177,92 @@ def collect_events(city="baltimore", error_logger=None):
         ["Business"],
     )
 
-    try:
-        new_events += apply_source_tags(scrape_ics.fetch_calendar_events(
-            ICS_URL="http://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics",
-            imageURL="https://www.baltimorenode.org/wp-content/uploads/2013/11/node-logo.png",
-            city=city,
-            eventUrl="https://baltimorenode.org/events/",
-            preface="Node ",
-        ), "https://baltimorenode.org/events/", ["Tech Skills"])
-    except Exception as e:
-        log_error("Error fetching calendar events", e, "https://baltimorenode.org/events/", "scrape_ics.fetch_calendar_events")
-
-    try:
-        new_events += apply_source_tags(scrape_ics.fetch_calendar_events(
-            ICS_URL="https://catonsvillepres.org/events/?ical=1",
-            imageURL="https://catonsvillepres.org/wp-content/uploads/2023/02/social-sharing.png",
-            city=city,
-            eventUrl="https://catonsvillepres.org/events/",
-            preface="",
-        ), "https://catonsvillepres.org/events/", ["Religion"])
-    except Exception as e:
-        log_error("Error fetching Catonsville Presbyterian events", e, "https://catonsvillepres.org/events/", "scrape_ics.fetch_calendar_events")
-
-    try:
-        new_events += apply_source_tags(scrape_ics.fetch_calendar_events(
-            ICS_URL="https://calendar.google.com/calendar/ical/daraltaqwamd%40gmail.com/public/basic.ics",
-            imageURL="https://taqwa.net/wp-content/uploads/2023/03/logo-w.png",
-            city=city,
-            eventUrl="https://taqwa.net/events/",
-            preface="",
-        ), "https://taqwa.net/events/", ["Religion"])
-    except Exception as e:
-        log_error("Error fetching Dar Al-Taqwa events", e, "https://taqwa.net/events/", "scrape_ics.fetch_calendar_events")
-
-    try:
-        new_events += apply_source_tags(scrape_ics.fetch_calendar_events(
-            ICS_URL="https://ggwo.org/gg-events/?ical=1",
-            imageURL="https://ggwo.org/wp-content/uploads/2018/11/ggwo-logo-with-world-wide-local-church-800-162-png1.png",
-            city=city,
-            eventUrl="https://ggwo.org/gg-events/",
-            preface="",
-        ), "https://ggwo.org/gg-events/", ["Religion"])
-    except Exception as e:
-        log_error("Error fetching GGWO events", e, "https://ggwo.org/gg-events/", "scrape_ics.fetch_calendar_events")
-
-    try:
-        new_events += apply_source_tags(scrape_ics.fetch_calendar_events(
-            ICS_URL="https://incarnationbmore.org/events/?ical=1",
-            imageURL="https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
-            city=city,
-            eventUrl="https://incarnationbmore.org/events/",
-            preface="",
-        ), "https://incarnationbmore.org/events/", ["Religion"])
-    except Exception as e:
-        log_error("Error fetching Cathedral of the Incarnation events", e, "https://incarnationbmore.org/events/", "scrape_ics.fetch_calendar_events")
+    for source in ICS_SOURCES:
+        try:
+            new_events += apply_source_tags(
+                fetch_ics_source(source, city),
+                source["url"],
+                source.get("tags", []),
+                source.get("group_name", ""),
+                source.get("orgImageUrl") or source.get("image_url", ""),
+            )
+        except Exception as e:
+            log_error("Error fetching calendar events", e, source["url"], "scrape_ics.fetch_calendar_events")
 
     try:
         scrape_catonsvilleumc = importlib.import_module("baltimore.scrape_catonsvilleumc")
         new_events += apply_source_tags(
-            scrape_catonsvilleumc.scrape_events(),
-            "https://www.catonsvilleumc.org/upcoming-events/",
-            ["Religion"],
-        )
+                scrape_catonsvilleumc.scrape_events(),
+                "https://www.catonsvilleumc.org/upcoming-events/",
+                ["Religion"],
+                org_image_url="https://www.catonsvilleumc.org/wp-content/uploads/2021/11/CUMC-Logo-Color.png",
+            )
     except Exception as e:
         log_error("Error fetching Catonsville UMC events", e, "https://www.catonsvilleumc.org/upcoming-events/", "baltimore.scrape_catonsvilleumc")
 
     try:
         scrape_saintmos = importlib.import_module("baltimore.scrape_saintmos")
         new_events += apply_source_tags(
-            scrape_saintmos.scrape_events(),
-            "https://saintmos.org/gatherings",
-            ["Religion"],
-        )
+                scrape_saintmos.scrape_events(),
+                "https://saintmos.org/gatherings",
+                ["Religion"],
+                org_image_url="https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
+            )
     except Exception as e:
         log_error("Error fetching St. Moses events", e, "https://saintmos.org/gatherings", "baltimore.scrape_saintmos")
 
     try:
         scrape_haic = importlib.import_module("baltimore.scrape_haic")
         new_events += apply_source_tags(
-            scrape_haic.scrape_events(),
-            "https://haicbaltimore.org/upcoming-events/",
-            ["Religion"],
-        )
+                scrape_haic.scrape_events(),
+                "https://haicbaltimore.org/upcoming-events/",
+                ["Religion"],
+                org_image_url="https://haicbaltimore.org/wp-content/uploads/2023/10/cropped-HAIC-Logo.png",
+            )
     except Exception as e:
         log_error("Error fetching HAIC events", e, "https://haicbaltimore.org/upcoming-events/", "baltimore.scrape_haic")
 
     try:
         scrape_rccbaltimore = importlib.import_module("baltimore.scrape_rccbaltimore")
         new_events += apply_source_tags(
-            scrape_rccbaltimore.scrape_events(),
-            "https://www.rccbaltimore.org/events-1",
-            ["Religion"],
-        )
+                scrape_rccbaltimore.scrape_events(),
+                "https://www.rccbaltimore.org/events-1",
+                ["Religion"],
+                org_image_url="https://images.squarespace-cdn.com/content/v1/5c44f0d575f9ee2777410e50/1551248787775-EKX12KBFM0E4QXH7TDNR/RCC+Baltimore+Logo.png",
+            )
     except Exception as e:
         log_error("Error fetching Redemption City Church events", e, "https://www.rccbaltimore.org/events-1", "baltimore.scrape_rccbaltimore")
 
     try:
-        new_events += apply_source_tags(scrape_ics.fetch_calendar_events(
-            ICS_URL="https://jagganathtemple.org/events/?ical=1",
-            imageURL="https://jagganathtemple.org/wp-content/uploads/2025/11/cropped-Jagannath-Temple-of-North-America-1.png",
-            city=city,
-            eventUrl="https://jagganathtemple.org/events/",
-            preface="",
-        ), "https://jagganathtemple.org/events/", ["Religion"])
-    except Exception as e:
-        log_error("Error fetching Jagannath Temple events", e, "https://jagganathtemple.org/events/", "scrape_ics.fetch_calendar_events")
-
-    try:
         scrape_columbiapres = importlib.import_module("baltimore.scrape_columbiapres")
         new_events += apply_source_tags(
-            scrape_columbiapres.scrape_events(),
-            "https://columbiapres.org/",
-            ["Religion"],
-        )
+                scrape_columbiapres.scrape_events(),
+                "https://columbiapres.org/",
+                ["Religion"],
+                org_image_url="https://columbiapres.org/wp-content/uploads/2020/10/cpc-social-share.jpg",
+            )
     except Exception as e:
         log_error("Error fetching Columbia Presbyterian events", e, "https://columbiapres.org/", "baltimore.scrape_columbiapres")
 
     try:
         scrape_mosaicchristian = importlib.import_module("baltimore.scrape_mosaicchristian")
         new_events += apply_source_tags(
-            scrape_mosaicchristian.scrape_events(),
-            "https://mosaicchristian.org/events/",
-            ["Religion"],
-        )
+                scrape_mosaicchristian.scrape_events(),
+                "https://mosaicchristian.org/events/",
+                ["Religion"],
+                org_image_url="https://mosaicchristian.org/wp-content/uploads/2023/09/Mosaic-Logo.png",
+            )
     except Exception as e:
         log_error("Error fetching Mosaic Christian events", e, "https://mosaicchristian.org/events/", "baltimore.scrape_mosaicchristian")
 
     try:
         scrape_calvaryec = importlib.import_module("baltimore.scrape_calvaryec")
         new_events += apply_source_tags(
-            scrape_calvaryec.scrape_events(),
-            "https://calvaryec.com/events",
-            ["Religion"],
-        )
+                scrape_calvaryec.scrape_events(),
+                "https://calvaryec.com/events",
+                ["Religion"],
+                org_image_url="https://calvaryec.com/wp-content/uploads/2022/08/CalvaryEC-Logo.png",
+            )
     except Exception as e:
         log_error("Error fetching Calvary Chapel Ellicott City events", e, "https://calvaryec.com/events", "baltimore.scrape_calvaryec")
 
@@ -269,62 +335,16 @@ def collect_events(city="baltimore", error_logger=None):
     except Exception as e:
         log_error("Error fetching MTC", e, "https://members.mdtechcouncil.com/eventcalendar", "scrape_mtc.scrape_mtc_events")
 
-    try:
-        new_events += apply_source_tags(scrape_ics.fetch_calendar_events(
-            ICS_URL="https://calendar.google.com/calendar/ical/unallocatedspacehq@gmail.com/public/basic.ics",
-            imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png",
-            city=city,
-            eventUrl="https://www.unallocatedspace.org/events/",
-            preface="UAS ",
-        ), "https://www.unallocatedspace.org/events/", ["Makerspace"])
-    except Exception as e:
-        log_error("Error fetching calendar events", e, "https://www.unallocatedspace.org/events/", "scrape_ics.fetch_calendar_events")
-
-    try:
-        new_events += apply_source_tags(scrape_ics.processICS(
-            CACHE_FILENAME="maryland-stem-festival-96ecc18ef7d.ics",
-            imageURL="https://marylandstemfestival.org/wp-content/uploads/2024/06/Family-Feud-group-Pix-1-scaled-e1717876361661.jpeg",
-            eventUrl="https://marylandstemfestival.org/events/month/",
-            preface="STEMFest ",
-        ), "https://marylandstemfestival.org/events/month/", ["Tech Skills"])
-    except Exception as e:
-        log_error("Error fetching calendar events", e, "https://marylandstemfestival.org/events/month/", "scrape_ics.processICS")
-
-    try:
-        new_events += apply_source_tags(scrape_ics.fetch_calendar_events(
-            ICS_URL="https://baltimoreindiegames.com/events/list/?ical=1",
-            imageURL="https://baltimoreindiegames.com/wp-content/uploads/2025/03/BIG_small.png",
-            eventUrl="https://baltimoreindiegames.com/events/",
-            city="baltimore",
-            preface="",
-            recurring=False,
-        ), "https://baltimoreindiegames.com/events/", ["Makerspace"])
-    except Exception as e:
-        log_error("Error fetching calendar events", e, "https://baltimoreindiegames.com/events/", "scrape_ics.fetch_calendar_events")
-
-    try:
-        new_events += apply_source_tags(scrape_ics.fetch_calendar_events(
-            ICS_URL="https://calendar.google.com/calendar/ical/c_be274545c6e9af174fab0df99319a3c47f1be77a013450babf6d03e90396a064%40group.calendar.google.com/public/basic.ics",
-            city=city,
-            imageURL="https://static.wixstatic.com/media/8dc51b_7123df01d68e47a1b4b717c89ad4aea7~mv2.png/v1/fill/w_223,h_90,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/BDEC%20(1).png",
-            eventUrl="https://www.digitalequitybaltimore.org/general-clean",
-            recurring=False,
-            preface="",
-        ), "https://www.digitalequitybaltimore.org/general-clean", ["Economic Development"])
-    except Exception as e:
-        log_error("Error fetching calendar events", e, "https://www.digitalequitybaltimore.org/general-clean", "scrape_ics.fetch_calendar_events")
-
-    try:
-        new_events += apply_source_tags(scrape_ics.fetch_calendar_events(
-            ICS_URL="https://calendar.google.com/calendar/ical/c_35ce051bfecc3ebd59f7776829ca549d2dd38e8ab2a50b07bd4243cb1c218c72%40group.calendar.google.com/public/basic.ics",
-            city=city,
-            imageURL="https://chesapeakeclimate.org/wp-content/uploads/2022/02/CCAN-Logo-2022-300RGB-wht-e1643743097559.png",
-            eventUrl="https://calendar.google.com/calendar/u/0/r?cid=c_35ce051bfecc3ebd59f7776829ca549d2dd38e8ab2a50b07bd4243cb1c218c72@group.calendar.google.com",
-            recurring=False,
-            preface="",
-        ), "https://calendar.google.com/calendar/u/0/r?cid=c_35ce051bfecc3ebd59f7776829ca549d2dd38e8ab2a50b07bd4243cb1c218c72@group.calendar.google.com", ["Water"])
-    except Exception as e:
-        log_error("Error fetching custom Google calendar events", e, "https://calendar.google.com/calendar/u/0/r?cid=c_35ce051bfecc3ebd59f7776829ca549d2dd38e8ab2a50b07bd4243cb1c218c72@group.calendar.google.com", "scrape_ics.fetch_calendar_events")
+    for source in PROCESS_ICS_SOURCES:
+        try:
+            new_events += apply_source_tags(
+                fetch_cached_ics_source(source),
+                source["url"],
+                source.get("tags", []),
+                source.get("group_name", ""),
+            )
+        except Exception as e:
+            log_error("Error fetching calendar events", e, source["url"], "scrape_ics.processICS")
 
     try:
         scrape_spark = importlib.import_module("baltimore.scrape_spark")
