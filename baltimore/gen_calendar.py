@@ -100,6 +100,49 @@ PROCESS_ICS_SOURCES = [
         "preface": "STEMFest ",
     },
 ]
+
+CUSTOM_SCRAPER_SOURCES = [
+    {
+        "module": "baltimore.scrape_ottobar",
+        "function": "scrape_events",
+        "url": "https://theottobar.com/events/",
+        "group_name": "Ottobar",
+        "orgImageUrl": "https://theottobar.com/wp-content/uploads/2021/07/Ottobar-since-1997-logo-black-1.png",
+        "tags": ["Culture"],
+    },
+    {
+        "module": "baltimore.scrape_soundstage",
+        "function": "scrape_events",
+        "url": "https://www.baltimoresoundstage.com/events-feed/",
+        "group_name": "Baltimore Soundstage",
+        "orgImageUrl": "https://www.baltimoresoundstage.com/wp-content/themes/baltimore-soundstage-2/assets/img/logo.png",
+        "tags": ["Culture"],
+    },
+    {
+        "module": "baltimore.scrape_powerplantlive",
+        "function": "scrape_events",
+        "url": "https://powerplantlive.com/events-and-entertainment/events",
+        "group_name": "Power Plant Live!",
+        "orgImageUrl": "https://edge.sitecorecloud.io/cordishc-4m5nplkf/media/Cordish/Images/District-Websites/Power-Plant-Live/Logos/Power-Plant-Live-Logo-Color-177x51.png?h=51&iar=0&w=177&rev=f5dd9c36d71644fda1250d28224ce3d8",
+        "tags": ["Culture"],
+    },
+    {
+        "module": "baltimore.scrape_lemondo",
+        "function": "scrape_events",
+        "url": "https://www.lemondo.org/",
+        "group_name": "Le Mondo",
+        "orgImageUrl": "https://static.wixstatic.com/media/5c4b5d_cc4aba7ac8e7429989e750359a8dc987%7Emv2.png/v1/fill/w_192,h_192,lg_1,usm_0.66_1.00_0.01/5c4b5d_cc4aba7ac8e7429989e750359a8dc987%7Emv2.png",
+        "tags": ["Culture"],
+    },
+    {
+        "module": "baltimore.scrape_rhouse",
+        "function": "scrape_events",
+        "url": "https://r.housebaltimore.com/",
+        "group_name": "R. House",
+        "orgImageUrl": "https://r.housebaltimore.com/wp-content/themes/rhouseofficial/img/favicon.png",
+        "tags": ["Culture"],
+    },
+]
 def merge_tags(*tag_lists):
     merged = []
     seen = set()
@@ -325,6 +368,25 @@ def collect_events(city="baltimore", error_logger=None):
         )
     except Exception as e:
         log_error("Error fetching Sister Cities", e, "https://baltimoresistercities.org/events/", "baltimore.scrape_baltsistercities")
+
+    for source in CUSTOM_SCRAPER_SOURCES:
+        try:
+            scraper_module = importlib.import_module(source["module"])
+            scraper_fn = getattr(scraper_module, source["function"])
+            new_events += apply_source_tags(
+                scraper_fn(),
+                source["url"],
+                source.get("tags", []),
+                source.get("group_name", ""),
+                source.get("orgImageUrl", ""),
+            )
+        except Exception as e:
+            log_error(
+                f"Error fetching {source.get('group_name', source['url'])} events",
+                e,
+                source["url"],
+                source["module"],
+            )
 
     try:
         new_events += apply_source_tags(

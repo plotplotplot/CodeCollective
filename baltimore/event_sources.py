@@ -68,7 +68,7 @@ sources = [
     {"url": "https://luma.com/SGLang-meetups", "tags": ["Tech Skills", "AI"]},
     {"url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-d4s75dZyC9VOXAd", "tags": ["Business"]},
     {"url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-iZFykYNctUzTFLd", "tags": ["Economic Development"]},
-    {"url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-A83YmR5Onz1uMdp", "tags": ["Finance"]},
+    {"url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-A83YmR5Onz1uMdp", "group_name": "Web3 Maryland", "orgImageUrl": "https://images.lumacdn.com/avatars/4g/431276ef-4081-4db7-a077-9a45da105826.png", "tags": ["Finance", "Crypto & Web3", "Tech Skills", "AI", "Economic Development", "Tech Community"]},
     {"url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-k0oO7FswDxbAWh0", "tags": ["Business"]},
     {"url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-cTlmPNsi6jHYweP", "tags": ["Business"]},
     {"url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-2eWBPcn6lj9Dzqz", "tags": ["Tech Community"]},

@@ -1,4 +1,5 @@
 import scrape_meetup
+import copy
 import scrape_eventbrite
 import scrape_jotform
 import scrape_luma
@@ -542,6 +543,107 @@ def sanitize_event_name(name, max_length=80):
     return sanitized[:max_length]
 
 
+def normalize_event_text(value):
+    if not value:
+        return ""
+    normalized = unicodedata.normalize("NFKD", str(value))
+    ascii_value = normalized.encode("ascii", "ignore").decode("ascii")
+    ascii_value = re.sub(r"\s+", " ", ascii_value).strip().lower()
+    return ascii_value
+
+
+def is_code_collective_event(event):
+    candidates = [
+        event.get("source", ""),
+        event.get("source_url", ""),
+        event.get("source_group", ""),
+        event.get("url", ""),
+    ]
+    tag_candidates = event.get("tags", []) or []
+
+    if any(tag == "Code Collective & Partners" for tag in tag_candidates):
+        return True
+
+    return any("codecollective" in normalize_event_text(candidate) for candidate in candidates)
+
+
+def event_metadata_score(event):
+    description = (event.get("description") or "").strip()
+    image_url = (event.get("imageUrl") or "").strip()
+    org_image_url = (event.get("orgImageUrl") or "").strip()
+    source_url = (event.get("source") or event.get("source_url") or "").strip()
+    event_url = (event.get("url") or "").strip()
+    source_group = (event.get("source_group") or "").strip()
+    tags = event.get("tags") or []
+    location = event.get("location") or {}
+    location_name = (location.get("name") or "").strip()
+    location_address = (location.get("address") or "").strip()
+
+    is_direct_event_url = bool(event_url and source_url and event_url.rstrip("/") != source_url.rstrip("/"))
+    is_source_page_url = bool(event_url and source_url and event_url.rstrip("/") == source_url.rstrip("/"))
+
+    scrape_time = event.get("scrapeTime") or ""
+    try:
+        parsed_scrape_time = parse(scrape_time).isoformat() if scrape_time else ""
+    except Exception:
+        parsed_scrape_time = ""
+
+    return (
+        1 if is_code_collective_event(event) else 0,
+        1 if description else 0,
+        len(description),
+        1 if image_url else 0,
+        1 if org_image_url else 0,
+        1 if is_direct_event_url else 0,
+        0 if is_source_page_url else 1,
+        1 if source_group else 0,
+        len(tags),
+        1 if location_name else 0,
+        1 if location_address else 0,
+        parsed_scrape_time,
+    )
+
+
+def merge_event_records(preferred_event, other_event):
+    merged_event = copy.deepcopy(preferred_event)
+
+    merged_event["tags"] = merge_tags(preferred_event.get("tags"), other_event.get("tags"))
+
+    for field in ["description", "imageUrl", "orgImageUrl", "source_group", "url", "source", "source_url"]:
+        preferred_value = merged_event.get(field)
+        other_value = other_event.get(field)
+        if (not preferred_value) and other_value:
+            merged_event[field] = other_value
+
+    preferred_location = merged_event.get("location") or {}
+    other_location = other_event.get("location") or {}
+    if other_location:
+        merged_location = dict(other_location)
+        merged_location.update({k: v for k, v in preferred_location.items() if v not in ("", None, [])})
+        merged_event["location"] = merged_location
+
+    if not merged_event.get("scrapeTime") and other_event.get("scrapeTime"):
+        merged_event["scrapeTime"] = other_event["scrapeTime"]
+
+    return merged_event
+
+
+def choose_preferred_duplicate(existing_event, candidate_event):
+    existing_score = event_metadata_score(existing_event)
+    candidate_score = event_metadata_score(candidate_event)
+
+    if candidate_score > existing_score:
+        winner = merge_event_records(candidate_event, existing_event)
+        loser = existing_event.copy()
+        loser["invalid_reason"] = "Replaced by higher-priority duplicate"
+        return winner, loser
+
+    winner = merge_event_records(existing_event, candidate_event)
+    loser = candidate_event.copy()
+    loser["invalid_reason"] = "Removed as lower-priority duplicate"
+    return winner, loser
+
+
 def events_to_ics(events_json, city, output_file="baltimore_tech_events.ics"):
     """
     Convert event JSON data to ICS format and save to a file using icalendar library
@@ -1043,11 +1145,9 @@ def main(city = "baltimore"):
 
     def get_event_signature(event):
         """Creates a unique signature for duplicate detection"""
-        name = event.get("name", "").strip().lower()
+        name = normalize_event_text(event.get("name", ""))
         start = str(parse(event.get("startDate", "")).date())
-        url = event.get("url", "").split("?")[0].lower()  # Remove query params
-        location = str(event.get("location", {}).get("name", "")).strip().lower()
-        return f"{name[:10]}||{start}"
+        return f"{name}||{start}"
 
     unique_events = []
     date_occupied = set()  # Track which dates already have events
@@ -1102,15 +1202,11 @@ def main(city = "baltimore"):
                 (e for e in unique_events if get_event_signature(e) == event_sig), None
             )
             if existing_event:
-                # Only update if the content has actually changed
-                if get_event_signature_strict(
-                    existing_event
-                ) != get_event_signature_strict(event):
-                    # Content changed - replace the event
-                    existing_event["invalid_reason"] = "Replaced by more recent event"
-                    invalid_events += [existing_event]
+                if get_event_signature_strict(existing_event) != get_event_signature_strict(event):
+                    preferred_event, rejected_event = choose_preferred_duplicate(existing_event, event)
                     unique_events.remove(existing_event)
-                    unique_events.append(event)
+                    unique_events.append(preferred_event)
+                    invalid_events += [rejected_event]
             else:
                 event["invalid_reason"] = "Already exists with same signature and earlier scrapedate"
                 invalid_events += [event]
