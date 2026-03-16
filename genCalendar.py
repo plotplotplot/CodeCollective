@@ -1,5 +1,6 @@
 import scrape_meetup
 import copy
+from difflib import SequenceMatcher
 import scrape_eventbrite
 import scrape_jotform
 import scrape_luma
@@ -550,6 +551,137 @@ def normalize_event_text(value):
     ascii_value = normalized.encode("ascii", "ignore").decode("ascii")
     ascii_value = re.sub(r"\s+", " ", ascii_value).strip().lower()
     return ascii_value
+
+
+def parse_event_start(event):
+    start_value = event.get("startDate", "")
+    if not start_value:
+        return None
+    start_dt = parse(start_value)
+    if start_dt.tzinfo is None:
+        start_dt = est_timezone.localize(start_dt)
+    else:
+        start_dt = start_dt.astimezone(est_timezone)
+    return start_dt
+
+
+def normalize_location_name(event):
+    location = event.get("location") or {}
+    return normalize_event_text(location.get("name") or location.get("address") or "")
+
+
+def canonical_event_url_key(event):
+    raw_url = (event.get("url") or "").strip()
+    if not raw_url:
+        return ""
+
+    try:
+        parsed = urlparse(raw_url)
+    except Exception:
+        return ""
+
+    host = parsed.netloc.lower().replace("www.", "")
+    path = parsed.path.rstrip("/").lower()
+
+    if host in {"lu.ma", "luma.com"} and path:
+        return f"{host}{path}"
+    if "eventbrite." in host and path:
+        return f"{host}{path}"
+    if "meetup.com" in host and path:
+        return f"{host}{path}"
+
+    return ""
+
+
+def event_time_bucket(event, minutes=90):
+    start_dt = parse_event_start(event)
+    if not start_dt:
+        return None
+    total_minutes = start_dt.hour * 60 + start_dt.minute
+    bucket = total_minutes // minutes
+    return (start_dt.date().isoformat(), bucket)
+
+
+def event_title_similarity(event_a, event_b):
+    title_a = normalize_event_text(event_a.get("name", ""))
+    title_b = normalize_event_text(event_b.get("name", ""))
+    if not title_a or not title_b:
+        return 0.0
+    if title_a == title_b:
+        return 1.0
+    return SequenceMatcher(None, title_a, title_b).ratio()
+
+
+def duplicate_match_score(event_a, event_b):
+    start_a = parse_event_start(event_a)
+    start_b = parse_event_start(event_b)
+    if not start_a or not start_b:
+        return None
+
+    day_diff = abs((start_a.date() - start_b.date()).days)
+    if day_diff > 1:
+        return None
+
+    title_similarity = event_title_similarity(event_a, event_b)
+    time_delta_minutes = abs((start_a - start_b).total_seconds()) / 60
+    same_bucket = event_time_bucket(event_a) == event_time_bucket(event_b)
+    url_a = canonical_event_url_key(event_a)
+    url_b = canonical_event_url_key(event_b)
+    same_url = bool(url_a and url_b and url_a == url_b)
+    location_a = normalize_location_name(event_a)
+    location_b = normalize_location_name(event_b)
+    same_location = bool(location_a and location_b and location_a == location_b)
+
+    score = 0
+    if same_url:
+        score += 100
+    if title_similarity >= 0.995:
+        score += 50
+    elif title_similarity >= 0.94:
+        score += 35
+    elif title_similarity >= 0.88:
+        score += 20
+
+    if time_delta_minutes <= 15:
+        score += 25
+    elif time_delta_minutes <= 90:
+        score += 15
+    elif time_delta_minutes <= 180:
+        score += 5
+
+    if same_bucket:
+        score += 10
+    if same_location:
+        score += 12
+
+    if same_url:
+        return score
+
+    if title_similarity >= 0.995 and time_delta_minutes <= 180:
+        return score
+
+    if title_similarity >= 0.94 and time_delta_minutes <= 90 and (same_location or same_bucket):
+        return score
+
+    if title_similarity >= 0.88 and time_delta_minutes <= 15 and same_location:
+        return score
+
+    return None
+
+
+def find_existing_duplicate(event, existing_events):
+    best_match = None
+    best_score = -1
+
+    for existing_event in existing_events:
+        score = duplicate_match_score(existing_event, event)
+        if score is None:
+            continue
+        if score > best_score:
+            best_score = score
+            best_match = existing_event
+
+    return best_match
 
 
 def is_code_collective_event(event):
@@ -1146,8 +1278,10 @@ def main(city = "baltimore"):
     def get_event_signature(event):
         """Creates a unique signature for duplicate detection"""
         name = normalize_event_text(event.get("name", ""))
-        start = str(parse(event.get("startDate", "")).date())
-        return f"{name}||{start}"
+        start_dt = parse_event_start(event)
+        if not start_dt:
+            return name
+        return f"{name}||{start_dt.date().isoformat()}||{start_dt.hour:02d}"
 
     unique_events = []
     date_occupied = set()  # Track which dates already have events
@@ -1170,8 +1304,17 @@ def main(city = "baltimore"):
     total_events = []
     for event in nonerror_newevents:
         sig = get_event_signature(event)
-        if sig not in existing_sigs:
+        existing_duplicate = None
+        if sig in existing_sigs:
+            existing_duplicate = find_existing_duplicate(event, upcoming_existing_events_in_file)
+        else:
+            existing_duplicate = find_existing_duplicate(event, upcoming_existing_events_in_file)
+
+        if existing_duplicate is None:
             total_events += [event]
+        else:
+            event["invalid_reason"] = "Already exists in manual events"
+            invalid_events += [event]
 
     total_events += upcoming_existing_events_in_file
     cache_updated = apply_geocode_cache(total_events, geocode_cache) or cache_updated
@@ -1196,19 +1339,15 @@ def main(city = "baltimore"):
         event_sig = get_event_signature(event)
 
         # Check if this is a duplicate
-        if event_sig in unique_event_signatures:
-            # Find the existing event with this signature
-            existing_event = next(
-                (e for e in unique_events if get_event_signature(e) == event_sig), None
-            )
-            if existing_event:
-                if get_event_signature_strict(existing_event) != get_event_signature_strict(event):
-                    preferred_event, rejected_event = choose_preferred_duplicate(existing_event, event)
-                    unique_events.remove(existing_event)
-                    unique_events.append(preferred_event)
-                    invalid_events += [rejected_event]
+        existing_event = find_existing_duplicate(event, unique_events)
+        if existing_event:
+            if get_event_signature_strict(existing_event) != get_event_signature_strict(event):
+                preferred_event, rejected_event = choose_preferred_duplicate(existing_event, event)
+                unique_events.remove(existing_event)
+                unique_events.append(preferred_event)
+                invalid_events += [rejected_event]
             else:
-                event["invalid_reason"] = "Already exists with same signature and earlier scrapedate"
+                event["invalid_reason"] = "Already exists with same normalized content"
                 invalid_events += [event]
             continue
 
@@ -1251,11 +1390,12 @@ def main(city = "baltimore"):
         # Only add if:
         # 1. No other event exists on this date (strict), AND
         # 2. This isn't a duplicate of any existing event
-        if event_date not in date_occupied and event_sig not in unique_event_signatures:
+        existing_event = find_existing_duplicate(event, unique_events)
+        if event_date not in date_occupied and existing_event is None:
             unique_events.append(event)
             unique_event_signatures.add(event_sig)  # Keep this in sync
         else:
-            event["invalid_reason"] = "Recurring event removed when non-recurring event is present"
+            event["invalid_reason"] = "Recurring event removed when a stronger conflicting event is present"
             invalid_events += [event]
         #    print(f"Added recurring event: {event_name} on {event_date}")
         # else:
