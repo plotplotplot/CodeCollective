@@ -1,9 +1,6 @@
 name: Update Calendar
 
 on:
-  push:
-    branches:
-      - main  # Runs on push to the main branch
   schedule:
     - cron: '0 0 * * *'  # Runs daily at 00:00 UTC
   workflow_dispatch:  # Allows manual trigger from the Actions tab
@@ -19,11 +16,66 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: '3.12'
 
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+
+      - name: Compute USAJOBS cache key
+        id: usajobs_cache_key
+        run: |
+          echo "key=usajobs-gz-${{ runner.os }}-$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore USAJOBS gzip cache
+        id: usajobs_cache_restore
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            usa/data/usajobs.json.gz
+            usa/data/usajobs-lite.json.gz
+          key: ${{ steps.usajobs_cache_key.outputs.key }}
+          restore-keys: |
+            usajobs-gz-${{ runner.os }}-
+
+      - name: Determine whether to refresh Baltimore profile images
+        id: baltimore_images
+        run: |
+          if [ "$(date -u +%d)" = "01" ]; then
+            echo "refresh_profile_images=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "refresh_profile_images=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Refresh Maryland bills cache
+        run: |
+          python fetch_mdbills_cache.py
+
+      - name: Refresh Baltimore testimony cache
+        run: |
+          if [ "${{ steps.baltimore_images.outputs.refresh_profile_images }}" = "true" ]; then
+            python baltimore/testimony/fetch_bills.py --refresh-profile-images
+          else
+            python baltimore/testimony/fetch_bills.py
+          fi
+
+      - name: Refresh USAJOBS cache
+        env:
+          USAJOBS_API_KEY: ${{ secrets.USAJOBS_API_KEY }}
+          USAJOBS_USER_AGENT: ${{ secrets.USAJOBS_USER_AGENT }}
+          USAJOBS_EMAIL: ${{ secrets.USAJOBS_EMAIL }}
+          USAJOBS_MAX_AGE_DAYS: '7'
+        run: |
+          ./usa/refresh_usajobs_search.sh
+
+      - name: Save USAJOBS gzip cache
+        if: always() && steps.usajobs_cache_restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            usa/data/usajobs.json.gz
+            usa/data/usajobs-lite.json.gz
+          key: ${{ steps.usajobs_cache_restore.outputs.cache-primary-key }}
 
       - name: Run genCalendar.py
         run: |
@@ -31,11 +83,11 @@ jobs:
 
       - name: Check for changes
         run: |
-          if git diff --exit-code meetup_upcoming.html; then
-            echo "No changes in meetup_upcoming.html"
+          if git diff --exit-code; then
+            echo "No repository changes detected"
             exit 0
           else
-            echo "Changes detected in meetup_upcoming.html"
+            echo "Changes detected"
           fi
 
       - name: Commit and push changes
@@ -45,6 +97,44 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Update meetup_upcoming.html"
+          git add \
+            baltimore/cc_events.ics \
+            baltimore/eventsplain.html \
+            baltimore/scrape_errors.json \
+            baltimore/unmatched_source_patterns.json \
+            baltimore/upcoming_events.json \
+            dc/cc_events.ics \
+            dc/eventsplain.html \
+            dc/scrape_errors.json \
+            dc/unmatched_source_patterns.json \
+            dc/upcoming_events.json \
+            hawaii/cc_events.ics \
+            hawaii/eventsplain.html \
+            hawaii/scrape_errors.json \
+            hawaii/unmatched_source_patterns.json \
+            hawaii/upcoming_events.json \
+            pittsburgh/cc_events.ics \
+            pittsburgh/eventsplain.html \
+            pittsburgh/scrape_errors.json \
+            pittsburgh/unmatched_source_patterns.json \
+            pittsburgh/upcoming_events.json \
+            virtual/cc_events.ics \
+            virtual/eventsplain.html \
+            virtual/scrape_errors.json \
+            virtual/unmatched_source_patterns.json \
+            virtual/upcoming_events.json \
+            westvirginia/cc_events.ics \
+            westvirginia/eventsplain.html \
+            westvirginia/scrape_errors.json \
+            westvirginia/unmatched_source_patterns.json \
+            westvirginia/upcoming_events.json \
+            baltimore/testimony/data/city_council_testimony.json \
+            baltimore/testimony/images \
+            cc_events.ics \
+            data/maryland_bills_2026.json \
+            event_images \
+            upcoming_events.json \
+            usa/data/usajobs-lite.json.gz \
+            usa/data/usajobs.json.gz
+          git commit -m "Update calendar and cached legislative data" || echo "No changes to commit"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git

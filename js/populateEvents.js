@@ -3,7 +3,7 @@ function populateCodeCollectiveEvents(events) {
   if (!container) return;
 
   const codeCollectiveEvents = events.filter(event =>
-    event.url && event.url.includes('code-collective')
+    event.source === 'https://luma.com/codecollective'
   );
 
   if (codeCollectiveEvents.length === 0) {
@@ -130,7 +130,7 @@ function toggleDescription(eventId) {
 // Fixing this block:
 let allEvents = [];
 
-fetch('upcoming_events.json')
+fetch('baltimore/upcoming_events.json')
   .then(response => response.json())
   .then(events => {
     allEvents = events;

@@ -107,6 +107,19 @@ class OurSocials extends HTMLElement {
                         />
                     </button>
                 </a>
+                <a
+                    href="https://luma.com/codecollective"
+                    target="_blank"
+                    class="social__link"
+                >
+                    <button class="social__button">
+                        <img
+                            src="/images/luma_icon.jpg"
+                            alt="Luma icon"
+                            class="social__icon"
+                        />
+                    </button>
+                </a>
             </aside>
         `;
     }

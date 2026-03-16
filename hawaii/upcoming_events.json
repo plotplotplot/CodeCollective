@@ -1,69 +1,102 @@
 [
     {
-        "name": "Jodi Kantor \u2014 Truth and Power",
-        "description": "Join investigative journalist Jodi Kantor for a keynote on holding power to account, from the #MeToo movement to the Supreme",
-        "startDate": "2026-02-12T19:00:00-10:00",
-        "endTime": "2026-02-12T21:00:00-1000",
-        "url": "https://www.eventbrite.com/e/jodi-kantor-truth-and-power-tickets-1980031895701",
+        "name": "[Free] Become a Certified Scrum Master or Product Owner (My Agile Guru)",
+        "description": "How can you Become a Certified Scrum Master or Certified Product",
+        "startDate": "2026-03-21T09:00:00-04:00",
+        "endTime": "2026-03-21T10:00:00-0400",
+        "url": "https://www.eventbrite.com/e/free-become-a-certified-scrum-master-or-product-owner-my-agile-guru-registration-1984168672913",
         "status": "ACTIVE",
         "location": {
-            "name": "\u2018Iolani School",
-            "address": "563 Kamoku Street, Honolulu, HI, 96826"
+            "name": "Unknown Location",
+            "address": "Unknown Address"
         },
-        "imageUrl": "/event_images/Jodi_Kantor_Truth_and_Power.webp",
-        "scrapeTime": "2026-02-12 00:42:28.961669",
+        "imageUrl": "/event_images/Free_Become_a_Certified_Scrum_Master_or_Product_Owner_My_Agile_Guru.webp",
         "tags": [
-            "Business"
-        ]
+            "Tech Skills",
+            "Product",
+            "Career Growth"
+        ],
+        "source": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
+        "source_url": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
+        "scrapeTime": "2026-03-16 00:46:12.023949"
     },
     {
-        "id": "313290275",
-        "name": "The (First Ever) Honolulu OpenClaw Meetup",
-        "description": "Aloha Tech Enthusiasts,\n\nOahu AI is excited to host the first ever Honolulu OpenClaw meetup.\n\nhttps://openclaw.ai/\n\nShare your OpenClaw setup, check out what other people are doing, or just stop by to see what the hype is all about.\nThis event is mostly just for meeting others, but we have scheduled a short amount of time at the beginning for presentations and live demos. If you would like to show us what you've been working on, we would love to see it (both live demos or slides are fine, 5-10 minutes max). Send me a message.\n\n**When:** Friday February 13th, 6PM-8PM\n**Where:** [Hawaii Coworking](https://hawaiicoworking.co/)\n444 Hobron Ln\\, Penthouse 1 \\| Honolulu\\, HI 96815\n**Hosts:** Darshaun Nadeau & Kevin Riggin\n**The Details:**\n\n* **Cost:** The event is free to attend.\n* **Food & Drink:** Please note that food and drinks are not provided, so feel free to grab a bite nearby before heading up to the penthouse.\n\nWhether you're looking to troubleshoot your own build or just want to see what the buzz is about, come one, come all!\nWe look forward to seeing you there and talking all things OpenClaw.\n\nBest regards,\nDarshaun Nadeau & Kevin Riggin",
-        "startDate": "2026-02-13T18:00:00-10:00",
-        "endTime": "2026-02-13T20:00:00-10:00",
-        "url": "https://www.meetup.com/oahuai/events/313290275/",
+        "id": "313613981",
+        "name": "Tech Meetup",
+        "description": "Low-key in-person meetup for people who are either in tech, interested in starting a career in tech, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako, in the outside cafe seating.\n\nMore info on the Honolulu Tech Network website:\n[https://honolulu.network/~tech](https://honolulu.network/~tech/)\n\nThere's usually no real set topic, often people ask what we talk about so here's a sampling of common topics:\n\n* AI\n* ChatGPT\n* Career stuff\n* Other tech communities and events\n* 3D printing\n* VR/AR\n* Web development\n* Agile\n* What places exist in Honolulu and where they are\n* Renewable energy",
+        "startDate": "2026-03-22T17:00:00-10:00",
+        "endTime": "2026-03-22T19:00:00-10:00",
+        "url": "https://www.meetup.com/honolulu-tech-network/events/313613981/",
         "status": "ACTIVE",
-        "source": null,
+        "source": "https://www.meetup.com/honolulu-tech-network/",
         "location": {
-            "name": "Hawaii Coworking",
-            "address": "444 Hobron Ln. Penthouse 1 ,  Honolulu HI 96815",
+            "name": "Whole Foods Market",
+            "address": "388 Kamakee St",
             "city": "Honolulu",
             "state": "HI",
             "country": "us"
         },
-        "imageUrl": "/event_images/The_First_Ever_Honolulu_OpenClaw_Meetup.webp",
-        "scrapeTime": "2026-02-12 00:42:28.960918",
+        "imageUrl": "/event_images/Tech_Meetup.webp",
         "tags": [
-            "Economic Development"
-        ]
+            "Tech Community"
+        ],
+        "source_url": "https://www.meetup.com/honolulu-tech-network/",
+        "scrapeTime": "2026-03-16 00:46:12.021449"
+    },
+    {
+        "id": "313511846",
+        "name": "Claude Code / Codex 101",
+        "description": "**Claude Code / Codex 101**\n\nBy the end of this workshop you\u2019ll complete **three shipped exercises**:\n\n1. **Personal portfolio website (create + maintain + deploy)**\nYou\u2019ll generate a clean site, edit it safely, push to GitHub, and deploy to a live URL (optional: custom domain + HTTPS).\n2. **Landing page + signup funnel (real business asset)**\nBuild a simple landing page for an idea (event, service, product) with:\n\n* clear sections (value prop, FAQ, pricing/CTA)\n* a contact/signup form\n* deployed live via GitHub \u2192 Render\n*(This is the fastest \u201cI can actually use this tomorrow\u201d win.)*\n\n3. **A tiny \u201cOperator\u201d web app (input \u2192 useful output)**\nBuild a small web app with a form + database that does one job extremely well\u2014examples:\n\n* notes \u2192 structured brief\n* intake \u2192 task list + email draft\n* meeting \u2192 decisions + next steps\nYou\u2019ll ship it as a real app with a URL you can share.\n\nWe\u2019ll use a **requirements-driven** flow: define the job, define \u201cdone,\u201d lock constraints\u2014and land a **deployment-ready web app** you can actually use and share.\n\n**Cost:** $100\n\n**What you need:**\n\n* A laptop\n* Willingness to follow along and run commands (paint-by-number style)\n* Optional: a real workflow/problem you want the app to handle (there will be time reserved to run your own projects!)\n\n**Workflow Examples:**\n\n* content generation for marketing, branding, story telling, etc.\n* report and brief generation\n* chatbot generation & management\n* camera stream curation, transformation\n* much and many more (and you can bring your own!)\n\n**Schedule:**\n\n* **6pm-8pm:** We\u2019ll get everyone running locally, then do a few tight iterations of the loop (**requirements \u2192 plan \u2192 build \u2192 run \u2192 improve**) until you\u2019ve shipped a deployment-ready baseline. Repeat for each project.\n* **8pm-9pm (choose-your-own):** Apply the same template to **your** workflow/problem. I\u2019ll help you adapt the app(s) to your \u201cX\u201d and get you pointed at a clean next step (and optionally deploy if you\u2019re not already live).\n\n**Location**\nMcCully Library Meeting Area\n2211 S King St, Honolulu, HI 96826",
+        "startDate": "2026-03-27T18:00:00-10:00",
+        "endTime": "2026-03-27T21:00:00-10:00",
+        "url": "https://www.meetup.com/oahuai/events/313511846/",
+        "status": "ACTIVE",
+        "source": "https://www.meetup.com/oahuai/",
+        "location": {
+            "name": "McCully Public Library",
+            "address": "2211 S. King Street",
+            "city": "Honolulu",
+            "state": "HI",
+            "country": "us"
+        },
+        "imageUrl": "/event_images/Claude_Code_Codex_101.webp",
+        "tags": [
+            "Tech Skills",
+            "AI"
+        ],
+        "source_url": "https://www.meetup.com/oahuai/",
+        "scrapeTime": "2026-03-16 00:46:12.020978"
     },
     {
         "name": "SAFe for Scrum Master 6.0 Certification (SSM) - Scaled Agile",
         "description": "Get ready to level up your Scrum Master skills with the SAFe for Scrum Master 6.0 Certification - it's time to master your Agile",
-        "startDate": "2026-02-14T09:00:00-05:00",
-        "endTime": "2026-02-15T17:00:00-0500",
-        "url": "https://www.eventbrite.com/e/safe-for-scrum-master-60-certification-ssm-scaled-agile-tickets-1980714487351",
+        "startDate": "2026-03-28T09:00:00-04:00",
+        "endTime": "2026-03-29T17:00:00-0400",
+        "url": "https://www.eventbrite.com/e/safe-for-scrum-master-60-certification-ssm-scaled-agile-tickets-1984168817345",
         "status": "ACTIVE",
         "location": {
             "name": "Unknown Location",
             "address": "Unknown Address"
         },
         "imageUrl": "/event_images/SAFe_for_Scrum_Master_6_0_Certification_SSM_Scaled_Agile.webp",
-        "scrapeTime": "2026-02-12 00:42:28.961466",
         "tags": [
-            "Business"
-        ]
+            "Tech Skills",
+            "Product",
+            "Career Growth"
+        ],
+        "source": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
+        "source_url": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
+        "scrapeTime": "2026-03-16 00:46:12.025067"
     },
     {
-        "id": "313167951",
+        "id": "313722338",
         "name": "Tech Meetup",
         "description": "Low-key in-person meetup for people who are either in tech, interested in starting a career in tech, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako, in the outside cafe seating.\n\nMore info on the Honolulu Tech Network website:\n[https://honolulu.network/~tech](https://honolulu.network/~tech/)\n\nThere's usually no real set topic, often people ask what we talk about so here's a sampling of common topics:\n\n* AI\n* ChatGPT\n* Career stuff\n* Other tech communities and events\n* 3D printing\n* VR/AR\n* Web development\n* Agile\n* What places exist in Honolulu and where they are\n* Renewable energy",
-        "startDate": "2026-02-15T17:00:00-10:00",
-        "endTime": "2026-02-15T19:00:00-10:00",
-        "url": "https://www.meetup.com/honolulu-tech-network/events/313167951/",
+        "startDate": "2026-03-29T17:00:00-10:00",
+        "endTime": "2026-03-29T19:00:00-10:00",
+        "url": "https://www.meetup.com/honolulu-tech-network/events/313722338/",
         "status": "ACTIVE",
-        "source": null,
+        "source": "https://www.meetup.com/honolulu-tech-network/",
         "location": {
             "name": "Whole Foods Market",
             "address": "388 Kamakee St",
@@ -72,98 +105,62 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Tech_Meetup.webp",
-        "scrapeTime": "2026-02-12 00:42:28.961025",
         "tags": [
-            "Economic Development"
-        ]
+            "Tech Community"
+        ],
+        "source_url": "https://www.meetup.com/honolulu-tech-network/",
+        "scrapeTime": "2026-03-16 00:46:12.021827"
     },
     {
-        "id": "312528087",
-        "name": "Open Source Legends on data-driven A.I. agents and LLM-assisted PCBs",
-        "description": "Two open-source legends (Nathan Marz & Jonas Schnelli) will be presenting at our February O\u2018ahu A.I. meetup:\n\n* **From PCB to Production: Developing Embedded Systems with LLMs**\n* **A Data-Driven Approach to Balancing Quality, Latency, and Cost in AI Agents**\n\nIf you care about:\n\n* Bridging AI software and real-world hardware\n* Building agents that don\u2019t silently regress\n* Understanding what your AI systems are actually doing\n* Closing feedback loops between production and evaluation\n\nThis meetup is for you.\n\n**\ud83c\udf99\ufe0f Talk 1**\n**From PCB to Production: Developing Embedded Systems with LLMs**\nby Jonas Schnelli\n\n*Estimated time: 20 minutes*\nLLMs aren\u2019t just changing software \u2014 they\u2019re reshaping hardware and embedded development.\nJonas will walk through how modern AI tools are influencing the entire embedded workflow, from circuit boards to firmware to production devices.\n\n**What is a PCB?**\nPCB stands for *Printed Circuit Board*. It\u2019s the physical board that holds and connects electronic components (chips, resistors, capacitors, microcontrollers) using etched copper traces \u2014 the backbone of almost all modern electronics, from laptops and phones to ESP32 and IoT devices.\n\n***\n\n**\ud83c\udf99\ufe0f Talk 2**\n**A Data-Driven Approach to Balancing Quality, Latency, and Cost in AI Agents**\nby Nathan Marz\n\n*Estimated time: 60 minutes*\nLLMs are inherently unpredictable. A prompt change that fixes one case often breaks another you didn\u2019t test. When the input space is effectively all of human language, ad-hoc testing leads to fragile agents that fail under real-world usage.\nNathan will show how to build reliable AI agents through systematic, data-driven, iterative development. You\u2019ll see how to optimize across the quality-latency-cost tradeoff using production data, controlled experiments, and deep observability.\nThis talk covers:\n\n* Structured datasets with real inputs and \u201cgolden truth\u201d outputs\n* Avoiding circular logic when using LLMs to evaluate LLM output\n* Why evaluating individual steps of agent workflows matters\n* Tracing and telemetry requirements for AI agents\n* Automatically collecting datasets from production traffic\n* Online evaluation, alerting, and continuous feedback loops\n\n***\n\n**About Jonas Schnelli**\nJonas has been writing code for 30 years, spanning web apps, native iOS and Android, and Mac applications. He spent 8 years deep in Bitcoin Core\u2019s C++ internals before focusing on hardware engineering and embedded firmware.\nNow based in Hawai\u2018i, Jonas designs ESP32 devices and explores how AI tools are transforming embedded systems development.\nGitHub: [https://github.com/jonasschnelli](https://github.com/jonasschnelli)\n\n***\n\n**About Nathan Marz**\nNathan lives on O\u2018ahu and runs Red Planet Labs, a distributed company building Rama, a developer platform for scalable backends with far less code and infrastructure.\nHe created several influential open-source projects, most notably Apache Storm, one of the first systems to enable reliable large-scale real-time data processing. Nathan previously worked at Twitter, where he helped start core infrastructure teams, and he is the author of *Big Data: Principles and Best Practices of Scalable Realtime Data Systems*.\nOutside of work, Nathan enjoys hiking, stand-up comedy, and old movies.\nGitHub: [https://github.com/nathanmarz](https://github.com/nathanmarz)\n\n***\n\n\ud83c\udf3a This event is sponsored by Hawaii Coworking (https://hawaiicoworking.co) , Darshaun Nadeau (https://flowingblue.com) and Kevin Riggen (https://oahu.ai) .",
-        "startDate": "2026-02-20T18:30:00-10:00",
-        "endTime": "2026-02-20T20:30:00-10:00",
-        "url": "https://www.meetup.com/oahuai/events/312528087/",
-        "status": "ACTIVE",
-        "source": null,
-        "location": {
-            "name": "Hawaii Coworking",
-            "address": "438 Hobron Lane PH1",
-            "city": "Honolulu",
-            "state": "HI",
-            "country": "us"
-        },
-        "imageUrl": "/event_images/Open_Source_Legends_on_data_driven_A_I_agents_and_LLM_assisted_PCBs.webp",
-        "scrapeTime": "2026-02-12 00:42:28.960808",
-        "tags": [
-            "Economic Development"
-        ]
-    },
-    {
-        "id": "313184030",
-        "name": "Tech Meetup",
-        "description": "Low-key in-person meetup for people who are either in tech, interested in starting a career in tech, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako, in the outside cafe seating.\n\nMore info on the Honolulu Tech Network website:\n[https://honolulu.network/~tech](https://honolulu.network/~tech/)\n\nThere's usually no real set topic, often people ask what we talk about so here's a sampling of common topics:\n\n* AI\n* ChatGPT\n* Career stuff\n* Other tech communities and events\n* 3D printing\n* VR/AR\n* Web development\n* Agile\n* What places exist in Honolulu and where they are\n* Renewable energy",
-        "startDate": "2026-02-22T17:00:00-10:00",
-        "endTime": "2026-02-22T19:00:00-10:00",
-        "url": "https://www.meetup.com/honolulu-tech-network/events/313184030/",
-        "status": "ACTIVE",
-        "source": null,
-        "location": {
-            "name": "Whole Foods Market",
-            "address": "388 Kamakee St",
-            "city": "Honolulu",
-            "state": "HI",
-            "country": "us"
-        },
-        "imageUrl": "/event_images/Tech_Meetup.webp",
-        "scrapeTime": "2026-02-12 00:42:28.961134",
-        "tags": [
-            "Economic Development"
-        ]
-    },
-    {
-        "name": "Film Screening: \"An Inconvenient Truth\" 20th Anniversary",
-        "description": "It\u2019s been 20 years since this Oscar-winning documentary was released. Have we done better or",
-        "startDate": "2026-02-27T18:00:00-10:00",
-        "endTime": "2026-02-27T20:00:00-1000",
-        "url": "https://www.eventbrite.com/e/film-screening-an-inconvenient-truth-20th-anniversary-tickets-1982323589218",
+        "name": "Kathy Jetn\u0304il-Kijiner: Poetry & Climate Policy in the Marshall Islands",
+        "description": "A public address by Inouye Chair, poet, performer, and climate envoy Kathy",
+        "startDate": "2026-04-01T18:30:00-10:00",
+        "endTime": "2026-04-01T20:00:00-1000",
+        "url": "https://www.eventbrite.com/e/kathy-jetnil-kijiner-poetry-climate-policy-in-the-marshall-islands-tickets-1984821584790",
         "status": "ACTIVE",
         "location": {
-            "name": "Honolulu Museum of Art (HoMA)",
-            "address": "900 South Beretania Street, Honolulu, HI, 96814"
+            "name": "Orvis Auditorium",
+            "address": "2411 Dole St, Honolulu, HI, 96826"
         },
-        "imageUrl": "/event_images/Film_Screening_An_Inconvenient_Truth_20th_Anniversary.webp",
-        "scrapeTime": "2026-02-12 00:42:28.961772",
+        "imageUrl": "/event_images/Kathy_Jetnil_Kijiner_Poetry_Climate_Policy_in_the_Marshall_Islands.webp",
         "tags": [
-            "Business"
-        ]
+            "Business",
+            "Career Growth"
+        ],
+        "source": "https://www.eventbrite.com/o/better-tomorrow-speaker-series-39225126213",
+        "source_url": "https://www.eventbrite.com/o/better-tomorrow-speaker-series-39225126213",
+        "scrapeTime": "2026-03-16 00:46:12.030505"
     },
     {
-        "name": "SAFe for Scrum Master 6.0 Certification (SSM) - Scaled Agile",
-        "description": "Get ready to level up your Scrum Master skills with the SAFe for Scrum Master 6.0 Certification - it's time to master your Agile",
-        "startDate": "2026-02-28T09:00:00-05:00",
-        "endTime": "2026-03-01T17:00:00-0500",
-        "url": "https://www.eventbrite.com/e/safe-for-scrum-master-60-certification-ssm-scaled-agile-tickets-1982064794155",
+        "name": "[Free] Become a Certified Scrum Master or Product Owner (My Agile Guru)",
+        "description": "How can you Become a Certified Scrum Master or Certified Product",
+        "startDate": "2026-04-04T09:00:00-04:00",
+        "endTime": "2026-04-04T10:00:00-0400",
+        "url": "https://www.eventbrite.com/e/free-become-a-certified-scrum-master-or-product-owner-my-agile-guru-registration-1984642315591",
         "status": "ACTIVE",
         "location": {
             "name": "Unknown Location",
             "address": "Unknown Address"
         },
-        "imageUrl": "/event_images/SAFe_for_Scrum_Master_6_0_Certification_SSM_Scaled_Agile.webp",
-        "scrapeTime": "2026-02-12 00:42:28.961569",
+        "imageUrl": "/event_images/Free_Become_a_Certified_Scrum_Master_or_Product_Owner_My_Agile_Guru.webp",
         "tags": [
-            "Business"
-        ]
+            "Tech Skills",
+            "Product",
+            "Career Growth"
+        ],
+        "source": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
+        "source_url": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
+        "scrapeTime": "2026-03-16 00:46:12.026565"
     },
     {
-        "id": "313289960",
+        "id": "krpvvtyjcgbhb",
         "name": "Tech Meetup",
         "description": "Low-key in-person meetup for people who are either in tech, interested in starting a career in tech, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako, in the outside cafe seating.\n\nMore info on the Honolulu Tech Network website:\n[https://honolulu.network/~tech](https://honolulu.network/~tech/)\n\nThere's usually no real set topic, often people ask what we talk about so here's a sampling of common topics:\n\n* AI\n* ChatGPT\n* Career stuff\n* Other tech communities and events\n* 3D printing\n* VR/AR\n* Web development\n* Agile\n* What places exist in Honolulu and where they are\n* Renewable energy",
-        "startDate": "2026-03-01T17:00:00-10:00",
-        "endTime": "2026-03-01T19:00:00-10:00",
-        "url": "https://www.meetup.com/honolulu-tech-network/events/313289960/",
+        "startDate": "2026-04-05T17:00:00-10:00",
+        "endTime": "2026-04-05T19:00:00-10:00",
+        "url": "https://www.meetup.com/honolulu-tech-network/events/krpvvtyjcgbhb/",
         "status": "ACTIVE",
-        "source": null,
+        "source": "https://www.meetup.com/honolulu-tech-network/",
         "location": {
             "name": "Whole Foods Market",
             "address": "388 Kamakee St",
@@ -172,32 +169,55 @@
             "country": "us"
         },
         "imageUrl": "/event_images/Tech_Meetup.webp",
-        "scrapeTime": "2026-02-12 00:42:28.961240",
         "tags": [
-            "Economic Development"
-        ]
+            "Tech Community"
+        ],
+        "source_url": "https://www.meetup.com/honolulu-tech-network/",
+        "scrapeTime": "2026-03-16 00:46:12.022611"
     },
     {
-        "id": "krpvvtyjcfblb",
-        "name": "Tech Meetup",
-        "description": "Low-key in-person meetup for people who are either in tech, interested in starting a career in tech, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako, in the outside cafe seating.\n\nMore info on the Honolulu Tech Network website:\n[https://honolulu.network/~tech](https://honolulu.network/~tech/)\n\nThere's usually no real set topic, often people ask what we talk about so here's a sampling of common topics:\n\n* AI\n* ChatGPT\n* Career stuff\n* Other tech communities and events\n* 3D printing\n* VR/AR\n* Web development\n* Agile\n* What places exist in Honolulu and where they are\n* Renewable energy",
-        "startDate": "2026-03-08T17:00:00-10:00",
-        "endTime": "2026-03-08T19:00:00-10:00",
-        "url": "https://www.meetup.com/honolulu-tech-network/events/krpvvtyjcfblb/",
+        "id": "313756441",
+        "name": "Fun-Storming Event!",
+        "description": "Note: Please register on Luma!\n**https://luma.com/m0tu1qe5\u200b**\n\nJoin us for an evening of \u201cFun-storming!\u201d Think of it like brainstorming, but with the pressure dialed way down and the creativity turned way up.\n\u200b**How it works:**\n\n* \u200b**\ud83c\udfa4 The Pitch:** You\u2019ll hear from one or two local businesses sharing a real world challenge they are facing.\n* \u200b**\ud83d\udca1The Huddle:** We\u2019ll break into random groups to chat through potential solutions.\n* \u200b**\u2699\ufe0fThe Mix:** We\u2019ll rotate groups throughout the night so you can meet as many new people as possible.\n* \u200b**\ud83c\udfaf The Goal**: Have Fun!\n\n\u200b**Logistics:**\n\n* \u200b**\ud83c\udf74Food & Drink:** We\u2019ll provide some light snacks. Please feel free to bring your own food or beverages to share or enjoy.\n* \u200b**\u2709\ufe0fRSVP**: [Sign up on Luma](https://luma.com/m0tu1qe5)!\n\n\u200bWe can\u2019t wait to see what we can come up with together.",
+        "startDate": "2026-04-11T17:00:00-10:00",
+        "endTime": "2026-04-11T19:00:00-10:00",
+        "url": "https://www.meetup.com/honolulu-tech-network/events/313756441/",
         "status": "ACTIVE",
-        "source": null,
+        "source": "https://www.meetup.com/honolulu-tech-network/",
         "location": {
-            "name": "Whole Foods Market",
-            "address": "388 Kamakee St",
+            "name": "Hawai'i Coworking",
+            "address": "438 Hobron Ln, Penthouse 1",
             "city": "Honolulu",
             "state": "HI",
             "country": "us"
         },
-        "imageUrl": "/event_images/Tech_Meetup.webp",
-        "scrapeTime": "2026-02-12 00:42:28.961344",
+        "imageUrl": "/event_images/Fun_Storming_Event.webp",
         "tags": [
-            "Economic Development"
-        ]
+            "Tech Community"
+        ],
+        "source_url": "https://www.meetup.com/honolulu-tech-network/",
+        "scrapeTime": "2026-03-16 00:46:12.023235"
+    },
+    {
+        "name": "[Free] Become a Certified Scrum Master or Product Owner (My Agile Guru)",
+        "description": "How can you Become a Certified Scrum Master or Certified Product",
+        "startDate": "2026-04-18T09:00:00-04:00",
+        "endTime": "2026-04-18T10:00:00-0400",
+        "url": "https://www.eventbrite.com/e/free-become-a-certified-scrum-master-or-product-owner-my-agile-guru-registration-1984642348690",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Unknown Location",
+            "address": "Unknown Address"
+        },
+        "imageUrl": "/event_images/Free_Become_a_Certified_Scrum_Master_or_Product_Owner_My_Agile_Guru.webp",
+        "tags": [
+            "Tech Skills",
+            "Product",
+            "Career Growth"
+        ],
+        "source": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
+        "source_url": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
+        "scrapeTime": "2026-03-16 00:46:12.027911"
     },
     {
         "id": "evt-VPqNGPgzHbeMHD2",
@@ -213,9 +233,56 @@
         },
         "imageUrl": "/event_images/2nd_Annual_National_Civics_Bee_Hawaii_State_Finals.webp",
         "recurring": false,
-        "scrapeTime": "2026-02-12 00:42:28.840086",
+        "scrapeTime": "2026-03-16 00:46:10.260026",
         "tags": [
-            "Business"
-        ]
+            "Tech Community"
+        ],
+        "source": "https://luma.com/calendar/cal-NjFsB6d9nrGCLdW",
+        "source_url": "https://luma.com/calendar/cal-NjFsB6d9nrGCLdW"
+    },
+    {
+        "name": "SAFe for Scrum Master 6.0 Certification (SSM) - Scaled Agile",
+        "description": "Get ready to level up your Scrum Master skills with the SAFe for Scrum Master 6.0 Certification - it's time to master your Agile",
+        "startDate": "2026-04-25T09:00:00-04:00",
+        "endTime": "2026-04-26T17:00:00-0400",
+        "url": "https://www.eventbrite.com/e/safe-for-scrum-master-60-certification-ssm-scaled-agile-tickets-1984642390816",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Unknown Location",
+            "address": "Unknown Address"
+        },
+        "imageUrl": "/event_images/SAFe_for_Scrum_Master_6_0_Certification_SSM_Scaled_Agile.webp",
+        "tags": [
+            "Tech Skills",
+            "Product",
+            "Career Growth"
+        ],
+        "source": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
+        "source_url": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
+        "scrapeTime": "2026-03-16 00:46:12.029152"
+    },
+    {
+        "id": "313386202",
+        "name": "Future Builders: Leading Hawai'i's Tech Renaissance",
+        "description": "Did you know that Hawai'i has a rich youth robotics scene?\n\nWhen **Hawai\u02bbi\u2019s robotics teams compete at the world championships**, they\u2019re not just building robots\u2014they\u2019re building the skills our islands need. Join us for an afternoon **celebrating their achievements** and **connecting students, job seekers, career-changers, and local companies** investing in Hawai\u02bbi\u2019s tech future. With robot demos!\n\n\\-\\-\\-\n\n**10am** *Tech Job Fair*\nConnect with Hawai'i companies hiring in software, clean energy, construction tech, and more.\n\n**11:30am** *Pupus by Poke for the People*\nMusubi, ahi rolls and vegan options from the legendary Poke for the People.\n\n**12:30pm** *Youth Robotics Showcase*\nWatch Hawai'i's VEX IQ teams demonstrate their championship robots. See the problem-solving, collaboration, and technical skill that took them from Honolulu garages to competing against 800+ teams worldwide.\n\n**1:30pm** *Panel Discussion*\nQ&A Style Panel for youth robotics leaders, tech mentors and robotics entrepreneurs.\n\n**2:15pm** *Mahalos & Goodbyes*\nBeach time!\n\n\\-\\-\\-\n\nOur showcase features local robotics startups, teams from [Island Robotics ](https://www.friendsofislandrobotics.org/) and coaches like **Jared Haiola**, who has guided dozens of Hale'iwa students to VEX IQ World Championships over the past decade. His students don't just learn robotics\u2014they learn to solve problems with limited resources, collaborate under pressure, and build things that work.\n\n**Free Admission** *For Families & Individuals*\nBring your kids. Let them see what's possible when Hawai'i's youth get the right tools and mentorship. Let them talk to the teams. Let them imagine themselves building the technology our islands need.\n\n**Become a Sponsor** *Reach out!*\nKevin@Oahu.AI\n\n\\-\\-\\-\\-\\-\n*We will be checking registrations at the door. Keiki are welcome and do not need to be registered for the event. Organizers may refuse entry or remove attendees to maintain a safe environment. Mahalo for understanding.*\n\\-\\-\\-\\-\n\n*If you share your mobile number on an O'ahu A.I. event form, we may text you about event reminders and updates. Msg frequency varies. Msg and data rates may apply. Reply STOP to opt out. See www.oahu.ai/privacy*",
+        "startDate": "2026-05-16T10:00:00-10:00",
+        "endTime": "2026-05-16T14:15:00-10:00",
+        "url": "https://www.meetup.com/oahuai/events/313386202/",
+        "status": "ACTIVE",
+        "source": "https://www.meetup.com/oahuai/",
+        "location": {
+            "name": "Entrepreneurs Sandbox",
+            "address": "643 Ilalo St",
+            "city": "Honolulu",
+            "state": "HI",
+            "country": "us"
+        },
+        "imageUrl": "/event_images/Future_Builders_Leading_Hawai_i_s_Tech_Renaissance.webp",
+        "tags": [
+            "Tech Skills",
+            "AI"
+        ],
+        "source_url": "https://www.meetup.com/oahuai/",
+        "scrapeTime": "2026-03-16 00:46:12.021117"
     }
 ]

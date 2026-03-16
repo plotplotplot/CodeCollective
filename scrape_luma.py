@@ -76,6 +76,12 @@ def clean_description(content):
 # Example usage:
 if __name__ == "__main__":
     from baltimore.event_sources import sources as sources
+    event_data = None
     for source in sources:
-        event_data = parse_luma_event_page(source)
+        source_url = source.get("url", "") if isinstance(source, dict) else str(source)
+        if "lu.ma" not in source_url and "luma.com" not in source_url:
+            continue
+        event_data = parse_luma_event_page(source_url)
+        if event_data:
+            break
     print(json.dumps(event_data, indent=2))

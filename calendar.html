@@ -11,11 +11,11 @@
     content="Code Collective organizes tech labor and provides a unified calendar of local tech meetups, hackathons, and tech community events." />
   <meta name="robots" content="index, follow" />
   <meta name="googlebot" content="index, follow" />
-  <link rel="canonical" href="https://codecollective.us/" />
+  <link rel="canonical" href="https://codecollective.us/calendar.html" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://codecollective.us/" />
+  <meta property="og:url" content="https://codecollective.us/calendar.html" />
   <meta property="og:site_name" content="Code Collective" />
   <meta property="og:title" content="Code Collective | Tech Events Calendar" />
   <meta property="og:description"
@@ -37,13 +37,14 @@
   <!-- Scripts -->
   <script>
     (function () {
-      const DEFAULT_CITY_OPTIONS = ['baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh'];
+      const DEFAULT_CITY_OPTIONS = ['baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh', 'virtual'];
       const DEFAULT_CITY_DISPLAY_NAMES = {
         baltimore: 'Baltimore',
         westvirginia: 'West Virginia',
         hawaii: 'Hawaii',
         dc: 'Washington, D.C.',
         pittsburgh: 'Pittsburgh',
+        virtual: 'Virtual',
       };
 
       window.CALENDAR_CITY_OPTIONS = window.CALENDAR_CITY_OPTIONS || DEFAULT_CITY_OPTIONS;
@@ -171,9 +172,9 @@
   <nav class="main-nav" aria-label="Main Navigation">
     <div class="navbar dark-mode">
       <a href="/#main">Home</a>
-      <a href="/balticonomy/">Balticonomy</a>
+      <a href="/platform.html">Platform</a>
       <a href="/calendar.html?city=baltimore">Calendar</a>
-      <a href="/newsletter/">Newsletter</a>
+      <a href="/projects.html">Projects</a>
     </div>
   </nav>
 
@@ -203,8 +204,8 @@
       </div>
 
 
-      <h1 style="margin: 10px 0; font-size: 4vw; text-align: center">Code Collective Events</h1>
-      <section class="code-collective-events" aria-label="Code Collective Events">
+      <h1 style="margin: 10px 0; font-size: 4vw; text-align: center"> Events</h1>
+      <section class="code-collective-events" aria-label="Events">
         <div id="code-collective-events-container">
           <!-- Events will be populated by JavaScript -->
         </div>

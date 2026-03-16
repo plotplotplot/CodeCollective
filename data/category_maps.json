@@ -1,0 +1,200 @@
+{
+  "default_map": "maslow_needs",
+  "maps": [
+    {
+      "id": "maslow_needs",
+      "label": "Maslow Needs",
+      "other": {
+        "label": "Other",
+        "color": "#6b7280",
+        "text_color": "#ffffff"
+      },
+      "categories": [
+        {
+          "label": "Food",
+          "color": "#ca8a04",
+          "text_color": "#ffffff",
+          "matches": ["Food"]
+        },
+        {
+          "label": "Water",
+          "color": "#0f766e",
+          "text_color": "#ffffff",
+          "matches": ["Water", "Water & Environment"]
+        },
+        {
+          "label": "Shelter + Habitat",
+          "color": "#475569",
+          "text_color": "#ffffff",
+          "matches": ["Housing", "Shelter + Habitat"]
+        },
+        {
+          "label": "Clothing",
+          "color": "#7c3aed",
+          "text_color": "#ffffff",
+          "matches": ["Clothing"]
+        },
+        {
+          "label": "Survival & Health",
+          "color": "#059669",
+          "text_color": "#ffffff",
+          "matches": ["Survival & Health", "Wellness", "Health"]
+        },
+        {
+          "label": "Safety & Stability",
+          "color": "#1d4ed8",
+          "text_color": "#ffffff",
+          "matches": ["Safety & Stability", "Infrastructure", "Finance", "Housing", "Climate & Energy", "Energy"]
+        },
+        {
+          "label": "Belonging & Culture",
+          "color": "#9333ea",
+          "text_color": "#ffffff",
+          "matches": ["Belonging & Culture", "Culture", "Community", "Religion", "Community Organizing", "Tech Community", "Code Collective & Partners"]
+        },
+        {
+          "label": "Esteem & Opportunity",
+          "color": "#b45309",
+          "text_color": "#ffffff",
+          "matches": ["Esteem & Opportunity", "Economic Development", "Business", "Startup", "Career Growth", "Professional Networking"]
+        },
+        {
+          "label": "Growth & Creativity",
+          "color": "#db2777",
+          "text_color": "#ffffff",
+          "matches": ["Growth & Creativity", "Tech Skills", "Education", "Makerspace", "AI", "Data Science", "Cybersecurity", "Cloud & Platform", "DevOps", "Software Development", "Web Development", "JavaScript", "Python", "Ruby", "Product", "UX", "Game Development", "Technical Writing", "Open Source", "Robotics"]
+        },
+        {
+          "label": "Purpose & Service",
+          "color": "#b91c1c",
+          "text_color": "#ffffff",
+          "matches": ["Purpose & Service", "Politics", "Faith & Spirituality", "Civic Tech", "Policy", "Community Organizing"]
+        }
+      ]
+    },
+    {
+      "id": "community_sectors",
+      "label": "Community Sectors",
+      "other": {
+        "label": "Other",
+        "color": "#6b7280",
+        "text_color": "#ffffff"
+      },
+      "categories": [
+        {
+          "label": "Technology",
+          "color": "#2563eb",
+          "text_color": "#ffffff",
+          "matches": ["Tech Skills", "Growth & Creativity", "AI", "Data Science", "Cybersecurity", "Cloud & Platform", "DevOps", "Software Development", "Web Development", "JavaScript", "Python", "Ruby", "Product", "UX", "Game Development", "Technical Writing", "Open Source", "Tech Community"]
+        },
+        {
+          "label": "Business & Startups",
+          "color": "#ca8a04",
+          "text_color": "#111827",
+          "matches": ["Business", "Economic Development", "Startup", "Career Growth", "Professional Networking", "Esteem & Opportunity"]
+        },
+        {
+          "label": "Finance & Crypto",
+          "color": "#7c3aed",
+          "text_color": "#ffffff",
+          "matches": ["Finance", "Crypto & Web3"]
+        },
+        {
+          "label": "Civics & Policy",
+          "color": "#dc2626",
+          "text_color": "#ffffff",
+          "matches": ["Politics", "Civic Tech", "Policy", "Purpose & Service"]
+        },
+        {
+          "label": "Community & Culture",
+          "color": "#db2777",
+          "text_color": "#ffffff",
+          "matches": ["Culture", "Belonging & Culture", "Community", "Community Organizing", "Code Collective & Partners", "Tech Community"]
+        },
+        {
+          "label": "Faith",
+          "color": "#7c2d12",
+          "text_color": "#ffffff",
+          "matches": ["Religion", "Faith & Spirituality"]
+        },
+        {
+          "label": "Water & Environment",
+          "color": "#0f766e",
+          "text_color": "#ffffff",
+          "matches": ["Water", "Water & Environment", "Climate & Energy", "Energy", "Infrastructure"]
+        },
+        {
+          "label": "Makerspace & Robotics",
+          "color": "#ea580c",
+          "text_color": "#ffffff",
+          "matches": ["Makerspace", "Robotics"]
+        }
+      ]
+    },
+    {
+      "id": "tech_only",
+      "label": "Tech Only",
+      "other": {
+        "label": "General Tech",
+        "color": "#475569",
+        "text_color": "#ffffff"
+      },
+      "categories": [
+        {
+          "label": "AI & ML",
+          "color": "#7c3aed",
+          "text_color": "#ffffff",
+          "matches": ["AI"]
+        },
+        {
+          "label": "Data & Analytics",
+          "color": "#0891b2",
+          "text_color": "#ffffff",
+          "matches": ["Data Science"]
+        },
+        {
+          "label": "Cybersecurity",
+          "color": "#dc2626",
+          "text_color": "#ffffff",
+          "matches": ["Cybersecurity"]
+        },
+        {
+          "label": "Cloud & DevOps",
+          "color": "#2563eb",
+          "text_color": "#ffffff",
+          "matches": ["Cloud & Platform", "DevOps"]
+        },
+        {
+          "label": "Software Development",
+          "color": "#4f46e5",
+          "text_color": "#ffffff",
+          "matches": ["Software Development", "Web Development", "JavaScript", "Python", "Ruby", "Open Source", "Technical Writing", "Game Development"]
+        },
+        {
+          "label": "Design & Product",
+          "color": "#db2777",
+          "text_color": "#ffffff",
+          "matches": ["UX", "Product"]
+        },
+        {
+          "label": "Crypto & Web3",
+          "color": "#a16207",
+          "text_color": "#ffffff",
+          "matches": ["Crypto & Web3"]
+        },
+        {
+          "label": "Makerspace & Robotics",
+          "color": "#ea580c",
+          "text_color": "#ffffff",
+          "matches": ["Makerspace", "Robotics"]
+        },
+        {
+          "label": "Tech Community",
+          "color": "#16a34a",
+          "text_color": "#ffffff",
+          "matches": ["Tech Community", "Code Collective & Partners", "Community Organizing"]
+        }
+      ]
+    }
+  ]
+}

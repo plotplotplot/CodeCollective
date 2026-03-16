@@ -5,7 +5,7 @@ from icalendar import Calendar  # pip install icalendar
 from dateutil.parser import parse
 import pytz
 import hashlib
-from datetime import datetime, timedelta
+from datetime import date, datetime, time, timedelta
 from pprint import pprint
 
 # Constants
@@ -18,6 +18,23 @@ import re
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 
+
+def _looks_like_ics_bytes(payload):
+    if not payload:
+        return False
+    sample = payload[:4096].decode("utf-8", errors="ignore").lstrip("\ufeff\r\n\t ").upper()
+    return "BEGIN:VCALENDAR" in sample
+
+
+def _read_valid_cached_ics(cache_filename):
+    if not os.path.exists(cache_filename):
+        return None
+
+    with open(cache_filename, "rb") as f:
+        payload = f.read()
+
+    return payload if _looks_like_ics_bytes(payload) else None
+
 def fetch_calendar_events(ICS_URL, city, imageURL="https://www.unallocatedspace.org/wp-content/uploads/2017/03/UnallocatedLogoSmall.png", eventUrl="https://www.unallocatedspace.org", recurring=True, preface="GameDevs "):
     """Fetch and return calendar events in the standardized format."""
     print(f"Fetching ICS from {ICS_URL}")
@@ -27,15 +44,24 @@ def fetch_calendar_events(ICS_URL, city, imageURL="https://www.unallocatedspace.
     # Always prefer https
     ICS_URL = re.sub(r"^http://", "https://", ICS_URL.strip())
     url = ICS_URL
-    token = re.sub(r'[^A-Za-z0-9._-]+','_', (urllib.parse.urlsplit(url if '://' in url else 'https://'+url).hostname or '').split('.',1)[0]).strip('._-') or 'file'
+    parsed_url = urllib.parse.urlsplit(url if '://' in url else 'https://' + url)
+    host_token = re.sub(r'[^A-Za-z0-9._-]+', '_', (parsed_url.hostname or '').split('.', 1)[0]).strip('._-') or 'file'
+    url_hash = hashlib.md5(ICS_URL.encode("utf-8")).hexdigest()[:10]
+    token = f"{host_token}_{url_hash}"
 
     CACHE_FILENAME = os.path.join(city, f"cache_{token}.ics")
+
+    cached_payload = None
 
     # Check if cached file exists and is recent
     if os.path.exists(CACHE_FILENAME):
         mtime = datetime.fromtimestamp(os.path.getmtime(CACHE_FILENAME))
         if datetime.now() - mtime < CACHE_MAX_AGE:
-            fetch_from_web = False
+            cached_payload = _read_valid_cached_ics(CACHE_FILENAME)
+            if cached_payload is not None:
+                fetch_from_web = False
+            else:
+                print("⚠️ Cached ICS file is invalid, refetching...")
 
     if fetch_from_web:
         print("🔄 Downloading new .ics file from URL...")
@@ -91,6 +117,10 @@ def fetch_calendar_events(ICS_URL, city, imageURL="https://www.unallocatedspace.
         if "text/calendar" not in ct and not ICS_URL.endswith(".ics"):
             print(f"⚠️ Unexpected content type for ICS: {ct}")
 
+        if not _looks_like_ics_bytes(r.content):
+            excerpt = r.text[:200].replace("\n", " ")
+            raise ValueError(f"Downloaded payload is not a valid ICS calendar: {excerpt}")
+
         with open(CACHE_FILENAME, "wb") as f:
             f.write(r.content)  # keep exact bytes
     else:
@@ -135,6 +165,22 @@ def _extract_image_url_from_component(component):
 
     return image_first
 
+
+def _normalize_component_datetime(value, timezone, is_end=False):
+    if isinstance(value, datetime):
+        normalized = value
+    elif isinstance(value, date):
+        default_time = time.max if is_end else time.min
+        normalized = datetime.combine(value, default_time)
+    else:
+        raise TypeError(f"Unsupported ICS datetime value: {type(value).__name__}")
+
+    if normalized.tzinfo is None:
+        return timezone.localize(normalized)
+    if normalized.tzinfo != timezone:
+        return normalized.astimezone(timezone)
+    return normalized
+
 def processICS(CACHE_FILENAME, imageURL, eventUrl, recurring=True, preface="GameDevs "):
     # Read the calendar file
     with open(CACHE_FILENAME, "rb") as f:
@@ -163,15 +209,8 @@ def processICS(CACHE_FILENAME, imageURL, eventUrl, recurring=True, preface="Game
                 end_dt = event_end.dt if hasattr(event_end, 'dt') else event_end
                 
                 # Convert to timezone-aware datetime if needed
-                if not hasattr(start_dt, 'tzinfo') or start_dt.tzinfo is None:
-                    start_dt = TIMEZONE.localize(start_dt)
-                elif start_dt.tzinfo != TIMEZONE:
-                    start_dt = start_dt.astimezone(TIMEZONE)
-                    
-                if not hasattr(end_dt, 'tzinfo') or end_dt.tzinfo is None:
-                    end_dt = TIMEZONE.localize(end_dt)
-                elif end_dt.tzinfo != TIMEZONE:
-                    end_dt = end_dt.astimezone(TIMEZONE)
+                start_dt = _normalize_component_datetime(start_dt, TIMEZONE)
+                end_dt = _normalize_component_datetime(end_dt, TIMEZONE, is_end=True)
 
                 print(f"\n🎯 Processing: {event_name}")
                 print(f"   - Start: {start_dt}")
@@ -233,15 +272,8 @@ def processICS(CACHE_FILENAME, imageURL, eventUrl, recurring=True, preface="Game
                     end_dt = component.get('dtend').dt
                     
                     # Convert to timezone-aware datetime if needed
-                    if not hasattr(start_dt, 'tzinfo') or start_dt.tzinfo is None:
-                        start_dt = TIMEZONE.localize(start_dt)
-                    elif start_dt.tzinfo != TIMEZONE:
-                        start_dt = start_dt.astimezone(TIMEZONE)
-                        
-                    if not hasattr(end_dt, 'tzinfo') or end_dt.tzinfo is None:
-                        end_dt = TIMEZONE.localize(end_dt)
-                    elif end_dt.tzinfo != TIMEZONE:
-                        end_dt = end_dt.astimezone(TIMEZONE)
+                    start_dt = _normalize_component_datetime(start_dt, TIMEZONE)
+                    end_dt = _normalize_component_datetime(end_dt, TIMEZONE, is_end=True)
                     
                     # Skip outside window
                     if end_dt < today or start_dt > future_cutoff:

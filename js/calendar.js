@@ -9,19 +9,111 @@ let isMobile = false;
 let forceCardView = false;
 let activeTagSlugs = new Set();
 let calendarDisplayEvents = [];
-
+let hoverPreviewPanel = null;
+let eventInfoModal = null;
+let showExcludedEvents = false;
+const FEATURED_SOURCE_URLS = new Set([
+  'https://luma.com/codecollective',
+  'https://lu.ma/codecollective'
+]);
+const CATEGORY_MAPS_INDEX_URL = '/data/category_maps/index.json';
 const LEGEND_PREFS_KEY = 'calendarLegendPrefs';
-const CATEGORY_LABELS = [
-  'Tech Skills',
-  'Economic Development',
-  'Infrastructure',
-  'Makerspace',
-  'Business',
-  'Politics',
-  'Finance',
-  'Code Collective & Partners',
-  'Other'
-];
+const FALLBACK_CATEGORY_MAP_CONFIG = {
+  default_map: 'tech_only',
+  maps: [
+    {
+      id: 'maslow_needs',
+      label: 'Maslow Needs',
+      other: { label: 'Other', color: '#6b7280', text_color: '#ffffff' },
+      categories: [
+        { label: 'Food', color: '#ca8a04', text_color: '#ffffff', matches: ['Food'] },
+        { label: 'Water', color: '#0f766e', text_color: '#ffffff', matches: ['Water', 'Water & Environment'] },
+        { label: 'Shelter + Habitat', color: '#475569', text_color: '#ffffff', matches: ['Housing', 'Shelter + Habitat'] },
+        { label: 'Clothing', color: '#7c3aed', text_color: '#ffffff', matches: ['Clothing'] },
+        { label: 'Survival & Health', color: '#059669', text_color: '#ffffff', matches: ['Survival & Health', 'Wellness', 'Health'] },
+        { label: 'Safety & Stability', color: '#1d4ed8', text_color: '#ffffff', matches: ['Safety & Stability', 'Infrastructure', 'Finance'] },
+        { label: 'Belonging & Culture', color: '#9333ea', text_color: '#ffffff', matches: ['Belonging & Culture', 'Culture', 'Religion', 'Community'] },
+        { label: 'Esteem & Opportunity', color: '#b45309', text_color: '#ffffff', matches: ['Esteem & Opportunity', 'Economic Development', 'Business'] },
+        { label: 'Growth & Creativity', color: '#db2777', text_color: '#ffffff', matches: ['Growth & Creativity', 'Tech Skills', 'Makerspace'] },
+        { label: 'Purpose & Service', color: '#b91c1c', text_color: '#ffffff', matches: ['Purpose & Service', 'Politics'] }
+      ]
+    },
+    {
+      id: 'community_sectors',
+      label: 'Community Sectors',
+      other: { label: 'Other', color: '#6b7280', text_color: '#ffffff' },
+      categories: [
+        { label: 'Technology', color: '#2563eb', text_color: '#ffffff', matches: ['Tech Skills', 'AI', 'Data Science', 'Cybersecurity', 'Cloud & Platform', 'DevOps', 'Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Product', 'UX', 'Game Development', 'Technical Writing', 'Open Source', 'Tech Community'] },
+        { label: 'Business & Startups', color: '#ca8a04', text_color: '#111827', matches: ['Business', 'Economic Development', 'Startup', 'Career Growth', 'Professional Networking'] },
+        { label: 'Finance & Crypto', color: '#7c3aed', text_color: '#ffffff', matches: ['Finance', 'Crypto & Web3'] },
+        { label: 'Civics & Policy', color: '#dc2626', text_color: '#ffffff', matches: ['Politics', 'Civic Tech', 'Policy', 'Purpose & Service'] },
+        { label: 'Community & Culture', color: '#db2777', text_color: '#ffffff', matches: ['Culture', 'Belonging & Culture', 'Community', 'Community Organizing', 'Code Collective & Partners', 'Tech Community'] },
+        { label: 'Faith', color: '#7c2d12', text_color: '#ffffff', matches: ['Religion', 'Faith & Spirituality'] },
+        { label: 'Water & Environment', color: '#0f766e', text_color: '#ffffff', matches: ['Water', 'Water & Environment', 'Climate & Energy', 'Energy', 'Infrastructure'] },
+        { label: 'Makerspace & Robotics', color: '#ea580c', text_color: '#ffffff', matches: ['Makerspace', 'Robotics'] }
+      ]
+    },
+    {
+      id: 'tech_only',
+      label: 'Tech Meetups',
+      show_other: false,
+      other: { label: 'General Tech', color: '#475569', text_color: '#ffffff' },
+      categories: [
+        { label: 'AI & ML', color: '#7c3aed', text_color: '#ffffff', matches: ['AI'] },
+        { label: 'Data & Analytics', color: '#0891b2', text_color: '#ffffff', matches: ['Data Science'] },
+        { label: 'Cybersecurity', color: '#dc2626', text_color: '#ffffff', matches: ['Cybersecurity'] },
+        { label: 'Cloud & DevOps', color: '#2563eb', text_color: '#ffffff', matches: ['Cloud & Platform', 'DevOps'] },
+        { label: 'Software Development', color: '#4f46e5', text_color: '#ffffff', matches: ['Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Open Source', 'Technical Writing', 'Game Development'] },
+        { label: 'Design & Product', color: '#db2777', text_color: '#ffffff', matches: ['UX', 'Product'] },
+        { label: 'Crypto & Web3', color: '#a16207', text_color: '#ffffff', matches: ['Crypto & Web3'] },
+        { label: 'Makerspace & Robotics', color: '#ea580c', text_color: '#ffffff', matches: ['Makerspace', 'Robotics'] },
+        { label: 'Tech Meetups', color: '#16a34a', text_color: '#ffffff', matches: ['Tech Community', 'Code Collective & Partners'] }
+      ]
+    }
+  ]
+};
+let categoryMapConfig = FALLBACK_CATEGORY_MAP_CONFIG;
+let activeCategoryMap = FALLBACK_CATEGORY_MAP_CONFIG.maps[0];
+
+async function loadCategoryMapConfig() {
+  try {
+    const indexResponse = await fetch(CATEGORY_MAPS_INDEX_URL, { cache: 'no-store' });
+    if (!indexResponse.ok) throw new Error(`Category map index HTTP ${indexResponse.status}`);
+
+    const indexData = await indexResponse.json();
+    const mapRefs = Array.isArray(indexData.maps) ? indexData.maps : [];
+    if (mapRefs.length === 0) {
+      return FALLBACK_CATEGORY_MAP_CONFIG;
+    }
+
+    const loadedMaps = await Promise.all(
+      mapRefs.map(async (ref) => {
+        if (!ref?.path) return null;
+        const response = await fetch(ref.path, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Category map ${ref.id || ref.path} HTTP ${response.status}`);
+        const mapData = await response.json();
+        return {
+          ...mapData,
+          id: mapData.id || ref.id,
+          label: mapData.label || ref.label || mapData.id || 'Unnamed Map'
+        };
+      })
+    );
+
+    const maps = loadedMaps.filter(Boolean);
+    if (maps.length === 0) {
+      return FALLBACK_CATEGORY_MAP_CONFIG;
+    }
+
+    return {
+      default_map: indexData.default_map || maps[0].id,
+      maps
+    };
+  } catch (error) {
+    console.warn('Falling back to built-in category maps:', error);
+    return FALLBACK_CATEGORY_MAP_CONFIG;
+  }
+}
 
 // Utility helpers ---------------------------------------------------------
 function getTodayStart() {
@@ -55,24 +147,379 @@ function slugifyTag(tag) {
     .replace(/^-+|-+$/g, '');
 }
 
-function applyTagClasses(element, tags) {
-  if (!element || !Array.isArray(tags) || tags.length === 0) return;
-
-  element.classList.add('tagged');
-  tags.forEach(tag => {
-    const slug = slugifyTag(tag);
-    if (slug) {
-      element.classList.add(`tag-${slug}`);
-    }
-  });
+function normalizeSourceUrl(url) {
+  return String(url || '')
+    .trim()
+    .toLowerCase()
+    .replace(/\/+$/, '');
 }
 
-function getLegendPrefs(categories) {
-  const defaultTags = Array.isArray(categories) ? categories.map(slugifyTag) : [];
+function isFeaturedSource(url) {
+  return FEATURED_SOURCE_URLS.has(normalizeSourceUrl(url));
+}
+
+function escapeHtml(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function escapeAttr(value) {
+  return escapeHtml(value);
+}
+
+function safeUrl(url) {
+  try {
+    const parsed = new URL(String(url || ''), window.location.origin);
+    if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+      return parsed.href;
+    }
+  } catch (error) {
+    return '';
+  }
+  return '';
+}
+
+function getPreferredEventImage(eventLike) {
+  if (!eventLike) return '';
+
+  const directImage = eventLike.imageUrl || eventLike.orgImageUrl || '';
+  if (typeof directImage === 'string' && directImage) {
+    return directImage;
+  }
+
+  const extendedProps = eventLike.extendedProps || {};
+  return extendedProps.imageUrl || extendedProps.orgImageUrl || '';
+}
+
+function sanitizeHtmlFragment(htmlString) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(`<div>${htmlString || ''}</div>`, 'text/html');
+  const root = doc.body.firstElementChild;
+  if (!root) return '';
+
+  const blockedTags = new Set(['script', 'style', 'iframe', 'object', 'embed', 'form']);
+  const walker = doc.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
+  const nodes = [];
+  while (walker.nextNode()) {
+    nodes.push(walker.currentNode);
+  }
+
+  nodes.forEach(node => {
+    const tagName = node.tagName.toLowerCase();
+    if (blockedTags.has(tagName)) {
+      node.remove();
+      return;
+    }
+
+    Array.from(node.attributes).forEach(attr => {
+      const name = attr.name.toLowerCase();
+      const value = attr.value || '';
+      if (name.startsWith('on')) {
+        node.removeAttribute(attr.name);
+        return;
+      }
+      if ((name === 'href' || name === 'src') && !safeUrl(value)) {
+        node.removeAttribute(attr.name);
+        return;
+      }
+      if (name === 'style') {
+        node.removeAttribute(attr.name);
+      }
+    });
+
+    if (tagName === 'a') {
+      node.setAttribute('target', '_blank');
+      node.setAttribute('rel', 'noopener');
+    }
+  });
+
+  return root.innerHTML;
+}
+
+function renderRichText(text) {
+  const value = String(text || '').trim();
+  if (!value) return '';
+
+  const looksLikeHtml = /<\s*[a-z][\s\S]*>/i.test(value);
+  if (looksLikeHtml) {
+    return sanitizeHtmlFragment(value);
+  }
+
+  if (window.marked && typeof window.marked.parse === 'function') {
+    return sanitizeHtmlFragment(marked.parse(value));
+  }
+
+  return `<p>${escapeHtml(value).replace(/\n+/g, '<br>')}</p>`;
+}
+
+function formatSourceLabel(url, fallback = 'Unknown source') {
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.replace(/^www\./, '');
+    const segments = parsed.pathname.split('/').filter(Boolean);
+
+    if (host.includes('meetup.com') && segments[0]) {
+      return segments[0].replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    }
+    if ((host.includes('lu.ma') || host.includes('luma.com')) && parsed.pathname === '/user/profile/events-hosting') {
+      return fallback;
+    }
+    if ((host.includes('lu.ma') || host.includes('luma.com')) && segments[0]) {
+      return segments[segments.length - 1].replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    }
+    if (host.includes('eventbrite.') && segments[0] === 'o' && segments[1]) {
+      return segments[1].replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    }
+
+    return host;
+  } catch (error) {
+    return fallback;
+  }
+}
+
+function ensureHoverPreviewPanel() {
+  if (hoverPreviewPanel) return hoverPreviewPanel;
+
+  const panel = document.createElement('aside');
+  panel.className = 'event-hover-panel';
+  panel.setAttribute('hidden', '');
+  panel.innerHTML = `
+    <div class="event-hover-inner">
+      <div class="event-hover-media-wrap" hidden>
+        <img class="event-hover-media" alt="" />
+      </div>
+      <div class="event-hover-copy">
+        <div class="event-hover-kicker"></div>
+        <h3 class="event-hover-title"></h3>
+        <div class="event-hover-source-row">
+          <div class="event-hover-source-icon-wrap" hidden>
+            <img class="event-hover-source-icon" alt="" />
+          </div>
+          <div class="event-hover-source"></div>
+        </div>
+        <div class="event-hover-tags"></div>
+        <div class="event-hover-description"></div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(panel);
+  hoverPreviewPanel = panel;
+  return panel;
+}
+
+function setHoverPanelSide(clientX) {
+  const panel = ensureHoverPreviewPanel();
+  const showOnLeft = clientX > (window.innerWidth / 2);
+  panel.classList.toggle('align-left', showOnLeft);
+  panel.classList.toggle('align-right', !showOnLeft);
+}
+
+function showHoverPreview(eventInfo, mouseEvent) {
+  if (isMobile) return;
+
+  const panel = ensureHoverPreviewPanel();
+  const event = eventInfo.event;
+  const sourceUrl = event.extendedProps?.source || event.url || '';
+  const sourceLabel = formatSourceLabel(sourceUrl, event.extendedProps?.sourceGroup || event.extendedProps?.group || 'Unknown source');
+  const imageUrl = safeUrl(getPreferredEventImage(event));
+  const orgImageUrl = safeUrl(event.extendedProps?.orgImageUrl || '');
+  const mediaWrap = panel.querySelector('.event-hover-media-wrap');
+  const media = panel.querySelector('.event-hover-media');
+  const kicker = panel.querySelector('.event-hover-kicker');
+  const title = panel.querySelector('.event-hover-title');
+  const source = panel.querySelector('.event-hover-source');
+  const sourceIconWrap = panel.querySelector('.event-hover-source-icon-wrap');
+  const sourceIcon = panel.querySelector('.event-hover-source-icon');
+  const tags = panel.querySelector('.event-hover-tags');
+  const description = panel.querySelector('.event-hover-description');
+  const rawTags = Array.isArray(event.extendedProps?.tags) ? event.extendedProps.tags : [];
+
+  kicker.textContent = formatEventDate(event.start, event.end);
+  title.textContent = event.title || 'Untitled';
+  source.textContent = sourceLabel;
+  if (orgImageUrl) {
+    sourceIconWrap.hidden = false;
+    sourceIcon.src = orgImageUrl;
+    sourceIcon.alt = `${sourceLabel} logo`;
+  } else {
+    sourceIconWrap.hidden = true;
+    sourceIcon.removeAttribute('src');
+    sourceIcon.alt = '';
+  }
+  tags.innerHTML = rawTags.map(tag => {
+    const mapped = getMappedCategoriesForTags([tag])[0];
+    const background = mapped?.color || '#334155';
+    const textColor = mapped?.textColor || '#ffffff';
+    return `<span class="event-hover-tag" style="--tag-chip-bg: ${escapeAttr(background)}; --tag-chip-fg: ${escapeAttr(textColor)};">${escapeHtml(tag)}</span>`;
+  }).join('');
+  description.innerHTML = renderRichText(event.extendedProps?.description || event.description || '');
+
+  if (imageUrl) {
+    mediaWrap.hidden = false;
+    media.src = imageUrl;
+    media.alt = event.title || 'Event image';
+  } else {
+    mediaWrap.hidden = true;
+    media.removeAttribute('src');
+    media.alt = '';
+  }
+
+  setHoverPanelSide(mouseEvent?.clientX || (window.innerWidth / 2));
+  panel.removeAttribute('hidden');
+  panel.classList.add('visible');
+}
+
+function hideHoverPreview() {
+  if (!hoverPreviewPanel) return;
+  hoverPreviewPanel.classList.remove('visible');
+  hoverPreviewPanel.setAttribute('hidden', '');
+}
+
+function getCategoryMapById(mapId) {
+  return (categoryMapConfig.maps || []).find(map => map.id === mapId) || (categoryMapConfig.maps || [])[0] || FALLBACK_CATEGORY_MAP_CONFIG.maps[0];
+}
+
+function normalizeMapCategory(category) {
+  return {
+    label: category.label,
+    color: category.color || '#475569',
+    textColor: category.text_color || '#ffffff',
+    slug: slugifyTag(category.label),
+    matchSlugs: new Set((category.matches || []).map(slugifyTag).filter(Boolean))
+  };
+}
+
+function getOtherCategory(categoryMap) {
+  if (categoryMap?.show_other === false) return null;
+  const other = categoryMap?.other || {};
+  return {
+    label: other.label || 'Other',
+    color: other.color || '#6b7280',
+    textColor: other.text_color || '#ffffff',
+    slug: slugifyTag(other.label || 'Other')
+  };
+}
+
+function getMappedCategoriesForTags(tags, categoryMap = activeCategoryMap) {
+  const matches = getDirectMappedCategoriesForTags(tags, categoryMap);
+  if (matches.length > 0) return matches;
+  const otherCategory = getOtherCategory(categoryMap);
+  return otherCategory ? [otherCategory] : [];
+}
+
+function getDirectMappedCategoriesForTags(tags, categoryMap = activeCategoryMap) {
+  const normalizedTags = Array.isArray(tags) ? tags.map(slugifyTag).filter(Boolean) : [];
+  return (categoryMap?.categories || [])
+    .map(normalizeMapCategory)
+    .filter(category => normalizedTags.some(tag => category.matchSlugs.has(tag)));
+}
+
+function isTechOnlyEvent(tags) {
+  const normalizedTags = new Set((Array.isArray(tags) ? tags : []).map(slugifyTag).filter(Boolean));
+  if (normalizedTags.size === 0) return false;
+
+  const specificTechTags = new Set([
+    'ai',
+    'data-science',
+    'cybersecurity',
+    'cloud-and-platform',
+    'devops',
+    'software-development',
+    'web-development',
+    'javascript',
+    'python',
+    'ruby',
+    'open-source',
+    'technical-writing',
+    'game-development',
+    'ux',
+    'product',
+    'crypto-and-web3',
+    'makerspace',
+    'robotics',
+    'civic-tech'
+  ]);
+  const genericTechTags = new Set([
+    'tech-skills',
+    'tech-community',
+    'code-collective-and-partners'
+  ]);
+  const dominantNonTechTags = new Set([
+    'water',
+    'water-and-environment',
+    'religion',
+    'culture',
+    'community',
+    'politics',
+    'food',
+    'housing',
+    'shelter-and-habitat',
+    'clothing',
+    'survival-and-health',
+    'safety-and-stability',
+    'belonging-and-culture',
+    'purpose-and-service',
+    'faith-and-spirituality',
+    'business',
+    'economic-development',
+    'professional-networking',
+    'career-growth',
+    'startup',
+    'waterfront',
+    'infrastructure',
+    'finance'
+  ]);
+
+  if (Array.from(normalizedTags).some(tag => specificTechTags.has(tag))) {
+    return true;
+  }
+
+  if (!Array.from(normalizedTags).some(tag => genericTechTags.has(tag))) {
+    return false;
+  }
+
+  if (Array.from(normalizedTags).some(tag => dominantNonTechTags.has(tag))) {
+    return false;
+  }
+
+  return true;
+}
+
+function applyTagClasses(element, tags) {
+  if (!element) return;
+
+  element.classList.remove('tagged');
+  element.style.removeProperty('--tag-color');
+  element.style.removeProperty('--tag-text-color');
+
+  if (element.classList.contains('source-codecollective-luma-title')) {
+    return;
+  }
+
+  const primaryCategory = getMappedCategoriesForTags(tags)[0];
+  if (!primaryCategory) return;
+
+  element.classList.add('tagged');
+  element.style.setProperty('--tag-color', primaryCategory.color);
+  element.style.setProperty('--tag-text-color', primaryCategory.textColor);
+}
+
+function getLegendPrefs(categoryMap) {
+  const defaultTags = Array.isArray(categoryMap?.categories)
+    ? categoryMap.categories.map(category => slugifyTag(category.label))
+    : [];
   const defaults = {
     hidden: true,
     useTagColors: true,
-    selectedTags: defaultTags
+    showDayBackgrounds: true,
+    showExcludedEvents: false,
+    eventClickAction: 'open_page',
+    selectedTags: defaultTags,
+    mapId: categoryMap?.id || categoryMapConfig.default_map
   };
 
   try {
@@ -82,18 +529,40 @@ function getLegendPrefs(categories) {
     return {
       hidden: Boolean(parsed.hidden),
       useTagColors: parsed.useTagColors !== false,
-      selectedTags: Array.isArray(parsed.selectedTags) ? parsed.selectedTags : defaultTags
+      showDayBackgrounds: parsed.showDayBackgrounds !== false,
+      showExcludedEvents: parsed.showExcludedEvents === true,
+      eventClickAction: parsed.eventClickAction || defaults.eventClickAction,
+      selectedTags: Array.isArray(parsed.selectedTags) ? parsed.selectedTags : defaultTags,
+      mapId: parsed.mapId || defaults.mapId
     };
   } catch (error) {
     return defaults;
   }
 }
 
+function getValidSelectedTags(selectedTags, categoryMap) {
+  const availableTags = new Set(
+    Array.isArray(categoryMap?.categories)
+      ? categoryMap.categories.map(category => slugifyTag(category.label))
+      : []
+  );
+
+  const validTags = Array.isArray(selectedTags)
+    ? selectedTags.filter(tag => availableTags.has(tag))
+    : [];
+
+  return validTags.length > 0 ? validTags : Array.from(availableTags);
+}
+
 function saveLegendPrefs() {
   const prefs = {
     hidden: document.body.classList.contains('legend-hidden'),
     useTagColors: !document.body.classList.contains('tags-disabled'),
-    selectedTags: Array.from(activeTagSlugs)
+    showDayBackgrounds: !document.body.classList.contains('day-backgrounds-disabled'),
+    showExcludedEvents,
+    eventClickAction: getEventClickAction(),
+    selectedTags: Array.from(activeTagSlugs),
+    mapId: activeCategoryMap?.id || categoryMapConfig.default_map
   };
   try {
     localStorage.setItem(LEGEND_PREFS_KEY, JSON.stringify(prefs));
@@ -102,9 +571,71 @@ function saveLegendPrefs() {
   }
 }
 
-function buildLegend(categories) {
-  const prefs = getLegendPrefs(categories);
-  activeTagSlugs = new Set(prefs.selectedTags);
+function buildLegendItem(category, isChecked) {
+  const item = document.createElement('label');
+  item.className = 'legend-item';
+  if (activeCategoryMap?.id === 'maslow_needs') {
+    item.classList.add('legend-card');
+  }
+  item.innerHTML = `
+    <input type="checkbox" data-tag="${category.slug}" ${isChecked ? 'checked' : ''} />
+    <span class="legend-swatch" style="background-color: ${category.color}; color: ${category.textColor};"></span>
+    <span class="legend-text">${category.label}</span>
+  `;
+  return item;
+}
+
+function buildMaslowLegendList(categories, activeSlugs, otherCategory) {
+  const list = document.createElement('div');
+  list.className = 'legend-list maslow-hierarchy';
+
+  const rowDefs = [
+    ['Purpose & Service'],
+    ['Growth & Creativity'],
+    ['Esteem & Opportunity'],
+    ['Belonging & Culture'],
+    ['Safety & Stability'],
+    ['Food', 'Water', 'Shelter + Habitat', 'Clothing', 'Survival & Health']
+  ];
+
+  rowDefs.forEach((labels, index) => {
+    const row = document.createElement('div');
+    row.className = `legend-row legend-row-${index + 1}`;
+
+    labels.forEach(label => {
+      const category = categories.find(item => item.label === label);
+      if (!category) return;
+      const isChecked = activeSlugs.size === 0 ? true : activeSlugs.has(category.slug);
+      row.appendChild(buildLegendItem(category, isChecked));
+    });
+
+    if (row.childElementCount > 0) {
+      list.appendChild(row);
+    }
+  });
+
+  const auxiliaryRow = document.createElement('div');
+  auxiliaryRow.className = 'legend-row legend-row-aux';
+  if (otherCategory) {
+    const otherChecked = activeSlugs.size === 0 ? true : activeSlugs.has(otherCategory.slug);
+    auxiliaryRow.appendChild(buildLegendItem(otherCategory, otherChecked));
+    list.appendChild(auxiliaryRow);
+  }
+
+  return list;
+}
+
+function buildLegend(categoryMap, options = {}) {
+  activeCategoryMap = categoryMap || getCategoryMapById(categoryMapConfig.default_map);
+  let prefs = getLegendPrefs(activeCategoryMap);
+  if (!options.lockMapId && prefs.mapId && prefs.mapId !== activeCategoryMap.id) {
+    activeCategoryMap = getCategoryMapById(prefs.mapId);
+    prefs = getLegendPrefs(activeCategoryMap);
+  }
+
+  const categories = activeCategoryMap.categories || [];
+  activeTagSlugs = new Set(getValidSelectedTags(prefs.selectedTags, activeCategoryMap));
+  showExcludedEvents = prefs.showExcludedEvents === true;
 
   const legendItems = document.getElementById('calendar-legend-items');
   if (!legendItems || !Array.isArray(categories)) {
@@ -117,10 +648,34 @@ function buildLegend(categories) {
 
   const controls = document.createElement('div');
   controls.className = 'legend-controls';
+  const mapOptions = (categoryMapConfig.maps || [])
+    .map(map => `<option value="${map.id}" ${map.id === activeCategoryMap.id ? 'selected' : ''}>${map.label}</option>`)
+    .join('');
   controls.innerHTML = `
+    <label class="legend-map-picker">
+      <span class="legend-text">Map</span>
+      <select id="legend-map-select">${mapOptions}</select>
+    </label>
+    <label class="legend-map-picker">
+      <span class="legend-text">Click Action</span>
+      <select id="legend-click-action-select">
+        <option value="open_page" ${prefs.eventClickAction === 'open_page' ? 'selected' : ''}>Go to page</option>
+        <option value="info_modal" ${prefs.eventClickAction === 'info_modal' ? 'selected' : ''}>Open info modal</option>
+        <option value="copy_name" ${prefs.eventClickAction === 'copy_name' ? 'selected' : ''}>Copy name</option>
+        <option value="copy_json" ${prefs.eventClickAction === 'copy_json' ? 'selected' : ''}>Copy event JSON</option>
+      </select>
+    </label>
     <label class="legend-item legend-toggle">
       <input type="checkbox" id="toggle-tag-formatting" ${prefs.useTagColors ? 'checked' : ''} />
       <span class="legend-text">Use tag colors</span>
+    </label>
+    <label class="legend-item legend-toggle">
+      <input type="checkbox" id="toggle-day-backgrounds" ${prefs.showDayBackgrounds ? 'checked' : ''} />
+      <span class="legend-text">Show day images</span>
+    </label>
+    <label class="legend-item legend-toggle legend-excluded-toggle">
+      <input type="checkbox" id="toggle-excluded-events" ${showExcludedEvents ? 'checked' : ''} />
+      <span class="legend-text">Show excluded in grey</span>
     </label>
     <div class="legend-actions">
       <button type="button" class="legend-action" data-action="all">Select all</button>
@@ -130,34 +685,60 @@ function buildLegend(categories) {
   `;
   legendItems.appendChild(controls);
 
-  const list = document.createElement('div');
-  list.className = 'legend-list';
-  categories.forEach(label => {
-    const slug = slugifyTag(label);
-    const isChecked = activeTagSlugs.size === 0 ? true : activeTagSlugs.has(slug);
-    const item = document.createElement('label');
-    item.className = 'legend-item';
-    item.innerHTML = `
-      <input type="checkbox" data-tag="${slug}" ${isChecked ? 'checked' : ''} />
-      <span class="legend-swatch tag-${slug}"></span>
-      <span class="legend-text">${label}</span>
-    `;
-    list.appendChild(item);
-  });
+  const otherCategory = getOtherCategory(activeCategoryMap);
+  const normalizedCategories = categories.map(normalizeMapCategory);
+  let list;
+
+  if (activeCategoryMap.id === 'maslow_needs') {
+    list = buildMaslowLegendList(normalizedCategories, activeTagSlugs, otherCategory);
+  } else {
+    list = document.createElement('div');
+    list.className = 'legend-list';
+    normalizedCategories.forEach(category => {
+      const isChecked = activeTagSlugs.size === 0 ? true : activeTagSlugs.has(category.slug);
+      list.appendChild(buildLegendItem(category, isChecked));
+    });
+    if (otherCategory) {
+      const otherChecked = activeTagSlugs.size === 0 ? true : activeTagSlugs.has(otherCategory.slug);
+      list.appendChild(buildLegendItem(otherCategory, otherChecked));
+    }
+  }
+
   legendItems.appendChild(list);
 
-  legendItems.addEventListener('change', event => {
+  legendItems.onchange = event => {
+    if (event.target.matches('#legend-map-select')) {
+      activeCategoryMap = getCategoryMapById(event.target.value);
+      buildLegend(activeCategoryMap, { lockMapId: true });
+      applyTagFilters();
+      return;
+    }
+    if (event.target.matches('#legend-click-action-select')) {
+      saveLegendPrefs();
+      return;
+    }
     if (event.target.matches('#toggle-tag-formatting')) {
       setTagFormattingEnabled(event.target.checked);
       saveLegendPrefs();
       return;
     }
+    if (event.target.matches('#toggle-day-backgrounds')) {
+      setDayBackgroundsEnabled(event.target.checked);
+      saveLegendPrefs();
+      refreshCalendarForVisualPreferenceChange();
+      return;
+    }
+    if (event.target.matches('#toggle-excluded-events')) {
+      showExcludedEvents = event.target.checked;
+      applyTagFilters();
+      return;
+    }
     if (!event.target.matches('input[type="checkbox"][data-tag]')) return;
     updateActiveTagsFromLegend();
     applyTagFilters();
-  });
+  };
 
-  legendItems.addEventListener('click', event => {
+  legendItems.onclick = event => {
     const actionBtn = event.target.closest('.legend-action');
     if (!actionBtn) return;
     const action = actionBtn.dataset.action;
@@ -168,21 +749,33 @@ function buildLegend(categories) {
     } else if (action === 'hide') {
       setLegendVisibility(true);
     }
-  });
+  };
 
   const visibilityToggle = document.getElementById('legend-visibility-toggle');
   if (visibilityToggle) {
-    visibilityToggle.addEventListener('click', () => {
+    visibilityToggle.onclick = () => {
       setLegendVisibility(false);
-    });
+    };
   }
 
   setTagFormattingEnabled(prefs.useTagColors);
+  setDayBackgroundsEnabled(prefs.showDayBackgrounds);
   setLegendVisibility(prefs.hidden, { save: false });
 }
 
 function setTagFormattingEnabled(enabled) {
   document.body.classList.toggle('tags-disabled', !enabled);
+}
+
+function setDayBackgroundsEnabled(enabled) {
+  document.body.classList.toggle('day-backgrounds-disabled', !enabled);
+}
+
+function refreshCalendarForVisualPreferenceChange() {
+  if (isMobile || !calendar) return;
+  destroyCalendar();
+  initializeCalendar(calendarDisplayEvents);
+  addTodayStyles();
 }
 
 function setLegendVisibility(hidden, options = {}) {
@@ -216,17 +809,12 @@ function updateActiveTagsFromLegend() {
 }
 
 function eventMatchesTags(tags) {
-  if (!activeTagSlugs || activeTagSlugs.size === 0) return false;
-  const normalizedTags = Array.isArray(tags) ? tags.map(slugifyTag).filter(Boolean) : [];
-
-  if (normalizedTags.length === 0) {
-    return activeTagSlugs.has('other');
+  const mappedCategories = getEffectiveMappedCategories(tags);
+  if (mappedCategories.length === 0) {
+    return showExcludedEvents;
   }
-
-  const matchesKnown = normalizedTags.some(tag => activeTagSlugs.has(tag));
-  if (matchesKnown) return true;
-
-  return activeTagSlugs.has('other');
+  if (!activeTagSlugs || activeTagSlugs.size === 0) return false;
+  return mappedCategories.some(category => activeTagSlugs.has(category.slug));
 }
 
 function filterEventsByTags(events) {
@@ -254,6 +842,168 @@ function applyTagFilters() {
   populateCodeCollectiveEvents(filterRawEventsByTags(rawEvents));
   saveLegendPrefs();
 }
+
+function getEffectiveMappedCategories(tags, categoryMap = activeCategoryMap) {
+  if (categoryMap?.id === 'tech_only' && !isTechOnlyEvent(tags)) {
+    return [];
+  }
+  return getMappedCategoriesForTags(tags, categoryMap);
+}
+
+function isExcludedFromActiveMap(tags) {
+  if (activeCategoryMap?.id === 'tech_only' && !isTechOnlyEvent(tags)) {
+    return true;
+  }
+  return getDirectMappedCategoriesForTags(tags).length === 0;
+}
+
+function getEventClickAction() {
+  const selector = document.getElementById('legend-click-action-select');
+  return selector?.value || 'open_page';
+}
+
+function getEventDataFromCalendarEvent(event) {
+  return {
+    id: event.id || '',
+    name: event.title || '',
+    startDate: event.start ? event.start.toISOString() : '',
+    endTime: event.end ? event.end.toISOString() : '',
+    description: event.extendedProps?.description || event.description || '',
+    location: event.extendedProps?.location || event.location || null,
+    url: event.url || '',
+    imageUrl: event.extendedProps?.imageUrl || '',
+    orgImageUrl: event.extendedProps?.orgImageUrl || '',
+    tags: Array.isArray(event.extendedProps?.tags) ? event.extendedProps.tags : [],
+    source: event.extendedProps?.source || '',
+    source_group: event.extendedProps?.sourceGroup || event.extendedProps?.group || ''
+  };
+}
+
+async function copyTextToClipboard(text) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  textarea.remove();
+}
+
+function ensureEventInfoModal() {
+  if (eventInfoModal) return eventInfoModal;
+
+  const modal = document.createElement('div');
+  modal.className = 'event-info-modal';
+  modal.setAttribute('hidden', '');
+  modal.innerHTML = `
+    <div class="event-info-modal-backdrop" data-close-modal="true"></div>
+    <div class="event-info-modal-dialog" role="dialog" aria-modal="true" aria-label="Event details">
+      <button type="button" class="event-info-modal-close" data-close-modal="true" aria-label="Close event details">&times;</button>
+      <div class="event-info-modal-media-wrap" hidden>
+        <img class="event-info-modal-media" alt="" />
+      </div>
+      <div class="event-info-modal-copy">
+        <div class="event-info-modal-kicker"></div>
+        <h3 class="event-info-modal-title"></h3>
+        <div class="event-info-modal-source"></div>
+        <div class="event-info-modal-tags"></div>
+        <div class="event-info-modal-description"></div>
+        <div class="event-info-modal-actions">
+          <a class="event-info-modal-link" target="_blank" rel="noopener noreferrer">Open event page</a>
+        </div>
+      </div>
+    </div>
+  `;
+  modal.addEventListener('click', event => {
+    if (event.target.closest('[data-close-modal="true"]')) {
+      hideEventInfoModal();
+    }
+  });
+  document.body.appendChild(modal);
+  eventInfoModal = modal;
+  return modal;
+}
+
+function showEventInfoModal(eventData) {
+  const modal = ensureEventInfoModal();
+  const sourceLabel = formatSourceLabel(eventData.source || eventData.url || '', eventData.source_group || 'Unknown source');
+  const imageUrl = safeUrl(eventData.imageUrl || eventData.orgImageUrl || '');
+  const mediaWrap = modal.querySelector('.event-info-modal-media-wrap');
+  const media = modal.querySelector('.event-info-modal-media');
+  modal.querySelector('.event-info-modal-kicker').textContent = formatEventDate(eventData.startDate, eventData.endTime);
+  modal.querySelector('.event-info-modal-title').textContent = eventData.name || 'Untitled';
+  modal.querySelector('.event-info-modal-source').textContent = sourceLabel;
+  modal.querySelector('.event-info-modal-tags').innerHTML = (Array.isArray(eventData.tags) ? eventData.tags : []).map(tag => {
+    const mapped = getEffectiveMappedCategories([tag])[0];
+    const background = mapped?.color || '#4b5563';
+    const textColor = mapped?.textColor || '#ffffff';
+    return `<span class="event-hover-tag" style="--tag-chip-bg: ${escapeAttr(background)}; --tag-chip-fg: ${escapeAttr(textColor)};">${escapeHtml(tag)}</span>`;
+  }).join('');
+  modal.querySelector('.event-info-modal-description').innerHTML = renderRichText(eventData.description || '');
+  const link = modal.querySelector('.event-info-modal-link');
+  if (eventData.url) {
+    link.href = eventData.url;
+    link.removeAttribute('hidden');
+  } else {
+    link.removeAttribute('href');
+    link.setAttribute('hidden', '');
+  }
+
+  if (imageUrl) {
+    mediaWrap.hidden = false;
+    media.src = imageUrl;
+    media.alt = eventData.name || 'Event image';
+  } else {
+    mediaWrap.hidden = true;
+    media.removeAttribute('src');
+    media.alt = '';
+  }
+
+  modal.removeAttribute('hidden');
+  document.body.classList.add('event-info-modal-open');
+}
+
+function hideEventInfoModal() {
+  if (!eventInfoModal) return;
+  eventInfoModal.setAttribute('hidden', '');
+  document.body.classList.remove('event-info-modal-open');
+}
+
+async function handleEventActivation(eventData, triggerEvent) {
+  const action = getEventClickAction();
+  const wantsNewTab = Boolean(triggerEvent?.ctrlKey || triggerEvent?.metaKey);
+
+  if (wantsNewTab && eventData.url) {
+    window.open(eventData.url, '_blank', 'noopener');
+    return;
+  }
+
+  if (action === 'info_modal') {
+    showEventInfoModal(eventData);
+    return;
+  }
+
+  if (action === 'copy_name') {
+    await copyTextToClipboard(eventData.name || '');
+    return;
+  }
+
+  if (action === 'copy_json') {
+    await copyTextToClipboard(JSON.stringify(eventData, null, 2));
+    return;
+  }
+
+  if (eventData.url) {
+    window.location.href = eventData.url;
+  }
+}
 // Generic image prefetching function (with unique URLs only)
 function prefetchImages(urls) {
   if (!window.Promise || !window.fetch) return; // Skip if browser doesn't support
@@ -278,7 +1028,7 @@ function prefetchImages(urls) {
 
 
 function getCityOptions() {
-  return window.CALENDAR_CITY_OPTIONS || ['baltimore', 'westvirginia', 'hawaii', 'dc'];
+  return window.CALENDAR_CITY_OPTIONS || ['baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh', 'virtual'];
 }
 
 // Function to get city from URL parameters
@@ -318,20 +1068,26 @@ document.addEventListener('DOMContentLoaded', function () {
   const city = getCityFromUrl();
   const endpoint = `/${city}/upcoming_events.json`;
 
-  fetch(endpoint)
-    .then(response => {
+  Promise.all([
+    loadCategoryMapConfig(),
+    fetch(endpoint).then(response => {
       if (!response.ok) {
         throw new Error(`Failed to fetch events for city: ${city}`);
       }
       return response.json();
     })
-    .then(events => {
+  ])
+    .then(([mapConfig, events]) => {
+      if (mapConfig && Array.isArray(mapConfig.maps) && mapConfig.maps.length > 0) {
+        categoryMapConfig = mapConfig;
+        activeCategoryMap = getCategoryMapById(mapConfig.default_map);
+      }
       rawEvents = Array.isArray(events) ? events : [];
       allEvents = processEvents(rawEvents);
 
       // Extract all unique event image URLs
       const eventImageUrls = allEvents
-        .map(event => event.extendedProps?.imageUrl)
+        .map(event => getPreferredEventImage(event))
         .filter(url => url); // Remove null/undefined
 
       // Prefetch all event images in parallel
@@ -339,7 +1095,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       filteredEvents = [...allEvents]; // Make a copy for filtering
 
-      buildLegend(CATEGORY_LABELS);
+      buildLegend(activeCategoryMap);
       applyTagFilters();
 
       setupViewSelectors();
@@ -475,8 +1231,8 @@ function createEventCard(event) {
     stripMarkdown(description);
 
   card.innerHTML = `
-    ${event.extendedProps.imageUrl ?
-      `<div class="card-image" style="background-image: url(${event.extendedProps.imageUrl})"></div>` :
+    ${getPreferredEventImage(event) ?
+      `<div class="card-image" style="background-image: url(${getPreferredEventImage(event)})"></div>` :
       '<div class="card-image-placeholder"><i class="fas fa-calendar-alt"></i></div>'
     }
       <h3 class="card-title">${event.title}</h3>
@@ -506,6 +1262,12 @@ function createEventCard(event) {
   `;
 
   applyTagClasses(card, event.extendedProps?.tags);
+  if (isExcludedFromActiveMap(event.extendedProps?.tags)) {
+    card.classList.add('excluded-from-map');
+  }
+  if (isFeaturedSource(event.extendedProps?.source)) {
+    card.classList.add('source-codecollective-luma');
+  }
 
   // Process markdown for full description if needed
   if (description && needsMore) {
@@ -524,9 +1286,9 @@ function createEventCard(event) {
     if (e.target.closest('.more-btn') || e.target.closest('a')) {
       return;
     }
-    if (event.url) {
-      window.open(event.url, '_blank');
-    }
+    handleEventActivation(getEventDataFromCalendarEvent(event), e).catch(error => {
+      console.error('Failed to handle event action:', error);
+    });
   });
 
   return card;
@@ -608,8 +1370,13 @@ function processEvents(eventsData) {
       url: event.url,
       extendedProps: {
         group: groupName,
+        sourceGroup: event.source_group || '',
+        description: event.description || '',
+        location: event.location || null,
         imageUrl: event.imageUrl,
-        tags: Array.isArray(event.tags) ? event.tags : []
+        orgImageUrl: event.orgImageUrl || '',
+        tags: Array.isArray(event.tags) ? event.tags : [],
+        source: event.source || ''
       },
       backgroundColor: "#0f0f0f0",
       borderColor: "#0f0f0f0",
@@ -654,7 +1421,7 @@ function getLatestEventWithImageForDay(events, date) {
     const eventDateStr = eventDate.getFullYear() + '-' +
       String(eventDate.getMonth() + 1).padStart(2, '0') + '-' +
       String(eventDate.getDate()).padStart(2, '0');
-    return eventDateStr === dateStr && event.extendedProps.imageUrl;
+    return eventDateStr === dateStr && getPreferredEventImage(event);
   });
 
   // If no events with images for this day, return null
@@ -682,7 +1449,7 @@ function getRandomImageForDay(events, date) {
     const eventDateStr = eventDate.getFullYear() + '-' +
       String(eventDate.getMonth() + 1).padStart(2, '0') + '-' +
       String(eventDate.getDate()).padStart(2, '0');
-    return eventDateStr === dateStr && event.extendedProps.imageUrl;
+    return eventDateStr === dateStr && getPreferredEventImage(event);
   });
   
   // If no events with images for this day, return null
@@ -744,19 +1511,15 @@ function initializeCalendar(events) {
     },
 
     events: events, // Use all events (validRange will filter the display)
+    eventClassNames: function (arg) {
+      return isFeaturedSource(arg.event.extendedProps?.source) ? ['source-codecollective-luma'] : [];
+    },
     eventClick: function (info) {
-      // Allow ctrl/cmd click to open in a new tab
-      if (info.jsEvent.ctrlKey || info.jsEvent.metaKey) {
-        window.open(info.event.url, '_blank');
-      } else {
-        // Default behavior: navigate in same tab
-        window.location.href = info.event.url;
-      }
-
-      // Prevent the browser's default link behavior
+      handleEventActivation(getEventDataFromCalendarEvent(info.event), info.jsEvent).catch(error => {
+        console.error('Failed to handle event action:', error);
+      });
       info.jsEvent.preventDefault();
-    }
-    ,
+    },
     eventTimeFormat: {
       hour: 'numeric',
       minute: '2-digit',
@@ -765,6 +1528,10 @@ function initializeCalendar(events) {
     height: 'auto',
     dayMaxEvents: true, // Allow "more" link when too many events
     dayCellDidMount: function (info) {
+      if (document.body.classList.contains('day-backgrounds-disabled')) {
+        return;
+      }
+
       // Only show images for today and future dates
       const today = new Date();
       today.setHours(0, 0, 0, 0);
@@ -779,7 +1546,8 @@ function initializeCalendar(events) {
       // Get the latest event with an image for this day
       const latestEvent = getRandomImageForDay(calendarDisplayEvents, info.date);
 
-      if (latestEvent && latestEvent.extendedProps.imageUrl) {
+      const backgroundImageUrl = getPreferredEventImage(latestEvent);
+      if (latestEvent && backgroundImageUrl) {
         // Get the day cell element
         const cellEl = info.el;
 
@@ -793,7 +1561,7 @@ function initializeCalendar(events) {
           // Create a semi-transparent background with the event image
           const bgDiv = document.createElement('div');
           bgDiv.classList.add('fc-day-background');
-          bgDiv.style.backgroundImage = `url(${latestEvent.extendedProps.imageUrl})`;
+          bgDiv.style.backgroundImage = `url(${backgroundImageUrl})`;
           bgDiv.style.backgroundSize = 'cover';
           bgDiv.style.backgroundPosition = 'center';
           bgDiv.style.backgroundRepeat = 'no-repeat';
@@ -826,6 +1594,12 @@ function initializeCalendar(events) {
       // Add title with time
       const titleEl = document.createElement('div');
       titleEl.classList.add('fc-event-title');
+      if (isExcludedFromActiveMap(info.event.extendedProps?.tags)) {
+        titleEl.classList.add('excluded-from-map');
+      }
+      if (isFeaturedSource(info.event.extendedProps?.source)) {
+        titleEl.classList.add('source-codecollective-luma-title');
+      }
       titleEl.innerHTML = `${eventTime} ${info.event.title}`;
       applyTagClasses(titleEl, info.event.extendedProps?.tags);
       eventEl.appendChild(titleEl);
@@ -833,23 +1607,32 @@ function initializeCalendar(events) {
       return { domNodes: [eventEl] };
     },
     eventDidMount: function (info) {
-      // Add tooltips to events
-      const tooltip = document.createElement('div');
-      tooltip.classList.add('event-tooltip');
-      tooltip.innerHTML = `
-    ${info.event.title}
-    <div>${formatEventDate(info.event.start, info.event.end)}</div>
-  `;
-      // Check both locations for description
-      const description = info.event.extendedProps.description || info.event.description || '';
-      const address = info.event.extendedProps.location?.address;
-      const parts = [
-        info.event.title,
-        address,
-        description
-      ].filter(Boolean).join('\n');
+      if (isFeaturedSource(info.event.extendedProps?.source)) {
+        const dayCell = info.el.closest('.fc-daygrid-day');
+        if (dayCell) {
+          dayCell.classList.add('source-codecollective-luma-day');
+        }
+      }
 
-      info.el.setAttribute('title', parts);
+      const description = info.event.extendedProps.description || info.event.description || '';
+      const sourceLabel = formatSourceLabel(
+        info.event.extendedProps?.source || info.event.url || '',
+        info.event.extendedProps?.sourceGroup || info.event.extendedProps?.group || 'Unknown source'
+      );
+      info.el.setAttribute('aria-label', `${info.event.title}. ${sourceLabel}.`);
+      info.el.removeAttribute('title');
+
+      info.el.addEventListener('mouseenter', event => {
+        showHoverPreview(info, event);
+      });
+      info.el.addEventListener('mousemove', event => {
+        setHoverPanelSide(event.clientX);
+      });
+      info.el.addEventListener('mouseleave', hideHoverPreview);
+      info.el.addEventListener('focus', event => {
+        showHoverPreview(info, event);
+      });
+      info.el.addEventListener('blur', hideHoverPreview);
     },
     // Add this: Callback for when view is rendered
     viewDidMount: function () {
@@ -921,8 +1704,11 @@ function formatEventDate(start, end) {
 // Close popup when clicking outside the content
 window.onclick = function (event) {
   const popup = document.getElementById('event-popup');
-  if (event.target === popup) {
+  if (event.target === popup && typeof closeEventPopup === 'function') {
     closeEventPopup();
+  }
+  if (event.target?.matches?.('.event-info-modal')) {
+    hideEventInfoModal();
   }
 };
 function populateCodeCollectiveEvents(events) {
@@ -968,9 +1754,10 @@ function populateCodeCollectiveEvents(events) {
     eventLink.rel = 'noopener noreferrer';
 
     // Add image if available
-    if (event.imageUrl) {
+    const codeCollectiveImage = getPreferredEventImage(event);
+    if (codeCollectiveImage) {
       const img = document.createElement('img');
-      img.src = event.imageUrl;
+      img.src = codeCollectiveImage;
       img.alt = event.name;
       img.className = 'event-card-image';
       img.loading = 'lazy';

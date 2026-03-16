@@ -8,7 +8,7 @@ def generate_event_id(event_name, start_date):
     combined = f"{event_name}{start_date}"
     return hashlib.md5(combined.encode()).hexdigest()[:16]
 
-def convert_luma_to_event_format(luma_data):
+def convert_luma_to_event_format(luma_data, fallback_url=""):
     """Convert Luma API response to the desired event format"""
     events = []
     
@@ -47,7 +47,7 @@ def convert_luma_to_event_format(luma_data):
             longitude = ""
         
         # Get event URL
-        event_url = f"https://lu.ma/{event.get('url', '')}" if event.get('url') else ""
+        event_url = f"https://lu.ma/{event.get('url', '')}" if event.get('url') else fallback_url
         
         # Extract image URL
         image_url = event.get('cover_url', '')
@@ -79,7 +79,7 @@ def convert_luma_to_event_format(luma_data):
     
     return events
 
-def fetch_and_convert_luma_events(user_api_id= "usr-tYdFPQYBiZY4T6B"):
+def fetch_and_convert_luma_events(user_api_id="usr-tYdFPQYBiZY4T6B", fallback_url=""):
     """Main function to fetch from Luma API and convert the data"""
     
     # API endpoint
@@ -101,7 +101,7 @@ def fetch_and_convert_luma_events(user_api_id= "usr-tYdFPQYBiZY4T6B"):
         print(f"Successfully fetched {len(luma_data.get('entries', []))} events")
         
         # Convert to desired format
-        converted_events = convert_luma_to_event_format(luma_data)
+        converted_events = convert_luma_to_event_format(luma_data, fallback_url=fallback_url)
         
         # Pretty print the converted data
         print("\nConverted events:")
@@ -120,5 +120,6 @@ def fetch_and_convert_luma_events(user_api_id= "usr-tYdFPQYBiZY4T6B"):
         return []
 import sys
 if __name__ == "__main__":
-    events = fetch_and_convert_luma_events(sys.argv[1])
+    fallback_url = sys.argv[2] if len(sys.argv) > 2 else ""
+    events = fetch_and_convert_luma_events(sys.argv[1], fallback_url=fallback_url)
     print(json.dumps(events, indent=2))
