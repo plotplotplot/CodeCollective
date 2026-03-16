@@ -20,7 +20,7 @@ EXCLUDED_DIRS = {
     "legacy",
     "levatel",
     "m",
-    "portal_src",
+    "portal",
     "templates",
 }
 EXCLUDED_FILES = {
