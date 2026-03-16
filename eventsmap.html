@@ -15,6 +15,8 @@
             --panel-bg: #f6fbff;
             --accent: #0d3d79;
             --card-bg: #ffffff;
+            --muted: #5b6b83;
+            --border: #b7d5f2;
         }
 
         body {
@@ -53,13 +55,16 @@
             background: var(--panel-bg);
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.85rem;
+            max-height: calc(100vh - 140px);
+            overflow: hidden;
         }
 
         .right-panel {
             width: 60%;
             background: #d5ecff;
             padding: 0;
+            position: relative;
         }
 
         .section-title {
@@ -69,36 +74,131 @@
             letter-spacing: 0.02em;
         }
 
+        .controls-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1 1 260px;
+            padding: 0.85rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 999px;
+            font-size: 0.95rem;
+            color: #0f172a;
+            background: #ffffff;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #0d3d79;
+            box-shadow: 0 0 0 3px rgba(13, 61, 121, 0.12);
+        }
+
+        .action-button {
+            border: 2px solid #0d3d79;
+            background: #ffffff;
+            color: #0d3d79;
+            border-radius: 999px;
+            padding: 0.75rem 1rem;
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+        }
+
+        .action-button:hover,
+        .action-button:focus-visible {
+            background: #e6f1ff;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(13, 61, 121, 0.14);
+        }
+
+        .action-button:focus-visible,
+        .location-card:focus-visible {
+            outline: none;
+        }
+
+        .list-meta {
+            margin: 0;
+            font-size: 0.92rem;
+            color: var(--muted);
+        }
+
         .cards-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 0.75rem;
+            overflow-y: auto;
+            padding-right: 0.25rem;
         }
 
         .location-card {
             background: var(--card-bg);
-            padding: 1rem;
+            padding: 1rem 1rem 0.95rem;
             border-radius: 18px;
             border: 2px solid #002a61;
             box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+        }
+
+        .location-card:hover,
+        .location-card:focus-visible,
+        .location-card.active {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(0, 42, 97, 0.16);
+            border-color: #0d3d79;
         }
 
         .location-card h3 {
-            margin: 0 0 0.25rem 0;
-            font-size: 1.1rem;
+            margin: 0 0 0.35rem 0;
+            font-size: 1.02rem;
             color: #001b3d;
         }
 
         .location-card p {
             margin: 0.15rem 0;
-            font-size: 0.95rem;
+            font-size: 0.93rem;
             color: #1d3557;
         }
 
         .location-card .event-name {
             font-weight: 600;
             color: #0d3d79;
+        }
+
+        .location-card .event-meta {
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .location-card.unmapped {
+            border-style: dashed;
+            border-color: #7c8ca8;
+            background: #f8fbff;
+        }
+
+        .location-card .status-chip {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 0.45rem;
+            border-radius: 999px;
+            padding: 0.22rem 0.6rem;
+            font-size: 0.74rem;
+            font-weight: 700;
+            background: #dbeafe;
+            color: #0d3d79;
+        }
+
+        .empty-state {
+            background: rgba(255, 255, 255, 0.72);
+            border: 2px dashed var(--border);
+            border-radius: 18px;
+            padding: 1rem;
+            color: var(--muted);
         }
 
         #map {
@@ -116,6 +216,119 @@
             border-radius: 12px;
             font-size: 0.85rem;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            z-index: 500;
+        }
+
+        .hover-preview-panel {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: min(420px, calc(100% - 2rem));
+            max-height: calc(100% - 7rem);
+            overflow-y: auto;
+            border-radius: 24px;
+            background: rgba(10, 15, 28, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(16px);
+            color: #f8fafc;
+            opacity: 0;
+            transform: translateX(12px);
+            transition: opacity 120ms ease, transform 120ms ease;
+            pointer-events: none;
+            z-index: 600;
+        }
+
+        .hover-preview-panel.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .hover-preview-media-wrap {
+            min-height: 180px;
+            max-height: 34vh;
+            background: #111827;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .hover-preview-media {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .hover-preview-copy {
+            padding: 1.25rem 1.4rem 1.5rem;
+        }
+
+        .hover-preview-kicker {
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #93c5fd;
+            margin-bottom: 0.6rem;
+            font-weight: 700;
+        }
+
+        .hover-preview-title {
+            margin: 0 0 0.65rem;
+            font-size: clamp(1.25rem, 2vw, 1.8rem);
+            line-height: 1.1;
+            color: #ffffff;
+        }
+
+        .hover-preview-source {
+            margin: 0 0 0.8rem;
+            color: #cbd5e1;
+            font-weight: 600;
+        }
+
+        .hover-preview-location {
+            margin-bottom: 0.85rem;
+            font-size: 0.96rem;
+            line-height: 1.55;
+            color: #e2e8f0;
+        }
+
+        .hover-preview-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-bottom: 1rem;
+        }
+
+        .hover-preview-tag {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 999px;
+            padding: 0.35rem 0.7rem;
+            font-size: 0.76rem;
+            font-weight: 700;
+            background: #334155;
+            color: #ffffff;
+        }
+
+        .hover-preview-description {
+            font-size: 0.96rem;
+            line-height: 1.55;
+            color: #e2e8f0;
+            white-space: pre-line;
+        }
+
+        .hover-preview-link {
+            display: inline-flex;
+            margin-top: 1rem;
+            color: #7dd3fc;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .hover-preview-link:hover,
+        .hover-preview-link:focus-visible {
+            text-decoration: underline;
+            outline: none;
         }
 
         @media (max-width: 900px) {
@@ -128,8 +341,20 @@
                 width: 100%;
             }
 
+            .left-panel {
+                max-height: none;
+            }
+
+            .cards-grid {
+                max-height: none;
+            }
+
             #map {
                 min-height: 40vh;
+            }
+
+            .hover-preview-panel {
+                display: none;
             }
         }
     </style>
@@ -142,15 +367,35 @@
     <div class="page-container">
         <section class="panel left-panel">
             <h2 class="section-title">Featured Event Locations</h2>
-            <p>Here are a few events with complete location info. Tap a card to learn more.</p>
+            <div class="controls-row">
+                <input id="event-search" class="search-input" type="search" placeholder="Search events, locations, tags, or descriptions">
+                <button id="copy-all-button" class="action-button" type="button">Copy all</button>
+                <button id="copy-some-button" class="action-button" type="button">Copy some</button>
+            </div>
+            <p id="list-meta" class="list-meta">Loading events with location data.</p>
             <div id="location-cards" class="cards-grid"></div>
         </section>
         <section class="panel right-panel">
             <div id="map"></div>
+            <aside id="hover-preview" class="hover-preview-panel" hidden>
+                <div id="hover-preview-media-wrap" class="hover-preview-media-wrap" hidden>
+                    <img id="hover-preview-media" class="hover-preview-media" alt="">
+                </div>
+                <div class="hover-preview-copy">
+                    <div id="hover-preview-kicker" class="hover-preview-kicker"></div>
+                    <h3 id="hover-preview-title" class="hover-preview-title"></h3>
+                    <p id="hover-preview-source" class="hover-preview-source"></p>
+                    <div id="hover-preview-location" class="hover-preview-location"></div>
+                    <div id="hover-preview-tags" class="hover-preview-tags"></div>
+                    <div id="hover-preview-description" class="hover-preview-description"></div>
+                    <a id="hover-preview-link" class="hover-preview-link" href="#" target="_blank" rel="noopener" hidden>Open event page</a>
+                </div>
+            </aside>
             <div class="map-legend">
                 <strong>Map Tips</strong>
                 <div>• Drag & zoom to explore</div>
-                <div>• Tap markers for event details</div>
+                <div>• Hover a list item to preview details here</div>
+                <div>• Click a list item to jump to its marker</div>
             </div>
         </section>
     </div>
@@ -160,12 +405,16 @@
         crossorigin=""
     ></script>
     <script>
-        const CARDS_TO_SHOW = 4;
         const DEFAULT_CITY = 'baltimore';
         const DEFAULT_CENTER = [39.2904, -76.6122];
         const geocodeCache = {};
+        const allEvents = [];
         const eventsWithCoords = [];
+        const eventsWithoutCoords = [];
+        const markersByEventKey = new Map();
         let fileGeocodeCache = {};
+        let searchTerm = '';
+        let activeHoverKey = '';
         const cityPathContext = resolveCityPath();
         const EVENTS_SOURCE = `${cityPathContext.basePath}/upcoming_events.json`;
         const GEOCODE_CACHE_URL = `${cityPathContext.basePath}/geocode_cache.json`;
@@ -205,24 +454,17 @@
                 if (!response.ok) {
                     throw new Error('Failed to load upcoming events.');
                 }
+
                 const events = await response.json();
-                const withAddresses = events.filter(evt => {
-                    const address = evt?.location?.address;
-                    return address && address.trim().length > 0;
-                });
-
-                await plotEvents(withAddresses);
-
-                if (eventsWithCoords.length > 0) {
-                    updateCards();
-                    map.on('moveend', updateCards);
-                } else {
-                    renderCards([]);
-                }
+                allEvents.splice(0, allEvents.length, ...(Array.isArray(events) ? events : []));
+                await plotEvents(allEvents);
+                bindUiControls();
+                renderCards(getFilteredEvents());
             } catch (error) {
                 console.error(error);
                 document.getElementById('location-cards').innerHTML =
-                    '<p>Unable to load events right now. Please try again later.</p>';
+                    '<div class="empty-state">Unable to load events right now. Please try again later.</div>';
+                document.getElementById('list-meta').textContent = 'Event data could not be loaded.';
             }
         }
 
@@ -237,10 +479,59 @@
             }
         }
 
+        function bindUiControls() {
+            const searchInput = document.getElementById('event-search');
+            const copyAllButton = document.getElementById('copy-all-button');
+            const copySomeButton = document.getElementById('copy-some-button');
+
+            if (!searchInput.dataset.bound) {
+                searchInput.addEventListener('input', event => {
+                    searchTerm = event.target.value.trim().toLowerCase();
+                    renderCards(getFilteredEvents());
+                });
+                searchInput.dataset.bound = 'true';
+            }
+
+            if (!copyAllButton.dataset.bound) {
+                copyAllButton.addEventListener('click', async () => {
+                    const text = formatEventListForClipboard(getFilteredEvents(), 'All listed events');
+                    await copyTextToClipboard(text);
+                    flashButtonLabel(copyAllButton, 'Copied');
+                });
+                copyAllButton.dataset.bound = 'true';
+            }
+
+            if (!copySomeButton.dataset.bound) {
+                copySomeButton.addEventListener('click', async () => {
+                    const listed = getFilteredEvents().slice(0, 5);
+                    const dropped = eventsWithoutCoords.slice(0, 5);
+                    const text = [
+                        formatEventListForClipboard(listed, 'Listed events (5)'),
+                        formatDroppedListForClipboard(dropped, 'Could not be displayed (5)')
+                    ].join('\n\n');
+                    await copyTextToClipboard(text);
+                    flashButtonLabel(copySomeButton, 'Copied');
+                });
+                copySomeButton.dataset.bound = 'true';
+            }
+        }
+
+        function flashButtonLabel(button, label) {
+            const original = button.textContent;
+            button.textContent = label;
+            window.setTimeout(() => {
+                button.textContent = original;
+            }, 1500);
+        }
+
         function renderCards(events) {
             const container = document.getElementById('location-cards');
+            const meta = document.getElementById('list-meta');
+            meta.textContent = `${events.length} of ${allEvents.length} events shown. ${eventsWithoutCoords.length} could not be displayed on the map.`;
+
             if (events.length === 0) {
-                container.innerHTML = '<p>No events with full addresses were found.</p>';
+                container.innerHTML = '<div class="empty-state">No events match this search.</div>';
+                clearHoverPreview();
                 return;
             }
 
@@ -248,53 +539,56 @@
             events.forEach(evt => {
                 const card = document.createElement('article');
                 card.className = 'location-card';
+                if (!evt.coords) {
+                    card.classList.add('unmapped');
+                }
+                card.tabIndex = 0;
+                card.dataset.eventKey = getEventKey(evt);
                 card.innerHTML = `
-                    <h3>${evt.location?.name || evt.name}</h3>
-                    <p class="event-name">${evt.name}</p>
-                    <p>${evt.location?.address || 'Address unavailable'}</p>
-                    ${evt.startDate ? `<p>${formatDate(evt.startDate)}</p>` : ''}
-                    ${evt.url ? `<p><a href="${evt.url}" target="_blank" rel="noopener">View event</a></p>` : ''}
+                    <h3>${escapeHtml(evt.name || 'Untitled')}</h3>
+                    <p class="event-name">${escapeHtml(getEventLocationKey(evt) || 'Address unavailable')}</p>
+                    <p class="event-meta">${escapeHtml(formatDate(evt.startDate) || 'Time unavailable')}</p>
+                    <p>${escapeHtml(getEventLocationLabel(evt))}</p>
+                    ${evt.coords ? '' : '<div class="status-chip">Not mapped</div>'}
                 `;
+                card.addEventListener('mouseenter', () => activateEventPreview(evt));
+                card.addEventListener('focus', () => activateEventPreview(evt));
+                card.addEventListener('mouseleave', clearHoverPreview);
+                card.addEventListener('click', () => focusEventOnMap(evt));
+                card.addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        focusEventOnMap(evt);
+                    }
+                });
                 container.appendChild(card);
             });
         }
 
-        function updateCards() {
-            if (eventsWithCoords.length === 0) {
-                renderCards([]);
-                return;
-            }
-
-            const center = map.getCenter();
-            const bounds = map.getBounds();
-
-            const inView = eventsWithCoords.filter(evt =>
-                bounds.contains([evt.coords.lat, evt.coords.lng])
-            );
-
-            const sourceEvents = inView.length > 0 ? inView : eventsWithCoords;
-            const sorted = [...sourceEvents].sort((a, b) => {
-                return distanceToCenter(a.coords, center) - distanceToCenter(b.coords, center);
+        function getFilteredEvents() {
+            const sorted = [...allEvents].sort((a, b) => {
+                const aTime = new Date(a.startDate || 0).getTime();
+                const bTime = new Date(b.startDate || 0).getTime();
+                return aTime - bTime;
             });
-
-            renderCards(sorted.slice(0, CARDS_TO_SHOW));
+            if (!searchTerm) {
+                return sorted;
+            }
+            return sorted.filter(matchesSearchTerm);
         }
 
-        function distanceToCenter(coords, center) {
-            return haversine(coords.lat, coords.lng, center.lat, center.lng);
-        }
-
-        function haversine(lat1, lon1, lat2, lon2) {
-            const toRad = angle => angle * (Math.PI / 180);
-            const R = 6371;
-            const dLat = toRad(lat2 - lat1);
-            const dLon = toRad(lon2 - lon1);
-            const a =
-                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-                Math.sin(dLon / 2) * Math.sin(dLon / 2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            return R * c;
+        function matchesSearchTerm(evt) {
+            const haystack = [
+                evt.name,
+                evt.description,
+                evt.url,
+                evt.location?.name,
+                evt.location?.address,
+                evt.location?.city,
+                evt.location?.state,
+                ...(Array.isArray(evt.tags) ? evt.tags : [])
+            ].filter(Boolean).join(' ').toLowerCase();
+            return haystack.includes(searchTerm);
         }
 
         function formatDate(dateString) {
@@ -316,6 +610,42 @@
             return (address || '').trim().toLowerCase();
         }
 
+        function normalizeCoordinateValue(value) {
+            if (value === null || value === undefined || value === '') {
+                return null;
+            }
+            const numeric = Number(value);
+            return Number.isFinite(numeric) ? numeric : null;
+        }
+
+        function coerceCoords(value) {
+            if (!value || typeof value !== 'object') {
+                return null;
+            }
+
+            const lat = normalizeCoordinateValue(value.lat ?? value.latitude);
+            const lng = normalizeCoordinateValue(value.lng ?? value.longitude ?? value.lon);
+            if (lat === null || lng === null) {
+                return null;
+            }
+
+            return { lat, lng };
+        }
+
+        function getEventLocationKey(evt) {
+            const loc = evt?.location || {};
+            return String(loc.address || loc.name || '').trim();
+        }
+
+        function getEventLocationLabel(evt) {
+            const loc = evt?.location || {};
+            return String(loc.name || loc.address || evt?.name || 'Event location').trim();
+        }
+
+        function getEventKey(evt) {
+            return String(evt?.id || `${evt?.name || ''}|${evt?.startDate || ''}|${getEventLocationKey(evt)}`);
+        }
+
         function getCachedGeocode(key) {
             if (geocodeCache[key]) {
                 return geocodeCache[key];
@@ -333,46 +663,37 @@
             return null;
         }
 
-        function setCachedGeocode(key, value) {
-            geocodeCache[key] = value;
-            try {
-                localStorage.setItem(key, JSON.stringify(value));
-            } catch (err) {
-                // Ignore storage errors (private mode, etc.)
-            }
-        }
-
         function getFileCacheCoords(address) {
             const key = normalizeAddressKey(address);
             return fileGeocodeCache[key] || null;
         }
 
-        function setFileCacheCoords(address, coords) {
-            const key = normalizeAddressKey(address);
-            if (!key) {
-                return;
-            }
-            fileGeocodeCache[key] = coords;
-        }
-
         async function plotEvents(events) {
+            eventsWithCoords.length = 0;
+            eventsWithoutCoords.length = 0;
+            markersByEventKey.clear();
             const markers = [];
 
             for (const evt of events) {
                 const coords = await getEventCoordinates(evt);
                 if (!coords) {
+                    eventsWithoutCoords.push(evt);
                     continue;
                 }
 
                 const eventWithCoords = { ...evt, coords };
                 eventsWithCoords.push(eventWithCoords);
+                evt.coords = coords;
 
                 const marker = L.marker([coords.lat, coords.lng]).addTo(map);
                 marker.bindPopup(`
-                    <strong>${evt.name}</strong><br>
-                    ${evt.location?.address || 'Address on RSVP'}<br>
-                    ${evt.startDate ? formatDate(evt.startDate) : ''}
+                    <strong>${escapeHtml(evt.name || 'Untitled')}</strong><br>
+                    ${escapeHtml(getEventLocationKey(evt) || 'Address on RSVP')}<br>
+                    ${escapeHtml(formatDate(evt.startDate) || '')}
                 `);
+                marker.on('mouseover', () => activateEventPreview(eventWithCoords));
+                marker.on('mouseout', clearHoverPreview);
+                markersByEventKey.set(getEventKey(eventWithCoords), marker);
                 markers.push(marker);
             }
 
@@ -386,29 +707,174 @@
 
         async function getEventCoordinates(evt) {
             const loc = evt.location || {};
-            if (loc.latitude && loc.longitude) {
-                return {
-                    lat: Number(loc.latitude),
-                    lng: Number(loc.longitude)
-                };
+            const directCoords = coerceCoords(loc);
+            if (directCoords) {
+                return directCoords;
             }
 
-            const address = loc.address;
-            if (!address) {
+            const locationKey = getEventLocationKey(evt);
+            if (!locationKey) {
                 return null;
             }
 
-            const fileCached = getFileCacheCoords(address);
+            const fileCached = coerceCoords(getFileCacheCoords(locationKey));
             if (fileCached) {
                 return fileCached;
             }
 
-            const cacheKey = `eventsmap:${normalizeAddressKey(address)}`;
-            const cached = getCachedGeocode(cacheKey);
+            const cacheKey = `eventsmap:${normalizeAddressKey(locationKey)}`;
+            const cached = coerceCoords(getCachedGeocode(cacheKey));
             if (cached) {
                 return cached;
             }
+
             return null;
+        }
+
+        function activateEventPreview(evt) {
+            activeHoverKey = getEventKey(evt);
+            syncActiveCard();
+            showHoverPreview(evt);
+        }
+
+        function syncActiveCard() {
+            document.querySelectorAll('.location-card').forEach(card => {
+                card.classList.toggle('active', card.dataset.eventKey === activeHoverKey);
+            });
+        }
+
+        function showHoverPreview(evt) {
+            const panel = document.getElementById('hover-preview');
+            const mediaWrap = document.getElementById('hover-preview-media-wrap');
+            const media = document.getElementById('hover-preview-media');
+            const kicker = document.getElementById('hover-preview-kicker');
+            const title = document.getElementById('hover-preview-title');
+            const source = document.getElementById('hover-preview-source');
+            const location = document.getElementById('hover-preview-location');
+            const tags = document.getElementById('hover-preview-tags');
+            const description = document.getElementById('hover-preview-description');
+            const link = document.getElementById('hover-preview-link');
+            const imageUrl = getPreferredImage(evt);
+
+            kicker.textContent = formatDate(evt.startDate) || 'Time unavailable';
+            title.textContent = evt.name || 'Untitled';
+            source.textContent = getSourceLabel(evt);
+            location.textContent = getEventLocationKey(evt) || 'Address unavailable';
+            tags.innerHTML = (Array.isArray(evt.tags) ? evt.tags : []).map(tag => `<span class="hover-preview-tag">${escapeHtml(tag)}</span>`).join('');
+            description.textContent = evt.description || 'No description available.';
+
+            if (imageUrl) {
+                mediaWrap.hidden = false;
+                media.src = imageUrl;
+                media.alt = evt.name || 'Event image';
+            } else {
+                mediaWrap.hidden = true;
+                media.removeAttribute('src');
+                media.alt = '';
+            }
+
+            if (evt.url) {
+                link.hidden = false;
+                link.href = evt.url;
+            } else {
+                link.hidden = true;
+                link.removeAttribute('href');
+            }
+
+            panel.hidden = false;
+            panel.classList.add('visible');
+        }
+
+        function clearHoverPreview() {
+            activeHoverKey = '';
+            syncActiveCard();
+            const panel = document.getElementById('hover-preview');
+            panel.classList.remove('visible');
+            panel.hidden = true;
+        }
+
+        function focusEventOnMap(evt) {
+            const marker = markersByEventKey.get(getEventKey(evt));
+            if (!marker || !evt.coords) {
+                activateEventPreview(evt);
+                return;
+            }
+            map.flyTo([evt.coords.lat, evt.coords.lng], 14, {
+                duration: 0.75
+            });
+            marker.openPopup();
+            activateEventPreview(evt);
+        }
+
+        function getSourceLabel(evt) {
+            const value = evt?.source_url || evt?.source || evt?.url || '';
+            if (!value) {
+                return 'Source unavailable';
+            }
+            try {
+                return new URL(value, window.location.origin).hostname.replace(/^www\./, '');
+            } catch (error) {
+                return value;
+            }
+        }
+
+        function getPreferredImage(evt) {
+            return evt?.imageUrl || evt?.orgImageUrl || '';
+        }
+
+        async function copyTextToClipboard(text) {
+            if (navigator.clipboard?.writeText) {
+                await navigator.clipboard.writeText(text);
+                return;
+            }
+
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            textarea.remove();
+        }
+
+        function formatEventListForClipboard(events, heading) {
+            if (!events.length) {
+                return `${heading}\n- None`;
+            }
+            return `${heading}\n${events.map(evt => formatEventLine(evt)).join('\n')}`;
+        }
+
+        function formatDroppedListForClipboard(events, heading) {
+            if (!events.length) {
+                return `${heading}\n- None`;
+            }
+            return `${heading}\n${events.map(evt => formatEventLine(evt, true)).join('\n')}`;
+        }
+
+        function formatEventLine(evt, dropped = false) {
+            const parts = [
+                evt.name || 'Untitled event',
+                formatDate(evt.startDate) || 'Time unavailable',
+                getEventLocationKey(evt) || 'Address unavailable'
+            ];
+            if (dropped) {
+                parts.push('Could not be displayed on map/list');
+            }
+            if (evt.url) {
+                parts.push(evt.url);
+            }
+            return `- ${parts.join(' | ')}`;
+        }
+
+        function escapeHtml(value) {
+            return String(value || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
         }
 
         loadEvents();
