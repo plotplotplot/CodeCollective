@@ -19,7 +19,7 @@ const FEATURED_SOURCE_URLS = new Set([
 const CATEGORY_MAPS_INDEX_URL = '/data/category_maps/index.json';
 const LEGEND_PREFS_KEY = 'calendarLegendPrefs';
 const FALLBACK_CATEGORY_MAP_CONFIG = {
-  default_map: 'maslow_needs',
+  default_map: 'tech_only',
   maps: [
     {
       id: 'maslow_needs',
@@ -55,7 +55,7 @@ const FALLBACK_CATEGORY_MAP_CONFIG = {
     },
     {
       id: 'tech_only',
-      label: 'Tech Only',
+      label: 'Tech Meetups',
       show_other: false,
       other: { label: 'General Tech', color: '#475569', text_color: '#ffffff' },
       categories: [
@@ -67,7 +67,7 @@ const FALLBACK_CATEGORY_MAP_CONFIG = {
         { label: 'Design & Product', color: '#db2777', text_color: '#ffffff', matches: ['UX', 'Product'] },
         { label: 'Crypto & Web3', color: '#a16207', text_color: '#ffffff', matches: ['Crypto & Web3'] },
         { label: 'Makerspace & Robotics', color: '#ea580c', text_color: '#ffffff', matches: ['Makerspace', 'Robotics'] },
-        { label: 'Tech Community', color: '#16a34a', text_color: '#ffffff', matches: ['Tech Community', 'Code Collective & Partners'] }
+        { label: 'Tech Meetups', color: '#16a34a', text_color: '#ffffff', matches: ['Tech Community', 'Code Collective & Partners'] }
       ]
     }
   ]
@@ -540,6 +540,20 @@ function getLegendPrefs(categoryMap) {
   }
 }
 
+function getValidSelectedTags(selectedTags, categoryMap) {
+  const availableTags = new Set(
+    Array.isArray(categoryMap?.categories)
+      ? categoryMap.categories.map(category => slugifyTag(category.label))
+      : []
+  );
+
+  const validTags = Array.isArray(selectedTags)
+    ? selectedTags.filter(tag => availableTags.has(tag))
+    : [];
+
+  return validTags.length > 0 ? validTags : Array.from(availableTags);
+}
+
 function saveLegendPrefs() {
   const prefs = {
     hidden: document.body.classList.contains('legend-hidden'),
@@ -613,13 +627,14 @@ function buildMaslowLegendList(categories, activeSlugs, otherCategory) {
 
 function buildLegend(categoryMap, options = {}) {
   activeCategoryMap = categoryMap || getCategoryMapById(categoryMapConfig.default_map);
-  const prefs = getLegendPrefs(activeCategoryMap);
+  let prefs = getLegendPrefs(activeCategoryMap);
   if (!options.lockMapId && prefs.mapId && prefs.mapId !== activeCategoryMap.id) {
     activeCategoryMap = getCategoryMapById(prefs.mapId);
+    prefs = getLegendPrefs(activeCategoryMap);
   }
 
   const categories = activeCategoryMap.categories || [];
-  activeTagSlugs = new Set(prefs.selectedTags);
+  activeTagSlugs = new Set(getValidSelectedTags(prefs.selectedTags, activeCategoryMap));
   showExcludedEvents = prefs.showExcludedEvents === true;
 
   const legendItems = document.getElementById('calendar-legend-items');

@@ -1,9 +1,6 @@
 name: Update Calendar
 
 on:
-  push:
-    branches:
-      - main  # Runs on push to the main branch
   schedule:
     - cron: '0 0 * * *'  # Runs daily at 00:00 UTC
   workflow_dispatch:  # Allows manual trigger from the Actions tab
@@ -100,6 +97,44 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
+          git add \
+            baltimore/cc_events.ics \
+            baltimore/eventsplain.html \
+            baltimore/scrape_errors.json \
+            baltimore/unmatched_source_patterns.json \
+            baltimore/upcoming_events.json \
+            dc/cc_events.ics \
+            dc/eventsplain.html \
+            dc/scrape_errors.json \
+            dc/unmatched_source_patterns.json \
+            dc/upcoming_events.json \
+            hawaii/cc_events.ics \
+            hawaii/eventsplain.html \
+            hawaii/scrape_errors.json \
+            hawaii/unmatched_source_patterns.json \
+            hawaii/upcoming_events.json \
+            pittsburgh/cc_events.ics \
+            pittsburgh/eventsplain.html \
+            pittsburgh/scrape_errors.json \
+            pittsburgh/unmatched_source_patterns.json \
+            pittsburgh/upcoming_events.json \
+            virtual/cc_events.ics \
+            virtual/eventsplain.html \
+            virtual/scrape_errors.json \
+            virtual/unmatched_source_patterns.json \
+            virtual/upcoming_events.json \
+            westvirginia/cc_events.ics \
+            westvirginia/eventsplain.html \
+            westvirginia/scrape_errors.json \
+            westvirginia/unmatched_source_patterns.json \
+            westvirginia/upcoming_events.json \
+            baltimore/testimony/data/city_council_testimony.json \
+            baltimore/testimony/images \
+            cc_events.ics \
+            data/maryland_bills_2026.json \
+            event_images \
+            upcoming_events.json \
+            usa/data/usajobs-lite.json.gz \
+            usa/data/usajobs.json.gz
           git commit -m "Update calendar and cached legislative data" || echo "No changes to commit"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
