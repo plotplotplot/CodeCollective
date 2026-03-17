@@ -260,7 +260,10 @@ def fetch_events_from_source(source, city):
             print(f"Fetching events from {source_url}")
             upcoming_page_content = scrape_meetup.fetch_meetup_page(source_url)
             meetup_token = sanitize_event_name(source_url, max_length=48)
-            meetup_cache_path = os.path.join(city, f"meetup_upcoming_{meetup_token}.html")
+            meetup_cache_path = os.path.join(
+                "/tmp",
+                f"codecollective_{city}_meetup_upcoming_{meetup_token}.html",
+            )
             with open(meetup_cache_path, "w+", encoding="utf-8") as f:
                 f.write(upcoming_page_content)
 
