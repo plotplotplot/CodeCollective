@@ -23,7 +23,7 @@ sources = [
     {"url": "https://www.eventbrite.com/e/power-shift-a-der-showcase-tickets-1976198206032", "tags": ["Infrastructure"]},
     {"url": "https://www.eventbrite.com/e/healthy-homes-fair-2026-tickets-1975247546584", "tags": ["Infrastructure"]},
     {"url": "https://www.eventbrite.com/e/want-a-healthier-more-efficient-home-get-coached-tickets-1975244953829", "tags": ["Infrastructure"]},
-    {"url": "https://luma.com/dcclimateweek2026", "tags": ["Infrastructure", "Community Organizing"]},
+    {"url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-Kwz0Nj6rc80jQ3D", "group_name": "DC Climate Week", "orgImageUrl": "https://images.lumacdn.com/avatars/ln/f11ce87e-b740-4c3a-9cac-b7398062aa10.png", "tags": ["Infrastructure", "Community Organizing"]},
     {"url": "https://lu.ma/civic-tech-dc", "tags": ["Civic Tech", "Tech Community", "Politics"]},
     {"url": "https://luma.com/FounderSpeakeasy", "tags": ["Business", "Startup"]},
     {"url": "https://luma.com/defense-tech-dc", "tags": ["Tech Skills", "Startup", "Tech Community"]},
