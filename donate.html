@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Code Collective | Baltimore Tech Events Calendar & Tech Labor Organization</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Code Collective organizes tech labor in Baltimore and provides a unified calendar of local tech meetups, hackathons, and tech community events." />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://codecollective.us/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://codecollective.us/" />
+  <meta property="og:site_name" content="Code Collective" />
+  <meta property="og:title" content="Code Collective | Organizing Tech Labor" />
+  <meta property="og:description"
+    content="Organizing tech labor in Baltimore and sharing a community-wide tech events calendar." />
+  <meta property="og:image" content="https://codecollective.us/images/general_encircled_banner.webp" />
+  <meta property="og:image:alt" content="Code Collective banner" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Code Collective | Coding a better economy" />
+  <meta name="twitter:description"
+    content="Baltimore-based tech labor organization with a unified events calendar, workforce development, and advocacy." />
+  <meta name="twitter:image" content="https://codecollective.us/images/general_encircled_banner.webp" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/favicons/favicon.png" />
+
+  <link rel="preload" href="/css/master.css" as="style">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/master.css" />
+  <link rel="stylesheet" href="/css/carousel.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Code Collective",
+      "url": "https://codecollective.us/",
+      "logo": "https://codecollective.us/images/favicons/favicon.png",
+      "description": "Baltimore-based tech labor organization providing a unified tech events calendar, workforce development, and advocacy.",
+      "slogan": "Coding a better economy",
+      "areaServed": "Baltimore, MD",
+      "sameAs": [
+        "https://codecollective.us/newsletter/"
+      ]
+    }
+  </script>
+
+</head>
+
+<body id="body">
+  <video id="bg-video" autoplay loop muted playsinline poster="/images/general_encircled_banner.webp">
+    <source src="/videos/craig_baltimore_video.mp4" type="video/mp4" media="(max-width: 768px)">
+    <source src="/videos/baltimorenight_15s_crossfaded.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+
+  <nav class="main-nav" aria-label="Main Navigation">
+    <div class="navbar dark-mode">
+      <a href="/#main">Home</a>
+      <a href="/platform.html">Platform</a>
+      <a href="/calendar.html?city=baltimore">Calendar</a>
+      <a href="/projects.html">Projects</a>
+    </div>
+  </nav>
+
+  <main id="wrapper" class="longform dark-mode" style="padding: 0; margin: 0;">
+    <section id="main" class="longform dark-mode" style="padding: 0; margin: 0;">
+
+      <section class="donation-grid" aria-label="Cryptocurrency Donations">
+        <section class="donation-card" aria-label="Bitcoin Donations">
+          <h2>Donate With Bitcoin</h2>
+          <p>Scan the QR code below or send Bitcoin to this wallet address:</p>
+          <a
+            href="bitcoin:bc1q6alkfcy5fufh5ud7gjv627lfve67kl5dc8jktk?message=Donation%20Address%20for%20Code%20Collective"
+            class="donation-card__action"
+            aria-label="Open Bitcoin wallet with the Code Collective donation address"
+          >
+            <img
+              src="/images/coinbase_wallet_qr.png"
+              alt="Code Collective Bitcoin wallet QR code"
+              loading="lazy"
+              decoding="async"
+              class="donation-card__qr"
+            >
+            <span class="donation-card__cta">Open in wallet</span>
+          </a>
+          <p class="donation-card__address">
+            bc1q6alkfcy5fufh5ud7gjv627lfve67kl5dc8jktk
+          </p>
+        </section>
+
+        <section class="donation-card" aria-label="Ethereum Donations">
+          <h2>Donate With Ethereum</h2>
+          <p>Scan the QR code below or send Ethereum to this wallet address:</p>
+          <a
+            href="ethereum:0xD52b5e0faD9c3Fe3A4477bdB12cf9E5aE62De5Ed"
+            class="donation-card__action"
+            aria-label="Open Ethereum wallet with the Code Collective donation address"
+          >
+            <img
+              src="/images/code_collective_eth_wallet_qr.jpeg"
+              alt="Code Collective Ethereum wallet QR code"
+              loading="lazy"
+              decoding="async"
+              class="donation-card__qr"
+            >
+            <span class="donation-card__cta">Open in wallet</span>
+          </a>
+          <p class="donation-card__address">
+            0xD52b5e0faD9c3Fe3A4477bdB12cf9E5aE62De5Ed
+          </p>
+        </section>
+      </section>
+
+
+    </section>
+
+    </section>
+
+  </main>
+
+  <our-footer></our-footer>
+  <our-slack-link></our-slack-link>
+
+</body>
+
+<script type="module" src="/js/reusableComponents.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+</html>

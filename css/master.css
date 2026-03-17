@@ -304,6 +304,7 @@ b, strong, .bold-text {
   color: #002a61;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 
@@ -380,6 +381,49 @@ b, strong, .bold-text {
   /* Set the color to white in dark mode */
   color: white;
   /* Set text color to white */
+}
+
+.donate-shortcut {
+  position: absolute;
+  top: 50%;
+  right: 0.9rem;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 1px rgba(0, 42, 97, 0.18);
+  transition: background-color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  z-index: 2;
+}
+
+.donate-shortcut:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.98);
+  transform: translateY(-50%) scale(1.04);
+}
+
+.donate-shortcut svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: #e63946;
+}
+
+@media (max-width: 700px) {
+  .donate-shortcut {
+    right: 0.45rem;
+    width: 1.95rem;
+    height: 1.95rem;
+  }
+
+  .donate-shortcut svg {
+    width: 0.92rem;
+    height: 0.92rem;
+  }
 }
 
 /* Basic reset */
@@ -1201,6 +1245,79 @@ button:focus {
 .info-card p {
   text-indent: 0;
   line-height: 1.35;
+}
+
+.donation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1.25rem;
+  width: min(64rem, calc(100% - 2rem));
+  margin: 3rem auto;
+}
+
+.donation-card {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+.donation-card p {
+  text-indent: 0;
+}
+
+.donation-card__action {
+  display: block;
+  margin: 1.5rem 0 1rem;
+  padding: 0.9rem;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.donation-card__action:hover,
+.donation-card__action:focus-visible {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.14);
+}
+
+.donation-card__qr {
+  display: block;
+  width: min(18rem, 100%);
+  margin: 0 auto 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 0.75rem;
+}
+
+.donation-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 11rem;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #002a61;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.donation-card__address {
+  overflow-wrap: anywhere;
+  font-family: monospace;
+  font-size: 1.05rem;
 }
 
 .project-grid .project-card-link {

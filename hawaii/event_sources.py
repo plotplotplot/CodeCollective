@@ -9,4 +9,6 @@ sources = [
     {"url": "https://www.eventbrite.com/o/better-tomorrow-speaker-series-39225126213", "tags": ["Business", "Career Growth"]},
     {"url": "https://luma.com/2d1a4uwv", "tags": ["Business", "Startup"]},
     {"url": "https://luma.com/calendar/cal-NjFsB6d9nrGCLdW", "tags": ["Tech Community"]},
+    {"url": "https://www.eventbrite.com/o/58144189063", "tags": ["Tech Community"]},
+    
 ]
