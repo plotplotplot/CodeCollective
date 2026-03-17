@@ -30,6 +30,9 @@ def run(network_name: str = "PORTAL", prefix: str = "") -> None:
         detach=True,
         network=network_name,
         restart_policy={"Name": "always"},
+        volumes={
+            str(here): {"bind": "/app", "mode": "rw"},
+        },
         environment={
             "COCKROACH_ASYNC_URL": (
                 f"postgresql://{editme.COCKROACH_USER}@{prefix}cockroach:"
@@ -40,6 +43,7 @@ def run(network_name: str = "PORTAL", prefix: str = "") -> None:
             "DENA_ANNUAL": os.getenv("DENA_ANNUAL", "1"),
             "DENA_PRECISION": os.getenv("DENA_PRECISION", "6"),
             "UBI_ENTITY_TYPES": os.getenv("UBI_ENTITY_TYPES", "individual"),
+            "WATCHFILES_FORCE_POLLING": "true",
         },
     )
     docker_utils.run_container(ubi)

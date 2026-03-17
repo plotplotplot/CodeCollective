@@ -3,6 +3,16 @@
   font-family: "NectoMono", Inter, system-ui, sans-serif;
 }
 
+html#html,
+body#body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  height: auto;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
 body#body {
   background: #f4f7fb;
   color: #0b1a33;
@@ -30,10 +40,12 @@ a:hover {
 .portal-container {
   width: min(1200px, 100% - 32px);
   margin: 0 auto;
+  overflow: visible;
 }
 
 .portal-main {
   padding: 40px 0 80px;
+  overflow: visible;
 }
 
 .portal-header {
@@ -209,6 +221,14 @@ a:hover {
   color: #fff;
 }
 
+.portal-chart-card {
+  overscroll-behavior: contain;
+}
+
+.portal-chart-overlay {
+  touch-action: none;
+}
+
 .portal-pill {
   display: inline-flex;
   align-items: center;
@@ -232,6 +252,37 @@ a:hover {
 
 .portal-section h2 {
   margin-bottom: 8px;
+}
+
+.portal-section-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.portal-timeframe-controls {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.portal-timeframe-button {
+  border: 1px solid rgba(12, 30, 60, 0.28);
+  background: #fff;
+  color: #0b1a33;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.portal-timeframe-button.active {
+  background: #0b1a33;
+  border-color: #0b1a33;
+  color: #fff;
 }
 
 .portal-muted {

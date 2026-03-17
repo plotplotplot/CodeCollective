@@ -9,6 +9,7 @@ export function ConstituentLoginPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const nextUrl = window.location.href
 
   useEffect(() => {
     document.title = 'ballot-sign • Constituent login'
@@ -48,7 +49,7 @@ export function ConstituentLoginPage() {
       >
         <div style={{ display: 'grid', gap: '0.5rem' }}>
           <a
-            href="/pidp/auth/google/login"
+            href={`/pidp/auth/google/login?next=${encodeURIComponent(nextUrl)}`}
             style={{
               display: 'inline-flex',
               justifyContent: 'center',
@@ -64,7 +65,7 @@ export function ConstituentLoginPage() {
             Continue with Google
           </a>
           <a
-            href="/pidp/auth/github/login"
+            href={`/pidp/auth/github/login?next=${encodeURIComponent(nextUrl)}`}
             style={{
               display: 'inline-flex',
               justifyContent: 'center',

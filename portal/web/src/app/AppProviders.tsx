@@ -8,6 +8,7 @@ type PidpUser = {
   id: string
   email: string
   full_name: string | null
+  avatar_url?: string | null
   identity_data?: {
     display_name?: string | null
     avatar_url?: string | null
@@ -50,6 +51,7 @@ export function useAuth(): AuthContextValue {
 }
 
 function readInitialRole(): UserRole | 'guest' {
+  if (!sessionStorage.getItem('pidp.token')) return 'guest'
   const value = localStorage.getItem('demo.role')
   if (value === 'campaign_manager' || value === 'constituent' || value === 'guest') return value
   return 'guest'
@@ -73,6 +75,17 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
 
   const pidpBaseUrl = (import.meta.env.VITE_PIDP_BASE_URL as string | undefined) ?? '/pidp'
   const normalizedPidpBase = pidpBaseUrl.replace(/\/$/, '')
+
+  const normalizeAvatarUrl = useCallback(
+    (rawUrl?: string | null): string | null => {
+      if (!rawUrl) return null
+      if (/^(data:|https?:\/\/)/i.test(rawUrl)) return rawUrl
+      if (rawUrl.startsWith(`${normalizedPidpBase}/`)) return rawUrl
+      const cleaned = rawUrl.replace(/^\/+/, '')
+      return `${normalizedPidpBase}/${cleaned}`
+    },
+    [normalizedPidpBase],
+  )
 
   const servicesValue = useMemo<ServicesContextValue>(() => ({ services: props.services }), [props.services])
 
@@ -145,6 +158,17 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
   )
 
   useEffect(() => {
+    const hash = window.location.hash.startsWith('#') ? window.location.hash.slice(1) : window.location.hash
+    const params = new URLSearchParams(hash || window.location.search)
+    const accessToken = params.get('token')
+    if (!accessToken) return
+    sessionStorage.setItem('pidp.token', accessToken)
+    setToken(accessToken)
+    setIsLoading(true)
+    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`)
+  }, [])
+
+  useEffect(() => {
     let cancelled = false
     const controller = new AbortController()
 
@@ -160,7 +184,7 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
         const data = (await resp.json()) as PidpUser
         const displayName = data.identity_data?.display_name?.trim() || data.full_name?.trim() || data.email
         const handle = data.email.split('@')[0]
-        const avatarUrl = data.identity_data?.avatar_url ?? null
+        const avatarUrl = normalizeAvatarUrl(data.identity_data?.avatar_url ?? data.avatar_url)
         const firstName = data.identity_data?.first_name ?? null
         const lastName = data.identity_data?.last_name ?? null
         if (cancelled) return
@@ -193,6 +217,8 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
         )
       } catch {
         if (!cancelled) {
+          setRoleState('guest')
+          localStorage.setItem('demo.role', 'guest')
           setToken(null)
           setUserState(null)
           sessionStorage.removeItem('pidp.token')
@@ -206,6 +232,8 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
     if (token) {
       hydrateSession(token)
     } else {
+      setRoleState('guest')
+      localStorage.setItem('demo.role', 'guest')
       setIsLoading(false)
     }
 
@@ -213,7 +241,7 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
       cancelled = true
       controller.abort()
     }
-  }, [token, normalizedPidpBase])
+  }, [token, normalizedPidpBase, normalizeAvatarUrl])
 
   const authValue = useMemo<AuthContextValue>(
     () => ({
@@ -242,6 +270,8 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
         setIsLoading(true)
       },
       logout: () => {
+        setRoleState('guest')
+        localStorage.setItem('demo.role', 'guest')
         setToken(null)
         setUserState(null)
         sessionStorage.removeItem('pidp.token')

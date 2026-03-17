@@ -23,6 +23,11 @@ import { DashboardPage } from '../dashboard/DashboardPage'
 import { AdminPage } from '../views/AdminPage'
 import { TargetPage } from '../views/TargetPage'
 import { CampaignEditableInitiativesPage } from '../views/campaign/CampaignEditableInitiativesPage'
+import { SendPage } from '../views/SendPage'
+import { ReceivePage } from '../views/ReceivePage'
+import { CreatePage } from '../views/CreatePage'
+import { CreateForProfitPage } from '../views/CreateForProfitPage'
+import { CreateNonProfitPage } from '../views/CreateNonProfitPage'
 
 export function createAppRouter() {
   const baseUrl = import.meta.env.BASE_URL ?? '/'
@@ -32,6 +37,11 @@ export function createAppRouter() {
     [
       { path: '/', element: <App /> },
       { path: '/ecops', element: <EconomicOpsPage /> },
+      { path: '/send', element: <SendPage /> },
+      { path: '/receive', element: <ReceivePage /> },
+      { path: '/create', element: <CreatePage /> },
+      { path: '/create/for-profit', element: <CreateForProfitPage /> },
+      { path: '/create/non-profit', element: <CreateNonProfitPage /> },
       { path: '/auth/callback', element: <AuthCallbackPage /> },
       // If someone hits the physical file path in S3/CloudFront, redirect to the SPA root.
       { path: '/index.html', element: <Navigate to="/" replace /> },
