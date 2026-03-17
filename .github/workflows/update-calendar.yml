@@ -51,6 +51,10 @@ jobs:
         run: |
           python fetch_mdbills_cache.py
 
+      - name: Refresh Maryland hearings / testimony cache
+        run: |
+          python fetch_mdbills_hearings_cache.py
+
       - name: Refresh Baltimore testimony cache
         run: |
           if [ "${{ steps.baltimore_images.outputs.refresh_profile_images }}" = "true" ]; then
@@ -132,6 +136,7 @@ jobs:
             baltimore/testimony/images \
             cc_events.ics \
             data/maryland_bills_2026.json \
+            data/maryland_bill_hearings_2026.json \
             event_images \
             upcoming_events.json \
             usa/data/usajobs-lite.json.gz \

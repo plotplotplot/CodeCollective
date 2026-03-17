@@ -26,9 +26,12 @@ let billFilterCount = null;
 let resetFiltersButton = null;
 let hideFiltersButton = null;
 let billSearchQuery = '';
+let billHearingsByNumber = new Map();
 const FEATURED_SOURCE_URL = 'https://luma.com/codecollective';
+const MGA_SESSION_SLUG = '2026RS';
 const DATA_URL = 'https://mgaleg.maryland.gov/2026rs/misc/billsmasterlist/legislation.json';
 const LOCAL_DATA_URL = '/data/maryland_bills_2026.json';
+const HEARINGS_DATA_URL = '/data/maryland_bill_hearings_2026.json';
 const SPONSOR_DIRECTORY_URL = '/data/mga_sponsors_2026.json';
 const DATA_SOURCES = [
   {
@@ -93,6 +96,106 @@ function escapeHtml(value) {
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;');
+}
+
+function formatMgaHearingDate(value) {
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) return '';
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const year = String(date.getFullYear());
+  return `${month}/${day}/${year}`;
+}
+
+function getBillDetailsUrl(billNumber) {
+  const normalized = String(billNumber || '').trim();
+  return normalized
+    ? `https://mgaleg.maryland.gov/mgawebsite/Legislation/Details/${normalized.toLowerCase()}?ys=${encodeURIComponent(MGA_SESSION_SLUG)}`
+    : 'https://mgaleg.maryland.gov/mgawebsite/Legislation/Search';
+}
+
+function getBillHearingPageUrl(billNumber) {
+  const normalized = String(billNumber || '').trim().toUpperCase();
+  return normalized
+    ? `https://mgaleg.maryland.gov/mgawebsite/Meetings/Day/${encodeURIComponent(normalized)}`
+    : 'https://mgaleg.maryland.gov/mgawebsite/Meetings';
+}
+
+function getBillHearingRecord(billNumber) {
+  const normalized = String(billNumber || '').trim().toUpperCase();
+  return normalized ? (billHearingsByNumber.get(normalized) || null) : null;
+}
+
+function pickHearingEntryForEvent(billNumber, hearingValue) {
+  const hearingRecord = getBillHearingRecord(billNumber);
+  const hearings = Array.isArray(hearingRecord?.hearings) ? hearingRecord.hearings : [];
+  if (!hearings.length) {
+    return null;
+  }
+
+  const targetDate = formatMgaHearingDate(hearingValue);
+  const sameDateHearings = hearings.filter((hearing) => String(hearing?.hearing_date || '') === targetDate);
+  if (sameDateHearings.length) {
+    return sameDateHearings.find((hearing) => hearing?.witness_signup_url) || sameDateHearings[0];
+  }
+
+  return hearings.find((hearing) => hearing?.witness_signup_url) || hearings[0];
+}
+
+function buildHearingDayPostData(hearingDate) {
+  if (!hearingDate) return null;
+  return {
+    action: 'https://mgaleg.maryland.gov/mgawebsite/Meetings/RefreshDay',
+    fields: {
+      ys: MGA_SESSION_SLUG.toLowerCase(),
+      cmte: 'allcommittees',
+      includeBudget: 'show',
+      showUpdates: 'show',
+      Years: MGA_SESSION_SLUG.slice(0, 4),
+      dateType: 'day',
+      hearingDateDay: hearingDate
+    }
+  };
+}
+
+function submitPostNavigation(action, fields, target = '_self') {
+  if (!action || !fields || typeof document === 'undefined') return;
+
+  const form = document.createElement('form');
+  form.method = 'post';
+  form.action = action;
+  form.target = target;
+  form.style.display = 'none';
+
+  Object.entries(fields).forEach(([name, value]) => {
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = name;
+    input.value = String(value ?? '');
+    form.appendChild(input);
+  });
+
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
+}
+
+function openBillEventDestination(eventLike, newTab = true) {
+  const ext = eventLike?.extendedProps || {};
+  const postData = ext.hearingDayPostData;
+  if (postData?.action && postData?.fields) {
+    submitPostNavigation(postData.action, postData.fields, newTab ? '_blank' : '_self');
+    return;
+  }
+
+  const fallbackUrl = eventLike?.url || ext.billHearingUrl || ext.billDetailsUrl || '';
+  if (!fallbackUrl) return;
+
+  if (newTab) {
+    window.open(fallbackUrl, '_blank', 'noopener');
+  } else {
+    window.location.href = fallbackUrl;
+  }
 }
 
 function summarizeSubjects(subjects) {
@@ -754,6 +857,20 @@ async function fetchSponsorDirectory() {
   }
 }
 
+async function fetchHearingsData() {
+  try {
+    const response = await fetch(HEARINGS_DATA_URL, { cache: 'force-cache' });
+    if (!response.ok) {
+      return new Map();
+    }
+    const payload = await response.json();
+    const records = payload && typeof payload === 'object' ? payload.records : null;
+    return new Map(Object.entries(records || {}));
+  } catch (error) {
+    return new Map();
+  }
+}
+
 // Fetch and parse event data
 document.addEventListener('DOMContentLoaded', function () {
   hoverCard = document.getElementById('hover-card');
@@ -763,9 +880,10 @@ document.addEventListener('DOMContentLoaded', function () {
   isMobile = forceCardView ? true : (mobileViewport && !stayOnCalendar);
   prefetchBillsDataCache();
 
-  Promise.all([fetchBillsData(), fetchSponsorDirectory()])
-    .then(([{ bills, source }, directory]) => {
+  Promise.all([fetchBillsData(), fetchSponsorDirectory(), fetchHearingsData()])
+    .then(([{ bills, source }, directory, hearingMap]) => {
       sponsorDirectory = directory;
+      billHearingsByNumber = hearingMap;
       rawEvents = Array.isArray(bills) ? bills : [];
       allEvents = processEvents(rawEvents);
       const available = getAvailableCategoriesAndSponsors(allEvents);
@@ -975,9 +1093,7 @@ function createEventCard(event) {
     if (e.target.closest('.more-btn') || e.target.closest('a')) {
       return;
     }
-    if (event.url) {
-      window.open(event.url, '_blank');
-    }
+    openBillEventDestination(event, true);
   });
 
   return card;
@@ -1058,9 +1174,8 @@ function processEvents(eventsData) {
     const extractedCategories = extractBillCategories(bill);
     const categories = extractedCategories.length ? extractedCategories : ['Uncategorized'];
     const tags = categories;
-    const billUrl = billNumber
-      ? `https://mgaleg.maryland.gov/mgawebsite/Legislation/Details/${billNumber.toLowerCase()}?ys=2026RS`
-      : 'https://mgaleg.maryland.gov/mgawebsite/Legislation/Search';
+    const billDetailsUrl = getBillDetailsUrl(billNumber);
+    const billHearingUrl = getBillHearingPageUrl(billNumber);
 
     for (const [fieldName, hearingLabel] of hearingFields) {
       const hearingValue = bill[fieldName];
@@ -1073,6 +1188,13 @@ function processEvents(eventsData) {
         continue;
       }
 
+      const hearingEntry = pickHearingEntryForEvent(billNumber, hearingValue);
+      const hearingDayPostData = buildHearingDayPostData(
+        hearingEntry?.hearing_date || formatMgaHearingDate(hearingValue)
+      );
+      const witnessSignupUrl = String(hearingEntry?.witness_signup_url || '').trim();
+      const destinationUrl = witnessSignupUrl || billHearingUrl || billDetailsUrl;
+
       eventGroups.add('Maryland Bills');
       calendarEvents.push({
         id: `${billId}-${fieldName}`,
@@ -1084,7 +1206,7 @@ function processEvents(eventsData) {
           address: hearingLabel,
           name: hearingLabel
         },
-        url: billUrl,
+        url: destinationUrl,
         extendedProps: {
           group: 'Maryland Bills',
           imageUrl: '',
@@ -1094,7 +1216,11 @@ function processEvents(eventsData) {
           billNumber,
           hearingType: hearingLabel,
           sponsor,
-          status
+          status,
+          billDetailsUrl,
+          billHearingUrl,
+          witnessSignupUrl,
+          hearingDayPostData
         },
         backgroundColor: "#0f0f0f0",
         borderColor: "#0f0f0f0",
@@ -1382,16 +1508,14 @@ function initializeCalendar(events) {
       return isFeaturedSource(arg.event.extendedProps?.source) ? ['source-codecollective-luma'] : [];
     },
     eventClick: function (info) {
+      info.jsEvent.preventDefault();
+
       // Allow ctrl/cmd click to open in a new tab
       if (info.jsEvent.ctrlKey || info.jsEvent.metaKey) {
-        window.open(info.event.url, '_blank');
+        openBillEventDestination(info.event, true);
       } else {
-        // Default behavior: navigate in same tab
-        window.location.href = info.event.url;
+        openBillEventDestination(info.event, false);
       }
-
-      // Prevent the browser's default link behavior
-      info.jsEvent.preventDefault();
     }
     ,
     eventTimeFormat: {

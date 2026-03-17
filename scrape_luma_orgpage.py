@@ -44,31 +44,60 @@ def parse_luma_events(html_content: str, source_url: str = '') -> List[Dict[str,
     """
     soup = BeautifulSoup(html_content, 'html.parser')
     
-    # Find the JSON-LD script tag
+    json_ld_events = parse_json_ld_events(soup, source_url)
+    next_data_events = parse_next_data_events(soup, source_url)
+
+    if len(next_data_events) > len(json_ld_events):
+        return next_data_events
+
+    return json_ld_events
+
+
+def parse_json_ld_events(soup: BeautifulSoup, source_url: str = '') -> List[Dict[str, Any]]:
     json_ld_script = soup.find('script', {'type': 'application/ld+json'})
-    
-    if not json_ld_script:
+    if not json_ld_script or not json_ld_script.string:
         return []
-    
+
     try:
-        # Parse the JSON-LD data
         json_data = json.loads(json_ld_script.string)
-        
-        # Extract events from the JSON-LD data
-        events = json_data.get('events', [])
-        
-        parsed_events = []
-        
-        for event in events:
-            parsed_event = parse_single_event(event, source_url)
-            if parsed_event:
-                parsed_events.append(parsed_event)
-                
-        return parsed_events
-        
     except json.JSONDecodeError as e:
         print(f"Error parsing JSON-LD: {e}")
         return []
+
+    events = json_data.get('events', [])
+    parsed_events = []
+
+    for event in events:
+        parsed_event = parse_single_event(event, source_url)
+        if parsed_event:
+            parsed_events.append(parsed_event)
+
+    return parsed_events
+
+
+def parse_next_data_events(soup: BeautifulSoup, source_url: str = '') -> List[Dict[str, Any]]:
+    next_data_script = soup.find('script', {'id': '__NEXT_DATA__'})
+    if not next_data_script or not next_data_script.string:
+        return []
+
+    try:
+        next_data = json.loads(next_data_script.string)
+    except json.JSONDecodeError as e:
+        print(f"Error parsing __NEXT_DATA__: {e}")
+        return []
+
+    initial_data = next_data.get('props', {}).get('pageProps', {}).get('initialData', {})
+    calendar_data = initial_data.get('data', {}) if initial_data.get('kind') == 'calendar' else {}
+    featured_items = calendar_data.get('featured_items', [])
+
+    parsed_events = []
+    for item in featured_items:
+        event_data = item.get('event', {})
+        parsed_event = parse_next_data_event(event_data, source_url)
+        if parsed_event:
+            parsed_events.append(parsed_event)
+
+    return parsed_events
 
 def parse_single_event(event: Dict[str, Any], source_url: str = '') -> Optional[Dict[str, Any]]:
     """
@@ -114,6 +143,32 @@ def parse_single_event(event: Dict[str, Any], source_url: str = '') -> Optional[
     }
     
     return parsed_event
+
+
+def parse_next_data_event(event: Dict[str, Any], source_url: str = '') -> Optional[Dict[str, Any]]:
+    if not event:
+        return None
+
+    geo_info = event.get('geo_address_info', {}) or {}
+    location = {
+        'name': geo_info.get('address', ''),
+        'address': geo_info.get('full_address', '')
+    }
+
+    url_slug = event.get('url', '')
+    event_url = f"https://luma.com/{url_slug}" if url_slug else source_url
+
+    return {
+        'name': event.get('name', ''),
+        'description': event.get('description', ''),
+        'startDate': event.get('start_at', ''),
+        'endTime': event.get('end_at', ''),
+        'url': event_url,
+        'status': 'ACTIVE',
+        'location': location,
+        'imageUrl': event.get('cover_url', ''),
+        'source': source_url
+    }
     
 
 def parse_location(location_data: Dict[str, Any]) -> Dict[str, str]:

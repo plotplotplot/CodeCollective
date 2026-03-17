@@ -94,6 +94,8 @@
     .panel-header-right {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
       gap: 10px;
     }
 
@@ -318,6 +320,64 @@
     #category-column .list-row {
       padding-top: 0;
       padding-bottom: 0;
+    }
+
+    .list-row-active-filter {
+      margin-bottom: 10px;
+      padding: 10px 12px !important;
+      border: 1px solid rgba(255, 212, 95, 0.55);
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255, 212, 95, 0.96), rgba(232, 177, 27, 0.96));
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      color: #221400;
+    }
+
+    .active-filter-summary {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .active-filter-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(34, 20, 0, 0.7);
+    }
+
+    .active-filter-value {
+      min-width: 0;
+      font-size: 0.96rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #221400;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .active-filter-clear {
+      appearance: none;
+      border: 1px solid rgba(34, 20, 0, 0.22);
+      border-radius: 999px;
+      padding: 6px 12px;
+      background: rgba(255, 248, 220, 0.72);
+      color: #221400;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      transition: background 0.14s ease, transform 0.14s ease;
+      flex-shrink: 0;
+    }
+
+    .active-filter-clear:hover,
+    .active-filter-clear:focus-visible {
+      background: rgba(255, 248, 220, 0.96);
+      transform: translateY(-1px);
+      outline: none;
     }
 
     .list-count {
@@ -797,6 +857,54 @@
       font: inherit;
     }
 
+    .bill-modal-links {
+      display: grid;
+      gap: 12px;
+      margin: 0 0 18px;
+    }
+
+    .bill-modal-link {
+      display: block;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 212, 95, 0.42);
+      background: linear-gradient(180deg, rgba(255, 212, 95, 0.18), rgba(255, 166, 0, 0.1));
+      text-decoration: none;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+      transition: transform 0.14s ease, border-color 0.14s ease, background 0.14s ease;
+    }
+
+    .bill-modal-link:hover,
+    .bill-modal-link:focus-visible {
+      transform: translateY(-1px);
+      border-color: rgba(255, 222, 132, 0.72);
+      background: linear-gradient(180deg, rgba(255, 212, 95, 0.28), rgba(255, 166, 0, 0.14));
+      outline: none;
+    }
+
+    .bill-modal-link-primary {
+      border-color: rgba(255, 212, 95, 0.82);
+      background: linear-gradient(180deg, rgba(255, 212, 95, 0.34), rgba(255, 166, 0, 0.2));
+      box-shadow: 0 18px 30px rgba(255, 183, 0, 0.14);
+    }
+
+    .bill-modal-link-label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: calc(var(--bills-font-size) * 0.98);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .bill-modal-link-url {
+      display: block;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: calc(var(--bills-font-size) * 0.88);
+      line-height: 1.35;
+      word-break: break-all;
+    }
+
     .bill-detail-table {
       width: 100%;
       border-collapse: collapse;
@@ -953,6 +1061,14 @@
                   <button type="button" class="font-size-btn" data-column="bills" data-action="down" aria-label="Decrease bills font size">−</button>
                   <button type="button" class="font-size-btn" data-column="bills" data-action="up" aria-label="Increase bills font size">+</button>
                 </div>
+                <label class="header-check" for="house-only-toggle">
+                  <input id="house-only-toggle" type="checkbox" checked />
+                  House
+                </label>
+                <label class="header-check" for="senate-only-toggle">
+                  <input id="senate-only-toggle" type="checkbox" checked />
+                  Senate
+                </label>
                 <label class="header-check" for="upcoming-only-toggle">
                   <input id="upcoming-only-toggle" type="checkbox" />
                   Upcoming only

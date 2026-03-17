@@ -1,6 +1,8 @@
   const DATA_URL = 'https://mgaleg.maryland.gov/2026rs/misc/billsmasterlist/legislation.json';
   const LOCAL_DATA_URL = '/data/maryland_bills_2026.json';
+  const HEARINGS_DATA_URL = '/data/maryland_bill_hearings_2026.json';
   const SPONSOR_DIRECTORY_URL = '/data/mga_sponsors_2026.json';
+  const MGA_SESSION_SLUG = '2026RS';
   const FILTERS_STORAGE_KEY = 'mdbillsFiltersV1';
   const DATA_SOURCES = [
     {
@@ -18,6 +20,8 @@
   const sponsorFilterInput = document.getElementById('sponsor-filter');
   const categoryFilterInput = document.getElementById('category-filter');
   const upcomingOnlyToggle = document.getElementById('upcoming-only-toggle');
+  const houseOnlyToggle = document.getElementById('house-only-toggle');
+  const senateOnlyToggle = document.getElementById('senate-only-toggle');
   const searchClearButtons = [...document.querySelectorAll('.search-clear')];
   const sponsorTableBody = document.getElementById('sponsor-table-body');
   const categoryTableBody = document.getElementById('category-table-body');
@@ -35,15 +39,18 @@
   let allBills = [];
   let preparedBills = [];
   let activeSponsor = '';
-  let activeCategory = '';
+  let activeCategories = [];
   let activeBill = null;
   let sponsorDirectory = [];
   let sponsorStats = new Map();
+  let billHearingsByNumber = new Map();
   let hoverState = null;
   let hoverSwapTimer = null;
   let sortColumn = '';
   let sortDirection = ''; // 'asc', 'desc', or ''
   let showUpcomingOnly = false;
+  let showHouseBills = true;
+  let showSenateBills = true;
 
   const COLUMN_FONT_SIZE_CONFIG = {
     sponsor: { min: 10, max: 20, step: 1, default: 14, storageKey: 'mdbillsFontSizeSponsor' },
@@ -136,18 +143,25 @@
           sponsorQuery: '',
           categoryQuery: '',
           sponsor: '',
-          category: '',
-          upcomingOnly: false
+          categories: [],
+          upcomingOnly: false,
+          showHouseBills: true,
+          showSenateBills: true
         };
       }
       const parsed = JSON.parse(raw);
+      const parsedCategories = Array.isArray(parsed.categories)
+        ? parsed.categories.map((value) => String(value || '')).filter(Boolean)
+        : (parsed.category ? [String(parsed.category)] : []);
       return {
         billQuery: String(parsed.billQuery || ''),
         sponsorQuery: String(parsed.sponsorQuery || ''),
         categoryQuery: String(parsed.categoryQuery || ''),
         sponsor: String(parsed.sponsor || ''),
-        category: String(parsed.category || ''),
-        upcomingOnly: parsed.upcomingOnly === true || parsed.upcomingOnly === 'true'
+        categories: [...new Set(parsedCategories)],
+        upcomingOnly: parsed.upcomingOnly === true || parsed.upcomingOnly === 'true',
+        showHouseBills: parsed.showHouseBills !== false,
+        showSenateBills: parsed.showSenateBills !== false
       };
     } catch {
       return {
@@ -155,8 +169,10 @@
         sponsorQuery: '',
         categoryQuery: '',
         sponsor: '',
-        category: '',
-        upcomingOnly: false
+        categories: [],
+        upcomingOnly: false,
+        showHouseBills: true,
+        showSenateBills: true
       };
     }
   }
@@ -167,8 +183,10 @@
       sponsorQuery: sponsorFilterInput.value || '',
       categoryQuery: categoryFilterInput.value || '',
       sponsor: activeSponsor,
-      category: activeCategory,
-      upcomingOnly: showUpcomingOnly
+      categories: activeCategories,
+      upcomingOnly: showUpcomingOnly,
+      showHouseBills,
+      showSenateBills
     }));
   }
 
@@ -291,6 +309,41 @@
     }
   }
 
+  function renderActiveFilterRowMarkup(kind, value) {
+    if (!value) {
+      return '';
+    }
+    const label = kind === 'sponsor' ? 'Selected sponsor' : 'Selected category';
+    return `
+      <div class="list-row list-row-active-filter">
+        <div class="active-filter-summary">
+          <span class="active-filter-label">${escapeHtml(label)}</span>
+          <span class="active-filter-value">${escapeHtml(value)}</span>
+        </div>
+        <button type="button" class="active-filter-clear" data-clear-filter="${escapeHtml(kind)}" aria-label="Remove selected ${escapeHtml(kind)}">
+          Remove
+        </button>
+      </div>
+    `;
+  }
+
+  function renderActiveCategoryRowsMarkup(values) {
+    if (!values.length) {
+      return '';
+    }
+    return values.map((value) => `
+      <div class="list-row list-row-active-filter">
+        <div class="active-filter-summary">
+          <span class="active-filter-label">Selected category</span>
+          <span class="active-filter-value">${escapeHtml(value)}</span>
+        </div>
+        <button type="button" class="active-filter-clear" data-clear-filter="category" data-category-value="${escapeHtml(value)}" aria-label="Remove selected category ${escapeHtml(value)}">
+          Remove
+        </button>
+      </div>
+    `).join('');
+  }
+
   function renderSponsorTable() {
     hideHoverCard();
     const sponsorQuery = sponsorFilterInput.value.trim().toLowerCase();
@@ -304,7 +357,7 @@
       .filter(([sponsor]) => !sponsorQuery || sponsor.toLowerCase().includes(sponsorQuery))
       .sort((a, b) => (b[1] - a[1]) || a[0].localeCompare(b[0]))
       .map(([sponsor, count]) => `
-        <div class="list-row">
+        <div class="list-row" data-sponsor="${escapeHtml(sponsor)}" tabindex="0">
           <button type="button" class="sponsor-button${sponsor === activeSponsor ? ' active' : ''}" data-sponsor="${escapeHtml(sponsor)}">
             ${escapeHtml(sponsor)}
           </button>
@@ -313,7 +366,7 @@
       `)
       .join('');
 
-    sponsorTableBody.innerHTML = rows || '<div class="list-row"><span>No sponsor data available.</span><span class="list-count">0</span></div>';
+    sponsorTableBody.innerHTML = `${renderActiveFilterRowMarkup('sponsor', activeSponsor)}${rows || '<div class="list-row"><span>No sponsor data available.</span><span class="list-count">0</span></div>'}`;
   }
 
   function renderCategoryTable() {
@@ -329,16 +382,14 @@
       }
     }
 
-    if (activeCategory && !categoryCounts.has(activeCategory)) {
-      activeCategory = '';
-    }
+    activeCategories = activeCategories.filter((category) => categoryCounts.has(category));
 
     const rows = [...categoryCounts.entries()]
       .filter(([category]) => !categoryQuery || category.toLowerCase().includes(categoryQuery))
       .sort((a, b) => (b[1] - a[1]) || a[0].localeCompare(b[0]))
       .map(([category, count]) => `
-        <div class="list-row">
-          <button type="button" class="sponsor-button${category === activeCategory ? ' active' : ''}" data-category="${escapeHtml(category)}">
+        <div class="list-row" data-category="${escapeHtml(category)}" tabindex="0">
+          <button type="button" class="sponsor-button${activeCategories.includes(category) ? ' active' : ''}" data-category="${escapeHtml(category)}">
             ${escapeHtml(category)}
           </button>
           <span class="list-count">${count.toLocaleString()}</span>
@@ -346,7 +397,7 @@
       `)
       .join('');
 
-    categoryTableBody.innerHTML = rows || '<div class="list-row"><span>No category data available.</span><span class="list-count">0</span></div>';
+    categoryTableBody.innerHTML = `${renderActiveCategoryRowsMarkup(activeCategories)}${rows || '<div class="list-row"><span>No category data available.</span><span class="list-count">0</span></div>'}`;
   }
 
   function updateActiveSponsor(nextSponsor) {
@@ -358,10 +409,28 @@
   }
 
   function updateActiveCategory(nextCategory) {
-    activeCategory = activeCategory === nextCategory ? '' : nextCategory;
+    const category = String(nextCategory || '').trim();
+    if (!category) {
+      activeCategories = [];
+    } else if (activeCategories.includes(category)) {
+      activeCategories = activeCategories.filter((value) => value !== category);
+    } else {
+      activeCategories = [...activeCategories, category];
+    }
     renderCategoryTable();
     persistFilters();
     renderBills();
+  }
+
+  function getBillChamber(bill) {
+    const billNumber = String(bill?.BillNumber || '').trim().toUpperCase();
+    if (billNumber.startsWith('HB') || billNumber.startsWith('HJ')) {
+      return 'house';
+    }
+    if (billNumber.startsWith('SB') || billNumber.startsWith('SJ')) {
+      return 'senate';
+    }
+    return '';
   }
 
   function createBillRowMarkup(entry) {
@@ -369,14 +438,18 @@
     return `
       <tr>
         <td class="bill-number-cell" data-bill-index="${index}">${escapeHtml(bill.BillNumber || 'N/A')}</td>
-        <td>
+        <td data-bill-index="${index}" tabindex="0">
           <p class="bill-title">
-            <button type="button" class="bill-title-button" data-bill-index="${index}">
+            <button
+              type="button"
+              class="bill-title-button"
+              data-bill-index="${index}"
+            >
               ${escapeHtml(bill.Title || 'Untitled Bill')}
             </button>
           </p>
         </td>
-        <td>
+        <td data-sponsor-name="${escapeHtml(String(bill.SponsorPrimary || 'Unknown sponsor').trim() || 'Unknown sponsor')}">
           <button type="button" class="bill-sponsor-button" data-sponsor-name="${escapeHtml(String(bill.SponsorPrimary || 'Unknown sponsor').trim() || 'Unknown sponsor')}">
             ${escapeHtml(bill.SponsorPrimary || 'Unknown sponsor')}
           </button>
@@ -398,6 +471,62 @@
       return JSON.stringify(value);
     }
     return String(value);
+  }
+
+  function getBillDetailsUrl(bill) {
+    const billNumber = String(bill?.BillNumber || '').trim().toUpperCase();
+    if (!billNumber) {
+      return `https://mgaleg.maryland.gov/mgawebsite/Legislation/Search?ys=${encodeURIComponent(MGA_SESSION_SLUG)}`;
+    }
+    return `https://mgaleg.maryland.gov/mgawebsite/Legislation/Details/${encodeURIComponent(billNumber)}?ys=${encodeURIComponent(MGA_SESSION_SLUG)}`;
+  }
+
+  function getBillHearingDayUrl(bill) {
+    const billNumber = String(bill?.BillNumber || '').trim().toUpperCase();
+    if (!billNumber) {
+      return 'https://mgaleg.maryland.gov/mgawebsite/Meetings';
+    }
+    return `https://mgaleg.maryland.gov/mgawebsite/Meetings/Day/${encodeURIComponent(billNumber)}`;
+  }
+
+  function getWitnessSignupUrl() {
+    return 'https://mgaleg.maryland.gov/mgawebsite/MyMGATracking/WitnessSignup';
+  }
+
+  function getBillHearingRecord(bill) {
+    const billNumber = String(bill?.BillNumber || '').trim().toUpperCase();
+    return billNumber ? (billHearingsByNumber.get(billNumber) || null) : null;
+  }
+
+  function renderBillActionLinks(bill) {
+    const hearingRecord = getBillHearingRecord(bill);
+    const detailsUrl = getBillDetailsUrl(bill);
+    const hearingDayUrl = hearingRecord?.hearing_day_url || getBillHearingDayUrl(bill);
+    const testifyUrl = hearingRecord?.testify_url || hearingDayUrl;
+    const directSignup = Boolean(hearingRecord?.has_testify_signup);
+    const ctaHint = directSignup
+      ? 'Direct witness signup from scraped MGA hearing schedule'
+      : 'Opens the hearing day page to check testimony availability';
+    return `
+      <section class="bill-modal-links" aria-label="Maryland General Assembly bill links">
+        <a class="bill-modal-link bill-modal-link-primary" href="${escapeHtml(testifyUrl)}" target="_blank" rel="noopener noreferrer">
+          <span class="bill-modal-link-label">Testify on this bill</span>
+          <span class="bill-modal-link-url">${escapeHtml(ctaHint)}</span>
+        </a>
+        <a class="bill-modal-link" href="${escapeHtml(detailsUrl)}" target="_blank" rel="noopener noreferrer">
+          <span class="bill-modal-link-label">Bill details</span>
+          <span class="bill-modal-link-url">${escapeHtml(detailsUrl)}</span>
+        </a>
+        <a class="bill-modal-link" href="${escapeHtml(hearingDayUrl)}" target="_blank" rel="noopener noreferrer">
+          <span class="bill-modal-link-label">Hearing day</span>
+          <span class="bill-modal-link-url">${escapeHtml(hearingDayUrl)}</span>
+        </a>
+        <a class="bill-modal-link" href="${escapeHtml(getWitnessSignupUrl())}" target="_blank" rel="noopener noreferrer">
+          <span class="bill-modal-link-label">Witness signup</span>
+          <span class="bill-modal-link-url">${escapeHtml(getWitnessSignupUrl())}</span>
+        </a>
+      </section>
+    `;
   }
 
   function normalizePersonName(value) {
@@ -597,6 +726,8 @@
     const sponsorName = String(bill.SponsorPrimary || 'Unknown sponsor').trim() || 'Unknown sponsor';
     const synopsis = String(bill.Synopsis || '').trim();
     const categories = extractCategories(bill).slice(0, 3);
+    const directoryRecord = findDirectoryRecordBySponsorName(sponsorName);
+    const imageMarkup = buildSponsorImageMarkup(sponsorName, directoryRecord);
     return `
       <p class="hover-card-kicker">Bill</p>
       <h3>${escapeHtml(bill.BillNumber || 'N/A')} ${escapeHtml(bill.Title || '')}</h3>
@@ -605,6 +736,7 @@
       <p class="hover-card-meta">Hearing: ${escapeHtml(formatHearingDate(bill) || 'N/A')}</p>
       ${categories.length ? `<p class="hover-card-meta hover-card-meta-accent">Subjects: ${escapeHtml(categories.join(' | '))}</p>` : ''}
       ${synopsis ? `<p>${escapeHtml(synopsis)}</p>` : ''}
+      ${imageMarkup}
     `;
   }
 
@@ -826,6 +958,7 @@
       ? `${bill.BillNumber} Details`
       : 'Bill Details';
     billModalContent.innerHTML = `
+      ${renderBillActionLinks(bill)}
       <table class="bill-detail-table">
         <tbody>
           ${fields.map(([label, value]) => `
@@ -1044,10 +1177,22 @@
     const query = billFilterInput.value.trim().toLowerCase();
     let filteredEntries = preparedBills
       .filter((entry) => !activeSponsor || entry.sponsor === activeSponsor)
-      .filter((entry) => !activeCategory
-        || entry.categories.includes(activeCategory)
-        || (activeCategory === 'Uncategorized' && entry.categories.length === 0))
+      .filter((entry) => !activeCategories.length
+        || activeCategories.some((category) => (
+          (category === 'Uncategorized' && entry.categories.length === 0)
+          || entry.categories.includes(category)
+        )))
       .filter((entry) => !showUpcomingOnly || isUpcomingBill(entry.bill))
+      .filter((entry) => {
+        const chamber = getBillChamber(entry.bill);
+        if (chamber === 'house') {
+          return showHouseBills;
+        }
+        if (chamber === 'senate') {
+          return showSenateBills;
+        }
+        return true;
+      })
       .filter((entry) => !query || entry.searchText.includes(query));
 
     filteredEntries = sortEntries(filteredEntries, sortColumn, sortDirection);
@@ -1064,15 +1209,23 @@
 
   function resetFilters() {
     activeSponsor = '';
-    activeCategory = '';
+    activeCategories = [];
     sortColumn = '';
     sortDirection = '';
     billFilterInput.value = '';
     sponsorFilterInput.value = '';
     categoryFilterInput.value = '';
     showUpcomingOnly = false;
+    showHouseBills = true;
+    showSenateBills = true;
     if (upcomingOnlyToggle) {
       upcomingOnlyToggle.checked = false;
+    }
+    if (houseOnlyToggle) {
+      houseOnlyToggle.checked = true;
+    }
+    if (senateOnlyToggle) {
+      senateOnlyToggle.checked = true;
     }
     clearPersistedFilters();
     updateSortIndicators();
@@ -1110,6 +1263,17 @@
 
   async function loadBills() {
     try {
+      try {
+        const hearingsResp = await fetch(HEARINGS_DATA_URL, { cache: 'no-store' });
+        if (hearingsResp.ok) {
+          const hearingsPayload = await hearingsResp.json();
+          const hearingRecords = hearingsPayload && typeof hearingsPayload === 'object' ? hearingsPayload.records : null;
+          billHearingsByNumber = new Map(Object.entries(hearingRecords || {}));
+        }
+      } catch (hearingErr) {
+        console.warn('Hearing testimony cache unavailable:', hearingErr);
+      }
+
       // Load sponsor directory data for richer sponsor modal details.
       try {
         const sponsorResp = await fetch(SPONSOR_DIRECTORY_URL, { cache: 'no-store' });
@@ -1133,8 +1297,16 @@
       if (upcomingOnlyToggle) {
         upcomingOnlyToggle.checked = showUpcomingOnly;
       }
+      showHouseBills = persisted.showHouseBills !== false;
+      showSenateBills = persisted.showSenateBills !== false;
+      if (houseOnlyToggle) {
+        houseOnlyToggle.checked = showHouseBills;
+      }
+      if (senateOnlyToggle) {
+        senateOnlyToggle.checked = showSenateBills;
+      }
       activeSponsor = persisted.sponsor;
-      activeCategory = persisted.category;
+      activeCategories = persisted.categories;
       const sponsorSet = new Set(allBills.map((bill) => String(bill.SponsorPrimary || '').trim() || 'Unknown sponsor'));
       if (activeSponsor && !sponsorSet.has(activeSponsor)) {
         activeSponsor = '';
@@ -1179,6 +1351,20 @@
       renderBills();
     });
   }
+  if (houseOnlyToggle) {
+    houseOnlyToggle.addEventListener('change', () => {
+      showHouseBills = houseOnlyToggle.checked;
+      persistFilters();
+      renderBills();
+    });
+  }
+  if (senateOnlyToggle) {
+    senateOnlyToggle.addEventListener('change', () => {
+      showSenateBills = senateOnlyToggle.checked;
+      persistFilters();
+      renderBills();
+    });
+  }
   for (const button of searchClearButtons) {
     button.addEventListener('click', () => {
       const targetId = button.dataset.clearTarget;
@@ -1200,6 +1386,11 @@
     });
   }
   sponsorTableBody.addEventListener('click', (event) => {
+    const clearButton = event.target.closest('.active-filter-clear');
+    if (clearButton) {
+      updateActiveSponsor('');
+      return;
+    }
     const button = event.target.closest('.sponsor-button');
     if (!button) {
       return;
@@ -1207,6 +1398,12 @@
     updateActiveSponsor(button.dataset.sponsor || '');
   });
   categoryTableBody.addEventListener('click', (event) => {
+    const clearButton = event.target.closest('.active-filter-clear');
+    if (clearButton) {
+      const categoryValue = clearButton.dataset.categoryValue || '';
+      updateActiveCategory(categoryValue);
+      return;
+    }
     const button = event.target.closest('.sponsor-button');
     if (!button) {
       return;
@@ -1214,29 +1411,27 @@
     updateActiveCategory(button.dataset.category || '');
   });
   billsTableBody.addEventListener('click', (event) => {
+    const billButton = event.target.closest('.bill-title-button');
+    if (billButton) {
+      const index = Number(billButton.dataset.billIndex);
+      const bill = Number.isInteger(index) ? allBills[index] : null;
+      if (bill) {
+        hideHoverCard();
+        openBillModal(bill);
+      }
+      return;
+    }
     const sponsorButton = event.target.closest('.bill-sponsor-button');
     if (sponsorButton) {
-      openSponsorModal(sponsorButton.dataset.sponsorName || 'Unknown sponsor');
-      return;
-    }
-
-    const button = event.target.closest('.bill-title-button');
-    if (!button) {
-      return;
-    }
-    const index = Number(button.dataset.billIndex);
-    const bill = Number.isInteger(index) ? allBills[index] : null;
-    if (bill) {
-      hideHoverCard();
-      openBillModal(bill);
+      updateActiveSponsor(sponsorButton.dataset.sponsorName || 'Unknown sponsor');
     }
   });
   sponsorTableBody.addEventListener('mouseover', (event) => {
-    const button = event.target.closest('.sponsor-button');
-    if (!button) {
+    const row = event.target.closest('[data-sponsor]');
+    if (!row) {
       return;
     }
-    const sponsorName = String(button.dataset.sponsor || '').trim();
+    const sponsorName = String(row.dataset.sponsor || '').trim();
     if (!sponsorName) {
       return;
     }
@@ -1252,22 +1447,22 @@
   });
   sponsorTableBody.addEventListener('mouseleave', hideHoverCard);
   sponsorTableBody.addEventListener('focusin', (event) => {
-    const button = event.target.closest('.sponsor-button');
-    if (!button) {
+    const row = event.target.closest('[data-sponsor]');
+    if (!row) {
       return;
     }
-    const sponsorName = String(button.dataset.sponsor || '').trim();
+    const sponsorName = String(row.dataset.sponsor || '').trim();
     if (sponsorName) {
       showSponsorHover(sponsorName, 'right');
     }
   });
   sponsorTableBody.addEventListener('focusout', hideHoverCard);
   categoryTableBody.addEventListener('mouseover', (event) => {
-    const button = event.target.closest('.sponsor-button');
-    if (!button) {
+    const row = event.target.closest('[data-category]');
+    if (!row) {
       return;
     }
-    const categoryName = String(button.dataset.category || '').trim();
+    const categoryName = String(row.dataset.category || '').trim();
     if (!categoryName) {
       return;
     }
@@ -1275,20 +1470,20 @@
   });
   categoryTableBody.addEventListener('mouseleave', hideHoverCard);
   categoryTableBody.addEventListener('focusin', (event) => {
-    const button = event.target.closest('.sponsor-button');
-    if (!button) {
+    const row = event.target.closest('[data-category]');
+    if (!row) {
       return;
     }
-    const categoryName = String(button.dataset.category || '').trim();
+    const categoryName = String(row.dataset.category || '').trim();
     if (categoryName) {
       showCategoryHover(categoryName);
     }
   });
   categoryTableBody.addEventListener('focusout', hideHoverCard);
   billsTableBody.addEventListener('mouseover', (event) => {
-    const sponsorButton = event.target.closest('.bill-sponsor-button');
-    if (sponsorButton) {
-      const sponsorName = String(sponsorButton.dataset.sponsorName || '').trim();
+    const sponsorTarget = event.target.closest('[data-sponsor-name]');
+    if (sponsorTarget) {
+      const sponsorName = String(sponsorTarget.dataset.sponsorName || '').trim();
       if (sponsorName) {
         showSponsorHover(sponsorName, 'left');
       }
@@ -1315,9 +1510,9 @@
   });
   billsTableBody.addEventListener('mouseleave', hideHoverCard);
   billsTableBody.addEventListener('focusin', (event) => {
-    const sponsorButton = event.target.closest('.bill-sponsor-button');
-    if (sponsorButton) {
-      const sponsorName = String(sponsorButton.dataset.sponsorName || '').trim();
+    const sponsorTarget = event.target.closest('[data-sponsor-name]');
+    if (sponsorTarget) {
+      const sponsorName = String(sponsorTarget.dataset.sponsorName || '').trim();
       if (sponsorName) {
         showSponsorHover(sponsorName, 'left');
       }
