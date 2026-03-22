@@ -1,26 +1,5 @@
 [
     {
-        "name": "[Free] Become a Certified Scrum Master or Product Owner (My Agile Guru)",
-        "description": "How can you Become a Certified Scrum Master or Certified Product",
-        "startDate": "2026-03-21T09:00:00-04:00",
-        "endTime": "2026-03-21T10:00:00-0400",
-        "url": "https://www.eventbrite.com/e/free-become-a-certified-scrum-master-or-product-owner-my-agile-guru-registration-1984168672913",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Unknown Location",
-            "address": "Unknown Address"
-        },
-        "imageUrl": "/event_images/Free_Become_a_Certified_Scrum_Master_or_Product_Owner_My_Agile_Guru.webp",
-        "tags": [
-            "Tech Skills",
-            "Product",
-            "Career Growth"
-        ],
-        "source": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
-        "source_url": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
-        "scrapeTime": "2026-03-16 00:46:12.023949"
-    },
-    {
         "id": "313613981",
         "name": "Tech Meetup",
         "description": "Low-key in-person meetup for people who are either in tech, interested in starting a career in tech, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako, in the outside cafe seating.\n\nMore info on the Honolulu Tech Network website:\n[https://honolulu.network/~tech](https://honolulu.network/~tech/)\n\nThere's usually no real set topic, often people ask what we talk about so here's a sampling of common topics:\n\n* AI\n* ChatGPT\n* Career stuff\n* Other tech communities and events\n* 3D printing\n* VR/AR\n* Web development\n* Agile\n* What places exist in Honolulu and where they are\n* Renewable energy",
@@ -41,12 +20,31 @@
             "Tech Community"
         ],
         "source_url": "https://www.meetup.com/honolulu-tech-network/",
-        "scrapeTime": "2026-03-16 00:46:12.021449"
+        "scrapeTime": "2026-03-22 22:23:01.171822"
+    },
+    {
+        "name": "Hawaii Entrepreneurs Networking Night: Learn, Connect & Grow",
+        "description": "Connect with Hawaii\u2019s entrepreneurs, learn from guest speakers, and discover tools to level up your business. Food + drink",
+        "startDate": "2026-03-26T18:00:00-10:00",
+        "endTime": "2026-03-26T21:00:00-1000",
+        "url": "https://www.eventbrite.com/e/hawaii-entrepreneurs-networking-night-learn-connect-grow-tickets-1984574765547",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Tipsy Pig 2 Bar & Grill",
+            "address": "1272 South King Street, Honolulu, HI, 96814"
+        },
+        "imageUrl": "/event_images/Hawaii_Entrepreneurs_Networking_Night_Learn_Connect_Grow.webp",
+        "tags": [
+            "Tech Community"
+        ],
+        "source": "https://www.eventbrite.com/o/58144189063",
+        "source_url": "https://www.eventbrite.com/o/58144189063",
+        "scrapeTime": "2026-03-22 22:23:01.183781"
     },
     {
         "id": "313511846",
-        "name": "Claude Code / Codex 101",
-        "description": "**Claude Code / Codex 101**\n\nBy the end of this workshop you\u2019ll complete **three shipped exercises**:\n\n1. **Personal portfolio website (create + maintain + deploy)**\nYou\u2019ll generate a clean site, edit it safely, push to GitHub, and deploy to a live URL (optional: custom domain + HTTPS).\n2. **Landing page + signup funnel (real business asset)**\nBuild a simple landing page for an idea (event, service, product) with:\n\n* clear sections (value prop, FAQ, pricing/CTA)\n* a contact/signup form\n* deployed live via GitHub \u2192 Render\n*(This is the fastest \u201cI can actually use this tomorrow\u201d win.)*\n\n3. **A tiny \u201cOperator\u201d web app (input \u2192 useful output)**\nBuild a small web app with a form + database that does one job extremely well\u2014examples:\n\n* notes \u2192 structured brief\n* intake \u2192 task list + email draft\n* meeting \u2192 decisions + next steps\nYou\u2019ll ship it as a real app with a URL you can share.\n\nWe\u2019ll use a **requirements-driven** flow: define the job, define \u201cdone,\u201d lock constraints\u2014and land a **deployment-ready web app** you can actually use and share.\n\n**Cost:** $100\n\n**What you need:**\n\n* A laptop\n* Willingness to follow along and run commands (paint-by-number style)\n* Optional: a real workflow/problem you want the app to handle (there will be time reserved to run your own projects!)\n\n**Workflow Examples:**\n\n* content generation for marketing, branding, story telling, etc.\n* report and brief generation\n* chatbot generation & management\n* camera stream curation, transformation\n* much and many more (and you can bring your own!)\n\n**Schedule:**\n\n* **6pm-8pm:** We\u2019ll get everyone running locally, then do a few tight iterations of the loop (**requirements \u2192 plan \u2192 build \u2192 run \u2192 improve**) until you\u2019ve shipped a deployment-ready baseline. Repeat for each project.\n* **8pm-9pm (choose-your-own):** Apply the same template to **your** workflow/problem. I\u2019ll help you adapt the app(s) to your \u201cX\u201d and get you pointed at a clean next step (and optionally deploy if you\u2019re not already live).\n\n**Location**\nMcCully Library Meeting Area\n2211 S King St, Honolulu, HI 96826",
+        "name": "Claude Code 101",
+        "description": "**Claude Code / Codex 101**\n\nBy the end of this workshop you\u2019ll complete **three shipped exercises**:\n\n**01 : Static Website**\nBuild, update, and deploy a live website.\nStudents learn how to create a clean web presence, maintain it over time, and publish changes confidently.\n**Examples:**\n\\- personal portfolio\n\\- freelancer website\n\\- small business website\n\n**02 : Web App**\nTurn a website into software with user input, backend logic, stored data, and public-data import.\n\nYou\u2019ll learn how to build interactive web apps that collect information from forms, APIs, spreadsheets, or public websites\u2014and organize it into a usable database.\n\nExamples:\n\\- signup funnel\n\\- contact form\n\\- lead capture page\n\\- event registration form\n\\- searchable directory\n\\- local resource board\n\n**03 : A.I. Workflow Web App**\nAdd LLM-powered workflows to a web app so the software can interpret, generate, and act on user input.\nStudents learn how to build apps where A.I. helps complete real tasks inside the product, not just chat in a box.\n**Examples:**\n\\- contact form that drafts a response\n\\- intake form that summarizes requests\n\\- lead form that qualifies and routes inquiries\n\\- notes\\-to\\-email or transcript\\-to\\-action\\-items workflow\n\n*First you publish something, then you make it interactive, then you make it intelligent.*\n\nWe\u2019ll use a **requirements-driven** flow: define the job, define \u201cdone,\u201d lock constraints\u2014and land a **deployment-ready web app** you can actually use and share.\n\n**Cost:** $100\n\n**What you need:**\n\n* A laptop\n* Willingness to follow along and run commands (paint-by-number style)\n* Optional: a real workflow/problem you want the app to handle (there will be time reserved to run your own projects!)\n\n**Schedule:**\n\n* **6pm - 7pm:** We\u2019ll get everyone running the software stack locally, and the required accounts set up and connected (anthropic, render, github) and get a static website up\n* **7pm - 8pm:** we'll do a few tight iterations of the loop (**requirements \u2192 plan \u2192 build \u2192 run \u2192 improve**) until you\u2019ve shipped a deployment-ready baseline. We\u2019ll repeat the same loop across all three exercises so you leave with a pattern you can reuse on your own projects.\n* **8pm - 9pm :** We'll continue the above and optionally apply the same template to **your** workflow/problem. I\u2019ll help you adapt the app(s) to your \u201cX\u201d and get you pointed at a clean next step (and optionally deploy if you\u2019re not already live).\n\n**Location**\nMcCully Library Meeting Area\n2211 S King St, Honolulu, HI 9682",
         "startDate": "2026-03-27T18:00:00-10:00",
         "endTime": "2026-03-27T21:00:00-10:00",
         "url": "https://www.meetup.com/oahuai/events/313511846/",
@@ -59,13 +57,13 @@
             "state": "HI",
             "country": "us"
         },
-        "imageUrl": "/event_images/Claude_Code_Codex_101.webp",
+        "imageUrl": "/event_images/Claude_Code_101.webp",
         "tags": [
             "Tech Skills",
             "AI"
         ],
         "source_url": "https://www.meetup.com/oahuai/",
-        "scrapeTime": "2026-03-16 00:46:12.020978"
+        "scrapeTime": "2026-03-22 22:23:01.170723"
     },
     {
         "name": "SAFe for Scrum Master 6.0 Certification (SSM) - Scaled Agile",
@@ -86,7 +84,7 @@
         ],
         "source": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
         "source_url": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
-        "scrapeTime": "2026-03-16 00:46:12.025067"
+        "scrapeTime": "2026-03-22 22:23:01.174863"
     },
     {
         "id": "313722338",
@@ -109,11 +107,11 @@
             "Tech Community"
         ],
         "source_url": "https://www.meetup.com/honolulu-tech-network/",
-        "scrapeTime": "2026-03-16 00:46:12.021827"
+        "scrapeTime": "2026-03-22 22:23:01.172385"
     },
     {
         "name": "Kathy Jetn\u0304il-Kijiner: Poetry & Climate Policy in the Marshall Islands",
-        "description": "A public address by Inouye Chair, poet, performer, and climate envoy Kathy",
+        "description": "Keynote address by Inouye Chair, poet, performer, and climate envoy Kathy",
         "startDate": "2026-04-01T18:30:00-10:00",
         "endTime": "2026-04-01T20:00:00-1000",
         "url": "https://www.eventbrite.com/e/kathy-jetnil-kijiner-poetry-climate-policy-in-the-marshall-islands-tickets-1984821584790",
@@ -129,7 +127,7 @@
         ],
         "source": "https://www.eventbrite.com/o/better-tomorrow-speaker-series-39225126213",
         "source_url": "https://www.eventbrite.com/o/better-tomorrow-speaker-series-39225126213",
-        "scrapeTime": "2026-03-16 00:46:12.030505"
+        "scrapeTime": "2026-03-22 22:23:01.180346"
     },
     {
         "name": "[Free] Become a Certified Scrum Master or Product Owner (My Agile Guru)",
@@ -150,15 +148,15 @@
         ],
         "source": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
         "source_url": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
-        "scrapeTime": "2026-03-16 00:46:12.026565"
+        "scrapeTime": "2026-03-22 22:23:01.176346"
     },
     {
-        "id": "krpvvtyjcgbhb",
+        "id": "313814629",
         "name": "Tech Meetup",
         "description": "Low-key in-person meetup for people who are either in tech, interested in starting a career in tech, or love playing with tech as a hobby.\n\nThe meeting is at Whole Foods in Kaka'ako, in the outside cafe seating.\n\nMore info on the Honolulu Tech Network website:\n[https://honolulu.network/~tech](https://honolulu.network/~tech/)\n\nThere's usually no real set topic, often people ask what we talk about so here's a sampling of common topics:\n\n* AI\n* ChatGPT\n* Career stuff\n* Other tech communities and events\n* 3D printing\n* VR/AR\n* Web development\n* Agile\n* What places exist in Honolulu and where they are\n* Renewable energy",
         "startDate": "2026-04-05T17:00:00-10:00",
         "endTime": "2026-04-05T19:00:00-10:00",
-        "url": "https://www.meetup.com/honolulu-tech-network/events/krpvvtyjcgbhb/",
+        "url": "https://www.meetup.com/honolulu-tech-network/events/313814629/",
         "status": "ACTIVE",
         "source": "https://www.meetup.com/honolulu-tech-network/",
         "location": {
@@ -173,7 +171,7 @@
             "Tech Community"
         ],
         "source_url": "https://www.meetup.com/honolulu-tech-network/",
-        "scrapeTime": "2026-03-16 00:46:12.022611"
+        "scrapeTime": "2026-03-22 22:23:01.173237"
     },
     {
         "id": "313756441",
@@ -196,7 +194,7 @@
             "Tech Community"
         ],
         "source_url": "https://www.meetup.com/honolulu-tech-network/",
-        "scrapeTime": "2026-03-16 00:46:12.023235"
+        "scrapeTime": "2026-03-22 22:23:01.174002"
     },
     {
         "name": "[Free] Become a Certified Scrum Master or Product Owner (My Agile Guru)",
@@ -217,7 +215,7 @@
         ],
         "source": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
         "source_url": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
-        "scrapeTime": "2026-03-16 00:46:12.027911"
+        "scrapeTime": "2026-03-22 22:23:01.177688"
     },
     {
         "id": "evt-VPqNGPgzHbeMHD2",
@@ -233,7 +231,7 @@
         },
         "imageUrl": "/event_images/2nd_Annual_National_Civics_Bee_Hawaii_State_Finals.webp",
         "recurring": false,
-        "scrapeTime": "2026-03-16 00:46:10.260026",
+        "scrapeTime": "2026-03-22 22:22:57.220576",
         "tags": [
             "Tech Community"
         ],
@@ -259,7 +257,7 @@
         ],
         "source": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
         "source_url": "https://www.eventbrite.com/o/my-agile-guru-111788301561",
-        "scrapeTime": "2026-03-16 00:46:12.029152"
+        "scrapeTime": "2026-03-22 22:23:01.178881"
     },
     {
         "id": "313386202",
@@ -283,6 +281,30 @@
             "AI"
         ],
         "source_url": "https://www.meetup.com/oahuai/",
-        "scrapeTime": "2026-03-16 00:46:12.021117"
+        "scrapeTime": "2026-03-22 22:23:01.170865"
+    },
+    {
+        "id": "313807715",
+        "name": "A.I. Hackathon Tournament",
+        "description": "Your task is to generate software and marketing materials to help bridge youth robotics and high-tech businesses in O'ahu in an economically sustainable way. Some examples :\n\\* fundraising automations (marketing, banking, agreement brokering, etc)\n\\* youth-internship agreement standards / contract generation\n\nMore info about the stakeholders (including specific youth robotics participants and high-tech businesses in O'ahu) will be provided upon registration.\n\nAll funds collected here will be used for the reward:\n1st prize : 75% of prize pool $$$\n2nd prize: 15% of prize pool $$$\n3rd prize: 5% of prize pool $$$\n\nPrize pool permutations:\n10 entrants: $200\n20 entrants: $400\n50 entrants: $1,000\n\n\\-\\-\\-\n\n\\#\\#\\# What You\u2019ll Actually Do\n\nYou\u2019ll work solo or in small teams to design and prototype a real, usable system .\n\n\\#\\#\\# How its judged\nJudgement will be made by a Council of LLMs based on a system prompt (will be shared shortly), live transcripts from the panel's Q&A session (you can ask them questions, via moderator, for the first 30-45 minutes), and your code . The panel is made up of robotics founders, championship robotics coaches and their students.\n\n\\-\\-\\-\n\n\\#\\#\\# Why This Matters\n\nO'ahu has:\n\\* Talented youth in robotics programs\n\\* High-level tech operators and founders\n\\* Capital that is not efficiently flowing between them\n\nThis session is about building the \\*\\*missing bridge\\*\\*.\n\nNot a one-off project \u2014 but systems that can:\n\u2192 fund teams\n\u2192 create jobs\n\u2192 build real pathways into high-tech careers\n\n\\-\\-\\-\n\n\\#\\#\\# Who Should Join\n\n\\* ANYONE willing to bet that they generate a working solution\n\\-\\-\\-\n\nThis is an early breakout session of the main event , found here : https://www.meetup.com/oahuai/events/313386202/?eventOrigin=home_next_event_you_are_hosting\n\n(Main event runs from 10:00 AM to 2:15 PM HST . (You do not need to register for both events))",
+        "startDate": "2026-05-16T10:00:00-10:00",
+        "endTime": "2026-05-16T12:00:00-10:00",
+        "url": "https://www.meetup.com/oahuai/events/313807715/",
+        "status": "ACTIVE",
+        "source": "https://www.meetup.com/oahuai/",
+        "location": {
+            "name": "Entrepreneurs Sandbox",
+            "address": "643 Ilalo St",
+            "city": "Honolulu",
+            "state": "HI",
+            "country": "us"
+        },
+        "imageUrl": "/event_images/A_I_Hackathon_Tournament.webp",
+        "tags": [
+            "Tech Skills",
+            "AI"
+        ],
+        "source_url": "https://www.meetup.com/oahuai/",
+        "scrapeTime": "2026-03-22 22:23:01.171119"
     }
 ]
