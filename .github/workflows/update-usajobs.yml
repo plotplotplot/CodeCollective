@@ -1,0 +1,72 @@
+name: Update USAJOBS Data
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Runs weekly on Sunday at 00:00 UTC (once a week)
+  workflow_dispatch:  # Allows manual trigger from the Actions tab
+
+jobs:
+  update_usajobs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Compute USAJOBS cache key
+        id: usajobs_cache_key
+        run: |
+          echo "key=usajobs-gz-${{ runner.os }}-$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore USAJOBS gzip cache
+        id: usajobs_cache_restore
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            usa/data/usajobs.json.gz
+            usa/data/usajobs-lite.json.gz
+          key: ${{ steps.usajobs_cache_key.outputs.key }}
+          restore-keys: |
+            usajobs-gz-${{ runner.os }}-
+
+      - name: Refresh USAJOBS cache
+        env:
+          USAJOBS_API_KEY: ${{ secrets.USAJOBS_API_KEY }}
+          USAJOBS_USER_AGENT: ${{ secrets.USAJOBS_USER_AGENT }}
+          USAJOBS_EMAIL: ${{ secrets.USAJOBS_EMAIL }}
+          USAJOBS_MAX_AGE_DAYS: '7'
+        run: |
+          ./usa/refresh_usajobs_search.sh
+
+      - name: Save USAJOBS gzip cache
+        if: always() && steps.usajobs_cache_restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            usa/data/usajobs.json.gz
+            usa/data/usajobs-lite.json.gz
+          key: ${{ steps.usajobs_cache_restore.outputs.cache-primary-key }}
+
+      - name: Upload usajobs.json.gz as release artifact
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Create or update the 'usajobs-data' release with the large file
+          if [ -f "usa/data/usajobs.json.gz" ]; then
+            # Delete existing asset if it exists, then upload new one
+            gh release upload usajobs-data usa/data/usajobs.json.gz --clobber 2>/dev/null || \
+            gh release create usajobs-data usa/data/usajobs.json.gz \
+              --title "USAJOBS Data" \
+              --notes "Auto-updated USAJOBS data file. Download: usajobs.json.gz" \
+              --latest=false
+          fi
