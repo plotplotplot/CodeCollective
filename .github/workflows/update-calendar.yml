@@ -139,7 +139,21 @@ jobs:
             data/maryland_bill_hearings_2026.json \
             event_images \
             upcoming_events.json \
-            usa/data/usajobs-lite.json.gz \
-            usa/data/usajobs.json.gz
+            usa/data/usajobs-lite.json.gz
           git commit -m "Update calendar and cached legislative data" || echo "No changes to commit"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+
+      - name: Upload usajobs.json.gz as release artifact
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Create or update the 'usajobs-data' release with the large file
+          if [ -f "usa/data/usajobs.json.gz" ]; then
+            # Delete existing asset if it exists, then upload new one
+            gh release upload usajobs-data usa/data/usajobs.json.gz --clobber 2>/dev/null || \
+            gh release create usajobs-data usa/data/usajobs.json.gz \
+              --title "USAJOBS Data" \
+              --notes "Auto-updated USAJOBS data file. Download: usajobs.json.gz" \
+              --latest=false
+          fi
