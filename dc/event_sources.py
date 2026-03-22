@@ -55,4 +55,7 @@ sources = [
     {"url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-axOGhc5qFBuE3Zz", "tags": ["Tech Community"]},
     {"url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-3pgVKlDt94iMvRx", "tags": ["Finance", "Crypto & Web3"]},
     {"url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-rEFlkqAdGOtbeWS", "tags": ["Tech Skills", "AI"]},
+    {"url": "https://www.meetup.com/women-and-gender-expansive-coders-dc-wgxc-dc/", "tags": ["Tech Skills", "AI"]},
+
 ]
+
