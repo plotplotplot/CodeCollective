@@ -84,7 +84,7 @@ ICS_SOURCES = [
         "url": "https://calendar.google.com/calendar/u/0/r?cid=c_35ce051bfecc3ebd59f7776829ca549d2dd38e8ab2a50b07bd4243cb1c218c72@group.calendar.google.com",
         "ics_url": "https://calendar.google.com/calendar/ical/c_35ce051bfecc3ebd59f7776829ca549d2dd38e8ab2a50b07bd4243cb1c218c72%40group.calendar.google.com/public/basic.ics",
         "orgImageUrl": "https://chesapeakeclimate.org/wp-content/uploads/2022/02/CCAN-Logo-2022-300RGB-wht-e1643743097559.png",
-        "tags": ["Water"],
+        "tags": ["Climate", "Environment", "Activism"],
         "group_name": "CCAN Baltimore",
         "recurring": False,
     },
@@ -483,7 +483,7 @@ def collect_events(city="baltimore", error_logger=None):
         new_events += apply_source_tags(
             scrape_chesapeakewea.scrape_events(),
             "https://chesapeakewea.org/events/",
-            ["Water"],
+            ["Water", "Professional Association", "Infrastructure"],
         )
     except Exception as e:
         print(f"Error fetching Chesapeake WEA events: {e}")

@@ -91,7 +91,7 @@ sources = [
             "Tech Community",
         ],
     },
-    {"url": "https://www.meetup.com/profs-and-pints-baltimore/", "tags": ["Business"]},
+    {"url": "https://www.meetup.com/profs-and-pints-baltimore/", "tags": ["Education", "Science", "Lifelong Learning"]},
     {"url": "https://www.meetup.com/ai-enthusiasts/", "tags": ["Tech Skills", "AI"]},
     {"url": "https://www.meetup.com/KMC-Maryland/", "tags": ["Religion"]},
     {
@@ -166,7 +166,7 @@ sources = [
     },
     {
         "url": "https://www.eventbrite.com/o/lets-go-113135073431",
-        "tags": ["Economic Development"],
+        "tags": ["Economic Development", "Youth Education"],
     },
     {
         "url": "https://www.eventbrite.com/o/howard-county-office-of-workforce-development-88843319173",
@@ -194,9 +194,12 @@ sources = [
         "url": "https://www.eventbrite.com/o/fight-blight-bmore-18309938620",
         "tags": ["Water"],
     },
-    {"url": "https://www.eventbrite.com/o/79181486483", "tags": ["Business"]},
-    {"url": "https://www.eventbrite.com/o/34179073381", "tags": ["Business"]},
-    {"url": "https://www.eventbrite.com/o/11070919734", "tags": ["Business"]},
+    {"url": "https://www.eventbrite.com/o/79181486483", "tags": ["Business"]}, #Institute of Marine and Environmental Technology (IMET)
+
+    {"url": "https://www.eventbrite.com/o/34179073381", "tags": ["Business"]}, #The Center for Entrepreneurship and Innovation
+
+    {"url": "https://www.eventbrite.com/o/11070919734", "tags": ["Business"]}, #National Society of Black Engineers Baltimore
+
     {"url": "https://luma.com/2d1a4uwv", "tags": ["Business"]},
     {"url": "https://lu.ma/calendar/cal-vzms1nGZmYUUCrj", "tags": ["Water"]},
     {"url": "https://lu.ma/Bmore_Climate", "tags": ["Water", "Tech Community"]},
@@ -243,6 +246,11 @@ sources = [
         "tags": ["Economic Development"],
     },
     {
+        "url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-WdW6dzEEpKMRMGq",
+        "group_name": "BMNT Ventures",
+        "tags": ["Business", "Startup"],
+    },
+    {
         "url": "https://baltimoresistercities.org/events/",
         "tags": ["Community", "Tech Community"],
     },
@@ -265,7 +273,7 @@ sources = [
     },
     {
         "url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-cTlmPNsi6jHYweP",
-        "tags": ["Business"],
+        "tags": ["Health & Wellness", "Culture", "Community"],
     },
     {
         "url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-2eWBPcn6lj9Dzqz",

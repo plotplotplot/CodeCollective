@@ -4,6 +4,26 @@ import json
 import re
 from datetime import datetime
 from urllib.parse import urljoin
+from zoneinfo import ZoneInfo
+
+EASTERN_TZ = ZoneInfo("America/New_York")
+
+
+def log_skip(reason, detail=""):
+    if detail:
+        print(f"GBC skip: {reason}: {detail}")
+    else:
+        print(f"GBC skip: {reason}")
+
+
+def first_present_attr(tag, *attrs):
+    if not tag:
+        return ""
+    for attr in attrs:
+        value = tag.get(attr)
+        if value:
+            return value
+    return ""
 
 def scrape_gbc_events():
     """
@@ -12,29 +32,50 @@ def scrape_gbc_events():
     url = "https://gbc.org/events/list/"
     
     try:
-        # Send GET request
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
         }
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        
-        # Parse HTML
-        soup = BeautifulSoup(response.content, 'html.parser')
-        
         events = []
-        
-        # Find all event articles
-        event_articles = soup.find_all('article', class_='tribe-events-calendar-list__event')
-        
-        for article in event_articles:
-            try:
-                event_data = extract_event_data(article, url)
-                if event_data:
+        seen_urls = set()
+        next_url = url
+
+        while next_url:
+            response = requests.get(next_url, headers=headers, timeout=30)
+            response.raise_for_status()
+
+            soup = BeautifulSoup(response.content, 'html.parser')
+
+            event_articles = soup.find_all('article', class_='tribe-events-calendar-list__event')
+            if not event_articles:
+                event_articles = soup.select('article.tribe-events-pro-photo__event, article.tribe-common-g-row')
+
+            page_new_events = 0
+            for article in event_articles:
+                try:
+                    event_data = extract_event_data(article, next_url)
+                    if not event_data:
+                        continue
+                    event_url = event_data.get("url", "")
+                    dedupe_key = event_url or f"{event_data.get('name', '')}::{event_data.get('startDate', '')}"
+                    if dedupe_key in seen_urls:
+                        continue
+                    seen_urls.add(dedupe_key)
                     events.append(event_data)
-            except Exception as e:
-                print(f"Error processing event: {e}")
-                continue
+                    page_new_events += 1
+                except Exception as e:
+                    print(f"Error processing GBC event: {e}")
+                    continue
+
+            next_link = (
+                soup.select_one('a[rel="next"]')
+                or soup.select_one('a.tribe-events-c-nav__next')
+                or soup.select_one('a.next')
+            )
+            candidate_next = urljoin(next_url, next_link.get('href')) if next_link and next_link.get('href') else None
+            if not candidate_next or candidate_next == next_url or page_new_events == 0:
+                next_url = None
+            else:
+                next_url = candidate_next
         
         return events
         
@@ -46,107 +87,151 @@ def extract_event_data(article, base_url):
     """
     Extract event data from a single event article element
     """
-    # Get event title and URL
-    title_link = article.find('a', class_='tribe-events-calendar-list__event-title-link')
+    title_link = (
+        article.find('a', class_='tribe-events-calendar-list__event-title-link')
+        or article.select_one('.tribe-events-pro-photo__event-title a')
+        or article.select_one('.tribe-events-calendar-list__event-title a')
+        or article.select_one('h3 a, h2 a')
+    )
     if not title_link:
+        log_skip("missing_title_link")
         return None
         
     name = title_link.get_text(strip=True)
-    event_url = title_link.get('href', '')
+    event_url = urljoin(base_url, title_link.get('href', ''))
     
-    # Get date and time information
-    datetime_elem = article.find('time', class_='tribe-events-calendar-list__event-datetime')
+    datetime_elem = (
+        article.find('time', class_='tribe-events-calendar-list__event-datetime')
+        or article.select_one('time[datetime]')
+    )
     if not datetime_elem:
+        log_skip("missing_datetime", name)
         return None
     
-    # Extract date from datetime attribute
     date_attr = datetime_elem.get('datetime')
     if not date_attr:
+        log_skip("missing_datetime_attr", name)
         return None
     
-    # Parse the time text to get start and end times
-    time_text = datetime_elem.get_text(strip=True)
-    start_date, end_date = parse_event_datetime(date_attr, time_text)
+    time_text = " ".join(datetime_elem.stripped_strings)
+    start_date, end_date = parse_event_datetime(date_attr, time_text, article)
+    if not start_date:
+        log_skip("unparseable_datetime", name)
+        return None
     
-    # Get description
-    description_elem = article.find('div', class_='tribe-events-calendar-list__event-description')
+    description_elem = (
+        article.find('div', class_='tribe-events-calendar-list__event-description')
+        or article.select_one('.tribe-events-pro-photo__event-description')
+        or article.select_one('.tribe-events-calendar-list__event-description-wrapper')
+    )
     description = ""
     if description_elem:
-        # Get text and clean it up
-        desc_text = description_elem.get_text(strip=True)
-        # Remove "[...]" or similar continuation markers
+        desc_text = description_elem.get_text(" ", strip=True)
         description = re.sub(r'\[.*?\]', '', desc_text).strip()
     
-    # Get venue information
-    venue_elem = article.find('address', class_='tribe-events-calendar-list__event-venue')
+    venue_elem = (
+        article.find('address', class_='tribe-events-calendar-list__event-venue')
+        or article.select_one('address')
+    )
     location = extract_location_data(venue_elem)
     
-    # Get event type (Virtual, In-Person, Hybrid)
     event_type = extract_event_type(article)
     
-    # Get image URL
-    image_elem = article.find('img', class_='tribe-events-calendar-list__event-featured-image')
+    image_elem = (
+        article.find('img', class_='tribe-events-calendar-list__event-featured-image')
+        or article.select_one('img')
+    )
     image_src = ""
     if image_elem:
-        image_src = image_elem.get('src', '')
-    
-    # Build event object
+        image_src = urljoin(
+            base_url,
+            first_present_attr(image_elem, 'src', 'data-src', 'data-lazy-src', 'data-srcset').split(',')[0].strip().split(' ')[0],
+        )
+
     event_data = {
         "name": name,
         "startDate": start_date,
+        "endDate": end_date,
         "endTime": end_date,
         "description": description,
         "url": event_url,
         "status": "ACTIVE",
         "location": location,
-        "imageUrl": image_src
+        "imageUrl": image_src,
+        "eventType": event_type,
     }
     
     return event_data
 
-def parse_event_datetime(date_attr, time_text):
+def parse_event_datetime(date_attr, time_text, article=None):
     """
     Parse date and time information to create ISO format datetime strings
     """
-    # Extract date from datetime attribute (format: 2025-06-10)
-    base_date = date_attr
-    
-    # Parse time text (format: "June 10 @ 6:00 pm - 8:00 pm")
-    time_pattern = r'(\d{1,2}:\d{2})\s*(am|pm).*?(\d{1,2}:\d{2})\s*(am|pm)'
-    time_match = re.search(time_pattern, time_text, re.IGNORECASE)
-    
-    if time_match:
-        start_time = time_match.group(1)
-        start_period = time_match.group(2).lower()
-        end_time = time_match.group(3)
-        end_period = time_match.group(4).lower()
-        
-        # Convert to 24-hour format
-        start_hour_24 = convert_to_24_hour(start_time, start_period)
-        end_hour_24 = convert_to_24_hour(end_time, end_period)
-        
-        # Create ISO datetime strings (assuming Eastern Time)
-        start_date = f"{base_date}T{start_hour_24}-04:00"
-        end_date = f"{base_date}T{end_hour_24}-04:00"
-        
-        return start_date, end_date
-    
-    # Fallback if time parsing fails
-    return f"{base_date}T12:00:00-04:00", f"{base_date}T13:00:00-04:00"
+    base_date = str(date_attr).strip()
+    try:
+        base_day = datetime.fromisoformat(base_date[:10]).date()
+    except ValueError:
+        return None, None
 
-def convert_to_24_hour(time_str, period):
+    attr_range = ""
+    if article:
+        attr_range = (
+            first_present_attr(article, 'data-start-datetime', 'data-start-date')
+            + " "
+            + first_present_attr(article, 'data-end-datetime', 'data-end-date')
+        )
+
+    combined_text = " ".join(part for part in [time_text, attr_range] if part).strip()
+
+    start_match = re.search(r'(\d{1,2})(?::(\d{2}))?\s*(am|pm)', combined_text, re.IGNORECASE)
+    if not start_match:
+        start_dt = datetime(base_day.year, base_day.month, base_day.day, 12, 0, tzinfo=EASTERN_TZ)
+        end_dt = datetime(base_day.year, base_day.month, base_day.day, 13, 0, tzinfo=EASTERN_TZ)
+        return start_dt.isoformat(), end_dt.isoformat()
+
+    start_hour = convert_to_24_hour(start_match.group(1), start_match.group(2), start_match.group(3))
+    start_dt = datetime(
+        base_day.year,
+        base_day.month,
+        base_day.day,
+        start_hour[0],
+        start_hour[1],
+        tzinfo=EASTERN_TZ,
+    )
+
+    remaining_text = combined_text[start_match.end():]
+    end_match = re.search(r'(\d{1,2})(?::(\d{2}))?\s*(am|pm)', remaining_text, re.IGNORECASE)
+    if end_match:
+        end_hour = convert_to_24_hour(end_match.group(1), end_match.group(2), end_match.group(3))
+        end_dt = datetime(
+            base_day.year,
+            base_day.month,
+            base_day.day,
+            end_hour[0],
+            end_hour[1],
+            tzinfo=EASTERN_TZ,
+        )
+        if end_dt < start_dt:
+            end_dt = end_dt.replace(day=end_dt.day)  # keep explicit local date logic below
+            end_dt = datetime.fromtimestamp(end_dt.timestamp() + 86400, tz=EASTERN_TZ)
+    else:
+        end_dt = datetime.fromtimestamp(start_dt.timestamp() + 3600, tz=EASTERN_TZ)
+
+    return start_dt.isoformat(), end_dt.isoformat()
+
+def convert_to_24_hour(hour_str, minute_str, period):
     """
     Convert 12-hour time format to 24-hour format
     """
-    hour, minute = time_str.split(':')
-    hour = int(hour)
+    hour = int(hour_str)
+    minute = int(minute_str or 0)
     
     if period == 'pm' and hour != 12:
         hour += 12
     elif period == 'am' and hour == 12:
         hour = 0
     
-    return f"{hour:02d}:{minute}:00"
+    return hour, minute
 
 def extract_location_data(venue_elem):
     """
@@ -161,19 +246,27 @@ def extract_location_data(venue_elem):
     }
     
     if venue_elem:
-        venue_title = venue_elem.find('span', class_='tribe-events-calendar-list__event-venue-title')
+        venue_title = (
+            venue_elem.find('span', class_='tribe-events-calendar-list__event-venue-title')
+            or venue_elem.select_one('.tribe-events-venue-details')
+            or venue_elem.select_one('strong')
+        )
         if venue_title:
             location["name"] = venue_title.get_text(strip=True)
         
-        venue_address = venue_elem.find('span', class_='tribe-events-calendar-list__event-venue-address')
+        venue_address = (
+            venue_elem.find('span', class_='tribe-events-calendar-list__event-venue-address')
+            or venue_elem.select_one('.tribe-events-pro-photo__event-venue')
+            or venue_elem
+        )
         if venue_address:
-            address_text = venue_address.get_text(strip=True)
+            address_text = venue_address.get_text(" ", strip=True)
             location["address"] = address_text
             
-            # Try to parse city and state from address
-            if "Baltimore, MD" in address_text:
-                location["city"] = "Baltimore"
-                location["state"] = "MD"
+            city_state_match = re.search(r'([A-Za-z .-]+),\s*([A-Z]{2})\b', address_text)
+            if city_state_match:
+                location["city"] = city_state_match.group(1).strip()
+                location["state"] = city_state_match.group(2).strip()
     
     return location
 
@@ -181,7 +274,10 @@ def extract_event_type(article):
     """
     Extract event type from the event type pill
     """
-    type_pill = article.find('div', class_='mg-events-type-pill')
+    type_pill = (
+        article.find('div', class_='mg-events-type-pill')
+        or article.select_one('[class*="type-pill"]')
+    )
     if type_pill:
         type_text = type_pill.get_text(strip=True)
         return type_text
