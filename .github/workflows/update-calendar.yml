@@ -22,31 +22,6 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Determine whether to refresh Baltimore profile images
-        id: baltimore_images
-        run: |
-          if [ "$(date -u +%d)" = "01" ]; then
-            echo "refresh_profile_images=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "refresh_profile_images=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Refresh Maryland bills cache
-        run: |
-          python fetch_mdbills_cache.py
-
-      - name: Refresh Maryland hearings / testimony cache
-        run: |
-          python fetch_mdbills_hearings_cache.py
-
-      - name: Refresh Baltimore testimony cache
-        run: |
-          if [ "${{ steps.baltimore_images.outputs.refresh_profile_images }}" = "true" ]; then
-            python baltimore/testimony/fetch_bills.py --refresh-profile-images
-          else
-            python baltimore/testimony/fetch_bills.py
-          fi
-
       - name: Run genCalendar.py
         run: |
           python genCalendar.py
@@ -98,13 +73,9 @@ jobs:
             westvirginia/scrape_errors.json \
             westvirginia/unmatched_source_patterns.json \
             westvirginia/upcoming_events.json \
-            baltimore/testimony/data/city_council_testimony.json \
-            baltimore/testimony/images \
             cc_events.ics \
-            data/maryland_bills_2026.json \
-            data/maryland_bill_hearings_2026.json \
             event_images \
             upcoming_events.json \
             usa/data/usajobs-lite.json.gz
-          git commit -m "Update calendar and cached legislative data" || echo "No changes to commit"
+          git commit -m "Update calendar" || echo "No changes to commit"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
