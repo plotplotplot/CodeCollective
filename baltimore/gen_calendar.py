@@ -498,4 +498,16 @@ def collect_events(city="baltimore", error_logger=None):
     except Exception as e:
         print(f"Error fetching CSAWWA events: {e}")
 
+    try:
+        scrape_marylandforwardparty = importlib.import_module("baltimore.scrape_marylandforwardparty")
+        new_events += apply_source_tags(
+            scrape_marylandforwardparty.scrape_events(),
+            "https://www.marylandforwardparty.com/get-involved",
+            ["Politics"],
+            "Maryland Forward Party",
+            "https://static.wixstatic.com/media/d08726_f0a40763c1b0494d9747efd59718dced%7Emv2.png/v1/fill/w_192%2Ch_192%2Clg_1%2Cusm_0.66_1.00_0.01/d08726_f0a40763c1b0494d9747efd59718dced%7Emv2.png",
+        )
+    except Exception as e:
+        print(f"Error fetching Maryland Forward Party events: {e}")
+
     return new_events
