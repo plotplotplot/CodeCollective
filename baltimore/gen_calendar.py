@@ -88,6 +88,14 @@ ICS_SOURCES = [
         "group_name": "CCAN Baltimore",
         "recurring": False,
     },
+    {
+        "url": "https://mdgop.org/calendar/",
+        "ics_url": "https://mdgop.org/calendar/list/?ical=1",
+        "orgImageUrl": "https://mdgop.org/wp-content/uploads/sites/30/2025/10/MDGOP-logo-2.png",
+        "tags": ["Politics"],
+        "group_name": "Maryland GOP",
+        "preface": "",
+    },
 ]
 
 PROCESS_ICS_SOURCES = [
@@ -509,5 +517,17 @@ def collect_events(city="baltimore", error_logger=None):
         )
     except Exception as e:
         print(f"Error fetching Maryland Forward Party events: {e}")
+
+    try:
+        scrape_mddems = importlib.import_module("baltimore.scrape_mddems")
+        new_events += apply_source_tags(
+            scrape_mddems.scrape_events(),
+            "https://mddems.org/events/",
+            ["Politics"],
+            "Maryland Democratic Party",
+            "https://mddems.org/wp-content/uploads/2023/05/MD-DEMS-LOGO.png",
+        )
+    except Exception as e:
+        print(f"Error fetching MD Dems events: {e}")
 
     return new_events
