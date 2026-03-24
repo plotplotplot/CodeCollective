@@ -1,11 +1,6 @@
 {
   "id": "community_sectors",
   "label": "Community Sectors",
-  "other": {
-    "label": "Other",
-    "color": "#6b7280",
-    "text_color": "#ffffff"
-  },
   "categories": [
     {
       "label": "Technology",
@@ -54,6 +49,12 @@
       "color": "#ea580c",
       "text_color": "#ffffff",
       "matches": ["Makerspace", "Robotics"]
+    },
+    {
+      "label": "Other",
+      "color": "#6b7280",
+      "text_color": "#ffffff",
+      "matches": []
     }
   ]
 }

@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Code Collective | Tech Event Organizations</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Code Collective organizes tech labor and provides a unified calendar of local tech meetups, hackathons, and tech community events." />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://codecollective.us/eventorgs.html" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://codecollective.us/eventorgs.html" />
+  <meta property="og:site_name" content="Code Collective" />
+  <meta property="og:title" content="Code Collective | Tech Event Organizations" />
+  <meta property="og:description"
+    content="A community-wide tech events organizations list." />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/favicons/favicon.png" />
+
+  <link rel="preload" href="/css/master.css" as="style">
+  <link rel="preload" href="/css/calendar.css" as="style">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/master.css" />
+  <link rel="stylesheet" href="/css/calendar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    .orgs-header {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(124, 58, 237, 0.1) 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 30px 20px;
+      margin-bottom: 30px;
+    }
+
+    .orgs-header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      background: linear-gradient(90deg, #fff 0%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .orgs-header p {
+      margin: 10px 0 0 0;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.1rem;
+    }
+
+    .orgs-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 100px;
+    }
+
+    /* Search Section */
+    .orgs-search-section {
+      margin-bottom: 24px;
+    }
+
+    .search-box {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 14px 20px 14px 48px;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      color: #fff;
+      transition: all 0.2s;
+      box-sizing: border-box;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    .search-box input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 1.1rem;
+    }
+
+    .search-stats {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 8px;
+      margin-left: 4px;
+    }
+
+    /* Organizations List */
+    .orgs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .org-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .org-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--tag-color, transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .org-item.tagged::before {
+      opacity: 1;
+    }
+
+    .org-item:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateX(4px);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .org-rank {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.3);
+      min-width: 50px;
+      text-align: center;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    .org-rank.top-3 {
+      color: #fbbf24;
+    }
+
+    .org-icon-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .org-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .org-icon-placeholder {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .org-icon-placeholder i {
+      font-size: 1.4rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .org-badge {
+      position: absolute;
+      bottom: -4px;
+      right: -4px;
+      width: 20px;
+      height: 20px;
+      background: var(--tag-color, #475569);
+      border-radius: 50%;
+      border: 2px solid rgba(30, 30, 40, 0.9);
+    }
+
+    .org-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .org-name {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 0;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .org-name mark {
+      background: rgba(251, 191, 36, 0.3);
+      color: #fff;
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+
+    .org-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .org-source {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .org-source i {
+      font-size: 0.75rem;
+    }
+
+    .org-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .org-tag {
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .org-tag.primary {
+      background: var(--tag-color, #475569);
+      color: var(--tag-text-color, #ffffff);
+      border-color: transparent;
+    }
+
+    .org-stats {
+      display: flex;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .org-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      min-width: 70px;
+      transition: background 0.2s;
+    }
+
+    .org-item:hover .org-stat {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .org-stat-number {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .org-stat-number.zero {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .org-stat-label {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    /* Loading & Empty States */
+    #loading {
+      text-align: center;
+      padding: 60px 20px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    #loading i {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .no-orgs-message {
+      text-align: center;
+      padding: 80px 20px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .no-orgs-message i {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      opacity: 0.5;
+    }
+
+    .no-orgs-message h3 {
+      margin: 0 0 12px 0;
+      color: #fff;
+      font-size: 1.4rem;
+    }
+
+    .no-orgs-message p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .clear-filters-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: rgba(59, 130, 246, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      border-radius: 8px;
+      color: #60a5fa;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .clear-filters-btn:hover {
+      background: rgba(59, 130, 246, 0.3);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .orgs-header {
+        padding: 20px 16px;
+      }
+
+      .orgs-header h1 {
+        font-size: 1.6rem;
+      }
+
+      .orgs-container {
+        padding: 0 16px 100px;
+      }
+
+      .org-item {
+        padding: 16px;
+        gap: 14px;
+      }
+
+      .org-rank {
+        font-size: 1.1rem;
+        min-width: 36px;
+      }
+
+      .org-icon,
+      .org-icon-placeholder {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+      }
+
+      .org-icon-placeholder i {
+        font-size: 1.1rem;
+      }
+
+      .org-name {
+        font-size: 1rem;
+      }
+
+      .org-meta {
+        gap: 8px;
+      }
+
+      .org-source {
+        font-size: 0.8rem;
+      }
+
+      .org-tags {
+        display: none;
+      }
+
+      .org-stats {
+        gap: 8px;
+      }
+
+      .org-stat {
+        padding: 8px 12px;
+        min-width: 55px;
+      }
+
+      .org-stat-number {
+        font-size: 1.1rem;
+      }
+
+      .org-stat-label {
+        font-size: 0.65rem;
+      }
+    }
+  </style>
+
+  <script>
+    (function () {
+      const DEFAULT_CITY_OPTIONS = ['baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh', 'virtual'];
+      const DEFAULT_CITY_DISPLAY_NAMES = {
+        baltimore: 'Baltimore',
+        westvirginia: 'West Virginia',
+        hawaii: 'Hawaii',
+        dc: 'Washington, D.C.',
+        pittsburgh: 'Pittsburgh',
+        virtual: 'Virtual',
+      };
+
+      window.CALENDAR_CITY_OPTIONS = window.CALENDAR_CITY_OPTIONS || DEFAULT_CITY_OPTIONS;
+      window.CALENDAR_CITY_DISPLAY_NAMES = window.CALENDAR_CITY_DISPLAY_NAMES || DEFAULT_CITY_DISPLAY_NAMES;
+
+      const cityOptions = window.CALENDAR_CITY_OPTIONS;
+      const cityDisplayNames = window.CALENDAR_CITY_DISPLAY_NAMES;
+
+      function getCityDisplayName(city) {
+        return cityDisplayNames[city] || city.charAt(0).toUpperCase() + city.slice(1);
+      }
+
+      function getCityFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const city = urlParams.get('city');
+        return cityOptions.includes(city) ? city : 'baltimore';
+      }
+
+      function updateCityDetails() {
+        const city = getCityFromUrl();
+        const displayName = getCityDisplayName(city);
+        const cityNameEl = document.getElementById('orgs-city-name');
+        if (cityNameEl) {
+          cityNameEl.textContent = displayName;
+        }
+      }
+
+      function populateCitySelector() {
+        const select = document.getElementById('city-select');
+        if (!select) return;
+        select.innerHTML = '';
+
+        cityOptions.forEach(city => {
+          const option = document.createElement('option');
+          option.value = city;
+          option.textContent = getCityDisplayName(city);
+          select.appendChild(option);
+        });
+
+        const currentCity = getCityFromUrl();
+        select.value = currentCity;
+        select.addEventListener('change', () => {
+          const targetCity = select.value;
+          const url = new URL(window.location.href);
+          url.searchParams.set('city', targetCity);
+          window.location.href = url.toString();
+        });
+      }
+
+      function initializeCityControls() {
+        updateCityDetails();
+        populateCitySelector();
+      }
+
+      document.addEventListener('DOMContentLoaded', initializeCityControls);
+    })();
+  </script>
+</head>
+
+<body id="body">
+  <video id="bg-video" autoplay loop muted playsinline>
+    <source src="/videos/craig_baltimore_video.mp4" type="video/mp4" media="(max-width: 768px)">
+    <source src="/videos/baltimorenight_15s_crossfaded.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <nav class="main-nav" aria-label="Main Navigation">
+    <div class="navbar dark-mode">
+      <a href="/#main">Home</a>
+      <a href="/platform.html">Platform</a>
+      <a href="/calendar.html?city=baltimore">Calendar</a>
+      <a href="/projects.html">Projects</a>
+    </div>
+  </nav>
+
+  <main id="wrapper" class="longform dark-mode" style="padding: 0; margin: 0;">
+    <section id="main" class="longform dark-mode" style="padding: 0; margin: 0;">
+      <header class="orgs-header">
+        <div class="header-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px;">
+            <div>
+              <p style="margin: 0 0 8px 0; font-size: 0.95rem; color: rgba(255,255,255,0.5);">Code Collective</p>
+              <h1><span id="orgs-city-name">Baltimore</span> Event Organizations</h1>
+            </div>
+            <div class="city-selector" style="margin-top: 8px;">
+              <label for="city-select" style="color: rgba(255,255,255,0.6);">City:</label>
+              <select id="city-select" aria-label="Select a city" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 12px; border-radius: 8px;"></select>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="orgs-container">
+        <div class="orgs-search-section">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" placeholder="Search organizations..." autocomplete="off">
+            <div class="search-stats" id="search-stats"></div>
+          </div>
+        </div>
+
+        <div id="loading" aria-live="polite">
+          <i class="fas fa-spinner fa-spin"></i>
+          <span>Loading organizations...</span>
+        </div>
+        
+        <div id="orgs-list" class="orgs-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <our-footer></our-footer>
+  <our-slack-link></our-slack-link>
+  <calendar-legend></calendar-legend>
+
+  <script type="module" src="/js/reusableComponents.js"></script>
+  <script>
+    const CATEGORY_MAPS_INDEX_URL = '/data/category_maps/index.json';
+    const FALLBACK_CATEGORY_MAP_CONFIG = {
+      default_map: 'tech_only',
+      maps: [
+        {
+          id: 'maslow_needs',
+          label: 'Maslow Needs',
+          categories: [
+            { label: 'Food', color: '#ca8a04', text_color: '#ffffff', matches: ['Food'] },
+            { label: 'Water', color: '#0f766e', text_color: '#ffffff', matches: ['Water', 'Water & Environment'] },
+            { label: 'Shelter + Habitat', color: '#475569', text_color: '#ffffff', matches: ['Housing', 'Shelter + Habitat'] },
+            { label: 'Clothing', color: '#7c3aed', text_color: '#ffffff', matches: ['Clothing'] },
+            { label: 'Survival & Health', color: '#059669', text_color: '#ffffff', matches: ['Survival & Health', 'Wellness', 'Health'] },
+            { label: 'Safety & Stability', color: '#1d4ed8', text_color: '#ffffff', matches: ['Safety & Stability', 'Infrastructure', 'Finance'] },
+            { label: 'Belonging & Culture', color: '#9333ea', text_color: '#ffffff', matches: ['Belonging & Culture', 'Culture', 'Religion', 'Community'] },
+            { label: 'Esteem & Opportunity', color: '#b45309', text_color: '#ffffff', matches: ['Esteem & Opportunity', 'Economic Development', 'Business'] },
+            { label: 'Growth & Creativity', color: '#db2777', text_color: '#ffffff', matches: ['Growth & Creativity', 'Tech Skills', 'Makerspace'] },
+            { label: 'Purpose & Service', color: '#b91c1c', text_color: '#ffffff', matches: ['Purpose & Service', 'Politics'] },
+            { label: 'Other', color: '#6b7280', text_color: '#ffffff', matches: [] }
+          ]
+        },
+        {
+          id: 'community_sectors',
+          label: 'Community Sectors',
+          categories: [
+            { label: 'Technology', color: '#2563eb', text_color: '#ffffff', matches: ['Tech Skills', 'AI', 'Data Science', 'Cybersecurity', 'Cloud & Platform', 'DevOps', 'Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Product', 'UX', 'Game Development', 'Technical Writing', 'Open Source', 'Tech Community'] },
+            { label: 'Business & Startups', color: '#ca8a04', text_color: '#111827', matches: ['Business', 'Economic Development', 'Startup', 'Career Growth', 'Professional Networking'] },
+            { label: 'Finance & Crypto', color: '#7c3aed', text_color: '#ffffff', matches: ['Finance', 'Crypto & Web3'] },
+            { label: 'Civics & Policy', color: '#dc2626', text_color: '#ffffff', matches: ['Politics', 'Civic Tech', 'Policy', 'Purpose & Service'] },
+            { label: 'Community & Culture', color: '#db2777', text_color: '#ffffff', matches: ['Culture', 'Belonging & Culture', 'Community', 'Community Organizing', 'Code Collective & Partners', 'Tech Community'] },
+            { label: 'Faith', color: '#7c2d12', text_color: '#ffffff', matches: ['Religion', 'Faith & Spirituality'] },
+            { label: 'Water & Environment', color: '#0f766e', text_color: '#ffffff', matches: ['Water', 'Water & Environment', 'Climate & Energy', 'Energy', 'Infrastructure'] },
+            { label: 'Makerspace & Robotics', color: '#ea580c', text_color: '#ffffff', matches: ['Makerspace', 'Robotics'] },
+            { label: 'Other', color: '#6b7280', text_color: '#ffffff', matches: [] }
+          ]
+        },
+        {
+          id: 'tech_only',
+          label: 'Tech Meetups',
+          categories: [
+            { label: 'AI & ML', color: '#7c3aed', text_color: '#ffffff', matches: ['AI'] },
+            { label: 'Data & Analytics', color: '#0891b2', text_color: '#ffffff', matches: ['Data Science'] },
+            { label: 'Cybersecurity', color: '#dc2626', text_color: '#ffffff', matches: ['Cybersecurity'] },
+            { label: 'Cloud & DevOps', color: '#2563eb', text_color: '#ffffff', matches: ['Cloud & Platform', 'DevOps'] },
+            { label: 'Software Development', color: '#4f46e5', text_color: '#ffffff', matches: ['Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Open Source', 'Technical Writing', 'Game Development'] },
+            { label: 'Design & Product', color: '#db2777', text_color: '#ffffff', matches: ['UX', 'Product'] },
+            { label: 'Crypto & Web3', color: '#a16207', text_color: '#ffffff', matches: ['Crypto & Web3'] },
+            { label: 'Makerspace & Robotics', color: '#ea580c', text_color: '#ffffff', matches: ['Makerspace', 'Robotics'] },
+            { label: 'Tech Meetups', color: '#16a34a', text_color: '#ffffff', matches: ['Tech Community', 'Code Collective & Partners'] },
+            { label: 'General Tech', color: '#475569', text_color: '#ffffff', matches: [] }
+          ]
+        }
+      ]
+    };
+
+    let categoryMapConfig = FALLBACK_CATEGORY_MAP_CONFIG;
+    let activeCategoryMap = FALLBACK_CATEGORY_MAP_CONFIG.maps[2];
+    let activeTagSlugs = new Set();
+    let allOrgs = [];
+    let filteredOrgs = [];
+    let rawEvents = [];
+    let searchQuery = '';
+
+    async function loadCategoryMapConfig() {
+      try {
+        const indexResponse = await fetch(CATEGORY_MAPS_INDEX_URL, { cache: 'no-store' });
+        if (!indexResponse.ok) throw new Error(`Category map index HTTP ${indexResponse.status}`);
+        const indexData = await indexResponse.json();
+        const mapRefs = Array.isArray(indexData.maps) ? indexData.maps : [];
+        if (mapRefs.length === 0) return FALLBACK_CATEGORY_MAP_CONFIG;
+        const loadedMaps = await Promise.all(
+          mapRefs.map(async (ref) => {
+            if (!ref?.path) return null;
+            const response = await fetch(ref.path, { cache: 'no-store' });
+            if (!response.ok) return null;
+            const mapData = await response.json();
+            return { ...mapData, id: mapData.id || ref.id, label: mapData.label || ref.label || mapData.id || 'Unnamed Map' };
+          })
+        );
+        const maps = loadedMaps.filter(Boolean);
+        if (maps.length === 0) return FALLBACK_CATEGORY_MAP_CONFIG;
+        return { default_map: indexData.default_map || maps[0].id, maps };
+      } catch (error) {
+        return FALLBACK_CATEGORY_MAP_CONFIG;
+      }
+    }
+
+    function getCityFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const city = urlParams.get('city');
+      const cityOptions = ['baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh', 'virtual'];
+      return cityOptions.includes(city) ? city : 'baltimore';
+    }
+
+    function slugifyTag(tag) {
+      return String(tag || '').toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    }
+
+    function formatSourceLabel(url, fallback = 'Unknown source') {
+      try {
+        const parsed = new URL(url);
+        const host = parsed.hostname.replace(/^www\./, '');
+        const segments = parsed.pathname.split('/').filter(Boolean);
+        if (host.includes('meetup.com') && segments[0]) {
+          return segments[0].replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        }
+        if ((host.includes('lu.ma') || host.includes('luma.com')) && segments[0]) {
+          return segments[segments.length - 1].replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        }
+        if (host.includes('eventbrite.') && segments[0] === 'o' && segments[1]) {
+          return segments[1].replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        }
+        return host;
+      } catch (error) {
+        return fallback;
+      }
+    }
+
+    function getCategoryMapById(mapId) {
+      return (categoryMapConfig.maps || []).find(map => map.id === mapId) || (categoryMapConfig.maps || [])[0] || FALLBACK_CATEGORY_MAP_CONFIG.maps[0];
+    }
+
+    function normalizeMapCategory(category) {
+      return {
+        label: category.label,
+        color: category.color || '#475569',
+        textColor: category.text_color || '#ffffff',
+        slug: slugifyTag(category.label),
+        matchSlugs: new Set((category.matches || []).map(slugifyTag).filter(Boolean))
+      };
+    }
+
+    function getOtherCategory(categoryMap) {
+      // Other is now a regular category, not handled separately
+      return null;
+    }
+
+    function getMappedCategoriesForTags(tags, categoryMap = activeCategoryMap) {
+      const normalizedTags = Array.isArray(tags) ? tags.map(slugifyTag).filter(Boolean) : [];
+      return (categoryMap?.categories || [])
+        .map(normalizeMapCategory)
+        .filter(category => normalizedTags.some(tag => category.matchSlugs.has(tag)));
+    }
+
+    function isTechOnlyEvent(tags) {
+      const normalizedTags = new Set((Array.isArray(tags) ? tags : []).map(slugifyTag).filter(Boolean));
+      if (normalizedTags.size === 0) return false;
+      const specificTechTags = new Set(['ai', 'data-science', 'cybersecurity', 'cloud-and-platform', 'devops', 'software-development', 'web-development', 'javascript', 'python', 'ruby', 'open-source', 'technical-writing', 'game-development', 'ux', 'product', 'crypto-and-web3', 'makerspace', 'robotics', 'civic-tech']);
+      const genericTechTags = new Set(['tech-skills', 'tech-community', 'code-collective-and-partners']);
+      const dominantNonTechTags = new Set(['water', 'water-and-environment', 'religion', 'culture', 'community', 'politics', 'food', 'housing', 'shelter-and-habitat', 'clothing', 'survival-and-health', 'safety-and-stability', 'belonging-and-culture', 'purpose-and-service', 'faith-and-spirituality', 'business', 'economic-development', 'professional-networking', 'career-growth', 'startup', 'waterfront', 'infrastructure', 'finance']);
+      if (Array.from(normalizedTags).some(tag => specificTechTags.has(tag))) return true;
+      if (!Array.from(normalizedTags).some(tag => genericTechTags.has(tag))) return false;
+      if (Array.from(normalizedTags).some(tag => dominantNonTechTags.has(tag))) return false;
+      return true;
+    }
+
+    function getEffectiveMappedCategories(tags, categoryMap = activeCategoryMap) {
+      if (categoryMap?.id === 'tech_only' && !isTechOnlyEvent(tags)) return [];
+      return getMappedCategoriesForTags(tags, categoryMap);
+    }
+
+    function getTodayStart() {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      return today;
+    }
+
+    function isEventOnOrAfterToday(dateInput, todayStart = getTodayStart()) {
+      if (!dateInput) return false;
+      const eventDate = new Date(dateInput);
+      if (isNaN(eventDate)) return false;
+      eventDate.setHours(0, 0, 0, 0);
+      return eventDate >= todayStart;
+    }
+
+    function aggregateOrganizations(events) {
+      const orgMap = new Map();
+      const todayStart = getTodayStart();
+      events.forEach(event => {
+        const sourceUrl = event.source || event.url || '';
+        const sourceGroup = event.source_group || formatSourceLabel(sourceUrl, 'Unknown source');
+        const orgImageUrl = event.orgImageUrl || '';
+        const tags = Array.isArray(event.tags) ? event.tags : [];
+        const startDate = event.startDate || '';
+        const isUpcoming = isEventOnOrAfterToday(startDate, todayStart);
+        if (!orgMap.has(sourceGroup)) {
+          orgMap.set(sourceGroup, {
+            name: sourceGroup,
+            sourceUrl: sourceUrl,
+            imageUrl: orgImageUrl,
+            totalEvents: 0,
+            upcomingEvents: 0,
+            tags: new Set(),
+            firstEventDate: startDate,
+            searchText: sourceGroup.toLowerCase()
+          });
+        }
+        const org = orgMap.get(sourceGroup);
+        org.totalEvents++;
+        if (isUpcoming) org.upcomingEvents++;
+        tags.forEach(tag => {
+          org.tags.add(tag);
+          org.searchText += ' ' + tag.toLowerCase();
+        });
+        if (startDate && startDate < org.firstEventDate) {
+          org.firstEventDate = startDate;
+        }
+      });
+      return Array.from(orgMap.values())
+        .map(org => ({
+          ...org,
+          tags: Array.from(org.tags),
+          primaryCategories: getEffectiveMappedCategories(Array.from(org.tags))
+        }))
+        .sort((a, b) => {
+          if (b.upcomingEvents !== a.upcomingEvents) {
+            return b.upcomingEvents - a.upcomingEvents;
+          }
+          return b.totalEvents - a.totalEvents;
+        });
+    }
+
+    function getValidSelectedTags(selectedTags, categoryMap) {
+      const availableTags = new Set(
+        Array.isArray(categoryMap?.categories)
+          ? categoryMap.categories.map(category => slugifyTag(category.label))
+          : []
+      );
+      const validTags = Array.isArray(selectedTags)
+        ? selectedTags.filter(tag => availableTags.has(tag))
+        : [];
+      return validTags.length > 0 ? validTags : Array.from(availableTags);
+    }
+
+    function filterOrganizations() {
+      let result = allOrgs;
+      if (activeTagSlugs.size > 0) {
+        // Show orgs that have at least one matching category OR have no categories at all (uncategorized)
+        result = result.filter(org => {
+          if (org.primaryCategories.length === 0) return true; // Include uncategorized orgs
+          return org.primaryCategories.some(cat => activeTagSlugs.has(cat.slug));
+        });
+      }
+      if (searchQuery.trim()) {
+        const query = searchQuery.toLowerCase();
+        result = result.filter(org => org.searchText.includes(query));
+      }
+      filteredOrgs = result;
+      return result;
+    }
+
+    function highlightMatch(text, query) {
+      if (!query) return text;
+      const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
+      return text.replace(regex, '<mark>$1</mark>');
+    }
+
+    function escapeRegex(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    // Legend functions matching calendar.js exactly
+    function buildLegendItem(category, isChecked) {
+      const item = document.createElement('label');
+      item.className = 'legend-item';
+      if (activeCategoryMap?.id === 'maslow_needs') {
+        item.classList.add('legend-card');
+      }
+      item.innerHTML = `
+        <input type="checkbox" data-tag="${category.slug}" ${isChecked ? 'checked' : ''} />
+        <span class="legend-swatch" style="background-color: ${category.color}; color: ${category.textColor};"></span>
+        <span class="legend-text">${category.label}</span>
+      `;
+      return item;
+    }
+
+    function buildMaslowLegendList(categories, activeSlugs) {
+      const list = document.createElement('div');
+      list.className = 'legend-list maslow-hierarchy';
+      const rowDefs = [
+        ['Purpose & Service'],
+        ['Growth & Creativity'],
+        ['Esteem & Opportunity'],
+        ['Belonging & Culture'],
+        ['Safety & Stability'],
+        ['Food', 'Water', 'Shelter + Habitat', 'Clothing', 'Survival & Health']
+      ];
+      rowDefs.forEach((labels, index) => {
+        const row = document.createElement('div');
+        row.className = `legend-row legend-row-${index + 1}`;
+        labels.forEach(label => {
+          const category = categories.find(item => item.label === label);
+          if (!category) return;
+          const isChecked = activeSlugs.size === 0 ? true : activeSlugs.has(category.slug);
+          row.appendChild(buildLegendItem(category, isChecked));
+        });
+        if (row.childElementCount > 0) {
+          list.appendChild(row);
+        }
+      });
+      return list;
+    }
+
+    function buildLegend(categoryMap, options = {}) {
+      activeCategoryMap = categoryMap || getCategoryMapById(categoryMapConfig.default_map);
+      const categories = activeCategoryMap.categories || [];
+
+      const legendItems = document.getElementById('calendar-legend-items');
+      if (!legendItems || !Array.isArray(categories)) {
+        return;
+      }
+
+      legendItems.innerHTML = '';
+
+      const controls = document.createElement('div');
+      controls.className = 'legend-controls';
+      const mapOptions = (categoryMapConfig.maps || [])
+        .map(map => `<option value="${map.id}" ${map.id === activeCategoryMap.id ? 'selected' : ''}>${map.label}</option>`)
+        .join('');
+      controls.innerHTML = `
+        <label class="legend-map-picker">
+          <span class="legend-text">Map</span>
+          <select id="legend-map-select">${mapOptions}</select>
+        </label>
+        <div class="legend-actions">
+          <button type="button" class="legend-action" data-action="all">Select all</button>
+          <button type="button" class="legend-action" data-action="none">Select none</button>
+          <button type="button" class="legend-action" data-action="hide">Hide legend</button>
+        </div>
+      `;
+      legendItems.appendChild(controls);
+
+      const normalizedCategories = categories.map(normalizeMapCategory);
+      let list;
+
+      if (activeCategoryMap.id === 'maslow_needs') {
+        list = buildMaslowLegendList(normalizedCategories, activeTagSlugs);
+      } else {
+        list = document.createElement('div');
+        list.className = 'legend-list';
+        normalizedCategories.forEach(category => {
+          const isChecked = activeTagSlugs.size === 0 ? true : activeTagSlugs.has(category.slug);
+          list.appendChild(buildLegendItem(category, isChecked));
+        });
+      }
+
+      legendItems.appendChild(list);
+
+      legendItems.onchange = event => {
+        if (event.target.matches('#legend-map-select')) {
+          activeCategoryMap = getCategoryMapById(event.target.value);
+          activeTagSlugs.clear();
+          buildLegend(activeCategoryMap, { lockMapId: true });
+          renderOrganizations();
+          return;
+        }
+        if (!event.target.matches('input[type="checkbox"][data-tag]')) return;
+        updateActiveTagsFromLegend();
+        renderOrganizations();
+      };
+
+      legendItems.onclick = event => {
+        const actionBtn = event.target.closest('.legend-action');
+        if (!actionBtn) return;
+        const action = actionBtn.dataset.action;
+        if (action === 'all') {
+          setLegendCheckboxes(true);
+        } else if (action === 'none') {
+          setLegendCheckboxes(false);
+        } else if (action === 'hide') {
+          setLegendVisibility(true);
+        }
+      };
+
+      const visibilityToggle = document.getElementById('legend-visibility-toggle');
+      if (visibilityToggle) {
+        visibilityToggle.onclick = () => {
+          setLegendVisibility(false);
+        };
+      }
+
+      // Sync activeTagSlugs with the current checkbox state
+      updateActiveTagsFromLegend();
+    }
+
+    function setLegendVisibility(hidden) {
+      document.body.classList.toggle('legend-hidden', hidden);
+      const toggleButton = document.getElementById('legend-visibility-toggle');
+      if (toggleButton) {
+        toggleButton.textContent = hidden ? 'Show legend' : 'Hide legend';
+        toggleButton.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+      }
+    }
+
+    function setLegendCheckboxes(checked) {
+      const inputs = document.querySelectorAll('#calendar-legend-items input[type="checkbox"][data-tag]');
+      inputs.forEach(input => {
+        input.checked = checked;
+      });
+      updateActiveTagsFromLegend();
+      renderOrganizations();
+    }
+
+    function updateActiveTagsFromLegend() {
+      const inputs = document.querySelectorAll('#calendar-legend-items input[type="checkbox"][data-tag]');
+      activeTagSlugs = new Set(
+        Array.from(inputs)
+          .filter(input => input.checked)
+          .map(input => input.dataset.tag)
+      );
+    }
+
+    function renderOrganizations() {
+      const container = document.getElementById('orgs-list');
+      const statsEl = document.getElementById('search-stats');
+      if (!container) return;
+
+      const orgs = filterOrganizations();
+
+      if (statsEl) {
+        if (searchQuery) {
+          statsEl.textContent = `Showing ${orgs.length} of ${allOrgs.length} organizations`;
+        } else {
+          statsEl.textContent = `${orgs.length} organizations`;
+        }
+      }
+
+      if (orgs.length === 0) {
+        container.innerHTML = `
+          <div class="no-orgs-message">
+            <i class="fas fa-search"></i>
+            <h3>No organizations found</h3>
+            <p>Try adjusting your search or filters</p>
+            <button class="clear-filters-btn" onclick="clearFilters()">
+              <i class="fas fa-undo"></i> Clear all filters
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      orgs.forEach((org, index) => {
+        const rank = index + 1;
+        const primaryCategory = org.primaryCategories[0];
+        const tagStyle = primaryCategory ? `--tag-color: ${primaryCategory.color}; --tag-text-color: ${primaryCategory.textColor};` : '';
+        const taggedClass = primaryCategory ? 'tagged' : '';
+        const rankClass = rank <= 3 ? 'top-3' : '';
+
+        const iconHtml = org.imageUrl
+          ? `<div class="org-icon-wrap"><img src="${org.imageUrl}" alt="${org.name}" class="org-icon" onerror="this.parentNode.innerHTML='<div class=\\'org-icon-placeholder\\'><i class=\\'fas fa-building\\'></i></div>';">${primaryCategory ? `<span class="org-badge" style="background: ${primaryCategory.color};"></span>` : ''}</div>`
+          : `<div class="org-icon-wrap"><div class="org-icon-placeholder"><i class="fas fa-building"></i></div>${primaryCategory ? `<span class="org-badge" style="background: ${primaryCategory.color};"></span>` : ''}</div>`;
+
+        const topTags = org.tags.slice(0, 3);
+        const tagsHtml = topTags.map(tag => {
+          const mapped = getMappedCategoriesForTags([tag])[0];
+          if (mapped) {
+            return `<span class="org-tag primary" style="--tag-color: ${mapped.color}; --tag-text-color: ${mapped.textColor};">${highlightMatch(tag, searchQuery)}</span>`;
+          }
+          return `<span class="org-tag">${highlightMatch(tag, searchQuery)}</span>`;
+        }).join('');
+
+        const orgUrl = org.sourceUrl || '#';
+        const displayName = highlightMatch(org.name, searchQuery);
+        const upcomingClass = org.upcomingEvents === 0 ? 'zero' : '';
+
+        html += `
+          <a href="${orgUrl}" target="_blank" rel="noopener noreferrer" class="org-item ${taggedClass}" style="${tagStyle}">
+            <div class="org-rank ${rankClass}">#${rank}</div>
+            ${iconHtml}
+            <div class="org-info">
+              <h3 class="org-name">${displayName}</h3>
+              <div class="org-meta">
+                <span class="org-source"><i class="fas fa-link"></i> ${formatSourceLabel(org.sourceUrl, 'Website')}</span>
+                <div class="org-tags">${tagsHtml}</div>
+              </div>
+            </div>
+            <div class="org-stats">
+              <div class="org-stat">
+                <span class="org-stat-number ${upcomingClass}">${org.upcomingEvents}</span>
+                <span class="org-stat-label">Upcoming</span>
+              </div>
+              <div class="org-stat">
+                <span class="org-stat-number">${org.totalEvents}</span>
+                <span class="org-stat-label">Total</span>
+              </div>
+            </div>
+          </a>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    // Search input handler with debounce
+    let searchTimeout;
+    function setupSearch() {
+      const searchInput = document.getElementById('search-input');
+      if (!searchInput) return;
+
+      searchInput.addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+          searchQuery = e.target.value;
+          renderOrganizations();
+        }, 150);
+      });
+
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          searchInput.value = '';
+          searchQuery = '';
+          renderOrganizations();
+        }
+      });
+    }
+
+    function clearFilters() {
+      searchQuery = '';
+      document.getElementById('search-input').value = '';
+      const inputs = document.querySelectorAll('#calendar-legend-items input[type="checkbox"][data-tag]');
+      inputs.forEach(input => input.checked = true);
+      updateActiveTagsFromLegend();
+      renderOrganizations();
+    }
+
+    async function loadData() {
+      const city = getCityFromUrl();
+      const endpoint = `/${city}/upcoming_events.json`;
+
+      try {
+        const [mapConfig, events] = await Promise.all([
+          loadCategoryMapConfig(),
+          fetch(endpoint).then(response => {
+            if (!response.ok) throw new Error(`Failed to fetch events for city: ${city}`);
+            return response.json();
+          })
+        ]);
+
+        if (mapConfig && Array.isArray(mapConfig.maps) && mapConfig.maps.length > 0) {
+          categoryMapConfig = mapConfig;
+          activeCategoryMap = getCategoryMapById(mapConfig.default_map);
+        }
+
+        rawEvents = Array.isArray(events) ? events : [];
+        allOrgs = aggregateOrganizations(rawEvents);
+
+        document.getElementById('loading').style.display = 'none';
+        buildLegend(activeCategoryMap);
+        setupSearch();
+        renderOrganizations();
+      } catch (error) {
+        console.error('Error loading data:', error);
+        document.getElementById('loading').innerHTML = '<i class="fas fa-exclamation-circle"></i> Error loading organizations. Please try again.';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadData);
+  </script>
+</body>
+
+</html>

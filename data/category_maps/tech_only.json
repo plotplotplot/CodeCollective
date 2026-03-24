@@ -1,12 +1,6 @@
 {
   "id": "tech_only",
   "label": "Tech Meetups",
-  "show_other": false,
-  "other": {
-    "label": "General Tech",
-    "color": "#475569",
-    "text_color": "#ffffff"
-  },
   "categories": [
     {
       "label": "AI & ML",
@@ -61,6 +55,12 @@
       "color": "#16a34a",
       "text_color": "#ffffff",
       "matches": ["Tech Community", "Code Collective & Partners"]
+    },
+    {
+      "label": "General Tech",
+      "color": "#475569",
+      "text_color": "#ffffff",
+      "matches": []
     }
   ]
 }

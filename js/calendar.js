@@ -24,7 +24,6 @@ const FALLBACK_CATEGORY_MAP_CONFIG = {
     {
       id: 'maslow_needs',
       label: 'Maslow Needs',
-      other: { label: 'Other', color: '#6b7280', text_color: '#ffffff' },
       categories: [
         { label: 'Food', color: '#ca8a04', text_color: '#ffffff', matches: ['Food'] },
         { label: 'Water', color: '#0f766e', text_color: '#ffffff', matches: ['Water', 'Water & Environment'] },
@@ -35,13 +34,13 @@ const FALLBACK_CATEGORY_MAP_CONFIG = {
         { label: 'Belonging & Culture', color: '#9333ea', text_color: '#ffffff', matches: ['Belonging & Culture', 'Culture', 'Religion', 'Community'] },
         { label: 'Esteem & Opportunity', color: '#b45309', text_color: '#ffffff', matches: ['Esteem & Opportunity', 'Economic Development', 'Business'] },
         { label: 'Growth & Creativity', color: '#db2777', text_color: '#ffffff', matches: ['Growth & Creativity', 'Tech Skills', 'Makerspace'] },
-        { label: 'Purpose & Service', color: '#b91c1c', text_color: '#ffffff', matches: ['Purpose & Service', 'Politics'] }
+        { label: 'Purpose & Service', color: '#b91c1c', text_color: '#ffffff', matches: ['Purpose & Service', 'Politics'] },
+        { label: 'Other', color: '#6b7280', text_color: '#ffffff', matches: [] }
       ]
     },
     {
       id: 'community_sectors',
       label: 'Community Sectors',
-      other: { label: 'Other', color: '#6b7280', text_color: '#ffffff' },
       categories: [
         { label: 'Technology', color: '#2563eb', text_color: '#ffffff', matches: ['Tech Skills', 'AI', 'Data Science', 'Cybersecurity', 'Cloud & Platform', 'DevOps', 'Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Product', 'UX', 'Game Development', 'Technical Writing', 'Open Source', 'Tech Community'] },
         { label: 'Business & Startups', color: '#ca8a04', text_color: '#111827', matches: ['Business', 'Economic Development', 'Startup', 'Career Growth', 'Professional Networking'] },
@@ -50,14 +49,13 @@ const FALLBACK_CATEGORY_MAP_CONFIG = {
         { label: 'Community & Culture', color: '#db2777', text_color: '#ffffff', matches: ['Culture', 'Belonging & Culture', 'Community', 'Community Organizing', 'Code Collective & Partners', 'Tech Community'] },
         { label: 'Faith', color: '#7c2d12', text_color: '#ffffff', matches: ['Religion', 'Faith & Spirituality'] },
         { label: 'Water & Environment', color: '#0f766e', text_color: '#ffffff', matches: ['Water', 'Water & Environment', 'Climate & Energy', 'Energy', 'Infrastructure'] },
-        { label: 'Makerspace & Robotics', color: '#ea580c', text_color: '#ffffff', matches: ['Makerspace', 'Robotics'] }
+        { label: 'Makerspace & Robotics', color: '#ea580c', text_color: '#ffffff', matches: ['Makerspace', 'Robotics'] },
+        { label: 'Other', color: '#6b7280', text_color: '#ffffff', matches: [] }
       ]
     },
     {
       id: 'tech_only',
       label: 'Tech Meetups',
-      show_other: false,
-      other: { label: 'General Tech', color: '#475569', text_color: '#ffffff' },
       categories: [
         { label: 'AI & ML', color: '#7c3aed', text_color: '#ffffff', matches: ['AI'] },
         { label: 'Data & Analytics', color: '#0891b2', text_color: '#ffffff', matches: ['Data Science'] },
@@ -67,7 +65,8 @@ const FALLBACK_CATEGORY_MAP_CONFIG = {
         { label: 'Design & Product', color: '#db2777', text_color: '#ffffff', matches: ['UX', 'Product'] },
         { label: 'Crypto & Web3', color: '#a16207', text_color: '#ffffff', matches: ['Crypto & Web3'] },
         { label: 'Makerspace & Robotics', color: '#ea580c', text_color: '#ffffff', matches: ['Makerspace', 'Robotics'] },
-        { label: 'Tech Meetups', color: '#16a34a', text_color: '#ffffff', matches: ['Tech Community', 'Code Collective & Partners'] }
+        { label: 'Tech Meetups', color: '#16a34a', text_color: '#ffffff', matches: ['Tech Community', 'Code Collective & Partners'] },
+        { label: 'General Tech', color: '#475569', text_color: '#ffffff', matches: [] }
       ]
     }
   ]
@@ -394,21 +393,12 @@ function normalizeMapCategory(category) {
 }
 
 function getOtherCategory(categoryMap) {
-  if (categoryMap?.show_other === false) return null;
-  const other = categoryMap?.other || {};
-  return {
-    label: other.label || 'Other',
-    color: other.color || '#6b7280',
-    textColor: other.text_color || '#ffffff',
-    slug: slugifyTag(other.label || 'Other')
-  };
+  // Other is now a regular category, not handled separately
+  return null;
 }
 
 function getMappedCategoriesForTags(tags, categoryMap = activeCategoryMap) {
-  const matches = getDirectMappedCategoriesForTags(tags, categoryMap);
-  if (matches.length > 0) return matches;
-  const otherCategory = getOtherCategory(categoryMap);
-  return otherCategory ? [otherCategory] : [];
+  return getDirectMappedCategoriesForTags(tags, categoryMap);
 }
 
 function getDirectMappedCategoriesForTags(tags, categoryMap = activeCategoryMap) {
@@ -585,7 +575,7 @@ function buildLegendItem(category, isChecked) {
   return item;
 }
 
-function buildMaslowLegendList(categories, activeSlugs, otherCategory) {
+function buildMaslowLegendList(categories, activeSlugs) {
   const list = document.createElement('div');
   list.className = 'legend-list maslow-hierarchy';
 
@@ -613,14 +603,6 @@ function buildMaslowLegendList(categories, activeSlugs, otherCategory) {
       list.appendChild(row);
     }
   });
-
-  const auxiliaryRow = document.createElement('div');
-  auxiliaryRow.className = 'legend-row legend-row-aux';
-  if (otherCategory) {
-    const otherChecked = activeSlugs.size === 0 ? true : activeSlugs.has(otherCategory.slug);
-    auxiliaryRow.appendChild(buildLegendItem(otherCategory, otherChecked));
-    list.appendChild(auxiliaryRow);
-  }
 
   return list;
 }
@@ -685,12 +667,11 @@ function buildLegend(categoryMap, options = {}) {
   `;
   legendItems.appendChild(controls);
 
-  const otherCategory = getOtherCategory(activeCategoryMap);
   const normalizedCategories = categories.map(normalizeMapCategory);
   let list;
 
   if (activeCategoryMap.id === 'maslow_needs') {
-    list = buildMaslowLegendList(normalizedCategories, activeTagSlugs, otherCategory);
+    list = buildMaslowLegendList(normalizedCategories, activeTagSlugs);
   } else {
     list = document.createElement('div');
     list.className = 'legend-list';
@@ -698,10 +679,6 @@ function buildLegend(categoryMap, options = {}) {
       const isChecked = activeTagSlugs.size === 0 ? true : activeTagSlugs.has(category.slug);
       list.appendChild(buildLegendItem(category, isChecked));
     });
-    if (otherCategory) {
-      const otherChecked = activeTagSlugs.size === 0 ? true : activeTagSlugs.has(otherCategory.slug);
-      list.appendChild(buildLegendItem(otherCategory, otherChecked));
-    }
   }
 
   legendItems.appendChild(list);

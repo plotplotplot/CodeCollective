@@ -1,11 +1,6 @@
 {
   "id": "maslow_needs",
   "label": "Maslow Needs",
-  "other": {
-    "label": "Other",
-    "color": "#6b7280",
-    "text_color": "#ffffff"
-  },
   "categories": [
     {
       "label": "Food",
@@ -66,6 +61,12 @@
       "color": "#b91c1c",
       "text_color": "#ffffff",
       "matches": ["Purpose & Service", "Politics", "Faith & Spirituality", "Civic Tech", "Policy", "Community Organizing"]
+    },
+    {
+      "label": "Other",
+      "color": "#6b7280",
+      "text_color": "#ffffff",
+      "matches": []
     }
   ]
 }

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Code Collective | Tech Events Calendar & Tech Labor Organization</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Code Collective organizes tech labor and provides a unified calendar of local tech meetups, hackathons, and tech community events." />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow" />
+  <link rel="canonical" href="https://codecollective.us/calendar.html" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://codecollective.us/calendar.html" />
+  <meta property="og:site_name" content="Code Collective" />
+  <meta property="og:title" content="Code Collective | Tech Events Calendar" />
+  <meta property="og:description"
+    content="A community-wide tech events calendar." />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/favicons/favicon.png" />
+
+  <link rel="preload" href="/css/master.css" as="style">
+  <link rel="preload" href="/css/calendar.css" as="style">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/master.css" />
+  <link rel="stylesheet" href="/css/calendar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Scripts -->
+  <script>
+    (function () {
+      const DEFAULT_CITY_OPTIONS = ['baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh', 'virtual'];
+      const DEFAULT_CITY_DISPLAY_NAMES = {
+        baltimore: 'Baltimore',
+        westvirginia: 'West Virginia',
+        hawaii: 'Hawaii',
+        dc: 'Washington, D.C.',
+        pittsburgh: 'Pittsburgh',
+        virtual: 'Virtual',
+      };
+
+      window.CALENDAR_CITY_OPTIONS = window.CALENDAR_CITY_OPTIONS || DEFAULT_CITY_OPTIONS;
+      window.CALENDAR_CITY_DISPLAY_NAMES = window.CALENDAR_CITY_DISPLAY_NAMES || DEFAULT_CITY_DISPLAY_NAMES;
+
+      const cityOptions = window.CALENDAR_CITY_OPTIONS;
+      const cityDisplayNames = window.CALENDAR_CITY_DISPLAY_NAMES;
+
+      function prefetchImages(urls) {
+        if (!window.Promise || !window.fetch) return;
+
+        urls.forEach(url => {
+          const link = document.createElement('link');
+          link.rel = 'preload';
+          link.as = 'image';
+          link.href = url;
+          document.head.appendChild(link);
+
+          fetch(url, {
+            mode: 'no-cors',
+            cache: 'force-cache',
+          }).catch(() => { });
+        });
+      }
+
+      function getCityDisplayName(city) {
+        return cityDisplayNames[city] || city.charAt(0).toUpperCase() + city.slice(1);
+      }
+
+      function getCityFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const city = urlParams.get('city');
+        return cityOptions.includes(city) ? city : 'baltimore';
+      }
+
+      function updateIcsLink() {
+        const city = getCityFromUrl();
+        const icsLink = document.querySelector('.download-button');
+        if (icsLink) {
+          const template = icsLink.dataset.icsTemplate || 'https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/{city}/cc_events.ics';
+          icsLink.href = template.replace('{city}', city);
+        }
+      }
+
+      function updateCityDetails() {
+        const city = getCityFromUrl();
+        const displayName = getCityDisplayName(city);
+        const cityNameEl = document.getElementById('calendar-city-name');
+        if (cityNameEl) {
+          cityNameEl.textContent = displayName;
+        }
+        const calendarSection = document.getElementById('calendar-section');
+        if (calendarSection) {
+          calendarSection.setAttribute('aria-label', `${displayName} Tech Events Calendar`);
+        }
+      }
+
+      function populateCitySelector() {
+        const select = document.getElementById('city-select');
+        if (!select) return;
+        select.innerHTML = '';
+
+        cityOptions.forEach(city => {
+          const option = document.createElement('option');
+          option.value = city;
+          option.textContent = getCityDisplayName(city);
+          select.appendChild(option);
+        });
+
+        const currentCity = getCityFromUrl();
+        select.value = currentCity;
+        select.addEventListener('change', () => {
+          const targetCity = select.value;
+          const url = new URL(window.location.href);
+          url.searchParams.set('city', targetCity);
+          window.location.href = url.toString();
+        });
+      }
+
+      function initializeCityControls() {
+        updateIcsLink();
+        updateCityDetails();
+        populateCitySelector();
+      }
+
+      prefetchImages([
+        '/images/favicons/favicon.png',
+        '/images/WhatsApp.svg.webp',
+        '/images/github_icon.png',
+        // Add other static images used by your UI
+      ]);
+
+      document.addEventListener('DOMContentLoaded', initializeCityControls);
+    })();
+  </script>
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Code Collective",
+    "url": "https://codecollective.us",
+    "description": "Organizing tech labor and maintaining a Baltimore tech events calendar.",
+    "location": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Baltimore",
+        "addressRegion": "MD",
+        "addressCountry": "US"
+      }
+    }
+  }
+  </script>
+</head>
+
+<body id="body">
+  <video id="bg-video" autoplay loop muted playsinline>
+  <source src="/videos/craig_baltimore_video.mp4" type="video/mp4" media="(max-width: 768px)">
+  <source src="/videos/baltimorenight_15s_crossfaded.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+
+  <nav class="main-nav" aria-label="Main Navigation">
+    <div class="navbar dark-mode">
+      <a href="/#main">Home</a>
+      <a href="/platform.html">Platform</a>
+      <a href="/calendar.html?city=baltimore">Calendar</a>
+      <a href="/projects.html">Projects</a>
+    </div>
+  </nav>
+
+  <main id="wrapper" class="longform dark-mode" style="padding: 0; margin: 0;">
+    <section id="main" class="longform dark-mode" style="padding: 0; margin: 0;">
+      <header class="header-container" style="text-align: center; padding: 20px 0;">
+        <p style="margin-bottom: 8px; font-size: 1.2rem;">Code Collective brings you</p>
+        <h1 style="margin: 10px 0; font-size: 2.5rem;">A <span id="calendar-city-name">Baltimore</span> Techonomics Calendar</h1>
+        <div class="city-selector">
+          <label for="city-select">Show events for:</label>
+          <select id="city-select" aria-label="Select a city for the calendar"></select>
+        </div>
+          <a href="#"
+          data-ics-template="https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/{city}/cc_events.ics"
+          class="download-button" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-calendar-alt" aria-hidden="true"></i> Add to Google Calendar
+          </a>
+      </header>
+
+      <div class="container">
+        <section id="calendar-section" class="calendar-container" aria-label="Baltimore Tech Events Calendar">
+          <div id="loading" aria-live="polite">
+            <i class="fas fa-spinner fa-spin"></i> Loading calendar events...
+          </div>
+          <div id="calendar"></div>
+        </section>
+      </div>
+
+
+      <h1 style="margin: 10px 0; font-size: 4vw; text-align: center"> Events</h1>
+      <section class="code-collective-events" aria-label="Events">
+        <div id="code-collective-events-container">
+          <!-- Events will be populated by JavaScript -->
+        </div>
+      </section>
+    </section>
+
+    <script src="/js/calendar.js"></script>
+    </section>
+
+  </main>
+
+  <our-footer></our-footer>
+  <our-slack-link></our-slack-link>
+  <calendar-legend></calendar-legend>
+
+</body>
+
+<script type="module" src="/js/reusableComponents.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+</html>
