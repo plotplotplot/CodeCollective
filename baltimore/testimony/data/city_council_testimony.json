@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-03-26T18:25:08Z",
+  "fetched_at": "2026-03-27T00:28:58Z",
   "source_url": "https://baltimore.legistar.com/Calendar.aspx",
   "member_source_url": "https://www.baltimorecity.gov/city-council/members-and-committees/city-council-members",
   "record_count": 32,
@@ -334,7 +334,8 @@
       ],
       "categories": [
         "Land Use & Transportation Committee",
-        "Ordinance"
+        "Ordinance",
+        "Has Testimony"
       ],
       "attachments": [
         {
@@ -391,10 +392,21 @@
           "name": "03.26.26 Voting Record 25-0136.pdf",
           "url": "https://baltimore.legistar.com/View.ashx?M=F&ID=15341071&GUID=0B6CF200-D1C1-4668-8937-EE28F715814F",
           "kind": "attachment"
+        },
+        {
+          "name": "03.26.26 Ramos Testimony 25-0136.PDF",
+          "url": "https://baltimore.legistar.com/View.ashx?M=F&ID=15341090&GUID=F2471800-A05C-4B62-B652-BB200046646C",
+          "kind": "testimony"
         }
       ],
-      "testimony_attachments": [],
-      "has_testimony": false,
+      "testimony_attachments": [
+        {
+          "name": "03.26.26 Ramos Testimony 25-0136.PDF",
+          "url": "https://baltimore.legistar.com/View.ashx?M=F&ID=15341090&GUID=F2471800-A05C-4B62-B652-BB200046646C",
+          "kind": "testimony"
+        }
+      ],
+      "has_testimony": true,
       "history": [
         "Scheduled for a Public Hearing",
         "Recommended Favorably"
@@ -754,7 +766,8 @@
       ],
       "categories": [
         "Land Use & Transportation Committee",
-        "Ordinance"
+        "Ordinance",
+        "Has Testimony"
       ],
       "attachments": [
         {
@@ -801,10 +814,26 @@
           "name": "03.26.26 Commercial Vehicle Parking 26-0145.pdf",
           "url": "https://baltimore.legistar.com/View.ashx?M=F&ID=15338591&GUID=4D1B929E-0F3F-48FC-A0FB-91F181CB7199",
           "kind": "attachment"
+        },
+        {
+          "name": "03.26.26 Voting Record 26-0145.pdf",
+          "url": "https://baltimore.legistar.com/View.ashx?M=F&ID=15341091&GUID=9A6207BE-F52A-48AB-A038-7190A2271597",
+          "kind": "attachment"
+        },
+        {
+          "name": "GNA 26-0145 Testimony 03.22.26.pdf",
+          "url": "https://baltimore.legistar.com/View.ashx?M=F&ID=15341092&GUID=504BFEBD-5E21-4C5F-9499-F00ECEBD3633",
+          "kind": "testimony"
         }
       ],
-      "testimony_attachments": [],
-      "has_testimony": false,
+      "testimony_attachments": [
+        {
+          "name": "GNA 26-0145 Testimony 03.22.26.pdf",
+          "url": "https://baltimore.legistar.com/View.ashx?M=F&ID=15341092&GUID=504BFEBD-5E21-4C5F-9499-F00ECEBD3633",
+          "kind": "testimony"
+        }
+      ],
+      "has_testimony": true,
       "history": [
         "Recommended Favorably",
         "Scheduled for a Public Hearing"
