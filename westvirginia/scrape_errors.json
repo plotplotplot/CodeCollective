@@ -1,30 +1,6 @@
 [
     {
-        "timestamp": "2026-03-23T20:20:36.796870-04:00",
-        "city": "westvirginia",
-        "stage": "image_download",
-        "error": "403 Client Error: Forbidden for url: https://wvbusinesslink.com/wp-content/uploads/2026/02/New-RCAC-APEX-Logo-5-15-24-1.jpg",
-        "source_url": "https://wvbusinesslink.com/wp-content/uploads/2026/02/New-RCAC-APEX-Logo-5-15-24-1.jpg",
-        "context": {
-            "event_name": "Utilizing E-Tools"
-        },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://wvbusinesslink.com/wp-content/uploads/2026/02/New-RCAC-APEX-Logo-5-15-24-1.jpg\n"
-    },
-    {
-        "timestamp": "2026-03-23T20:20:36.990267-04:00",
-        "city": "westvirginia",
-        "stage": "image_download",
-        "error": "403 Client Error: Forbidden for url: https://wvbusinesslink.com/wp-content/uploads/2026/03/Money-Smart-Banking.png",
-        "source_url": "https://wvbusinesslink.com/wp-content/uploads/2026/03/Money-Smart-Banking.png",
-        "context": {
-            "event_name": "Small Business Banking Services"
-        },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://wvbusinesslink.com/wp-content/uploads/2026/03/Money-Smart-Banking.png\n"
-    },
-    {
-        "timestamp": "2026-03-23T20:20:37.275835-04:00",
+        "timestamp": "2026-03-26T20:25:07.982612-04:00",
         "city": "westvirginia",
         "stage": "image_download",
         "error": "403 Client Error: Forbidden for url: https://wvbusinesslink.com/wp-content/uploads/2026/03/Money-Smart-Organizational-Types.png",
@@ -33,10 +9,10 @@
             "event_name": "Money Smart: Organizational Types"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://wvbusinesslink.com/wp-content/uploads/2026/03/Money-Smart-Organizational-Types.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://wvbusinesslink.com/wp-content/uploads/2026/03/Money-Smart-Organizational-Types.png\n"
     },
     {
-        "timestamp": "2026-03-23T20:20:37.458924-04:00",
+        "timestamp": "2026-03-26T20:25:08.221210-04:00",
         "city": "westvirginia",
         "stage": "image_download",
         "error": "403 Client Error: Forbidden for url: https://wvbusinesslink.com/wp-content/uploads/2026/03/Money-Smart-Recordkeeping-2.png",
@@ -45,6 +21,6 @@
             "event_name": "Money Smart: Recordkeeping"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://wvbusinesslink.com/wp-content/uploads/2026/03/Money-Smart-Recordkeeping-2.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://wvbusinesslink.com/wp-content/uploads/2026/03/Money-Smart-Recordkeeping-2.png\n"
     }
 ]
