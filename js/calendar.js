@@ -19,7 +19,7 @@ const FEATURED_SOURCE_URLS = new Set([
 const CATEGORY_MAPS_INDEX_URL = '/data/category_maps/index.json';
 const LEGEND_PREFS_KEY = 'calendarLegendPrefs';
 const FALLBACK_CATEGORY_MAP_CONFIG = {
-  default_map: 'tech_only',
+  default_map: 'community_sectors',
   maps: [
     {
       id: 'maslow_needs',
@@ -393,8 +393,9 @@ function normalizeMapCategory(category) {
 }
 
 function getOtherCategory(categoryMap) {
-  // Other is now a regular category, not handled separately
-  return null;
+  return (categoryMap?.categories || [])
+    .map(normalizeMapCategory)
+    .find(category => category.slug === 'other') || null;
 }
 
 function getMappedCategoriesForTags(tags, categoryMap = activeCategoryMap) {
@@ -403,9 +404,16 @@ function getMappedCategoriesForTags(tags, categoryMap = activeCategoryMap) {
 
 function getDirectMappedCategoriesForTags(tags, categoryMap = activeCategoryMap) {
   const normalizedTags = Array.isArray(tags) ? tags.map(slugifyTag).filter(Boolean) : [];
-  return (categoryMap?.categories || [])
+  const mappedCategories = (categoryMap?.categories || [])
     .map(normalizeMapCategory)
     .filter(category => normalizedTags.some(tag => category.matchSlugs.has(tag)));
+
+  if (mappedCategories.length > 0) {
+    return mappedCategories;
+  }
+
+  const otherCategory = getOtherCategory(categoryMap);
+  return otherCategory ? [otherCategory] : [];
 }
 
 function isTechOnlyEvent(tags) {

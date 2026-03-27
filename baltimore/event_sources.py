@@ -94,6 +94,7 @@ sources = [
     {"url": "https://www.meetup.com/profs-and-pints-baltimore/", "tags": ["Education", "Science", "Lifelong Learning"]},
     {"url": "https://www.meetup.com/ai-enthusiasts/", "tags": ["Tech Skills", "AI"]},
     {"url": "https://www.meetup.com/KMC-Maryland/", "tags": ["Religion"]},
+    {"url": "https://www.meetup.com/bmorethical/", "tags": ["Religion"]},
     {
         "url": "https://www.meetup.com/meditation-modern-buddhism-in-canton/",
         "tags": ["Religion"],
