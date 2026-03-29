@@ -30,6 +30,9 @@ export function ConstituentProfilePage() {
   const [state, setState] = useState('')
   const [zip, setZip] = useState('')
   const [organizations, setOrganizations] = useState('')
+  const [isRunningForOffice, setIsRunningForOffice] = useState(false)
+  const [officeTitle, setOfficeTitle] = useState('')
+  const [campaignStatement, setCampaignStatement] = useState('')
   const [status, setStatus] = useState<string | null>(null)
   const [editorOpen, setEditorOpen] = useState(false)
   const [editorSource, setEditorSource] = useState<string | null>(null)
@@ -78,6 +81,9 @@ export function ConstituentProfilePage() {
             : data.identity_data.organizations
           setOrganizations(orgs)
         }
+        if (data.identity_data?.is_running_for_office) setIsRunningForOffice(true)
+        if (data.identity_data?.office_title) setOfficeTitle(data.identity_data.office_title)
+        if (data.identity_data?.campaign_statement) setCampaignStatement(data.identity_data.campaign_statement)
       } catch {
         // ignore
       }
@@ -119,7 +125,7 @@ export function ConstituentProfilePage() {
 
   useEffect(() => {
     if (status) setStatus(null)
-  }, [fullName, firstName, lastName, displayName, bio, avatarUrl, addressLine1, addressLine2, city, state, zip, organizations])
+  }, [fullName, firstName, lastName, displayName, bio, avatarUrl, addressLine1, addressLine2, city, state, zip, organizations, isRunningForOffice, officeTitle, campaignStatement])
 
   useEffect(() => {
     if (!editorSource) {
@@ -318,6 +324,45 @@ export function ConstituentProfilePage() {
           </label>
           <input id="orgs" value={organizations} onChange={(e) => setOrganizations(e.target.value)} style={{ width: '100%' }} />
         </div>
+        <div style={{ borderTop: '1px solid rgba(12, 30, 60, 0.12)', paddingTop: '1rem', marginTop: '0.5rem' }}>
+          <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+            <input
+              type="checkbox"
+              checked={isRunningForOffice}
+              onChange={(e) => setIsRunningForOffice(e.target.checked)}
+            />
+            <span style={{ fontWeight: 600 }}>I&apos;m running for office</span>
+          </label>
+          {isRunningForOffice ? (
+            <div style={{ display: 'grid', gap: '0.6rem', marginTop: '0.6rem' }}>
+              <div>
+                <label className="muted" htmlFor="office-title">
+                  Office / position
+                </label>
+                <input
+                  id="office-title"
+                  value={officeTitle}
+                  onChange={(e) => setOfficeTitle(e.target.value)}
+                  placeholder="e.g. City Council District 4"
+                  style={{ width: '100%' }}
+                />
+              </div>
+              <div>
+                <label className="muted" htmlFor="campaign-statement">
+                  Campaign statement
+                </label>
+                <textarea
+                  id="campaign-statement"
+                  value={campaignStatement}
+                  onChange={(e) => setCampaignStatement(e.target.value)}
+                  rows={4}
+                  placeholder="Tell voters about your platform and goals"
+                  style={{ width: '100%' }}
+                />
+              </div>
+            </div>
+          ) : null}
+        </div>
         {status ? (
           <p className="muted" role="status" style={{ marginBottom: 0 }}>
             {status}
@@ -366,6 +411,9 @@ export function ConstituentProfilePage() {
                   state: payload.state,
                   zip: payload.zip,
                   organizations: organizationsList,
+                  is_running_for_office: isRunningForOffice,
+                  office_title: isRunningForOffice ? officeTitle : null,
+                  campaign_statement: isRunningForOffice ? campaignStatement : null,
                 }),
               })
                 .then(async (resp) => {
