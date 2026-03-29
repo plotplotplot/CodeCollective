@@ -17,9 +17,16 @@ export type UserProfile = {
   totalInteractions: number
 }
 
+export type VoteCounts = {
+  up: number
+  down: number
+  score: number
+}
+
 export type RankedMotion = Motion & {
   rank: number
   commentCount: number
+  voteCounts: VoteCounts
 }
 
 export interface EngagementRepository {
@@ -28,6 +35,7 @@ export interface EngagementRepository {
   getUserVote(motionId: string, userId: string): Promise<VoteDirection | null>
   listComments(motionId: string): Promise<Comment[]>
   addComment(input: CreateCommentInput): Promise<Comment>
+  getVoteCounts(motionId: string): Promise<VoteCounts>
   trackView(motionId: string, userId: string): Promise<void>
   getUserProfile(userId: string): Promise<UserProfile>
   rankMotions(motions: Motion[], userId: string): Promise<RankedMotion[]>

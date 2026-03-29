@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useServices, useAuth } from '../../../app/AppProviders'
 import { listMotions } from '../../../application/usecases/listMotions'
 import type { Motion, MotionStatus, VoteDirection } from '../../../domain/motion/Motion'
+import type { VoteCounts } from '../../../application/ports/EngagementRepository'
 import type { MotionListQuery } from '../../../application/ports/MotionRepository'
 import { MotionStatusBadge } from '../../components/governance/MotionStatusBadge'
 
@@ -49,6 +50,7 @@ export function MotionListPage() {
   const [statusFilter, setStatusFilter] = useState<MotionStatus | null>(null)
   const [sortMode, setSortMode] = useState<SortMode>('newest')
   const [userVotes, setUserVotes] = useState<Record<string, VoteDirection | null>>({})
+  const [voteCounts, setVoteCounts] = useState<Record<string, VoteCounts>>({})
 
   useEffect(() => {
     document.title = 'ballot-sign \u2022 Governance'
@@ -60,15 +62,23 @@ export function MotionListPage() {
     if (statusFilter) query.status = [statusFilter]
     listMotions(motionRepository, query).then((fetched) => {
       setMotions(fetched)
-      {
-        Promise.all(
-          fetched.map((m) => engagementRepository.getUserVote(m.id, effectiveUserId).then((dir) => [m.id, dir] as const)),
-        ).then((pairs) => {
-          const map: Record<string, VoteDirection | null> = {}
-          for (const [id, dir] of pairs) map[id] = dir
-          setUserVotes(map)
-        })
-      }
+      Promise.all(
+        fetched.map((m) =>
+          Promise.all([
+            engagementRepository.getUserVote(m.id, effectiveUserId),
+            engagementRepository.getVoteCounts(m.id),
+          ]).then(([dir, vc]) => [m.id, dir, vc] as const),
+        ),
+      ).then((triples) => {
+        const voteMap: Record<string, VoteDirection | null> = {}
+        const countMap: Record<string, VoteCounts> = {}
+        for (const [id, dir, vc] of triples) {
+          voteMap[id] = dir
+          countMap[id] = vc
+        }
+        setUserVotes(voteMap)
+        setVoteCounts(countMap)
+      })
     })
   }, [motionRepository, engagementRepository, search, statusFilter, effectiveUserId])
 
@@ -293,15 +303,21 @@ export function MotionListPage() {
                   >
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3l7 7h-4v7H7v-7H3l7-7z"/></svg>
                   </button>
-                  <span style={{
-                    fontWeight: 800,
-                    fontSize: 14,
-                    lineHeight: 1,
-                    padding: '4px 0',
-                    color: uv === 'up' ? 'var(--vote-up)' : uv === 'down' ? 'var(--vote-down)' : 'var(--text-primary)',
-                  }}>
-                    {motion.score}
-                  </span>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '2px 0' }}>
+                    <span style={{
+                      fontWeight: 800,
+                      fontSize: 14,
+                      lineHeight: 1,
+                      color: uv === 'up' ? 'var(--vote-up)' : uv === 'down' ? 'var(--vote-down)' : 'var(--text-primary)',
+                    }}>
+                      {motion.score}
+                    </span>
+                    {(vc => (
+                      <span style={{ fontSize: 9, color: 'var(--text-muted)', marginTop: 2, whiteSpace: 'nowrap' }}>
+                        {vc.up}&#8593; {vc.down}&#8595;
+                      </span>
+                    ))(voteCounts[motion.id] ?? { up: 0, down: 0, score: 0 })}
+                  </div>
                   <button
                     type="button"
                     onClick={(e) => handleVote(motion.id, 'down', e)}

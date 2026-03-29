@@ -64,7 +64,19 @@ export default function App() {
       direction === 'up'
         ? await engagementRepository.upvote(motionId, effectiveUserId)
         : await engagementRepository.downvote(motionId, effectiveUserId)
-    setRanked((prev) => prev.map((m) => (m.id === motionId ? { ...m, score: result.score } : m)))
+    setRanked((prev) => prev.map((m) => {
+      if (m.id !== motionId) return m
+      const oldDir = userVotes[motionId]
+      const vc = { ...m.voteCounts }
+      // Remove old vote
+      if (oldDir === 'up') vc.up--
+      else if (oldDir === 'down') vc.down--
+      // Add new vote
+      if (result.userVote === 'up') vc.up++
+      else if (result.userVote === 'down') vc.down++
+      vc.score = vc.up - vc.down
+      return { ...m, score: result.score, voteCounts: vc }
+    }))
     setUserVotes((prev) => ({ ...prev, [motionId]: result.userVote }))
   }
 
@@ -161,15 +173,31 @@ export default function App() {
                       >
                         <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3l7 7h-4v7H7v-7H3l7-7z"/></svg>
                       </button>
-                      <span style={{
-                        fontWeight: 800,
-                        fontSize: 13,
-                        lineHeight: 1,
+                      <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
                         padding: '2px 0',
-                        color: uv === 'up' ? 'var(--vote-up)' : uv === 'down' ? 'var(--vote-down)' : 'var(--text-primary)',
+                        gap: 0,
                       }}>
-                        {motion.score}
-                      </span>
+                        <span style={{
+                          fontWeight: 800,
+                          fontSize: 13,
+                          lineHeight: 1,
+                          color: uv === 'up' ? 'var(--vote-up)' : uv === 'down' ? 'var(--vote-down)' : 'var(--text-primary)',
+                        }}>
+                          {motion.score}
+                        </span>
+                        <span style={{
+                          fontSize: 9,
+                          lineHeight: 1,
+                          color: 'var(--text-muted)',
+                          marginTop: 2,
+                          whiteSpace: 'nowrap',
+                        }}>
+                          {motion.voteCounts.up}&#8593; {motion.voteCounts.down}&#8595;
+                        </span>
+                      </div>
                       <button
                         type="button"
                         onClick={(e) => handleVote(motion.id, 'down', e)}

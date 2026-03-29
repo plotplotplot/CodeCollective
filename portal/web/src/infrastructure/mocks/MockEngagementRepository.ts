@@ -1,4 +1,4 @@
-import type { EngagementRepository, CreateCommentInput, UserProfile, RankedMotion } from '../../application/ports/EngagementRepository'
+import type { EngagementRepository, CreateCommentInput, UserProfile, RankedMotion, VoteCounts } from '../../application/ports/EngagementRepository'
 import type { Motion, VoteDirection, Comment } from '../../domain/motion/Motion'
 
 const VOTES_KEY = 'demo.engagement.votes'
@@ -35,15 +35,20 @@ function writeComments(comments: Comment[]) {
   localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments))
 }
 
-function computeScore(votes: VotesStore, motionId: string): number {
+function computeVoteCounts(votes: VotesStore, motionId: string): VoteCounts {
   const motionVotes = votes[motionId]
-  if (!motionVotes) return 0
-  let score = 0
+  if (!motionVotes) return { up: 0, down: 0, score: 0 }
+  let up = 0
+  let down = 0
   for (const dir of Object.values(motionVotes)) {
-    if (dir === 'up') score++
-    else if (dir === 'down') score--
+    if (dir === 'up') up++
+    else if (dir === 'down') down++
   }
-  return score
+  return { up, down, score: up - down }
+}
+
+function computeScore(votes: VotesStore, motionId: string): number {
+  return computeVoteCounts(votes, motionId).score
 }
 
 type ProfileStore = Record<string, UserProfile>
@@ -240,6 +245,11 @@ export class MockEngagementRepository implements EngagementRepository {
     return comment
   }
 
+  async getVoteCounts(motionId: string): Promise<VoteCounts> {
+    const votes = readVotes()
+    return computeVoteCounts(votes, motionId)
+  }
+
   async trackView(motionId: string, userId: string): Promise<void> {
     // We need the motion status to record properly, but just record the interaction ID
     const profiles = readProfiles()
@@ -259,12 +269,14 @@ export class MockEngagementRepository implements EngagementRepository {
   async rankMotions(motions: Motion[], userId: string): Promise<RankedMotion[]> {
     const profile = getOrCreateProfile(userId)
     const comments = readComments()
+    const votes = readVotes()
 
     return motions
       .map((motion) => {
         const commentCount = comments.filter((c) => c.motionId === motion.id).length
+        const voteCounts = computeVoteCounts(votes, motion.id)
         const rank = computeRank(motion, commentCount, profile)
-        return { ...motion, rank, commentCount }
+        return { ...motion, rank, commentCount, voteCounts }
       })
       .sort((a, b) => b.rank - a.rank)
   }

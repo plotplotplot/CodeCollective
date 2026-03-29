@@ -91,6 +91,8 @@ export function MotionDetailPage() {
   const [userVote, setUserVote] = useState<VoteDirection | null>(null)
   const [comments, setComments] = useState<Comment[]>([])
   const [commentBody, setCommentBody] = useState('')
+  const [upCount, setUpCount] = useState(0)
+  const [downCount, setDownCount] = useState(0)
 
   useEffect(() => {
     if (!id) return
@@ -111,6 +113,7 @@ export function MotionDetailPage() {
   useEffect(() => {
     if (!id) return
     engagementRepository.getUserVote(id, effectiveUserId).then(setUserVote)
+    engagementRepository.getVoteCounts(id).then((vc) => { setUpCount(vc.up); setDownCount(vc.down) })
     engagementRepository.trackView(id, effectiveUserId)
   }, [engagementRepository, id, effectiveUserId])
 
@@ -172,6 +175,9 @@ export function MotionDetailPage() {
     const result = await engagementRepository.upvote(id, effectiveUserId)
     setUserVote(result.userVote)
     setMotion((prev) => (prev ? { ...prev, score: result.score } : prev))
+    const vc = await engagementRepository.getVoteCounts(id)
+    setUpCount(vc.up)
+    setDownCount(vc.down)
   }
 
   async function handleDownvote() {
@@ -179,6 +185,9 @@ export function MotionDetailPage() {
     const result = await engagementRepository.downvote(id, effectiveUserId)
     setUserVote(result.userVote)
     setMotion((prev) => (prev ? { ...prev, score: result.score } : prev))
+    const vc = await engagementRepository.getVoteCounts(id)
+    setUpCount(vc.up)
+    setDownCount(vc.down)
   }
 
   async function handleAddComment() {
@@ -282,15 +291,19 @@ export function MotionDetailPage() {
             >
               <svg width="24" height="24" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3l7 7h-4v7H7v-7H3l7-7z"/></svg>
             </button>
-            <span style={{
-              fontWeight: 800,
-              fontSize: 18,
-              lineHeight: 1,
-              padding: '6px 0',
-              color: userVote === 'up' ? 'var(--vote-up)' : userVote === 'down' ? 'var(--vote-down)' : 'var(--text-primary)',
-            }}>
-              {motion.score}
-            </span>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '4px 0' }}>
+              <span style={{
+                fontWeight: 800,
+                fontSize: 18,
+                lineHeight: 1,
+                color: userVote === 'up' ? 'var(--vote-up)' : userVote === 'down' ? 'var(--vote-down)' : 'var(--text-primary)',
+              }}>
+                {motion.score}
+              </span>
+              <span style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: 3, whiteSpace: 'nowrap' }}>
+                {upCount}&#8593; {downCount}&#8595;
+              </span>
+            </div>
             <button
               type="button"
               onClick={handleDownvote}
