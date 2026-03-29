@@ -6,12 +6,21 @@ export default defineConfig(({ command }) => ({
   plugins: [react()],
   base: command === 'serve' ? '/dev/' : '/',
   server: {
-    allowedHosts: ['ballot-vm.local', 'ballot.arkavo.org', 'portal.arkavo.org'],
+    allowedHosts: ['ballot-vm.local', 'ballot.arkavo.org', 'portal.arkavo.org', 'localhost'],
     host: true,
-    hmr: {
-      host: 'portal.arkavo.org',
-      protocol: 'wss',
-      clientPort: 443,
+    hmr: command === 'serve'
+      ? { host: 'localhost', protocol: 'ws' }
+      : { host: 'portal.arkavo.org', protocol: 'wss', clientPort: 443 },
+    proxy: {
+      '/pidp': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        rewrite: (path: string) => path.replace(/^\/pidp/, ''),
+      },
+      '/api/governance': {
+        target: 'http://localhost:8002',
+        changeOrigin: true,
+      },
     },
   },
 }))

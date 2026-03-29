@@ -28,10 +28,22 @@ const STATUS_LABELS: Record<string, string> = {
 
 type SortMode = 'newest' | 'score'
 
+function getGuestId(): string {
+  const key = 'governance.guestId'
+  let id = localStorage.getItem(key)
+  if (!id) {
+    id = `guest_${Math.random().toString(36).slice(2)}`
+    localStorage.setItem(key, id)
+  }
+  return id
+}
+
 export function MotionListPage() {
   const { motionRepository, engagementRepository } = useServices()
   const { user } = useAuth()
   const navigate = useNavigate()
+  const effectiveUserId = user?.id ?? getGuestId()
+  const effectiveUserName = user?.displayName ?? 'Guest'
   const [motions, setMotions] = useState<Motion[]>([])
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<MotionStatus | null>(null)
@@ -48,9 +60,9 @@ export function MotionListPage() {
     if (statusFilter) query.status = [statusFilter]
     listMotions(motionRepository, query).then((fetched) => {
       setMotions(fetched)
-      if (user) {
+      {
         Promise.all(
-          fetched.map((m) => engagementRepository.getUserVote(m.id, user.id).then((dir) => [m.id, dir] as const)),
+          fetched.map((m) => engagementRepository.getUserVote(m.id, effectiveUserId).then((dir) => [m.id, dir] as const)),
         ).then((pairs) => {
           const map: Record<string, VoteDirection | null> = {}
           for (const [id, dir] of pairs) map[id] = dir
@@ -58,7 +70,7 @@ export function MotionListPage() {
         })
       }
     })
-  }, [motionRepository, engagementRepository, search, statusFilter, user])
+  }, [motionRepository, engagementRepository, search, statusFilter, effectiveUserId])
 
   const sortedMotions = [...motions].sort((a, b) => {
     if (sortMode === 'score') return b.score - a.score || b.createdAtISO.localeCompare(a.createdAtISO)
@@ -67,11 +79,10 @@ export function MotionListPage() {
 
   async function handleVote(motionId: string, direction: 'up' | 'down', e: React.MouseEvent) {
     e.stopPropagation()
-    if (!user) return
     const result =
       direction === 'up'
-        ? await engagementRepository.upvote(motionId, user.id)
-        : await engagementRepository.downvote(motionId, user.id)
+        ? await engagementRepository.upvote(motionId, effectiveUserId)
+        : await engagementRepository.downvote(motionId, effectiveUserId)
     setMotions((prev) => prev.map((m) => (m.id === motionId ? { ...m, score: result.score } : m)))
     setUserVotes((prev) => ({ ...prev, [motionId]: result.userVote }))
   }
@@ -208,18 +219,16 @@ export function MotionListPage() {
                   <button
                     type="button"
                     onClick={(e) => handleVote(motion.id, 'up', e)}
-                    disabled={!user}
                     aria-label="Upvote"
                     style={{
                       background: 'none',
                       border: 'none',
-                      cursor: user ? 'pointer' : 'default',
+                      cursor: 'pointer',
                       fontSize: 18,
                       lineHeight: 1,
                       padding: 2,
                       color: uv === 'up' ? 'var(--primary)' : 'var(--text-muted, #999)',
                       fontWeight: uv === 'up' ? 700 : 400,
-                      opacity: user ? 1 : 0.4,
                     }}
                   >
                     ▲
@@ -228,18 +237,16 @@ export function MotionListPage() {
                   <button
                     type="button"
                     onClick={(e) => handleVote(motion.id, 'down', e)}
-                    disabled={!user}
                     aria-label="Downvote"
                     style={{
                       background: 'none',
                       border: 'none',
-                      cursor: user ? 'pointer' : 'default',
+                      cursor: 'pointer',
                       fontSize: 18,
                       lineHeight: 1,
                       padding: 2,
                       color: uv === 'down' ? '#991b1b' : 'var(--text-muted, #999)',
                       fontWeight: uv === 'down' ? 700 : 400,
-                      opacity: user ? 1 : 0.4,
                     }}
                   >
                     ▼
