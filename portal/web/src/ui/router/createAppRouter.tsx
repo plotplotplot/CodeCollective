@@ -17,6 +17,10 @@ import { CampaignInitiativeBallotPage } from '../views/campaign/CampaignInitiati
 import { CampaignProfilePage } from '../views/campaign/CampaignProfilePage'
 import { CampaignAccountPage } from '../views/campaign/CampaignAccountPage'
 import { PublicCampaignManagerPage } from '../views/public/PublicCampaignManagerPage'
+import { MotionListPage } from '../views/governance/MotionListPage'
+import { MotionDetailPage } from '../views/governance/MotionDetailPage'
+import { ProposeMotionPage } from '../views/governance/ProposeMotionPage'
+import { ProposeAmendmentPage } from '../views/governance/ProposeAmendmentPage'
 import { NotFoundPage } from '../views/NotFoundPage'
 import { AboutPage } from '../views/AboutPage'
 import { DashboardPage } from '../dashboard/DashboardPage'
@@ -75,6 +79,12 @@ export function createAppRouter() {
 
           // Public profile
           { path: '/campaign-managers/:handle', element: <PublicCampaignManagerPage /> },
+
+          // Governance
+          { path: '/governance', element: <MotionListPage /> },
+          { path: '/governance/propose', element: <ProposeMotionPage /> },
+          { path: '/governance/:id', element: <MotionDetailPage /> },
+          { path: '/governance/:id/amend', element: <ProposeAmendmentPage /> },
 
           { path: '*', element: <NotFoundPage /> },
         ],
