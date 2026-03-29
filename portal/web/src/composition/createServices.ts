@@ -1,11 +1,17 @@
 import type { InitiativeRepository } from '../application/ports/InitiativeRepository'
 import type { SignatureRepository } from '../application/ports/SignatureRepository'
+import type { MotionRepository } from '../application/ports/MotionRepository'
+import type { VoteRepository } from '../application/ports/VoteRepository'
 import { MockInitiativeRepository } from '../infrastructure/mocks/MockInitiativeRepository'
 import { MockSignatureRepository } from '../infrastructure/mocks/MockSignatureRepository'
+import { MockMotionRepository } from '../infrastructure/mocks/MockMotionRepository'
+import { MockVoteRepository } from '../infrastructure/mocks/MockVoteRepository'
 
 export type AppServices = {
   initiativeRepository: InitiativeRepository
   signatureRepository: SignatureRepository
+  motionRepository: MotionRepository
+  voteRepository: VoteRepository
 }
 
 function createInitiativeRepository(): InitiativeRepository {
@@ -21,9 +27,23 @@ function createSignatureRepository(): SignatureRepository {
   return new MockSignatureRepository()
 }
 
+function createMotionRepository(): MotionRepository {
+  const source = (import.meta as any).env?.VITE_DATA_SOURCE ?? 'mock'
+  if (source === 'mock') return new MockMotionRepository()
+  return new MockMotionRepository()
+}
+
+function createVoteRepository(): VoteRepository {
+  const source = (import.meta as any).env?.VITE_DATA_SOURCE ?? 'mock'
+  if (source === 'mock') return new MockVoteRepository()
+  return new MockVoteRepository()
+}
+
 export function createServices(): AppServices {
   return {
     initiativeRepository: createInitiativeRepository(),
     signatureRepository: createSignatureRepository(),
+    motionRepository: createMotionRepository(),
+    voteRepository: createVoteRepository(),
   }
 }
