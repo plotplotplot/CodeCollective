@@ -26,4 +26,5 @@ export interface MotionRepository {
   openVoting(motionId: string): Promise<Motion>
   table(motionId: string): Promise<Motion>
   withdraw(motionId: string, userId: string): Promise<Motion>
+  resolveVoting(motionId: string): Promise<Motion>
 }

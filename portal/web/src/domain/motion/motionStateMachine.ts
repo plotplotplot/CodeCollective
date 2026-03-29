@@ -38,6 +38,10 @@ export function canOpenVoting(motion: Motion, amendments?: Motion[]): boolean {
   return true
 }
 
+export function isValidTransition(from: MotionStatus, to: MotionStatus): boolean {
+  return VALID_TRANSITIONS[from].includes(to)
+}
+
 export function getValidTransitions(motion: Motion): MotionStatus[] {
-  return VALID_TRANSITIONS[motion.status] ?? []
+  return VALID_TRANSITIONS[motion.status]
 }
