@@ -30,17 +30,14 @@ export function Header() {
           <img src="/laurel_wreath_logo.png" alt="Code Collective" />
           <div>
             <div className="portal-brand-title">Code Collective</div>
-            <div className="portal-brand-sub">Economic Operations</div>
+            <div className="portal-brand-sub">Civic Governance Portal</div>
           </div>
         </Link>
         <nav className="portal-nav">
-          <Link to="/">Overview</Link>
-          <Link to="/send">Send</Link>
-          <Link to="/receive">Receive</Link>
-          <Link to="/create">Create</Link>
-          <Link to="/ecops">EcOps</Link>
-          <a href="/pidp">Identity</a>
-          <a href="/cockroach">Ledger</a>
+          <Link to="/">Home</Link>
+          <Link to="/governance">Governance</Link>
+          <Link to="/constituent/dashboard">Initiatives</Link>
+          <Link to="/constituent/profile">Profile</Link>
         </nav>
         <div className="portal-auth">
           {role !== 'guest' ? (
