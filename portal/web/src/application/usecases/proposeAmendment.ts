@@ -1,7 +1,5 @@
 import type { MotionRepository } from '../ports/MotionRepository'
-import type { MotionStatus } from '../../domain/motion/Motion'
-
-const TERMINAL_STATUSES: MotionStatus[] = ['passed', 'failed', 'withdrawn']
+import { isTerminalStatus } from '../../domain/motion/motionStateMachine'
 
 export type ProposeAmendmentRequest = {
   parentMotionId: string
@@ -28,7 +26,7 @@ export async function proposeAmendment(repo: MotionRepository, req: ProposeAmend
 
   const parent = await repo.getById(req.parentMotionId)
   if (!parent) return { ok: false as const, errors: ['Parent motion not found'] }
-  if (TERMINAL_STATUSES.includes(parent.status)) {
+  if (isTerminalStatus(parent.status)) {
     return { ok: false as const, errors: ['Parent motion is in a terminal state'] }
   }
 

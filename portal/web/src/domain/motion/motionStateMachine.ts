@@ -32,10 +32,14 @@ export function canTable(motion: Motion): boolean {
 
 export function canOpenVoting(motion: Motion, amendments?: Motion[]): boolean {
   if (motion.status !== 'discussion') return false
-  if (amendments && amendments.some((a) => a.status !== 'passed' && a.status !== 'failed' && a.status !== 'withdrawn')) {
+  if (amendments && amendments.some((a) => !isTerminalStatus(a.status))) {
     return false
   }
   return true
+}
+
+export function isTerminalStatus(status: MotionStatus): boolean {
+  return VALID_TRANSITIONS[status].length === 0
 }
 
 export function isValidTransition(from: MotionStatus, to: MotionStatus): boolean {
