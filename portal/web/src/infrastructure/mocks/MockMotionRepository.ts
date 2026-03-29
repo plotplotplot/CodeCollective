@@ -38,6 +38,7 @@ function seed(): Motion[] {
       discussionDeadlineISO: new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000).toISOString(),
       quorumRequired: 5,
       votes: [],
+      score: 2,
     },
     {
       id: 'motion_seed_2',
@@ -51,6 +52,7 @@ function seed(): Motion[] {
       updatedAtISO: yesterday.toISOString(),
       quorumRequired: 5,
       votes: [],
+      score: 1,
     },
     {
       id: 'motion_seed_3',
@@ -80,6 +82,7 @@ function seed(): Motion[] {
         quorumMet: true,
         passed: true,
       },
+      score: 5,
     },
   ]
 
@@ -146,6 +149,7 @@ export class MockMotionRepository implements MotionRepository {
       updatedAtISO: now,
       quorumRequired: input.quorumRequired,
       votes: [],
+      score: 0,
     }
     const all = ensureSeeded()
     all.unshift(motion)

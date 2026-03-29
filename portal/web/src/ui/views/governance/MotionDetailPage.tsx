@@ -7,19 +7,22 @@ import { castVote } from '../../../application/usecases/castVote'
 import { tableMotion } from '../../../application/usecases/tableMotion'
 import { withdrawMotion } from '../../../application/usecases/withdrawMotion'
 import { listMotions } from '../../../application/usecases/listMotions'
-import type { Motion, VoteChoice } from '../../../domain/motion/Motion'
+import type { Motion, VoteChoice, VoteDirection, Comment } from '../../../domain/motion/Motion'
 import { MotionStatusBadge } from '../../components/governance/MotionStatusBadge'
 import { MotionTimeline } from '../../components/governance/MotionTimeline'
 import { VotingPanel } from '../../components/governance/VotingPanel'
 
 export function MotionDetailPage() {
   const { id } = useParams()
-  const { motionRepository, voteRepository } = useServices()
+  const { motionRepository, voteRepository, engagementRepository } = useServices()
   const { user } = useAuth()
   const [motion, setMotion] = useState<Motion | null>(null)
   const [amendments, setAmendments] = useState<Motion[]>([])
   const [actionError, setActionError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
+  const [userVote, setUserVote] = useState<VoteDirection | null>(null)
+  const [comments, setComments] = useState<Comment[]>([])
+  const [commentBody, setCommentBody] = useState('')
 
   useEffect(() => {
     if (!id) return
@@ -27,13 +30,20 @@ export function MotionDetailPage() {
     Promise.all([
       getMotionById(motionRepository, id),
       listMotions(motionRepository, { parentMotionId: id }),
-    ]).then(([m, amends]) => {
+      engagementRepository.listComments(id),
+    ]).then(([m, amends, cmts]) => {
       setMotion(m)
       setAmendments(amends)
+      setComments(cmts)
       setLoading(false)
       if (m) document.title = `ballot-sign \u2022 ${m.title}`
     })
-  }, [motionRepository, id])
+  }, [motionRepository, engagementRepository, id])
+
+  useEffect(() => {
+    if (!id || !user) return
+    engagementRepository.getUserVote(id, user.id).then(setUserVote)
+  }, [engagementRepository, id, user])
 
   async function refreshMotion() {
     if (!id) return
@@ -88,6 +98,33 @@ export function MotionDetailPage() {
     }
   }
 
+  async function handleUpvote() {
+    if (!id || !user) return
+    const result = await engagementRepository.upvote(id, user.id)
+    setUserVote(result.userVote)
+    setMotion((prev) => (prev ? { ...prev, score: result.score } : prev))
+  }
+
+  async function handleDownvote() {
+    if (!id || !user) return
+    const result = await engagementRepository.downvote(id, user.id)
+    setUserVote(result.userVote)
+    setMotion((prev) => (prev ? { ...prev, score: result.score } : prev))
+  }
+
+  async function handleAddComment() {
+    if (!id || !user || !commentBody.trim()) return
+    await engagementRepository.addComment({
+      motionId: id,
+      authorId: user.id,
+      authorName: user.displayName,
+      body: commentBody.trim(),
+    })
+    setCommentBody('')
+    const cmts = await engagementRepository.listComments(id)
+    setComments(cmts)
+  }
+
   if (loading) {
     return (
       <div style={{ maxWidth: 900, margin: '2rem auto', padding: '0 1rem' }}>
@@ -126,9 +163,65 @@ export function MotionDetailPage() {
           marginBottom: '1rem',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
-          <h1 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 700, margin: 0 }}>{motion.title}</h1>
-          <MotionStatusBadge status={motion.status} />
+        <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+          {/* Vote widget */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              minWidth: 36,
+              flexShrink: 0,
+              gap: 2,
+            }}
+          >
+            <button
+              type="button"
+              onClick={handleUpvote}
+              disabled={!user}
+              aria-label="Upvote"
+              style={{
+                background: 'none',
+                border: 'none',
+                cursor: user ? 'pointer' : 'default',
+                fontSize: 20,
+                lineHeight: 1,
+                padding: 2,
+                color: userVote === 'up' ? 'var(--primary)' : 'var(--text-muted, #999)',
+                fontWeight: userVote === 'up' ? 700 : 400,
+                opacity: user ? 1 : 0.4,
+              }}
+            >
+              ▲
+            </button>
+            <span style={{ fontWeight: 700, fontSize: 16, lineHeight: 1 }}>{motion.score}</span>
+            <button
+              type="button"
+              onClick={handleDownvote}
+              disabled={!user}
+              aria-label="Downvote"
+              style={{
+                background: 'none',
+                border: 'none',
+                cursor: user ? 'pointer' : 'default',
+                fontSize: 20,
+                lineHeight: 1,
+                padding: 2,
+                color: userVote === 'down' ? '#991b1b' : 'var(--text-muted, #999)',
+                fontWeight: userVote === 'down' ? 700 : 400,
+                opacity: user ? 1 : 0.4,
+              }}
+            >
+              ▼
+            </button>
+          </div>
+
+          <div style={{ flex: 1 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <h1 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 700, margin: 0 }}>{motion.title}</h1>
+              <MotionStatusBadge status={motion.status} />
+            </div>
+          </div>
         </div>
         <MotionTimeline status={motion.status} />
       </section>
@@ -350,6 +443,75 @@ export function MotionDetailPage() {
           </div>
         </section>
       )}
+
+      {/* Comments / Discussion */}
+      <section
+        style={{
+          background: 'var(--panel)',
+          borderRadius: 'var(--radius-lg)',
+          border: '1px solid var(--border-subtle)',
+          padding: '1.5rem',
+          marginBottom: '1rem',
+        }}
+      >
+        <h2 style={{ marginTop: 0 }}>Discussion ({comments.length})</h2>
+
+        {comments.length === 0 && (
+          <p className="muted" style={{ fontSize: 14 }}>No comments yet. Be the first to discuss this motion.</p>
+        )}
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {comments.map((c) => (
+            <div
+              key={c.id}
+              style={{
+                padding: '0.75rem',
+                borderRadius: 8,
+                border: '1px solid var(--border-subtle)',
+              }}
+            >
+              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'baseline', marginBottom: '0.35rem' }}>
+                <span style={{ fontWeight: 600, fontSize: 14 }}>{c.authorName}</span>
+                <span className="muted" style={{ fontSize: 12 }}>{new Date(c.createdAtISO).toLocaleDateString()}</span>
+              </div>
+              <p style={{ margin: 0, fontSize: 14, whiteSpace: 'pre-wrap' }}>{c.body}</p>
+            </div>
+          ))}
+        </div>
+
+        {user && (
+          <div style={{ marginTop: '1rem', display: 'flex', gap: '0.75rem' }}>
+            <input
+              type="text"
+              placeholder="Add a comment..."
+              value={commentBody}
+              onChange={(e) => setCommentBody(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') handleAddComment()
+              }}
+              style={{ flex: 1 }}
+            />
+            <button
+              type="button"
+              onClick={handleAddComment}
+              disabled={!commentBody.trim()}
+              style={{
+                background: 'var(--primary)',
+                color: '#fff',
+                border: 'none',
+                borderRadius: 8,
+                padding: '0.5rem 1.25rem',
+                cursor: commentBody.trim() ? 'pointer' : 'default',
+                fontWeight: 600,
+                fontSize: 14,
+                opacity: commentBody.trim() ? 1 : 0.5,
+              }}
+            >
+              Add Comment
+            </button>
+          </div>
+        )}
+      </section>
     </div>
   )
 }

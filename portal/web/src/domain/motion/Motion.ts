@@ -21,6 +21,7 @@ export type Motion = {
   quorumRequired: number
   votes: Vote[]
   result?: VoteResult
+  score: number
 }
 
 export type Vote = {
@@ -39,4 +40,15 @@ export type VoteResult = {
   totalEligible: number
   quorumMet: boolean
   passed: boolean
+}
+
+export type VoteDirection = 'up' | 'down'
+
+export type Comment = {
+  id: string
+  motionId: string
+  authorId: string
+  authorName: string
+  body: string
+  createdAtISO: string
 }

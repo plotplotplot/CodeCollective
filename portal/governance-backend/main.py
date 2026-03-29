@@ -43,6 +43,17 @@ class AmendmentCreate(BaseModel):
 class VoteRequest(BaseModel):
     choice: str  # "yea", "nay", "abstain"
 
+class CommentCreate(BaseModel):
+    body: str
+
+class CommentResponse(BaseModel):
+    id: str
+    motion_id: str
+    author_id: str
+    author_name: str
+    body: str
+    created_at: str
+
 class Motion(BaseModel):
     id: str
     type: str  # "main" or "amendment"
@@ -62,6 +73,7 @@ class Motion(BaseModel):
     quorum_required: int
     votes: list = []
     result: Optional[dict] = None
+    score: int = 0
 
 
 # --- Redis Key Helpers ---
@@ -74,6 +86,15 @@ def motions_sorted_set_key() -> str:
 
 def amendments_key(motion_id: str) -> str:
     return f"governance:motion:{motion_id}:amendments"
+
+def upvoters_key(motion_id: str) -> str:
+    return f"governance:motion:{motion_id}:upvoters"
+
+def downvoters_key(motion_id: str) -> str:
+    return f"governance:motion:{motion_id}:downvoters"
+
+def comments_key(motion_id: str) -> str:
+    return f"governance:motion:{motion_id}:comments"
 
 
 # --- Helper Functions ---
@@ -95,6 +116,16 @@ def load_motion(motion_id: str) -> Optional[dict]:
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+def compute_engagement_score(motion_id: str) -> int:
+    ups = redis_client.scard(upvoters_key(motion_id))
+    downs = redis_client.scard(downvoters_key(motion_id))
+    return ups - downs
+
+def motion_with_score(motion: dict) -> dict:
+    """Attach the engagement score to a motion dict before returning."""
+    motion["score"] = compute_engagement_score(motion["id"])
+    return motion
 
 
 # --- Authentication ---
@@ -251,7 +282,7 @@ async def list_motions(
             if (search_lower not in motion["title"].lower()
                     and search_lower not in motion["body"].lower()):
                 continue
-        motions.append(Motion(**motion))
+        motions.append(Motion(**motion_with_score(motion)))
     return motions
 
 
@@ -284,7 +315,7 @@ async def propose_motion(
         "result": None,
     }
     save_motion(motion)
-    return Motion(**motion)
+    return Motion(**motion_with_score(motion))
 
 
 @app.get("/api/governance/motions/{motion_id}", response_model=Motion)
@@ -293,7 +324,7 @@ async def get_motion(motion_id: str):
     motion = load_motion(motion_id)
     if motion is None:
         raise HTTPException(status_code=404, detail="Motion not found")
-    return Motion(**motion)
+    return Motion(**motion_with_score(motion))
 
 
 @app.post("/api/governance/motions/{motion_id}/second", response_model=Motion)
@@ -317,7 +348,7 @@ async def second_motion(
     motion["updated_at"] = now_iso()
     motion["discussion_deadline"] = (datetime.now(timezone.utc) + timedelta(days=7)).isoformat()
     save_motion(motion)
-    return Motion(**motion)
+    return Motion(**motion_with_score(motion))
 
 
 @app.post("/api/governance/motions/{motion_id}/vote", response_model=Motion)
@@ -349,7 +380,7 @@ async def cast_vote(
     })
     motion["updated_at"] = now_iso()
     save_motion(motion)
-    return Motion(**motion)
+    return Motion(**motion_with_score(motion))
 
 
 @app.post("/api/governance/motions/{motion_id}/table", response_model=Motion)
@@ -367,7 +398,7 @@ async def table_motion(
     motion["status"] = "tabled"
     motion["updated_at"] = now_iso()
     save_motion(motion)
-    return Motion(**motion)
+    return Motion(**motion_with_score(motion))
 
 
 @app.post("/api/governance/motions/{motion_id}/withdraw", response_model=Motion)
@@ -387,7 +418,7 @@ async def withdraw_motion(
     motion["status"] = "withdrawn"
     motion["updated_at"] = now_iso()
     save_motion(motion)
-    return Motion(**motion)
+    return Motion(**motion_with_score(motion))
 
 
 @app.post("/api/governance/motions/{motion_id}/amend", response_model=Motion)
@@ -427,7 +458,7 @@ async def amend_motion(
     # Track amendment in parent's amendment set
     redis_client.sadd(amendments_key(motion_id), amendment_id)
 
-    return Motion(**amendment_motion)
+    return Motion(**motion_with_score(amendment_motion))
 
 
 @app.post("/api/governance/motions/{motion_id}/open-voting", response_model=Motion)
@@ -446,7 +477,7 @@ async def open_voting(
     motion["voting_deadline"] = (datetime.now(timezone.utc) + timedelta(hours=24)).isoformat()
     motion["updated_at"] = now_iso()
     save_motion(motion)
-    return Motion(**motion)
+    return Motion(**motion_with_score(motion))
 
 
 @app.post("/api/governance/motions/{motion_id}/resolve", response_model=Motion)
@@ -479,7 +510,110 @@ async def resolve_motion(
     motion["status"] = "passed" if passed else "failed"
     motion["updated_at"] = now_iso()
     save_motion(motion)
-    return Motion(**motion)
+    return Motion(**motion_with_score(motion))
+
+
+# --- Engagement Endpoints (upvote/downvote/comments) ---
+
+@app.post("/api/governance/motions/{motion_id}/upvote")
+async def upvote_motion(
+    motion_id: str,
+    current_user: dict = Depends(get_current_user),
+):
+    """Toggle upvote on a motion."""
+    motion = load_motion(motion_id)
+    if motion is None:
+        raise HTTPException(status_code=404, detail="Motion not found")
+
+    user_id = current_user["sub"]
+    up_key = upvoters_key(motion_id)
+    down_key = downvoters_key(motion_id)
+
+    if redis_client.sismember(up_key, user_id):
+        redis_client.srem(up_key, user_id)
+        user_vote = None
+    else:
+        redis_client.srem(down_key, user_id)
+        redis_client.sadd(up_key, user_id)
+        user_vote = "up"
+
+    score = compute_engagement_score(motion_id)
+    return {"score": score, "user_vote": user_vote}
+
+
+@app.post("/api/governance/motions/{motion_id}/downvote")
+async def downvote_motion(
+    motion_id: str,
+    current_user: dict = Depends(get_current_user),
+):
+    """Toggle downvote on a motion."""
+    motion = load_motion(motion_id)
+    if motion is None:
+        raise HTTPException(status_code=404, detail="Motion not found")
+
+    user_id = current_user["sub"]
+    up_key = upvoters_key(motion_id)
+    down_key = downvoters_key(motion_id)
+
+    if redis_client.sismember(down_key, user_id):
+        redis_client.srem(down_key, user_id)
+        user_vote = None
+    else:
+        redis_client.srem(up_key, user_id)
+        redis_client.sadd(down_key, user_id)
+        user_vote = "down"
+
+    score = compute_engagement_score(motion_id)
+    return {"score": score, "user_vote": user_vote}
+
+
+@app.get("/api/governance/motions/{motion_id}/user-vote")
+async def get_user_vote(
+    motion_id: str,
+    current_user: dict = Depends(get_current_user),
+):
+    """Return the current user's vote direction on a motion."""
+    user_id = current_user["sub"]
+    if redis_client.sismember(upvoters_key(motion_id), user_id):
+        return {"user_vote": "up"}
+    if redis_client.sismember(downvoters_key(motion_id), user_id):
+        return {"user_vote": "down"}
+    return {"user_vote": None}
+
+
+@app.get("/api/governance/motions/{motion_id}/comments", response_model=List[CommentResponse])
+async def list_comments(motion_id: str):
+    """List comments for a motion, sorted by creation time ascending."""
+    raw_list = redis_client.lrange(comments_key(motion_id), 0, -1)
+    result = []
+    for raw in raw_list:
+        comment = json.loads(raw)
+        result.append(CommentResponse(**comment))
+    result.sort(key=lambda c: c.created_at)
+    return result
+
+
+@app.post("/api/governance/motions/{motion_id}/comments", response_model=CommentResponse)
+async def add_comment(
+    motion_id: str,
+    comment_create: CommentCreate,
+    current_user: dict = Depends(get_current_user),
+):
+    """Add a comment to a motion."""
+    motion = load_motion(motion_id)
+    if motion is None:
+        raise HTTPException(status_code=404, detail="Motion not found")
+
+    comment = {
+        "id": f"comment-{uuid.uuid4().hex[:12]}",
+        "motion_id": motion_id,
+        "author_id": current_user["sub"],
+        "author_name": current_user["name"],
+        "body": comment_create.body,
+        "created_at": now_iso(),
+    }
+    redis_client.rpush(comments_key(motion_id), json.dumps(comment))
+    return CommentResponse(**comment)
 
 
 # --- Health Check ---
