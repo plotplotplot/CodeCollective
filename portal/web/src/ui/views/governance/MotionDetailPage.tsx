@@ -111,6 +111,7 @@ export function MotionDetailPage() {
   useEffect(() => {
     if (!id) return
     engagementRepository.getUserVote(id, effectiveUserId).then(setUserVote)
+    engagementRepository.trackView(id, effectiveUserId)
   }, [engagementRepository, id, effectiveUserId])
 
   async function refreshMotion() {

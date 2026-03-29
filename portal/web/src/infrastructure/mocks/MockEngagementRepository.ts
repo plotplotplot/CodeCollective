@@ -1,8 +1,9 @@
-import type { EngagementRepository, CreateCommentInput } from '../../application/ports/EngagementRepository'
-import type { VoteDirection, Comment } from '../../domain/motion/Motion'
+import type { EngagementRepository, CreateCommentInput, UserProfile, RankedMotion } from '../../application/ports/EngagementRepository'
+import type { Motion, VoteDirection, Comment } from '../../domain/motion/Motion'
 
 const VOTES_KEY = 'demo.engagement.votes'
 const COMMENTS_KEY = 'demo.engagement.comments'
+const PROFILE_KEY = 'demo.engagement.profiles'
 
 type VotesStore = Record<string, Record<string, VoteDirection>>
 
@@ -43,6 +44,78 @@ function computeScore(votes: VotesStore, motionId: string): number {
     else if (dir === 'down') score--
   }
   return score
+}
+
+type ProfileStore = Record<string, UserProfile>
+
+function readProfiles(): ProfileStore {
+  const raw = localStorage.getItem(PROFILE_KEY)
+  if (!raw) return {}
+  try {
+    return JSON.parse(raw) as ProfileStore
+  } catch {
+    return {}
+  }
+}
+
+function writeProfiles(profiles: ProfileStore) {
+  localStorage.setItem(PROFILE_KEY, JSON.stringify(profiles))
+}
+
+function getOrCreateProfile(userId: string): UserProfile {
+  const profiles = readProfiles()
+  if (profiles[userId]) return profiles[userId]
+  return { userId, interactedMotionIds: [], preferredStatuses: {}, totalInteractions: 0 }
+}
+
+function recordInteraction(userId: string, motionId: string, motionStatus: string) {
+  const profiles = readProfiles()
+  const profile = profiles[userId] ?? { userId, interactedMotionIds: [], preferredStatuses: {}, totalInteractions: 0 }
+  if (!profile.interactedMotionIds.includes(motionId)) {
+    profile.interactedMotionIds.push(motionId)
+  }
+  profile.preferredStatuses[motionStatus] = (profile.preferredStatuses[motionStatus] ?? 0) + 1
+  profile.totalInteractions += 1
+  profiles[userId] = profile
+  writeProfiles(profiles)
+}
+
+/**
+ * Ranking algorithm inspired by Reddit's Hot sort.
+ *
+ * rank = voteWeight + engagementWeight + recencyWeight + affinityBoost
+ *
+ * - voteWeight: log10(max(|score|, 1)) * sign(score)  — logarithmic so first votes matter most
+ * - engagementWeight: log10(commentCount + 1) * 0.5    — comments signal active discussion
+ * - recencyWeight: ageHours / -12                      — lose 1 point per 12 hours of age
+ * - affinityBoost: 0-2 points if user's profile shows preference for this motion's status
+ */
+function computeRank(
+  motion: Motion,
+  commentCount: number,
+  profile: UserProfile,
+): number {
+  // Vote weight (logarithmic)
+  const sign = motion.score > 0 ? 1 : motion.score < 0 ? -1 : 0
+  const voteWeight = Math.log10(Math.max(Math.abs(motion.score), 1)) * sign * 4
+
+  // Engagement weight
+  const engagementWeight = Math.log10(commentCount + 1) * 2
+
+  // Recency: hours since creation
+  const ageMs = Date.now() - new Date(motion.createdAtISO).getTime()
+  const ageHours = ageMs / (1000 * 60 * 60)
+  const recencyWeight = -ageHours / 12
+
+  // Affinity: boost if user engages with this status type
+  let affinityBoost = 0
+  if (profile.totalInteractions > 0) {
+    const statusCount = profile.preferredStatuses[motion.status] ?? 0
+    const ratio = statusCount / profile.totalInteractions
+    affinityBoost = ratio * 2
+  }
+
+  return voteWeight + engagementWeight + recencyWeight + affinityBoost
 }
 
 function ensureSeeded(): void {
@@ -95,6 +168,17 @@ export class MockEngagementRepository implements EngagementRepository {
     ensureSeeded()
   }
 
+  private getMotionStatus(motionId: string): string {
+    const raw = localStorage.getItem('demo.motions')
+    if (!raw) return 'proposed'
+    try {
+      const motions = JSON.parse(raw) as Motion[]
+      return motions.find((m) => m.id === motionId)?.status ?? 'proposed'
+    } catch {
+      return 'proposed'
+    }
+  }
+
   async upvote(motionId: string, userId: string): Promise<{ score: number; userVote: VoteDirection | null }> {
     const votes = readVotes()
     if (!votes[motionId]) votes[motionId] = {}
@@ -104,6 +188,7 @@ export class MockEngagementRepository implements EngagementRepository {
       delete votes[motionId][userId]
     } else {
       votes[motionId][userId] = 'up'
+      recordInteraction(userId, motionId, this.getMotionStatus(motionId))
     }
 
     writeVotes(votes)
@@ -120,6 +205,7 @@ export class MockEngagementRepository implements EngagementRepository {
       delete votes[motionId][userId]
     } else {
       votes[motionId][userId] = 'down'
+      recordInteraction(userId, motionId, this.getMotionStatus(motionId))
     }
 
     writeVotes(votes)
@@ -152,5 +238,34 @@ export class MockEngagementRepository implements EngagementRepository {
     all.push(comment)
     writeComments(all)
     return comment
+  }
+
+  async trackView(motionId: string, userId: string): Promise<void> {
+    // We need the motion status to record properly, but just record the interaction ID
+    const profiles = readProfiles()
+    const profile = profiles[userId] ?? { userId, interactedMotionIds: [], preferredStatuses: {}, totalInteractions: 0 }
+    if (!profile.interactedMotionIds.includes(motionId)) {
+      profile.interactedMotionIds.push(motionId)
+      profile.totalInteractions += 1
+      profiles[userId] = profile
+      writeProfiles(profiles)
+    }
+  }
+
+  async getUserProfile(userId: string): Promise<UserProfile> {
+    return getOrCreateProfile(userId)
+  }
+
+  async rankMotions(motions: Motion[], userId: string): Promise<RankedMotion[]> {
+    const profile = getOrCreateProfile(userId)
+    const comments = readComments()
+
+    return motions
+      .map((motion) => {
+        const commentCount = comments.filter((c) => c.motionId === motion.id).length
+        const rank = computeRank(motion, commentCount, profile)
+        return { ...motion, rank, commentCount }
+      })
+      .sort((a, b) => b.rank - a.rank)
   }
 }

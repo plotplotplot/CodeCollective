@@ -1,421 +1,242 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth, useServices } from './app/AppProviders'
 import { Header } from './ui/shell/Header'
 import { Footer } from './ui/shell/Footer'
 import { listMotions } from './application/usecases/listMotions'
 import { MotionStatusBadge } from './ui/components/governance/MotionStatusBadge'
-import type { Motion } from './domain/motion/Motion'
+import type { VoteDirection } from './domain/motion/Motion'
+import type { RankedMotion } from './application/ports/EngagementRepository'
+
+function getGuestId(): string {
+  const key = 'governance.guestId'
+  let id = localStorage.getItem(key)
+  if (!id) {
+    id = `guest_${Math.random().toString(36).slice(2)}`
+    localStorage.setItem(key, id)
+  }
+  return id
+}
+
+function timeAgo(isoDate: string): string {
+  const ms = Date.now() - new Date(isoDate).getTime()
+  const mins = Math.floor(ms / 60000)
+  if (mins < 1) return 'just now'
+  if (mins < 60) return `${mins}m ago`
+  const hrs = Math.floor(mins / 60)
+  if (hrs < 24) return `${hrs}h ago`
+  const days = Math.floor(hrs / 24)
+  if (days < 30) return `${days}d ago`
+  return new Date(isoDate).toLocaleDateString()
+}
 
 export default function App() {
   const { user } = useAuth()
-  const { motionRepository } = useServices()
-  const [recentMotions, setRecentMotions] = useState<Motion[]>([])
-  const [activeCount, setActiveCount] = useState(0)
-  const [passedCount, setPassedCount] = useState(0)
+  const { motionRepository, engagementRepository } = useServices()
+  const navigate = useNavigate()
+  const effectiveUserId = user?.id ?? getGuestId()
+
+  const [ranked, setRanked] = useState<RankedMotion[]>([])
+  const [userVotes, setUserVotes] = useState<Record<string, VoteDirection | null>>({})
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    document.title = 'Code Collective Portal'
-    listMotions(motionRepository).then((motions) => {
-      setRecentMotions(motions.slice(0, 5))
-      setActiveCount(motions.filter((m) => !['passed', 'failed', 'withdrawn'].includes(m.status)).length)
-      setPassedCount(motions.filter((m) => m.status === 'passed').length)
-    })
-  }, [motionRepository])
+    document.title = 'Code Collective'
+    listMotions(motionRepository).then(async (motions) => {
+      const rankedMotions = await engagementRepository.rankMotions(motions, effectiveUserId)
+      setRanked(rankedMotions)
+      setLoading(false)
 
-  const greeting = user?.displayName ? `, ${user.displayName}` : ''
+      const pairs = await Promise.all(
+        rankedMotions.map((m) =>
+          engagementRepository.getUserVote(m.id, effectiveUserId).then((dir) => [m.id, dir] as const),
+        ),
+      )
+      const map: Record<string, VoteDirection | null> = {}
+      for (const [id, dir] of pairs) map[id] = dir
+      setUserVotes(map)
+    })
+  }, [motionRepository, engagementRepository, effectiveUserId])
+
+  async function handleVote(motionId: string, direction: 'up' | 'down', e: React.MouseEvent) {
+    e.stopPropagation()
+    const result =
+      direction === 'up'
+        ? await engagementRepository.upvote(motionId, effectiveUserId)
+        : await engagementRepository.downvote(motionId, effectiveUserId)
+    setRanked((prev) => prev.map((m) => (m.id === motionId ? { ...m, score: result.score } : m)))
+    setUserVotes((prev) => ({ ...prev, [motionId]: result.userVote }))
+  }
 
   return (
     <div className="portal-shell">
       <Header />
       <main className="portal-main">
-        <div className="portal-container">
+        <div style={{ maxWidth: 680, margin: '0 auto', padding: '0 16px' }}>
 
-          {/* Hero */}
-          <section style={{
-            background: 'var(--panel)',
-            borderRadius: 20,
-            padding: '48px 40px',
-            boxShadow: 'var(--shadow-card)',
-            marginBottom: 32,
-          }}>
-            <div style={{ maxWidth: 640 }}>
-              <span style={{
-                display: 'inline-block',
-                padding: '4px 12px',
-                borderRadius: 999,
-                background: 'var(--accent-green-bg)',
-                color: 'var(--accent-green)',
-                fontSize: 12,
-                fontWeight: 700,
-                textTransform: 'uppercase',
-                letterSpacing: '0.06em',
-                marginBottom: 16,
-              }}>
-                Open governance
-              </span>
-              <h1 style={{
-                fontSize: 'clamp(1.8rem, 4vw, 2.6rem)',
-                fontWeight: 800,
-                margin: '0 0 12px',
-                color: 'var(--text-primary)',
-                letterSpacing: '-0.03em',
-                lineHeight: 1.15,
-              }}>
-                Welcome{greeting}
-              </h1>
-              <p style={{
-                fontSize: 17,
-                lineHeight: 1.6,
-                color: 'var(--text-secondary)',
-                margin: '0 0 28px',
-                maxWidth: 520,
-              }}>
-                Propose motions, vote on community decisions, and shape the direction of Code Collective through transparent Robert&apos;s Rules governance.
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: '80px 0', color: 'var(--text-muted)' }}>
+              Loading...
+            </div>
+          ) : ranked.length === 0 ? (
+            <div style={{
+              textAlign: 'center',
+              padding: '80px 0',
+            }}>
+              <p style={{ color: 'var(--text-muted)', fontSize: 15, margin: '0 0 16px' }}>
+                No motions yet.
               </p>
-              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-                <Link
-                  to="/governance"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 8,
-                    background: 'var(--primary)',
-                    color: '#fff',
-                    borderRadius: 999,
-                    padding: '12px 28px',
-                    fontWeight: 700,
-                    fontSize: 15,
-                    textDecoration: 'none',
-                    transition: 'background 0.15s',
-                  }}
-                >
-                  View motions
-                  <span style={{ fontSize: 18 }}>&rarr;</span>
-                </Link>
-                <Link
-                  to="/governance/propose"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 8,
-                    background: 'transparent',
-                    color: 'var(--primary)',
-                    border: '1.5px solid var(--primary)',
-                    borderRadius: 999,
-                    padding: '11px 28px',
-                    fontWeight: 700,
-                    fontSize: 15,
-                    textDecoration: 'none',
-                    transition: 'all 0.15s',
-                  }}
-                >
-                  Propose a motion
-                </Link>
-                <Link
-                  to="/constituent/dashboard"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 8,
-                    background: 'transparent',
-                    color: 'var(--text-secondary)',
-                    border: '1.5px solid var(--border)',
-                    borderRadius: 999,
-                    padding: '11px 28px',
-                    fontWeight: 600,
-                    fontSize: 15,
-                    textDecoration: 'none',
-                    transition: 'all 0.15s',
-                  }}
-                >
-                  Browse initiatives
-                </Link>
-              </div>
-            </div>
-          </section>
-
-          {/* Stats row */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-            gap: 16,
-            marginBottom: 32,
-          }}>
-            {[
-              { label: 'Active motions', value: activeCount, color: 'var(--accent-blue)' },
-              { label: 'Passed', value: passedCount, color: 'var(--accent-green)' },
-              { label: 'Total motions', value: recentMotions.length > 0 ? activeCount + passedCount + recentMotions.filter((m) => ['failed', 'withdrawn'].includes(m.status)).length : 0, color: 'var(--text-primary)' },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                style={{
-                  background: 'var(--panel)',
-                  borderRadius: 'var(--radius-lg)',
-                  boxShadow: 'var(--shadow-card)',
-                  padding: '24px 20px',
-                  textAlign: 'center',
-                }}
-              >
-                <div style={{ fontSize: 32, fontWeight: 800, color: stat.color, letterSpacing: '-0.02em' }}>
-                  {stat.value}
-                </div>
-                <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', marginTop: 4 }}>
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Recent motions */}
-          <section style={{ marginBottom: 32 }}>
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 16,
-            }}>
-              <h2 style={{
-                fontSize: 20,
-                fontWeight: 800,
-                margin: 0,
-                color: 'var(--text-primary)',
-                letterSpacing: '-0.01em',
-              }}>
-                Recent motions
-              </h2>
-              <Link
-                to="/governance"
-                style={{
-                  fontSize: 13,
-                  fontWeight: 600,
-                  color: 'var(--accent-blue)',
-                  textDecoration: 'none',
-                }}
-              >
-                View all &rarr;
-              </Link>
-            </div>
-
-            {recentMotions.length === 0 ? (
-              <div style={{
-                background: 'var(--panel)',
-                borderRadius: 'var(--radius-lg)',
-                boxShadow: 'var(--shadow-card)',
-                padding: 40,
-                textAlign: 'center',
-                color: 'var(--text-muted)',
-              }}>
-                <p style={{ margin: '0 0 16px', fontSize: 15 }}>No motions yet. Be the first to propose one.</p>
-                <Link
-                  to="/governance/propose"
-                  style={{
-                    display: 'inline-flex',
-                    background: 'var(--primary)',
-                    color: '#fff',
-                    borderRadius: 999,
-                    padding: '10px 24px',
-                    fontWeight: 700,
-                    fontSize: 14,
-                    textDecoration: 'none',
-                  }}
-                >
-                  Propose a motion
-                </Link>
-              </div>
-            ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {recentMotions.map((motion) => (
-                  <Link
-                    key={motion.id}
-                    to={`/governance/${motion.id}`}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 16,
-                      background: 'var(--panel)',
-                      borderRadius: 'var(--radius-md)',
-                      boxShadow: 'var(--shadow-section)',
-                      padding: '16px 20px',
-                      textDecoration: 'none',
-                      color: 'inherit',
-                      transition: 'box-shadow 0.15s, transform 0.15s',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = 'var(--shadow-card)'
-                      e.currentTarget.style.transform = 'translateY(-1px)'
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.boxShadow = 'var(--shadow-section)'
-                      e.currentTarget.style.transform = 'translateY(0)'
-                    }}
-                  >
-                    {/* Score */}
-                    <div style={{
-                      minWidth: 40,
-                      textAlign: 'center',
-                      fontWeight: 800,
-                      fontSize: 16,
-                      color: motion.score > 0 ? 'var(--vote-up)' : motion.score < 0 ? 'var(--vote-down)' : 'var(--text-muted)',
-                    }}>
-                      {motion.score > 0 ? `+${motion.score}` : motion.score}
-                    </div>
-                    <MotionStatusBadge status={motion.status} />
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{
-                        fontWeight: 700,
-                        fontSize: 15,
-                        color: 'var(--text-primary)',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                      }}>
-                        {motion.title}
-                      </div>
-                      <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2 }}>
-                        by {motion.proposerName} &middot; {motion.createdAtISO.slice(0, 10)}
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </section>
-
-          {/* Quick actions */}
-          <section style={{ marginBottom: 32 }}>
-            <h2 style={{
-              fontSize: 20,
-              fontWeight: 800,
-              margin: '0 0 16px',
-              color: 'var(--text-primary)',
-              letterSpacing: '-0.01em',
-            }}>
-              Get involved
-            </h2>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: 16,
-            }}>
               <Link
                 to="/governance/propose"
                 style={{
-                  background: 'var(--panel)',
-                  borderRadius: 'var(--radius-lg)',
-                  boxShadow: 'var(--shadow-card)',
-                  padding: 24,
+                  display: 'inline-flex',
+                  background: 'var(--primary)',
+                  color: '#fff',
+                  borderRadius: 999,
+                  padding: '10px 24px',
+                  fontWeight: 700,
+                  fontSize: 14,
                   textDecoration: 'none',
-                  color: 'inherit',
-                  transition: 'box-shadow 0.15s, transform 0.15s',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = 'var(--shadow-card-hover)'
-                  e.currentTarget.style.transform = 'translateY(-2px)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = 'var(--shadow-card)'
-                  e.currentTarget.style.transform = 'translateY(0)'
                 }}
               >
-                <div style={{ fontSize: 28, marginBottom: 8 }}>&#128227;</div>
-                <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--text-primary)', marginBottom: 6 }}>
-                  Propose a motion
-                </div>
-                <div style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.5 }}>
-                  Submit a proposal for the community to consider, discuss, and vote on.
-                </div>
-              </Link>
-
-              <Link
-                to="/governance"
-                style={{
-                  background: 'var(--panel)',
-                  borderRadius: 'var(--radius-lg)',
-                  boxShadow: 'var(--shadow-card)',
-                  padding: 24,
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  transition: 'box-shadow 0.15s, transform 0.15s',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = 'var(--shadow-card-hover)'
-                  e.currentTarget.style.transform = 'translateY(-2px)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = 'var(--shadow-card)'
-                  e.currentTarget.style.transform = 'translateY(0)'
-                }}
-              >
-                <div style={{ fontSize: 28, marginBottom: 8 }}>&#9878;&#65039;</div>
-                <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--text-primary)', marginBottom: 6 }}>
-                  Vote &amp; discuss
-                </div>
-                <div style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.5 }}>
-                  Second motions, cast formal votes, upvote priorities, and join the discussion.
-                </div>
-              </Link>
-
-              <Link
-                to="/constituent/dashboard"
-                style={{
-                  background: 'var(--panel)',
-                  borderRadius: 'var(--radius-lg)',
-                  boxShadow: 'var(--shadow-card)',
-                  padding: 24,
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  transition: 'box-shadow 0.15s, transform 0.15s',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = 'var(--shadow-card-hover)'
-                  e.currentTarget.style.transform = 'translateY(-2px)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = 'var(--shadow-card)'
-                  e.currentTarget.style.transform = 'translateY(0)'
-                }}
-              >
-                <div style={{ fontSize: 28, marginBottom: 8 }}>&#128203;</div>
-                <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--text-primary)', marginBottom: 6 }}>
-                  Sign initiatives
-                </div>
-                <div style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.5 }}>
-                  Browse ballot initiatives and add your signature to the ones you support.
-                </div>
-              </Link>
-
-              <Link
-                to="/constituent/profile"
-                style={{
-                  background: 'var(--panel)',
-                  borderRadius: 'var(--radius-lg)',
-                  boxShadow: 'var(--shadow-card)',
-                  padding: 24,
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  transition: 'box-shadow 0.15s, transform 0.15s',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = 'var(--shadow-card-hover)'
-                  e.currentTarget.style.transform = 'translateY(-2px)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = 'var(--shadow-card)'
-                  e.currentTarget.style.transform = 'translateY(0)'
-                }}
-              >
-                <div style={{ fontSize: 28, marginBottom: 8 }}>&#127942;</div>
-                <div style={{ fontWeight: 700, fontSize: 16, color: 'var(--text-primary)', marginBottom: 6 }}>
-                  Run for office
-                </div>
-                <div style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.5 }}>
-                  Declare your candidacy, share your platform, and connect with constituents.
-                </div>
+                Be the first to propose
               </Link>
             </div>
-          </section>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+              {ranked.map((motion, i) => {
+                const uv = userVotes[motion.id] ?? null
+                return (
+                  <div
+                    key={motion.id}
+                    onClick={() => navigate(`/governance/${motion.id}`)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') navigate(`/governance/${motion.id}`)
+                    }}
+                    style={{
+                      display: 'flex',
+                      gap: 0,
+                      padding: '12px 0',
+                      borderBottom: i < ranked.length - 1 ? '1px solid var(--border-subtle)' : 'none',
+                      cursor: 'pointer',
+                      transition: 'background 0.1s',
+                      borderRadius: 8,
+                      margin: '0 -8px',
+                      padding: '12px 8px',
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--panel-2)' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent' }}
+                  >
+                    {/* Vote column */}
+                    <div style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      width: 48,
+                      flexShrink: 0,
+                      paddingTop: 2,
+                    }}>
+                      <button
+                        type="button"
+                        onClick={(e) => handleVote(motion.id, 'up', e)}
+                        aria-label="Upvote"
+                        style={{
+                          background: uv === 'up' ? 'var(--vote-up-bg)' : 'transparent',
+                          border: 'none',
+                          cursor: 'pointer',
+                          padding: 4,
+                          borderRadius: 6,
+                          color: uv === 'up' ? 'var(--vote-up)' : 'var(--vote-neutral)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          transition: 'all 0.12s',
+                          width: 28,
+                          height: 28,
+                        }}
+                        onMouseEnter={(e) => { if (uv !== 'up') { e.currentTarget.style.background = 'var(--vote-up-hover)'; e.currentTarget.style.color = 'var(--vote-up)' } }}
+                        onMouseLeave={(e) => { if (uv !== 'up') { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--vote-neutral)' } }}
+                      >
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3l7 7h-4v7H7v-7H3l7-7z"/></svg>
+                      </button>
+                      <span style={{
+                        fontWeight: 800,
+                        fontSize: 13,
+                        lineHeight: 1,
+                        padding: '2px 0',
+                        color: uv === 'up' ? 'var(--vote-up)' : uv === 'down' ? 'var(--vote-down)' : 'var(--text-primary)',
+                      }}>
+                        {motion.score}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={(e) => handleVote(motion.id, 'down', e)}
+                        aria-label="Downvote"
+                        style={{
+                          background: uv === 'down' ? 'var(--vote-down-bg)' : 'transparent',
+                          border: 'none',
+                          cursor: 'pointer',
+                          padding: 4,
+                          borderRadius: 6,
+                          color: uv === 'down' ? 'var(--vote-down)' : 'var(--vote-neutral)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          transition: 'all 0.12s',
+                          width: 28,
+                          height: 28,
+                        }}
+                        onMouseEnter={(e) => { if (uv !== 'down') { e.currentTarget.style.background = 'var(--vote-down-hover)'; e.currentTarget.style.color = 'var(--vote-down)' } }}
+                        onMouseLeave={(e) => { if (uv !== 'down') { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--vote-neutral)' } }}
+                      >
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M10 17l-7-7h4V3h6v7h4l-7 7z"/></svg>
+                      </button>
+                    </div>
 
+                    {/* Content */}
+                    <div style={{ flex: 1, minWidth: 0, paddingLeft: 8 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
+                        <MotionStatusBadge status={motion.status} />
+                        <span style={{
+                          fontWeight: 700,
+                          fontSize: 15,
+                          color: 'var(--text-primary)',
+                          lineHeight: 1.3,
+                        }}>
+                          {motion.title}
+                        </span>
+                      </div>
+                      <div style={{
+                        fontSize: 12,
+                        color: 'var(--text-muted)',
+                        display: 'flex',
+                        gap: 8,
+                        alignItems: 'center',
+                        flexWrap: 'wrap',
+                      }}>
+                        <span>by {motion.proposerName}</span>
+                        <span>&middot;</span>
+                        <span>{timeAgo(motion.createdAtISO)}</span>
+                        {motion.commentCount > 0 && (
+                          <>
+                            <span>&middot;</span>
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+                              <svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor" style={{ opacity: 0.6 }}>
+                                <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v7a2 2 0 01-2 2H8l-4 3v-3H4a2 2 0 01-2-2V5z"/>
+                              </svg>
+                              {motion.commentCount}
+                            </span>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          )}
         </div>
       </main>
       <Footer />
