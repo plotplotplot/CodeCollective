@@ -88,72 +88,106 @@ export function MotionListPage() {
   }
 
   return (
-    <div style={{ maxWidth: 900, margin: '2rem auto', padding: '0 1rem' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
-        <h1 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 700, margin: 0 }}>Governance</h1>
+    <div style={{ maxWidth: 920, margin: '0 auto', padding: '40px 20px' }}>
+      {/* Page header */}
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: 16,
+        marginBottom: 32,
+      }}>
+        <h1 style={{
+          fontSize: 28,
+          fontWeight: 800,
+          margin: 0,
+          color: 'var(--text-primary)',
+          letterSpacing: '-0.02em',
+        }}>
+          Governance
+        </h1>
         <Link
           to="/governance/propose"
           style={{
             background: 'var(--primary)',
             color: '#fff',
             border: 'none',
-            borderRadius: 8,
-            padding: '0.5rem 1.25rem',
+            borderRadius: 999,
+            padding: '10px 24px',
             textDecoration: 'none',
-            fontWeight: 600,
+            fontWeight: 700,
             fontSize: 14,
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 6,
+            transition: 'background 0.15s',
           }}
         >
-          Propose Motion
+          + Propose Motion
         </Link>
       </div>
 
-      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap', marginBottom: '1rem' }}>
-        <input
-          type="text"
-          placeholder="Search motions..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          style={{ flex: 1, minWidth: 200 }}
-        />
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: 13 }}>
-          <span className="muted">Sort by:</span>
-          <button
-            type="button"
-            onClick={() => setSortMode('score')}
+      {/* Search + Sort row */}
+      <div style={{
+        display: 'flex',
+        gap: 12,
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        marginBottom: 16,
+      }}>
+        <div style={{ flex: 1, minWidth: 220, position: 'relative' }}>
+          <input
+            type="text"
+            placeholder="Search motions..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             style={{
-              padding: '0.25rem 0.65rem',
-              borderRadius: 6,
-              border: sortMode === 'score' ? '1px solid var(--primary)' : '1px solid var(--border-subtle)',
-              background: sortMode === 'score' ? 'var(--primary)' : 'transparent',
-              color: sortMode === 'score' ? '#fff' : 'inherit',
-              cursor: 'pointer',
-              fontSize: 13,
-              fontWeight: 500,
+              width: '100%',
+              padding: '12px 16px',
+              fontSize: 14,
+              border: '1px solid var(--border)',
+              borderRadius: 12,
+              backgroundColor: 'var(--panel)',
+              color: 'var(--text-primary)',
+              outline: 'none',
+              transition: 'border-color 0.15s',
+              boxSizing: 'border-box',
             }}
-          >
-            Score
-          </button>
-          <button
-            type="button"
-            onClick={() => setSortMode('newest')}
-            style={{
-              padding: '0.25rem 0.65rem',
-              borderRadius: 6,
-              border: sortMode === 'newest' ? '1px solid var(--primary)' : '1px solid var(--border-subtle)',
-              background: sortMode === 'newest' ? 'var(--primary)' : 'transparent',
-              color: sortMode === 'newest' ? '#fff' : 'inherit',
-              cursor: 'pointer',
-              fontSize: 13,
-              fontWeight: 500,
-            }}
-          >
-            Newest
-          </button>
+          />
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <span style={{ fontSize: 12, color: 'var(--text-muted)', fontWeight: 500 }}>Sort:</span>
+          {(['score', 'newest'] as const).map((mode) => (
+            <button
+              key={mode}
+              type="button"
+              onClick={() => setSortMode(mode)}
+              style={{
+                padding: '6px 14px',
+                borderRadius: 999,
+                border: 'none',
+                background: sortMode === mode ? 'var(--primary)' : 'var(--surface)',
+                color: sortMode === mode ? '#fff' : 'var(--text-secondary)',
+                cursor: 'pointer',
+                fontSize: 12,
+                fontWeight: 600,
+                transition: 'all 0.15s',
+              }}
+            >
+              {mode.charAt(0).toUpperCase() + mode.slice(1)}
+            </button>
+          ))}
         </div>
       </div>
 
-      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
+      {/* Status filter pills */}
+      <div style={{
+        display: 'flex',
+        gap: 8,
+        flexWrap: 'wrap',
+        marginBottom: 28,
+      }}>
         {STATUS_FILTERS.map((s) => {
           const label = s ? STATUS_LABELS[s] : STATUS_LABELS.all
           const active = statusFilter === s
@@ -163,14 +197,15 @@ export function MotionListPage() {
               type="button"
               onClick={() => setStatusFilter(s)}
               style={{
-                padding: '0.35rem 0.85rem',
-                borderRadius: 8,
-                border: active ? '1px solid var(--primary)' : '1px solid var(--border-subtle)',
-                background: active ? 'var(--primary)' : 'transparent',
-                color: active ? '#fff' : 'inherit',
+                padding: '7px 16px',
+                borderRadius: 999,
+                border: active ? 'none' : '1px solid var(--border-subtle)',
+                background: active ? 'var(--primary)' : 'var(--panel)',
+                color: active ? '#fff' : 'var(--text-secondary)',
                 cursor: 'pointer',
                 fontSize: 13,
-                fontWeight: 500,
+                fontWeight: 600,
+                transition: 'all 0.15s',
               }}
             >
               {label}
@@ -179,10 +214,18 @@ export function MotionListPage() {
         })}
       </div>
 
+      {/* Motion list */}
       {sortedMotions.length === 0 ? (
-        <p className="muted">No motions found.</p>
+        <div style={{
+          textAlign: 'center',
+          padding: '48px 20px',
+          color: 'var(--text-muted)',
+          fontSize: 15,
+        }}>
+          No motions found.
+        </div>
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {sortedMotions.map((motion) => {
             const uv = userVotes[motion.id] ?? null
             return (
@@ -197,12 +240,20 @@ export function MotionListPage() {
                 style={{
                   background: 'var(--panel)',
                   borderRadius: 'var(--radius-lg)',
-                  border: '1px solid var(--border-subtle)',
-                  padding: '1.5rem',
+                  boxShadow: 'var(--shadow-card)',
+                  padding: '20px 24px',
                   cursor: 'pointer',
-                  transition: 'border-color 0.15s',
+                  transition: 'box-shadow 0.2s, transform 0.2s',
                   display: 'flex',
-                  gap: '1rem',
+                  gap: 16,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = 'var(--shadow-card-hover)'
+                  e.currentTarget.style.transform = 'translateY(-1px)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = 'var(--shadow-card)'
+                  e.currentTarget.style.transform = 'translateY(0)'
                 }}
               >
                 {/* Vote widget */}
@@ -211,9 +262,10 @@ export function MotionListPage() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    minWidth: 32,
+                    minWidth: 44,
                     flexShrink: 0,
                     gap: 2,
+                    paddingTop: 2,
                   }}
                 >
                   <button
@@ -221,49 +273,92 @@ export function MotionListPage() {
                     onClick={(e) => handleVote(motion.id, 'up', e)}
                     aria-label="Upvote"
                     style={{
-                      background: 'none',
+                      background: uv === 'up' ? 'var(--primary-light)' : 'transparent',
                       border: 'none',
                       cursor: 'pointer',
-                      fontSize: 18,
+                      fontSize: 16,
                       lineHeight: 1,
-                      padding: 2,
-                      color: uv === 'up' ? 'var(--primary)' : 'var(--text-muted, #999)',
-                      fontWeight: uv === 'up' ? 700 : 400,
+                      padding: 6,
+                      borderRadius: 8,
+                      color: uv === 'up' ? 'var(--primary)' : 'var(--text-muted)',
+                      fontWeight: 700,
+                      minWidth: 36,
+                      minHeight: 36,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      transition: 'background 0.15s',
                     }}
                   >
-                    ▲
+                    &#9650;
                   </button>
-                  <span style={{ fontWeight: 700, fontSize: 14, lineHeight: 1 }}>{motion.score}</span>
+                  <span style={{
+                    fontWeight: 800,
+                    fontSize: 15,
+                    lineHeight: 1,
+                    color: 'var(--text-primary)',
+                  }}>
+                    {motion.score}
+                  </span>
                   <button
                     type="button"
                     onClick={(e) => handleVote(motion.id, 'down', e)}
                     aria-label="Downvote"
                     style={{
-                      background: 'none',
+                      background: uv === 'down' ? 'var(--accent-red-bg)' : 'transparent',
                       border: 'none',
                       cursor: 'pointer',
-                      fontSize: 18,
+                      fontSize: 16,
                       lineHeight: 1,
-                      padding: 2,
-                      color: uv === 'down' ? '#991b1b' : 'var(--text-muted, #999)',
-                      fontWeight: uv === 'down' ? 700 : 400,
+                      padding: 6,
+                      borderRadius: 8,
+                      color: uv === 'down' ? 'var(--accent-red)' : 'var(--text-muted)',
+                      fontWeight: 700,
+                      minWidth: 36,
+                      minHeight: 36,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      transition: 'background 0.15s',
                     }}
                   >
-                    ▼
+                    &#9660;
                   </button>
                 </div>
 
                 {/* Card content */}
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 10,
+                    marginBottom: 8,
+                    flexWrap: 'wrap',
+                  }}>
                     <MotionStatusBadge status={motion.status} />
-                    <span style={{ fontWeight: 600, fontSize: 16 }}>{motion.title}</span>
+                    <span style={{
+                      fontWeight: 700,
+                      fontSize: 16,
+                      color: 'var(--text-primary)',
+                      letterSpacing: '-0.01em',
+                    }}>
+                      {motion.title}
+                    </span>
                   </div>
-                  <div className="muted" style={{ fontSize: 13, marginBottom: '0.5rem' }}>
+                  <div style={{
+                    fontSize: 13,
+                    color: 'var(--text-muted)',
+                    marginBottom: 6,
+                  }}>
                     Proposed by {motion.proposerName} on {motion.createdAtISO.slice(0, 10)}
                   </div>
-                  <p className="muted" style={{ margin: 0, fontSize: 14 }}>
-                    {motion.body.length > 100 ? motion.body.slice(0, 100) + '...' : motion.body}
+                  <p style={{
+                    margin: 0,
+                    fontSize: 14,
+                    color: 'var(--text-secondary)',
+                    lineHeight: 1.5,
+                  }}>
+                    {motion.body.length > 120 ? motion.body.slice(0, 120) + '...' : motion.body}
                   </p>
                 </div>
               </div>

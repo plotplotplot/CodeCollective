@@ -3,6 +3,20 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useServices, useAuth } from '../../../app/AppProviders'
 import { proposeMotion } from '../../../application/usecases/proposeMotion'
 
+const inputStyle: React.CSSProperties = {
+  width: '100%',
+  padding: '12px 16px',
+  fontSize: 14,
+  border: '1px solid var(--border)',
+  borderRadius: 'var(--radius-md)',
+  backgroundColor: 'var(--panel)',
+  color: 'var(--text-primary)',
+  outline: 'none',
+  transition: 'border-color 0.15s',
+  boxSizing: 'border-box',
+  fontFamily: 'inherit',
+}
+
 export function ProposeMotionPage() {
   const { motionRepository } = useServices()
   const { user } = useAuth()
@@ -42,87 +56,151 @@ export function ProposeMotionPage() {
   }
 
   return (
-    <div style={{ maxWidth: 900, margin: '2rem auto', padding: '0 1rem' }}>
-      <div style={{ marginBottom: '1rem' }}>
-        <Link to="/governance" style={{ fontSize: 14 }}>
+    <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 20px' }}>
+      <div style={{ marginBottom: 24 }}>
+        <Link
+          to="/governance"
+          style={{
+            fontSize: 13,
+            color: 'var(--text-muted)',
+            textDecoration: 'none',
+            fontWeight: 500,
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 4,
+            transition: 'color 0.15s',
+          }}
+        >
           &larr; Back to Governance
         </Link>
       </div>
 
-      <h1 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 700 }}>Propose a Motion</h1>
+      <div style={{
+        background: 'var(--panel)',
+        borderRadius: 'var(--radius-lg)',
+        boxShadow: 'var(--shadow-card)',
+        padding: 32,
+      }}>
+        <h1 style={{
+          fontSize: 24,
+          fontWeight: 800,
+          margin: '0 0 24px',
+          color: 'var(--text-primary)',
+          letterSpacing: '-0.02em',
+        }}>
+          Propose a Motion
+        </h1>
 
-      {errors.length > 0 && (
-        <div style={{ marginBottom: '1rem' }}>
-          {errors.map((err, i) => (
-            <p key={i} style={{ color: '#991b1b', fontSize: 14, margin: '0 0 0.25rem' }}>{err}</p>
-          ))}
-        </div>
-      )}
-
-      <form onSubmit={handleSubmit}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <div>
-            <label className="muted" htmlFor="motion-title" style={{ display: 'block', marginBottom: '0.25rem' }}>
-              Title
-            </label>
-            <input
-              id="motion-title"
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              style={{ width: '100%' }}
-              required
-            />
+        {errors.length > 0 && (
+          <div style={{
+            marginBottom: 20,
+            padding: '12px 16px',
+            borderRadius: 'var(--radius-md)',
+            backgroundColor: 'var(--accent-red-bg)',
+            border: '1px solid var(--accent-red)',
+          }}>
+            {errors.map((err, i) => (
+              <p key={i} style={{ color: 'var(--accent-red)', fontSize: 14, margin: i > 0 ? '4px 0 0' : 0, fontWeight: 500 }}>{err}</p>
+            ))}
           </div>
+        )}
 
-          <div>
-            <label className="muted" htmlFor="motion-body" style={{ display: 'block', marginBottom: '0.25rem' }}>
-              Body
-            </label>
-            <textarea
-              id="motion-body"
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
-              rows={10}
-              style={{ width: '100%' }}
-              required
-            />
-          </div>
+        <form onSubmit={handleSubmit}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <div>
+              <label
+                htmlFor="motion-title"
+                style={{
+                  display: 'block',
+                  marginBottom: 6,
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: 'var(--text-secondary)',
+                }}
+              >
+                Title
+              </label>
+              <input
+                id="motion-title"
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Enter a clear, descriptive title"
+                style={inputStyle}
+                required
+              />
+            </div>
 
-          <div>
-            <label className="muted" htmlFor="motion-quorum" style={{ display: 'block', marginBottom: '0.25rem' }}>
-              Quorum Required
-            </label>
-            <input
-              id="motion-quorum"
-              type="number"
-              min={1}
-              value={quorumRequired}
-              onChange={(e) => setQuorumRequired(Number(e.target.value))}
-              style={{ width: 120 }}
-            />
-          </div>
+            <div>
+              <label
+                htmlFor="motion-body"
+                style={{
+                  display: 'block',
+                  marginBottom: 6,
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: 'var(--text-secondary)',
+                }}
+              >
+                Body
+              </label>
+              <textarea
+                id="motion-body"
+                value={body}
+                onChange={(e) => setBody(e.target.value)}
+                rows={10}
+                placeholder="Describe the motion in detail..."
+                style={{ ...inputStyle, resize: 'vertical' }}
+                required
+              />
+            </div>
 
-          <div>
+            <div>
+              <label
+                htmlFor="motion-quorum"
+                style={{
+                  display: 'block',
+                  marginBottom: 6,
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: 'var(--text-secondary)',
+                }}
+              >
+                Quorum Required
+              </label>
+              <input
+                id="motion-quorum"
+                type="number"
+                min={1}
+                value={quorumRequired}
+                onChange={(e) => setQuorumRequired(Number(e.target.value))}
+                style={{ ...inputStyle, width: 140 }}
+              />
+            </div>
+
             <button
               type="submit"
               disabled={submitting}
               style={{
+                width: '100%',
                 background: 'var(--primary)',
                 color: '#fff',
                 border: 'none',
-                borderRadius: 8,
-                padding: '0.5rem 1.25rem',
+                borderRadius: 999,
+                padding: '14px 24px',
                 cursor: submitting ? 'not-allowed' : 'pointer',
-                fontWeight: 600,
+                fontWeight: 700,
+                fontSize: 15,
                 opacity: submitting ? 0.6 : 1,
+                transition: 'opacity 0.15s, background 0.15s',
+                marginTop: 4,
               }}
             >
               {submitting ? 'Submitting...' : 'Submit Motion'}
             </button>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   )
 }

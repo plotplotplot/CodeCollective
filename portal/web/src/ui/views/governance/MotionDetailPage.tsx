@@ -22,6 +22,62 @@ function getGuestId(): string {
   return gid
 }
 
+const sectionStyle: React.CSSProperties = {
+  background: 'var(--panel)',
+  borderRadius: 'var(--radius-lg)',
+  boxShadow: 'var(--shadow-card)',
+  padding: 24,
+  marginBottom: 16,
+}
+
+const sectionTitle: React.CSSProperties = {
+  marginTop: 0,
+  marginBottom: 16,
+  fontSize: 17,
+  fontWeight: 700,
+  color: 'var(--text-primary)',
+  letterSpacing: '-0.01em',
+}
+
+const primaryBtn: React.CSSProperties = {
+  background: 'var(--primary)',
+  color: '#fff',
+  border: 'none',
+  borderRadius: 999,
+  padding: '10px 22px',
+  cursor: 'pointer',
+  fontWeight: 700,
+  fontSize: 14,
+  transition: 'background 0.15s',
+}
+
+const outlinedBtn: React.CSSProperties = {
+  background: 'transparent',
+  color: 'var(--primary)',
+  border: '1.5px solid var(--primary)',
+  borderRadius: 999,
+  padding: '9px 22px',
+  cursor: 'pointer',
+  fontWeight: 700,
+  fontSize: 14,
+  textDecoration: 'none',
+  display: 'inline-flex',
+  alignItems: 'center',
+  transition: 'background 0.15s',
+}
+
+const destructiveBtn: React.CSSProperties = {
+  background: 'var(--accent-red)',
+  color: '#fff',
+  border: 'none',
+  borderRadius: 999,
+  padding: '10px 22px',
+  cursor: 'pointer',
+  fontWeight: 700,
+  fontSize: 14,
+  transition: 'background 0.15s',
+}
+
 export function MotionDetailPage() {
   const { id } = useParams()
   const { motionRepository, voteRepository, engagementRepository } = useServices()
@@ -139,50 +195,62 @@ export function MotionDetailPage() {
 
   if (loading) {
     return (
-      <div style={{ maxWidth: 900, margin: '2rem auto', padding: '0 1rem' }}>
-        <p className="muted">Loading...</p>
+      <div style={{ maxWidth: 920, margin: '0 auto', padding: '40px 20px' }}>
+        <p style={{ color: 'var(--text-muted)', fontSize: 14 }}>Loading...</p>
       </div>
     )
   }
 
   if (!motion) {
     return (
-      <div style={{ maxWidth: 900, margin: '2rem auto', padding: '0 1rem' }}>
-        <section className="panel">
-          <h1 style={{ marginTop: 0 }}>Motion not found</h1>
-          <p className="muted">Check the URL or return to governance.</p>
-          <Link to="/governance">Back to Governance</Link>
-        </section>
+      <div style={{ maxWidth: 920, margin: '0 auto', padding: '40px 20px' }}>
+        <div style={sectionStyle}>
+          <h1 style={{ ...sectionTitle, fontSize: 22 }}>Motion not found</h1>
+          <p style={{ color: 'var(--text-muted)', margin: '0 0 16px' }}>Check the URL or return to governance.</p>
+          <Link to="/governance" style={{ color: 'var(--accent-blue)', fontWeight: 600 }}>Back to Governance</Link>
+        </div>
       </div>
     )
   }
 
+  const avatarColor = (name: string) => {
+    const colors = ['var(--accent-blue)', 'var(--accent-purple)', 'var(--accent-teal)', 'var(--accent-green)', 'var(--accent-amber)', 'var(--accent-red)']
+    let hash = 0
+    for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash)
+    return colors[Math.abs(hash) % colors.length]
+  }
+
   return (
-    <div style={{ maxWidth: 900, margin: '2rem auto', padding: '0 1rem' }}>
-      <div style={{ marginBottom: '1rem' }}>
-        <Link to="/governance" style={{ fontSize: 14 }}>
+    <div style={{ maxWidth: 920, margin: '0 auto', padding: '40px 20px' }}>
+      {/* Breadcrumb */}
+      <div style={{ marginBottom: 24 }}>
+        <Link
+          to="/governance"
+          style={{
+            fontSize: 13,
+            color: 'var(--text-muted)',
+            textDecoration: 'none',
+            fontWeight: 500,
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 4,
+            transition: 'color 0.15s',
+          }}
+        >
           &larr; Back to Governance
         </Link>
       </div>
 
-      {/* Header */}
-      <section
-        style={{
-          background: 'var(--panel)',
-          borderRadius: 'var(--radius-lg)',
-          border: '1px solid var(--border-subtle)',
-          padding: '1.5rem',
-          marginBottom: '1rem',
-        }}
-      >
-        <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+      {/* Header card */}
+      <section style={sectionStyle}>
+        <div style={{ display: 'flex', gap: 16, marginBottom: 20 }}>
           {/* Vote widget */}
           <div
             style={{
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              minWidth: 36,
+              minWidth: 48,
               flexShrink: 0,
               gap: 2,
             }}
@@ -192,41 +260,65 @@ export function MotionDetailPage() {
               onClick={handleUpvote}
               aria-label="Upvote"
               style={{
-                background: 'none',
+                background: userVote === 'up' ? 'var(--primary-light)' : 'transparent',
                 border: 'none',
                 cursor: 'pointer',
-                fontSize: 20,
+                fontSize: 18,
                 lineHeight: 1,
-                padding: 2,
-                color: userVote === 'up' ? 'var(--primary)' : 'var(--text-muted, #999)',
-                fontWeight: userVote === 'up' ? 700 : 400,
+                padding: 6,
+                borderRadius: 8,
+                color: userVote === 'up' ? 'var(--primary)' : 'var(--text-muted)',
+                fontWeight: 700,
+                minWidth: 40,
+                minHeight: 40,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'background 0.15s',
               }}
             >
-              ▲
+              &#9650;
             </button>
-            <span style={{ fontWeight: 700, fontSize: 16, lineHeight: 1 }}>{motion.score}</span>
+            <span style={{ fontWeight: 800, fontSize: 18, lineHeight: 1, color: 'var(--text-primary)' }}>
+              {motion.score}
+            </span>
             <button
               type="button"
               onClick={handleDownvote}
               aria-label="Downvote"
               style={{
-                background: 'none',
+                background: userVote === 'down' ? 'var(--accent-red-bg)' : 'transparent',
                 border: 'none',
                 cursor: 'pointer',
-                fontSize: 20,
+                fontSize: 18,
                 lineHeight: 1,
-                padding: 2,
-                color: userVote === 'down' ? '#991b1b' : 'var(--text-muted, #999)',
-                fontWeight: userVote === 'down' ? 700 : 400,
+                padding: 6,
+                borderRadius: 8,
+                color: userVote === 'down' ? 'var(--accent-red)' : 'var(--text-muted)',
+                fontWeight: 700,
+                minWidth: 40,
+                minHeight: 40,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'background 0.15s',
               }}
             >
-              ▼
+              &#9660;
             </button>
           </div>
 
           <div style={{ flex: 1 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
-              <h1 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 700, margin: 0 }}>{motion.title}</h1>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 4 }}>
+              <h1 style={{
+                fontSize: 24,
+                fontWeight: 800,
+                margin: 0,
+                color: 'var(--text-primary)',
+                letterSpacing: '-0.02em',
+              }}>
+                {motion.title}
+              </h1>
               <MotionStatusBadge status={motion.status} />
             </div>
           </div>
@@ -235,140 +327,94 @@ export function MotionDetailPage() {
       </section>
 
       {/* Motion text */}
-      <section
-        style={{
-          background: 'var(--panel)',
-          borderRadius: 'var(--radius-lg)',
-          border: '1px solid var(--border-subtle)',
-          padding: '1.5rem',
-          marginBottom: '1rem',
-        }}
-      >
-        <h2 style={{ marginTop: 0 }}>Motion Text</h2>
-        <p style={{ whiteSpace: 'pre-wrap', margin: 0 }}>{motion.body}</p>
+      <section style={sectionStyle}>
+        <h2 style={sectionTitle}>Motion Text</h2>
+        <p style={{
+          whiteSpace: 'pre-wrap',
+          margin: 0,
+          fontSize: 15,
+          lineHeight: 1.7,
+          color: 'var(--text-primary)',
+        }}>
+          {motion.body}
+        </p>
       </section>
 
-      {/* Proposer / Seconder info */}
-      <section
-        style={{
-          background: 'var(--panel)',
-          borderRadius: 'var(--radius-lg)',
-          border: '1px solid var(--border-subtle)',
-          padding: '1.5rem',
-          marginBottom: '1rem',
-        }}
-      >
-        <h2 style={{ marginTop: 0 }}>Details</h2>
-        <div className="muted" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', fontSize: 14 }}>
-          <span>Proposed by <strong>{motion.proposerName}</strong> on {motion.createdAtISO.slice(0, 10)}</span>
+      {/* Details */}
+      <section style={sectionStyle}>
+        <h2 style={sectionTitle}>Details</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 14, color: 'var(--text-secondary)' }}>
+          <span>
+            Proposed by <strong style={{ color: 'var(--text-primary)' }}>{motion.proposerName}</strong> on {motion.createdAtISO.slice(0, 10)}
+          </span>
           {motion.seconderName ? (
-            <span>Seconded by <strong>{motion.seconderName}</strong></span>
+            <span>
+              Seconded by <strong style={{ color: 'var(--text-primary)' }}>{motion.seconderName}</strong>
+            </span>
           ) : (
-            <span>Not yet seconded</span>
+            <span style={{ color: 'var(--text-muted)' }}>Not yet seconded</span>
           )}
-          <span>Quorum required: {motion.quorumRequired}</span>
+          <span>
+            Quorum required: <strong style={{ color: 'var(--text-primary)' }}>{motion.quorumRequired}</strong>
+          </span>
         </div>
       </section>
 
-      {/* Action buttons */}
+      {/* Actions */}
       {user && (
-        <section
-          style={{
-            background: 'var(--panel)',
-            borderRadius: 'var(--radius-lg)',
-            border: '1px solid var(--border-subtle)',
-            padding: '1.5rem',
-            marginBottom: '1rem',
-          }}
-        >
-          <h2 style={{ marginTop: 0 }}>Actions</h2>
+        <section style={sectionStyle}>
+          <h2 style={sectionTitle}>Actions</h2>
 
           {actionError && (
-            <p style={{ color: '#991b1b', fontSize: 14, margin: '0 0 0.75rem' }}>{actionError}</p>
+            <div style={{
+              padding: '10px 14px',
+              borderRadius: 'var(--radius-sm)',
+              backgroundColor: 'var(--accent-red-bg)',
+              color: 'var(--accent-red)',
+              fontSize: 14,
+              fontWeight: 500,
+              marginBottom: 16,
+            }}>
+              {actionError}
+            </div>
           )}
 
-          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             {motion.status === 'proposed' && motion.proposerId !== user.id && (
-              <button
-                type="button"
-                onClick={handleSecond}
-                style={{
-                  background: 'var(--primary)',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: 8,
-                  padding: '0.5rem 1.25rem',
-                  cursor: 'pointer',
-                  fontWeight: 600,
-                }}
-              >
+              <button type="button" onClick={handleSecond} style={primaryBtn}>
                 Second this Motion
               </button>
             )}
 
             {motion.status === 'proposed' && motion.proposerId === user.id && (
-              <button
-                type="button"
-                onClick={handleWithdraw}
-                style={{
-                  background: '#991b1b',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: 8,
-                  padding: '0.5rem 1.25rem',
-                  cursor: 'pointer',
-                  fontWeight: 600,
-                }}
-              >
+              <button type="button" onClick={handleWithdraw} style={destructiveBtn}>
                 Withdraw
               </button>
             )}
 
             {motion.status === 'discussion' && (
               <>
-                <button
-                  type="button"
-                  onClick={handleOpenVoting}
-                  style={{
-                    background: 'var(--primary)',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: 8,
-                    padding: '0.5rem 1.25rem',
-                    cursor: 'pointer',
-                    fontWeight: 600,
-                  }}
-                >
+                <button type="button" onClick={handleOpenVoting} style={primaryBtn}>
                   Open Voting
                 </button>
                 <button
                   type="button"
                   onClick={handleTable}
                   style={{
-                    background: '#6b7280',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: 8,
-                    padding: '0.5rem 1.25rem',
+                    background: 'var(--surface)',
+                    color: 'var(--text-secondary)',
+                    border: '1px solid var(--border)',
+                    borderRadius: 999,
+                    padding: '10px 22px',
                     cursor: 'pointer',
-                    fontWeight: 600,
+                    fontWeight: 700,
+                    fontSize: 14,
+                    transition: 'background 0.15s',
                   }}
                 >
                   Table
                 </button>
-                <Link
-                  to={`/governance/${motion.id}/amend`}
-                  style={{
-                    background: 'transparent',
-                    color: 'var(--primary)',
-                    border: '1px solid var(--primary)',
-                    borderRadius: 8,
-                    padding: '0.5rem 1.25rem',
-                    textDecoration: 'none',
-                    fontWeight: 600,
-                    fontSize: 14,
-                  }}
-                >
+                <Link to={`/governance/${motion.id}/amend`} style={outlinedBtn}>
                   Propose Amendment
                 </Link>
               </>
@@ -376,59 +422,54 @@ export function MotionDetailPage() {
           </div>
 
           {motion.status === 'voting' && (
-            <div style={{ marginTop: '1rem' }}>
+            <div style={{ marginTop: 20 }}>
               <VotingPanel motion={motion} currentUserId={user.id} onVote={handleVote} />
             </div>
           )}
         </section>
       )}
 
-      {/* Vote result (when motion has a result) */}
+      {/* Vote result */}
       {motion.result && motion.status !== 'voting' && (
-        <section
-          style={{
-            background: 'var(--panel)',
-            borderRadius: 'var(--radius-lg)',
-            border: '1px solid var(--border-subtle)',
-            padding: '1.5rem',
-            marginBottom: '1rem',
-          }}
-        >
-          <h2 style={{ marginTop: 0 }}>Vote Result</h2>
+        <section style={sectionStyle}>
+          <h2 style={sectionTitle}>Vote Result</h2>
           <div
             style={{
-              padding: '8px 12px',
-              borderRadius: 8,
-              backgroundColor: motion.result.passed ? '#dcfce7' : '#fee2e2',
-              color: motion.result.passed ? '#166534' : '#991b1b',
-              fontWeight: 600,
-              fontSize: 14,
-              marginBottom: 12,
-              display: 'inline-block',
+              padding: '14px 20px',
+              borderRadius: 'var(--radius-md)',
+              backgroundColor: motion.result.passed ? 'var(--accent-green-bg)' : 'var(--accent-red-bg)',
+              color: motion.result.passed ? 'var(--accent-green)' : 'var(--accent-red)',
+              fontWeight: 700,
+              fontSize: 15,
+              marginBottom: 16,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
             }}
           >
+            <span style={{ fontSize: 20 }}>{motion.result.passed ? '\u2713' : '\u2717'}</span>
             {motion.result.passed ? 'Passed' : 'Failed'}
             {motion.result.quorumMet ? '' : ' (quorum not met)'}
           </div>
-          <div className="muted" style={{ fontSize: 14 }}>
-            Yea: {motion.result.yea} / Nay: {motion.result.nay} / Abstain: {motion.result.abstain}
+          <div style={{ fontSize: 14, color: 'var(--text-secondary)', display: 'flex', gap: 16 }}>
+            <span>
+              Yea: <strong style={{ color: 'var(--accent-green)' }}>{motion.result.yea}</strong>
+            </span>
+            <span>
+              Nay: <strong style={{ color: 'var(--accent-red)' }}>{motion.result.nay}</strong>
+            </span>
+            <span>
+              Abstain: <strong style={{ color: 'var(--text-muted)' }}>{motion.result.abstain}</strong>
+            </span>
           </div>
         </section>
       )}
 
       {/* Amendments */}
       {amendments.length > 0 && (
-        <section
-          style={{
-            background: 'var(--panel)',
-            borderRadius: 'var(--radius-lg)',
-            border: '1px solid var(--border-subtle)',
-            padding: '1.5rem',
-            marginBottom: '1rem',
-          }}
-        >
-          <h2 style={{ marginTop: 0 }}>Amendments</h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+        <section style={sectionStyle}>
+          <h2 style={sectionTitle}>Amendments</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {amendments.map((a) => (
               <Link
                 key={a.id}
@@ -436,86 +477,163 @@ export function MotionDetailPage() {
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.75rem',
-                  padding: '0.75rem',
-                  borderRadius: 8,
+                  gap: 12,
+                  padding: '14px 16px',
+                  borderRadius: 'var(--radius-md)',
                   border: '1px solid var(--border-subtle)',
+                  backgroundColor: 'var(--panel-2)',
                   textDecoration: 'none',
                   color: 'inherit',
+                  transition: 'border-color 0.15s, background 0.15s',
                 }}
               >
                 <MotionStatusBadge status={a.status} />
-                <span style={{ fontWeight: 500 }}>{a.title}</span>
+                <span style={{ fontWeight: 600, fontSize: 14, color: 'var(--text-primary)' }}>{a.title}</span>
               </Link>
             ))}
           </div>
         </section>
       )}
 
-      {/* Comments / Discussion */}
-      <section
-        style={{
-          background: 'var(--panel)',
-          borderRadius: 'var(--radius-lg)',
-          border: '1px solid var(--border-subtle)',
-          padding: '1.5rem',
-          marginBottom: '1rem',
-        }}
-      >
-        <h2 style={{ marginTop: 0 }}>Discussion ({comments.length})</h2>
+      {/* Discussion */}
+      <section style={sectionStyle}>
+        <h2 style={sectionTitle}>
+          Discussion
+          <span style={{
+            marginLeft: 8,
+            fontSize: 13,
+            fontWeight: 600,
+            color: 'var(--text-muted)',
+          }}>
+            ({comments.length})
+          </span>
+        </h2>
 
         {comments.length === 0 && (
-          <p className="muted" style={{ fontSize: 14 }}>No comments yet. Be the first to discuss this motion.</p>
+          <p style={{
+            color: 'var(--text-muted)',
+            fontSize: 14,
+            margin: '0 0 16px',
+            padding: '20px 0',
+            textAlign: 'center',
+          }}>
+            No comments yet. Be the first to discuss this motion.
+          </p>
         )}
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {comments.map((c) => (
             <div
               key={c.id}
               style={{
-                padding: '0.75rem',
-                borderRadius: 8,
+                padding: 16,
+                borderRadius: 'var(--radius-md)',
+                backgroundColor: 'var(--panel-2)',
                 border: '1px solid var(--border-subtle)',
               }}
             >
-              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'baseline', marginBottom: '0.35rem' }}>
-                <span style={{ fontWeight: 600, fontSize: 14 }}>{c.authorName}</span>
-                <span className="muted" style={{ fontSize: 12 }}>{new Date(c.createdAtISO).toLocaleDateString()}</span>
+              <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 8 }}>
+                {/* Avatar placeholder */}
+                <div style={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: '50%',
+                  backgroundColor: avatarColor(c.authorName),
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}>
+                  <span style={{ color: '#fff', fontWeight: 700, fontSize: 13, lineHeight: 1 }}>
+                    {c.authorName.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+                <div>
+                  <span style={{ fontWeight: 700, fontSize: 14, color: 'var(--text-primary)' }}>
+                    {c.authorName}
+                  </span>
+                  <span style={{
+                    fontSize: 12,
+                    color: 'var(--text-muted)',
+                    marginLeft: 8,
+                  }}>
+                    {new Date(c.createdAtISO).toLocaleDateString()}
+                  </span>
+                </div>
               </div>
-              <p style={{ margin: 0, fontSize: 14, whiteSpace: 'pre-wrap' }}>{c.body}</p>
+              <p style={{
+                margin: 0,
+                fontSize: 14,
+                lineHeight: 1.6,
+                whiteSpace: 'pre-wrap',
+                color: 'var(--text-primary)',
+              }}>
+                {c.body}
+              </p>
             </div>
           ))}
         </div>
 
-        <div style={{ marginTop: '1rem', display: 'flex', gap: '0.75rem' }}>
-          <input
-            type="text"
-            placeholder={user ? 'Add a comment...' : 'Add a comment as Guest...'}
-            value={commentBody}
-            onChange={(e) => setCommentBody(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') handleAddComment()
-            }}
-            style={{ flex: 1 }}
-          />
-          <button
-            type="button"
-            onClick={handleAddComment}
-            disabled={!commentBody.trim()}
-            style={{
-              background: 'var(--primary)',
-              color: '#fff',
-              border: 'none',
-              borderRadius: 8,
-              padding: '0.5rem 1.25rem',
-              cursor: commentBody.trim() ? 'pointer' : 'default',
-              fontWeight: 600,
-              fontSize: 14,
-              opacity: commentBody.trim() ? 1 : 0.5,
-            }}
-          >
-            Add Comment
-          </button>
+        {/* Comment input */}
+        <div style={{ marginTop: 20 }}>
+          {!user && (
+            <div style={{
+              fontSize: 12,
+              color: 'var(--text-muted)',
+              marginBottom: 8,
+              fontWeight: 500,
+            }}>
+              Commenting as Guest
+            </div>
+          )}
+          <div style={{ display: 'flex', gap: 10, alignItems: 'flex-end' }}>
+            <textarea
+              placeholder={user ? 'Add a comment...' : 'Add a comment as Guest...'}
+              value={commentBody}
+              onChange={(e) => setCommentBody(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                  e.preventDefault()
+                  handleAddComment()
+                }
+              }}
+              rows={3}
+              style={{
+                flex: 1,
+                padding: '12px 16px',
+                fontSize: 14,
+                border: '1px solid var(--border)',
+                borderRadius: 'var(--radius-md)',
+                backgroundColor: 'var(--panel)',
+                color: 'var(--text-primary)',
+                outline: 'none',
+                resize: 'vertical',
+                fontFamily: 'inherit',
+                boxSizing: 'border-box',
+                transition: 'border-color 0.15s',
+              }}
+            />
+            <button
+              type="button"
+              onClick={handleAddComment}
+              disabled={!commentBody.trim()}
+              style={{
+                background: commentBody.trim() ? 'var(--primary)' : 'var(--surface)',
+                color: commentBody.trim() ? '#fff' : 'var(--text-muted)',
+                border: 'none',
+                borderRadius: 999,
+                padding: '12px 24px',
+                cursor: commentBody.trim() ? 'pointer' : 'default',
+                fontWeight: 700,
+                fontSize: 14,
+                transition: 'all 0.15s',
+                whiteSpace: 'nowrap',
+                alignSelf: 'flex-end',
+              }}
+            >
+              Comment
+            </button>
+          </div>
         </div>
       </section>
     </div>
