@@ -33,6 +33,16 @@
   --accent-purple-bg: #f5f3ff;
   --accent-teal: #0d9488;
   --accent-teal-bg: #f0fdfa;
+
+  /* Reddit-style vote colors */
+  --vote-up: #ff4500;
+  --vote-up-bg: #fff1ec;
+  --vote-up-hover: #fff6f2;
+  --vote-down: #7193ff;
+  --vote-down-bg: #eef2ff;
+  --vote-down-hover: #f4f6ff;
+  --vote-neutral: #878a8c;
+  --vote-neutral-hover: #f0f1f2;
 }
 
 html#html,

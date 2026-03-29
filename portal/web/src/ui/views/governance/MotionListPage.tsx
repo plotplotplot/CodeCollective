@@ -256,16 +256,17 @@ export function MotionListPage() {
                   e.currentTarget.style.transform = 'translateY(0)'
                 }}
               >
-                {/* Vote widget */}
+                {/* Vote widget — Reddit style */}
                 <div
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    minWidth: 44,
+                    minWidth: 48,
                     flexShrink: 0,
-                    gap: 2,
-                    paddingTop: 2,
+                    background: 'var(--panel-2)',
+                    borderRadius: 12,
+                    padding: '6px 4px',
                   }}
                 >
                   <button
@@ -273,30 +274,31 @@ export function MotionListPage() {
                     onClick={(e) => handleVote(motion.id, 'up', e)}
                     aria-label="Upvote"
                     style={{
-                      background: uv === 'up' ? 'var(--primary-light)' : 'transparent',
+                      background: uv === 'up' ? 'var(--vote-up-bg)' : 'transparent',
                       border: 'none',
                       cursor: 'pointer',
-                      fontSize: 16,
                       lineHeight: 1,
                       padding: 6,
                       borderRadius: 8,
-                      color: uv === 'up' ? 'var(--primary)' : 'var(--text-muted)',
-                      fontWeight: 700,
-                      minWidth: 36,
+                      color: uv === 'up' ? 'var(--vote-up)' : 'var(--vote-neutral)',
+                      minWidth: 40,
                       minHeight: 36,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      transition: 'background 0.15s',
+                      transition: 'all 0.15s',
                     }}
+                    onMouseEnter={(e) => { if (uv !== 'up') e.currentTarget.style.background = 'var(--vote-neutral-hover)' }}
+                    onMouseLeave={(e) => { if (uv !== 'up') e.currentTarget.style.background = 'transparent' }}
                   >
-                    &#9650;
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3l7 7h-4v7H7v-7H3l7-7z"/></svg>
                   </button>
                   <span style={{
                     fontWeight: 800,
-                    fontSize: 15,
+                    fontSize: 14,
                     lineHeight: 1,
-                    color: 'var(--text-primary)',
+                    padding: '4px 0',
+                    color: uv === 'up' ? 'var(--vote-up)' : uv === 'down' ? 'var(--vote-down)' : 'var(--text-primary)',
                   }}>
                     {motion.score}
                   </span>
@@ -305,24 +307,24 @@ export function MotionListPage() {
                     onClick={(e) => handleVote(motion.id, 'down', e)}
                     aria-label="Downvote"
                     style={{
-                      background: uv === 'down' ? 'var(--accent-red-bg)' : 'transparent',
+                      background: uv === 'down' ? 'var(--vote-down-bg)' : 'transparent',
                       border: 'none',
                       cursor: 'pointer',
-                      fontSize: 16,
                       lineHeight: 1,
                       padding: 6,
                       borderRadius: 8,
-                      color: uv === 'down' ? 'var(--accent-red)' : 'var(--text-muted)',
-                      fontWeight: 700,
-                      minWidth: 36,
+                      color: uv === 'down' ? 'var(--vote-down)' : 'var(--vote-neutral)',
+                      minWidth: 40,
                       minHeight: 36,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      transition: 'background 0.15s',
+                      transition: 'all 0.15s',
                     }}
+                    onMouseEnter={(e) => { if (uv !== 'down') e.currentTarget.style.background = 'var(--vote-neutral-hover)' }}
+                    onMouseLeave={(e) => { if (uv !== 'down') e.currentTarget.style.background = 'transparent' }}
                   >
-                    &#9660;
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path d="M10 17l-7-7h4V3h6v7h4l-7 7z"/></svg>
                   </button>
                 </div>
 

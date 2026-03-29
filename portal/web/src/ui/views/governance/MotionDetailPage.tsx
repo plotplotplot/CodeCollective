@@ -244,15 +244,17 @@ export function MotionDetailPage() {
       {/* Header card */}
       <section style={sectionStyle}>
         <div style={{ display: 'flex', gap: 16, marginBottom: 20 }}>
-          {/* Vote widget */}
+          {/* Vote widget — Reddit style */}
           <div
             style={{
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              minWidth: 48,
+              minWidth: 56,
               flexShrink: 0,
-              gap: 2,
+              background: 'var(--panel-2)',
+              borderRadius: 14,
+              padding: '8px 6px',
             }}
           >
             <button
@@ -260,26 +262,32 @@ export function MotionDetailPage() {
               onClick={handleUpvote}
               aria-label="Upvote"
               style={{
-                background: userVote === 'up' ? 'var(--primary-light)' : 'transparent',
+                background: userVote === 'up' ? 'var(--vote-up-bg)' : 'transparent',
                 border: 'none',
                 cursor: 'pointer',
-                fontSize: 18,
                 lineHeight: 1,
-                padding: 6,
-                borderRadius: 8,
-                color: userVote === 'up' ? 'var(--primary)' : 'var(--text-muted)',
-                fontWeight: 700,
-                minWidth: 40,
-                minHeight: 40,
+                padding: 8,
+                borderRadius: 10,
+                color: userVote === 'up' ? 'var(--vote-up)' : 'var(--vote-neutral)',
+                minWidth: 44,
+                minHeight: 44,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                transition: 'background 0.15s',
+                transition: 'all 0.15s',
               }}
+              onMouseEnter={(e) => { if (userVote !== 'up') e.currentTarget.style.background = 'var(--vote-neutral-hover)' }}
+              onMouseLeave={(e) => { if (userVote !== 'up') e.currentTarget.style.background = 'transparent' }}
             >
-              &#9650;
+              <svg width="24" height="24" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3l7 7h-4v7H7v-7H3l7-7z"/></svg>
             </button>
-            <span style={{ fontWeight: 800, fontSize: 18, lineHeight: 1, color: 'var(--text-primary)' }}>
+            <span style={{
+              fontWeight: 800,
+              fontSize: 18,
+              lineHeight: 1,
+              padding: '6px 0',
+              color: userVote === 'up' ? 'var(--vote-up)' : userVote === 'down' ? 'var(--vote-down)' : 'var(--text-primary)',
+            }}>
               {motion.score}
             </span>
             <button
@@ -287,24 +295,24 @@ export function MotionDetailPage() {
               onClick={handleDownvote}
               aria-label="Downvote"
               style={{
-                background: userVote === 'down' ? 'var(--accent-red-bg)' : 'transparent',
+                background: userVote === 'down' ? 'var(--vote-down-bg)' : 'transparent',
                 border: 'none',
                 cursor: 'pointer',
-                fontSize: 18,
                 lineHeight: 1,
-                padding: 6,
-                borderRadius: 8,
-                color: userVote === 'down' ? 'var(--accent-red)' : 'var(--text-muted)',
-                fontWeight: 700,
-                minWidth: 40,
-                minHeight: 40,
+                padding: 8,
+                borderRadius: 10,
+                color: userVote === 'down' ? 'var(--vote-down)' : 'var(--vote-neutral)',
+                minWidth: 44,
+                minHeight: 44,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                transition: 'background 0.15s',
+                transition: 'all 0.15s',
               }}
+              onMouseEnter={(e) => { if (userVote !== 'down') e.currentTarget.style.background = 'var(--vote-neutral-hover)' }}
+              onMouseLeave={(e) => { if (userVote !== 'down') e.currentTarget.style.background = 'transparent' }}
             >
-              &#9660;
+              <svg width="24" height="24" viewBox="0 0 20 20" fill="currentColor"><path d="M10 17l-7-7h4V3h6v7h4l-7 7z"/></svg>
             </button>
           </div>
 
