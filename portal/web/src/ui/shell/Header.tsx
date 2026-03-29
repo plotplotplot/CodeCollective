@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../../app/AppProviders'
 
 export function Header() {
-  const { role, user, logout } = useAuth()
+  const { role, user, logout, setRole, setUser } = useAuth()
   const displayName = user?.displayName || user?.email || 'Signed in'
   const accountSettingsPath = role === 'campaign_manager' ? '/campaign/account' : '/constituent/account'
   const nextUrl = window.location.href
@@ -62,9 +62,37 @@ export function Header() {
               )}
             </div>
           ) : (
-            <a className="portal-button" href={`/pidp/auth/google/login?next=${encodeURIComponent(nextUrl)}`}>
-              Log In
-            </a>
+            <>
+              <a className="portal-button" href={`/pidp/auth/google/login?next=${encodeURIComponent(nextUrl)}`}>
+                Log In
+              </a>
+              <button
+                type="button"
+                onClick={() => {
+                  const guestId = localStorage.getItem('governance.guestId') || `guest_${Math.random().toString(36).slice(2)}`
+                  localStorage.setItem('governance.guestId', guestId)
+                  setRole('constituent')
+                  setUser({
+                    id: guestId,
+                    role: 'constituent',
+                    displayName: 'Guest',
+                    handle: 'guest',
+                  })
+                }}
+                style={{
+                  border: '1px solid var(--border)',
+                  borderRadius: 999,
+                  background: 'transparent',
+                  color: 'var(--text-primary)',
+                  padding: '8px 14px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  fontSize: 'inherit',
+                }}
+              >
+                Guest
+              </button>
+            </>
           )}
         </div>
       </div>
