@@ -13,3 +13,9 @@ export type ConstituentProfile = {
   handle: UserHandle
   bio?: string
 }
+
+export type CandidacyInfo = {
+  isRunning: boolean
+  officeTitle?: string
+  campaignStatement?: string
+}
