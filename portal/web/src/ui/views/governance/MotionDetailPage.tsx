@@ -12,6 +12,7 @@ import { MotionStatusBadge } from '../../components/governance/MotionStatusBadge
 import { MotionTimeline } from '../../components/governance/MotionTimeline'
 import { VotingPanel } from '../../components/governance/VotingPanel'
 import { DiffView, InlineDiff } from '../../components/governance/DiffView'
+import { UnifiedDiff } from '../../components/governance/UnifiedDiff'
 
 function getGuestId(): string {
   const key = 'governance.guestId'
@@ -95,6 +96,7 @@ export function MotionDetailPage() {
   const [commentBody, setCommentBody] = useState('')
   const [upCount, setUpCount] = useState(0)
   const [downCount, setDownCount] = useState(0)
+  const [showUnifiedDiff, setShowUnifiedDiff] = useState(false)
 
   useEffect(() => {
     if (!id) return
@@ -536,7 +538,51 @@ export function MotionDetailPage() {
       {/* Amendments */}
       {amendments.length > 0 && (
         <section style={sectionStyle}>
-          <h2 style={sectionTitle}>Proposed Amendments</h2>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 12 }}>
+            <h2 style={{ ...sectionTitle, margin: 0 }}>Proposed Amendments</h2>
+            
+            {/* Unified diff toggle */}
+            <label style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+              fontSize: 13,
+              color: 'var(--text-secondary)',
+              cursor: 'pointer',
+              padding: '6px 12px',
+              backgroundColor: showUnifiedDiff ? 'var(--primary-bg)' : 'var(--panel-2)',
+              borderRadius: 'var(--radius-md)',
+              border: `1px solid ${showUnifiedDiff ? 'var(--primary)' : 'var(--border-subtle)'}`,
+              transition: 'all 0.15s',
+            }}>
+              <input
+                type="checkbox"
+                checked={showUnifiedDiff}
+                onChange={(e) => setShowUnifiedDiff(e.target.checked)}
+                style={{ margin: 0 }}
+              />
+              <span>Show unified diff</span>
+            </label>
+          </div>
+          
+          {/* Unified diff view */}
+          {showUnifiedDiff && (
+            <div style={{ marginBottom: 24 }}>
+              <UnifiedDiff
+                original={motion.body}
+                amendments={amendments.map(a => ({
+                  id: a.id,
+                  title: a.title,
+                  body: a.body,
+                  proposedBodyDiff: a.proposedBodyDiff,
+                  proposerName: a.proposerName,
+                  status: a.status,
+                }))}
+                showUnchanged={false}
+              />
+            </div>
+          )}
+          
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {amendments.map((a) => (
               <div
