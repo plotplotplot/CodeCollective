@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import type { AppServices } from '../composition/createServices'
 import type { UserRole } from '../domain/user/User'
 import type { SessionUser } from '../ui/auth/SessionUser'
+import { readVotes, writeVotes, readComments, writeComments, readProfiles, writeProfiles } from '../infrastructure/utils/localStorage'
 
 type PidpUser = {
   id: string
@@ -72,6 +73,8 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
   const [user, setUserState] = useState<SessionUser | null>(() => readInitialUser())
   const [token, setToken] = useState<string | null>(() => sessionStorage.getItem('pidp.token'))
   const [isLoading, setIsLoading] = useState<boolean>(!!sessionStorage.getItem('pidp.token'))
+  const [showMigration, setShowMigration] = useState(false)
+  const [pendingMigration, setPendingMigration] = useState<{guestId: string, userId: string, displayName: string} | null>(null)
 
   const pidpBaseUrl = (import.meta.env.VITE_PIDP_BASE_URL as string | undefined) ?? '/pidp'
   const normalizedPidpBase = pidpBaseUrl.replace(/\/$/, '')
@@ -88,6 +91,42 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
   )
 
   const servicesValue = useMemo<ServicesContextValue>(() => ({ services: props.services }), [props.services])
+
+  const migrateGuestData = useCallback(() => {
+    if (!pendingMigration) return
+    const { guestId, userId, displayName } = pendingMigration
+    // Migrate votes
+    const votes = readVotes()
+    for (const motionId in votes) {
+      if (votes[motionId][guestId]) {
+        votes[motionId][userId] = votes[motionId][guestId]
+        delete votes[motionId][guestId]
+      }
+    }
+    writeVotes(votes)
+    // Migrate comments
+    const comments = readComments()
+    for (const comment of comments) {
+      if (comment.authorId === guestId) {
+        comment.authorId = userId
+        comment.authorName = displayName
+      }
+    }
+    writeComments(comments)
+    // Migrate profiles
+    const profiles = readProfiles()
+    if (profiles[guestId]) {
+      profiles[userId] = profiles[guestId]
+      delete profiles[guestId]
+    }
+    writeProfiles(profiles)
+    // Clear guestId
+    localStorage.removeItem('governance.guestId')
+    setShowMigration(false)
+    setPendingMigration(null)
+    // Reload page to update displayed comments
+    window.location.reload()
+  }, [pendingMigration])
 
   const formatApiError = useCallback(async (resp: Response, fallback: string) => {
     const data = await resp.json().catch(() => null)
@@ -215,6 +254,22 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
             avatarUrl,
           }),
         )
+        // Check for guest data migration
+        const guestId = localStorage.getItem('governance.guestId')
+        if (guestId && guestId !== data.id) {
+          const votes = readVotes()
+          let hasGuestData = false
+          for (const motionVotes of Object.values(votes)) {
+            if (motionVotes[guestId]) {
+              hasGuestData = true
+              break
+            }
+          }
+          if (hasGuestData) {
+            setPendingMigration({ guestId, userId: data.id, displayName })
+            setShowMigration(true)
+          }
+        }
       } catch {
         if (!cancelled) {
           setRoleState('guest')
@@ -283,7 +338,40 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
 
   return (
     <ServicesContext.Provider value={servicesValue}>
-      <AuthContext.Provider value={authValue}>{props.children}</AuthContext.Provider>
+      <AuthContext.Provider value={authValue}>
+        <div style={{ border: role === 'guest' ? '2px solid red' : 'none', minHeight: '100vh' }}>
+          {props.children}
+        </div>
+        {showMigration && (
+          <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0,0,0,0.5)',
+            zIndex: 1000,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <div style={{
+              background: 'white',
+              padding: 20,
+              borderRadius: 8,
+              maxWidth: 400,
+              color: 'black',
+            }}>
+              <h3>Migrate Guest Data</h3>
+              <p>You have data from guest mode. Would you like to migrate it to your account?</p>
+              <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
+                <button onClick={() => setShowMigration(false)} style={{ padding: '8px 16px' }}>No</button>
+                <button onClick={migrateGuestData} style={{ padding: '8px 16px', background: 'var(--primary)', color: 'white', border: 'none', borderRadius: 4 }}>Yes</button>
+              </div>
+            </div>
+          </div>
+        )}
+      </AuthContext.Provider>
     </ServicesContext.Provider>
   )
 }

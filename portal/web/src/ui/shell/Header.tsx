@@ -68,17 +68,6 @@ export function Header() {
               </a>
               <button
                 type="button"
-                onClick={() => {
-                  const guestId = localStorage.getItem('governance.guestId') || `guest_${Math.random().toString(36).slice(2)}`
-                  localStorage.setItem('governance.guestId', guestId)
-                  setRole('constituent')
-                  setUser({
-                    id: guestId,
-                    role: 'constituent',
-                    displayName: 'Guest',
-                    handle: 'guest',
-                  })
-                }}
                 style={{
                   border: '1px solid var(--border)',
                   borderRadius: 999,

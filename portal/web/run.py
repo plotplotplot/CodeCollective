@@ -21,8 +21,35 @@ def run(NETWORK_NAME, prefix: str = ""):
     os.makedirs(os.path.join(webapp_android_dir, "node_modules"), exist_ok=True)
     os.makedirs(os.path.join(webapp_dir, ".gradle"), exist_ok=True)
 
+    # Governance Database
+    governance_db = dict(
+        image="postgres:15-alpine",
+        detach=True,
+        name=f"{prefix}governance-db",
+        network=NETWORK_NAME,
+        restart_policy={"Name": "always"},
+        user="postgres",
+        environment={
+            "POSTGRES_PASSWORD": "governance_password",
+            "POSTGRES_USER": "governance",
+            "POSTGRES_DB": "governance",
+        },
+        volumes={
+            f"{prefix}governance_postgres": {
+                "bind": "/var/lib/postgresql/data",
+                "mode": "rw",
+            }
+        },
+        healthcheck={
+            "test": ["CMD-SHELL", "pg_isready"],
+            "interval": 5000000000,  # 5s in nanoseconds
+            "timeout": 5000000000,  # 5s in nanoseconds
+            "retries": 10,
+        },
+    )
+
     webapp_build = dict(
-        image="node:23",
+        image="node:24",
         detach=True,  # Runs the container in detached mode
         name=f"{prefix}webapp-build",
         network=NETWORK_NAME,
@@ -99,7 +126,7 @@ def run(NETWORK_NAME, prefix: str = ""):
     )
 
     webapp = dict(
-        image="node:23",
+        image="node:24",
         detach=True,  # Runs the container in detached mode
         name=f"{prefix}webapp",
         network=NETWORK_NAME,
@@ -114,6 +141,8 @@ def run(NETWORK_NAME, prefix: str = ""):
             "NODE_ENV": "development",
             "SPICE_SERVER_URL": VITE_KEYCLOAK_SERVER_URL,
             "PIDP_SERVER_URL": VITE_KEYCLOAK_CLIENT_ID,
+            "VITE_GOVERNANCE_DB_URL": f"postgresql://governance:governance_password@{prefix}governance-db:5432/governance",
+            "VITE_DATA_SOURCE": "postgres",
             "CHOKIDAR_USEPOLLING": "1",
             "CHOKIDAR_INTERVAL": "200",
         },
@@ -131,3 +160,4 @@ def run(NETWORK_NAME, prefix: str = ""):
     docker_utils.run_container(webapp)
     docker_utils.run_container(webapp_build)
     docker_utils.run_container(webapp_android_build)
+    docker_utils.run_container(governance_db)

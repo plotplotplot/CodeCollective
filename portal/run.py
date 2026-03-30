@@ -12,6 +12,16 @@ from ubi.run import run as ubi_run
 import importlib.util
 from web.run import run as web_run
 
+# Load governance backend dynamically (hyphen in dir name)
+def run_governance_backend(network_name: str, prefix: str) -> None:
+    governance_run_path = here / "governance-backend" / "run.py"
+    spec = importlib.util.spec_from_file_location("governance_backend_run", governance_run_path)
+    if spec and spec.loader:
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module.run(network_name, prefix)
+    raise ImportError("Failed to load governance-backend/run.py")
+
 docker_utils.initializeFiles()
 import editme 
 
@@ -69,6 +79,43 @@ def run_org_backend():
 docker_utils.ensure_network(NETWORK_NAME)
 pidp_run(prefix, NETWORK_NAME)
 #wait for PIdP to initialize
+
+# ----------------------------
+# Governance DB (PostgreSQL for motions/voting/engagement)
+# ----------------------------
+GOVERNANCE_DB = dict(
+    image="postgres:15-alpine",
+    detach=True,
+    name=prefix + "governance-db",
+    network=NETWORK_NAME,
+    restart_policy={"Name": "always"},
+    environment={
+        "POSTGRES_USER": editme.GOVERNANCE_DB_USER,
+        "POSTGRES_PASSWORD": editme.GOVERNANCE_DB_PASSWORD,
+        "POSTGRES_DB": editme.GOVERNANCE_DB_NAME,
+    },
+    volumes={
+        prefix + "GOVERNANCE_DATA": {
+            "bind": "/var/lib/postgresql/data",
+            "mode": "rw",
+        }
+    },
+    healthcheck={
+        "test": ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"],
+        "interval": 5000000000,  # 5s
+        "timeout": 5000000000,   # 5s
+        "retries": 10,
+    },
+)
+docker_utils.run_container(GOVERNANCE_DB)
+
+# Wait for governance DB to be ready
+docker_utils.wait_for_db(
+    NETWORK_NAME,
+    f"postgresql://{editme.GOVERNANCE_DB_USER}:{editme.GOVERNANCE_DB_PASSWORD}@{prefix}governance-db:5432/{editme.GOVERNANCE_DB_NAME}",
+    db_user=editme.GOVERNANCE_DB_USER,
+)
+
 # ----------------------------
 # Redis (cache/ratelimit/queue)
 # ----------------------------
@@ -306,6 +353,10 @@ docker_utils.run_container(SPICEDB)
 
 ballot_backend_run = run_org_backend()
 ballot_backend_run(NETWORK_NAME, prefix)
+
+# Governance Backend (motions, voting, engagement)
+run_governance_backend(NETWORK_NAME, prefix)
+
 ubi_run(NETWORK_NAME, prefix)
 web_run(NETWORK_NAME, prefix)
 nginx_run(NETWORK_NAME, prefix)
