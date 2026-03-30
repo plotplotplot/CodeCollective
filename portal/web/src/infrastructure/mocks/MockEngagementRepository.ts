@@ -1,39 +1,6 @@
 import type { EngagementRepository, CreateCommentInput, UserProfile, RankedMotion, VoteCounts } from '../../application/ports/EngagementRepository'
 import type { Motion, VoteDirection, Comment } from '../../domain/motion/Motion'
-
-const VOTES_KEY = 'demo.engagement.votes'
-const COMMENTS_KEY = 'demo.engagement.comments'
-const PROFILE_KEY = 'demo.engagement.profiles'
-
-type VotesStore = Record<string, Record<string, VoteDirection>>
-
-function readVotes(): VotesStore {
-  const raw = localStorage.getItem(VOTES_KEY)
-  if (!raw) return {}
-  try {
-    return JSON.parse(raw) as VotesStore
-  } catch {
-    return {}
-  }
-}
-
-function writeVotes(votes: VotesStore) {
-  localStorage.setItem(VOTES_KEY, JSON.stringify(votes))
-}
-
-function readComments(): Comment[] {
-  const raw = localStorage.getItem(COMMENTS_KEY)
-  if (!raw) return []
-  try {
-    return JSON.parse(raw) as Comment[]
-  } catch {
-    return []
-  }
-}
-
-function writeComments(comments: Comment[]) {
-  localStorage.setItem(COMMENTS_KEY, JSON.stringify(comments))
-}
+import { readVotes, writeVotes, readComments, writeComments, readProfiles, writeProfiles, type VotesStore } from '../utils/localStorage'
 
 function computeVoteCounts(votes: VotesStore, motionId: string): VoteCounts {
   const motionVotes = votes[motionId]
@@ -49,22 +16,6 @@ function computeVoteCounts(votes: VotesStore, motionId: string): VoteCounts {
 
 function computeScore(votes: VotesStore, motionId: string): number {
   return computeVoteCounts(votes, motionId).score
-}
-
-type ProfileStore = Record<string, UserProfile>
-
-function readProfiles(): ProfileStore {
-  const raw = localStorage.getItem(PROFILE_KEY)
-  if (!raw) return {}
-  try {
-    return JSON.parse(raw) as ProfileStore
-  } catch {
-    return {}
-  }
-}
-
-function writeProfiles(profiles: ProfileStore) {
-  localStorage.setItem(PROFILE_KEY, JSON.stringify(profiles))
 }
 
 function getOrCreateProfile(userId: string): UserProfile {
@@ -124,7 +75,7 @@ function computeRank(
 }
 
 function ensureSeeded(): void {
-  if (localStorage.getItem(VOTES_KEY)) return
+  if (localStorage.getItem('demo.engagement.votes')) return
 
   const votes: VotesStore = {
     motion_seed_1: {

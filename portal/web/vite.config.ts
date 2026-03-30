@@ -5,6 +5,9 @@ import react from '@vitejs/plugin-react'
 export default defineConfig(({ command }) => ({
   plugins: [react()],
   base: command === 'serve' ? '/dev/' : '/',
+  optimizeDeps: {
+    exclude: ['pg']
+  },
   server: {
     allowedHosts: ['ballot-vm.local', 'ballot.arkavo.org', 'portal.arkavo.org', 'localhost'],
     host: true,

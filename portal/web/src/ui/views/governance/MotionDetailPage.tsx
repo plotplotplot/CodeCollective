@@ -11,6 +11,7 @@ import type { Motion, VoteChoice, VoteDirection, Comment } from '../../../domain
 import { MotionStatusBadge } from '../../components/governance/MotionStatusBadge'
 import { MotionTimeline } from '../../components/governance/MotionTimeline'
 import { VotingPanel } from '../../components/governance/VotingPanel'
+import { DiffView, InlineDiff } from '../../components/governance/DiffView'
 
 function getGuestId(): string {
   const key = 'governance.guestId'
@@ -85,6 +86,7 @@ export function MotionDetailPage() {
   const effectiveUserId = user?.id ?? getGuestId()
   const effectiveUserName = user?.displayName ?? 'Guest'
   const [motion, setMotion] = useState<Motion | null>(null)
+  const [parentMotion, setParentMotion] = useState<Motion | null>(null)
   const [amendments, setAmendments] = useState<Motion[]>([])
   const [actionError, setActionError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
@@ -101,14 +103,21 @@ export function MotionDetailPage() {
       getMotionById(motionRepository, id),
       listMotions(motionRepository, { parentMotionId: id }),
       engagementRepository.listComments(id),
-    ]).then(([m, amends, cmts]) => {
+    ]).then(async ([m, amends, cmts]) => {
       setMotion(m)
       setAmendments(amends)
       setComments(cmts)
+      
+      // If this is an amendment, fetch the parent motion for diff view
+      if (m?.parentMotionId) {
+        const parent = await getMotionById(motionRepository, m.parentMotionId)
+        setParentMotion(parent)
+      }
+      
       setLoading(false)
       if (m) document.title = `ballot-sign \u2022 ${m.title}`
     })
-  }, [motionRepository, engagementRepository, id])
+  }, [motionRepository, engagementRepository, id, user])
 
   useEffect(() => {
     if (!id) return
@@ -348,9 +357,46 @@ export function MotionDetailPage() {
         <MotionTimeline status={motion.status} />
       </section>
 
+      {/* Amendment diff (if this is an amendment) */}
+      {motion.parentMotionId && parentMotion && (
+        <section style={sectionStyle}>
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 12, 
+            marginBottom: 16,
+            flexWrap: 'wrap',
+          }}>
+            <h2 style={{ ...sectionTitle, margin: 0 }}>Proposed Changes</h2>
+            <span style={{
+              fontSize: 12,
+              color: 'var(--text-muted)',
+              backgroundColor: 'var(--panel-2)',
+              padding: '4px 10px',
+              borderRadius: 'var(--radius-sm)',
+            }}>
+              Amendment to{' '}
+              <Link 
+                to={`/governance/${parentMotion.id}`}
+                style={{ color: 'var(--primary)', textDecoration: 'none' }}
+              >
+                {parentMotion.title}
+              </Link>
+            </span>
+          </div>
+          <DiffView 
+            original={parentMotion.body} 
+            proposed={motion.proposedBodyDiff || motion.body}
+            showUnchanged={false}
+          />
+        </section>
+      )}
+
       {/* Motion text */}
       <section style={sectionStyle}>
-        <h2 style={sectionTitle}>Motion Text</h2>
+        <h2 style={sectionTitle}>
+          {motion.parentMotionId ? 'Amendment Text' : 'Motion Text'}
+        </h2>
         <p style={{
           whiteSpace: 'pre-wrap',
           margin: 0,
@@ -490,28 +536,93 @@ export function MotionDetailPage() {
       {/* Amendments */}
       {amendments.length > 0 && (
         <section style={sectionStyle}>
-          <h2 style={sectionTitle}>Amendments</h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <h2 style={sectionTitle}>Proposed Amendments</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {amendments.map((a) => (
-              <Link
+              <div
                 key={a.id}
-                to={`/governance/${a.id}`}
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 12,
-                  padding: '14px 16px',
                   borderRadius: 'var(--radius-md)',
                   border: '1px solid var(--border-subtle)',
                   backgroundColor: 'var(--panel-2)',
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  transition: 'border-color 0.15s, background 0.15s',
+                  overflow: 'hidden',
                 }}
               >
-                <MotionStatusBadge status={a.status} />
-                <span style={{ fontWeight: 600, fontSize: 14, color: 'var(--text-primary)' }}>{a.title}</span>
-              </Link>
+                {/* Amendment header */}
+                <div style={{
+                  padding: '16px 20px',
+                  borderBottom: '1px solid var(--border-subtle)',
+                  backgroundColor: 'var(--panel)',
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+                    <MotionStatusBadge status={a.status} />
+                    <span style={{ 
+                      fontWeight: 700, 
+                      fontSize: 16, 
+                      color: 'var(--text-primary)',
+                    }}>
+                      {a.title}
+                    </span>
+                  </div>
+                  <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: 16,
+                    fontSize: 13,
+                    color: 'var(--text-secondary)',
+                  }}>
+                    <span>
+                      Proposed by <strong style={{ color: 'var(--text-primary)' }}>{a.proposerName}</strong>
+                    </span>
+                    <InlineDiff 
+                      original={motion.body} 
+                      proposed={a.proposedBodyDiff || a.body} 
+                    />
+                  </div>
+                </div>
+                
+                {/* Diff view */}
+                <div style={{ padding: 20 }}>
+                  <div style={{ 
+                    fontSize: 12, 
+                    fontWeight: 600, 
+                    color: 'var(--text-muted)',
+                    marginBottom: 12,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                  }}>
+                    Proposed Changes
+                  </div>
+                  <DiffView 
+                    original={motion.body} 
+                    proposed={a.proposedBodyDiff || a.body}
+                    showUnchanged={false}
+                  />
+                </div>
+                
+                {/* Action link */}
+                <div style={{
+                  padding: '12px 20px',
+                  borderTop: '1px solid var(--border-subtle)',
+                  backgroundColor: 'var(--panel)',
+                }}>
+                  <Link
+                    to={`/governance/${a.id}`}
+                    style={{
+                      color: 'var(--primary)',
+                      textDecoration: 'none',
+                      fontWeight: 600,
+                      fontSize: 14,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 6,
+                    }}
+                  >
+                    View full amendment 
+                    <span style={{ fontSize: 18 }}>&rarr;</span>
+                  </Link>
+                </div>
+              </div>
             ))}
           </div>
         </section>
