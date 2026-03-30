@@ -1,6 +1,6 @@
 [
     {
-        "timestamp": "2026-03-28T20:22:38.407573-04:00",
+        "timestamp": "2026-03-29T20:22:41.716743-04:00",
         "city": "baltimore",
         "stage": "source_fetch",
         "error": "404 Client Error: Not Found for url: https://luma.com/blk-tech-connect-baltimore",
@@ -10,7 +10,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 325, in fetch_events_from_source\n    scrape_luma_orgpage.fetch_and_parse_luma_events(source_url),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/scrape_luma_orgpage.py\", line 28, in fetch_and_parse_luma_events\n    response.raise_for_status()  # Raise an exception for bad status codes\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://luma.com/blk-tech-connect-baltimore\n"
     },
     {
-        "timestamp": "2026-03-28T20:22:38.688068-04:00",
+        "timestamp": "2026-03-29T20:22:41.588174-04:00",
         "city": "baltimore",
         "stage": "source_fetch",
         "error": "'event'",
@@ -20,7 +20,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 302, in fetch_events_from_source\n    scrape_luma.parse_luma_event_page(source_url),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/scrape_luma.py\", line 28, in parse_luma_event_page\n    'name': event_data['event']['name'],\n            ~~~~~~~~~~^^^^^^^^^\nKeyError: 'event'\n"
     },
     {
-        "timestamp": "2026-03-28T20:22:40.688711-04:00",
+        "timestamp": "2026-03-29T20:22:43.077132-04:00",
         "city": "baltimore",
         "stage": "source_fetch",
         "error": "404 Client Error: Not Found for url: https://luma.com/SGLang-meetups",
@@ -30,7 +30,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 325, in fetch_events_from_source\n    scrape_luma_orgpage.fetch_and_parse_luma_events(source_url),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/scrape_luma_orgpage.py\", line 28, in fetch_and_parse_luma_events\n    response.raise_for_status()  # Raise an exception for bad status codes\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://luma.com/SGLang-meetups\n"
     },
     {
-        "timestamp": "2026-03-28T20:23:02.951498-04:00",
+        "timestamp": "2026-03-29T20:23:12.395509-04:00",
         "city": "baltimore",
         "stage": "city_collect",
         "error": "Downloaded payload is not a valid ICS calendar: ",
@@ -40,7 +40,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/gen_calendar.py\", line 234, in collect_events\n    fetch_ics_source(source, city),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/gen_calendar.py\", line 191, in fetch_ics_source\n    return scrape_ics.fetch_calendar_events(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/scrape_ics.py\", line 122, in fetch_calendar_events\n    raise ValueError(f\"Downloaded payload is not a valid ICS calendar: {excerpt}\")\nValueError: Downloaded payload is not a valid ICS calendar: \n"
     },
     {
-        "timestamp": "2026-03-28T20:23:10.208350-04:00",
+        "timestamp": "2026-03-29T20:23:22.277806-04:00",
         "city": "baltimore",
         "stage": "city_collect",
         "error": "500 Server Error: Internal Server Error for url: https://haicbaltimore.org/upcoming-events/",
@@ -50,7 +50,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/gen_calendar.py\", line 268, in collect_events\n    scrape_haic.scrape_events(),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/scrape_haic.py\", line 67, in scrape_events\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: https://haicbaltimore.org/upcoming-events/\n"
     },
     {
-        "timestamp": "2026-03-28T20:23:12.943759-04:00",
+        "timestamp": "2026-03-29T20:23:30.873148-04:00",
         "city": "baltimore",
         "stage": "city_collect",
         "error": "Unknown string format: Mar 31 2026 7:30 AM - 7:45 AM",
@@ -60,7 +60,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/gen_calendar.py\", line 323, in collect_events\n    scrape_mtzion.scrape_events(),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/scrape_mtzion.py\", line 51, in scrape_events\n    start_dt = _infer_start(date_parts[1], date_parts[0], time_text)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/scrape_mtzion.py\", line 24, in _infer_start\n    candidate = parse(f\"{month_text} {day_text} {now.year} {time_text}\")\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/dateutil/parser/_parser.py\", line 1368, in parse\n    return DEFAULTPARSER.parse(timestr, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/dateutil/parser/_parser.py\", line 643, in parse\n    raise ParserError(\"Unknown string format: %s\", timestr)\ndateutil.parser._parser.ParserError: Unknown string format: Mar 31 2026 7:30 AM - 7:45 AM\n"
     },
     {
-        "timestamp": "2026-03-28T20:23:45.523927-04:00",
+        "timestamp": "2026-03-29T20:24:02.676256-04:00",
         "city": "baltimore",
         "stage": "city_collect",
         "error": "Couldn't find a tree builder with the features you requested: xml. Do you need to install a parser library?",
@@ -70,7 +70,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/gen_calendar.py\", line 385, in collect_events\n    scraper_fn(),\n    ^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/scrape_powerplantlive.py\", line 65, in scrape_events\n    for event_url in _event_urls_from_sitemap():\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/scrape_powerplantlive.py\", line 32, in _event_urls_from_sitemap\n    soup = BeautifulSoup(response.text, \"xml\")\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/bs4/__init__.py\", line 366, in __init__\n    raise FeatureNotFound(\nbs4.exceptions.FeatureNotFound: Couldn't find a tree builder with the features you requested: xml. Do you need to install a parser library?\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:07.479426-04:00",
+        "timestamp": "2026-03-29T20:24:18.970665-04:00",
         "city": "baltimore",
         "stage": "city_collect",
         "error": "[Errno 2] No such file or directory: 'maryland-stem-festival-96ecc18ef7d.ics'",
@@ -80,7 +80,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/gen_calendar.py\", line 411, in collect_events\n    fetch_cached_ics_source(source),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/gen_calendar.py\", line 202, in fetch_cached_ics_source\n    return scrape_ics.processICS(\n           ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/scrape_ics.py\", line 186, in processICS\n    with open(CACHE_FILENAME, \"rb\") as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'maryland-stem-festival-96ecc18ef7d.ics'\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:32.815831-04:00",
+        "timestamp": "2026-03-29T20:24:46.297183-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2025/12/Connect-Pro-31-Poster-1.jpg",
@@ -92,7 +92,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2025/12/Connect-Pro-31-Poster-1.jpg\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:33.138269-04:00",
+        "timestamp": "2026-03-29T20:24:46.555371-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2026/02/Easter-Play-Website-MOBILE.jpg",
@@ -104,7 +104,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2026/02/Easter-Play-Website-MOBILE.jpg\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:33.682117-04:00",
+        "timestamp": "2026-03-29T20:24:46.830541-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2026/03/medium_image-1772484287729.jpeg",
@@ -116,7 +116,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2026/03/medium_image-1772484287729.jpeg\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:34.165657-04:00",
+        "timestamp": "2026-03-29T20:24:47.051653-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2026/01/iCon-26-Web-logo@300x-80-scaled.jpg",
@@ -128,7 +128,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2026/01/iCon-26-Web-logo@300x-80-scaled.jpg\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:34.496780-04:00",
+        "timestamp": "2026-03-29T20:24:47.455419-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2018/11/ggwo-logo-with-world-wide-local-church-800-162-png1.png",
@@ -140,43 +140,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2018/11/ggwo-logo-with-world-wide-local-church-800-162-png1.png\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:34.871639-04:00",
-        "city": "baltimore",
-        "stage": "image_download",
-        "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
-        "source_url": "https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
-        "context": {
-            "event_name": "8am Eucharist"
-        },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
-    },
-    {
-        "timestamp": "2026-03-28T20:24:34.945355-04:00",
-        "city": "baltimore",
-        "stage": "image_download",
-        "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
-        "source_url": "https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
-        "context": {
-            "event_name": "Sunday School"
-        },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
-    },
-    {
-        "timestamp": "2026-03-28T20:24:35.019608-04:00",
-        "city": "baltimore",
-        "stage": "image_download",
-        "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
-        "source_url": "https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
-        "context": {
-            "event_name": "11am Holy Eucharist"
-        },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
-    },
-    {
-        "timestamp": "2026-03-28T20:24:35.242933-04:00",
+        "timestamp": "2026-03-29T20:24:47.782636-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -188,7 +152,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:35.467916-04:00",
+        "timestamp": "2026-03-29T20:24:47.994124-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -200,7 +164,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:35.522482-04:00",
+        "timestamp": "2026-03-29T20:24:48.157197-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -212,7 +176,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:35.750235-04:00",
+        "timestamp": "2026-03-29T20:24:48.324758-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -224,7 +188,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:35.979628-04:00",
+        "timestamp": "2026-03-29T20:24:48.494519-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -236,7 +200,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:36.222341-04:00",
+        "timestamp": "2026-03-29T20:24:48.783813-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -248,7 +212,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:36.446532-04:00",
+        "timestamp": "2026-03-29T20:24:48.952094-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -260,7 +224,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:36.502549-04:00",
+        "timestamp": "2026-03-29T20:24:49.087762-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -272,7 +236,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:36.562917-04:00",
+        "timestamp": "2026-03-29T20:24:49.272560-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -284,7 +248,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:36.631934-04:00",
+        "timestamp": "2026-03-29T20:24:49.397501-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -296,7 +260,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:36.858717-04:00",
+        "timestamp": "2026-03-29T20:24:49.563260-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -308,7 +272,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:36.914846-04:00",
+        "timestamp": "2026-03-29T20:24:49.736145-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -320,67 +284,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:37.071758-04:00",
-        "city": "baltimore",
-        "stage": "image_download",
-        "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "source_url": "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "context": {
-            "event_name": "Spring Block Party"
-        },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
-    },
-    {
-        "timestamp": "2026-03-28T20:24:37.148501-04:00",
-        "city": "baltimore",
-        "stage": "image_download",
-        "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "source_url": "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "context": {
-            "event_name": "Sunday Services"
-        },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
-    },
-    {
-        "timestamp": "2026-03-28T20:24:37.214599-04:00",
-        "city": "baltimore",
-        "stage": "image_download",
-        "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "source_url": "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "context": {
-            "event_name": "Prayer Meeting"
-        },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
-    },
-    {
-        "timestamp": "2026-03-28T20:24:37.281380-04:00",
-        "city": "baltimore",
-        "stage": "image_download",
-        "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "source_url": "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "context": {
-            "event_name": "City Youth D-Groups"
-        },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
-    },
-    {
-        "timestamp": "2026-03-28T20:24:37.342621-04:00",
-        "city": "baltimore",
-        "stage": "image_download",
-        "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "source_url": "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "context": {
-            "event_name": "Managing God's Money | Finance Class"
-        },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
-    },
-    {
-        "timestamp": "2026-03-28T20:24:37.411134-04:00",
+        "timestamp": "2026-03-29T20:24:49.956460-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -392,7 +296,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:37.478582-04:00",
+        "timestamp": "2026-03-29T20:24:50.050135-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -404,7 +308,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:37.540401-04:00",
+        "timestamp": "2026-03-29T20:24:50.133716-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -416,7 +320,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:37.610060-04:00",
+        "timestamp": "2026-03-29T20:24:50.220951-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -428,7 +332,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:37.677168-04:00",
+        "timestamp": "2026-03-29T20:24:50.306808-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -440,7 +344,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:37.738126-04:00",
+        "timestamp": "2026-03-29T20:24:50.385043-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -452,7 +356,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:37.808657-04:00",
+        "timestamp": "2026-03-29T20:24:50.455291-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -464,7 +368,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:37.873199-04:00",
+        "timestamp": "2026-03-29T20:24:50.539241-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -476,7 +380,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:37.938021-04:00",
+        "timestamp": "2026-03-29T20:24:50.623756-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -488,7 +392,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:37.996872-04:00",
+        "timestamp": "2026-03-29T20:24:50.693310-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -500,7 +404,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:38.077587-04:00",
+        "timestamp": "2026-03-29T20:24:50.775346-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -512,7 +416,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:38.149261-04:00",
+        "timestamp": "2026-03-29T20:24:50.859500-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -524,7 +428,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:38.217996-04:00",
+        "timestamp": "2026-03-29T20:24:50.940796-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -536,7 +440,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:38.279720-04:00",
+        "timestamp": "2026-03-29T20:24:51.008768-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -548,7 +452,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:38.366498-04:00",
+        "timestamp": "2026-03-29T20:24:51.076205-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -560,7 +464,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:38.436759-04:00",
+        "timestamp": "2026-03-29T20:24:51.145191-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -572,7 +476,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:38.538230-04:00",
+        "timestamp": "2026-03-29T20:24:51.228552-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -584,7 +488,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:38.600957-04:00",
+        "timestamp": "2026-03-29T20:24:51.314638-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -596,7 +500,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:38.662832-04:00",
+        "timestamp": "2026-03-29T20:24:51.397175-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -608,7 +512,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:38.724685-04:00",
+        "timestamp": "2026-03-29T20:24:51.466758-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -620,7 +524,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:38.793198-04:00",
+        "timestamp": "2026-03-29T20:24:51.535231-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -632,7 +536,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:38.878563-04:00",
+        "timestamp": "2026-03-29T20:24:51.603481-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -644,7 +548,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:38.941735-04:00",
+        "timestamp": "2026-03-29T20:24:51.674483-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -656,7 +560,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.000431-04:00",
+        "timestamp": "2026-03-29T20:24:51.743799-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -668,7 +572,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.062586-04:00",
+        "timestamp": "2026-03-29T20:24:51.825533-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -680,7 +584,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.123466-04:00",
+        "timestamp": "2026-03-29T20:24:51.894129-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -692,7 +596,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.184218-04:00",
+        "timestamp": "2026-03-29T20:24:51.961060-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -704,7 +608,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.245815-04:00",
+        "timestamp": "2026-03-29T20:24:52.028903-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -716,7 +620,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.310610-04:00",
+        "timestamp": "2026-03-29T20:24:52.095870-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -728,7 +632,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.375777-04:00",
+        "timestamp": "2026-03-29T20:24:52.164400-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -740,7 +644,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.435031-04:00",
+        "timestamp": "2026-03-29T20:24:52.243127-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -752,7 +656,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.495016-04:00",
+        "timestamp": "2026-03-29T20:24:52.312572-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -764,7 +668,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.564374-04:00",
+        "timestamp": "2026-03-29T20:24:52.380873-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -776,7 +680,67 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.629627-04:00",
+        "timestamp": "2026-03-29T20:24:52.462755-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
+        "source_url": "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
+        "context": {
+            "event_name": "Managing God's Money | Finance Class"
+        },
+        "error_type": "HTTPError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
+    },
+    {
+        "timestamp": "2026-03-29T20:24:52.530168-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
+        "source_url": "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
+        "context": {
+            "event_name": "City Youth D-Groups"
+        },
+        "error_type": "HTTPError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
+    },
+    {
+        "timestamp": "2026-03-29T20:24:52.599728-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
+        "source_url": "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
+        "context": {
+            "event_name": "Prayer Meeting"
+        },
+        "error_type": "HTTPError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
+    },
+    {
+        "timestamp": "2026-03-29T20:24:52.668164-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
+        "source_url": "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
+        "context": {
+            "event_name": "Sunday Services"
+        },
+        "error_type": "HTTPError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
+    },
+    {
+        "timestamp": "2026-03-29T20:24:52.754075-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
+        "source_url": "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
+        "context": {
+            "event_name": "Spring Block Party"
+        },
+        "error_type": "HTTPError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
+    },
+    {
+        "timestamp": "2026-03-29T20:24:52.826035-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -788,7 +752,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.691987-04:00",
+        "timestamp": "2026-03-29T20:24:52.906147-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -800,7 +764,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.752177-04:00",
+        "timestamp": "2026-03-29T20:24:52.976090-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -812,7 +776,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.810073-04:00",
+        "timestamp": "2026-03-29T20:24:53.045965-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -824,7 +788,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.876909-04:00",
+        "timestamp": "2026-03-29T20:24:53.116099-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -836,7 +800,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.939228-04:00",
+        "timestamp": "2026-03-29T20:24:53.187816-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -848,7 +812,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:39.998712-04:00",
+        "timestamp": "2026-03-29T20:24:53.258360-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -860,7 +824,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:40.063203-04:00",
+        "timestamp": "2026-03-29T20:24:53.329007-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -872,7 +836,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:40.125111-04:00",
+        "timestamp": "2026-03-29T20:24:53.398756-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -884,7 +848,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:40.201447-04:00",
+        "timestamp": "2026-03-29T20:24:53.469422-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -896,7 +860,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:40.262180-04:00",
+        "timestamp": "2026-03-29T20:24:53.541310-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -908,7 +872,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:40.321951-04:00",
+        "timestamp": "2026-03-29T20:24:53.622671-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -920,7 +884,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:40.381846-04:00",
+        "timestamp": "2026-03-29T20:24:53.703925-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -932,7 +896,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:40.443974-04:00",
+        "timestamp": "2026-03-29T20:24:53.774517-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -944,7 +908,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:40.506659-04:00",
+        "timestamp": "2026-03-29T20:24:53.842636-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -956,7 +920,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:40.566682-04:00",
+        "timestamp": "2026-03-29T20:24:53.913722-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -968,7 +932,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:40.630634-04:00",
+        "timestamp": "2026-03-29T20:24:53.979391-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -980,7 +944,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:40.691886-04:00",
+        "timestamp": "2026-03-29T20:24:54.047133-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -992,7 +956,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:40.755466-04:00",
+        "timestamp": "2026-03-29T20:24:54.115176-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -1004,7 +968,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:40.831636-04:00",
+        "timestamp": "2026-03-29T20:24:54.182826-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -1016,7 +980,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:40.894242-04:00",
+        "timestamp": "2026-03-29T20:24:54.251882-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -1028,7 +992,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:40.954090-04:00",
+        "timestamp": "2026-03-29T20:24:54.320680-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -1040,7 +1004,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:41.019192-04:00",
+        "timestamp": "2026-03-29T20:24:54.387759-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -1052,7 +1016,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:41.079671-04:00",
+        "timestamp": "2026-03-29T20:24:54.457103-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -1064,7 +1028,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:41.140506-04:00",
+        "timestamp": "2026-03-29T20:24:54.526171-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
@@ -1076,67 +1040,7 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:41.202235-04:00",
-        "city": "baltimore",
-        "stage": "image_download",
-        "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "source_url": "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "context": {
-            "event_name": "Prayer Meeting"
-        },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
-    },
-    {
-        "timestamp": "2026-03-28T20:24:41.275086-04:00",
-        "city": "baltimore",
-        "stage": "image_download",
-        "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "source_url": "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "context": {
-            "event_name": "Fasting & Prayer"
-        },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
-    },
-    {
-        "timestamp": "2026-03-28T20:24:41.359344-04:00",
-        "city": "baltimore",
-        "stage": "image_download",
-        "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "source_url": "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "context": {
-            "event_name": "Teach Us To Pray | Prayer Course for Men & Women"
-        },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
-    },
-    {
-        "timestamp": "2026-03-28T20:24:41.521935-04:00",
-        "city": "baltimore",
-        "stage": "image_download",
-        "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "source_url": "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "context": {
-            "event_name": "Managing God's Money | Finance Class"
-        },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
-    },
-    {
-        "timestamp": "2026-03-28T20:24:41.584367-04:00",
-        "city": "baltimore",
-        "stage": "image_download",
-        "error": "404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "source_url": "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w",
-        "context": {
-            "event_name": "City Youth D-Groups"
-        },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w\n"
-    },
-    {
-        "timestamp": "2026-03-28T20:24:42.660660-04:00",
+        "timestamp": "2026-03-29T20:24:55.517636-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://bluewaterbaltimore.org/wp-content/uploads/2023/09/BWB_Logo_Horizontal.png",
@@ -1148,39 +1052,39 @@
         "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1291, in main\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://bluewaterbaltimore.org/wp-content/uploads/2023/09/BWB_Logo_Horizontal.png\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:43.077674-04:00",
+        "timestamp": "2026-03-29T20:24:55.993564-04:00",
         "city": "baltimore",
         "stage": "image_download",
-        "error": "cannot identify image file <_io.BytesIO object at 0x7efee63b7010>",
+        "error": "cannot identify image file <_io.BytesIO object at 0x7fb3b0ec3e20>",
         "source_url": "https://www.chesapeakewea.org/images/top-logo-new.svg",
         "context": {
             "event_name": "2026 WEF Fly-In @ DC"
         },
         "error_type": "UnidentifiedImageError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1294, in main\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7efee63b7010>\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1294, in main\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7fb3b0ec3e20>\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:43.275010-04:00",
+        "timestamp": "2026-03-29T20:24:56.363016-04:00",
         "city": "baltimore",
         "stage": "image_download",
-        "error": "cannot identify image file <_io.BytesIO object at 0x7efee6450fe0>",
+        "error": "cannot identify image file <_io.BytesIO object at 0x7fb3b0ec2b60>",
         "source_url": "https://www.chesapeakewea.org/images/top-logo-new.svg",
         "context": {
             "event_name": "Chesapeake WEA Call for Nominations for 2026/27 Board"
         },
         "error_type": "UnidentifiedImageError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1294, in main\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7efee6450fe0>\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1294, in main\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7fb3b0ec2b60>\n"
     },
     {
-        "timestamp": "2026-03-28T20:24:43.634906-04:00",
+        "timestamp": "2026-03-29T20:24:56.849431-04:00",
         "city": "baltimore",
         "stage": "image_download",
-        "error": "cannot identify image file <_io.BytesIO object at 0x7efee6450e00>",
+        "error": "cannot identify image file <_io.BytesIO object at 0x7fb3b0ec3e20>",
         "source_url": "https://www.chesapeakewea.org/images/top-logo-new.svg",
         "context": {
             "event_name": "2026 WEFMAX Montreal, Quebec Canada"
         },
         "error_type": "UnidentifiedImageError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1294, in main\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7efee6450e00>\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1294, in main\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7fb3b0ec3e20>\n"
     }
 ]
