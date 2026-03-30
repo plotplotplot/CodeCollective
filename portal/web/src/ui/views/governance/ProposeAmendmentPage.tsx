@@ -5,6 +5,7 @@ import { getMotionById } from '../../../application/usecases/getMotionById'
 import { proposeAmendment } from '../../../application/usecases/proposeAmendment'
 import type { Motion } from '../../../domain/motion/Motion'
 import { AmendmentDiff } from '../../components/governance/AmendmentDiff'
+import { GovernanceNav, GovernanceBreadcrumb } from '../../components/governance/GovernanceNav'
 
 const inputStyle: React.CSSProperties = {
   width: '100%',
@@ -97,24 +98,16 @@ export function ProposeAmendmentPage() {
   }
 
   return (
-    <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 20px' }}>
-      <div style={{ marginBottom: 24 }}>
-        <Link
-          to={`/governance/${id}`}
-          style={{
-            fontSize: 13,
-            color: 'var(--text-muted)',
-            textDecoration: 'none',
-            fontWeight: 500,
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 4,
-            transition: 'color 0.15s',
-          }}
-        >
-          &larr; Back to Motion
-        </Link>
-      </div>
+    <div>
+      <GovernanceNav />
+      <div style={{ maxWidth: 720, margin: '0 auto', padding: '24px 20px 40px' }}>
+        <GovernanceBreadcrumb 
+          items={[
+            { label: 'Motions', to: '/governance' },
+            { label: parentMotion?.title || 'Motion', to: `/governance/${id}` },
+            { label: 'Propose Amendment' },
+          ]} 
+        />
 
       <div style={{
         background: 'var(--panel)',
@@ -237,6 +230,7 @@ export function ProposeAmendmentPage() {
             </button>
           </div>
         </form>
+      </div>
       </div>
     </div>
   )

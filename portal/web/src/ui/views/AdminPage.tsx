@@ -16,7 +16,7 @@ export function AdminPage() {
       setIsAdmin(false)
       return
     }
-    fetch('/api/ballot/admin/me', {
+    fetch('/api/org/admin/me', {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((resp) => (resp.ok ? resp.json() : { is_admin: false }))

@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useServices, useAuth } from '../../../app/AppProviders'
 import { proposeMotion } from '../../../application/usecases/proposeMotion'
+import { GovernanceNav, GovernanceBreadcrumb } from '../../components/governance/GovernanceNav'
 
 const inputStyle: React.CSSProperties = {
   width: '100%',
@@ -56,24 +57,10 @@ export function ProposeMotionPage() {
   }
 
   return (
-    <div style={{ maxWidth: 720, margin: '0 auto', padding: '40px 20px' }}>
-      <div style={{ marginBottom: 24 }}>
-        <Link
-          to="/governance"
-          style={{
-            fontSize: 13,
-            color: 'var(--text-muted)',
-            textDecoration: 'none',
-            fontWeight: 500,
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 4,
-            transition: 'color 0.15s',
-          }}
-        >
-          &larr; Back to Governance
-        </Link>
-      </div>
+    <div>
+      <GovernanceNav />
+      <div style={{ maxWidth: 720, margin: '0 auto', padding: '24px 20px 40px' }}>
+        <GovernanceBreadcrumb items={[{ label: 'Motions', to: '/governance' }, { label: 'Propose Motion' }]} />
 
       <div style={{
         background: 'var(--panel)',
@@ -200,6 +187,7 @@ export function ProposeMotionPage() {
             </button>
           </div>
         </form>
+      </div>
       </div>
     </div>
   )

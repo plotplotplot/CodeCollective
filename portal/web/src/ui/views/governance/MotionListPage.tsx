@@ -6,6 +6,7 @@ import type { Motion, MotionStatus, VoteDirection } from '../../../domain/motion
 import type { VoteCounts } from '../../../application/ports/EngagementRepository'
 import type { MotionListQuery } from '../../../application/ports/MotionRepository'
 import { MotionStatusBadge } from '../../components/governance/MotionStatusBadge'
+import { GovernanceNav, GovernanceBreadcrumb } from '../../components/governance/GovernanceNav'
 
 const STATUS_FILTERS: (MotionStatus | null)[] = [
   null,
@@ -98,45 +99,31 @@ export function MotionListPage() {
   }
 
   return (
-    <div style={{ maxWidth: 920, margin: '0 auto', padding: '40px 20px' }}>
-      {/* Page header */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: 16,
-        marginBottom: 32,
-      }}>
-        <h1 style={{
-          fontSize: 28,
-          fontWeight: 800,
-          margin: 0,
-          color: 'var(--text-primary)',
-          letterSpacing: '-0.02em',
+    <div>
+      <GovernanceNav />
+      <div style={{ maxWidth: 920, margin: '0 auto', padding: '24px 20px 40px' }}>
+        {/* Breadcrumb */}
+        <GovernanceBreadcrumb items={[]} />
+        
+        {/* Page header */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: 16,
+          marginBottom: 24,
         }}>
-          Governance
-        </h1>
-        <Link
-          to="/governance/propose"
-          style={{
-            background: 'var(--primary)',
-            color: '#fff',
-            border: 'none',
-            borderRadius: 999,
-            padding: '10px 24px',
-            textDecoration: 'none',
-            fontWeight: 700,
-            fontSize: 14,
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 6,
-            transition: 'background 0.15s',
-          }}
-        >
-          + Propose Motion
-        </Link>
-      </div>
+          <h1 style={{
+            fontSize: 24,
+            fontWeight: 800,
+            margin: 0,
+            color: 'var(--text-primary)',
+            letterSpacing: '-0.02em',
+          }}>
+            Motions
+          </h1>
+        </div>
 
       {/* Search + Sort row */}
       <div style={{
@@ -384,6 +371,7 @@ export function MotionListPage() {
           })}
         </div>
       )}
+      </div>
     </div>
   )
 }

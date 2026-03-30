@@ -13,6 +13,7 @@ import { MotionTimeline } from '../../components/governance/MotionTimeline'
 import { VotingPanel } from '../../components/governance/VotingPanel'
 import { DiffView, InlineDiff } from '../../components/governance/DiffView'
 import { UnifiedDiff } from '../../components/governance/UnifiedDiff'
+import { GovernanceNav, GovernanceBreadcrumb } from '../../components/governance/GovernanceNav'
 
 function getGuestId(): string {
   const key = 'governance.guestId'
@@ -242,25 +243,16 @@ export function MotionDetailPage() {
   }
 
   return (
-    <div style={{ maxWidth: 920, margin: '0 auto', padding: '40px 20px' }}>
-      {/* Breadcrumb */}
-      <div style={{ marginBottom: 24 }}>
-        <Link
-          to="/governance"
-          style={{
-            fontSize: 13,
-            color: 'var(--text-muted)',
-            textDecoration: 'none',
-            fontWeight: 500,
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 4,
-            transition: 'color 0.15s',
-          }}
-        >
-          &larr; Back to Governance
-        </Link>
-      </div>
+    <div>
+      <GovernanceNav />
+      <div style={{ maxWidth: 920, margin: '0 auto', padding: '24px 20px 40px' }}>
+        {/* Breadcrumb */}
+        <GovernanceBreadcrumb 
+          items={[
+            { label: motion?.type === 'amendment' ? 'Amendments' : 'Motions', to: '/governance' },
+            { label: motion?.title || 'Motion' },
+          ]} 
+        />
 
       {/* Header card */}
       <section style={sectionStyle}>
@@ -815,6 +807,7 @@ export function MotionDetailPage() {
           </div>
         </div>
       </section>
+      </div>
     </div>
   )
 }

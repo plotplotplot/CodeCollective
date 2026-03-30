@@ -10,308 +10,162 @@ interface UnifiedDiffProps {
     proposerName: string
     status: string
   }>
-  showUnchanged?: boolean
 }
 
-type DiffSegment = {
-  type: 'context' | 'added' | 'removed'
-  text: string
+interface Change {
+  amendmentId: string
+  amendmentTitle: string
+  color: string
   lineNum: number
-  amendmentId?: string
-  amendmentTitle?: string
+  addedText: string // Only the text that was added
 }
 
 /**
- * Compute unified diff showing all amendments applied sequentially
+ * Find what text was added at the end of a line (simple suffix matching)
  */
-function computeUnifiedDiff(
-  original: string, 
-  amendments: UnifiedDiffProps['amendments']
-): DiffSegment[] {
-  if (amendments.length === 0) return []
+function findAddedSuffix(original: string, modified: string): string {
+  if (!original) return modified
+  if (!modified) return ''
   
-  const lines = original.split('\n')
-  const result: DiffSegment[] = []
-  let currentLineNum = 1
+  // If modified starts with original, the difference is the suffix
+  if (modified.startsWith(original)) {
+    return modified.slice(original.length)
+  }
   
-  // Track which lines are modified by which amendments
-  const lineStates: Array<{
-    text: string
-    originalLineNum: number
-    modifiedBy: string | null
-    isDeleted: boolean
-  }> = lines.map((text, idx) => ({
-    text,
-    originalLineNum: idx + 1,
-    modifiedBy: null,
-    isDeleted: false,
-  }))
+  // Otherwise do word-level comparison
+  const origWords = original.split(' ')
+  const modWords = modified.split(' ')
   
-  // Process each amendment
-  amendments.forEach((amendment) => {
-    const proposedText = amendment.proposedBodyDiff || amendment.body
-    const proposedLines = proposedText.split('\n')
-    
-    // Simple line-by-line comparison to find changes
-    // For a more sophisticated approach, we'd use the Myers diff here too
-    const maxLines = Math.max(lineStates.length, proposedLines.length)
-    
-    for (let i = 0; i < maxLines; i++) {
-      const currentState = lineStates[i]
-      const proposedLine = proposedLines[i]
-      
-      if (!currentState && proposedLine) {
-        // Line added by this amendment
-        lineStates.push({
-          text: proposedLine,
-          originalLineNum: i + 1,
-          modifiedBy: amendment.id,
-          isDeleted: false,
-        })
-      } else if (currentState && !proposedLine && !currentState.isDeleted) {
-        // Line would be removed - mark it
-        // But we keep it for the unified view to show what was removed
-      } else if (currentState && proposedLine && currentState.text !== proposedLine) {
-        // Line modified
-        currentState.text = proposedLine
-        currentState.modifiedBy = amendment.id
-      }
-    }
-  })
+  // Find common prefix words
+  let commonIdx = 0
+  while (commonIdx < origWords.length && 
+         commonIdx < modWords.length && 
+         origWords[commonIdx] === modWords[commonIdx]) {
+    commonIdx++
+  }
   
-  // Build the unified diff output
-  // Show original with deletions and modifications, then additions
-  
-  // First pass: show original context with deletions (in red)
-  lines.forEach((originalText, idx) => {
-    const state = lineStates[idx]
-    const amendsThatModified = amendments.filter(a => {
-      const proposed = (a.proposedBodyDiff || a.body).split('\n')
-      return proposed[idx] !== originalText
-    })
-    
-    if (state && state.isDeleted) {
-      // Line was deleted
-      result.push({
-        type: 'removed',
-        text: originalText,
-        lineNum: idx + 1,
-        amendmentId: amendsThatModified[0]?.id,
-        amendmentTitle: amendsThatModified[0]?.title,
-      })
-    } else if (amendsThatModified.length > 0) {
-      // Line was modified - show as removal of original
-      result.push({
-        type: 'removed',
-        text: originalText,
-        lineNum: idx + 1,
-        amendmentId: amendsThatModified[0]?.id,
-        amendmentTitle: amendsThatModified[0]?.title,
-      })
-    } else {
-      // Context line (unchanged)
-      result.push({
-        type: 'context',
-        text: originalText,
-        lineNum: idx + 1,
-      })
-    }
-  })
-  
-  // Second pass: show all additions (in green)
-  // This is a simplified approach - in reality we'd interleave them properly
-  amendments.forEach((amendment) => {
-    const proposedLines = (amendment.proposedBodyDiff || amendment.body).split('\n')
-    
-    proposedLines.forEach((line, idx) => {
-      const originalLine = lines[idx]
-      
-      if (line !== originalLine) {
-        // This is a new or modified line
-        result.push({
-          type: 'added',
-          text: line,
-          lineNum: idx + 1,
-          amendmentId: amendment.id,
-          amendmentTitle: amendment.title,
-        })
-      }
-    })
-  })
-  
-  return result
+  // Return the differing part
+  return modWords.slice(commonIdx).join(' ')
 }
 
 /**
- * Word-level diff for inline display
+ * Find what text was added (for new lines or inline additions)
  */
-function diffWords(oldStr: string, newStr: string): Array<{ type: 'same' | 'removed' | 'added'; text: string }> {
-  const words1 = oldStr.split(/(\s+)/)
-  const words2 = newStr.split(/(\s+)/)
+function findAdditions(original: string, modified: string): string {
+  const origTrimmed = original.trim()
+  const modTrimmed = modified.trim()
   
-  // Simple LCS
-  const m = words1.length
-  const n = words2.length
-  const dp: number[][] = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0))
+  if (!origTrimmed) return modTrimmed
+  if (!modTrimmed) return ''
   
-  for (let i = 1; i <= m; i++) {
-    for (let j = 1; j <= n; j++) {
-      if (words1[i - 1] === words2[j - 1]) {
-        dp[i][j] = dp[i - 1][j - 1] + 1
-      } else {
-        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1])
+  // Check if it's a simple suffix addition
+  if (modTrimmed.startsWith(origTrimmed)) {
+    return modTrimmed.slice(origTrimmed.length).trim()
+  }
+  
+  // Check if it's a prefix addition
+  if (modTrimmed.endsWith(origTrimmed)) {
+    return modTrimmed.slice(0, modTrimmed.length - origTrimmed.length).trim()
+  }
+  
+  // Check for inline additions (word boundaries)
+  const origWords = origTrimmed.split(/\s+/)
+  const modWords = modTrimmed.split(/\s+/)
+  
+  // If modified has more words, find the new ones
+  if (modWords.length > origWords.length) {
+    // Find where they differ
+    let diffStart = 0
+    while (diffStart < origWords.length && origWords[diffStart] === modWords[diffStart]) {
+      diffStart++
+    }
+    
+    // Return words from diffStart to end
+    return modWords.slice(diffStart).join(' ')
+  }
+  
+  // If same word count but different words
+  if (modWords.length === origWords.length) {
+    const diffs: string[] = []
+    for (let i = 0; i < modWords.length; i++) {
+      if (modWords[i] !== origWords[i]) {
+        diffs.push(modWords[i])
       }
     }
-  }
-  
-  // Backtrack
-  const result: Array<{ type: 'same' | 'removed' | 'added'; text: string }> = []
-  let i = m, j = n
-  
-  while (i > 0 || j > 0) {
-    if (i > 0 && j > 0 && words1[i - 1] === words2[j - 1]) {
-      result.unshift({ type: 'same', text: words1[i - 1] })
-      i--
-      j--
-    } else if (j > 0 && (i === 0 || dp[i][j - 1] >= dp[i - 1][j])) {
-      result.unshift({ type: 'added', text: words2[j - 1] })
-      j--
-    } else if (i > 0) {
-      result.unshift({ type: 'removed', text: words1[i - 1] })
-      i--
+    if (diffs.length > 0) {
+      return diffs.join(' ')
     }
   }
   
-  return result
+  return modTrimmed
 }
 
-export function UnifiedDiff({ original, amendments, showUnchanged = true }: UnifiedDiffProps) {
-  const diff = useMemo(() => {
-    // For unified view, we'll show:
-    // 1. The original with deletions marked
-    // 2. Then all additions grouped by amendment
+export function UnifiedDiff({ original, amendments }: UnifiedDiffProps) {
+  const { baseLines, changes, amendmentColors } = useMemo(() => {
+    // Generate colors
+    const colors = ['#22c55e', '#3b82f6', '#a855f7', '#f59e0b', '#ec4899', '#14b8a6']
+    const colorMap: Record<string, string> = {}
+    amendments.forEach((a, i) => {
+      colorMap[a.id] = colors[i % colors.length]
+    })
     
     const originalLines = original.split('\n')
-    const result: Array<{
-      type: 'header' | 'context' | 'removed' | 'added'
-      text: string
-      lineNum?: number
-      amendmentId?: string
-      amendmentTitle?: string
-      amendmentColor?: string
-    }> = []
+    const baseLines: Array<{ text: string; lineNum: number; hasChanges: boolean }> = []
+    const allChanges: Change[] = []
     
-    // Generate colors for amendments
-    const amendmentColors = [
-      '#22c55e', // green
-      '#3b82f6', // blue  
-      '#a855f7', // purple
-      '#f59e0b', // amber
-      '#ec4899', // pink
-      '#14b8a6', // teal
-    ]
-    
-    // Create a map of which amendment modified which line
-    const lineModifications: Array<{
-      original: string
-      modifications: Array<{
-        amendmentId: string
-        amendmentTitle: string
-        proposedText: string
-        color: string
-      }>
-    }> = originalLines.map(text => ({
-      original: text,
-      modifications: [],
-    }))
-    
-    amendments.forEach((amendment, idx) => {
-      const color = amendmentColors[idx % amendmentColors.length]
-      const proposedLines = (amendment.proposedBodyDiff || amendment.body).split('\n')
+    // Process each line
+    originalLines.forEach((line, idx) => {
+      const lineNum = idx + 1
+      let hasChanges = false
       
-      proposedLines.forEach((proposedLine, lineIdx) => {
-        if (lineIdx < lineModifications.length) {
-          if (lineModifications[lineIdx].original !== proposedLine) {
-            lineModifications[lineIdx].modifications.push({
+      // Check each amendment for changes to this line
+      amendments.forEach(amendment => {
+        const proposedLines = (amendment.proposedBodyDiff || amendment.body).split('\n')
+        const proposedLine = proposedLines[idx]
+        
+        if (proposedLine !== undefined && proposedLine !== line) {
+          hasChanges = true
+          const addedText = findAdditions(line, proposedLine)
+          
+          if (addedText) {
+            allChanges.push({
               amendmentId: amendment.id,
               amendmentTitle: amendment.title,
-              proposedText: proposedLine,
-              color,
+              color: colorMap[amendment.id],
+              lineNum,
+              addedText,
             })
           }
-        } else {
-          // New line added at the end
-          if (!lineModifications[lineIdx]) {
-            lineModifications[lineIdx] = {
-              original: '',
-              modifications: [],
-            }
-          }
-          lineModifications[lineIdx].modifications.push({
-            amendmentId: amendment.id,
-            amendmentTitle: amendment.title,
-            proposedText: proposedLine,
-            color,
-          })
         }
       })
-    })
-    
-    // Build the unified output
-    lineModifications.forEach((lineMod, idx) => {
-      const lineNum = idx + 1
       
-      if (lineMod.modifications.length === 0) {
-        // Unchanged line
-        if (showUnchanged) {
-          result.push({
-            type: 'context',
-            text: lineMod.original,
-            lineNum,
-          })
-        }
-      } else {
-        // Line was modified - show the original (removed)
-        result.push({
-          type: 'removed',
-          text: lineMod.original,
-          lineNum,
-        })
-        
-        // Show each amendment's version
-        lineMod.modifications.forEach((mod) => {
-          result.push({
-            type: 'added',
-            text: mod.proposedText,
-            lineNum,
-            amendmentId: mod.amendmentId,
-            amendmentTitle: mod.amendmentTitle,
-            amendmentColor: mod.color,
-          })
-        })
-      }
+      baseLines.push({ text: line, lineNum, hasChanges })
     })
     
-    // Add any completely new lines from amendments
-    amendments.forEach((amendment, idx) => {
-      const color = amendmentColors[idx % amendmentColors.length]
+    // Check for added lines (beyond original length)
+    amendments.forEach(amendment => {
       const proposedLines = (amendment.proposedBodyDiff || amendment.body).split('\n')
       
-      proposedLines.slice(lineModifications.length).forEach((line, offsetIdx) => {
-        const lineNum = lineModifications.length + offsetIdx + 1
-        result.push({
-          type: 'added',
-          text: line,
-          lineNum,
+      proposedLines.slice(originalLines.length).forEach((line, offset) => {
+        allChanges.push({
           amendmentId: amendment.id,
           amendmentTitle: amendment.title,
-          amendmentColor: color,
+          color: colorMap[amendment.id],
+          lineNum: originalLines.length + offset + 1,
+          addedText: line,
         })
       })
     })
     
-    return result
-  }, [original, amendments, showUnchanged])
+    // Sort changes by line number, then by amendment
+    allChanges.sort((a, b) => {
+      if (a.lineNum !== b.lineNum) return a.lineNum - b.lineNum
+      return amendments.findIndex(am => am.id === a.amendmentId) - 
+             amendments.findIndex(am => am.id === b.amendmentId)
+    })
+    
+    return { baseLines, changes: allChanges, amendmentColors: colorMap }
+  }, [original, amendments])
   
   if (amendments.length === 0) {
     return (
@@ -329,21 +183,23 @@ export function UnifiedDiff({ original, amendments, showUnchanged = true }: Unif
     )
   }
   
-  // Generate legend colors
-  const amendmentColors = [
-    '#22c55e', '#3b82f6', '#a855f7', '#f59e0b', '#ec4899', '#14b8a6',
-  ]
+  // Group changes by line number
+  const changesByLine = changes.reduce((acc, change) => {
+    if (!acc[change.lineNum]) acc[change.lineNum] = []
+    acc[change.lineNum].push(change)
+    return acc
+  }, {} as Record<number, Change[]>)
   
   return (
     <div style={{
-      fontFamily: 'var(--font-mono, "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace)',
-      fontSize: 13,
+      fontSize: 14,
       lineHeight: 1.6,
       borderRadius: 'var(--radius-md)',
       border: '1px solid var(--border-subtle)',
       overflow: 'hidden',
+      backgroundColor: 'var(--panel)',
     }}>
-      {/* Header with amendment legend */}
+      {/* Header */}
       <div style={{
         padding: '12px 16px',
         backgroundColor: 'var(--panel-2)',
@@ -353,34 +209,25 @@ export function UnifiedDiff({ original, amendments, showUnchanged = true }: Unif
           fontSize: 12,
           fontWeight: 600,
           color: 'var(--text-secondary)',
-          marginBottom: 8,
+          marginBottom: 10,
         }}>
           Unified Diff ({amendments.length} amendment{amendments.length !== 1 ? 's' : ''})
         </div>
-        <div style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '8px 16px',
-        }}>
-          {amendments.map((a, idx) => (
-            <div 
-              key={a.id}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 6,
-                fontSize: 11,
-              }}
-            >
+        
+        {/* Legend */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px 20px' }}>
+          {amendments.map(a => (
+            <div key={a.id} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
               <span style={{
                 width: 10,
                 height: 10,
                 borderRadius: 2,
-                backgroundColor: amendmentColors[idx % amendmentColors.length],
+                backgroundColor: amendmentColors[a.id],
               }} />
               <span style={{
+                fontSize: 12,
                 color: 'var(--text-secondary)',
-                maxWidth: 150,
+                maxWidth: 140,
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
@@ -392,110 +239,150 @@ export function UnifiedDiff({ original, amendments, showUnchanged = true }: Unif
         </div>
       </div>
       
-      {/* Diff content */}
-      <div style={{ maxHeight: '600px', overflow: 'auto' }}>
-        {diff.map((line, idx) => (
-          <div
-            key={idx}
-            style={{
-              display: 'flex',
-              minHeight: '24px',
-              backgroundColor: line.type === 'removed' 
-                ? 'rgba(239, 68, 68, 0.08)'
-                : line.type === 'added'
-                  ? `${line.amendmentColor}15` // 15 = ~8% opacity in hex
-                  : 'transparent',
-            }}
-          >
-            {/* Line number */}
-            <span style={{
-              width: '45px',
-              textAlign: 'right',
-              paddingRight: '12px',
-              color: line.type === 'context' ? 'var(--text-muted)' : 
-                    line.type === 'removed' ? 'var(--accent-red)' :
-                    line.amendmentColor,
-              userSelect: 'none',
-              fontSize: 11,
-              paddingTop: '3px',
-              borderRight: '1px solid var(--border-subtle)',
-              flexShrink: 0,
-            }}>
-              {line.lineNum ?? ''}
-            </span>
-            
-            {/* Change indicator */}
-            <span style={{
-              width: '24px',
-              textAlign: 'center',
-              color: line.type === 'removed' ? 'var(--accent-red)' :
-                    line.type === 'added' ? line.amendmentColor :
-                    'var(--text-muted)',
-              fontWeight: 700,
-              fontSize: 12,
-              paddingTop: '3px',
-              flexShrink: 0,
-            }}>
-              {line.type === 'removed' ? '-' : 
-               line.type === 'added' ? '+' : 
-               ' '}
-            </span>
-            
-            {/* Content */}
-            <span style={{
-              flex: 1,
-              color: line.type === 'context' ? 'var(--text-primary)' :
-                    line.type === 'removed' ? 'var(--accent-red)' :
-                    'var(--text-primary)',
-              whiteSpace: 'pre-wrap',
-              wordBreak: 'break-word',
-              padding: '3px 12px 3px 0',
-            }}>
-              {line.text || ' '}
-            </span>
-            
-            {/* Amendment indicator for additions */}
-            {line.type === 'added' && line.amendmentTitle && (
-              <span style={{
-                fontSize: 10,
-                color: line.amendmentColor,
-                padding: '3px 8px',
-                backgroundColor: `${line.amendmentColor}20`,
-                borderRadius: 'var(--radius-sm)',
-                margin: '2px 8px 2px 0',
-                whiteSpace: 'nowrap',
-                maxWidth: 120,
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-              }}>
-                {line.amendmentTitle}
-              </span>
-            )}
-          </div>
-        ))}
+      {/* Combined View */}
+      <div style={{ maxHeight: '500px', overflow: 'auto' }}>
+        {baseLines.map((baseLine) => {
+          const lineChanges = changesByLine[baseLine.lineNum] || []
+          
+          return (
+            <div
+              key={baseLine.lineNum}
+              style={{
+                borderBottom: '1px solid var(--border-subtle)',
+                backgroundColor: lineChanges.length > 0 ? 'rgba(59, 130, 246, 0.02)' : 'transparent',
+              }}
+            >
+              {/* Base line */}
+              <div style={{ display: 'flex', padding: '8px 16px' }}>
+                <span style={{
+                  width: 32,
+                  color: 'var(--text-muted)',
+                  fontSize: 12,
+                  fontFamily: 'var(--font-mono)',
+                  flexShrink: 0,
+                }}>
+                  {baseLine.lineNum}
+                </span>
+                <span style={{
+                  flex: 1,
+                  color: lineChanges.length > 0 ? 'var(--text-secondary)' : 'var(--text-primary)',
+                  fontStyle: lineChanges.length > 0 ? 'italic' : 'normal',
+                }}>
+                  {baseLine.text || ' '}
+                </span>
+              </div>
+              
+              {/* Changes to this line */}
+              {lineChanges.map((change, idx) => (
+                <div
+                  key={`${change.amendmentId}-${idx}`}
+                  style={{
+                    display: 'flex',
+                    padding: '6px 16px 6px 48px',
+                    borderLeft: `3px solid ${change.color}`,
+                    marginLeft: 16,
+                    backgroundColor: `${change.color}08`,
+                  }}
+                >
+                  <span style={{
+                    color: change.color,
+                    fontWeight: 600,
+                    marginRight: 8,
+                    fontSize: 12,
+                  }}>
+                    +
+                  </span>
+                  <span style={{
+                    flex: 1,
+                    backgroundColor: `${change.color}20`,
+                    color: change.color,
+                    padding: '2px 8px',
+                    borderRadius: 4,
+                    fontWeight: 500,
+                  }}>
+                    {change.addedText}
+                  </span>
+                  <span style={{
+                    fontSize: 11,
+                    color: change.color,
+                    marginLeft: 8,
+                    opacity: 0.8,
+                  }}>
+                    {change.amendmentTitle}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )
+        })}
+        
+        {/* New lines (beyond original) */}
+        {Object.entries(changesByLine)
+          .filter(([lineNum]) => parseInt(lineNum) > baseLines.length)
+          .map(([lineNum, lineChanges]) => (
+            <div
+              key={`new-${lineNum}`}
+              style={{
+                borderBottom: '1px solid var(--border-subtle)',
+                backgroundColor: 'rgba(34, 197, 94, 0.03)',
+              }}
+            >
+              {lineChanges.map((change, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    display: 'flex',
+                    padding: '8px 16px',
+                    borderLeft: `3px solid ${change.color}`,
+                    marginLeft: 16,
+                  }}
+                >
+                  <span style={{
+                    width: 32,
+                    color: change.color,
+                    fontSize: 12,
+                    fontFamily: 'var(--font-mono)',
+                    flexShrink: 0,
+                  }}>
+                    {lineNum}
+                  </span>
+                  <span style={{
+                    flex: 1,
+                    backgroundColor: `${change.color}20`,
+                    color: change.color,
+                    padding: '2px 8px',
+                    borderRadius: 4,
+                    fontWeight: 500,
+                  }}>
+                    {change.addedText}
+                  </span>
+                  <span style={{
+                    fontSize: 11,
+                    color: change.color,
+                    marginLeft: 8,
+                  }}>
+                    {change.amendmentTitle}
+                  </span>
+                </div>
+              ))}
+            </div>
+          ))}
       </div>
       
-      {/* Legend */}
+      {/* Footer legend */}
       <div style={{
-        display: 'flex',
-        gap: '16px',
-        padding: '8px 12px',
+        padding: '10px 16px',
         backgroundColor: 'var(--panel-2)',
         borderTop: '1px solid var(--border-subtle)',
-        fontSize: 11,
+        fontSize: 12,
         color: 'var(--text-muted)',
+        display: 'flex',
+        gap: 20,
       }}>
+        <span>Base text shown in black</span>
         <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <span style={{ color: 'var(--accent-red)', fontWeight: 700 }}>-</span>
-          Removed (original)
-        </span>
-        <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <span style={{ color: 'var(--accent-green)', fontWeight: 700 }}>+</span>
-          Added by amendment
-        </span>
-        <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <span style={{ width: 10, height: 10, borderRadius: 2, backgroundColor: '#22c55e' }} />
-          Amendment color
+          <span style={{ padding: '2px 6px', backgroundColor: '#22c55e20', color: '#22c55e', borderRadius: 3, fontWeight: 500 }}>+ text</span>
+          Additions by amendment
         </span>
       </div>
     </div>

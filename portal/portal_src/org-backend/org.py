@@ -1309,7 +1309,7 @@ async def list_accounts(
 
     return query.limit(safe_limit).all()
 
-@app.get("/admin/me")
+@app.get("/api/org/admin/me")
 async def get_admin_status(current_user: dict = Depends(get_current_user)):
     """Check if current user is an admin."""
     if current_user.get("is_anonymous"):
