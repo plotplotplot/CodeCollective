@@ -4,12 +4,12 @@ export function Footer() {
       <div className="portal-footer-inner">
         <div>
           <div className="portal-brand-title">Code Collective</div>
-          <div className="portal-brand-sub">Economic commons, operationalized.</div>
+          <div className="portal-brand-sub">Civic governance, transparently.</div>
         </div>
         <div className="portal-footer-links">
+          <a href="/governance">Governance</a>
+          <a href="/constituent/dashboard">Initiatives</a>
           <a href="/pidp">Identity</a>
-          <a href="/cockroach">Ledger</a>
-          <a href="/spicedb">Policy DB</a>
         </div>
         <span>© 2026 Code Collective</span>
       </div>

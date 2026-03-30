@@ -48,6 +48,9 @@ class UserProfileUpdate(BaseModel):
     state: str | None = None
     zip: str | None = None
     organizations: list[str] | None = None
+    is_running_for_office: bool | None = None
+    office_title: str | None = None
+    campaign_statement: str | None = None
 
 
 class UserPublicProfile(BaseModel):
