@@ -35,9 +35,7 @@ export function ConstituentAccountPage() {
     if (!token || avatarUrl) return
     let cancelled = false
     fetch('/pidp/auth/me', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      credentials: 'include',
     })
       .then((resp) => (resp.ok ? resp.json() : null))
       .then((data) => {

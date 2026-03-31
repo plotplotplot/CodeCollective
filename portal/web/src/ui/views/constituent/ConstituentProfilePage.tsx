@@ -53,12 +53,10 @@ export function ConstituentProfilePage() {
   useEffect(() => {
     let cancelled = false
 
-    async function hydrateFromPidp(activeToken: string) {
+    async function hydrateFromPidp() {
       try {
         const resp = await fetch('/pidp/auth/me', {
-          headers: {
-            Authorization: `Bearer ${activeToken}`,
-          },
+          credentials: 'include',
         })
         if (!resp.ok) return
         const data = await resp.json()
@@ -90,7 +88,7 @@ export function ConstituentProfilePage() {
     }
 
     if (token) {
-      hydrateFromPidp(token)
+      hydrateFromPidp()
       return () => {
         cancelled = true
       }
@@ -394,9 +392,9 @@ export function ConstituentProfilePage() {
             if (token) {
               fetch('/pidp/auth/me', {
                 method: 'PUT',
+                credentials: 'include',
                 headers: {
                   'Content-Type': 'application/json',
-                  Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify({
                   full_name: payload.fullName || null,
@@ -582,9 +580,7 @@ export function ConstituentProfilePage() {
                           if (token) {
                             const resp = await fetch('/pidp/auth/avatar/upload-url', {
                               method: 'POST',
-                              headers: {
-                                Authorization: `Bearer ${token}`,
-                              },
+                              credentials: 'include',
                             })
                             if (!resp.ok) {
                               if (resp.status === 401) {

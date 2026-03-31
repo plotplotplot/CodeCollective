@@ -48,8 +48,11 @@ export function ConstituentLoginPage() {
         }}
       >
         <div style={{ display: 'grid', gap: '0.5rem' }}>
+          <p className="muted" style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
+            Sign in with your Code Collective identity
+          </p>
           <a
-            href={`/pidp/auth/google/login?next=${encodeURIComponent(nextUrl)}`}
+            href={`/pidp/login?next=${encodeURIComponent(nextUrl)}`}
             style={{
               display: 'inline-flex',
               justifyContent: 'center',
@@ -60,25 +63,11 @@ export function ConstituentLoginPage() {
               padding: '0.6rem 1rem',
               textDecoration: 'none',
               color: 'inherit',
+              backgroundColor: 'var(--primary)',
+              color: '#fff',
             }}
           >
-            Continue with Google
-          </a>
-          <a
-            href={`/pidp/auth/github/login?next=${encodeURIComponent(nextUrl)}`}
-            style={{
-              display: 'inline-flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: '0.5rem',
-              border: '1px solid var(--border-input)',
-              borderRadius: 8,
-              padding: '0.6rem 1rem',
-              textDecoration: 'none',
-              color: 'inherit',
-            }}
-          >
-            Continue with GitHub
+            Continue to Identity Provider
           </a>
         </div>
         <div className="muted" style={{ textAlign: 'center' }}>

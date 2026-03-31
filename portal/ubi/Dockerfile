@@ -9,4 +9,9 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 COPY . /app
 ENV PYTHONPATH=/app
 
-CMD ["watchfiles", "--filter", "python", "python ubi.py", "/app"]
+# Make manage.py easily accessible
+RUN chmod +x /app/manage.py && ln -sf /app/manage.py /usr/local/bin/ubi-admin
+
+EXPOSE 8000
+
+CMD ["uvicorn", "ubi:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -52,14 +52,13 @@ export function useAuth(): AuthContextValue {
 }
 
 function readInitialRole(): UserRole | 'guest' {
-  if (!sessionStorage.getItem('pidp.token')) return 'guest'
   const value = localStorage.getItem('demo.role')
   if (value === 'campaign_manager' || value === 'constituent' || value === 'guest') return value
   return 'guest'
 }
 
 function readInitialUser(): SessionUser | null {
-  const raw = sessionStorage.getItem('pidp.user')
+  const raw = localStorage.getItem('pidp.user')
   if (!raw) return null
   try {
     return JSON.parse(raw) as SessionUser
@@ -71,8 +70,8 @@ function readInitialUser(): SessionUser | null {
 export function AppProviders(props: { services: AppServices; children: ReactNode }) {
   const [role, setRoleState] = useState<UserRole | 'guest'>(() => readInitialRole())
   const [user, setUserState] = useState<SessionUser | null>(() => readInitialUser())
-  const [token, setToken] = useState<string | null>(() => sessionStorage.getItem('pidp.token'))
-  const [isLoading, setIsLoading] = useState<boolean>(!!sessionStorage.getItem('pidp.token'))
+  const [token, setToken] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const [showMigration, setShowMigration] = useState(false)
   const [pendingMigration, setPendingMigration] = useState<{guestId: string, userId: string, displayName: string} | null>(null)
 
@@ -145,6 +144,7 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
     return text ? `${fallback} ${text}` : fallback
   }, [])
 
+  // Login with password - sets HTTP-only cookie via PIdP
   const loginWithPassword = useCallback(
     async (email: string, password: string) => {
       const body = new URLSearchParams()
@@ -155,14 +155,13 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
+        credentials: 'include', // Important: include cookies
         body,
       })
       if (!resp.ok) {
         throw new Error(await formatApiError(resp, 'Login failed.'))
       }
-      const data = (await resp.json()) as { access_token: string; token_type: string }
-      sessionStorage.setItem('pidp.token', data.access_token)
-      setToken(data.access_token)
+      // Cookie is set by server, now hydrate session
       setIsLoading(true)
     },
     [normalizedPidpBase],
@@ -196,37 +195,42 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
     [normalizedPidpBase, loginWithPassword, formatApiError],
   )
 
+  // Check for OAuth token in URL hash (for OAuth flows that return token)
   useEffect(() => {
     const hash = window.location.hash.startsWith('#') ? window.location.hash.slice(1) : window.location.hash
     const params = new URLSearchParams(hash || window.location.search)
     const accessToken = params.get('token')
     if (!accessToken) return
-    sessionStorage.setItem('pidp.token', accessToken)
-    setToken(accessToken)
-    setIsLoading(true)
+    // OAuth login successful, clear hash and hydrate session
+    // The cookie should already be set by PIdP OAuth callback
     window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`)
+    setIsLoading(true)
   }, [])
 
+  // Main session hydration effect - uses HTTP-only cookie only
   useEffect(() => {
     let cancelled = false
     const controller = new AbortController()
 
-    async function hydrateSession(activeToken: string) {
+    async function hydrateSession() {
       try {
+        // Call /auth/me with credentials to use the HTTP-only cookie
         const resp = await fetch(`${normalizedPidpBase}/auth/me`, {
-          headers: {
-            Authorization: `Bearer ${activeToken}`,
-          },
+          credentials: 'include', // Include cookies
           signal: controller.signal,
         })
-        if (!resp.ok) throw new Error('Invalid token')
+        
+        if (!resp.ok) throw new Error('Not authenticated')
+        
         const data = (await resp.json()) as PidpUser
         const displayName = data.identity_data?.display_name?.trim() || data.full_name?.trim() || data.email
         const handle = data.email.split('@')[0]
         const avatarUrl = normalizeAvatarUrl(data.identity_data?.avatar_url ?? data.avatar_url)
         const firstName = data.identity_data?.first_name ?? null
         const lastName = data.identity_data?.last_name ?? null
+        
         if (cancelled) return
+        
         setRoleState('constituent')
         localStorage.setItem('demo.role', 'constituent')
         setUserState({
@@ -240,7 +244,8 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
           lastName,
           avatarUrl,
         })
-        sessionStorage.setItem(
+        // Store user info (not token) in localStorage for UI state
+        localStorage.setItem(
           'pidp.user',
           JSON.stringify({
             id: data.id,
@@ -254,6 +259,7 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
             avatarUrl,
           }),
         )
+        
         // Check for guest data migration
         const guestId = localStorage.getItem('governance.guestId')
         if (guestId && guestId !== data.id) {
@@ -276,27 +282,20 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
           localStorage.setItem('demo.role', 'guest')
           setToken(null)
           setUserState(null)
-          sessionStorage.removeItem('pidp.token')
-          sessionStorage.removeItem('pidp.user')
+          localStorage.removeItem('pidp.user')
         }
       } finally {
         if (!cancelled) setIsLoading(false)
       }
     }
 
-    if (token) {
-      hydrateSession(token)
-    } else {
-      setRoleState('guest')
-      localStorage.setItem('demo.role', 'guest')
-      setIsLoading(false)
-    }
+    hydrateSession()
 
     return () => {
       cancelled = true
       controller.abort()
     }
-  }, [token, normalizedPidpBase, normalizeAvatarUrl])
+  }, [normalizedPidpBase, normalizeAvatarUrl])
 
   const authValue = useMemo<AuthContextValue>(
     () => ({
@@ -309,19 +308,18 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
         localStorage.setItem('demo.role', r)
         if (r === 'guest') {
           setUserState(null)
-          sessionStorage.removeItem('pidp.user')
+          localStorage.removeItem('pidp.user')
         }
       },
       setUser: (u) => {
         setUserState(u)
-        if (!u) sessionStorage.removeItem('pidp.user')
-        else sessionStorage.setItem('pidp.user', JSON.stringify(u))
+        if (!u) localStorage.removeItem('pidp.user')
+        else localStorage.setItem('pidp.user', JSON.stringify(u))
       },
       loginWithPassword,
       registerWithPassword,
-      completeOAuthLogin: (accessToken: string) => {
-        sessionStorage.setItem('pidp.token', accessToken)
-        setToken(accessToken)
+      completeOAuthLogin: () => {
+        // OAuth login sets cookie via redirect, just hydrate
         setIsLoading(true)
       },
       logout: () => {
@@ -329,11 +327,20 @@ export function AppProviders(props: { services: AppServices; children: ReactNode
         localStorage.setItem('demo.role', 'guest')
         setToken(null)
         setUserState(null)
-        sessionStorage.removeItem('pidp.token')
-        sessionStorage.removeItem('pidp.user')
+        localStorage.removeItem('pidp.user')
+        // Call PIdP logout to clear HTTP-only cookie
+        fetch(`${normalizedPidpBase}/logout`, { 
+          method: 'GET', 
+          credentials: 'include' 
+        }).then(() => {
+          // Reload to clear any cached state
+          window.location.reload()
+        }).catch(() => {
+          window.location.reload()
+        })
       },
     }),
-    [role, user, token, isLoading, loginWithPassword, registerWithPassword],
+    [role, user, token, isLoading, loginWithPassword, registerWithPassword, normalizedPidpBase],
   )
 
   return (

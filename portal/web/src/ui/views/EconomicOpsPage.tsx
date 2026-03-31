@@ -535,6 +535,49 @@ export function EconomicOpsPage() {
                 Global supply trend over time and a searchable user ledger sorted by Dena balance.
               </p>
               {error && <p className="portal-muted">{error}</p>}
+              <div style={{ display: 'flex', gap: 12, marginTop: 16 }}>
+                <a
+                  href="/send"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    padding: '10px 20px',
+                    borderRadius: 999,
+                    backgroundColor: 'var(--primary)',
+                    color: '#fff',
+                    textDecoration: 'none',
+                    fontWeight: 600,
+                    fontSize: 14,
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2 10a8 8 0 1116 0 8 8 0 01-16 0zm8-4a1 1 0 00-1 1v3H6a1 1 0 100 2h3v3a1 1 0 102 0v-3h3a1 1 0 100-2h-3V7a1 1 0 00-1-1z" />
+                  </svg>
+                  Send Dena
+                </a>
+                <a
+                  href="/receive"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    padding: '10px 20px',
+                    borderRadius: 999,
+                    border: '1px solid var(--border)',
+                    backgroundColor: 'transparent',
+                    color: 'var(--text-primary)',
+                    textDecoration: 'none',
+                    fontWeight: 600,
+                    fontSize: 14,
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd" />
+                  </svg>
+                  Receive Dena
+                </a>
+              </div>
             </div>
             <div className="portal-card portal-chart-card">
               <div className="portal-muted">Current Dena in circulation</div>

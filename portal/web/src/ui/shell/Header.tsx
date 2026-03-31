@@ -253,6 +253,23 @@ export function Header() {
                   >
                     Profile
                   </Link>
+                  <a 
+                    href="/pidp/"
+                    onClick={() => setMenuOpen(false)}
+                    style={{
+                      display: 'block',
+                      padding: '8px 12px',
+                      borderRadius: 'var(--radius-sm)',
+                      color: 'var(--text-primary)',
+                      textDecoration: 'none',
+                      fontSize: 14,
+                      transition: 'background 0.15s',
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--panel-2)'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                  >
+                    <span style={{ marginRight: 6 }}>🔐</span> Identity (PIdP)
+                  </a>
                   {isAdmin && (
                     <Link 
                       to="/admin"
@@ -304,7 +321,7 @@ export function Header() {
             <>
               <a 
                 className="portal-button" 
-                href={`/pidp/auth/google/login?next=${encodeURIComponent(nextUrl)}`}
+                href={`/pidp/login?next=${encodeURIComponent(nextUrl)}`}
                 style={{
                   padding: '8px 16px',
                   borderRadius: 999,

@@ -11,9 +11,12 @@ export default defineConfig(({ command }) => ({
   server: {
     allowedHosts: ['ballot-vm.local', 'ballot.arkavo.org', 'portal.arkavo.org', 'localhost'],
     host: true,
-    hmr: command === 'serve'
-      ? { host: 'localhost', protocol: 'ws' }
-      : { host: 'portal.arkavo.org', protocol: 'wss', clientPort: 443 },
+    hmr: {
+      // Use the actual host from the browser, not localhost
+      host: 'portal.arkavo.org',
+      protocol: 'wss',
+      clientPort: 443,
+    },
     proxy: {
       '/pidp': {
         target: 'http://localhost:8000',
