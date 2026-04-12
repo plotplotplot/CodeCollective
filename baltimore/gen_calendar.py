@@ -150,6 +150,14 @@ CUSTOM_SCRAPER_SOURCES = [
         "orgImageUrl": "https://r.housebaltimore.com/wp-content/themes/rhouseofficial/img/favicon.png",
         "tags": ["Culture"],
     },
+    {
+        "module": "baltimore.scrape_mdchamber",
+        "function": "scrape_events",
+        "url": "https://www.mdchamber.org/events/",
+        "group_name": "Maryland Chamber of Commerce",
+        "orgImageUrl": "https://www.mdchamber.org/wp-content/uploads/sites/47/2017/09/Maryland-Chamber-logo.png",
+        "tags": ["Business", "Economic Development"],
+    },
 ]
 def merge_tags(*tag_lists):
     merged = []
