@@ -424,4 +424,9 @@ sources = [
         "url": "https://www.meetup.com/wordpress-frederick/",
         "tags": ["Tech Community", "Software Development"],
     },
+    {
+        "name": "Greater Baltimore Urban League",
+        "url": "https://www.eventbrite.com/o/2103730749",
+        "tags": ["Business", "Economic Development"],
+    },
 ]
