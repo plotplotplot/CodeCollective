@@ -158,6 +158,14 @@ CUSTOM_SCRAPER_SOURCES = [
         "orgImageUrl": "https://www.mdchamber.org/wp-content/uploads/sites/47/2017/09/Maryland-Chamber-logo.png",
         "tags": ["Business", "Economic Development"],
     },
+    {
+        "module": "baltimore.scrape_towsonlodge",
+        "function": "scrape_events",
+        "url": "https://towsonlodge.us/calendar-%26-events",
+        "group_name": "Towson Lodge #79",
+        "orgImageUrl": "",  # Could add a logo URL if available
+        "tags": ["Community", "Fraternal"],
+    },
 ]
 def merge_tags(*tag_lists):
     merged = []
