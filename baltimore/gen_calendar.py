@@ -166,6 +166,14 @@ CUSTOM_SCRAPER_SOURCES = [
         "orgImageUrl": "https://redemmas.org/static/logo-2096e46fa2115c72698cb268ccbd90c7.png",
         "tags": ["Culture", "Community", "Education"],
     },
+    {
+        "module": "baltimore.scrape_towsonlodge",
+        "function": "scrape_events",
+        "url": "https://towsonlodge.us/calendar-%26-events",
+        "group_name": "Towson Lodge #79",
+        "orgImageUrl": "",
+        "tags": ["Community", "Fraternal"],
+    },
 ]
 def merge_tags(*tag_lists):
     merged = []
