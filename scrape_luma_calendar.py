@@ -38,13 +38,23 @@ class LumaCalendarScraper:
             # Extract events from the initial data
             events = []
             initial_data = data.get('props', {}).get('pageProps', {}).get('initialData', {})
+            
+            # Handle both direct featured_items and nested under 'data' key
             featured_items = initial_data.get('featured_items', [])
+            if not featured_items and 'data' in initial_data:
+                featured_items = initial_data.get('data', {}).get('featured_items', [])
             
             for item in featured_items:
-                event_data = item.get('event', {})
-                if event_data:
+                event_data = item.get('event')
+                if not event_data:
+                    continue
+                try:
                     event = self._parse_event(event_data, item)
-                    events.append(event)
+                    if event:
+                        events.append(event)
+                except Exception as parse_error:
+                    print(f"Error parsing event: {parse_error}")
+                    continue
             
             return events
             
@@ -88,7 +98,7 @@ class LumaCalendarScraper:
             print(f"Error scraping event details: {e}")
             return None
     
-    def _parse_event(self, event_data: Dict, item_data: Dict = None) -> Dict:
+    def _parse_event(self, event_data: Dict, item_data: Dict = None) -> Optional[Dict]:
         """Parse event data from the calendar view (without description)."""
         event_id = event_data.get('api_id', '')
         name = event_data.get('name', '')
@@ -96,11 +106,40 @@ class LumaCalendarScraper:
         end_at = event_data.get('end_at', '')
         url_slug = event_data.get('url', '')
         
-        # Get location info
+        # Get location info with all available fields
         geo_info = event_data.get('geo_address_info', {})
         location = {
             'name': geo_info.get('address', ''),
-            'address': geo_info.get('full_address', '')
+            'address': geo_info.get('full_address', ''),
+            'city': geo_info.get('city', ''),
+            'state': geo_info.get('region', ''),
+            'country': geo_info.get('country', ''),
+        }
+        
+        # Get coordinates if available
+        coord = event_data.get('coordinate', {})
+        if coord:
+            location['latitude'] = coord.get('latitude', '')
+            location['longitude'] = coord.get('longitude', '')
+        
+        # Get cover image
+        cover_url = event_data.get('cover_url', '')
+        
+        # Build full URL
+        full_url = f"https://lu.ma/{url_slug}" if url_slug else ''
+        
+        return {
+            'id': event_id,
+            'name': name,
+            'startDate': start_at,
+            'endTime': end_at,
+            'description': '',
+            'url': full_url,
+            'status': 'ACTIVE',
+            'location': location,
+            'imageUrl': cover_url,
+            'recurring': False,
+            'scrapeTime': datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
         }
         
         # Get cover image

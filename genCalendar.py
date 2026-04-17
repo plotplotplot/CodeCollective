@@ -151,7 +151,7 @@ def infer_source_kind(source_url):
         return "luma_user"
 
     if host in {"lu.ma", "luma.com"}:
-        if path.startswith("/calendar/"):
+        if path.startswith("/calendar/") or (path and not path.startswith("/")):
             return "luma_calendar"
         if path.startswith("/user/"):
             return "luma_org"

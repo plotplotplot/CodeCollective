@@ -158,6 +158,14 @@ CUSTOM_SCRAPER_SOURCES = [
         "orgImageUrl": "https://www.mdchamber.org/wp-content/uploads/sites/47/2017/09/Maryland-Chamber-logo.png",
         "tags": ["Business", "Economic Development"],
     },
+    {
+        "module": "baltimore.scrape_redemmas",
+        "function": "scrape_events",
+        "url": "https://redemmas.org/events/",
+        "group_name": "Red Emma's",
+        "orgImageUrl": "https://redemmas.org/static/logo-2096e46fa2115c72698cb268ccbd90c7.png",
+        "tags": ["Culture", "Community", "Education"],
+    },
 ]
 def merge_tags(*tag_lists):
     merged = []
