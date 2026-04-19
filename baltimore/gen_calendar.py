@@ -164,7 +164,7 @@ CUSTOM_SCRAPER_SOURCES = [
         "url": "https://redemmas.org/events/",
         "group_name": "Red Emma's",
         "orgImageUrl": "https://redemmas.org/static/logo-2096e46fa2115c72698cb268ccbd90c7.png",
-        "tags": ["Culture", "Community", "Education"],
+        "tags": ["Economic Development", "Community", "Education"],
     },
     {
         "module": "baltimore.scrape_towsonlodge",
