@@ -159,6 +159,14 @@ CUSTOM_SCRAPER_SOURCES = [
         "tags": ["Business", "Economic Development"],
     },
     {
+        "module": "baltimore.scrape_greaterbaltimorechamber",
+        "function": "scrape_events",
+        "url": "https://www.greaterbaltimorechamber.org/calendarandevents/eventcalendar",
+        "group_name": "Greater Baltimore Chamber",
+        "orgImageUrl": "",
+        "tags": ["Business", "Economic Development"],
+    },
+    {
         "module": "baltimore.scrape_redemmas",
         "function": "scrape_events",
         "url": "https://redemmas.org/events/",
