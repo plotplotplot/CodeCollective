@@ -409,6 +409,11 @@ sources = [
         "tags": ["Tech Community"],
     },
     {
+        "name": "Collide Capital @ JHU (Partiful)",
+        "url": "https://partiful.com/e/IjvnMmmJOBBvkAIsYjTN",
+        "tags": ["Business", "Startup", "Tech Community"],
+    },
+    {
         "name": "Google Form Submission",
         "url": "http://docs.google.com/forms/d/e/1FAIpQLSfAHwexta7vxLto1xmvBxFNawicAUtRrjTKqN0jHs25RjLCQg/viewform",
         "tags": ["Business"],
@@ -428,5 +433,5 @@ sources = [
         "name": "Greater Baltimore Urban League",
         "url": "https://www.eventbrite.com/o/2103730749",
         "tags": ["Business", "Economic Development"],
-    },
+    }
 ]

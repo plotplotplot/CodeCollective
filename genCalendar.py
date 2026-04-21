@@ -11,6 +11,7 @@ import scrape_luma_calendar
 import scrape_luma_user
 import scrape_mtc
 import scrape_gdg
+import scrape_partiful
 import json
 import datetime
 import pytz
@@ -50,6 +51,7 @@ SOURCE_KIND_CONCURRENCY = {
     "luma_calendar": 2,
     "luma_user": 2,
     "luma_event": 3,
+    "partiful": 3,
     "jotform": 3,
     "google_form": 3,
     "gdg": 3,
@@ -143,6 +145,9 @@ def infer_source_kind(source_url):
 
     if "jotform.com" in host:
         return "jotform"
+
+    if host == "partiful.com" and path.startswith("/e/"):
+        return "partiful"
 
     if (host == "forms.gle") or (host == "docs.google.com" and "/forms/" in path):
         return "google_form"
@@ -300,6 +305,13 @@ def fetch_events_from_source(source, city):
             print(f"Fetching events from {source_url}")
             return apply_source_metadata(
                 scrape_luma.parse_luma_event_page(source_url),
+                source,
+            ), unmatched_sources, error_entries
+
+        if source_kind == "partiful":
+            print(f"Fetching events from {source_url}")
+            return apply_source_metadata(
+                scrape_partiful.parse_partiful_event(source_url),
                 source,
             ), unmatched_sources, error_entries
 
@@ -594,6 +606,8 @@ def canonical_event_url_key(event):
     if "eventbrite." in host and path:
         return f"{host}{path}"
     if "meetup.com" in host and path:
+        return f"{host}{path}"
+    if host == "partiful.com" and path:
         return f"{host}{path}"
 
     return ""

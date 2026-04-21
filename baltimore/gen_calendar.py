@@ -182,6 +182,14 @@ CUSTOM_SCRAPER_SOURCES = [
         "orgImageUrl": "",
         "tags": ["Community", "Fraternal"],
     },
+    {
+        "module": "baltimore.scrape_umventures",
+        "function": "scrape_events",
+        "url": "https://www.umventures.org/events",
+        "group_name": "UM Ventures",
+        "orgImageUrl": "https://www.umventures.org/sites/default/files/inline-images/UMVentures-Logo_0.png",
+        "tags": ["Business", "Startup", "Economic Development"],
+    },
 ]
 def merge_tags(*tag_lists):
     merged = []
@@ -243,11 +251,11 @@ def fetch_cached_ics_source(source):
 def collect_events(city="baltimore", error_logger=None):
     new_events = []
 
-    def log_error(message, error, source_url=None, scraper=None):
+    def log_error(message, error, source_url=None, scraper=None, stage="city_collect"):
         print(f"{message}: {error}")
         if error_logger:
             error_logger(
-                stage="city_collect",
+                stage=stage,
                 error=error,
                 source_url=source_url,
                 scraper=scraper,
@@ -413,19 +421,32 @@ def collect_events(city="baltimore", error_logger=None):
         try:
             scraper_module = importlib.import_module(source["module"])
             scraper_fn = getattr(scraper_module, source["function"])
+            scraped_events = scraper_fn()
+            if not scraped_events:
+                log_error(
+                    "Custom scraper returned zero events",
+                    RuntimeError("ZERO_EVENTS_PARSED"),
+                    source["url"],
+                    source["module"],
+                    stage="ZERO_EVENTS_PARSED",
+                )
+                continue
+
             new_events += apply_source_tags(
-                scraper_fn(),
+                scraped_events,
                 source["url"],
                 source.get("tags", []),
                 source.get("group_name", ""),
                 source.get("orgImageUrl", ""),
             )
         except Exception as e:
+            error_stage = getattr(e, "log_stage", "city_collect")
             log_error(
                 f"Error fetching {source.get('group_name', source['url'])} events",
                 e,
                 source["url"],
                 source["module"],
+                stage=error_stage,
             )
 
     try:
