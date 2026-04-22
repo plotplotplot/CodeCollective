@@ -1,62 +1,50 @@
 [
     {
-        "timestamp": "2026-04-20T20:30:37.818831-04:00",
+        "timestamp": "2026-04-21T20:29:43.559372-04:00",
         "city": "dc",
         "stage": "image_download",
-        "error": "cannot identify image file <_io.BytesIO object at 0x7f3c716784a0>",
+        "error": "cannot identify image file <_io.BytesIO object at 0x7f73ec0fa160>",
         "source_url": "https://www.dcwater.com/themes/custom/dcwater_theme/logo.svg",
         "context": {
             "event_name": "Finance and Budget Committee Meeting"
         },
         "error_type": "UnidentifiedImageError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1294, in main\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3711, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7f3c716784a0>\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1308, in main\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3711, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7f73ec0fa160>\n"
     },
     {
-        "timestamp": "2026-04-20T20:30:37.857717-04:00",
+        "timestamp": "2026-04-21T20:29:43.646006-04:00",
         "city": "dc",
         "stage": "image_download",
-        "error": "cannot identify image file <_io.BytesIO object at 0x7f3c6cbd2890>",
+        "error": "cannot identify image file <_io.BytesIO object at 0x7f73ec619b70>",
         "source_url": "https://www.dcwater.com/themes/custom/dcwater_theme/logo.svg",
         "context": {
             "event_name": "Lead Free DC at Ward 8 Community Cleanup and Resource Fair"
         },
         "error_type": "UnidentifiedImageError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1294, in main\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3711, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7f3c6cbd2890>\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1308, in main\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3711, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7f73ec619b70>\n"
     },
     {
-        "timestamp": "2026-04-20T20:30:37.894140-04:00",
+        "timestamp": "2026-04-21T20:29:43.683898-04:00",
         "city": "dc",
         "stage": "image_download",
-        "error": "cannot identify image file <_io.BytesIO object at 0x7f3c71678810>",
+        "error": "cannot identify image file <_io.BytesIO object at 0x7f73e82bac50>",
         "source_url": "https://www.dcwater.com/themes/custom/dcwater_theme/logo.svg",
         "context": {
             "event_name": "Lead Free DC at Anacostia Watershed Earth Day Clean Up"
         },
         "error_type": "UnidentifiedImageError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1294, in main\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3711, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7f3c71678810>\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1308, in main\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3711, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7f73e82bac50>\n"
     },
     {
-        "timestamp": "2026-04-20T20:30:37.934841-04:00",
+        "timestamp": "2026-04-21T20:29:43.725541-04:00",
         "city": "dc",
         "stage": "image_download",
-        "error": "cannot identify image file <_io.BytesIO object at 0x7f3c6cbd2890>",
+        "error": "cannot identify image file <_io.BytesIO object at 0x7f73ec619b70>",
         "source_url": "https://www.dcwater.com/themes/custom/dcwater_theme/logo.svg",
         "context": {
             "event_name": "Lead Free DC at DC's Annual Truck Touch"
         },
         "error_type": "UnidentifiedImageError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1294, in main\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3711, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7f3c6cbd2890>\n"
-    },
-    {
-        "timestamp": "2026-04-20T20:30:37.976604-04:00",
-        "city": "dc",
-        "stage": "image_download",
-        "error": "cannot identify image file <_io.BytesIO object at 0x7f3c6cbd2890>",
-        "source_url": "https://www.dcwater.com/themes/custom/dcwater_theme/logo.svg",
-        "context": {
-            "event_name": "Lead Free DC at ANC 5C and Gateway Community Association"
-        },
-        "error_type": "UnidentifiedImageError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1294, in main\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3711, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7f3c6cbd2890>\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 1308, in main\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3711, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7f73ec619b70>\n"
     }
 ]
