@@ -33,6 +33,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+PIDP_BASE_URL = os.getenv("PIDP_BASE_URL", "http://localhost:8000").rstrip("/")
+PIDP_AUTH_ME_URL = os.getenv("PIDP_AUTH_ME_URL", f"{PIDP_BASE_URL}/auth/me")
+
 # FastAPI app setup
 app = FastAPI(
     title="Governance Backend API",
@@ -148,11 +151,11 @@ async def get_current_user(
     
     try:
         import httpx
-        resp = httpx.get(
-            "http://localhost:8000/auth/me",
-            headers={"Authorization": f"Bearer {token}"},
-            timeout=5.0
-        )
+        async with httpx.AsyncClient(timeout=5.0) as client:
+            resp = await client.get(
+                PIDP_AUTH_ME_URL,
+                headers={"Authorization": f"Bearer {token}"},
+            )
         if resp.status_code == 200:
             data = resp.json()
             return {

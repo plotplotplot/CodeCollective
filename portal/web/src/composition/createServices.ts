@@ -37,9 +37,18 @@ export type ServicesConfig = {
  */
 function getConfig(): ServicesConfig {
   const env = (import.meta as any).env
+  const dataSourceEnv = env?.VITE_DATA_SOURCE as string | undefined
+  const dataSource =
+    dataSourceEnv === 'api'
+      ? 'api'
+      : dataSourceEnv === 'mock'
+      ? 'mock'
+      : env?.PROD
+      ? 'api'
+      : 'mock'
   
   return {
-    dataSource: env?.VITE_DATA_SOURCE === 'api' ? 'api' : 'mock',
+    dataSource,
     apiBaseUrl: env?.VITE_API_BASE_URL || '/api/governance',
   }
 }

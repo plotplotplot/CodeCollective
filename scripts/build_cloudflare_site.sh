@@ -13,6 +13,12 @@ mkdir -p "$OUT_DIR"
 echo "[cloudflare] syncing legacy static site"
 rsync -a \
   --exclude='.git/' \
+  --exclude='.wrangler/' \
+  --exclude='.codex' \
+  --exclude='.codexignore' \
+  --exclude='.clineignore' \
+  --exclude='.env*' \
+  --exclude='**/.gitignore' \
   --exclude='.github/' \
   --exclude='.cloudflare/' \
   --exclude='portal/' \
@@ -27,6 +33,10 @@ rsync -a \
   --exclude='usa/data/publish/' \
   --exclude='node_modules/' \
   --exclude='__pycache__/' \
+  --exclude='*.sqlite' \
+  --exclude='*.sqlite-shm' \
+  --exclude='*.sqlite-wal' \
+  --exclude='*.db' \
   --exclude='*.py' \
   --exclude='*.md' \
   --exclude='*.log' \
@@ -77,5 +87,29 @@ for dirpath, _, filenames in os.walk(root):
 
 print(f"[cloudflare] removed {removed} non-URI-safe files")
 PY
+
+echo "[cloudflare] writing static cache headers"
+cat > "$OUT_DIR/_headers" <<'EOF'
+/*
+  Cache-Control: public, max-age=300
+
+/p/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=2592000
+
+/css/*
+  Cache-Control: public, max-age=2592000
+
+/js/*
+  Cache-Control: public, max-age=2592000
+
+/audio/*
+  Cache-Control: public, max-age=2592000
+
+/videos/*
+  Cache-Control: public, max-age=2592000
+EOF
 
 echo "[cloudflare] done"

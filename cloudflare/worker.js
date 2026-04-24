@@ -43,6 +43,26 @@ function isHtmlNavigation(request) {
   return accept.includes("text/html");
 }
 
+function applyStaticCachePolicy(path, response) {
+  const headers = new Headers(response.headers);
+
+  if (path.startsWith("/p/assets/")) {
+    headers.set("cache-control", "public, max-age=31536000, immutable");
+  } else if (
+    /\.(?:png|jpg|jpeg|gif|webp|avif|svg|ico|woff|woff2|ttf|otf|mp4|webm|mp3|wav)$/i.test(path)
+  ) {
+    headers.set("cache-control", "public, max-age=2592000");
+  } else if (path.endsWith(".html") || path === "/" || path === "/p/" || path === "/p") {
+    headers.set("cache-control", "public, max-age=300");
+  }
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 function jsonResponse(payload, status = 200, headers = {}) {
   return new Response(JSON.stringify(payload), {
     status,
@@ -178,11 +198,12 @@ export default {
 
     const assetResponse = await env.ASSETS.fetch(request);
     if (assetResponse.status !== 404) {
-      return assetResponse;
+      return applyStaticCachePolicy(path, assetResponse);
     }
 
     if ((path === "/p" || path.startsWith("/p/")) && isHtmlNavigation(request)) {
-      return env.ASSETS.fetch(new Request(`${url.origin}/p/index.html`, request));
+      const spaResponse = await env.ASSETS.fetch(new Request(`${url.origin}/p/index.html`, request));
+      return applyStaticCachePolicy("/p/index.html", spaResponse);
     }
 
     return assetResponse;

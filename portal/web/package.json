@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:cf": "npm run build",
+    "deploy:cf": "npm run build:cf && npx wrangler deploy",
     "lint": "eslint .",
     "preview": "vite preview"
   },

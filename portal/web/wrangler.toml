@@ -1,0 +1,14 @@
+name = "codecollective-portal"
+main = "cloudflare/worker.js"
+compatibility_date = "2026-04-24"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+
+[vars]
+# Set these per environment as needed. Examples:
+# GOVERNANCE_API_ORIGIN = "https://governance-api.example.com"
+# PIDP_API_ORIGIN = "https://pidp.arkavo.org"
+GOVERNANCE_API_ORIGIN = ""
+PIDP_API_ORIGIN = "https://pidp.arkavo.org"

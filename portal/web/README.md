@@ -1,5 +1,22 @@
 # React + TypeScript + Vite
 
+## Cloudflare Deploy
+
+This app can be deployed with Wrangler using:
+
+```bash
+npm run deploy:cf
+```
+
+`wrangler.toml` serves static assets from `dist/` and uses a Worker to proxy:
+
+- `/api/governance/*` -> `GOVERNANCE_API_ORIGIN`
+- `/pidp/*` -> `PIDP_API_ORIGIN`
+
+For the full end-to-end setup with hosted PIdP (`https://pidp.arkavo.org`), see:
+
+- `../docs/deployment/CLOUDFLARE_PIDP_DEPLOYMENT.md`
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

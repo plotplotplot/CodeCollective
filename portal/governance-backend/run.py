@@ -34,6 +34,15 @@ def run(network_name: str = "PORTAL", prefix: str = "") -> None:
     ensure_governance_backend_image()
     
     db_host = f"{prefix}governance-db"
+    database_url = os.getenv(
+        "DATABASE_URL",
+        (
+            f"postgresql://{editme.GOVERNANCE_DB_USER}:"
+            f"{editme.GOVERNANCE_DB_PASSWORD}@{db_host}:5432/"
+            f"{editme.GOVERNANCE_DB_NAME}"
+        ),
+    )
+    redis_url = os.getenv("REDIS_URL", f"redis://{prefix}redis:6379/0")
     
     backend = dict(
         image="governance-backend",
@@ -48,12 +57,8 @@ def run(network_name: str = "PORTAL", prefix: str = "") -> None:
             str(here): {"bind": "/app", "mode": "rw"},
         },
         environment={
-            "DATABASE_URL": (
-                f"postgresql://{editme.GOVERNANCE_DB_USER}:"
-                f"{editme.GOVERNANCE_DB_PASSWORD}@{db_host}:5432/"
-                f"{editme.GOVERNANCE_DB_NAME}"
-            ),
-            "REDIS_URL": f"redis://{prefix}redis:6379/0",
+            "DATABASE_URL": database_url,
+            "REDIS_URL": redis_url,
         },
         healthcheck={
             "test": ["CMD-SHELL", "curl -fsS http://127.0.0.1:8002/health >/dev/null"],
