@@ -1,6 +1,7 @@
 import importlib
 from pathlib import Path
 import sys
+from urllib.parse import urlparse
 
 CITY_DIR = Path(__file__).resolve().parent
 ROOT_DIR = CITY_DIR.parent
@@ -211,6 +212,10 @@ def apply_source_tags(events, source_url, source_tags, source_group="", org_imag
     if not events:
         return []
 
+    normalized_group = str(source_group or "").strip()
+    if not normalized_group and source_url:
+        normalized_group = urlparse(source_url).netloc.replace("www.", "").strip()
+
     normalized_events = events if isinstance(events, list) else [events]
     for event in normalized_events:
         if not isinstance(event, dict):
@@ -219,8 +224,10 @@ def apply_source_tags(events, source_url, source_tags, source_group="", org_imag
         if source_url:
             event.setdefault("source", source_url)
             event["source_url"] = source_url
-        if source_group:
-            event.setdefault("source_group", source_group)
+        if normalized_group:
+            event.setdefault("source_group", normalized_group)
+            event.setdefault("org_name", normalized_group)
+            event.setdefault("orgName", normalized_group)
         if org_image_url:
             event.setdefault("orgImageUrl", org_image_url)
 

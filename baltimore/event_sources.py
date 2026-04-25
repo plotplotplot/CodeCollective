@@ -435,3 +435,19 @@ sources = [
         "tags": ["Business", "Economic Development"],
     }
 ]
+
+
+def _derive_group_name(source: dict) -> str:
+    name = str(source.get("group_name") or source.get("name") or "").strip()
+    if name:
+        return name
+    url = str(source.get("url") or "").strip()
+    if "://" in url:
+        host = url.split("://", 1)[1].split("/", 1)[0].replace("www.", "").strip()
+        if host:
+            return host
+    return "Organization"
+
+
+for _source in sources:
+    _source["group_name"] = _derive_group_name(_source)

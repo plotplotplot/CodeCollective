@@ -45,7 +45,19 @@ def load_city_sources(city_dir: Path) -> List[Dict[str, Any]]:
 
 
 def derive_org_name(entry: Dict[str, Any], source_url: Optional[str]) -> str:
-    for key in ("name", "group_name"):
+    for key in ("group_name", "source_group", "name"):
+        value = str(entry.get(key) or "").strip()
+        if value:
+            return value
+    if source_url:
+        host = urlparse(source_url).netloc.replace("www.", "")
+        if host:
+            return host
+    return "Organization"
+
+
+def derive_host_org_name(entry: Dict[str, Any], source_url: Optional[str]) -> str:
+    for key in ("group_name", "source_group"):
         value = str(entry.get(key) or "").strip()
         if value:
             return value
@@ -132,6 +144,10 @@ def collect_orgs_and_events(repo_root: Path, cities: Iterable[str]) -> Tuple[Lis
             else:
                 merged = sorted(set(orgs_by_key[org_key].get("tags", []) + normalize_tags(source.get("tags"), city)))
                 orgs_by_key[org_key]["tags"] = merged
+                if org_name and not orgs_by_key[org_key].get("name"):
+                    orgs_by_key[org_key]["name"] = org_name
+                if org_image and not orgs_by_key[org_key].get("image_url"):
+                    orgs_by_key[org_key]["image_url"] = org_image
 
         events_path = city_dir / "upcoming_events.json"
         if not events_path.exists():
@@ -148,7 +164,9 @@ def collect_orgs_and_events(repo_root: Path, cities: Iterable[str]) -> Tuple[Lis
                 continue
             source_url = normalize_url(raw.get("url"))
             host_org_source_url = normalize_url(raw.get("source")) or normalize_url(raw.get("source_url"))
-            image_url = normalize_url(raw.get("imageUrl")) or normalize_url(raw.get("orgImageUrl"))
+            host_org_name = derive_host_org_name(raw, host_org_source_url)
+            host_org_image_url = normalize_url(raw.get("orgImageUrl"))
+            image_url = normalize_url(raw.get("imageUrl")) or host_org_image_url
             event = {
                 "title": title,
                 "description": str(raw.get("description") or "").strip() or None,
@@ -157,6 +175,8 @@ def collect_orgs_and_events(repo_root: Path, cities: Iterable[str]) -> Tuple[Lis
                 "location": render_location(raw.get("location")),
                 "source_url": source_url,
                 "host_org_source_url": host_org_source_url,
+                "host_org_name": host_org_name,
+                "host_org_image_url": host_org_image_url,
                 "image_url": image_url,
                 "tags": normalize_tags(raw.get("tags"), city),
                 "city": city,
@@ -168,13 +188,20 @@ def collect_orgs_and_events(repo_root: Path, cities: Iterable[str]) -> Tuple[Lis
                 org_key = host_org_source_url
                 if org_key not in orgs_by_key:
                     orgs_by_key[org_key] = {
-                        "name": derive_org_name(raw, host_org_source_url),
+                        "name": host_org_name,
                         "source_url": host_org_source_url,
-                        "image_url": normalize_url(raw.get("orgImageUrl")),
+                        "image_url": host_org_image_url,
                         "tags": normalize_tags(raw.get("tags"), city),
                         "description": f"Inferred from CodeCollective {city} event feed",
                         "city": city,
                     }
+                else:
+                    merged = sorted(set(orgs_by_key[org_key].get("tags", []) + normalize_tags(raw.get("tags"), city)))
+                    orgs_by_key[org_key]["tags"] = merged
+                    if host_org_name and not orgs_by_key[org_key].get("name"):
+                        orgs_by_key[org_key]["name"] = host_org_name
+                    if host_org_image_url and not orgs_by_key[org_key].get("image_url"):
+                        orgs_by_key[org_key]["image_url"] = host_org_image_url
 
     return list(orgs_by_key.values()), list(events_by_key.values())
 

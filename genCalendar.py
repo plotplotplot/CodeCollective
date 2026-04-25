@@ -215,7 +215,10 @@ def apply_source_metadata(events, source):
     normalized_events = coerce_events(events)
     source_url = source.get("url", "")
     source_tags = source.get("tags", [])
-    source_group = source.get("group_name", "")
+    source_group = str(source.get("group_name") or source.get("name") or "").strip()
+    if not source_group and source_url:
+        parsed = urlparse(source_url)
+        source_group = parsed.netloc.replace("www.", "").strip()
     org_image_url = source.get("orgImageUrl") or source.get("org_image_url") or source.get("image_url") or ""
 
     for event in normalized_events:
@@ -225,10 +228,30 @@ def apply_source_metadata(events, source):
             event["source_url"] = source_url
         if source_group:
             event.setdefault("source_group", source_group)
+            # Canonical org display name for downstream consumers.
+            event.setdefault("org_name", source_group)
+            event.setdefault("orgName", source_group)
         if org_image_url:
             event.setdefault("orgImageUrl", org_image_url)
 
     return normalized_events
+
+
+def ensure_org_name_fields(events):
+    for event in events or []:
+        if not isinstance(event, dict):
+            continue
+        candidate = (
+            str(event.get("org_name") or event.get("orgName") or event.get("source_group") or event.get("group_name") or "").strip()
+        )
+        if not candidate:
+            source_url = str(event.get("source") or event.get("source_url") or "").strip()
+            if source_url:
+                parsed = urlparse(source_url)
+                candidate = parsed.netloc.replace("www.", "").strip()
+        if candidate:
+            event["org_name"] = candidate
+            event["orgName"] = candidate
 
 
 def source_pattern_details(source):
@@ -1312,6 +1335,9 @@ def main(city = "baltimore"):
         if geocoded_payload is not None:
             sorted_events = geocoded_payload
         cache_updated = cache_updated or geocode_cache_changed
+
+    ensure_org_name_fields(sorted_events)
+    ensure_org_name_fields(invalid_events)
 
     persist_calendar_outputs(
         city=city,
