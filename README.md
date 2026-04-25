@@ -21,6 +21,15 @@ Optional env file for portal deploy settings:
 cp env.portal.example .env.portal
 ```
 
+## Calendar feed to org-backend
+
+`update-calendar.yml` can now push newly generated events + organizations into the org backend ingest endpoint.
+
+Configure these repository secrets in `CodeCollective`:
+
+- `ORG_BACKEND_INGEST_URL` (example: `https://org.arkavo.org/api/network/ingest/calendar`)
+- `ORG_BACKEND_INGEST_TOKEN` (must match `ORG_INGEST_TOKEN` in the org-backend runtime)
+
 ## Contributing to the Project
 
 Thank you for your interest in contributing to the Code Collective website! Below are instructions to help you get started with testing your changes locally, creating pull requests, and ensuring your contributions follow our guidelines.
