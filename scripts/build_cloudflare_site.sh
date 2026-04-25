@@ -5,6 +5,8 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 OUT_DIR="$ROOT_DIR/.cloudflare/site"
 PORTAL_WEB_DIR="$ROOT_DIR/portal/web"
 MAX_ASSET_MB="${MAX_ASSET_MB:-25}"
+VERBOSE_BUILD="${VERBOSE_BUILD:-0}"
+STRICT_TS="${STRICT_TS:-0}"
 
 echo "[cloudflare] preparing output directory: $OUT_DIR"
 rm -rf "$OUT_DIR"
@@ -47,15 +49,19 @@ rsync -a \
 
 echo "[cloudflare] building portal for /p/"
 pushd "$PORTAL_WEB_DIR" >/dev/null
-if ! VITE_PUBLIC_BASE=/p/ npm run build; then
-  if [[ -d dist ]]; then
-    echo "[cloudflare] warning: portal build failed; using existing portal/web/dist"
-  else
-    echo "[cloudflare] error: portal build failed and no dist/ found" >&2
-    exit 1
-  fi
+if [[ "$STRICT_TS" == "1" ]]; then
+  echo "[cloudflare] strict mode: running TypeScript + Vite build"
+  VITE_PUBLIC_BASE=/p/ npm run build
+else
+  echo "[cloudflare] deploy mode: running Vite build (TypeScript checks run separately in CI)"
+  VITE_PUBLIC_BASE=/p/ npx vite build
 fi
 popd >/dev/null
+
+if [[ ! -f "$PORTAL_WEB_DIR/dist/index.html" ]]; then
+  echo "[cloudflare] error: expected portal/web/dist/index.html after build" >&2
+  exit 1
+fi
 
 echo "[cloudflare] syncing portal dist -> /p/"
 mkdir -p "$OUT_DIR/p"
@@ -63,17 +69,24 @@ rsync -a --delete "$PORTAL_WEB_DIR/dist/" "$OUT_DIR/p/"
 
 echo "[cloudflare] pruning files larger than ${MAX_ASSET_MB} MiB (Workers asset limit)"
 if find "$OUT_DIR" -type f -size +"${MAX_ASSET_MB}"M -print -quit | grep -q .; then
-  find "$OUT_DIR" -type f -size +"${MAX_ASSET_MB}"M -print -delete
+  if [[ "$VERBOSE_BUILD" == "1" ]]; then
+    find "$OUT_DIR" -type f -size +"${MAX_ASSET_MB}"M -print -delete
+  else
+    LARGE_COUNT="$(find "$OUT_DIR" -type f -size +"${MAX_ASSET_MB}"M | wc -l | tr -d ' ')"
+    find "$OUT_DIR" -type f -size +"${MAX_ASSET_MB}"M -delete
+    echo "[cloudflare] removed ${LARGE_COUNT} oversized files"
+  fi
 fi
 
 echo "[cloudflare] pruning files with non-URI-safe paths (Workers manifest requirement)"
-python3 - "$OUT_DIR" <<'PY'
+VERBOSE_BUILD="$VERBOSE_BUILD" python3 - "$OUT_DIR" <<'PY'
 import os
 import re
 import sys
 
 root = sys.argv[1]
 safe = re.compile(r"^[A-Za-z0-9._~!$&'()*+,;=:@%/-]+$")
+verbose = os.getenv("VERBOSE_BUILD", "0") == "1"
 removed = 0
 
 for dirpath, _, filenames in os.walk(root):
@@ -81,7 +94,8 @@ for dirpath, _, filenames in os.walk(root):
         path = os.path.join(dirpath, filename)
         rel = os.path.relpath(path, root)
         if not safe.match(rel):
-            print(path)
+            if verbose:
+                print(path)
             os.remove(path)
             removed += 1
 

@@ -202,7 +202,9 @@ export default {
     }
 
     if ((path === "/p" || path.startsWith("/p/")) && isHtmlNavigation(request)) {
-      const spaResponse = await env.ASSETS.fetch(new Request(`${url.origin}/p/index.html`, request));
+      // Request the directory entrypoint directly to avoid index.html -> /p/ redirects
+      // that can interfere with hash-token deep links after auth callbacks.
+      const spaResponse = await env.ASSETS.fetch(new Request(`${url.origin}/p/`, request));
       return applyStaticCachePolicy("/p/index.html", spaResponse);
     }
 
