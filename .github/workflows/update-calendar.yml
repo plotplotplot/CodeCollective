@@ -27,11 +27,14 @@ jobs:
           python genCalendar.py
 
       - name: Push org/event feed to org-backend
-        if: ${{ secrets.ORG_BACKEND_INGEST_URL != '' && secrets.ORG_BACKEND_INGEST_TOKEN != '' }}
         env:
           ORG_BACKEND_INGEST_URL: ${{ secrets.ORG_BACKEND_INGEST_URL }}
           ORG_BACKEND_INGEST_TOKEN: ${{ secrets.ORG_BACKEND_INGEST_TOKEN }}
         run: |
+          if [ -z "${ORG_BACKEND_INGEST_URL}" ] || [ -z "${ORG_BACKEND_INGEST_TOKEN}" ]; then
+            echo "Skipping org backend ingest: missing ORG_BACKEND_INGEST_URL or ORG_BACKEND_INGEST_TOKEN"
+            exit 0
+          fi
           python scripts/push_org_network_feed.py
 
       - name: Check for changes
