@@ -83,6 +83,13 @@ def render_location(raw: Any) -> Optional[str]:
     return ", ".join(parts) if parts else None
 
 
+def normalize_datetime_value(raw: Any) -> Optional[str]:
+    if raw is None:
+        return None
+    text = str(raw).strip()
+    return text or None
+
+
 def build_ingest_key(event: Dict[str, Any]) -> str:
     material = "|".join(
         [
@@ -145,8 +152,8 @@ def collect_orgs_and_events(repo_root: Path, cities: Iterable[str]) -> Tuple[Lis
             event = {
                 "title": title,
                 "description": str(raw.get("description") or "").strip() or None,
-                "starts_at": raw.get("startDate"),
-                "ends_at": raw.get("endDate"),
+                "starts_at": normalize_datetime_value(raw.get("startDate")),
+                "ends_at": normalize_datetime_value(raw.get("endDate")),
                 "location": render_location(raw.get("location")),
                 "source_url": source_url,
                 "host_org_source_url": host_org_source_url,
