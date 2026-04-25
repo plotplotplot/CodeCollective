@@ -5,6 +5,22 @@ The main branch here is hosted directly as:
 https://codecollective.us/  
 using GitHub pages
 
+## Deployment split
+
+- `codecollective.us` static site remains on your existing AWS S3 + CloudFront deployment.
+- `portal/` is now an independent submodule (`OrgPortal`) and should be deployed separately.
+- Use:
+
+```bash
+./scripts/deploy_portal.sh
+```
+
+Optional env file for portal deploy settings:
+
+```bash
+cp env.portal.example .env.portal
+```
+
 ## Contributing to the Project
 
 Thank you for your interest in contributing to the Code Collective website! Below are instructions to help you get started with testing your changes locally, creating pull requests, and ensuring your contributions follow our guidelines.
