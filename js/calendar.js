@@ -32,7 +32,7 @@ const FALLBACK_CATEGORY_MAP_CONFIG = {
         { label: 'Survival & Health', color: '#059669', text_color: '#ffffff', matches: ['Survival & Health', 'Wellness', 'Health'] },
         { label: 'Safety & Stability', color: '#1d4ed8', text_color: '#ffffff', matches: ['Safety & Stability', 'Infrastructure', 'Finance'] },
         { label: 'Belonging & Culture', color: '#9333ea', text_color: '#ffffff', matches: ['Belonging & Culture', 'Culture', 'Religion', 'Community'] },
-        { label: 'Esteem & Opportunity', color: '#b45309', text_color: '#ffffff', matches: ['Esteem & Opportunity', 'Economic Development', 'Business'] },
+        { label: 'Esteem & Opportunity', color: '#b45309', text_color: '#ffffff', matches: ['Esteem & Opportunity', 'Economic Development', 'Economics', 'Business', 'Startup', 'Entrepreneurship', 'Career Growth', 'Professional Networking'] },
         { label: 'Growth & Creativity', color: '#db2777', text_color: '#ffffff', matches: ['Growth & Creativity', 'Tech Skills', 'Makerspace'] },
         { label: 'Purpose & Service', color: '#b91c1c', text_color: '#ffffff', matches: ['Purpose & Service', 'Politics'] },
         { label: 'Other', color: '#6b7280', text_color: '#ffffff', matches: [] }
@@ -43,7 +43,8 @@ const FALLBACK_CATEGORY_MAP_CONFIG = {
       label: 'Community Sectors',
       categories: [
         { label: 'Technology', color: '#2563eb', text_color: '#ffffff', matches: ['Tech Skills', 'AI', 'Data Science', 'Cybersecurity', 'Cloud & Platform', 'DevOps', 'Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Product', 'UX', 'Game Development', 'Technical Writing', 'Open Source', 'Tech Community'] },
-        { label: 'Business & Startups', color: '#ca8a04', text_color: '#111827', matches: ['Business', 'Economic Development', 'Startup', 'Career Growth', 'Professional Networking'] },
+        { label: 'Entrepreneurship', color: '#ca8a04', text_color: '#111827', matches: ['Entrepreneurship', 'Business', 'Startup', 'Career Growth', 'Professional Networking'] },
+        { label: 'Economics', color: '#b45309', text_color: '#ffffff', matches: ['Economics', 'Economic Development', 'Esteem & Opportunity'] },
         { label: 'Finance & Crypto', color: '#7c3aed', text_color: '#ffffff', matches: ['Finance', 'Crypto & Web3'] },
         { label: 'Civics & Policy', color: '#dc2626', text_color: '#ffffff', matches: ['Politics', 'Civic Tech', 'Policy', 'Purpose & Service'] },
         { label: 'Community & Culture', color: '#db2777', text_color: '#ffffff', matches: ['Culture', 'Belonging & Culture', 'Community', 'Community Organizing', 'Code Collective & Partners', 'Tech Community'] },

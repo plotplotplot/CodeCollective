@@ -176,6 +176,14 @@ CUSTOM_SCRAPER_SOURCES = [
         "tags": ["Economic Development", "Community", "Education"],
     },
     {
+        "module": "baltimore.scrape_baltimoreorg",
+        "function": "scrape_events",
+        "url": "https://baltimore.org/events/",
+        "group_name": "Visit Baltimore",
+        "orgImageUrl": "https://baltimore.org/wp-content/uploads/2024/06/visit-baltimore-logo.svg",
+        "tags": ["Community", "Culture", "Economic Development"],
+    },
+    {
         "module": "baltimore.scrape_towsonlodge",
         "function": "scrape_events",
         "url": "https://towsonlodge.us/calendar-%26-events",
