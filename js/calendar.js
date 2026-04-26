@@ -43,14 +43,14 @@ const FALLBACK_CATEGORY_MAP_CONFIG = {
       label: 'Community Sectors',
       categories: [
         { label: 'Technology', color: '#2563eb', text_color: '#ffffff', matches: ['Tech Skills', 'AI', 'Data Science', 'Cybersecurity', 'Cloud & Platform', 'DevOps', 'Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Product', 'UX', 'Game Development', 'Technical Writing', 'Open Source', 'Tech Community'] },
-        { label: 'Entrepreneurship', color: '#ca8a04', text_color: '#111827', matches: ['Entrepreneurship', 'Business', 'Startup', 'Career Growth', 'Professional Networking'] },
-        { label: 'Economics', color: '#b45309', text_color: '#ffffff', matches: ['Economics', 'Economic Development', 'Esteem & Opportunity'] },
-        { label: 'Finance & Crypto', color: '#7c3aed', text_color: '#ffffff', matches: ['Finance', 'Crypto & Web3'] },
-        { label: 'Civics & Policy', color: '#dc2626', text_color: '#ffffff', matches: ['Politics', 'Civic Tech', 'Policy', 'Purpose & Service'] },
-        { label: 'Community & Culture', color: '#db2777', text_color: '#ffffff', matches: ['Culture', 'Belonging & Culture', 'Community', 'Community Organizing', 'Code Collective & Partners', 'Tech Community'] },
-        { label: 'Faith', color: '#7c2d12', text_color: '#ffffff', matches: ['Religion', 'Faith & Spirituality'] },
-        { label: 'Water & Environment', color: '#0f766e', text_color: '#ffffff', matches: ['Water', 'Water & Environment', 'Climate & Energy', 'Energy', 'Infrastructure'] },
-        { label: 'Makerspace & Robotics', color: '#ea580c', text_color: '#ffffff', matches: ['Makerspace', 'Robotics'] },
+        { label: 'Entrepreneurship', color: '#0ea5e9', text_color: '#ffffff', matches: ['Entrepreneurship', 'Business', 'Startup', 'Career Growth', 'Professional Networking'] },
+        { label: 'Economics', color: '#475569', text_color: '#ffffff', matches: ['Economics', 'Economic Development', 'Esteem & Opportunity'] },
+        { label: 'Finance', color: '#facc15', text_color: '#111827', matches: ['Finance', 'Crypto & Web3'] },
+        { label: 'Politics', color: '#dc2626', text_color: '#ffffff', matches: ['Politics', 'Civic Tech', 'Policy', 'Purpose & Service'] },
+        { label: 'Culture', color: '#7c3aed', text_color: '#ffffff', matches: ['Culture', 'Belonging & Culture', 'Community', 'Community Organizing', 'Code Collective & Partners', 'Tech Community'] },
+        { label: 'Faith', color: '#000000', text_color: '#ffffff', matches: ['Religion', 'Faith & Spirituality'] },
+        { label: 'Environment', color: '#16a34a', text_color: '#ffffff', matches: ['Water', 'Water & Environment', 'Climate & Energy', 'Energy', 'Infrastructure'] },
+        { label: 'Makerspace', color: '#ea580c', text_color: '#ffffff', matches: ['Makerspace', 'Robotics'] },
         { label: 'Other', color: '#6b7280', text_color: '#ffffff', matches: [] }
       ]
     },
