@@ -12,6 +12,10 @@ let calendarDisplayEvents = [];
 let hoverPreviewPanel = null;
 let eventInfoModal = null;
 let showExcludedEvents = false;
+let textSearchQuery = '';
+let searchUrlSyncTimer = null;
+const filterUtils = window.CalendarFilterUtils || null;
+const SEARCH_QUERY_PARAM = 'q';
 const FEATURED_SOURCE_URLS = new Set([
   'https://luma.com/codecollective',
   'https://lu.ma/codecollective'
@@ -44,7 +48,7 @@ const FALLBACK_CATEGORY_MAP_CONFIG = {
       categories: [
         { label: 'Technology', color: '#2563eb', text_color: '#ffffff', matches: ['Tech Skills', 'AI', 'Data Science', 'Cybersecurity', 'Cloud & Platform', 'DevOps', 'Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Product', 'UX', 'Game Development', 'Technical Writing', 'Open Source', 'Tech Community'] },
         { label: 'Entrepreneurship', color: '#0ea5e9', text_color: '#ffffff', matches: ['Entrepreneurship', 'Business', 'Startup', 'Career Growth', 'Professional Networking'] },
-        { label: 'Economics', color: '#475569', text_color: '#ffffff', matches: ['Economics', 'Economic Development', 'Esteem & Opportunity'] },
+        { label: 'Economics', color: '#0d9488', text_color: '#ffffff', matches: ['Economics', 'Economic Development', 'Esteem & Opportunity'] },
         { label: 'Finance', color: '#facc15', text_color: '#111827', matches: ['Finance', 'Crypto & Web3'] },
         { label: 'Politics', color: '#dc2626', text_color: '#ffffff', matches: ['Politics', 'Civic Tech', 'Policy', 'Purpose & Service'] },
         { label: 'Culture', color: '#7c3aed', text_color: '#ffffff', matches: ['Culture', 'Belonging & Culture', 'Community', 'Community Organizing', 'Code Collective & Partners', 'Tech Community'] },
@@ -418,6 +422,10 @@ function getDirectMappedCategoriesForTags(tags, categoryMap = activeCategoryMap)
 }
 
 function isTechOnlyEvent(tags) {
+  if (filterUtils?.isTechOnlyEvent) {
+    return filterUtils.isTechOnlyEvent(tags);
+  }
+
   const normalizedTags = new Set((Array.isArray(tags) ? tags : []).map(slugifyTag).filter(Boolean));
   if (normalizedTags.size === 0) return false;
 
@@ -795,6 +803,15 @@ function updateActiveTagsFromLegend() {
 }
 
 function eventMatchesTags(tags) {
+  if (filterUtils?.eventMatchesTags) {
+    return filterUtils.eventMatchesTags({
+      tags,
+      categoryMap: activeCategoryMap,
+      activeTagSlugs,
+      showExcludedEvents,
+    });
+  }
+
   const mappedCategories = getEffectiveMappedCategories(tags);
   if (mappedCategories.length === 0) {
     return showExcludedEvents;
@@ -811,25 +828,113 @@ function filterRawEventsByTags(events) {
   return events.filter(event => eventMatchesTags(event.tags));
 }
 
+function normalizeSearchText(value) {
+  return String(value || '').toLowerCase().trim();
+}
+
+function getCalendarEventSearchBlob(event) {
+  const tags = Array.isArray(event?.extendedProps?.tags) ? event.extendedProps.tags : [];
+  const location = event?.extendedProps?.location || event?.location || {};
+  return [
+    event?.title,
+    event?.extendedProps?.description,
+    location?.name,
+    location?.address,
+    event?.extendedProps?.source,
+    event?.extendedProps?.sourceGroup,
+    event?.extendedProps?.group,
+    ...tags
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+}
+
+function getRawEventSearchBlob(event) {
+  const tags = Array.isArray(event?.tags) ? event.tags : [];
+  const location = event?.location || {};
+  return [
+    event?.name,
+    event?.description,
+    location?.name,
+    location?.address,
+    event?.source,
+    event?.source_group,
+    event?.org_name,
+    event?.orgName,
+    ...tags
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+}
+
+function filterEventsBySearch(events) {
+  const query = normalizeSearchText(textSearchQuery);
+  if (!query) return events;
+  return events.filter(event => getCalendarEventSearchBlob(event).includes(query));
+}
+
+function filterRawEventsBySearch(events) {
+  const query = normalizeSearchText(textSearchQuery);
+  if (!query) return events;
+  return events.filter(event => getRawEventSearchBlob(event).includes(query));
+}
+
+function setupTextSearch() {
+  const searchInput = document.getElementById('calendar-search-input');
+  if (!searchInput) return;
+
+  const initialQuery = getSearchQueryFromUrl();
+  searchInput.value = initialQuery;
+  textSearchQuery = initialQuery;
+
+  const applySearch = () => {
+    textSearchQuery = searchInput.value || '';
+    applyTagFilters();
+    clearTimeout(searchUrlSyncTimer);
+    searchUrlSyncTimer = setTimeout(() => {
+      syncSearchQueryToUrl(textSearchQuery);
+    }, 120);
+  };
+
+  searchInput.addEventListener('input', applySearch);
+  searchInput.addEventListener('search', applySearch);
+
+  window.addEventListener('popstate', () => {
+    const nextQuery = getSearchQueryFromUrl();
+    if (searchInput.value === nextQuery) return;
+    searchInput.value = nextQuery;
+    textSearchQuery = nextQuery;
+    applyTagFilters();
+  });
+}
+
 function applyTagFilters() {
   const tagFilteredEvents = filterEventsByTags(allEvents);
-  calendarDisplayEvents = tagFilteredEvents;
+  const filteredByLegendAndSearch = filterEventsBySearch(tagFilteredEvents);
+  calendarDisplayEvents = filteredByLegendAndSearch;
 
   if (isMobile) {
-    initializeMobileCards(tagFilteredEvents);
+    initializeMobileCards(filteredByLegendAndSearch);
   } else if (calendar) {
     calendar.removeAllEvents();
-    calendar.addEventSource(tagFilteredEvents);
+    calendar.addEventSource(filteredByLegendAndSearch);
     calendar.render();
   } else {
-    initializeCalendar(tagFilteredEvents);
+    initializeCalendar(filteredByLegendAndSearch);
   }
 
-  populateCodeCollectiveEvents(filterRawEventsByTags(rawEvents));
+  const rawFilteredByLegendAndSearch = filterRawEventsBySearch(filterRawEventsByTags(rawEvents));
+  populateCodeCollectiveEvents(rawFilteredByLegendAndSearch);
   saveLegendPrefs();
 }
 
 function getEffectiveMappedCategories(tags, categoryMap = activeCategoryMap) {
+  if (filterUtils?.getEffectiveMappedCategories) {
+    return filterUtils.getEffectiveMappedCategories(tags, categoryMap);
+  }
+
   if (categoryMap?.id === 'tech_only' && !isTechOnlyEvent(tags)) {
     return [];
   }
@@ -837,6 +942,10 @@ function getEffectiveMappedCategories(tags, categoryMap = activeCategoryMap) {
 }
 
 function isExcludedFromActiveMap(tags) {
+  if (filterUtils?.isExcludedFromActiveMap) {
+    return filterUtils.isExcludedFromActiveMap(tags, activeCategoryMap);
+  }
+
   if (activeCategoryMap?.id === 'tech_only' && !isTechOnlyEvent(tags)) {
     return true;
   }
@@ -1025,6 +1134,25 @@ function getCityFromUrl() {
   return cityOptions.includes(city) ? city : 'baltimore'; // Default to baltimore if no city specified
 }
 
+function getSearchQueryFromUrl() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(SEARCH_QUERY_PARAM) || '';
+}
+
+function syncSearchQueryToUrl(rawQuery) {
+  if (!window.history || typeof window.history.replaceState !== 'function') return;
+
+  const query = String(rawQuery || '').trim();
+  const url = new URL(window.location.href);
+  if (query) {
+    url.searchParams.set(SEARCH_QUERY_PARAM, query);
+  } else {
+    url.searchParams.delete(SEARCH_QUERY_PARAM);
+  }
+
+  window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
+}
+
 function shouldStayOnCalendarView() {
   const urlParams = new URLSearchParams(window.location.search);
   const viewPreference = (urlParams.get('view') || '').toLowerCase();
@@ -1081,6 +1209,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       filteredEvents = [...allEvents]; // Make a copy for filtering
 
+      setupTextSearch();
       buildLegend(activeCategoryMap);
       applyTagFilters();
 
@@ -1451,28 +1580,8 @@ function initializeCalendar(events) {
   if (isMobile) return;
   calendarDisplayEvents = events;
 
-  // Filter events to show only next 4 weeks starting from today
+  // Date gating for desktop is handled by FullCalendar's validRange.
   const today = getTodayStart();
-
-  const fourWeeksFromNow = new Date(today);
-  fourWeeksFromNow.setDate(today.getDate() + 28); // 4 weeks = 28 days
-  fourWeeksFromNow.setHours(23, 59, 59, 999); // End of the day
-
-  const filteredEvents = events.filter(event => {
-    const eventDate = new Date(event.start);
-    if (isNaN(eventDate)) return false;
-    return isEventOnOrAfterToday(event.start, today) && eventDate <= fourWeeksFromNow;
-  });
-
-  // Calculate the start of current week (Sunday)
-  const startOfWeek = new Date(today);
-  const dayOfWeek = startOfWeek.getDay(); // 0 = Sunday, 1 = Monday, etc.
-  startOfWeek.setDate(startOfWeek.getDate() - dayOfWeek);
-  startOfWeek.setHours(0, 0, 0, 0);
-
-  // Calculate end of 4th week (current week + 3 weeks after)
-  const endOf4Weeks = new Date(startOfWeek);
-  endOf4Weeks.setDate(startOfWeek.getDate() + 29); // 4 weeks + 1 day (since end is exclusive)
 
   const calendarEl = document.getElementById('calendar');
   calendar = new FullCalendar.Calendar(calendarEl, {

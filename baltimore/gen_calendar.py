@@ -82,10 +82,10 @@ ICS_SOURCES = [
         "recurring": False,
     },
     {
-        "url": "https://calendar.google.com/calendar/u/0/r?cid=c_35ce051bfecc3ebd59f7776829ca549d2dd38e8ab2a50b07bd4243cb1c218c72@group.calendar.google.com",
+        "url": "https://chesapeakeclimate.org/",
         "ics_url": "https://calendar.google.com/calendar/ical/c_35ce051bfecc3ebd59f7776829ca549d2dd38e8ab2a50b07bd4243cb1c218c72%40group.calendar.google.com/public/basic.ics",
         "orgImageUrl": "https://chesapeakeclimate.org/wp-content/uploads/2022/02/CCAN-Logo-2022-300RGB-wht-e1643743097559.png",
-        "tags": ["Climate", "Environment", "Activism"],
+        "tags": ["Climate & Energy", "Water & Environment"],
         "group_name": "CCAN Baltimore",
         "recurring": False,
     },
@@ -181,7 +181,7 @@ CUSTOM_SCRAPER_SOURCES = [
         "url": "https://baltimore.org/events/",
         "group_name": "Visit Baltimore",
         "orgImageUrl": "https://baltimore.org/wp-content/uploads/2024/06/visit-baltimore-logo.svg",
-        "tags": ["Community", "Culture", "Economic Development"],
+        "tags": ["Community", "Culture"],
     },
     {
         "module": "baltimore.scrape_towsonlodge",

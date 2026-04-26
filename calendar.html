@@ -187,6 +187,15 @@
           <label for="city-select">Show events for:</label>
           <select id="city-select" aria-label="Select a city for the calendar"></select>
         </div>
+        <div class="calendar-search">
+          <label for="calendar-search-input">Search events:</label>
+          <input
+            id="calendar-search-input"
+            type="search"
+            placeholder="Title, tag, org, description, location..."
+            aria-label="Search events"
+          />
+        </div>
           <a href="#"
           data-ics-template="https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/{city}/cc_events.ics"
           class="download-button" target="_blank" rel="noopener noreferrer">
@@ -212,6 +221,7 @@
       </section>
     </section>
 
+    <script src="/js/calendarFilterUtils.js"></script>
     <script src="/js/calendar.js"></script>
     </section>
 
