@@ -1,16 +1,5 @@
 sources = [
     {
-        "name": "Code Collective (Meetup)",
-        "url": "https://www.meetup.com/code-collective/events/",
-        "group_name": "Code Collective",
-        "orgImageUrl": "/images/codecollective.webp",
-        "tags": [
-            "Code Collective & Partners",
-            "Tech Community",
-            "Community Organizing",
-        ],
-    },
-    {
         "name": "Baltimore Tech Meetup",
         "url": "https://www.meetup.com/baltimore-tech/events/",
         "tags": ["Economic Development", "Tech Community"],
@@ -331,10 +320,10 @@ sources = [
         "tags": ["Economic Development"],
     },
     {
-        "name": "Code Collective (Luma)",
+        "name": "Code Collective",
         "url": "https://luma.com/codecollective",
         "group_name": "Code Collective",
-        "orgImageUrl": "/images/codecollective.webp",
+        "orgImageUrl": "/images/general_encircled.png",
         "tags": [
             "Code Collective & Partners",
             "Tech Community",
