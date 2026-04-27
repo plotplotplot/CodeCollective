@@ -37,6 +37,41 @@
     outline-offset: 2px;
 }
 
+.calendar-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 10px auto 18px;
+    max-width: 720px;
+    flex-wrap: wrap;
+}
+
+.calendar-search label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.calendar-search input {
+    width: min(560px, 92vw);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    padding: 0.48rem 0.8rem;
+    font-size: 1rem;
+}
+
+.calendar-search input::placeholder {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.calendar-search input:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
 #calendar {
     height: 'auto'
 

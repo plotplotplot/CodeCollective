@@ -108,7 +108,10 @@ def merge_and_dedupe_events(
             continue
 
         existing_event = find_existing_duplicate(event, unique_events)
-        if event_date not in date_occupied and existing_event is None:
+        # Restriction disabled: allow recurring events to appear even when
+        # non-recurring events already occupy the same date.
+        # if event_date not in date_occupied and existing_event is None:
+        if existing_event is None:
             unique_events.append(event)
         else:
             event["invalid_reason"] = "Recurring event removed when a stronger conflicting event is present"

@@ -235,7 +235,7 @@
             opacity: 0;
             transform: translateX(12px);
             transition: opacity 120ms ease, transform 120ms ease;
-            pointer-events: none;
+            pointer-events: auto;
             z-index: 600;
         }
 
@@ -306,7 +306,55 @@
             padding: 0.35rem 0.7rem;
             font-size: 0.76rem;
             font-weight: 700;
-            background: #334155;
+            background: var(--tag-chip-bg, #334155);
+            color: var(--tag-chip-fg, #ffffff);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            cursor: ns-resize;
+            user-select: none;
+        }
+
+        .hover-preview-tag[data-multi="true"] {
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+        }
+
+        .tag-hover-rail {
+            margin-bottom: 0.95rem;
+            border-radius: 14px;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            background: rgba(15, 23, 42, 0.9);
+            overflow: hidden;
+        }
+
+        .tag-hover-rail-header {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.74rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: #e2e8f0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+            background: rgba(30, 41, 59, 0.75);
+        }
+
+        .tag-hover-rail-list {
+            max-height: min(40vh, 260px);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+        }
+
+        .tag-hover-option {
+            padding: 0.5rem 0.75rem;
+            border-left: 4px solid transparent;
+            font-size: 0.82rem;
+            color: #e2e8f0;
+            line-height: 1.35;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .tag-hover-option.active {
+            background: rgba(51, 65, 85, 0.75);
+            border-left-color: var(--tag-chip-bg, #94a3b8);
             color: #ffffff;
         }
 
@@ -387,6 +435,7 @@
                     <p id="hover-preview-source" class="hover-preview-source"></p>
                     <div id="hover-preview-location" class="hover-preview-location"></div>
                     <div id="hover-preview-tags" class="hover-preview-tags"></div>
+                    <div id="tag-hover-rail" class="tag-hover-rail" hidden></div>
                     <div id="hover-preview-description" class="hover-preview-description"></div>
                     <a id="hover-preview-link" class="hover-preview-link" href="#" target="_blank" rel="noopener" hidden>Open event page</a>
                 </div>
@@ -418,6 +467,65 @@
         const cityPathContext = resolveCityPath();
         const EVENTS_SOURCE = `${cityPathContext.basePath}/upcoming_events.json`;
         const GEOCODE_CACHE_URL = `${cityPathContext.basePath}/geocode_cache.json`;
+        const CATEGORY_MAPS_INDEX_URL = '/data/category_maps/index.json';
+        const LEGEND_PREFS_KEY = 'calendarLegendPrefs';
+        const FALLBACK_CATEGORY_MAP_CONFIG = {
+            default_map: 'community_sectors',
+            maps: [
+                {
+                    id: 'maslow_needs',
+                    label: 'Maslow Needs',
+                    categories: [
+                        { label: 'Food', color: '#ca8a04', text_color: '#ffffff', matches: ['Food'] },
+                        { label: 'Water', color: '#0f766e', text_color: '#ffffff', matches: ['Water', 'Water & Environment'] },
+                        { label: 'Shelter + Habitat', color: '#475569', text_color: '#ffffff', matches: ['Housing', 'Shelter + Habitat'] },
+                        { label: 'Clothing', color: '#7c3aed', text_color: '#ffffff', matches: ['Clothing'] },
+                        { label: 'Survival & Health', color: '#059669', text_color: '#ffffff', matches: ['Survival & Health', 'Wellness', 'Health'] },
+                        { label: 'Safety & Stability', color: '#1d4ed8', text_color: '#ffffff', matches: ['Safety & Stability', 'Infrastructure', 'Finance'] },
+                        { label: 'Belonging & Culture', color: '#9333ea', text_color: '#ffffff', matches: ['Belonging & Culture', 'Culture', 'Religion', 'Community'] },
+                        { label: 'Esteem & Opportunity', color: '#b45309', text_color: '#ffffff', matches: ['Esteem & Opportunity', 'Economic Development', 'Economics', 'Business', 'Startup', 'Entrepreneurship', 'Career Growth', 'Professional Networking'] },
+                        { label: 'Growth & Creativity', color: '#db2777', text_color: '#ffffff', matches: ['Growth & Creativity', 'Tech Skills', 'Makerspace'] },
+                        { label: 'Purpose & Service', color: '#b91c1c', text_color: '#ffffff', matches: ['Purpose & Service', 'Politics'] },
+                        { label: 'Other', color: '#6b7280', text_color: '#ffffff', matches: [] }
+                    ]
+                },
+                {
+                    id: 'community_sectors',
+                    label: 'Community Sectors',
+                    categories: [
+                        { label: 'Technology', color: '#2563eb', text_color: '#ffffff', matches: ['Tech Skills', 'AI', 'Data Science', 'Cybersecurity', 'Cloud & Platform', 'DevOps', 'Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Product', 'UX', 'Game Development', 'Technical Writing', 'Open Source', 'Tech Community'] },
+                        { label: 'Entrepreneurship', color: '#0ea5e9', text_color: '#ffffff', matches: ['Entrepreneurship', 'Business', 'Startup', 'Career Growth', 'Professional Networking'] },
+                        { label: 'Economics', color: '#0d9488', text_color: '#ffffff', matches: ['Economics', 'Economic Development', 'Esteem & Opportunity'] },
+                        { label: 'Finance', color: '#facc15', text_color: '#111827', matches: ['Finance', 'Crypto & Web3'] },
+                        { label: 'Politics', color: '#dc2626', text_color: '#ffffff', matches: ['Politics', 'Civic Tech', 'Policy', 'Purpose & Service'] },
+                        { label: 'Culture', color: '#7c3aed', text_color: '#ffffff', matches: ['Culture', 'Belonging & Culture', 'Community', 'Community Organizing', 'Code Collective & Partners', 'Tech Community'] },
+                        { label: 'Faith', color: '#000000', text_color: '#ffffff', matches: ['Religion', 'Faith & Spirituality'] },
+                        { label: 'Environment', color: '#16a34a', text_color: '#ffffff', matches: ['Water', 'Water & Environment', 'Climate & Energy', 'Energy', 'Infrastructure'] },
+                        { label: 'Makerspace', color: '#ea580c', text_color: '#ffffff', matches: ['Makerspace', 'Robotics'] },
+                        { label: 'Other', color: '#6b7280', text_color: '#ffffff', matches: [] }
+                    ]
+                },
+                {
+                    id: 'tech_only',
+                    label: 'Tech Meetups',
+                    categories: [
+                        { label: 'AI & ML', color: '#7c3aed', text_color: '#ffffff', matches: ['AI'] },
+                        { label: 'Data & Analytics', color: '#0891b2', text_color: '#ffffff', matches: ['Data Science'] },
+                        { label: 'Cybersecurity', color: '#dc2626', text_color: '#ffffff', matches: ['Cybersecurity'] },
+                        { label: 'Cloud & DevOps', color: '#2563eb', text_color: '#ffffff', matches: ['Cloud & Platform', 'DevOps'] },
+                        { label: 'Software Development', color: '#4f46e5', text_color: '#ffffff', matches: ['Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Open Source', 'Technical Writing', 'Game Development'] },
+                        { label: 'Design & Product', color: '#db2777', text_color: '#ffffff', matches: ['UX', 'Product'] },
+                        { label: 'Crypto & Web3', color: '#a16207', text_color: '#ffffff', matches: ['Crypto & Web3'] },
+                        { label: 'Makerspace & Robotics', color: '#ea580c', text_color: '#ffffff', matches: ['Makerspace', 'Robotics'] },
+                        { label: 'Tech Meetups', color: '#16a34a', text_color: '#ffffff', matches: ['Tech Community', 'Code Collective & Partners'] },
+                        { label: 'General Tech', color: '#475569', text_color: '#ffffff', matches: [] }
+                    ]
+                }
+            ]
+        };
+        let activeCategoryMap = FALLBACK_CATEGORY_MAP_CONFIG.maps.find(map => map.id === FALLBACK_CATEGORY_MAP_CONFIG.default_map) || FALLBACK_CATEGORY_MAP_CONFIG.maps[0];
+        let clearHoverTimer = 0;
+        let activeTagRail = null;
 
         const map = L.map('map', {
             zoomControl: true
@@ -450,6 +558,7 @@
         async function loadEvents() {
             try {
                 await loadFileCache();
+                await loadCategoryMapConfig();
                 const response = await fetch(EVENTS_SOURCE);
                 if (!response.ok) {
                     throw new Error('Failed to load upcoming events.');
@@ -483,6 +592,7 @@
             const searchInput = document.getElementById('event-search');
             const copyAllButton = document.getElementById('copy-all-button');
             const copySomeButton = document.getElementById('copy-some-button');
+            const previewPanel = document.getElementById('hover-preview');
 
             if (!searchInput.dataset.bound) {
                 searchInput.addEventListener('input', event => {
@@ -513,6 +623,12 @@
                     flashButtonLabel(copySomeButton, 'Copied');
                 });
                 copySomeButton.dataset.bound = 'true';
+            }
+
+            if (!previewPanel.dataset.bound) {
+                previewPanel.addEventListener('mouseenter', cancelClearHoverPreview);
+                previewPanel.addEventListener('mouseleave', scheduleClearHoverPreview);
+                previewPanel.dataset.bound = 'true';
             }
         }
 
@@ -553,7 +669,7 @@
                 `;
                 card.addEventListener('mouseenter', () => activateEventPreview(evt));
                 card.addEventListener('focus', () => activateEventPreview(evt));
-                card.addEventListener('mouseleave', clearHoverPreview);
+                card.addEventListener('mouseleave', scheduleClearHoverPreview);
                 card.addEventListener('click', () => focusEventOnMap(evt));
                 card.addEventListener('keydown', event => {
                     if (event.key === 'Enter' || event.key === ' ') {
@@ -692,7 +808,7 @@
                     ${escapeHtml(formatDate(evt.startDate) || '')}
                 `);
                 marker.on('mouseover', () => activateEventPreview(eventWithCoords));
-                marker.on('mouseout', clearHoverPreview);
+                marker.on('mouseout', scheduleClearHoverPreview);
                 markersByEventKey.set(getEventKey(eventWithCoords), marker);
                 markers.push(marker);
             }
@@ -732,6 +848,7 @@
         }
 
         function activateEventPreview(evt) {
+            cancelClearHoverPreview();
             activeHoverKey = getEventKey(evt);
             syncActiveCard();
             showHoverPreview(evt);
@@ -760,8 +877,14 @@
             title.textContent = evt.name || 'Untitled';
             source.textContent = getSourceLabel(evt);
             location.textContent = getEventLocationKey(evt) || 'Address unavailable';
-            tags.innerHTML = (Array.isArray(evt.tags) ? evt.tags : []).map(tag => `<span class="hover-preview-tag">${escapeHtml(tag)}</span>`).join('');
+            const rawTags = Array.isArray(evt.tags) ? evt.tags : [];
+            tags.innerHTML = rawTags.map(tag => {
+                const visual = getTagVisual(tag);
+                const matches = getEventsByTag(tag);
+                return `<span class="hover-preview-tag" data-tag="${escapeAttr(tag)}" data-multi="${matches.length > 1 ? 'true' : 'false'}" style="--tag-chip-bg:${escapeAttr(visual.bg)}; --tag-chip-fg:${escapeAttr(visual.fg)};">${escapeHtml(tag)}</span>`;
+            }).join('');
             description.textContent = evt.description || 'No description available.';
+            bindTagHoverInteractions(rawTags, evt);
 
             if (imageUrl) {
                 mediaWrap.hidden = false;
@@ -785,12 +908,270 @@
             panel.classList.add('visible');
         }
 
+        function scheduleClearHoverPreview() {
+            cancelClearHoverPreview();
+            clearHoverTimer = window.setTimeout(() => {
+                clearHoverPreview();
+            }, 650);
+        }
+
+        function cancelClearHoverPreview() {
+            if (!clearHoverTimer) {
+                return;
+            }
+            window.clearTimeout(clearHoverTimer);
+            clearHoverTimer = 0;
+        }
+
         function clearHoverPreview() {
+            cancelClearHoverPreview();
+            hideTagHoverRail();
             activeHoverKey = '';
             syncActiveCard();
             const panel = document.getElementById('hover-preview');
             panel.classList.remove('visible');
             panel.hidden = true;
+        }
+
+        function bindTagHoverInteractions(rawTags, activeEvent) {
+            const container = document.getElementById('hover-preview-tags');
+            if (!rawTags.length) {
+                hideTagHoverRail();
+                return;
+            }
+
+            container.querySelectorAll('.hover-preview-tag').forEach(chip => {
+                const rawTag = chip.dataset.tag || '';
+                const matches = getEventsByTag(rawTag);
+                chip.addEventListener('mouseenter', event => {
+                    if (matches.length > 6) {
+                        const activeIndex = Math.max(0, matches.findIndex(candidate => getEventKey(candidate) === getEventKey(activeEvent)));
+                        showTagHoverRail(rawTag, matches, activeIndex);
+                        previewEventFromTagRail(rawTag, matches, activeIndex);
+                        return;
+                    }
+
+                    if (matches.length > 1) {
+                        const activeIndex = getVerticalIndexForTarget(event, matches.length);
+                        previewEventFromTagRail(rawTag, matches, activeIndex);
+                    } else {
+                        hideTagHoverRail();
+                    }
+                });
+                chip.addEventListener('mousemove', event => {
+                    if (matches.length <= 1) {
+                        return;
+                    }
+                    if (matches.length > 6) {
+                        if (!activeTagRail || activeTagRail.tag !== rawTag) {
+                            showTagHoverRail(rawTag, matches, 0);
+                        }
+                        return;
+                    }
+                    const activeIndex = getVerticalIndexForTarget(event, matches.length);
+                    previewEventFromTagRail(rawTag, matches, activeIndex);
+                });
+            });
+        }
+
+        function showTagHoverRail(tag, events, activeIndex) {
+            if (!events || !events.length) {
+                hideTagHoverRail();
+                return;
+            }
+            const rail = document.getElementById('tag-hover-rail');
+            const visual = getTagVisual(tag);
+            const heading = `${tag} (${events.length} events)`;
+            rail.innerHTML = `
+                <div class="tag-hover-rail-header" style="--tag-chip-bg:${escapeAttr(visual.bg)};">Hover vertically to preview: ${escapeHtml(heading)}</div>
+                <div class="tag-hover-rail-list">
+                    ${events.map((evt, idx) => `<div class="tag-hover-option ${idx === activeIndex ? 'active' : ''}" data-index="${idx}" style="--tag-chip-bg:${escapeAttr(visual.bg)};">${escapeHtml(evt.name || 'Untitled')}</div>`).join('')}
+                </div>
+            `;
+            rail.hidden = false;
+            activeTagRail = {
+                tag,
+                events,
+                activeIndex
+            };
+            const list = rail.querySelector('.tag-hover-rail-list');
+            list.addEventListener('mousemove', event => {
+                if (!activeTagRail || activeTagRail.tag !== tag) {
+                    return;
+                }
+                const nextIndex = getVerticalIndexFromScrollable(event, list, activeTagRail.events.length);
+                previewEventFromTagRail(activeTagRail.tag, activeTagRail.events, nextIndex);
+            });
+            list.addEventListener('mouseleave', () => {
+                if (!activeTagRail) {
+                    return;
+                }
+                setTagRailActiveOption(activeTagRail.activeIndex);
+            });
+            list.addEventListener('click', event => {
+                const target = event.target.closest('.tag-hover-option');
+                if (!target || !activeTagRail) {
+                    return;
+                }
+                const nextIndex = Number(target.dataset.index);
+                if (!Number.isFinite(nextIndex)) {
+                    return;
+                }
+                previewEventFromTagRail(activeTagRail.tag, activeTagRail.events, nextIndex, true);
+            });
+        }
+
+        function hideTagHoverRail() {
+            const rail = document.getElementById('tag-hover-rail');
+            rail.hidden = true;
+            rail.innerHTML = '';
+            activeTagRail = null;
+        }
+
+        function previewEventFromTagRail(tag, events, index, pinOnMap = false) {
+            if (!events || !events.length) {
+                return;
+            }
+            const boundedIndex = Math.max(0, Math.min(events.length - 1, index));
+            const nextEvent = events[boundedIndex];
+            const nextKey = getEventKey(nextEvent);
+            setTagRailActiveOption(boundedIndex);
+
+            if (activeHoverKey === nextKey && !pinOnMap) {
+                return;
+            }
+
+            activeHoverKey = nextKey;
+            syncActiveCard();
+            showHoverPreview(nextEvent);
+            showTagHoverRail(tag, events, boundedIndex);
+            if (pinOnMap) {
+                focusEventOnMap(nextEvent);
+            }
+        }
+
+        function setTagRailActiveOption(index) {
+            const rail = document.getElementById('tag-hover-rail');
+            rail.querySelectorAll('.tag-hover-option').forEach(option => {
+                const optionIndex = Number(option.dataset.index);
+                option.classList.toggle('active', optionIndex === index);
+                if (optionIndex === index) {
+                    option.scrollIntoView({ block: 'nearest' });
+                }
+            });
+            if (activeTagRail) {
+                activeTagRail.activeIndex = index;
+            }
+        }
+
+        function getVerticalIndexForTarget(event, count) {
+            const rect = event.currentTarget.getBoundingClientRect();
+            const offset = Math.max(0, Math.min(rect.height, event.clientY - rect.top));
+            const ratio = rect.height <= 0 ? 0 : offset / rect.height;
+            return Math.max(0, Math.min(count - 1, Math.floor(ratio * count)));
+        }
+
+        function getVerticalIndexFromScrollable(event, listElement, count) {
+            const rect = listElement.getBoundingClientRect();
+            const localY = Math.max(0, Math.min(rect.height, event.clientY - rect.top));
+            const virtualY = localY + listElement.scrollTop;
+            const total = Math.max(1, listElement.scrollHeight);
+            const ratio = virtualY / total;
+            return Math.max(0, Math.min(count - 1, Math.floor(ratio * count)));
+        }
+
+        function slugifyTag(tag) {
+            return String(tag || '')
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '');
+        }
+
+        function normalizeMapCategory(category) {
+            return {
+                label: category.label,
+                color: category.color || '#475569',
+                textColor: category.text_color || '#ffffff',
+                slug: slugifyTag(category.label),
+                matchSlugs: new Set((category.matches || []).map(slugifyTag).filter(Boolean))
+            };
+        }
+
+        function getOtherCategory(categoryMap) {
+            return (categoryMap?.categories || [])
+                .map(normalizeMapCategory)
+                .find(category => category.slug === 'other') || null;
+        }
+
+        function getMappedCategoryForTag(rawTag) {
+            const slug = slugifyTag(rawTag);
+            if (!slug) {
+                return getOtherCategory(activeCategoryMap);
+            }
+            const mapped = (activeCategoryMap?.categories || [])
+                .map(normalizeMapCategory)
+                .find(category => category.matchSlugs.has(slug));
+            return mapped || getOtherCategory(activeCategoryMap);
+        }
+
+        function getTagVisual(rawTag) {
+            const mapped = getMappedCategoryForTag(rawTag);
+            return {
+                bg: mapped?.color || '#334155',
+                fg: mapped?.textColor || '#ffffff'
+            };
+        }
+
+        function getEventsByTag(rawTag) {
+            const target = slugifyTag(rawTag);
+            if (!target) {
+                return [];
+            }
+            return getFilteredEvents().filter(evt => {
+                const tags = Array.isArray(evt.tags) ? evt.tags : [];
+                return tags.some(tag => slugifyTag(tag) === target);
+            });
+        }
+
+        async function loadCategoryMapConfig() {
+            try {
+                const indexResponse = await fetch(CATEGORY_MAPS_INDEX_URL, { cache: 'no-store' });
+                if (!indexResponse.ok) {
+                    throw new Error(`Category map index HTTP ${indexResponse.status}`);
+                }
+                const indexData = await indexResponse.json();
+                const refs = Array.isArray(indexData.maps) ? indexData.maps : [];
+                if (!refs.length) {
+                    return;
+                }
+                const loadedMaps = await Promise.all(refs.map(async ref => {
+                    if (!ref?.path) {
+                        return null;
+                    }
+                    const response = await fetch(ref.path, { cache: 'no-store' });
+                    if (!response.ok) {
+                        throw new Error(`Category map ${ref.id || ref.path} HTTP ${response.status}`);
+                    }
+                    const payload = await response.json();
+                    if (!Array.isArray(payload?.categories)) {
+                        return null;
+                    }
+                    return {
+                        id: payload.id || ref.id || '',
+                        label: payload.label || ref.label || payload.id || ref.id || 'Map',
+                        categories: payload.categories
+                    };
+                }));
+                const maps = loadedMaps.filter(Boolean);
+                if (!maps.length) {
+                    return;
+                }
+                const storedPrefs = JSON.parse(localStorage.getItem(LEGEND_PREFS_KEY) || '{}');
+                const preferredMapId = storedPrefs?.mapId || indexData.default_map;
+                activeCategoryMap = maps.find(map => map.id === preferredMapId) || maps.find(map => map.id === indexData.default_map) || maps[0];
+            } catch (error) {
+                console.warn('Falling back to built-in category map for event tags:', error);
+            }
         }
 
         function focusEventOnMap(evt) {
@@ -875,6 +1256,10 @@
                 .replace(/>/g, '&gt;')
                 .replace(/"/g, '&quot;')
                 .replace(/'/g, '&#39;');
+        }
+
+        function escapeAttr(value) {
+            return escapeHtml(value).replace(/`/g, '&#96;');
         }
 
         loadEvents();
