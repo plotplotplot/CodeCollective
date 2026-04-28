@@ -997,6 +997,7 @@ function normalizeSearchText(value) {
 function getCalendarEventSearchBlob(event) {
   const tags = Array.isArray(event?.extendedProps?.tags) ? event.extendedProps.tags : [];
   const location = event?.extendedProps?.location || event?.location || {};
+  const agenda = event?.extendedProps?.agenda || event?.agenda || null;
   return [
     event?.title,
     event?.extendedProps?.description,
@@ -1005,6 +1006,10 @@ function getCalendarEventSearchBlob(event) {
     event?.extendedProps?.source,
     event?.extendedProps?.sourceGroup,
     event?.extendedProps?.group,
+    agenda?.day,
+    ...(Array.isArray(agenda?.sessions)
+      ? agenda.sessions.flatMap(session => [session?.title, session?.description, ...(Array.isArray(session?.hosts) ? session.hosts : [])])
+      : []),
     ...tags
   ]
     .filter(Boolean)
@@ -1015,6 +1020,7 @@ function getCalendarEventSearchBlob(event) {
 function getRawEventSearchBlob(event) {
   const tags = Array.isArray(event?.tags) ? event.tags : [];
   const location = event?.location || {};
+  const agenda = event?.agenda || null;
   return [
     event?.name,
     event?.description,
@@ -1024,6 +1030,10 @@ function getRawEventSearchBlob(event) {
     event?.source_group,
     event?.org_name,
     event?.orgName,
+    agenda?.day,
+    ...(Array.isArray(agenda?.sessions)
+      ? agenda.sessions.flatMap(session => [session?.title, session?.description, ...(Array.isArray(session?.hosts) ? session.hosts : [])])
+      : []),
     ...tags
   ]
     .filter(Boolean)
@@ -1130,10 +1140,47 @@ function getEventDataFromCalendarEvent(event) {
     url: event.url || '',
     imageUrl: event.extendedProps?.imageUrl || '',
     orgImageUrl: event.extendedProps?.orgImageUrl || '',
+    agenda: event.extendedProps?.agenda || null,
     tags: Array.isArray(event.extendedProps?.tags) ? event.extendedProps.tags : [],
     source: event.extendedProps?.source || '',
     source_group: event.extendedProps?.sourceGroup || event.extendedProps?.group || ''
   };
+}
+
+function buildAgendaSummaryText(agenda) {
+  if (!agenda || !Array.isArray(agenda.sessions) || agenda.sessions.length === 0) return '';
+  const dayLabel = agenda.day ? `Agenda (${agenda.day})` : 'Agenda';
+  const lines = agenda.sessions.map(session => {
+    const title = String(session?.title || '').trim();
+    const start = session?.startDate ? formatEventTime(new Date(session.startDate)) : '';
+    const end = session?.endTime ? formatEventTime(new Date(session.endTime)) : '';
+    const time = start && end ? `${start}-${end}` : start || '';
+    const hosts = Array.isArray(session?.hosts) && session.hosts.length ? ` [${session.hosts.join(', ')}]` : '';
+    return `${time ? `${time} ` : ''}${title}${hosts}`.trim();
+  }).filter(Boolean);
+  return lines.length ? `${dayLabel}\n${lines.join('\n')}` : '';
+}
+
+function buildAgendaHtml(agenda) {
+  if (!agenda || !Array.isArray(agenda.sessions) || agenda.sessions.length === 0) return '';
+  const dayLabel = agenda.day ? `Agenda: ${agenda.day}` : 'Agenda';
+  const items = agenda.sessions.map(session => {
+    const title = escapeHtml(session?.title || '');
+    const start = session?.startDate ? formatEventTime(new Date(session.startDate)) : '';
+    const end = session?.endTime ? formatEventTime(new Date(session.endTime)) : '';
+    const time = start && end ? `${start}-${end}` : (start || '');
+    const hosts = Array.isArray(session?.hosts) && session.hosts.length
+      ? `<div class="event-agenda-hosts">${escapeHtml(session.hosts.join(', '))}</div>`
+      : '';
+    return `<li><div class="event-agenda-line">${time ? `<strong>${escapeHtml(time)}</strong> ` : ''}${title}</div>${hosts}</li>`;
+  }).join('');
+  return `<div class="event-agenda"><h4>${escapeHtml(dayLabel)}</h4><ul>${items}</ul></div>`;
+}
+
+function buildEventDisplayDescription(eventData) {
+  const base = String(eventData?.description || '').trim();
+  const agendaText = buildAgendaSummaryText(eventData?.agenda);
+  return [base, agendaText].filter(Boolean).join('\n\n');
 }
 
 async function copyTextToClipboard(text) {
@@ -1203,7 +1250,9 @@ function showEventInfoModal(eventData) {
     const textColor = mapped?.textColor || '#ffffff';
     return `<span class="event-hover-tag" style="--tag-chip-bg: ${escapeAttr(background)}; --tag-chip-fg: ${escapeAttr(textColor)};">${escapeHtml(tag)}</span>`;
   }).join('');
-  modal.querySelector('.event-info-modal-description').innerHTML = renderRichText(eventData.description || '');
+  const combinedDescription = buildEventDisplayDescription(eventData);
+  const agendaHtml = buildAgendaHtml(eventData.agenda);
+  modal.querySelector('.event-info-modal-description').innerHTML = `${renderRichText(combinedDescription || '')}${agendaHtml}`;
   const link = modal.querySelector('.event-info-modal-link');
   if (eventData.url) {
     link.href = eventData.url;
@@ -1498,7 +1547,10 @@ function createEventCard(event) {
   });
 
   // Prepare description with markdown support
-  const rawDescription = event.description || '';
+  const rawDescription = buildEventDisplayDescription({
+    description: event.description || '',
+    agenda: event.extendedProps?.agenda || null
+  });
   const description = rawDescription.trim();
   const maxDescLength = 100;
   const needsMore = description.length > maxDescLength;
@@ -1646,6 +1698,7 @@ function processEvents(eventsData) {
       description: event.description,
       location: event.location,
       url: event.url,
+      agenda: event.agenda || null,
       extendedProps: {
         group: groupName,
         sourceGroup: event.source_group || '',
@@ -1653,6 +1706,7 @@ function processEvents(eventsData) {
         location: event.location || null,
         imageUrl: event.imageUrl,
         orgImageUrl: event.orgImageUrl || '',
+        agenda: event.agenda || null,
         tags: Array.isArray(event.tags) ? event.tags : [],
         source: event.source || ''
       },

@@ -118,6 +118,9 @@ class EventbriteScraper:
         page_props = (next_data.get("props") or {}).get("pageProps") or {}
         upcoming_events = page_props.get("upcomingEvents")
         if not isinstance(upcoming_events, list):
+            single_event = self._extract_single_event_from_next_data(next_data)
+            if single_event is not None:
+                return single_event
             return None
 
         events = []
@@ -129,6 +132,189 @@ class EventbriteScraper:
         events.sort(key=lambda x: self._parse_datetime(x['startDate']))
         logger.info(f"Found {len(events)} upcoming events")
         return events
+
+    def _extract_single_event_from_next_data(self, next_data: Dict[str, Any]) -> Optional[List[Dict[str, Any]]]:
+        page_props = (next_data.get("props") or {}).get("pageProps") or {}
+        context = page_props.get("context") or {}
+        basic_info = context.get("basicInfo") or {}
+        if not isinstance(basic_info, dict) or not basic_info.get("name"):
+            return None
+
+        start_info = basic_info.get("startDate") or {}
+        end_info = basic_info.get("endDate") or {}
+        timezone_name = start_info.get("timezone") or "UTC"
+        event_url = page_props.get("canonicalUrl") or basic_info.get("url")
+
+        image_data = basic_info.get("image") or {}
+        event_image = image_data.get("url") if isinstance(image_data, dict) else None
+        if not event_image:
+            event_image = self.page_fallback_image_url
+
+        main_event = {
+            "name": basic_info.get("name", "Unknown Event"),
+            "description": basic_info.get("summary") or basic_info.get("name", "Unknown Event"),
+            "startDate": start_info.get("utc") or start_info.get("local"),
+            "endTime": end_info.get("utc") or end_info.get("local"),
+            "url": event_url,
+            "status": "ACTIVE",
+            "location": self._format_context_location(basic_info.get("venue"), bool(basic_info.get("isOnline"))),
+            "imageUrl": event_image,
+            "orgImageUrl": self.page_fallback_image_url,
+        }
+
+        agenda_days = self._extract_agenda_days(
+            context=context,
+            event_name=main_event["name"],
+            event_url=event_url,
+            timezone_name=timezone_name,
+            fallback_location=main_event["location"],
+            fallback_image=event_image,
+            base_start=main_event["startDate"],
+        )
+        if agenda_days:
+            events = [event for event in agenda_days if event.get("startDate")]
+            events.sort(key=lambda x: self._parse_datetime(x["startDate"]))
+            logger.info(f"Found single Eventbrite event page with {len(events)} agenda day blocks")
+            return events
+
+        return [main_event] if main_event.get("startDate") else None
+
+    def _extract_agenda_days(
+        self,
+        context: Dict[str, Any],
+        event_name: str,
+        event_url: Optional[str],
+        timezone_name: str,
+        fallback_location: Dict[str, Any],
+        fallback_image: Optional[str],
+        base_start: Optional[str] = None,
+    ) -> List[Dict[str, Any]]:
+        agenda = (((context.get("structuredContent") or {}).get("widgets") or {}).get("agenda") or {})
+        tabs = agenda.get("tabs") if isinstance(agenda, dict) else None
+        if not isinstance(tabs, list) or not tabs:
+            return []
+
+        try:
+            tz = ZoneInfo(timezone_name) if timezone_name else timezone.utc
+        except Exception:
+            tz = timezone.utc
+
+        base_year = datetime.now(tz).year
+        if base_start:
+            try:
+                base_year = self._parse_datetime(base_start).astimezone(tz).year
+            except Exception:
+                pass
+
+        day_events: List[Dict[str, Any]] = []
+        for tab in tabs:
+            day_name = str((tab or {}).get("name") or "").strip()
+            slots = (tab or {}).get("slots") or []
+            if not day_name or not isinstance(slots, list):
+                continue
+            day_date = self._parse_agenda_day(day_name, base_year)
+            if day_date is None:
+                continue
+
+            agenda_items = []
+            for idx, slot in enumerate(slots):
+                title = str((slot or {}).get("title") or "").strip()
+                start_hhmm = str((slot or {}).get("startTime") or "").strip()
+                end_hhmm = str((slot or {}).get("endTime") or "").strip()
+                if not title or not start_hhmm:
+                    continue
+
+                start_hhmm, end_hhmm = self._normalize_agenda_times(start_hhmm, end_hhmm, title)
+
+                start_iso = self._combine_day_and_time(day_date, start_hhmm, tz)
+                if not start_iso:
+                    continue
+                end_iso = self._combine_day_and_time(day_date, end_hhmm, tz) if end_hhmm else None
+                if end_iso and self._parse_datetime(end_iso) < self._parse_datetime(start_iso):
+                    end_iso = self._combine_day_and_time(day_date + timedelta(days=1), end_hhmm, tz)
+
+                hosts = (slot or {}).get("hosts") or []
+                host_names = [str(h.get("name", "")).strip() for h in hosts if isinstance(h, dict) and h.get("name")]
+                description = str((slot or {}).get("description") or "").strip()
+                agenda_items.append({
+                    "title": title,
+                    "description": description,
+                    "startDate": start_iso,
+                    "endTime": end_iso or start_iso,
+                    "hosts": host_names,
+                    "order": idx,
+                })
+
+            if not agenda_items:
+                continue
+
+            day_start = datetime.combine(day_date, datetime.min.time(), tzinfo=tz).isoformat()
+            day_end = datetime.combine(day_date, datetime.max.time().replace(microsecond=0), tzinfo=tz).isoformat()
+
+            day_events.append({
+                "name": event_name,
+                "description": f"{event_name} ({day_name})",
+                "startDate": day_start,
+                "endTime": day_end,
+                "url": event_url,
+                "status": "ACTIVE",
+                "location": fallback_location,
+                "imageUrl": fallback_image,
+                "orgImageUrl": self.page_fallback_image_url,
+                "agenda": {
+                    "day": day_name,
+                    "sessions": agenda_items,
+                },
+            })
+
+        return day_events
+
+    def _parse_agenda_day(self, day_name: str, base_year: int):
+        cleaned = re.sub(r"\s+", " ", day_name).strip()
+        for year in [base_year, base_year + 1, base_year - 1]:
+            for pattern in ("%A %B %d %Y", "%a %B %d %Y", "%A %b %d %Y", "%a %b %d %Y"):
+                try:
+                    return datetime.strptime(f"{cleaned} {year}", pattern).date()
+                except ValueError:
+                    continue
+        return None
+
+    def _combine_day_and_time(self, day_date, hhmm: str, tzinfo) -> Optional[str]:
+        match = re.match(r"^(\d{1,2}):(\d{2})$", hhmm)
+        if not match:
+            return None
+        hour = int(match.group(1))
+        minute = int(match.group(2))
+        if hour > 23 or minute > 59:
+            return None
+        dt = datetime.combine(day_date, datetime.min.time(), tzinfo=tzinfo).replace(hour=hour, minute=minute)
+        return dt.isoformat()
+
+    def _normalize_agenda_times(self, start_hhmm: str, end_hhmm: str, title: str) -> (str, str):
+        """
+        Eventbrite agenda payloads occasionally encode noon sessions as 00:xx.
+        For conference-style sessions, treat 00:xx as 12:xx when the paired end
+        time is clearly daytime or the title strongly implies daytime.
+        """
+        if not re.match(r"^\d{1,2}:\d{2}$", start_hhmm):
+            return start_hhmm, end_hhmm
+        start_hour = int(start_hhmm.split(":", 1)[0])
+        if start_hour != 0:
+            return start_hhmm, end_hhmm
+
+        end_hour = None
+        if re.match(r"^\d{1,2}:\d{2}$", end_hhmm or ""):
+            end_hour = int(end_hhmm.split(":", 1)[0])
+        title_l = (title or "").lower()
+        daytime_title = any(token in title_l for token in ["lunch", "breakfast", "opening", "remarks", "networking"])
+        clearly_daytime_range = end_hour is not None and end_hour >= 11
+
+        if daytime_title or clearly_daytime_range:
+            start_hhmm = f"12:{start_hhmm.split(':', 1)[1]}"
+            if end_hhmm and end_hour == 0:
+                end_hhmm = f"12:{end_hhmm.split(':', 1)[1]}"
+
+        return start_hhmm, end_hhmm
     
     def _extract_events_from_server_data(self, server_data: Dict[str, Any]) -> List[Dict[str, Any]]:
         """Extract events from server data"""
@@ -261,6 +447,33 @@ class EventbriteScraper:
             'city': address.get('city', ''),
             'state': address.get('region', ''),
             'postalCode': address.get('postal_code', ''),
+            'country': address.get('country', ''),
+            'latitude': address.get('latitude'),
+            'longitude': address.get('longitude'),
+        }
+
+    def _format_context_location(self, venue: Optional[Dict[str, Any]], is_online: bool) -> Dict[str, Any]:
+        if is_online:
+            return {
+                'name': 'Online Event',
+                'address': 'Online',
+                'city': '',
+                'state': '',
+                'country': '',
+            }
+        venue = venue or {}
+        address = venue.get("address") or {}
+        multiline = address.get("localizedMultiLineAddressDisplay") or []
+        if isinstance(multiline, list):
+            address_line = ", ".join([part for part in multiline if part])
+        else:
+            address_line = ""
+        return {
+            'name': venue.get('name', 'Unknown Location'),
+            'address': address_line or address.get('localizedAddressDisplay') or 'Unknown Address',
+            'city': address.get('city', ''),
+            'state': address.get('region', ''),
+            'postalCode': address.get('postalCode', ''),
             'country': address.get('country', ''),
             'latitude': address.get('latitude'),
             'longitude': address.get('longitude'),
