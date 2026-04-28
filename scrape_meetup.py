@@ -11,6 +11,78 @@ from html import escape
 utc_timezone = pytz.timezone("UTC")
 est_timezone = pytz.timezone("America/New_York")
 
+
+def _normalize_image_url(url):
+    if not url:
+        return None
+    url = str(url).strip()
+    if not url or url.startswith("data:"):
+        return None
+    if url.startswith("//"):
+        return f"https:{url}"
+    if url.startswith("http://"):
+        return "https://" + url[len("http://"):]
+    return url
+
+
+def _collect_photo_urls_from_ref(ref_obj, apollo_state):
+    urls = []
+    if not isinstance(ref_obj, dict):
+        return urls
+    ref = ref_obj.get("__ref")
+    if not ref:
+        return urls
+    payload = apollo_state.get(ref, {})
+    if not isinstance(payload, dict):
+        return urls
+
+    for key in [
+        "highResUrl",
+        "baseUrl",
+        "photoLink",
+        "url",
+        "largeUrl",
+        "thumbUrl",
+        "previewUrl",
+    ]:
+        value = _normalize_image_url(payload.get(key))
+        if value:
+            urls.append(value)
+    return urls
+
+
+def _score_image_url(url):
+    score = 0
+    lower = url.lower()
+    if lower.startswith("https://"):
+        score += 5
+    if "highres" in lower or "original" in lower:
+        score += 10
+    if re.search(r"[?&](w|width)=(1[2-9]\d{2}|[2-9]\d{3,})", lower):
+        score += 5
+    if any(ext in lower for ext in [".jpg", ".jpeg", ".png", ".webp"]):
+        score += 3
+    if any(bad in lower for bad in ["avatar", "member", "thumb", "placeholder"]):
+        score -= 6
+    return score
+
+
+def _pick_best_image_url(candidates):
+    deduped = []
+    seen = set()
+    for raw in candidates:
+        url = _normalize_image_url(raw)
+        if not url:
+            continue
+        key = url.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(url)
+    if not deduped:
+        return None
+    return sorted(deduped, key=_score_image_url, reverse=True)[0]
+
 def fetch_meetup_page(url):
     """Fetches the HTML content of the Meetup page."""
     headers = {
@@ -44,34 +116,18 @@ def parse_meetup_events(next_data, include_past=False, source_url=None):
     try:
         apollo_state = next_data.get('props', {}).get('pageProps', {}).get('__APOLLO_STATE__', {})
         
-        # Try multiple ways to find hero image
+        # Build a robust group/org image candidate list.
+        group_image_candidates = []
         group_keys = [key for key in apollo_state.keys() if key.startswith('Group:')]
         for group_key in group_keys:
             group_data = apollo_state.get(group_key, {})
-            
-            # Check group photo
-            if 'groupPhoto' in group_data and group_data['groupPhoto']:
-                photo_ref = group_data['groupPhoto'].get('__ref')
-                if photo_ref and photo_ref in apollo_state:
-                    photo_data = apollo_state.get(photo_ref, {})
-                    hero_image_url = photo_data.get('highResUrl') or photo_data.get('baseUrl')
-                    if hero_image_url: break
-            
-            # Check key photo
-            if not hero_image_url and 'keyPhoto' in group_data and group_data['keyPhoto']:
-                photo_ref = group_data['keyPhoto'].get('__ref')
-                if photo_ref and photo_ref in apollo_state:
-                    photo_data = apollo_state.get(photo_ref, {})
-                    hero_image_url = photo_data.get('highResUrl') or photo_data.get('baseUrl')
-                    if hero_image_url: break
-            
-            # Check cover photo
-            if not hero_image_url and 'coverPhoto' in group_data and group_data['coverPhoto']:
-                photo_ref = group_data['coverPhoto'].get('__ref')
-                if photo_ref and photo_ref in apollo_state:
-                    photo_data = apollo_state.get(photo_ref, {})
-                    hero_image_url = photo_data.get('highResUrl') or photo_data.get('baseUrl')
-                    if hero_image_url: break
+            for field in ['groupPhoto', 'keyPhoto', 'coverPhoto', 'featuredPhoto', 'logoPhoto']:
+                group_image_candidates.extend(_collect_photo_urls_from_ref(group_data.get(field), apollo_state))
+            for field in ['groupPhotoUrl', 'photoUrl', 'imageUrl', 'logoUrl']:
+                candidate = _normalize_image_url(group_data.get(field))
+                if candidate:
+                    group_image_candidates.append(candidate)
+        hero_image_url = _pick_best_image_url(group_image_candidates)
         
         # Parse events
         event_keys = [key for key in apollo_state.keys() if key.startswith('Event:')]
@@ -103,16 +159,19 @@ def parse_meetup_events(next_data, include_past=False, source_url=None):
                             'country': venue_data.get('country', '')
                         }
                 
-                # Get event image
-                event_image_url = None
-                if 'featuredEventPhoto' in event_data and event_data['featuredEventPhoto']:
-                    image_ref = event_data['featuredEventPhoto'].get('__ref')
-                    if image_ref and image_ref in apollo_state:
-                        image_data = apollo_state.get(image_ref, {})
-                        event_image_url = image_data.get('highResUrl') or image_data.get('baseUrl')
-                
-                # Use hero image as fallback
-                event['imageUrl'] = event_image_url or hero_image_url
+                # Collect event image candidates with org image fallback.
+                event_image_candidates = []
+                for field in ['featuredEventPhoto', 'displayPhoto', 'eventPhoto', 'photo']:
+                    event_image_candidates.extend(_collect_photo_urls_from_ref(event_data.get(field), apollo_state))
+                for field in ['imageUrl', 'photoUrl']:
+                    candidate = _normalize_image_url(event_data.get(field))
+                    if candidate:
+                        event_image_candidates.append(candidate)
+                if hero_image_url:
+                    event_image_candidates.append(hero_image_url)
+
+                event['orgImageUrl'] = hero_image_url
+                event['imageUrl'] = _pick_best_image_url(event_image_candidates)
                 
                 if include_past or event_data.get('status') == 'ACTIVE':
                     events.append(event)

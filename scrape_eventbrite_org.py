@@ -23,6 +23,7 @@ class EventbriteScraper:
     
     def __init__(self):
         self.session = requests.Session()
+        self.page_fallback_image_url: Optional[str] = None
         self.session.headers.update({
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -61,6 +62,7 @@ class EventbriteScraper:
     
     def _parse_events_from_html(self, html_content: str) -> List[Dict[str, Any]]:
         """Parse events from HTML content (supports Next.js and legacy payloads)."""
+        self.page_fallback_image_url = self._extract_page_fallback_image(html_content)
         next_data_events = self._extract_events_from_next_data(html_content)
         if next_data_events is not None:
             return next_data_events
@@ -81,6 +83,23 @@ class EventbriteScraper:
             raise Exception(f"Failed to parse __SERVER_DATA__ JSON: {str(e)}")
         
         return self._extract_events_from_server_data(server_data)
+
+    def _extract_page_fallback_image(self, html_content: str) -> Optional[str]:
+        candidates = []
+        for pattern in [
+            r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']',
+            r'<meta[^>]+name=["\']twitter:image["\'][^>]+content=["\']([^"\']+)["\']',
+        ]:
+            match = re.search(pattern, html_content, re.IGNORECASE)
+            if match:
+                url = (match.group(1) or "").strip()
+                if url:
+                    if url.startswith("//"):
+                        url = f"https:{url}"
+                    elif url.startswith("http://"):
+                        url = "https://" + url[len("http://"):]
+                    candidates.append(url)
+        return candidates[0] if candidates else None
 
     def _extract_events_from_next_data(self, html_content: str) -> Optional[List[Dict[str, Any]]]:
         next_data_match = re.search(
@@ -170,7 +189,7 @@ class EventbriteScraper:
         """Format a single event into the required structure"""
         try:
             location = self._format_location(event_data.get('location', {}))
-            image_url = event_data.get('image')
+            image_url = event_data.get('image') or self.page_fallback_image_url
             
             return {
                 'name': event_data.get('name', 'Unknown Event'),
@@ -180,7 +199,8 @@ class EventbriteScraper:
                 'url': event_data.get('url'),
                 'status': 'ACTIVE',
                 'location': location,
-                'imageUrl': image_url
+                'imageUrl': image_url,
+                'orgImageUrl': self.page_fallback_image_url
             }
         except Exception as e:
             logger.warning(f"Failed to format event {event_data.get('name', 'Unknown')}: {str(e)}")
@@ -205,6 +225,8 @@ class EventbriteScraper:
 
             is_online = bool(event_data.get("is_online_event"))
             image_data = event_data.get("image") or {}
+            event_image = image_data.get('url') if isinstance(image_data, dict) else None
+            event_image = event_image or self.page_fallback_image_url
 
             return {
                 'name': event_data.get('name', 'Unknown Event'),
@@ -214,7 +236,8 @@ class EventbriteScraper:
                 'url': event_data.get('url'),
                 'status': 'ACTIVE',
                 'location': self._format_next_data_location(event_data, is_online=is_online),
-                'imageUrl': image_data.get('url') if isinstance(image_data, dict) else None
+                'imageUrl': event_image,
+                'orgImageUrl': self.page_fallback_image_url
             }
         except Exception as e:
             logger.warning(f"Failed to format Next.js event payload: {e}")

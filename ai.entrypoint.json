@@ -1,0 +1,39 @@
+{
+  "name": "CodeCollective Calendar",
+  "version": "1.0.0",
+  "entrypoint": "lenses",
+  "primary_ui": {
+    "page": "/calendar.html",
+    "script": "/js/calendar.js"
+  },
+  "taxonomy": {
+    "index": "/data/category_maps/index.json",
+    "default_map_id": "lenses",
+    "maps": {
+      "lenses": "/data/category_maps/lenses.json",
+      "community_sectors": "/data/category_maps/community_sectors.json",
+      "maslow_needs": "/data/category_maps/maslow_needs.json",
+      "tech_only": "/data/category_maps/tech_only.json"
+    },
+    "subset_relationships": [
+      {
+        "parent": "lenses",
+        "child": "community_sectors",
+        "difference": ["Economy"]
+      }
+    ]
+  },
+  "behavior": {
+    "legend_drives_filtering": true,
+    "category_colors_authoritative": true,
+    "calendar_bootstrap_sets_default_map": true,
+    "fallback_map_in_js": true
+  },
+  "dev_tasks": {
+    "edit_lenses": "/data/category_maps/lenses.json",
+    "edit_community_sectors": "/data/category_maps/community_sectors.json",
+    "edit_map_index": "/data/category_maps/index.json",
+    "calendar_bootstrap": "/calendar.html",
+    "calendar_logic": "/js/calendar.js"
+  }
+}

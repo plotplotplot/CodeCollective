@@ -23,10 +23,11 @@ const FEATURED_SOURCE_URLS = new Set([
   'https://luma.com/codecollective',
   'https://lu.ma/codecollective'
 ]);
-const CATEGORY_MAPS_INDEX_URL = '/data/category_maps/index.json';
+const CATEGORY_MAPS_INDEX_URL = window.CALENDAR_CATEGORY_MAPS_INDEX_URL || '/data/category_maps/index.json';
+const DEFAULT_CATEGORY_MAP_ID = window.CALENDAR_DEFAULT_CATEGORY_MAP || 'lenses';
 const LEGEND_PREFS_KEY = 'calendarLegendPrefs';
 const FALLBACK_CATEGORY_MAP_CONFIG = {
-  default_map: 'community_sectors',
+  default_map: DEFAULT_CATEGORY_MAP_ID,
   maps: [
     {
       id: 'maslow_needs',
@@ -46,18 +47,31 @@ const FALLBACK_CATEGORY_MAP_CONFIG = {
       ]
     },
     {
+      id: 'lenses',
+      label: 'Lenses',
+      categories: [
+        { label: 'Community', color: '#7c3aed', text_color: '#ffffff', matches: ['Community', 'Community Organizing', 'Belonging & Culture', 'Code Collective & Partners', 'Tech Community', 'Religion', 'Faith & Spirituality'] },
+        { label: 'Education', color: '#2563eb', text_color: '#ffffff', matches: ['Tech Skills', 'Growth & Creativity', 'Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Open Source', 'Technical Writing', 'Product', 'UX', 'Career Growth'] },
+        { label: 'Health', color: '#dc2626', text_color: '#ffffff', matches: ['Health', 'Survival & Health', 'Wellness', 'Food'] },
+        { label: 'Arts & Culture', color: '#d946ef', text_color: '#ffffff', matches: ['Culture', 'Growth & Creativity', 'Game Development'] },
+        { label: 'Housing', color: '#475569', text_color: '#ffffff', matches: ['Housing', 'Shelter + Habitat'] },
+        { label: 'Public Safety', color: '#f59e0b', text_color: '#ffffff', matches: ['Public Safety', 'Safety & Stability', 'Cybersecurity', 'Politics', 'Policy', 'Civic Tech', 'Purpose & Service', 'Infrastructure'] },
+        { label: 'Environment', color: '#16a34a', text_color: '#ffffff', matches: ['Water', 'Water & Environment', 'Climate & Energy', 'Energy', 'Infrastructure'] },
+        { label: 'Economy', color: '#0d9488', text_color: '#ffffff', matches: ['Economics', 'Economic Development', 'Esteem & Opportunity', 'Finance', 'Crypto & Web3', 'Entrepreneurship', 'Business', 'Startup', 'Professional Networking', 'AI', 'Data Science', 'Cloud & Platform', 'DevOps', 'Makerspace', 'Robotics'] },
+        { label: 'Other', color: '#6b7280', text_color: '#ffffff', matches: [] }
+      ]
+    },
+    {
       id: 'community_sectors',
       label: 'Community Sectors',
       categories: [
-        { label: 'Technology', color: '#2563eb', text_color: '#ffffff', matches: ['Tech Skills', 'AI', 'Data Science', 'Cybersecurity', 'Cloud & Platform', 'DevOps', 'Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Product', 'UX', 'Game Development', 'Technical Writing', 'Open Source', 'Tech Community'] },
-        { label: 'Entrepreneurship', color: '#0ea5e9', text_color: '#ffffff', matches: ['Entrepreneurship', 'Business', 'Startup', 'Career Growth', 'Professional Networking'] },
-        { label: 'Economics', color: '#0d9488', text_color: '#ffffff', matches: ['Economics', 'Economic Development', 'Esteem & Opportunity'] },
-        { label: 'Finance', color: '#facc15', text_color: '#111827', matches: ['Finance', 'Crypto & Web3'] },
-        { label: 'Politics', color: '#dc2626', text_color: '#ffffff', matches: ['Politics', 'Civic Tech', 'Policy', 'Purpose & Service'] },
-        { label: 'Culture', color: '#7c3aed', text_color: '#ffffff', matches: ['Culture', 'Belonging & Culture', 'Community', 'Community Organizing', 'Code Collective & Partners', 'Tech Community'] },
-        { label: 'Faith', color: '#000000', text_color: '#ffffff', matches: ['Religion', 'Faith & Spirituality'] },
+        { label: 'Community', color: '#7c3aed', text_color: '#ffffff', matches: ['Community', 'Community Organizing', 'Belonging & Culture', 'Code Collective & Partners', 'Tech Community', 'Religion', 'Faith & Spirituality'] },
+        { label: 'Education', color: '#2563eb', text_color: '#ffffff', matches: ['Tech Skills', 'Growth & Creativity', 'Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Open Source', 'Technical Writing', 'Product', 'UX', 'Career Growth'] },
+        { label: 'Health', color: '#dc2626', text_color: '#ffffff', matches: ['Health', 'Survival & Health', 'Wellness', 'Food'] },
+        { label: 'Arts & Culture', color: '#d946ef', text_color: '#ffffff', matches: ['Culture', 'Growth & Creativity', 'Game Development'] },
+        { label: 'Housing', color: '#475569', text_color: '#ffffff', matches: ['Housing', 'Shelter + Habitat'] },
+        { label: 'Public Safety', color: '#f59e0b', text_color: '#ffffff', matches: ['Public Safety', 'Safety & Stability', 'Cybersecurity', 'Politics', 'Policy', 'Civic Tech', 'Purpose & Service', 'Infrastructure'] },
         { label: 'Environment', color: '#16a34a', text_color: '#ffffff', matches: ['Water', 'Water & Environment', 'Climate & Energy', 'Energy', 'Infrastructure'] },
-        { label: 'Makerspace', color: '#ea580c', text_color: '#ffffff', matches: ['Makerspace', 'Robotics'] },
         { label: 'Other', color: '#6b7280', text_color: '#ffffff', matches: [] }
       ]
     },

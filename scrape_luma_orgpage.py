@@ -4,6 +4,19 @@ import requests
 from bs4 import BeautifulSoup
 from typing import List, Dict, Any, Optional
 
+
+def _normalize_image_url(url: str) -> str:
+    if not url:
+        return ""
+    value = str(url).strip()
+    if not value or value.startswith("data:"):
+        return ""
+    if value.startswith("//"):
+        return f"https:{value}"
+    if value.startswith("http://"):
+        return "https://" + value[len("http://"):]
+    return value
+
 def fetch_and_parse_luma_events(url: str) -> List[Dict[str, Any]]:
     """
     Fetch a Luma URL and parse events from it.
@@ -67,8 +80,17 @@ def parse_json_ld_events(soup: BeautifulSoup, source_url: str = '') -> List[Dict
     events = json_data.get('events', [])
     parsed_events = []
 
+    org_image_url = ""
+    organizer = json_data.get("organizer")
+    if isinstance(organizer, dict):
+        raw_img = organizer.get("image")
+        if isinstance(raw_img, list) and raw_img:
+            org_image_url = _normalize_image_url(raw_img[0])
+        elif isinstance(raw_img, str):
+            org_image_url = _normalize_image_url(raw_img)
+
     for event in events:
-        parsed_event = parse_single_event(event, source_url)
+        parsed_event = parse_single_event(event, source_url, org_image_url=org_image_url)
         if parsed_event:
             parsed_events.append(parsed_event)
 
@@ -89,17 +111,18 @@ def parse_next_data_events(soup: BeautifulSoup, source_url: str = '') -> List[Di
     initial_data = next_data.get('props', {}).get('pageProps', {}).get('initialData', {})
     calendar_data = initial_data.get('data', {}) if initial_data.get('kind') == 'calendar' else {}
     featured_items = calendar_data.get('featured_items', [])
+    org_image_url = _normalize_image_url(calendar_data.get("avatar_url", ""))
 
     parsed_events = []
     for item in featured_items:
         event_data = item.get('event', {})
-        parsed_event = parse_next_data_event(event_data, source_url)
+        parsed_event = parse_next_data_event(event_data, source_url, org_image_url=org_image_url)
         if parsed_event:
             parsed_events.append(parsed_event)
 
     return parsed_events
 
-def parse_single_event(event: Dict[str, Any], source_url: str = '') -> Optional[Dict[str, Any]]:
+def parse_single_event(event: Dict[str, Any], source_url: str = '', org_image_url: str = '') -> Optional[Dict[str, Any]]:
     """
     Parse a single event from JSON-LD format to the target format.
     
@@ -128,6 +151,7 @@ def parse_single_event(event: Dict[str, Any], source_url: str = '') -> Optional[
     # Extract image URL
     images = event.get('image', [])
     image_url = images[0] if images and isinstance(images, list) else ''
+    image_url = _normalize_image_url(image_url) or org_image_url
     
     # Build the parsed event
     parsed_event = {
@@ -139,13 +163,14 @@ def parse_single_event(event: Dict[str, Any], source_url: str = '') -> Optional[
         'status': status,
         'location': location,
         'imageUrl': image_url,
+        'orgImageUrl': org_image_url or image_url,
         'source': source_url
     }
     
     return parsed_event
 
 
-def parse_next_data_event(event: Dict[str, Any], source_url: str = '') -> Optional[Dict[str, Any]]:
+def parse_next_data_event(event: Dict[str, Any], source_url: str = '', org_image_url: str = '') -> Optional[Dict[str, Any]]:
     if not event:
         return None
 
@@ -158,6 +183,7 @@ def parse_next_data_event(event: Dict[str, Any], source_url: str = '') -> Option
     url_slug = event.get('url', '')
     event_url = f"https://luma.com/{url_slug}" if url_slug else source_url
 
+    event_image_url = _normalize_image_url(event.get('cover_url', '')) or org_image_url
     return {
         'name': event.get('name', ''),
         'description': event.get('description', ''),
@@ -166,7 +192,8 @@ def parse_next_data_event(event: Dict[str, Any], source_url: str = '') -> Option
         'url': event_url,
         'status': 'ACTIVE',
         'location': location,
-        'imageUrl': event.get('cover_url', ''),
+        'imageUrl': event_image_url,
+        'orgImageUrl': org_image_url or event_image_url,
         'source': source_url
     }
     

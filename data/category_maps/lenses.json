@@ -1,6 +1,6 @@
 {
-  "id": "community_sectors",
-  "label": "Community Sectors",
+  "id": "lenses",
+  "label": "Lenses",
   "categories": [
     {
       "label": "Community",
@@ -43,6 +43,12 @@
       "color": "#16a34a",
       "text_color": "#ffffff",
       "matches": ["Water", "Water & Environment", "Climate & Energy", "Energy", "Infrastructure"]
+    },
+    {
+      "label": "Economy",
+      "color": "#0d9488",
+      "text_color": "#ffffff",
+      "matches": ["Economics", "Economic Development", "Esteem & Opportunity", "Finance", "Crypto & Web3", "Entrepreneurship", "Business", "Startup", "Professional Networking", "AI", "Data Science", "Cloud & Platform", "DevOps", "Makerspace", "Robotics"]
     },
     {
       "label": "Other",
