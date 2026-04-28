@@ -1,6 +1,5 @@
 import json
 import os
-import shutil
 
 
 def write_json(path, payload, description):
@@ -26,6 +25,3 @@ def persist_calendar_outputs(
         print(f"Scrape errors saved to {scrape_errors_path}")
 
     events_to_ics(sorted_events, city, output_file=os.path.join(city, "cc_events.ics"))
-    if city == "baltimore":
-        shutil.copy2(os.path.join(city, "cc_events.ics"), "cc_events.ics")
-        shutil.copy2(os.path.join(city, "upcoming_events.json"), "upcoming_events.json")

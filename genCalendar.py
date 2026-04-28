@@ -1245,9 +1245,55 @@ def main(city = "baltimore"):
         save_geocode_cache(geocode_cache, cache_path)
     genSimpleCalendar.main(city)
 
+
+def write_root_aggregate(processed_cities):
+    aggregate_cities = [city for city in processed_cities if city != MULTICITY_BUCKET]
+    aggregate_events = []
+
+    for city in aggregate_cities:
+        city_events_path = os.path.join(city, "upcoming_events.json")
+        if not os.path.exists(city_events_path):
+            print(f"Skipping {city}: missing {city_events_path}")
+            continue
+
+        try:
+            with open(city_events_path, "r", encoding="utf-8") as f:
+                city_events = json.load(f)
+            if isinstance(city_events, list):
+                aggregate_events.extend(city_events)
+            else:
+                print(f"Skipping {city}: {city_events_path} is not a list")
+        except Exception as e:
+            print(f"Skipping {city}: unable to read {city_events_path}: {e}")
+
+    def sort_key(event):
+        if not isinstance(event, dict):
+            return datetime.datetime.max.replace(tzinfo=utc_timezone), ""
+        start_value = event.get("startDate", "")
+        try:
+            parsed_start = parse(start_value) if start_value else datetime.datetime.max
+            if parsed_start.tzinfo is None:
+                parsed_start = parsed_start.replace(tzinfo=utc_timezone)
+            parsed_start = parsed_start.astimezone(utc_timezone)
+            return parsed_start, str(event.get("name", ""))
+        except Exception:
+            return datetime.datetime.max.replace(tzinfo=utc_timezone), str(
+                event.get("name", "")
+            )
+
+    aggregate_events.sort(key=sort_key)
+
+    with open("upcoming_events.json", "w+", encoding="utf-8") as f:
+        json.dump(aggregate_events, f, indent=4)
+    events_to_ics(aggregate_events, "all-cities", output_file="cc_events.ics")
+    print(
+        f"Root aggregate saved from {len(aggregate_cities)} cities to upcoming_events.json and cc_events.ics."
+    )
+
 if __name__ == "__main__":
     cities = [MULTICITY_BUCKET, *CALENDAR_CITIES]
     if len(sys.argv) > 1:
         cities = sys.argv[1:]
     for city in cities:
         main(city)
+    write_root_aggregate(cities)
