@@ -37,13 +37,14 @@
   <!-- Scripts -->
   <script>
     (function () {
-      const DEFAULT_CITY_OPTIONS = ['baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh', 'virtual'];
+      const DEFAULT_CITY_OPTIONS = ['baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh', 'philadelphia', 'virtual'];
       const DEFAULT_CITY_DISPLAY_NAMES = {
         baltimore: 'Baltimore',
         westvirginia: 'West Virginia',
         hawaii: 'Hawaii',
         dc: 'Washington, D.C.',
         pittsburgh: 'Pittsburgh',
+        philadelphia: 'Philadelphia',
         virtual: 'Virtual',
       };
 
@@ -195,6 +196,14 @@
             placeholder="Title, tag, org, description, location..."
             aria-label="Search events"
           />
+        </div>
+        <div class="timezone-controls">
+          <label class="timezone-toggle" for="use-local-time-checkbox">
+            <input id="use-local-time-checkbox" type="checkbox" checked />
+            <span>Use Local Time</span>
+          </label>
+          <label for="timezone-select">Timezone:</label>
+          <select id="timezone-select" aria-label="Select timezone for calendar display"></select>
         </div>
           <a href="#"
           data-ics-template="https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/{city}/cc_events.ics"

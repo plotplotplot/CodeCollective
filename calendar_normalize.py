@@ -53,10 +53,10 @@ def download_event_images(events, sanitize_event_name, headers, error_logger):
             event["imageUrl"] = image_url
 
 
-def split_upcoming_events(events, get_start_dt, est_timezone):
+def split_upcoming_events(events, get_start_dt, reference_timezone):
     invalid_events = []
     nonerror_newevents = []
-    time_now = datetime.datetime.now(est_timezone)
+    time_now = datetime.datetime.now(datetime.timezone.utc)
     today_date = time_now.date()
 
     for event in events:
@@ -82,7 +82,7 @@ def split_upcoming_events(events, get_start_dt, est_timezone):
             invalid_events.append(event)
             continue
 
-        if start_date_time.date() >= today_date:
+        if start_date_time >= time_now:
             nonerror_newevents.append(event)
         else:
             event["invalid_reason"] = "Already happened"

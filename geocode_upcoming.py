@@ -57,19 +57,22 @@ def build_geocode_query(location_data, default_city=""):
     return ", ".join(parts)
 
 
-def geocode_upcoming_events(city, geocode_cache, events_path=None, dry_run=False):
+def geocode_upcoming_events(city, geocode_cache, events_path=None, dry_run=False, events=None):
     """Geocode events stored in upcoming_events.json for the provided city."""
-    events_path = events_path or os.path.join(city, "upcoming_events.json")
-    if not os.path.exists(events_path):
-        print(f"No upcoming_events.json found for {city}; skipping geocoding")
-        return None, False
+    persist_to_disk = False
+    if events is None:
+        events_path = events_path or os.path.join(city, "upcoming_events.json")
+        if not os.path.exists(events_path):
+            print(f"No upcoming_events.json found for {city}; skipping geocoding")
+            return None, False
 
-    try:
-        with open(events_path, "r", encoding="utf-8") as f:
-            events = json.load(f)
-    except Exception as exc:
-        print(f"Unable to read events file for {city}: {exc}")
-        return None, False
+        try:
+            with open(events_path, "r", encoding="utf-8") as f:
+                events = json.load(f)
+        except Exception as exc:
+            print(f"Unable to read events file for {city}: {exc}")
+            return None, False
+        persist_to_disk = True
 
     geolocator = Nominatim(user_agent="codecollective-calendar")
     geocode = RateLimiter(
@@ -240,12 +243,14 @@ def geocode_upcoming_events(city, geocode_cache, events_path=None, dry_run=False
             print(f"[dry-run] No new geocoding data would be added for {city}.")
     else:
         if updated_events:
-            with open(events_path, "w", encoding="utf-8") as f:
-                json.dump(events, f, indent=4)
+            if persist_to_disk:
+                with open(events_path, "w", encoding="utf-8") as f:
+                    json.dump(events, f, indent=4)
             print(f"Geocoded {updated_events} event(s) for {city}.")
         elif events_changed:
-            with open(events_path, "w", encoding="utf-8") as f:
-                json.dump(events, f, indent=4)
+            if persist_to_disk:
+                with open(events_path, "w", encoding="utf-8") as f:
+                    json.dump(events, f, indent=4)
             print(f"Updated geocode metadata for {city} without adding new coordinates.")
         else:
             print(f"No new geocoding data added for {city}.")

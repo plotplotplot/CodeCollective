@@ -72,6 +72,44 @@
     outline-offset: 2px;
 }
 
+.timezone-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 8px auto 18px;
+    max-width: 720px;
+    flex-wrap: wrap;
+}
+
+.timezone-controls label,
+.timezone-controls span {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.timezone-controls select {
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    padding: 0.4rem 0.75rem;
+    font-size: 1rem;
+    min-width: 250px;
+}
+
+.timezone-controls select:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.timezone-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
 #calendar {
     height: 'auto'
 

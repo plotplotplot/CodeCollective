@@ -1,0 +1,12 @@
+[
+    {
+        "timestamp": "2026-04-27T22:56:09.290122-04:00",
+        "city": "philadelphia",
+        "stage": "source_fetch",
+        "error": "Failed to retrieve page: 502 Server Error: Bad Gateway for url: https://www.meetup.com/philadelphia-rhug/",
+        "source_url": "https://www.meetup.com/philadelphia-rhug/",
+        "source_kind": "meetup",
+        "error_type": "Exception",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/scrape_meetup.py\", line 21, in fetch_meetup_page\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://www.meetup.com/philadelphia-rhug/\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/genCalendar.py\", line 431, in fetch_events_from_source\n    return apply_source_metadata(fetcher(), source), unmatched_sources, error_entries\n                                 ^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/genCalendar.py\", line 345, in fetch_meetup\n    upcoming_page_content = scrape_meetup.fetch_meetup_page(source_url)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/scrape_meetup.py\", line 24, in fetch_meetup_page\n    raise Exception(f\"Failed to retrieve page: {e}\")\nException: Failed to retrieve page: 502 Server Error: Bad Gateway for url: https://www.meetup.com/philadelphia-rhug/\n"
+    }
+]

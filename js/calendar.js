@@ -14,6 +14,9 @@ let eventInfoModal = null;
 let showExcludedEvents = false;
 let textSearchQuery = '';
 let searchUrlSyncTimer = null;
+let useLocalTime = true;
+let selectedTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+const TIMEZONE_PREFS_KEY = 'calendarTimezonePrefs';
 const filterUtils = window.CalendarFilterUtils || null;
 const SEARCH_QUERY_PARAM = 'q';
 const FEATURED_SOURCE_URLS = new Set([
@@ -126,15 +129,160 @@ function getTodayStart() {
   return today;
 }
 
+function getDefaultUserTimeZone() {
+  return Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+}
+
+function getActiveTimeZone() {
+  return useLocalTime ? getDefaultUserTimeZone() : selectedTimeZone;
+}
+
+function getDatePartsInTimeZone(dateInput, timeZone = getActiveTimeZone()) {
+  const date = dateInput instanceof Date ? dateInput : new Date(dateInput);
+  if (isNaN(date)) return null;
+  const formatter = new Intl.DateTimeFormat('en-CA', {
+    timeZone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  });
+  const parts = formatter.formatToParts(date);
+  const values = {};
+  parts.forEach(part => {
+    if (part.type !== 'literal') values[part.type] = part.value;
+  });
+  if (!values.year || !values.month || !values.day) return null;
+  return values;
+}
+
+function getDateKeyInTimeZone(dateInput, timeZone = getActiveTimeZone()) {
+  const values = getDatePartsInTimeZone(dateInput, timeZone);
+  if (!values) return '';
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+function formatDateWithTimeZone(dateInput, options) {
+  const date = dateInput instanceof Date ? dateInput : new Date(dateInput);
+  if (isNaN(date)) return '';
+  const formatOptions = { ...options };
+  if (!useLocalTime) {
+    formatOptions.timeZone = selectedTimeZone;
+  }
+  return new Intl.DateTimeFormat('en-US', formatOptions).format(date);
+}
+
+function saveTimezonePrefs() {
+  const payload = {
+    useLocalTime: useLocalTime !== false,
+    selectedTimeZone: selectedTimeZone || getDefaultUserTimeZone()
+  };
+  try {
+    localStorage.setItem(TIMEZONE_PREFS_KEY, JSON.stringify(payload));
+  } catch (error) {
+    // Ignore storage failures.
+  }
+}
+
+function loadTimezonePrefs() {
+  const fallback = {
+    useLocalTime: true,
+    selectedTimeZone: getDefaultUserTimeZone()
+  };
+  try {
+    const stored = localStorage.getItem(TIMEZONE_PREFS_KEY);
+    if (!stored) return fallback;
+    const parsed = JSON.parse(stored);
+    return {
+      useLocalTime: parsed.useLocalTime !== false,
+      selectedTimeZone: String(parsed.selectedTimeZone || fallback.selectedTimeZone)
+    };
+  } catch (error) {
+    return fallback;
+  }
+}
+
+function getTimezoneOptions() {
+  const defaults = [
+    'UTC',
+    'America/New_York',
+    'America/Chicago',
+    'America/Denver',
+    'America/Los_Angeles',
+    'Pacific/Honolulu',
+    'America/Phoenix',
+    'Europe/London',
+    'Europe/Paris',
+    'Europe/Berlin',
+    'Asia/Tokyo',
+    'Asia/Kolkata',
+    'Australia/Sydney'
+  ];
+  const dynamic = (typeof Intl.supportedValuesOf === 'function')
+    ? Intl.supportedValuesOf('timeZone')
+    : [];
+  const merged = new Set([...defaults, getDefaultUserTimeZone(), ...dynamic]);
+  return Array.from(merged).sort((a, b) => a.localeCompare(b));
+}
+
+function refreshCalendarForTimezoneChange() {
+  if (!allEvents.length) return;
+  applyTagFilters();
+  if (!isMobile) {
+    destroyCalendar();
+    initializeCalendar(calendarDisplayEvents);
+    addTodayStyles();
+    highlightToday();
+  }
+}
+
+function setupTimezoneControls() {
+  const checkbox = document.getElementById('use-local-time-checkbox');
+  const select = document.getElementById('timezone-select');
+  if (!checkbox || !select) return;
+
+  const prefs = loadTimezonePrefs();
+  useLocalTime = prefs.useLocalTime;
+  selectedTimeZone = prefs.selectedTimeZone || getDefaultUserTimeZone();
+
+  const timezoneOptions = getTimezoneOptions();
+  select.innerHTML = timezoneOptions.map(tz => `<option value="${tz}">${tz}</option>`).join('');
+  if (!timezoneOptions.includes(selectedTimeZone)) {
+    const option = document.createElement('option');
+    option.value = selectedTimeZone;
+    option.textContent = selectedTimeZone;
+    select.appendChild(option);
+  }
+
+  checkbox.checked = useLocalTime;
+  select.value = selectedTimeZone;
+  select.disabled = useLocalTime;
+
+  checkbox.addEventListener('change', () => {
+    useLocalTime = checkbox.checked;
+    select.disabled = useLocalTime;
+    saveTimezonePrefs();
+    refreshCalendarForTimezoneChange();
+  });
+
+  select.addEventListener('change', () => {
+    selectedTimeZone = select.value || getDefaultUserTimeZone();
+    saveTimezonePrefs();
+    if (!useLocalTime) {
+      refreshCalendarForTimezoneChange();
+    }
+  });
+}
+
 // Compare only the calendar date so events stay visible all day
 function isEventOnOrAfterToday(dateInput, todayStart = getTodayStart()) {
   if (!dateInput) return false;
 
   const eventDate = new Date(dateInput);
   if (isNaN(eventDate)) return false;
-
-  eventDate.setHours(0, 0, 0, 0);
-  return eventDate >= todayStart;
+  const todayKey = getDateKeyInTimeZone(todayStart, getActiveTimeZone());
+  const eventKey = getDateKeyInTimeZone(eventDate, getActiveTimeZone());
+  if (!todayKey || !eventKey) return false;
+  return eventKey >= todayKey;
 }
 
 // Check if device is mobile
@@ -961,8 +1109,8 @@ function getEventDataFromCalendarEvent(event) {
   return {
     id: event.id || '',
     name: event.title || '',
-    startDate: event.start ? event.start.toISOString() : '',
-    endTime: event.end ? event.end.toISOString() : '',
+    startDate: event.startStr || (event.start ? event.start.toISOString() : ''),
+    endTime: event.endStr || (event.end ? event.end.toISOString() : ''),
     description: event.extendedProps?.description || event.description || '',
     location: event.extendedProps?.location || event.location || null,
     url: event.url || '',
@@ -1123,7 +1271,7 @@ function prefetchImages(urls) {
 
 
 function getCityOptions() {
-  return window.CALENDAR_CITY_OPTIONS || ['baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh', 'virtual'];
+  return window.CALENDAR_CITY_OPTIONS || ['baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh', 'philadelphia', 'virtual'];
 }
 
 // Function to get city from URL parameters
@@ -1168,6 +1316,7 @@ function shouldStayOnCalendarView() {
 // Fetch and parse event data
 document.addEventListener('DOMContentLoaded', function () {
   forceCardView = Boolean(window.FORCE_CALENDAR_CARDS);
+  setupTimezoneControls();
   const stayOnCalendar = shouldStayOnCalendarView();
   const mobileViewport = isMobileDevice();
   isMobile = forceCardView ? true : (mobileViewport && !stayOnCalendar);
@@ -1503,39 +1652,21 @@ function processEvents(eventsData) {
 // Format event time to display like "3PM"
 function formatEventTime(date) {
   if (!date) return '';
-
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-
-  // Determine AM/PM
-  const period = hours >= 12 ? 'PM' : 'AM';
-
-  // Convert to 12-hour format
-  const displayHours = hours % 12 || 12; // 0 should be displayed as 12
-
-  // Only show minutes if not on the hour
-  const timeString = minutes === 0 ?
-    `${displayHours}${period}` :
-    `${displayHours}:${minutes.toString().padStart(2, '0')}${period}`;
-
-  return timeString;
+  return formatDateWithTimeZone(date, {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true
+  }).replace(' ', '');
 }
 
 // Get the latest event with an image for a specific day (desktop only)
 function getLatestEventWithImageForDay(events, date) {
   if (isMobile) return null;
-
-  // Format the date to YYYY-MM-DD using local timezone
-  const dateStr = date.getFullYear() + '-' +
-    String(date.getMonth() + 1).padStart(2, '0') + '-' +
-    String(date.getDate()).padStart(2, '0');
+  const dateStr = getDateKeyInTimeZone(date, getActiveTimeZone());
 
   // Filter events that are on this day and have an image
   const dayEvents = events.filter(event => {
-    const eventDate = new Date(event.start);
-    const eventDateStr = eventDate.getFullYear() + '-' +
-      String(eventDate.getMonth() + 1).padStart(2, '0') + '-' +
-      String(eventDate.getDate()).padStart(2, '0');
+    const eventDateStr = getDateKeyInTimeZone(event.start, getActiveTimeZone());
     return eventDateStr === dateStr && getPreferredEventImage(event);
   });
 
@@ -1552,18 +1683,11 @@ function getLatestEventWithImageForDay(events, date) {
 // Get a random event with an image for a specific day (desktop only)
 function getRandomImageForDay(events, date) {
   if (isMobile) return null;
-  
-  // Format the date to YYYY-MM-DD using local timezone
-  const dateStr = date.getFullYear() + '-' +
-    String(date.getMonth() + 1).padStart(2, '0') + '-' +
-    String(date.getDate()).padStart(2, '0');
+  const dateStr = getDateKeyInTimeZone(date, getActiveTimeZone());
   
   // Filter events that are on this day and have an image
   const dayEvents = events.filter(event => {
-    const eventDate = new Date(event.start);
-    const eventDateStr = eventDate.getFullYear() + '-' +
-      String(eventDate.getMonth() + 1).padStart(2, '0') + '-' +
-      String(eventDate.getDate()).padStart(2, '0');
+    const eventDateStr = getDateKeyInTimeZone(event.start, getActiveTimeZone());
     return eventDateStr === dateStr && getPreferredEventImage(event);
   });
   
@@ -1585,6 +1709,7 @@ function initializeCalendar(events) {
 
   const calendarEl = document.getElementById('calendar');
   calendar = new FullCalendar.Calendar(calendarEl, {
+    timeZone: useLocalTime ? 'local' : selectedTimeZone,
     initialView: 'dayGridFourWeek',
     views: {
       dayGridFourWeek: {
@@ -1793,7 +1918,7 @@ function formatEventDate(start, end) {
     minute: '2-digit'
   };
 
-  return startDate.toLocaleDateString('en-US', options);
+  return formatDateWithTimeZone(startDate, options);
 }
 
 // Close popup when clicking outside the content
@@ -1826,13 +1951,13 @@ function populateCodeCollectiveEvents(events) {
 
   codeCollectiveEvents.forEach((event, index) => {
     const startDate = new Date(event.startDate);
-    const formattedDate = startDate.toLocaleDateString('en-US', {
+    const formattedDate = formatDateWithTimeZone(startDate, {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
       day: 'numeric'
     });
-    const formattedTime = startDate.toLocaleTimeString('en-US', {
+    const formattedTime = formatDateWithTimeZone(startDate, {
       hour: 'numeric',
       minute: '2-digit',
       hour12: true

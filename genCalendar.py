@@ -43,9 +43,22 @@ from geocode_cache import (
 )
 import unicodedata
 from urllib.parse import parse_qs, urlparse
+from city_determinant import determine_event_city
 
 # Define the timezone for EST
 est_timezone = pytz.timezone("America/New_York")
+utc_timezone = datetime.timezone.utc
+
+CITY_DEFAULT_TIMEZONES = {
+    "baltimore": "America/New_York",
+    "dc": "America/New_York",
+    "pittsburgh": "America/New_York",
+    "philadelphia": "America/New_York",
+    "westvirginia": "America/New_York",
+    "virtual": "UTC",
+    "hawaii": "Pacific/Honolulu",
+    "multicity": "UTC",
+}
 
 SOURCE_KIND_CONCURRENCY = {
     "meetup": 1,
@@ -61,6 +74,18 @@ SOURCE_KIND_CONCURRENCY = {
     "gdg": 3,
     "unknown": 2,
 }
+
+CALENDAR_CITIES = [
+    "baltimore",
+    "westvirginia",
+    "hawaii",
+    "dc",
+    "pittsburgh",
+    "philadelphia",
+    "virtual",
+]
+MULTICITY_BUCKET = "multicity"
+_MULTICITY_SOURCE_CACHE = None
 
 
 def merge_tags(*tag_lists):
@@ -258,6 +283,47 @@ def source_pattern_details(source):
         "path": parsed.path,
         "path_segments": segments,
     }
+
+
+def _classify_event_city(event, fallback_city=None):
+    determination = determine_event_city(
+        event,
+        cities=CALENDAR_CITIES,
+        fallback_city=fallback_city,
+    )
+    event["city_determinant"] = determination
+    assigned_city = determination.get("city")
+    if assigned_city:
+        event["city"] = assigned_city
+    return assigned_city
+
+
+def _load_multicity_source_payload():
+    global _MULTICITY_SOURCE_CACHE
+    if _MULTICITY_SOURCE_CACHE is not None:
+        return copy.deepcopy(_MULTICITY_SOURCE_CACHE["events"]), copy.deepcopy(_MULTICITY_SOURCE_CACHE["errors"])
+
+    multicity_events, unmatched_sources, scrape_errors = collect_source_events(
+        MULTICITY_BUCKET,
+        flatten_sources=flatten_sources,
+        fetch_all_sources=fetch_all_sources,
+    )
+    write_unmatched_sources(MULTICITY_BUCKET, unmatched_sources)
+    _MULTICITY_SOURCE_CACHE = {
+        "events": multicity_events,
+        "errors": scrape_errors,
+    }
+    return copy.deepcopy(multicity_events), copy.deepcopy(scrape_errors)
+
+
+def _route_multicity_events_to_city(multicity_events, target_city):
+    routed_events = []
+    for event in multicity_events:
+        event_copy = copy.deepcopy(event)
+        assigned_city = _classify_event_city(event_copy)
+        if assigned_city == target_city:
+            routed_events.append(event_copy)
+    return routed_events
 
 
 def build_error_entry(city, stage, error, source_url=None, source_kind=None, scraper=None, context=None):
@@ -585,16 +651,40 @@ def normalize_event_text(value):
     return ascii_value
 
 
-def parse_event_start(event):
+def get_city_default_timezone(city=None):
+    timezone_name = CITY_DEFAULT_TIMEZONES.get((city or "").lower(), "UTC")
+    try:
+        return pytz.timezone(timezone_name)
+    except Exception:
+        return pytz.UTC
+
+
+def _event_source_timezone(event, fallback_timezone):
+    timezone_name = (
+        event.get("timezone")
+        or event.get("timeZone")
+        or event.get("source_timezone")
+        or event.get("sourceTimeZone")
+    )
+    if timezone_name:
+        try:
+            return pytz.timezone(str(timezone_name).strip())
+        except Exception:
+            pass
+    return fallback_timezone
+
+
+def parse_event_start(event, fallback_timezone=pytz.UTC):
     start_value = event.get("startDate", "")
     if not start_value:
         return None
     start_dt = parse(start_value)
     if start_dt.tzinfo is None:
-        start_dt = est_timezone.localize(start_dt)
+        source_timezone = _event_source_timezone(event, fallback_timezone)
+        start_dt = source_timezone.localize(start_dt)
     else:
-        start_dt = start_dt.astimezone(est_timezone)
-    return start_dt
+        start_dt = start_dt.astimezone(utc_timezone)
+    return start_dt.astimezone(utc_timezone)
 
 
 def normalize_location_name(event):
@@ -840,6 +930,7 @@ def events_to_ics(events_json, city, output_file="baltimore_tech_events.ics"):
     cal.add('method', 'PUBLISH')
 
     event_count = 0
+    default_timezone = get_city_default_timezone(city)
     
     # Add each event to the calendar
     for event_data in events:
@@ -901,14 +992,16 @@ def events_to_ics(events_json, city, output_file="baltimore_tech_events.ics"):
                 start_time = parse(start_str)
                 # Make timezone aware if needed
                 if start_time.tzinfo is None:
-                    start_time = est_timezone.localize(start_time)
+                    source_timezone = _event_source_timezone(event_data, default_timezone)
+                    start_time = source_timezone.localize(start_time)
                 
                 event.add('dtstart', start_time)
                 
                 if end_str:
                     end_time = parse(end_str)
                     if end_time.tzinfo is None:
-                        end_time = est_timezone.localize(end_time)
+                        source_timezone = _event_source_timezone(event_data, default_timezone)
+                        end_time = source_timezone.localize(end_time)
                     event.add('dtend', end_time)
                 else:
                     # Default to 2 hours if no end time specified
@@ -1009,6 +1102,22 @@ def main(city = "baltimore"):
 
     write_unmatched_sources(city, unmatched_sources)
 
+    if city == MULTICITY_BUCKET:
+        for event in newEvents:
+            _classify_event_city(event)
+    elif city in CALENDAR_CITIES:
+        multicity_events, multicity_errors = _load_multicity_source_payload()
+        routed_multicity_events = _route_multicity_events_to_city(multicity_events, city)
+        if routed_multicity_events:
+            print(
+                f"Routed {len(routed_multicity_events)} multicity events into {city} via city determinant."
+            )
+            newEvents += routed_multicity_events
+        if multicity_errors:
+            print(
+                f"Multicity source scrape reported {len(multicity_errors)} error(s); check {MULTICITY_BUCKET}/scrape_errors.json."
+            )
+
     def error_logger(stage, error, source_url=None, source_kind=None, scraper=None, context=None):
         entry = build_error_entry(
             city=city,
@@ -1056,6 +1165,7 @@ def main(city = "baltimore"):
             error_logger("city_collect", e, scraper="virtual.scrape_ABWIPPM")
 
     start_dt_cache = {}
+    default_timezone = get_city_default_timezone(city)
 
     def get_start_dt(event):
         cache_key = id(event)
@@ -1070,11 +1180,13 @@ def main(city = "baltimore"):
         try:
             parsed_start = parse(start_value)
             if parsed_start.tzinfo is None:
-                parsed_start = est_timezone.localize(parsed_start)
+                source_timezone = _event_source_timezone(event, default_timezone)
+                parsed_start = source_timezone.localize(parsed_start)
             else:
-                parsed_start = parsed_start.astimezone(est_timezone)
-            start_dt_cache[cache_key] = parsed_start
-            return parsed_start
+                parsed_start = parsed_start.astimezone(utc_timezone)
+            normalized_start = parsed_start.astimezone(utc_timezone)
+            start_dt_cache[cache_key] = normalized_start
+            return normalized_start
         except Exception:
             start_dt_cache[cache_key] = None
             return None
@@ -1089,7 +1201,7 @@ def main(city = "baltimore"):
     nonerror_newevents, invalid_events, today_date = split_upcoming_events(
         newEvents,
         get_start_dt=get_start_dt,
-        est_timezone=est_timezone,
+        reference_timezone=default_timezone,
     )
 
     sorted_events, invalid_events, dedupe_cache_updated = merge_and_dedupe_events(
@@ -1108,7 +1220,11 @@ def main(city = "baltimore"):
 
     GEOCODE = True
     if GEOCODE:
-        geocoded_payload, geocode_cache_changed = geocode_upcoming_events(city, geocode_cache)
+        geocoded_payload, geocode_cache_changed = geocode_upcoming_events(
+            city,
+            geocode_cache,
+            events=sorted_events,
+        )
         if geocoded_payload is not None:
             sorted_events = geocoded_payload
         cache_updated = cache_updated or geocode_cache_changed
@@ -1130,7 +1246,7 @@ def main(city = "baltimore"):
     genSimpleCalendar.main(city)
 
 if __name__ == "__main__":
-    cities = ["baltimore", "westvirginia", "hawaii", "dc", "pittsburgh", "virtual"]
+    cities = [MULTICITY_BUCKET, *CALENDAR_CITIES]
     if len(sys.argv) > 1:
         cities = sys.argv[1:]
     for city in cities:

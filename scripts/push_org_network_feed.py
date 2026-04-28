@@ -11,7 +11,7 @@ from urllib.parse import urlparse
 
 import requests
 
-DEFAULT_CITIES = ("baltimore", "dc", "hawaii", "pittsburgh", "virtual", "westvirginia")
+DEFAULT_CITIES = ("baltimore", "dc", "hawaii", "pittsburgh", "philadelphia", "virtual", "westvirginia")
 
 
 def normalize_url(value: Any) -> Optional[str]:

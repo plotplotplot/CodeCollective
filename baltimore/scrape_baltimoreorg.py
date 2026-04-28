@@ -27,6 +27,12 @@ GOOGLE_INFO_PATTERN = re.compile(
     r"var\s+google_info\s*=\s*(\{.*?\})\s*jQuery\(document\)\.ready",
     re.DOTALL,
 )
+HUMAN_DATETIME_PATTERN = re.compile(
+    r"\b([A-Za-z]{3,9}\s+\d{1,2},\s+\d{4})\s*\|\s*"
+    r"(\d{1,2}(?::\d{2})?\s*[ap]\.?m\.?)"
+    r"(?:\s*[-–]\s*(\d{1,2}(?::\d{2})?\s*[ap]\.?m\.?))?",
+    re.IGNORECASE,
+)
 
 
 def _clean_text(value: str) -> str:
@@ -93,6 +99,54 @@ def _parse_status(event_status: str) -> str:
     if "postponed" in status:
         return "POSTPONED"
     return "ACTIVE"
+
+
+def _clean_meridiem_time(value: str) -> str:
+    return re.sub(r"\s+", " ", (value or "").strip()).replace(".", "").upper()
+
+
+def _parse_human_datetime(date_part: str, time_part: str) -> Optional[datetime]:
+    if not date_part or not time_part:
+        return None
+
+    cleaned_time = _clean_meridiem_time(time_part)
+    candidate = f"{date_part.strip()} {cleaned_time}"
+    for fmt in (
+        "%B %d, %Y %I:%M %p",
+        "%b %d, %Y %I:%M %p",
+        "%B %d, %Y %I %p",
+        "%b %d, %Y %I %p",
+    ):
+        try:
+            dt = datetime.strptime(candidate, fmt)
+            return dt.replace(tzinfo=TIMEZONE)
+        except ValueError:
+            continue
+    return None
+
+
+def _extract_human_datetime_range(html: str) -> tuple[Optional[datetime], Optional[datetime]]:
+    text = _clean_text(BeautifulSoup(html or "", "html.parser").get_text(" ", strip=True))
+    if not text:
+        return None, None
+
+    match = HUMAN_DATETIME_PATTERN.search(text)
+    if not match:
+        return None, None
+
+    date_part, start_time, end_time = match.groups()
+    start_dt = _parse_human_datetime(date_part, start_time)
+    if not start_dt:
+        return None, None
+
+    end_dt = _parse_human_datetime(date_part, end_time) if end_time else None
+    if end_dt and end_dt < start_dt:
+        end_dt = end_dt + timedelta(days=1)
+    return start_dt, end_dt
+
+
+def _string_has_explicit_time(value: str) -> bool:
+    return bool(re.search(r"\d{1,2}:\d{2}\s*([ap]\.?m\.?)?", str(value or ""), re.IGNORECASE))
 
 
 def _parse_dates(start_value: str, end_value: str) -> tuple[Optional[str], Optional[str]]:
@@ -172,9 +226,22 @@ def _parse_event_detail(event_url: str, session: requests.Session, scrape_time: 
     if not info:
         return None
 
-    start_iso, end_iso = _parse_dates(info.get("startDate", ""), info.get("endDate", ""))
+    start_value = info.get("startDate", "")
+    end_value = info.get("endDate", "")
+    start_iso, end_iso = _parse_dates(start_value, end_value)
     if not start_iso:
         return None
+
+    extracted_start_dt, extracted_end_dt = _extract_human_datetime_range(response.text)
+    has_explicit_start_time = _string_has_explicit_time(start_value)
+    has_explicit_end_time = _string_has_explicit_time(end_value)
+
+    if extracted_start_dt and not has_explicit_start_time:
+        start_iso = extracted_start_dt.isoformat()
+    if extracted_end_dt and not has_explicit_end_time:
+        end_iso = extracted_end_dt.isoformat()
+    elif extracted_start_dt and not has_explicit_end_time:
+        end_iso = (extracted_start_dt + DEFAULT_EVENT_DURATION).isoformat()
 
     description = _clean_text(info.get("description", ""))
     event = {
