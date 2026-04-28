@@ -396,6 +396,7 @@ function ensureHoverPreviewPanel() {
           </div>
           <div class="event-hover-source"></div>
         </div>
+        <div class="event-hover-location" hidden></div>
         <div class="event-hover-tags"></div>
         <div class="event-hover-description"></div>
       </div>
@@ -429,9 +430,17 @@ function showHoverPreview(eventInfo, mouseEvent) {
   const source = panel.querySelector('.event-hover-source');
   const sourceIconWrap = panel.querySelector('.event-hover-source-icon-wrap');
   const sourceIcon = panel.querySelector('.event-hover-source-icon');
+  const location = panel.querySelector('.event-hover-location');
   const tags = panel.querySelector('.event-hover-tags');
   const description = panel.querySelector('.event-hover-description');
   const rawTags = Array.isArray(event.extendedProps?.tags) ? event.extendedProps.tags : [];
+  const eventLocation = event.extendedProps?.location || event.location || null;
+  const locationText = [
+    eventLocation?.name,
+    eventLocation?.address
+  ]
+    .filter(Boolean)
+    .join(' · ');
 
   kicker.textContent = formatEventDate(event.start, event.end);
   title.textContent = event.title || 'Untitled';
@@ -444,6 +453,13 @@ function showHoverPreview(eventInfo, mouseEvent) {
     sourceIconWrap.hidden = true;
     sourceIcon.removeAttribute('src');
     sourceIcon.alt = '';
+  }
+  if (locationText) {
+    location.hidden = false;
+    location.textContent = locationText;
+  } else {
+    location.hidden = true;
+    location.textContent = '';
   }
   tags.innerHTML = rawTags.map(tag => {
     const mapped = getMappedCategoriesForTags([tag])[0];
