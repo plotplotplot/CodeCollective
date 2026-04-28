@@ -9,7 +9,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "DC Water",
-            "address": "Washington, DC"
+            "address": "Washington, DC",
+            "latitude": 38.8950982,
+            "longitude": -77.0363849,
+            "geocode_status": "ok",
+            "geocode_query": "Washington, DC"
         },
         "imageUrl": "https://www.dcwater.com/themes/custom/dcwater_theme/logo.svg",
         "recurring": false,
@@ -24,7 +28,8 @@
         "status": "ACTIVE",
         "location": {
             "name": "",
-            "address": ""
+            "address": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Climate_Stakeholder_Gathering_Networking_Mixer.webp",
         "source": "https://luma.com/climatedraft-community",
@@ -52,7 +57,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/Search_Invest_DC.webp",
         "source": "https://luma.com/stationdc",
@@ -82,7 +89,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Introduction_to_Microsoft_365_Copilot.webp",
         "tags": [
@@ -105,7 +113,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Washington, DC",
-            "address": "Register to See Address"
+            "address": "Register to See Address",
+            "latitude": 38.8950982,
+            "longitude": -77.0363849,
+            "geocode_status": "ok",
+            "geocode_query": "Register to See Address"
         },
         "imageUrl": "/event_images/DC_Nightowls_Open_Coworking_w_AI_Collective.webp",
         "source": "https://luma.com/dcnightowls",
@@ -129,7 +141,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "DC Water",
-            "address": "Washington, DC"
+            "address": "Washington, DC",
+            "latitude": 38.8950982,
+            "longitude": -77.0363849,
+            "geocode_status": "ok",
+            "geocode_query": "Washington, DC"
         },
         "imageUrl": "https://www.dcwater.com/themes/custom/dcwater_theme/logo.svg",
         "recurring": false,
@@ -144,7 +160,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/Build_Your_Agentic_AI_Workforce.webp",
         "source": "https://luma.com/stationdc",
@@ -174,7 +192,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Secure_Scalable_Networks_with_Cisco_Automation_Wireless.webp",
         "tags": [
@@ -197,7 +216,8 @@
         "status": "ACTIVE",
         "location": {
             "name": "",
-            "address": ""
+            "address": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/AI_Curious_Join_our_Build_Cycle_Open_House_virtual.webp",
         "source": "https://luma.com/theupskillinglabs",
@@ -223,7 +243,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "Kennedy's Irish Pub",
-            "address": "Kennedy's Irish Pub, Freisch\u00fctzgasse 14, 8004 Z\u00fcrich, Switzerland"
+            "address": "Kennedy's Irish Pub, Freisch\u00fctzgasse 14, 8004 Z\u00fcrich, Switzerland",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "Kennedy's Irish Pub, Freisch\u00fctzgasse 14, 8004 Z\u00fcrich, Switzerland"
         },
         "imageUrl": "/event_images/4WARD_earth_Zurich_Climate_Sustainability_Networking_Meetup.webp",
         "source": "https://luma.com/climatedraft-community",
@@ -251,7 +273,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Martin Luther King Jr. Memorial Library",
-            "address": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA"
+            "address": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA",
+            "latitude": 38.8986914,
+            "longitude": -77.0247662,
+            "geocode_status": "ok",
+            "geocode_query": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA"
         },
         "imageUrl": "/event_images/Introduction_to_Human_Centered_Design_Creating_Solutions_People_Actually_Want_to.webp",
         "source": "https://luma.com/theupskillinglabs",
@@ -283,7 +309,9 @@
             "state": "Virginia",
             "country": "United States",
             "latitude": 38.8807422,
-            "longitude": -77.1155349
+            "longitude": -77.1155349,
+            "geocode_status": "provided",
+            "geocode_query": "CarPool, 900 N Glebe Rd, Arlington, VA 22203, USA, Virginia"
         },
         "imageUrl": "/event_images/eWaste_Warriors_Reboot_Hour_The_Bear_Will_Have_to_Wait.webp",
         "recurring": false,
@@ -311,7 +339,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Washington, District of Columbia",
-            "address": "Register to See Address"
+            "address": "Register to See Address",
+            "latitude": 38.8950982,
+            "longitude": -77.0363849,
+            "geocode_status": "ok",
+            "geocode_query": "Register to See Address"
         },
         "imageUrl": "/event_images/Defense_Tech_DC_014.webp",
         "source": "https://luma.com/defense-tech-dc",
@@ -339,7 +371,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "1800 Marion Barry Ave. SE",
-            "address": ""
+            "address": "",
+            "latitude": 38.8656198,
+            "longitude": -76.9792207,
+            "geocode_status": "ok",
+            "geocode_query": "1800 Marion Barry Ave. SE"
         },
         "imageUrl": "",
         "source": "https://luma.com/theupskillinglabs",
@@ -370,7 +406,11 @@
             "address": "525 14th St S",
             "city": "Arlington",
             "state": "VA",
-            "country": "us"
+            "country": "us",
+            "latitude": 38.8616449,
+            "longitude": -77.0545339,
+            "geocode_status": "ok",
+            "geocode_query": "525 14th St S, Arlington"
         },
         "imageUrl": "/event_images/Customer_Conversations_as_a_Product_Superpower_in_the_Age_of_AI.webp",
         "tags": [
@@ -400,7 +440,8 @@
             "state": "",
             "country": "",
             "latitude": "",
-            "longitude": ""
+            "longitude": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Zero_to_Agent_DMV_by_Vercel_Vibe_Connect.webp",
         "recurring": false,
@@ -427,7 +468,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/The_Government_Sales_Playbook_STATION_DC_Member_Only_Event.webp",
         "source": "https://luma.com/stationdc",
@@ -457,7 +500,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Microsoft_Copilot_ROI_Playbook_for_Business_Leaders_Adoption_to_Impact.webp",
         "tags": [
@@ -485,7 +529,9 @@
             "address": "11955 Freedom Drive, Reston; 2nd floor",
             "city": "Reston",
             "state": "VA",
-            "country": "us"
+            "country": "us",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "11955 Freedom Drive, Reston; 2nd floor"
         },
         "imageUrl": "/event_images/GitHub_Copilot_Dev_Days_D_C.webp",
         "tags": [
@@ -508,7 +554,8 @@
         "status": "ACTIVE",
         "location": {
             "name": "",
-            "address": ""
+            "address": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Ask_Better_Questions_AI_Powered_Problem_Framing_for_Design_Thinkers.webp",
         "source": "https://luma.com/theupskillinglabs",
@@ -534,7 +581,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "El Segundo, California",
-            "address": "Register to See Address"
+            "address": "Register to See Address",
+            "latitude": 38.8950982,
+            "longitude": -77.0363849,
+            "geocode_status": "ok",
+            "geocode_query": "Register to See Address"
         },
         "imageUrl": "/event_images/LA_Hard_Tech_Rooftop_Social.webp",
         "source": "https://luma.com/squadra",
@@ -563,7 +614,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/WorkCongress_2026_Virtual_Shaping_the_Future_of_Work.webp",
         "tags": [
@@ -586,7 +638,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Register to See Address",
-            "address": "Register to See Address"
+            "address": "Register to See Address",
+            "latitude": 38.8950982,
+            "longitude": -77.0363849,
+            "geocode_status": "ok",
+            "geocode_query": "Register to See Address"
         },
         "imageUrl": "/event_images/PGP_Demo_Meeting_1.webp",
         "source": "https://luma.com/pgpforcrypto",
@@ -615,7 +671,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/AnalyticsCLUB_JobExpo_Virtual_Business_Data_Technology_Job_Expo.webp",
         "tags": [
@@ -643,7 +700,11 @@
             "address": "1221 Connecticut ave NW",
             "city": "Washington",
             "state": "DC",
-            "country": "us"
+            "country": "us",
+            "latitude": 38.906617,
+            "longitude": -77.0411955,
+            "geocode_status": "ok",
+            "geocode_query": "1221 Connecticut ave NW, Washington"
         },
         "imageUrl": "/event_images/Professionals_Networking_HourS.webp",
         "tags": [
@@ -669,7 +730,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "DC Water",
-            "address": "Washington, DC"
+            "address": "Washington, DC",
+            "latitude": 38.8950982,
+            "longitude": -77.0363849,
+            "geocode_status": "ok",
+            "geocode_query": "Washington, DC"
         },
         "imageUrl": "https://www.dcwater.com/themes/custom/dcwater_theme/logo.svg",
         "recurring": false,
@@ -684,7 +749,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Woodley Park-Zoo/Adams Morgan",
-            "address": "Woodley Park-Zoo/Adams Morgan, Washington, District of Columbia"
+            "address": "Woodley Park-Zoo/Adams Morgan, Washington, District of Columbia",
+            "latitude": 38.9250248,
+            "longitude": -77.0523627,
+            "geocode_status": "ok",
+            "geocode_query": "Woodley Park-Zoo/Adams Morgan, Washington, District of Columbia"
         },
         "imageUrl": "/event_images/Outdoor_Discussion_Walk_Jensen_Huang_and_Nvidia.webp",
         "source": "https://luma.com/ai-discussion-club",
@@ -713,7 +782,11 @@
             "address": "",
             "city": "Washington",
             "state": "DC",
-            "country": "us"
+            "country": "us",
+            "latitude": 38.9124233,
+            "longitude": -77.0412512,
+            "geocode_status": "ok",
+            "geocode_query": "Dupont Circle, Washington"
         },
         "imageUrl": "/event_images/Cinco_De_Mayo_Bar_Crawl_20_DISCOUNT_CODE_WITHIN.webp",
         "tags": [
@@ -738,7 +811,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Washington, District of Columbia",
-            "address": "Register to See Address"
+            "address": "Register to See Address",
+            "latitude": 38.8950982,
+            "longitude": -77.0363849,
+            "geocode_status": "ok",
+            "geocode_query": "Register to See Address"
         },
         "imageUrl": "/event_images/Girlies_in_Tech_Dinner_pt_9_3_Washington_DC_Edition_West_End.webp",
         "source": "https://luma.com/girliesintechdinner",
@@ -768,7 +845,11 @@
             "address": "1221 Connecticut ave NW",
             "city": "Washington",
             "state": "DC",
-            "country": "us"
+            "country": "us",
+            "latitude": 38.906617,
+            "longitude": -77.0411955,
+            "geocode_status": "ok",
+            "geocode_query": "1221 Connecticut ave NW, Washington"
         },
         "imageUrl": "/event_images/Professionals_Networking_HourS.webp",
         "tags": [
@@ -798,7 +879,11 @@
             "address": "1337 Connecticut Avenue Northwest",
             "city": "Washington",
             "state": "DC",
-            "country": "us"
+            "country": "us",
+            "latitude": 38.9082613,
+            "longitude": -77.0423275,
+            "geocode_status": "ok",
+            "geocode_query": "1337 Connecticut Avenue Northwest, Washington"
         },
         "imageUrl": null,
         "tags": [
@@ -828,7 +913,11 @@
             "address": "2301 L St NW",
             "city": "Washington",
             "state": "DC",
-            "country": "us"
+            "country": "us",
+            "latitude": 38.9039046,
+            "longitude": -77.0509621,
+            "geocode_status": "ok",
+            "geocode_query": "2301 L St NW, Washington"
         },
         "imageUrl": "/event_images/DC_Code_Coffee_West_End_Neighborhood_Library_Free_Coffee.webp",
         "tags": [
@@ -853,7 +942,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/STATION_DC_Space_Roundtable.webp",
         "source": "https://luma.com/stationdc",
@@ -878,7 +969,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/Inside_Look_at_Johns_Hopkins_Carey_Executive_MBA_Program.webp",
         "source": "https://luma.com/stationdc",
@@ -908,7 +1001,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": null,
         "tags": [
@@ -932,7 +1026,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/STATION_DC_Chess_Club.webp",
         "source": "https://luma.com/stationdc",
@@ -957,7 +1053,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/The_Mission_Generation_Book_Launch.webp",
         "source": "https://luma.com/stationdc",
@@ -983,7 +1081,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "DC Water",
-            "address": "Washington, DC"
+            "address": "Washington, DC",
+            "latitude": 38.8950982,
+            "longitude": -77.0363849,
+            "geocode_status": "ok",
+            "geocode_query": "Washington, DC"
         },
         "imageUrl": "https://www.dcwater.com/themes/custom/dcwater_theme/logo.svg",
         "recurring": false,
@@ -1003,7 +1105,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/The_journey_to_production_AI_A_practical_guide_for_platform_engineers_and_SREs.webp",
         "tags": [
@@ -1027,7 +1130,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Arlington, Virginia",
-            "address": "Register to See Address"
+            "address": "Register to See Address",
+            "latitude": 38.8950982,
+            "longitude": -77.0363849,
+            "geocode_status": "ok",
+            "geocode_query": "Register to See Address"
         },
         "imageUrl": "/event_images/GenAI_Innovator_Sessions_01_Rhino_AI.webp",
         "source": "https://luma.com/DC2",
@@ -1053,7 +1160,8 @@
             "address": "2112 Pennsylvania Ave NW, Washington, District of Columbia",
             "latitude": 38.9014628,
             "longitude": -77.0480082,
-            "geocode_status": "ok"
+            "geocode_status": "provided",
+            "geocode_query": "2112 Pennsylvania Ave NW, Washington, District of Columbia"
         },
         "imageUrl": "/event_images/Who_Watches_the_Bots_Observability_Testing_and_Trust_for_Agentic_AI_with_MLflow.webp",
         "source": "https://luma.com/DC2",
@@ -1081,7 +1189,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/The_State_of_Distributed_Ledger_Technology_Report_2026.webp",
         "tags": [
@@ -1103,7 +1212,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "Greentown Labs",
-            "address": "Greentown Labs, 444 Somerville Ave, Somerville, MA 02143, USA"
+            "address": "Greentown Labs, 444 Somerville Ave, Somerville, MA 02143, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "Greentown Labs, 444 Somerville Ave, Somerville, MA 02143, USA"
         },
         "imageUrl": "/event_images/Climatetech_Pitch_Party.webp",
         "source": "https://luma.com/climatedraft-community",
@@ -1136,7 +1247,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/TechConnect_Global_Virtual_Job_Networking_Event_for_Data_AI_and_Tech_Pros.webp",
         "tags": [
@@ -1159,7 +1271,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "Greentown Labs",
-            "address": "Greentown Labs, 444 Somerville Ave, Somerville, MA 02143, USA"
+            "address": "Greentown Labs, 444 Somerville Ave, Somerville, MA 02143, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "Greentown Labs, 444 Somerville Ave, Somerville, MA 02143, USA"
         },
         "imageUrl": "/event_images/EnergyBar_The_Place_to_BuildWhy_Climate_Innovators_Choose_Massachusetts.webp",
         "source": "https://luma.com/climatedraft-community",
@@ -1192,7 +1306,11 @@
             "address": "1340 U St NW",
             "city": "Washington",
             "state": "DC",
-            "country": "us"
+            "country": "us",
+            "latitude": 38.9168268,
+            "longitude": -77.0311753,
+            "geocode_status": "ok",
+            "geocode_query": "1340 U St NW, Washington"
         },
         "imageUrl": "/event_images/GeoDC_May_2026_Meetup.webp",
         "tags": [
@@ -1215,7 +1333,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Martin Luther King Jr. Memorial Library",
-            "address": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA"
+            "address": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA",
+            "latitude": 38.8986914,
+            "longitude": -77.0247662,
+            "geocode_status": "ok",
+            "geocode_query": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA"
         },
         "imageUrl": "",
         "source": "https://luma.com/theupskillinglabs",
@@ -1246,7 +1368,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/CyberConnect_Virtual_Career_Networking_Hub_for_Cybersecurity_Pros.webp",
         "tags": [
@@ -1274,7 +1397,9 @@
             "address": "11955 Freedom Drive, Reston; 2nd floor",
             "city": "Reston",
             "state": "VA",
-            "country": "us"
+            "country": "us",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "11955 Freedom Drive, Reston; 2nd floor"
         },
         "imageUrl": "/event_images/May_Cloud_AI_Meetup_AI_for_Good_Healthcare_AI_Better_Patient_Outcomes.webp",
         "tags": [
@@ -1297,7 +1422,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Walter E. Washington Convention Center",
-            "address": "Walter E. Washington Convention Center, Washington, District of Columbia"
+            "address": "Walter E. Washington Convention Center, Washington, District of Columbia",
+            "latitude": 38.9051269,
+            "longitude": -77.0229544,
+            "geocode_status": "ok",
+            "geocode_query": "Walter E. Washington Convention Center, Washington, District of Columbia"
         },
         "imageUrl": "/event_images/DC_Tech_Meetup_96_AI_From_Demo_to_Deployment.webp",
         "source": "https://luma.com/DCTechMeetup",
@@ -1320,7 +1449,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "Basecamp Coffee Roasters",
-            "address": "Basecamp Coffee Roasters, Tysons, Virginia"
+            "address": "Basecamp Coffee Roasters, Tysons, Virginia",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "Basecamp Coffee Roasters, Tysons, Virginia"
         },
         "imageUrl": "/event_images/Coffee_Bitcoin_VA_Tysons.webp",
         "source": "https://luma.com/bitcoindistrict",
@@ -1349,7 +1480,11 @@
             "address": "4766 Bethesda Ave",
             "city": "Bethesda",
             "state": "MD",
-            "country": "US"
+            "country": "US",
+            "latitude": 38.9805292,
+            "longitude": -77.0957952,
+            "geocode_status": "ok",
+            "geocode_query": "4766 Bethesda Ave"
         },
         "imageUrl": "/event_images/Outdoor_Discussion_Walk_The_Path_to_Governing_AI.webp",
         "tags": [
@@ -1378,7 +1513,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Enabling_Anyone_to_Build_and_Operate_Decentralized_Networks_with_Hiero.webp",
         "tags": [
@@ -1400,7 +1536,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/STATION_DC_Energy_Dominance_Open_Roundtable.webp",
         "source": "https://luma.com/stationdc",
@@ -1425,7 +1563,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Martin Luther King Jr. Memorial Library",
-            "address": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA"
+            "address": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA",
+            "latitude": 38.8986914,
+            "longitude": -77.0247662,
+            "geocode_status": "ok",
+            "geocode_query": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA"
         },
         "imageUrl": "/event_images/Meet_the_Pods_Energy_Climate_Exploration_Show_and_Tell_Workshop_Building_Out_Lou.webp",
         "source": "https://luma.com/theupskillinglabs",
@@ -1456,7 +1598,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": null,
         "tags": [
@@ -1478,7 +1621,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "Virtru",
-            "address": "Virtru, Washington, District of Columbia"
+            "address": "Virtru, Washington, District of Columbia",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "Virtru, Washington, District of Columbia"
         },
         "imageUrl": "/event_images/Project_Night_at_Virtru.webp",
         "source": "https://lu.ma/civic-tech-dc",
@@ -1507,7 +1652,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Martin Luther King Jr. Memorial Library",
-            "address": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA"
+            "address": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA",
+            "latitude": 38.8986914,
+            "longitude": -77.0247662,
+            "geocode_status": "ok",
+            "geocode_query": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA"
         },
         "imageUrl": "",
         "source": "https://luma.com/theupskillinglabs",
@@ -1538,7 +1687,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Agentic_AI_on_Vertex_Unlock_self_learning_AI_with_Vertex_AI.webp",
         "tags": [
@@ -1566,7 +1716,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": null,
         "tags": [
@@ -1590,7 +1741,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/Lead_by_Design_Navigating_Hard_Decisions_Managing_Your_Energy_as_a_Leader.webp",
         "source": "https://luma.com/stationdc",
@@ -1621,7 +1774,8 @@
             "state": "",
             "country": "",
             "latitude": "",
-            "longitude": ""
+            "longitude": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_May.webp",
         "recurring": false,
@@ -1646,7 +1800,8 @@
         "status": "ACTIVE",
         "location": {
             "name": "",
-            "address": ""
+            "address": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Energy_and_Climate_Hackathon.webp",
         "source": "https://luma.com/theupskillinglabs",
@@ -1672,7 +1827,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Agrodolce London",
-            "address": "Agrodolce London, London, England, United Kingdom"
+            "address": "Agrodolce London, London, England, United Kingdom",
+            "latitude": 51.5198742,
+            "longitude": -0.1365186,
+            "geocode_status": "ok",
+            "geocode_query": "Agrodolce London, London, England, United Kingdom"
         },
         "imageUrl": "/event_images/Girlies_in_Tech_Dinner_3_London_UK_Edition_West_End.webp",
         "source": "https://luma.com/girliesintechdinner",
@@ -1697,7 +1856,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Washington, District of Columbia",
-            "address": "Register to See Address"
+            "address": "Register to See Address",
+            "latitude": 38.8950982,
+            "longitude": -77.0363849,
+            "geocode_status": "ok",
+            "geocode_query": "Register to See Address"
         },
         "imageUrl": "/event_images/Podcast_Discussion_OpenClaw_and_Autonomous_Agents.webp",
         "source": "https://luma.com/ai-discussion-club",
@@ -1726,7 +1889,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/GPU_CUDA_and_PyTorch_Performance_Optimizations.webp",
         "tags": [
@@ -1756,7 +1920,9 @@
             "state": "District of Columbia",
             "country": "United States",
             "latitude": 38.895190899999996,
-            "longitude": -77.02223359999999
+            "longitude": -77.02223359999999,
+            "geocode_status": "provided",
+            "geocode_query": "Pubkey, 410 7th St NW, Washington, DC 20004, USA, District of Columbia"
         },
         "imageUrl": "/event_images/Vibe_Code_Sip_DC.webp",
         "recurring": false,
@@ -1783,7 +1949,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/STATION_DC_Bio_Economy_Open_Roundtable.webp",
         "source": "https://luma.com/stationdc",
@@ -1813,7 +1981,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": null,
         "tags": [
@@ -1840,7 +2009,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": null,
         "tags": [
@@ -1862,7 +2032,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/STATION_DC_Drones_Open_Roundtable.webp",
         "source": "https://luma.com/stationdc",
@@ -1892,7 +2064,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Hiero_Heka_A_Ready_To_Use_Decentralized_Identity_Solution.webp",
         "tags": [
@@ -1914,7 +2087,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Martin Luther King Jr. Memorial Library",
-            "address": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA"
+            "address": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA",
+            "latitude": 38.8986914,
+            "longitude": -77.0247662,
+            "geocode_status": "ok",
+            "geocode_query": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA"
         },
         "imageUrl": "",
         "source": "https://luma.com/theupskillinglabs",
@@ -1945,7 +2122,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/How_platform_engineering_unlocks_CRA_readiness.webp",
         "tags": [
@@ -1969,7 +2147,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Washington, District of Columbia",
-            "address": "Register to See Address"
+            "address": "Register to See Address",
+            "latitude": 38.8950982,
+            "longitude": -77.0363849,
+            "geocode_status": "ok",
+            "geocode_query": "Register to See Address"
         },
         "imageUrl": "/event_images/Defense_Tech_DC_015.webp",
         "source": "https://luma.com/defense-tech-dc",
@@ -2000,7 +2182,8 @@
             "address": "2112 Pennsylvania Ave NW, Washington, District of Columbia",
             "latitude": 38.9014628,
             "longitude": -77.0480082,
-            "geocode_status": "ok"
+            "geocode_status": "provided",
+            "geocode_query": "2112 Pennsylvania Ave NW, Washington, District of Columbia"
         },
         "imageUrl": "/event_images/Your_Evals_Are_Bad_And_You_Should_Feel_Bad_Evaluation_and_the_Model_Development_.webp",
         "source": "https://luma.com/DC2",
@@ -2023,7 +2206,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "Taoti Creative",
-            "address": "Taoti Creative, Washington, District of Columbia"
+            "address": "Taoti Creative, Washington, District of Columbia",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "Taoti Creative, Washington, District of Columbia"
         },
         "imageUrl": "/event_images/Project_Night_at_Taoti.webp",
         "source": "https://lu.ma/civic-tech-dc",
@@ -2052,7 +2237,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Martin Luther King Jr. Memorial Library",
-            "address": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA"
+            "address": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA",
+            "latitude": 38.8986914,
+            "longitude": -77.0247662,
+            "geocode_status": "ok",
+            "geocode_query": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA"
         },
         "imageUrl": "",
         "source": "https://luma.com/theupskillinglabs",
@@ -2078,7 +2267,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/Incorruptible_A_Conversation_with_Eric_Ries_at_STATION_DC.webp",
         "source": "https://luma.com/stationdc",
@@ -2103,7 +2294,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Manhattan",
-            "address": "Manhattan, New York, New York"
+            "address": "Manhattan, New York, New York",
+            "latitude": 40.7579554,
+            "longitude": -73.9855319,
+            "geocode_status": "ok",
+            "geocode_query": "Manhattan, New York, New York"
         },
         "imageUrl": "",
         "source": "https://luma.com/vcdc",
@@ -2128,7 +2323,8 @@
         "status": "ACTIVE",
         "location": {
             "name": "",
-            "address": ""
+            "address": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Deep_Tech_AI_Startup_Pitches_and_Investor_Panels.webp",
         "source": "https://luma.com/climatedraft-community",
@@ -2156,7 +2352,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/STATION_DC_Chess_Club.webp",
         "source": "https://luma.com/stationdc",
@@ -2181,7 +2379,8 @@
         "status": "ACTIVE",
         "location": {
             "name": "virtual",
-            "address": "virtual"
+            "address": "virtual",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/PGP_Demo_Event_2.webp",
         "source": "https://luma.com/pgpforcrypto",
@@ -2205,7 +2404,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/STATION_DC_Robotics_Open_Roundtable.webp",
         "source": "https://luma.com/stationdc",
@@ -2230,7 +2431,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/No_More_Tickets_AI_IT_Leaders_Happy_Hour.webp",
         "source": "https://luma.com/stationdc",
@@ -2255,7 +2458,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/OpenAI_Tech_Workshop_Building_with_AI_Agents.webp",
         "source": "https://luma.com/stationdc",
@@ -2280,7 +2485,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/I_KNOW_A_GUY.webp",
         "source": "https://luma.com/stationdc",
@@ -2305,7 +2512,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Arlington, Virginia",
-            "address": "Register to See Address"
+            "address": "Register to See Address",
+            "latitude": 38.8950982,
+            "longitude": -77.0363849,
+            "geocode_status": "ok",
+            "geocode_query": "Register to See Address"
         },
         "imageUrl": "/event_images/vcIQ_Dual_Use_Founder_Session.webp",
         "source": "https://luma.com/vcdc",
@@ -2330,7 +2541,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Martin Luther King Jr. Memorial Library",
-            "address": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA"
+            "address": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA",
+            "latitude": 38.8986914,
+            "longitude": -77.0247662,
+            "geocode_status": "ok",
+            "geocode_query": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA"
         },
         "imageUrl": "/event_images/Meet_the_Projects_Energy_Climate_Workshop_Storytelling.webp",
         "source": "https://luma.com/theupskillinglabs",
@@ -2361,7 +2576,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": null,
         "tags": [
@@ -2383,7 +2599,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/STATION_DC_AI_Open_Roundtable.webp",
         "source": "https://luma.com/stationdc",
@@ -2413,7 +2631,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": null,
         "scrapeTime": "2026-04-27 00:48:11.508999",
@@ -2434,7 +2653,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/GPU_CUDA_and_PyTorch_Performance_Optimizations.webp",
         "tags": [
@@ -2458,7 +2678,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/STATION_DC_Transportation_and_Infrastructure_Open_Roundtable.webp",
         "source": "https://luma.com/stationdc",
@@ -2483,7 +2705,8 @@
         "status": "ACTIVE",
         "location": {
             "name": "",
-            "address": ""
+            "address": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Mastering_Storytelling_for_Personal_Brand.webp",
         "source": "https://luma.com/theupskillinglabs",
@@ -2515,7 +2738,8 @@
             "state": "",
             "country": "",
             "latitude": "",
-            "longitude": ""
+            "longitude": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_June.webp",
         "recurring": false,
@@ -2540,7 +2764,9 @@
         "status": "ACTIVE",
         "location": {
             "name": "STATION DC",
-            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
+            "address": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "STATION DC, 1323 4th St NE Suite 200, Washington, DC 20002, USA"
         },
         "imageUrl": "/event_images/STATION_DC_Hypersonics_Open_Roundtable.webp",
         "source": "https://luma.com/stationdc",
@@ -2565,7 +2791,8 @@
         "status": "ACTIVE",
         "location": {
             "name": "",
-            "address": ""
+            "address": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Small_Group_Networking_Q3_2026.webp",
         "source": "https://luma.com/climatedraft-community",
@@ -2593,7 +2820,8 @@
         "status": "ACTIVE",
         "location": {
             "name": "virtual",
-            "address": "virtual"
+            "address": "virtual",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/PGP_Demo_Event_3.webp",
         "source": "https://luma.com/pgpforcrypto",
@@ -2617,7 +2845,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "Martin Luther King Jr. Memorial Library",
-            "address": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA"
+            "address": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA",
+            "latitude": 38.8986914,
+            "longitude": -77.0247662,
+            "geocode_status": "ok",
+            "geocode_query": "Martin Luther King Jr. Memorial Library, 901 G St NW, Washington, DC 20001, USA"
         },
         "imageUrl": "/event_images/Upskilling_Summit_Energy_Climate_Project_Showcase_Civics_Elections_Cycle_Kick_Of.webp",
         "source": "https://luma.com/theupskillinglabs",
@@ -2669,7 +2901,8 @@
             "state": "",
             "country": "",
             "latitude": "",
-            "longitude": ""
+            "longitude": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_July.webp",
         "recurring": false,
@@ -2699,7 +2932,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/GPU_CUDA_and_PyTorch_Performance_Optimizations.webp",
         "tags": [
@@ -2728,7 +2962,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/GPU_CUDA_and_PyTorch_Performance_Optimizations.webp",
         "tags": [
@@ -2758,7 +2993,8 @@
             "state": "",
             "country": "",
             "latitude": "",
-            "longitude": ""
+            "longitude": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_August.webp",
         "recurring": false,
@@ -2783,7 +3019,11 @@
         "status": "ACTIVE",
         "location": {
             "name": "New York, New York",
-            "address": "Register to See Address"
+            "address": "Register to See Address",
+            "latitude": 38.8950982,
+            "longitude": -77.0363849,
+            "geocode_status": "ok",
+            "geocode_query": "Register to See Address"
         },
         "imageUrl": "/event_images/Girlies_in_Tech_Dinner_pt_11_3_NYC_Edition_NoMad.webp",
         "source": "https://luma.com/girliesintechdinner",
@@ -2814,7 +3054,8 @@
             "state": "",
             "country": "",
             "latitude": "",
-            "longitude": ""
+            "longitude": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_September.webp",
         "recurring": false,
@@ -2839,7 +3080,8 @@
         "status": "ACTIVE",
         "location": {
             "name": "",
-            "address": ""
+            "address": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Small_Group_Networking_Q4_2026.webp",
         "source": "https://luma.com/climatedraft-community",
@@ -2873,7 +3115,8 @@
             "state": "",
             "country": "",
             "latitude": "",
-            "longitude": ""
+            "longitude": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_October.webp",
         "recurring": false,
@@ -2904,7 +3147,8 @@
             "state": "",
             "country": "",
             "latitude": "",
-            "longitude": ""
+            "longitude": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_November.webp",
         "recurring": false,
@@ -2934,7 +3178,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": null,
         "scrapeTime": "2026-04-27 00:48:11.508999",
@@ -2956,7 +3201,8 @@
             "state": "",
             "country": "",
             "latitude": "",
-            "longitude": ""
+            "longitude": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/District_Angels_Monthly_Deal_Room_December.webp",
         "recurring": false,
@@ -2986,7 +3232,8 @@
             "address": "ONLINE",
             "city": "Washington",
             "state": "dc",
-            "country": "us"
+            "country": "us",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Green_Sustainable_Dev_t_Environment_HH_FREE_BUT_RSVP_IS_REQ_RD_ON_EVENTBRITE.webp",
         "tags": [
@@ -3013,7 +3260,9 @@
             "address": "Refer Eventbrite Ticket Link",
             "city": "Washington",
             "state": "dc",
-            "country": "us"
+            "country": "us",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "Refer Eventbrite Ticket Link, Washington"
         },
         "imageUrl": "/event_images/A_Night_At_The_Embassy_of_The_European_Union.webp",
         "tags": [

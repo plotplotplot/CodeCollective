@@ -13,7 +13,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Introduction_to_Microsoft_365_Copilot.webp",
         "tags": [
@@ -40,7 +41,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/How_Automation_Wireless_Are_Transforming_Enterprise_Networks.webp",
         "tags": [
@@ -66,7 +68,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Beyond_the_PMP_How_Service_Visibility_and_Community_Shape_High_Impact_PM_Careers.webp",
         "recurring": false,
@@ -85,7 +88,9 @@
             "address": "1680 N Glenville Dr #300, Richardson, TX 75081, USA",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "1680 N Glenville Dr #300, Richardson, TX 75081, USA"
         },
         "imageUrl": "/event_images/Feed_the_Future_ABWIPPM_Dallas_Community_Volunteer_Shift.webp",
         "recurring": false,
@@ -104,7 +109,11 @@
             "address": "5011 Falls of Neuse Rd, Raleigh, NC 27609, USA",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "latitude": 35.8492601,
+            "longitude": -78.6148168,
+            "geocode_status": "ok",
+            "geocode_query": "5011 Falls of Neuse Rd, Raleigh, NC 27609, USA"
         },
         "imageUrl": "/event_images/RDU_Chapter_April_Co_Working_Session.webp",
         "recurring": false,
@@ -124,7 +133,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Microsoft_Copilot_ROI_Playbook_for_Business_Leaders_Adoption_to_Impact.webp",
         "tags": [
@@ -150,7 +160,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/How_To_Ace_PM_Interviews_with_Veronica_White.webp",
         "recurring": false,
@@ -169,7 +180,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Practical_PM_Toolkit_Tools_and_Techniques_You_Can_Use_Immediately_with_Cindy_Oko.webp",
         "recurring": false,
@@ -189,7 +201,8 @@
             "address": "",
             "city": "",
             "state": "",
-            "country": ""
+            "country": "",
+            "geocode_status": "skipped_low_quality"
         },
         "imageUrl": "/event_images/Agentic_AI_on_Vertex_Unlock_self_learning_AI_with_Vertex_AI.webp",
         "tags": [
