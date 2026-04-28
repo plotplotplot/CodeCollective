@@ -26,75 +26,8 @@ const FEATURED_SOURCE_URLS = new Set([
 const CATEGORY_MAPS_INDEX_URL = window.CALENDAR_CATEGORY_MAPS_INDEX_URL || '/data/category_maps/index.json';
 const DEFAULT_CATEGORY_MAP_ID = window.CALENDAR_DEFAULT_CATEGORY_MAP || 'lenses';
 const LEGEND_PREFS_KEY = 'calendarLegendPrefs';
-const FALLBACK_CATEGORY_MAP_CONFIG = {
-  default_map: DEFAULT_CATEGORY_MAP_ID,
-  maps: [
-    {
-      id: 'maslow_needs',
-      label: 'Maslow Needs',
-      categories: [
-        { label: 'Food', color: '#ca8a04', text_color: '#ffffff', matches: ['Food'] },
-        { label: 'Water', color: '#0f766e', text_color: '#ffffff', matches: ['Water', 'Water & Environment'] },
-        { label: 'Shelter + Habitat', color: '#475569', text_color: '#ffffff', matches: ['Housing', 'Shelter + Habitat'] },
-        { label: 'Clothing', color: '#7c3aed', text_color: '#ffffff', matches: ['Clothing'] },
-        { label: 'Survival & Health', color: '#059669', text_color: '#ffffff', matches: ['Survival & Health', 'Wellness', 'Health'] },
-        { label: 'Safety & Stability', color: '#1d4ed8', text_color: '#ffffff', matches: ['Safety & Stability', 'Infrastructure', 'Finance'] },
-        { label: 'Belonging & Culture', color: '#9333ea', text_color: '#ffffff', matches: ['Belonging & Culture', 'Culture', 'Religion', 'Community'] },
-        { label: 'Esteem & Opportunity', color: '#b45309', text_color: '#ffffff', matches: ['Esteem & Opportunity', 'Economic Development', 'Economics', 'Business', 'Startup', 'Entrepreneurship', 'Career Growth', 'Professional Networking'] },
-        { label: 'Growth & Creativity', color: '#db2777', text_color: '#ffffff', matches: ['Growth & Creativity', 'Tech Skills', 'Makerspace'] },
-        { label: 'Purpose & Service', color: '#b91c1c', text_color: '#ffffff', matches: ['Purpose & Service', 'Politics'] },
-        { label: 'Other', color: '#6b7280', text_color: '#ffffff', matches: [] }
-      ]
-    },
-    {
-      id: 'lenses',
-      label: 'Lenses',
-      categories: [
-        { label: 'Community', color: '#7c3aed', text_color: '#ffffff', matches: ['Community', 'Community Organizing', 'Belonging & Culture', 'Code Collective & Partners', 'Tech Community', 'Religion', 'Faith & Spirituality'] },
-        { label: 'Education', color: '#2563eb', text_color: '#ffffff', matches: ['Tech Skills', 'Growth & Creativity', 'Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Open Source', 'Technical Writing', 'Product', 'UX', 'Career Growth'] },
-        { label: 'Health', color: '#dc2626', text_color: '#ffffff', matches: ['Health', 'Survival & Health', 'Wellness', 'Food'] },
-        { label: 'Arts & Culture', color: '#d946ef', text_color: '#ffffff', matches: ['Culture', 'Growth & Creativity', 'Game Development'] },
-        { label: 'Housing', color: '#475569', text_color: '#ffffff', matches: ['Housing', 'Shelter + Habitat'] },
-        { label: 'Public Safety', color: '#f59e0b', text_color: '#ffffff', matches: ['Public Safety', 'Safety & Stability', 'Cybersecurity', 'Politics', 'Policy', 'Civic Tech', 'Purpose & Service', 'Infrastructure'] },
-        { label: 'Environment', color: '#16a34a', text_color: '#ffffff', matches: ['Water', 'Water & Environment', 'Climate & Energy', 'Energy', 'Infrastructure'] },
-        { label: 'Economy', color: '#0d9488', text_color: '#ffffff', matches: ['Economics', 'Economic Development', 'Esteem & Opportunity', 'Finance', 'Crypto & Web3', 'Entrepreneurship', 'Business', 'Startup', 'Professional Networking', 'AI', 'Data Science', 'Cloud & Platform', 'DevOps', 'Makerspace', 'Robotics'] },
-        { label: 'Other', color: '#6b7280', text_color: '#ffffff', matches: [] }
-      ]
-    },
-    {
-      id: 'community_sectors',
-      label: 'Community Sectors',
-      categories: [
-        { label: 'Community', color: '#7c3aed', text_color: '#ffffff', matches: ['Community', 'Community Organizing', 'Belonging & Culture', 'Code Collective & Partners', 'Tech Community', 'Religion', 'Faith & Spirituality'] },
-        { label: 'Education', color: '#2563eb', text_color: '#ffffff', matches: ['Tech Skills', 'Growth & Creativity', 'Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Open Source', 'Technical Writing', 'Product', 'UX', 'Career Growth'] },
-        { label: 'Health', color: '#dc2626', text_color: '#ffffff', matches: ['Health', 'Survival & Health', 'Wellness', 'Food'] },
-        { label: 'Arts & Culture', color: '#d946ef', text_color: '#ffffff', matches: ['Culture', 'Growth & Creativity', 'Game Development'] },
-        { label: 'Housing', color: '#475569', text_color: '#ffffff', matches: ['Housing', 'Shelter + Habitat'] },
-        { label: 'Public Safety', color: '#f59e0b', text_color: '#ffffff', matches: ['Public Safety', 'Safety & Stability', 'Cybersecurity', 'Politics', 'Policy', 'Civic Tech', 'Purpose & Service', 'Infrastructure'] },
-        { label: 'Environment', color: '#16a34a', text_color: '#ffffff', matches: ['Water', 'Water & Environment', 'Climate & Energy', 'Energy', 'Infrastructure'] },
-        { label: 'Other', color: '#6b7280', text_color: '#ffffff', matches: [] }
-      ]
-    },
-    {
-      id: 'tech_only',
-      label: 'Tech Meetups',
-      categories: [
-        { label: 'AI & ML', color: '#7c3aed', text_color: '#ffffff', matches: ['AI'] },
-        { label: 'Data & Analytics', color: '#0891b2', text_color: '#ffffff', matches: ['Data Science'] },
-        { label: 'Cybersecurity', color: '#dc2626', text_color: '#ffffff', matches: ['Cybersecurity'] },
-        { label: 'Cloud & DevOps', color: '#2563eb', text_color: '#ffffff', matches: ['Cloud & Platform', 'DevOps'] },
-        { label: 'Software Development', color: '#4f46e5', text_color: '#ffffff', matches: ['Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Open Source', 'Technical Writing', 'Game Development'] },
-        { label: 'Design & Product', color: '#db2777', text_color: '#ffffff', matches: ['UX', 'Product'] },
-        { label: 'Crypto & Web3', color: '#a16207', text_color: '#ffffff', matches: ['Crypto & Web3'] },
-        { label: 'Makerspace & Robotics', color: '#ea580c', text_color: '#ffffff', matches: ['Makerspace', 'Robotics'] },
-        { label: 'Tech Meetups', color: '#16a34a', text_color: '#ffffff', matches: ['Tech Community', 'Code Collective & Partners'] },
-        { label: 'General Tech', color: '#475569', text_color: '#ffffff', matches: [] }
-      ]
-    }
-  ]
-};
-let categoryMapConfig = FALLBACK_CATEGORY_MAP_CONFIG;
-let activeCategoryMap = FALLBACK_CATEGORY_MAP_CONFIG.maps[0];
+let categoryMapConfig = { default_map: DEFAULT_CATEGORY_MAP_ID, maps: [] };
+let activeCategoryMap = null;
 
 async function loadCategoryMapConfig() {
   try {
@@ -103,9 +36,7 @@ async function loadCategoryMapConfig() {
 
     const indexData = await indexResponse.json();
     const mapRefs = Array.isArray(indexData.maps) ? indexData.maps : [];
-    if (mapRefs.length === 0) {
-      return FALLBACK_CATEGORY_MAP_CONFIG;
-    }
+    if (mapRefs.length === 0) throw new Error('Category map index has no maps');
 
     const loadedMaps = await Promise.all(
       mapRefs.map(async (ref) => {
@@ -122,17 +53,15 @@ async function loadCategoryMapConfig() {
     );
 
     const maps = loadedMaps.filter(Boolean);
-    if (maps.length === 0) {
-      return FALLBACK_CATEGORY_MAP_CONFIG;
-    }
+    if (maps.length === 0) throw new Error('No category maps could be loaded');
 
     return {
       default_map: indexData.default_map || maps[0].id,
       maps
     };
   } catch (error) {
-    console.warn('Falling back to built-in category maps:', error);
-    return FALLBACK_CATEGORY_MAP_CONFIG;
+    console.error('Failed to load category maps:', error);
+    throw error;
   }
 }
 
@@ -546,7 +475,7 @@ function hideHoverPreview() {
 }
 
 function getCategoryMapById(mapId) {
-  return (categoryMapConfig.maps || []).find(map => map.id === mapId) || (categoryMapConfig.maps || [])[0] || FALLBACK_CATEGORY_MAP_CONFIG.maps[0];
+  return (categoryMapConfig.maps || []).find(map => map.id === mapId) || (categoryMapConfig.maps || [])[0] || null;
 }
 
 function normalizeMapCategory(category) {
@@ -788,6 +717,9 @@ function buildMaslowLegendList(categories, activeSlugs) {
 
 function buildLegend(categoryMap, options = {}) {
   activeCategoryMap = categoryMap || getCategoryMapById(categoryMapConfig.default_map);
+  if (!activeCategoryMap) {
+    return;
+  }
   let prefs = getLegendPrefs(activeCategoryMap);
   if (!options.lockMapId && prefs.mapId && prefs.mapId !== activeCategoryMap.id) {
     activeCategoryMap = getCategoryMapById(prefs.mapId);
@@ -814,7 +746,7 @@ function buildLegend(categoryMap, options = {}) {
     .join('');
   controls.innerHTML = `
     <label class="legend-map-picker">
-      <span class="legend-text">Map</span>
+      <span class="legend-text">Lenses</span>
       <select id="legend-map-select">${mapOptions}</select>
     </label>
     <label class="legend-map-picker">

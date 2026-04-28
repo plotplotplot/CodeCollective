@@ -129,7 +129,7 @@ class CalendarLegend extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
             <aside class="calendar-legend" aria-label="Event category filters">
-                <div class="legend-title">Filter by category:</div>
+                <div class="legend-title">Filter by lenses:</div>
                 <div class="legend-items" id="calendar-legend-items"></div>
             </aside>
             <button type="button" id="legend-visibility-toggle" class="legend-toggle-button" aria-expanded="true">
