@@ -87,6 +87,19 @@
             font-size: 0.88rem;
             color: #1d3557;
         }
+        .city-select {
+            border: 2px solid var(--border);
+            border-radius: 999px;
+            padding: 0.5rem 0.8rem;
+            font-size: 0.9rem;
+            color: #0f172a;
+            background: #ffffff;
+        }
+        .city-select:focus {
+            outline: none;
+            border-color: #0d3d79;
+            box-shadow: 0 0 0 3px rgba(13, 61, 121, 0.12);
+        }
 
         .search-input {
             flex: 1 1 260px;
@@ -481,6 +494,10 @@
             <h2 class="section-title">Featured Event Locations</h2>
             <div class="controls-row">
                 <input id="event-search" class="search-input" type="search" placeholder="Search events, locations, tags, or descriptions">
+                <label class="control-inline" for="city-select">
+                    City
+                    <select id="city-select" class="city-select" aria-label="Select city for event map"></select>
+                </label>
                 <label class="control-inline">
                     <input id="show-title-toggle" type="checkbox">
                     Show title
@@ -530,6 +547,19 @@
     ></script>
     <script>
         const DEFAULT_CITY = 'baltimore';
+        const DEFAULT_CITY_OPTIONS = ['all', 'baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh', 'philadelphia', 'virtual'];
+        const DEFAULT_CITY_DISPLAY_NAMES = {
+            all: 'All',
+            baltimore: 'Baltimore',
+            westvirginia: 'West Virginia',
+            hawaii: 'Hawaii',
+            dc: 'Washington DC',
+            pittsburgh: 'Pittsburgh',
+            philadelphia: 'Philadelphia',
+            virtual: 'Virtual'
+        };
+        const CITY_OPTIONS = window.CALENDAR_CITY_OPTIONS || DEFAULT_CITY_OPTIONS;
+        const CITY_DISPLAY_NAMES = window.CALENDAR_CITY_DISPLAY_NAMES || DEFAULT_CITY_DISPLAY_NAMES;
         const DEFAULT_CENTER = [39.2904, -76.6122];
         const geocodeCache = {};
         const allEvents = [];
@@ -541,8 +571,8 @@
         let showTitleLine = false;
         let activeHoverKey = '';
         const cityPathContext = resolveCityPath();
-        const EVENTS_SOURCE = `${cityPathContext.basePath}/upcoming_events.json`;
-        const GEOCODE_CACHE_URL = `${cityPathContext.basePath}/geocode_cache.json`;
+        const EVENTS_SOURCE = cityPathContext.city === 'all' ? '/upcoming_events.json' : `${cityPathContext.basePath}/upcoming_events.json`;
+        const GEOCODE_CACHE_URL = cityPathContext.city === 'all' ? null : `${cityPathContext.basePath}/geocode_cache.json`;
         const VACANTS_META_API = '/api/vacants/meta';
         const VACANTS_PAGE_API = '/api/vacants';
         const VACANTS_LOCAL_FALLBACK = '/baltimore/data/vacants.geojson';
@@ -684,11 +714,37 @@
             const params = new URLSearchParams(window.location.search);
             const requested = sanitizeCityName(params.get('city'));
             const fallback = sanitizeCityName(DEFAULT_CITY) || 'baltimore';
-            const city = requested || fallback;
+            const candidate = requested || fallback;
+            const city = CITY_OPTIONS.includes(candidate) ? candidate : fallback;
             return {
                 city,
-                basePath: `/${city}`
+                basePath: city === 'all' ? '' : `/${city}`
             };
+        }
+
+        function getCityDisplayName(city) {
+            return CITY_DISPLAY_NAMES[city] || city.charAt(0).toUpperCase() + city.slice(1);
+        }
+
+        function initializeCitySelector() {
+            const citySelect = document.getElementById('city-select');
+            if (!citySelect || citySelect.dataset.bound) return;
+            citySelect.innerHTML = '';
+            CITY_OPTIONS.forEach(city => {
+                const option = document.createElement('option');
+                option.value = city;
+                option.textContent = getCityDisplayName(city);
+                citySelect.appendChild(option);
+            });
+            citySelect.value = cityPathContext.city;
+            citySelect.addEventListener('change', event => {
+                const selectedCity = sanitizeCityName(event.target.value);
+                if (!CITY_OPTIONS.includes(selectedCity)) return;
+                const url = new URL(window.location.href);
+                url.searchParams.set('city', selectedCity);
+                window.location.href = url.toString();
+            });
+            citySelect.dataset.bound = 'true';
         }
 
         function getMapStateKey() {
@@ -734,6 +790,7 @@
 
         async function loadEvents() {
             try {
+                initializeCitySelector();
                 await loadFileCache();
                 await loadCategoryMapConfig();
                 const response = await fetch(EVENTS_SOURCE);
@@ -756,6 +813,10 @@
         }
 
         async function loadFileCache() {
+            if (!GEOCODE_CACHE_URL) {
+                fileGeocodeCache = {};
+                return;
+            }
             try {
                 const response = await fetch(GEOCODE_CACHE_URL, { cache: 'no-cache' });
                 if (response.ok) {
