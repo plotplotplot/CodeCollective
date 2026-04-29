@@ -164,12 +164,186 @@ async function handleJobsPage(request, env) {
   return new Response(object.body, { status: 200, headers });
 }
 
+async function readLatestVacantsPointer(env) {
+  if (!env.VACANTS_BUCKET) return null;
+  const object = await env.VACANTS_BUCKET.get("vacants/latest.json");
+  if (!object) return null;
+  return object.json();
+}
+
+async function readVacantsManifest(env, version = "") {
+  if (!env.VACANTS_BUCKET) return null;
+  let manifestKey = "";
+  let resolvedVersion = version;
+
+  if (resolvedVersion) {
+    manifestKey = `vacants/${resolvedVersion}/manifest.json`;
+  } else {
+    const latest = await readLatestVacantsPointer(env);
+    if (!latest || !latest.manifest_key) return null;
+    manifestKey = String(latest.manifest_key);
+    resolvedVersion = String(latest.version || "");
+  }
+
+  const object = await env.VACANTS_BUCKET.get(manifestKey);
+  if (!object) return null;
+  const manifest = await object.json();
+  return { manifest, version: resolvedVersion, manifestKey };
+}
+
+function normalizeVacantsGroup(raw) {
+  const value = String(raw || "ALL").trim().toUpperCase();
+  return value || "ALL";
+}
+
+async function handleVacantsMeta(request, env) {
+  const url = new URL(request.url);
+  const version = url.searchParams.get("version") || "";
+  const loaded = await readVacantsManifest(env, version);
+  if (!loaded) {
+    return jsonResponse({ error: "Vacants manifest not found" }, 404);
+  }
+
+  return jsonResponse({
+    version: loaded.version || loaded.manifest.version || "",
+    manifest_key: loaded.manifestKey,
+    ...loaded.manifest,
+  });
+}
+
+async function handleVacantsPage(request, env) {
+  const url = new URL(request.url);
+  const version = url.searchParams.get("version") || "";
+  const group = normalizeVacantsGroup(url.searchParams.get("group"));
+  const page = Number.parseInt(url.searchParams.get("page") || "1", 10);
+
+  if (!Number.isInteger(page) || page < 1) {
+    return jsonResponse({ error: "Invalid page query parameter" }, 400);
+  }
+
+  const loaded = await readVacantsManifest(env, version);
+  if (!loaded) {
+    return jsonResponse({ error: "Vacants manifest not found" }, 404);
+  }
+
+  const groups = loaded.manifest.groups || {};
+  const groupEntry = groups[group] || groups.ALL;
+  if (!groupEntry) {
+    return jsonResponse({ error: `Group not found: ${group}` }, 404);
+  }
+
+  const shard = (groupEntry.shards || []).find((item) => Number(item.page) === page);
+  if (!shard || !shard.key) {
+    return jsonResponse({ error: `Page not found for group ${group}: ${page}` }, 404);
+  }
+
+  const object = await env.VACANTS_BUCKET.get(String(shard.key));
+  if (!object) {
+    return jsonResponse({ error: "Shard object not found" }, 404);
+  }
+
+  const headers = new Headers();
+  object.writeHttpMetadata(headers);
+  headers.set("etag", object.httpEtag);
+  headers.set("cache-control", "public, max-age=300");
+  headers.set("access-control-allow-origin", "*");
+
+  return new Response(object.body, { status: 200, headers });
+}
+
+async function readLatestVacantsParcelsPointer(env) {
+  if (!env.VACANTS_BUCKET) return null;
+  const object = await env.VACANTS_BUCKET.get("vacants_parcels/latest.json");
+  if (!object) return null;
+  return object.json();
+}
+
+async function readVacantsParcelsManifest(env, version = "") {
+  if (!env.VACANTS_BUCKET) return null;
+  let manifestKey = "";
+  let resolvedVersion = version;
+
+  if (resolvedVersion) {
+    manifestKey = `vacants_parcels/${resolvedVersion}/manifest.json`;
+  } else {
+    const latest = await readLatestVacantsParcelsPointer(env);
+    if (!latest || !latest.manifest_key) return null;
+    manifestKey = String(latest.manifest_key);
+    resolvedVersion = String(latest.version || "");
+  }
+
+  const object = await env.VACANTS_BUCKET.get(manifestKey);
+  if (!object) return null;
+  const manifest = await object.json();
+  return { manifest, version: resolvedVersion, manifestKey };
+}
+
+function normalizeVacantsParcelsGroup(raw) {
+  const value = String(raw || "ALL").trim().toUpperCase();
+  return value || "ALL";
+}
+
+async function handleVacantsParcelsMeta(request, env) {
+  const url = new URL(request.url);
+  const version = url.searchParams.get("version") || "";
+  const loaded = await readVacantsParcelsManifest(env, version);
+  if (!loaded) {
+    return jsonResponse({ error: "Vacants parcels manifest not found" }, 404);
+  }
+
+  return jsonResponse({
+    version: loaded.version || loaded.manifest.version || "",
+    manifest_key: loaded.manifestKey,
+    ...loaded.manifest,
+  });
+}
+
+async function handleVacantsParcelsPage(request, env) {
+  const url = new URL(request.url);
+  const version = url.searchParams.get("version") || "";
+  const group = normalizeVacantsParcelsGroup(url.searchParams.get("group"));
+  const page = Number.parseInt(url.searchParams.get("page") || "1", 10);
+
+  if (!Number.isInteger(page) || page < 1) {
+    return jsonResponse({ error: "Invalid page query parameter" }, 400);
+  }
+
+  const loaded = await readVacantsParcelsManifest(env, version);
+  if (!loaded) {
+    return jsonResponse({ error: "Vacants parcels manifest not found" }, 404);
+  }
+
+  const groups = loaded.manifest.groups || {};
+  const groupEntry = groups[group] || groups.ALL;
+  if (!groupEntry) {
+    return jsonResponse({ error: `Group not found: ${group}` }, 404);
+  }
+
+  const shard = (groupEntry.shards || []).find((item) => Number(item.page) === page);
+  if (!shard || !shard.key) {
+    return jsonResponse({ error: `Page not found for group ${group}: ${page}` }, 404);
+  }
+
+  const object = await env.VACANTS_BUCKET.get(String(shard.key));
+  if (!object) {
+    return jsonResponse({ error: "Shard object not found" }, 404);
+  }
+
+  const headers = new Headers();
+  object.writeHttpMetadata(headers);
+  headers.set("etag", object.httpEtag);
+  headers.set("cache-control", "public, max-age=300");
+  headers.set("access-control-allow-origin", "*");
+
+  return new Response(object.body, { status: 200, headers });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const path = url.pathname;
 
-    if (request.method === "OPTIONS" && (path.startsWith("/api/governance") || path.startsWith("/pidp") || path.startsWith("/api/jobs"))) {
+    if (request.method === "OPTIONS" && (path.startsWith("/api/governance") || path.startsWith("/pidp") || path.startsWith("/api/jobs") || path.startsWith("/api/vacants") || path.startsWith("/api/vacants_parcels"))) {
       return new Response(null, {
         status: 204,
         headers: {
@@ -190,6 +364,22 @@ export default {
 
     if (path === "/api/jobs") {
       return handleJobsPage(request, env);
+    }
+
+    if (path === "/api/vacants/meta") {
+      return handleVacantsMeta(request, env);
+    }
+
+    if (path === "/api/vacants") {
+      return handleVacantsPage(request, env);
+    }
+
+    if (path === "/api/vacants_parcels/meta") {
+      return handleVacantsParcelsMeta(request, env);
+    }
+
+    if (path === "/api/vacants_parcels") {
+      return handleVacantsParcelsPage(request, env);
     }
 
     if (path.startsWith("/pidp")) {

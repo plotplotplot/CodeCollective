@@ -33,6 +33,9 @@ rsync -a \
   --exclude='usa/data/usajobs-lite.json.gz' \
   --exclude='usa/data/usajobs.zip' \
   --exclude='usa/data/publish/' \
+  --exclude='baltimore/data/vacants.geojson' \
+  --exclude='baltimore/data/vacants.geojson.gz' \
+  --exclude='baltimore/data/publish/' \
   --exclude='node_modules/' \
   --exclude='__pycache__/' \
   --exclude='*.sqlite' \

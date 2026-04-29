@@ -274,6 +274,32 @@ def ensure_org_name_fields(events):
             event["orgName"] = candidate
 
 
+def canonicalize_event_branding(events):
+    for event in events or []:
+        if not isinstance(event, dict):
+            continue
+        name = normalize_event_text(event.get("name", ""))
+        source_group = normalize_event_text(event.get("source_group", ""))
+        org_name = normalize_event_text(event.get("orgName") or event.get("org_name") or "")
+        tags = [normalize_event_text(tag) for tag in (event.get("tags") or [])]
+
+        is_code_collective_named = "code collective" in name
+        is_code_collective_tagged = any("code collective" in tag for tag in tags)
+        is_code_collective_sourced = "code collective" in source_group or "code collective" in org_name
+
+        if not (is_code_collective_named or is_code_collective_tagged or is_code_collective_sourced):
+            continue
+
+        # Canonical org identity for Code Collective events, regardless of source importer.
+        event["org_name"] = "Code Collective"
+        event["orgName"] = "Code Collective"
+        event["source_group"] = "Code Collective"
+
+        org_image_url = str(event.get("orgImageUrl") or "").strip().lower()
+        if (not org_image_url) or ("baltimoreindiegames" in org_image_url) or ("big_small" in org_image_url):
+            event["orgImageUrl"] = "/images/codecollective.webp"
+
+
 def source_pattern_details(source):
     parsed = urlparse(source.get("url", ""))
     segments = [segment for segment in parsed.path.split("/") if segment]
@@ -1231,6 +1257,8 @@ def main(city = "baltimore"):
 
     ensure_org_name_fields(sorted_events)
     ensure_org_name_fields(invalid_events)
+    canonicalize_event_branding(sorted_events)
+    canonicalize_event_branding(invalid_events)
 
     persist_calendar_outputs(
         city=city,

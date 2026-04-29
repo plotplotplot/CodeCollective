@@ -14,3 +14,7 @@ PIDP_API_ORIGIN = "https://pidp.arkavo.org"
 [[r2_buckets]]
 binding = "JOBS_BUCKET"
 bucket_name = "codecollective-usajobs"
+
+[[r2_buckets]]
+binding = "VACANTS_BUCKET"
+bucket_name = "codecollective-usajobs"

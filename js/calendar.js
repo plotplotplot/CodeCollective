@@ -290,6 +290,24 @@ function getPreferredEventImage(eventLike) {
   return extendedProps.imageUrl || extendedProps.orgImageUrl || '';
 }
 
+function getPreferredOrgImage(eventLike) {
+  if (!eventLike) return '';
+  const extendedProps = eventLike.extendedProps || {};
+  const title = String(eventLike.title || eventLike.name || '').toLowerCase();
+  const orgName = String(extendedProps.orgName || extendedProps.org_name || extendedProps.sourceGroup || '').toLowerCase();
+  const source = String(extendedProps.source || extendedProps.source_url || '').toLowerCase();
+  const orgImage = String(extendedProps.orgImageUrl || eventLike.orgImageUrl || '');
+
+  const codeCollectiveSignal =
+    title.includes('code collective') ||
+    orgName.includes('code collective') ||
+    source.includes('codecollective');
+  if (codeCollectiveSignal) {
+    return '/images/codecollective.webp';
+  }
+  return orgImage;
+}
+
 function sanitizeHtmlFragment(htmlString) {
   const parser = new DOMParser();
   const doc = parser.parseFromString(`<div>${htmlString || ''}</div>`, 'text/html');
@@ -422,7 +440,7 @@ function showHoverPreview(eventInfo, mouseEvent) {
   const sourceUrl = event.extendedProps?.source || event.url || '';
   const sourceLabel = formatSourceLabel(sourceUrl, event.extendedProps?.sourceGroup || event.extendedProps?.group || 'Unknown source');
   const imageUrl = safeUrl(getPreferredEventImage(event));
-  const orgImageUrl = safeUrl(event.extendedProps?.orgImageUrl || '');
+  const orgImageUrl = safeUrl(getPreferredOrgImage(event));
   const mediaWrap = panel.querySelector('.event-hover-media-wrap');
   const media = panel.querySelector('.event-hover-media');
   const kicker = panel.querySelector('.event-hover-kicker');

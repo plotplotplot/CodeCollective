@@ -80,6 +80,13 @@
             gap: 0.75rem;
             align-items: center;
         }
+        .control-inline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.88rem;
+            color: #1d3557;
+        }
 
         .search-input {
             flex: 1 1 260px;
@@ -174,6 +181,11 @@
             color: var(--muted);
             font-size: 0.88rem;
         }
+        .location-card .event-titleline {
+            margin: 0.2rem 0 0.1rem 0;
+            font-size: 0.86rem;
+            color: #334155;
+        }
 
         .location-card.unmapped {
             border-style: dashed;
@@ -212,11 +224,63 @@
             bottom: 1rem;
             right: 1rem;
             background: rgba(255, 255, 255, 0.9);
-            padding: 0.75rem 1rem;
+            padding: 0.65rem 0.8rem;
             border-radius: 12px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
             z-index: 500;
+            max-width: 280px;
+        }
+        .map-legend .overlay-controls {
+            margin-top: 0.35rem;
+        }
+        .legend-section-title {
+            margin: 0.15rem 0 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #475569;
+        }
+        .legend-key {
+            margin-top: 0.25rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.15rem;
+        }
+        .legend-key-row {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.74rem;
+            color: #334155;
+        }
+        .legend-toggle-row {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin: 0.1rem 0;
+            font-size: 0.78rem;
+            color: #1f2937;
+        }
+        .legend-toggle-row input[type="checkbox"] {
+            margin: 0;
+        }
+        .legend-swatch {
+            width: 0.8rem;
+            height: 0.8rem;
+            border-radius: 3px;
+            border: 1px solid rgba(15, 23, 42, 0.35);
+            flex: 0 0 auto;
+        }
+        .map-legend label,
+        .map-legend select {
+            font-size: 0.78rem;
+        }
+        .compact-hint {
+            color: #475569;
+            font-size: 0.74rem;
+            margin-bottom: 0.2rem;
         }
 
         .hover-preview-panel {
@@ -417,6 +481,10 @@
             <h2 class="section-title">Featured Event Locations</h2>
             <div class="controls-row">
                 <input id="event-search" class="search-input" type="search" placeholder="Search events, locations, tags, or descriptions">
+                <label class="control-inline">
+                    <input id="show-title-toggle" type="checkbox">
+                    Show title
+                </label>
                 <button id="copy-all-button" class="action-button" type="button">Copy all</button>
                 <button id="copy-some-button" class="action-button" type="button">Copy some</button>
             </div>
@@ -441,10 +509,17 @@
                 </div>
             </aside>
             <div class="map-legend">
-                <strong>Map Tips</strong>
-                <div>• Drag & zoom to explore</div>
-                <div>• Hover a list item to preview details here</div>
-                <div>• Click a list item to jump to its marker</div>
+                <strong>Layers</strong>
+                <div class="compact-hint">Toggle sources and markers.</div>
+                <div class="overlay-controls" id="overlay-controls">
+                    <div class="legend-section-title">Visibility</div>
+                    <label class="legend-toggle-row"><input id="events-toggle" type="checkbox" checked><span class="legend-swatch" style="background:#64748b"></span> Events</label>
+                    <label class="legend-toggle-row"><input id="vacant-lot-toggle" type="checkbox" checked><span class="legend-swatch" style="background:#f59e0b"></span> Vacant lots</label>
+                    <label class="legend-toggle-row"><input id="vacant-building-toggle" type="checkbox" checked><span class="legend-swatch" style="background:#ef4444"></span> Building notices</label>
+                    <label class="legend-toggle-row"><input id="realprop-vacind-toggle" type="checkbox"><span class="legend-swatch" style="background:#22c55e"></span> Realprop VACIND=Y</label>
+                    <div class="legend-key-row"><span class="legend-swatch" style="background:#60a5fa"></span> Parcel boundary</div>
+                    <div id="overlay-status" class="list-meta"></div>
+                </div>
             </div>
         </section>
     </div>
@@ -463,12 +538,29 @@
         const markersByEventKey = new Map();
         let fileGeocodeCache = {};
         let searchTerm = '';
+        let showTitleLine = false;
         let activeHoverKey = '';
         const cityPathContext = resolveCityPath();
         const EVENTS_SOURCE = `${cityPathContext.basePath}/upcoming_events.json`;
         const GEOCODE_CACHE_URL = `${cityPathContext.basePath}/geocode_cache.json`;
+        const VACANTS_META_API = '/api/vacants/meta';
+        const VACANTS_PAGE_API = '/api/vacants';
+        const VACANTS_LOCAL_FALLBACK = '/baltimore/data/vacants.geojson';
+        const VACANTS_PARCELS_META_API = '/api/vacants_parcels/meta';
+        const VACANTS_PARCELS_PAGE_API = '/api/vacants_parcels';
+        const VACANTS_PARCELS_LOCAL_FALLBACK = '/baltimore/data/vacants_parcels.geojson';
+        const BALTIMORE_REALPROP_QUERY_API = 'https://egisdata.baltimorecity.gov/egis/rest/services/Housing/Accela_DHCD/MapServer/1/query';
+        const VACANTS_MIN_ZOOM = 11;
+        const MAX_OWNER_LOOKUP_BLOCKLOTS = 600;
+        const OVERLAY_COLORS = {
+            vacantsLot: { stroke: '#d97706', fill: '#f59e0b' },
+            vacantsBuilding: { stroke: '#b91c1c', fill: '#ef4444' },
+            vacantsParcels: { stroke: '#1d4ed8', fill: '#60a5fa' },
+            realpropVacind: { stroke: '#166534', fill: '#22c55e' },
+        };
         const CATEGORY_MAPS_INDEX_URL = '/data/category_maps/index.json';
         const LEGEND_PREFS_KEY = 'calendarLegendPrefs';
+        const MAP_STATE_KEY_PREFIX = 'eventsmapState';
         const FALLBACK_CATEGORY_MAP_CONFIG = {
             default_map: 'lenses',
             maps: [
@@ -540,10 +632,45 @@
         let activeCategoryMap = FALLBACK_CATEGORY_MAP_CONFIG.maps.find(map => map.id === FALLBACK_CATEGORY_MAP_CONFIG.default_map) || FALLBACK_CATEGORY_MAP_CONFIG.maps[0];
         let clearHoverTimer = 0;
         let activeTagRail = null;
+        let vacantsLayer = null;
+        let vacantsParcelsLayer = null;
+        let vacantsLoaded = false;
+        let vacantsParcelsLoaded = false;
+        let realpropVacindLoaded = false;
+        let eventsVisible = true;
+        let vacantsMeta = null;
+        let vacantsParcelsMeta = null;
+        let vacantsApiUnavailable = false;
+        let vacantsParcelsApiUnavailable = false;
+        let vacantsFallbackWarned = false;
+        let vacantsParcelsFallbackWarned = false;
+        let vacantsLocalPayload = null;
+        let vacantsParcelsLocalPayload = null;
+        let vacantsLocalIndexed = null;
+        let vacantsParcelsLocalIndexed = null;
+        let realpropVacindLayer = null;
+        const vacantsShardCache = new Map();
+        const vacantsParcelsShardCache = new Map();
+        let vacantsMoveTimer = 0;
+        let vacantsLastRenderKey = '';
+        let vacantsParcelsLastRenderKey = '';
+        let realpropLastRenderKey = '';
+        let overlayRenderSeq = 0;
+        const ownerByBlocklotCache = new Map();
+        let eventsLayerGroup = null;
+        let restoredMapState = null;
+        let hasSavedViewport = false;
 
         const map = L.map('map', {
             zoomControl: true
         }).setView(DEFAULT_CENTER, 11);
+        eventsLayerGroup = L.layerGroup().addTo(map);
+        restoredMapState = loadPersistedMapState();
+        hasSavedViewport = Boolean(restoredMapState?.viewport);
+        if (hasSavedViewport) {
+            const viewport = restoredMapState.viewport;
+            map.setView([viewport.lat, viewport.lng], viewport.zoom);
+        }
 
         function sanitizeCityName(value) {
             return (value || '')
@@ -562,6 +689,42 @@
                 city,
                 basePath: `/${city}`
             };
+        }
+
+        function getMapStateKey() {
+            return `${MAP_STATE_KEY_PREFIX}:${cityPathContext.city || DEFAULT_CITY}`;
+        }
+
+        function loadPersistedMapState() {
+            try {
+                const raw = localStorage.getItem(getMapStateKey());
+                if (!raw) return null;
+                const parsed = JSON.parse(raw);
+                if (!parsed || typeof parsed !== 'object') return null;
+                return parsed;
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function persistMapState() {
+            try {
+                const center = map.getCenter();
+                const viewport = {
+                    lat: Number(center.lat),
+                    lng: Number(center.lng),
+                    zoom: Number(map.getZoom()),
+                };
+                const selections = {
+                    events: Boolean(document.getElementById('events-toggle')?.checked),
+                    vacantLot: Boolean(document.getElementById('vacant-lot-toggle')?.checked),
+                    vacantBuilding: Boolean(document.getElementById('vacant-building-toggle')?.checked),
+                    realpropVacind: Boolean(document.getElementById('realprop-vacind-toggle')?.checked),
+                };
+                localStorage.setItem(getMapStateKey(), JSON.stringify({ viewport, selections }));
+            } catch (error) {
+                // Ignore localStorage errors.
+            }
         }
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -583,6 +746,7 @@
                 await plotEvents(allEvents);
                 bindUiControls();
                 renderCards(getFilteredEvents());
+                initializeOverlayUi();
             } catch (error) {
                 console.error(error);
                 document.getElementById('location-cards').innerHTML =
@@ -607,6 +771,7 @@
             const copyAllButton = document.getElementById('copy-all-button');
             const copySomeButton = document.getElementById('copy-some-button');
             const previewPanel = document.getElementById('hover-preview');
+            const showTitleToggle = document.getElementById('show-title-toggle');
 
             if (!searchInput.dataset.bound) {
                 searchInput.addEventListener('input', event => {
@@ -644,9 +809,773 @@
                 previewPanel.addEventListener('mouseleave', scheduleClearHoverPreview);
                 previewPanel.dataset.bound = 'true';
             }
+
+            if (showTitleToggle && !showTitleToggle.dataset.bound) {
+                showTitleToggle.addEventListener('change', event => {
+                    showTitleLine = Boolean(event.target.checked);
+                    renderCards(getFilteredEvents());
+                    refreshMarkerPopups();
+                });
+                showTitleToggle.dataset.bound = 'true';
+            }
         }
 
-        function flashButtonLabel(button, label) {
+        function refreshMarkerPopups() {
+            eventsWithCoords.forEach(evt => {
+                const marker = markersByEventKey.get(getEventKey(evt));
+                if (!marker) {
+                    return;
+                }
+                marker.bindPopup(`
+                    <strong>${escapeHtml(evt.name || 'Untitled')}</strong><br>
+                    ${escapeHtml(getEventLocationKey(evt) || 'Address on RSVP')}<br>
+                    ${showTitleLine && getEventTitleLine(evt) ? `${escapeHtml(getEventTitleLine(evt))}<br>` : ''}
+                    ${escapeHtml(formatDate(evt.startDate) || '')}
+                `);
+            });
+        }
+
+        function initializeOverlayUi() {
+            const controls = document.getElementById('overlay-controls');
+            const eventsToggle = document.getElementById('events-toggle');
+            const vacantLotToggle = document.getElementById('vacant-lot-toggle');
+            const vacantBuildingToggle = document.getElementById('vacant-building-toggle');
+            const realpropToggle = document.getElementById('realprop-vacind-toggle');
+            const isBaltimore = cityPathContext.city === 'baltimore';
+            if (!controls || !eventsToggle || !vacantLotToggle || !vacantBuildingToggle || !realpropToggle) return;
+            if (!isBaltimore) {
+                controls.hidden = true;
+                return;
+            }
+            const selections = restoredMapState?.selections || {};
+            if (typeof selections.events === 'boolean') eventsToggle.checked = selections.events;
+            if (typeof selections.vacantLot === 'boolean') vacantLotToggle.checked = selections.vacantLot;
+            if (typeof selections.vacantBuilding === 'boolean') vacantBuildingToggle.checked = selections.vacantBuilding;
+            if (typeof selections.realpropVacind === 'boolean') realpropToggle.checked = selections.realpropVacind;
+            eventsVisible = Boolean(eventsToggle.checked);
+            setEventsLayerVisibility(eventsVisible);
+
+            const rerender = async () => {
+                const showVacantLots = Boolean(vacantLotToggle.checked);
+                const showVacantBuildings = Boolean(vacantBuildingToggle.checked);
+                const vacantsOn = showVacantLots || showVacantBuildings;
+                const realpropOn = Boolean(realpropToggle.checked);
+                if (!vacantsOn && !realpropOn) {
+                    clearOverlayLayers();
+                    setOverlayStatus('No overlay layers selected.');
+                    return;
+                }
+                await loadAndRenderOverlays({
+                    vacantsOn,
+                    realpropOn,
+                    showVacantLots,
+                    showVacantBuildings,
+                });
+                persistMapState();
+            };
+
+            vacantLotToggle.addEventListener('change', rerender);
+            vacantBuildingToggle.addEventListener('change', rerender);
+            realpropToggle.addEventListener('change', rerender);
+            eventsToggle.addEventListener('change', () => {
+                eventsVisible = Boolean(eventsToggle.checked);
+                setEventsLayerVisibility(eventsVisible);
+                persistMapState();
+            });
+
+            map.on('moveend', async () => {
+                const hasVacants = vacantLotToggle.checked || vacantBuildingToggle.checked;
+                if (!hasVacants && !realpropToggle.checked) return;
+                if (vacantsMoveTimer) {
+                    window.clearTimeout(vacantsMoveTimer);
+                }
+                vacantsMoveTimer = window.setTimeout(async () => {
+                    await rerender();
+                }, 220);
+                persistMapState();
+            });
+            void rerender();
+        }
+
+        function clearOverlayLayers() {
+            if (vacantsLayer) {
+                map.removeLayer(vacantsLayer);
+                vacantsLayer = null;
+            }
+            if (vacantsParcelsLayer) {
+                map.removeLayer(vacantsParcelsLayer);
+                vacantsParcelsLayer = null;
+            }
+            if (realpropVacindLayer) {
+                map.removeLayer(realpropVacindLayer);
+                realpropVacindLayer = null;
+            }
+            vacantsLoaded = false;
+            vacantsParcelsLoaded = false;
+            realpropVacindLoaded = false;
+            vacantsLastRenderKey = '';
+            vacantsParcelsLastRenderKey = '';
+            realpropLastRenderKey = '';
+        }
+
+        async function loadVacantsMeta() {
+            if (vacantsApiUnavailable) {
+                throw new Error('Vacants API unavailable');
+            }
+            if (vacantsMeta) {
+                return vacantsMeta;
+            }
+            const metaResponse = await fetch(VACANTS_META_API, { cache: 'no-store' });
+            if (!metaResponse.ok) {
+                if (metaResponse.status === 404) vacantsApiUnavailable = true;
+                throw new Error(`Vacants meta HTTP ${metaResponse.status}`);
+            }
+            vacantsMeta = await metaResponse.json();
+            return vacantsMeta;
+        }
+
+        async function loadVacantsParcelsMeta() {
+            if (vacantsParcelsApiUnavailable) {
+                throw new Error('Vacants parcels API unavailable');
+            }
+            if (vacantsParcelsMeta) {
+                return vacantsParcelsMeta;
+            }
+            const metaResponse = await fetch(VACANTS_PARCELS_META_API, { cache: 'no-store' });
+            if (!metaResponse.ok) {
+                if (metaResponse.status === 404) vacantsParcelsApiUnavailable = true;
+                throw new Error(`Vacants parcels meta HTTP ${metaResponse.status}`);
+            }
+            vacantsParcelsMeta = await metaResponse.json();
+            return vacantsParcelsMeta;
+        }
+
+        function getMapBbox() {
+            const bounds = map.getBounds();
+            return [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()];
+        }
+
+        function bboxesIntersect(a, b) {
+            if (!Array.isArray(a) || a.length < 4 || !Array.isArray(b) || b.length < 4) {
+                return true;
+            }
+            return !(a[0] > b[2] || a[2] < b[0] || a[1] > b[3] || a[3] < b[1]);
+        }
+
+        function featureBBox(feature) {
+            const geometry = feature?.geometry;
+            const coords = geometry?.coordinates;
+            if (!coords) return null;
+            let minLon = Infinity;
+            let minLat = Infinity;
+            let maxLon = -Infinity;
+            let maxLat = -Infinity;
+            const visit = node => {
+                if (!Array.isArray(node)) return;
+                if (node.length >= 2 && typeof node[0] === 'number' && typeof node[1] === 'number') {
+                    const lon = node[0];
+                    const lat = node[1];
+                    if (lon < minLon) minLon = lon;
+                    if (lat < minLat) minLat = lat;
+                    if (lon > maxLon) maxLon = lon;
+                    if (lat > maxLat) maxLat = lat;
+                    return;
+                }
+                for (const child of node) visit(child);
+            };
+            visit(coords);
+            if (!Number.isFinite(minLon) || !Number.isFinite(minLat) || !Number.isFinite(maxLon) || !Number.isFinite(maxLat)) {
+                return null;
+            }
+            return [minLon, minLat, maxLon, maxLat];
+        }
+
+        function renderKeyForShards(group, shards) {
+            const keys = shards.map(shard => String(shard.key || '')).filter(Boolean).sort();
+            return `${group}|${keys.join(',')}`;
+        }
+
+        function zoomBelowVacantsThreshold() {
+            return map.getZoom() < VACANTS_MIN_ZOOM;
+        }
+
+        function indexFeaturesWithBBox(payload) {
+            const features = Array.isArray(payload?.features) ? payload.features : [];
+            return features.map(feature => ({ feature, bbox: featureBBox(feature) }));
+        }
+
+        async function fetchVacantsFeaturesForView(group) {
+            if (zoomBelowVacantsThreshold()) return [];
+            try {
+                const meta = await loadVacantsMeta();
+                const groupEntry = ((meta.groups || {})[group] || {});
+                const shards = Array.isArray(groupEntry.shards) ? groupEntry.shards : [];
+                if (!shards.length) return [];
+                const bbox = getMapBbox();
+                const needed = shards.filter(shard => bboxesIntersect(shard.bbox, bbox));
+                const renderKey = renderKeyForShards(group, needed);
+                if (renderKey && renderKey === vacantsLastRenderKey && vacantsLoaded) {
+                    return null;
+                }
+                const collected = [];
+                for (const shard of needed) {
+                    const key = String(shard.key || '');
+                    if (!key) continue;
+                    let payload = vacantsShardCache.get(key);
+                    if (!payload) {
+                        const page = Number(shard.page || 0);
+                        const response = await fetch(`${VACANTS_PAGE_API}?group=${encodeURIComponent(group)}&page=${page}`, { cache: 'no-store' });
+                        if (!response.ok) {
+                            throw new Error(`Vacants page HTTP ${response.status} page=${page}`);
+                        }
+                        payload = await response.json();
+                        vacantsShardCache.set(key, payload);
+                    }
+                    collected.push(...(payload.features || []));
+                }
+                vacantsLastRenderKey = renderKey;
+                return collected;
+            } catch (error) {
+                if (!vacantsFallbackWarned) {
+                    console.warn('Vacants API unavailable. Using local vacants file fallback.');
+                    vacantsFallbackWarned = true;
+                }
+                if (!vacantsLocalPayload) {
+                    const response = await fetch(VACANTS_LOCAL_FALLBACK, { cache: 'no-store' });
+                    if (!response.ok) {
+                        throw new Error('Vacants fallback file unavailable');
+                    }
+                    vacantsLocalPayload = await response.json();
+                    vacantsLocalIndexed = indexFeaturesWithBBox(vacantsLocalPayload);
+                }
+                const mapBBox = getMapBbox();
+                const indexed = vacantsLocalIndexed || [];
+                const inBounds = indexed
+                    .filter(item => bboxesIntersect(item.bbox, mapBBox))
+                    .map(item => item.feature);
+                if (group === 'ALL') return inBounds;
+                return inBounds.filter(feature => (((feature.properties || {})._normalized || {}).dataset) === group);
+            }
+        }
+
+        async function fetchVacantsParcelsForView(group) {
+            if (zoomBelowVacantsThreshold()) return [];
+            try {
+                const meta = await loadVacantsParcelsMeta();
+                const groupEntry = ((meta.groups || {})[group] || {});
+                const shards = Array.isArray(groupEntry.shards) ? groupEntry.shards : [];
+                if (!shards.length) return [];
+                const bbox = getMapBbox();
+                const needed = shards.filter(shard => bboxesIntersect(shard.bbox, bbox));
+                const renderKey = renderKeyForShards(group, needed);
+                if (renderKey && renderKey === vacantsParcelsLastRenderKey && vacantsParcelsLoaded) {
+                    return null;
+                }
+                const collected = [];
+                for (const shard of needed) {
+                    const key = String(shard.key || '');
+                    if (!key) continue;
+                    let payload = vacantsParcelsShardCache.get(key);
+                    if (!payload) {
+                        const page = Number(shard.page || 0);
+                        const response = await fetch(`${VACANTS_PARCELS_PAGE_API}?group=${encodeURIComponent(group)}&page=${page}`, { cache: 'no-store' });
+                        if (!response.ok) {
+                            throw new Error(`Vacants parcels page HTTP ${response.status} page=${page}`);
+                        }
+                        payload = await response.json();
+                        vacantsParcelsShardCache.set(key, payload);
+                    }
+                    collected.push(...(payload.features || []));
+                }
+                vacantsParcelsLastRenderKey = renderKey;
+                return collected;
+            } catch (error) {
+                if (!vacantsParcelsFallbackWarned) {
+                    console.warn('Vacants parcels API unavailable. Using local parcels file fallback.');
+                    vacantsParcelsFallbackWarned = true;
+                }
+                if (!vacantsParcelsLocalPayload) {
+                    const response = await fetch(VACANTS_PARCELS_LOCAL_FALLBACK, { cache: 'no-store' });
+                    if (!response.ok) {
+                        throw new Error('Vacants parcels fallback file unavailable');
+                    }
+                    vacantsParcelsLocalPayload = await response.json();
+                    vacantsParcelsLocalIndexed = indexFeaturesWithBBox(vacantsParcelsLocalPayload);
+                }
+                const mapBBox = getMapBbox();
+                const indexed = vacantsParcelsLocalIndexed || [];
+                const inBounds = indexed
+                    .filter(item => bboxesIntersect(item.bbox, mapBBox))
+                    .map(item => item.feature);
+                if (group === 'ALL') return inBounds;
+                return inBounds.filter(feature => (((feature.properties || {})._normalized || {}).dataset) === group);
+            }
+        }
+
+        function setOverlayStatus(message) {
+            const status = document.getElementById('overlay-status');
+            if (status) {
+                status.textContent = String(message || '');
+            }
+        }
+
+        function blocklotFromVacant(feature) {
+            const normalized = ((feature.properties || {})._normalized) || {};
+            const raw = normalized.blocklot || feature?.properties?.BLOCKLOT || '';
+            return String(raw).trim().toUpperCase();
+        }
+
+        function blocklotFromRealprop(feature) {
+            const raw = feature?.properties?.BLOCKLOT || '';
+            return String(raw).trim().toUpperCase();
+        }
+
+        function toArcGisEnvelope(bounds) {
+            return `${bounds.getWest()},${bounds.getSouth()},${bounds.getEast()},${bounds.getNorth()}`;
+        }
+
+        function normalizeOwnerText(value) {
+            return String(value || '').replace(/\s+/g, ' ').trim();
+        }
+
+        function resolveOwnerFromAttributes(attrs) {
+            if (!attrs || typeof attrs !== 'object') return '';
+            return normalizeOwnerText(
+                attrs.AR_OWNER ||
+                attrs.OWNER_1 ||
+                attrs.OWNER_ABBR ||
+                attrs.OWNER_2 ||
+                attrs.OWNER_3 ||
+                ''
+            );
+        }
+
+        function normalizeBlocklotValue(value) {
+            return String(value || '').trim().toUpperCase();
+        }
+
+        function buildWhereInBlocklots(blocklots) {
+            const escaped = blocklots
+                .map(item => normalizeBlocklotValue(item))
+                .filter(Boolean)
+                .map(item => `'${item.replace(/'/g, "''")}'`);
+            if (!escaped.length) return '';
+            return `BLOCKLOT IN (${escaped.join(',')})`;
+        }
+
+        function chunkArray(items, size) {
+            const chunks = [];
+            for (let i = 0; i < items.length; i += size) {
+                chunks.push(items.slice(i, i + size));
+            }
+            return chunks;
+        }
+
+        async function fetchOwnerLookupByBlocklot(blocklots) {
+            const missing = [...new Set(blocklots.map(normalizeBlocklotValue).filter(Boolean))]
+                .filter(blocklot => !ownerByBlocklotCache.has(blocklot));
+            if (!missing.length) return;
+
+            const chunks = chunkArray(missing, 80);
+            for (const chunk of chunks) {
+                const where = buildWhereInBlocklots(chunk);
+                if (!where) continue;
+                const params = new URLSearchParams({
+                    where,
+                    outFields: 'BLOCKLOT,AR_OWNER,OWNER_1,OWNER_ABBR,OWNER_2,OWNER_3',
+                    returnGeometry: 'false',
+                    f: 'pjson',
+                    resultRecordCount: '2000',
+                });
+                const response = await fetch(`${BALTIMORE_REALPROP_QUERY_API}?${params.toString()}`, { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error(`Owner lookup query HTTP ${response.status}`);
+                }
+                const payload = await response.json();
+                const features = Array.isArray(payload.features) ? payload.features : [];
+                for (const feature of features) {
+                    const attrs = feature?.attributes || {};
+                    const blocklot = normalizeBlocklotValue(attrs.BLOCKLOT);
+                    if (!blocklot) continue;
+                    const owner = resolveOwnerFromAttributes(attrs);
+                    if (owner) {
+                        ownerByBlocklotCache.set(blocklot, owner);
+                    }
+                }
+                for (const requested of chunk) {
+                    if (!ownerByBlocklotCache.has(requested)) {
+                        ownerByBlocklotCache.set(requested, '');
+                    }
+                }
+            }
+        }
+
+        function bindPropertyHoverTooltip(layer, html) {
+            if (!layer || !html) return;
+            layer.bindTooltip(html, {
+                direction: 'top',
+                sticky: true,
+                opacity: 0.95,
+                className: 'property-hover-tooltip',
+            });
+        }
+
+        async function fetchRealpropVacindForView() {
+            const bounds = map.getBounds();
+            const envelope = toArcGisEnvelope(bounds);
+            const renderKey = `VACIND_Y|${map.getZoom()}|${envelope}`;
+            if (renderKey === realpropLastRenderKey && realpropVacindLoaded) {
+                return null;
+            }
+            const params = new URLSearchParams({
+                where: "VACIND = 'Y'",
+                outFields: 'BLOCKLOT,FULLADDR,OWNER_ABBR,NEIGHBOR,VACIND,TAXBASE,YEAR_BUILD,SALEDATE,SALEPRIC',
+                returnGeometry: 'true',
+                outSR: '4326',
+                geometry: envelope,
+                geometryType: 'esriGeometryEnvelope',
+                inSR: '4326',
+                spatialRel: 'esriSpatialRelIntersects',
+                f: 'geojson',
+                resultRecordCount: '2000',
+                orderByFields: 'OBJECTID',
+            });
+            const response = await fetch(`${BALTIMORE_REALPROP_QUERY_API}?${params.toString()}`, { cache: 'no-store' });
+            if (!response.ok) {
+                throw new Error(`Real property VACIND query HTTP ${response.status}`);
+            }
+            const payload = await response.json();
+            const features = Array.isArray(payload.features) ? payload.features : [];
+            realpropLastRenderKey = renderKey;
+            return features;
+        }
+
+        function dateMillis(value) {
+            const t = new Date(value || '').getTime();
+            return Number.isFinite(t) ? t : -1;
+        }
+
+        // Explicit record precedence for vacancy records sharing the same BLOCKLOT:
+        // 1) VACANT_BUILDING_NOTICE beats VACANT_LOT
+        // 2) newer date_notice wins
+        // 3) first seen wins
+        function compareVacantRecordPriority(a, b) {
+            const aType = (((a.properties || {})._normalized || {}).dataset) || '';
+            const bType = (((b.properties || {})._normalized || {}).dataset) || '';
+            const aTypeRank = aType === 'VACANT_BUILDING_NOTICE' ? 2 : 1;
+            const bTypeRank = bType === 'VACANT_BUILDING_NOTICE' ? 2 : 1;
+            if (aTypeRank !== bTypeRank) return aTypeRank - bTypeRank;
+            const aNotice = dateMillis((((a.properties || {})._normalized || {}).date_notice));
+            const bNotice = dateMillis((((b.properties || {})._normalized || {}).date_notice));
+            return aNotice - bNotice;
+        }
+
+        function buildWinningVacantByBlocklot(pointFeatures) {
+            const winners = new Map();
+            for (const feature of pointFeatures || []) {
+                const key = blocklotFromVacant(feature);
+                if (!key) continue;
+                const current = winners.get(key);
+                if (!current) {
+                    winners.set(key, feature);
+                    continue;
+                }
+                if (compareVacantRecordPriority(feature, current) > 0) {
+                    winners.set(key, feature);
+                }
+            }
+            return winners;
+        }
+
+        async function loadAndRenderOverlays({ vacantsOn, realpropOn, showVacantLots, showVacantBuildings }) {
+            const renderSeq = ++overlayRenderSeq;
+            let pointFeatures = [];
+            let parcelFeatures = [];
+            let realpropFeatures = [];
+
+            if (vacantsOn) {
+                const loadedPoints = await fetchVacantsFeaturesForView('ALL');
+                if (loadedPoints !== null) {
+                    pointFeatures = loadedPoints;
+                }
+                pointFeatures = pointFeatures.filter(feature => {
+                    const dataset = (((feature.properties || {})._normalized || {}).dataset) || '';
+                    if (dataset === 'VACANT_LOT') return showVacantLots;
+                    if (dataset === 'VACANT_BUILDING_NOTICE') return showVacantBuildings;
+                    return false;
+                });
+                try {
+                    const loadedParcels = await fetchVacantsParcelsForView('ALL');
+                    if (loadedParcels !== null) {
+                        parcelFeatures = loadedParcels;
+                    }
+                } catch (error) {
+                    console.warn('Vacants parcel boundaries unavailable; rendering points only.', error);
+                    parcelFeatures = [];
+                }
+            }
+
+            if (realpropOn) {
+                const loadedRealprop = await fetchRealpropVacindForView();
+                if (loadedRealprop !== null) {
+                    realpropFeatures = loadedRealprop;
+                }
+            }
+            if (renderSeq !== overlayRenderSeq) return;
+
+            const ownerLookupBlocklots = new Set();
+            pointFeatures.forEach(feature => ownerLookupBlocklots.add(blocklotFromVacant(feature)));
+            parcelFeatures.forEach(feature => ownerLookupBlocklots.add(blocklotFromVacant(feature)));
+            realpropFeatures.forEach(feature => ownerLookupBlocklots.add(blocklotFromRealprop(feature)));
+            const ownerLookupTargets = [...ownerLookupBlocklots].filter(Boolean);
+            const shouldLookupOwners = ownerLookupTargets.length > 0 && ownerLookupTargets.length <= MAX_OWNER_LOOKUP_BLOCKLOTS;
+            const ownerLookupPromise = (shouldLookupOwners ? fetchOwnerLookupByBlocklot(ownerLookupTargets) : Promise.resolve())
+                .then(() => {
+                    if (renderSeq !== overlayRenderSeq) return;
+                    // Non-blocking enrichment pass to keep vacants rendering fast.
+                    if (vacantsLayer) {
+                        vacantsLayer.eachLayer(layer => {
+                            if (layer?.feature) {
+                                layer.bindPopup(popupForVacant(layer.feature));
+                                bindPropertyHoverTooltip(layer, hoverForVacant(layer.feature));
+                            }
+                        });
+                    }
+                    if (vacantsParcelsLayer) {
+                        vacantsParcelsLayer.eachLayer(layer => {
+                            if (layer?.feature) {
+                                bindPropertyHoverTooltip(layer, hoverForParcel(layer.feature));
+                            }
+                        });
+                    }
+                    if (realpropVacindLayer) {
+                        realpropVacindLayer.eachLayer(layer => {
+                            if (layer?.feature) {
+                                layer.bindPopup(popupForRealprop(layer.feature));
+                                bindPropertyHoverTooltip(layer, hoverForRealprop(layer.feature));
+                            }
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.warn('Owner enrichment lookup failed; using fallback owner fields.', error);
+                });
+            void ownerLookupPromise;
+
+            // Use one geometric source-of-truth (vacants parcel geometry) whenever datasets
+            // can be keyed by BLOCKLOT in the current view.
+            const parcelGeometryByBlocklot = new Map();
+            for (const feature of parcelFeatures) {
+                const blocklot = blocklotFromVacant(feature);
+                if (!blocklot) continue;
+                if (!parcelGeometryByBlocklot.has(blocklot)) {
+                    parcelGeometryByBlocklot.set(blocklot, feature.geometry || null);
+                }
+            }
+            if (realpropOn && parcelGeometryByBlocklot.size > 0) {
+                realpropFeatures = realpropFeatures.map(feature => {
+                    const blocklot = blocklotFromRealprop(feature);
+                    const canonicalGeometry = parcelGeometryByBlocklot.get(blocklot);
+                    if (!canonicalGeometry) {
+                        return feature;
+                    }
+                    return {
+                        ...feature,
+                        geometry: canonicalGeometry,
+                    };
+                });
+            }
+
+            clearOverlayLayers();
+
+            if (vacantsOn) {
+                const winningVacants = buildWinningVacantByBlocklot(pointFeatures);
+                const vacantsBoundaryFeatures = (parcelFeatures || []).map(parcel => {
+                    const blocklot = blocklotFromVacant(parcel);
+                    const winner = winningVacants.get(blocklot);
+                    if (!winner) return null;
+                    const mergedProps = {
+                        ...(parcel.properties || {}),
+                        _normalized: {
+                            ...((parcel.properties || {})._normalized || {}),
+                            ...(((winner.properties || {})._normalized) || {}),
+                            blocklot: blocklot || (((winner.properties || {})._normalized || {}).blocklot || ''),
+                        }
+                    };
+                    return {
+                        ...parcel,
+                        properties: mergedProps,
+                    };
+                }).filter(Boolean);
+                if (vacantsBoundaryFeatures.length > 0) {
+                    vacantsLayer = L.geoJSON(
+                        { type: 'FeatureCollection', features: vacantsBoundaryFeatures || [] },
+                        {
+                            style: vacantBoundaryStyle,
+                            onEachFeature: (feature, layer) => {
+                                layer.bindPopup(popupForVacant(feature));
+                                bindPropertyHoverTooltip(layer, hoverForVacant(feature));
+                            },
+                        }
+                    ).addTo(map);
+
+                    vacantsParcelsLayer = L.geoJSON(
+                        { type: 'FeatureCollection', features: vacantsBoundaryFeatures || [] },
+                        {
+                            style: {
+                                color: OVERLAY_COLORS.vacantsParcels.stroke,
+                                weight: 1.1,
+                                opacity: 0.7,
+                                fillColor: OVERLAY_COLORS.vacantsParcels.fill,
+                                fillOpacity: 0.03,
+                            },
+                            onEachFeature: (feature, layer) => {
+                                bindPropertyHoverTooltip(layer, hoverForParcel(feature));
+                            },
+                        }
+                    ).addTo(map);
+                    vacantsParcelsLoaded = true;
+                } else {
+                    // If parcel geometry isn't available locally, fall back to point rendering.
+                    vacantsLayer = L.geoJSON(
+                        { type: 'FeatureCollection', features: pointFeatures || [] },
+                        {
+                            pointToLayer: (feature, latlng) => L.circleMarker(latlng, vacantStyle(feature)),
+                            onEachFeature: (feature, layer) => {
+                                layer.bindPopup(popupForVacant(feature));
+                                bindPropertyHoverTooltip(layer, hoverForVacant(feature));
+                            },
+                        }
+                    ).addTo(map);
+                }
+                vacantsLoaded = true;
+            }
+
+            if (realpropOn) {
+                realpropVacindLayer = L.geoJSON(
+                    { type: 'FeatureCollection', features: realpropFeatures || [] },
+                    {
+                        style: {
+                            color: OVERLAY_COLORS.realpropVacind.stroke,
+                            weight: 1.4,
+                            opacity: 0.85,
+                            fillColor: OVERLAY_COLORS.realpropVacind.fill,
+                            fillOpacity: 0.14,
+                        },
+                        onEachFeature: (feature, layer) => {
+                            layer.bindPopup(popupForRealprop(feature));
+                            bindPropertyHoverTooltip(layer, hoverForRealprop(feature));
+                        },
+                    },
+                ).addTo(map);
+                realpropVacindLoaded = true;
+            }
+
+            const vacantsCount = vacantsOn ? pointFeatures.length : 0;
+            const realpropCount = realpropOn ? realpropFeatures.length : 0;
+            setOverlayStatus(`Vacants ${vacantsCount.toLocaleString()} | realprop VACIND=Y ${realpropCount.toLocaleString()}`);
+        }
+
+        function vacantStyle(feature) {
+            const dataset = (((feature.properties || {})._normalized || {}).dataset) || '';
+            if (dataset === 'VACANT_BUILDING_NOTICE') {
+                return {
+                    radius: 2.6,
+                    color: OVERLAY_COLORS.vacantsBuilding.stroke,
+                    fillColor: OVERLAY_COLORS.vacantsBuilding.fill,
+                    weight: 0.5,
+                    fillOpacity: 0.7,
+                };
+            }
+            return {
+                radius: 2.4,
+                color: OVERLAY_COLORS.vacantsLot.stroke,
+                fillColor: OVERLAY_COLORS.vacantsLot.fill,
+                weight: 0.5,
+                fillOpacity: 0.65,
+            };
+        }
+
+        function vacantBoundaryStyle(feature) {
+            const pointStyle = vacantStyle(feature);
+            return {
+                color: pointStyle.color,
+                weight: 1.4,
+                opacity: 0.85,
+                fillColor: pointStyle.fillColor,
+                fillOpacity: 0.26,
+            };
+        }
+
+        function popupForVacant(feature) {
+            const n = ((feature.properties || {})._normalized) || {};
+            const blocklot = normalizeBlocklotValue(n.blocklot || feature?.properties?.BLOCKLOT);
+            const owner = ownerForBlocklot(blocklot) || normalizeOwnerText(n.owner);
+            return [
+                `<strong>${escapeHtml(n.address || 'Vacant property')}</strong>`,
+                `Type: ${escapeHtml(n.dataset || 'Unknown')}`,
+                n.neighborhood ? `Neighborhood: ${escapeHtml(n.neighborhood)}` : '',
+                n.blocklot ? `Block/Lot: ${escapeHtml(n.blocklot)}` : '',
+                owner ? `Owner: ${escapeHtml(owner)}` : '',
+                n.date_notice ? `Notice: ${escapeHtml(n.date_notice)}` : '',
+            ].filter(Boolean).join('<br>');
+        }
+
+        function popupForRealprop(feature) {
+            const p = feature?.properties || {};
+            const blocklot = normalizeBlocklotValue(p.BLOCKLOT);
+            const owner = ownerForBlocklot(blocklot) || resolveOwnerFromAttributes(p);
+            return [
+                `<strong>${escapeHtml(p.FULLADDR || 'Property')}</strong>`,
+                `BLOCKLOT: ${escapeHtml(p.BLOCKLOT || '')}`,
+                `VACIND: ${escapeHtml(p.VACIND || '')}`,
+                p.NEIGHBOR ? `Neighborhood: ${escapeHtml(p.NEIGHBOR)}` : '',
+                owner ? `Owner: ${escapeHtml(owner)}` : '',
+                p.YEAR_BUILD ? `Year built: ${escapeHtml(String(p.YEAR_BUILD))}` : '',
+                p.TAXBASE ? `Tax base: ${escapeHtml(String(p.TAXBASE))}` : '',
+            ].filter(Boolean).join('<br>');
+        }
+
+        function ownerForBlocklot(blocklot) {
+            if (!blocklot) return '';
+            return normalizeOwnerText(ownerByBlocklotCache.get(normalizeBlocklotValue(blocklot)) || '');
+        }
+
+        function hoverForVacant(feature) {
+            const n = ((feature.properties || {})._normalized) || {};
+            const blocklot = normalizeBlocklotValue(n.blocklot || feature?.properties?.BLOCKLOT);
+            const owner = ownerForBlocklot(blocklot) || normalizeOwnerText(n.owner);
+            return [
+                `<strong>${escapeHtml(n.address || 'Vacant property')}</strong>`,
+                owner ? `Owner: ${escapeHtml(owner)}` : 'Owner: unavailable',
+                blocklot ? `BLOCKLOT: ${escapeHtml(blocklot)}` : '',
+            ].filter(Boolean).join('<br>');
+        }
+
+        function hoverForParcel(feature) {
+            const p = feature?.properties || {};
+            const n = p._normalized || {};
+            const blocklot = normalizeBlocklotValue(n.blocklot || p.BLOCKLOT);
+            const owner = ownerForBlocklot(blocklot) || normalizeOwnerText(n.owner || p.OWNER_ABBR || p.OWNER_1);
+            return [
+                `<strong>${escapeHtml(n.address || p.FULLADDR || 'Parcel')}</strong>`,
+                owner ? `Owner: ${escapeHtml(owner)}` : 'Owner: unavailable',
+                blocklot ? `BLOCKLOT: ${escapeHtml(blocklot)}` : '',
+            ].filter(Boolean).join('<br>');
+        }
+
+        function hoverForRealprop(feature) {
+            const p = feature?.properties || {};
+            const blocklot = normalizeBlocklotValue(p.BLOCKLOT);
+            const owner = ownerForBlocklot(blocklot) || resolveOwnerFromAttributes(p);
+            return [
+                `<strong>${escapeHtml(p.FULLADDR || 'Property')}</strong>`,
+                owner ? `Owner: ${escapeHtml(owner)}` : 'Owner: unavailable',
+                blocklot ? `BLOCKLOT: ${escapeHtml(blocklot)}` : '',
+            ].filter(Boolean).join('<br>');
+        }
+
+                function flashButtonLabel(button, label) {
             const original = button.textContent;
             button.textContent = label;
             window.setTimeout(() => {
@@ -678,6 +1607,7 @@
                     <h3>${escapeHtml(evt.name || 'Untitled')}</h3>
                     <p class="event-name">${escapeHtml(getEventLocationKey(evt) || 'Address unavailable')}</p>
                     <p class="event-meta">${escapeHtml(formatDate(evt.startDate) || 'Time unavailable')}</p>
+                    ${showTitleLine && getEventTitleLine(evt) ? `<p class="event-titleline">${escapeHtml(getEventTitleLine(evt))}</p>` : ''}
                     <p>${escapeHtml(getEventLocationLabel(evt))}</p>
                     ${evt.coords ? '' : '<div class="status-chip">Not mapped</div>'}
                 `;
@@ -802,6 +1732,7 @@
             eventsWithCoords.length = 0;
             eventsWithoutCoords.length = 0;
             markersByEventKey.clear();
+            eventsLayerGroup.clearLayers();
             const markers = [];
 
             for (const evt of events) {
@@ -815,10 +1746,11 @@
                 eventsWithCoords.push(eventWithCoords);
                 evt.coords = coords;
 
-                const marker = L.marker([coords.lat, coords.lng]).addTo(map);
+                const marker = L.marker([coords.lat, coords.lng]).addTo(eventsLayerGroup);
                 marker.bindPopup(`
                     <strong>${escapeHtml(evt.name || 'Untitled')}</strong><br>
                     ${escapeHtml(getEventLocationKey(evt) || 'Address on RSVP')}<br>
+                    ${showTitleLine && getEventTitleLine(evt) ? `${escapeHtml(getEventTitleLine(evt))}<br>` : ''}
                     ${escapeHtml(formatDate(evt.startDate) || '')}
                 `);
                 marker.on('mouseover', () => activateEventPreview(eventWithCoords));
@@ -828,10 +1760,25 @@
             }
 
             if (markers.length > 0) {
-                const group = new L.featureGroup(markers);
-                map.fitBounds(group.getBounds().pad(0.2));
+                if (!hasSavedViewport) {
+                    const group = new L.featureGroup(markers);
+                    map.fitBounds(group.getBounds().pad(0.2));
+                }
             } else {
-                map.setView(DEFAULT_CENTER, 11);
+                if (!hasSavedViewport) {
+                    map.setView(DEFAULT_CENTER, 11);
+                }
+            }
+            setEventsLayerVisibility(eventsVisible);
+        }
+
+        function setEventsLayerVisibility(visible) {
+            if (visible) {
+                if (!map.hasLayer(eventsLayerGroup)) {
+                    map.addLayer(eventsLayerGroup);
+                }
+            } else if (map.hasLayer(eventsLayerGroup)) {
+                map.removeLayer(eventsLayerGroup);
             }
         }
 
@@ -889,7 +1836,9 @@
 
             kicker.textContent = formatDate(evt.startDate) || 'Time unavailable';
             title.textContent = evt.name || 'Untitled';
-            source.textContent = getSourceLabel(evt);
+            const sourceLabel = getSourceLabel(evt);
+            const titleLine = showTitleLine ? getEventTitleLine(evt) : '';
+            source.textContent = titleLine ? `${titleLine} • ${sourceLabel}` : sourceLabel;
             location.textContent = getEventLocationKey(evt) || 'Address unavailable';
             const rawTags = Array.isArray(evt.tags) ? evt.tags : [];
             tags.innerHTML = rawTags.map(tag => {
@@ -1211,6 +2160,38 @@
             } catch (error) {
                 return value;
             }
+        }
+
+        function getEventOrganization(evt) {
+            return String(evt?.orgName || evt?.org_name || evt?.source_group || '').trim();
+        }
+
+        function extractSpeakerName(evt) {
+            const direct = String(evt?.speakerName || evt?.speaker || evt?.host || '').trim();
+            if (direct) {
+                return direct;
+            }
+            const text = `${evt?.name || ''}\n${evt?.description || ''}`;
+            const patterns = [
+                /(?:featuring|with|speaker\s*[:\-]|hosted by)\s+([A-Z][^,\n|]{2,80})/i,
+                /(?:presents?)\s+([A-Z][^,\n|]{2,80})/i,
+            ];
+            for (const pattern of patterns) {
+                const match = text.match(pattern);
+                if (match && match[1]) {
+                    return String(match[1]).trim();
+                }
+            }
+            return '';
+        }
+
+        function getEventTitleLine(evt) {
+            const speaker = extractSpeakerName(evt);
+            const org = getEventOrganization(evt);
+            if (speaker && org) {
+                return `${speaker} - ${org}`;
+            }
+            return speaker || org || '';
         }
 
         function getPreferredImage(evt) {
