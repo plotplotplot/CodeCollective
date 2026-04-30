@@ -167,6 +167,14 @@ CUSTOM_SCRAPER_SOURCES = [
         "tags": ["Business", "Economic Development"],
     },
     {
+        "module": "baltimore.scrape_transformpikesvillearmory",
+        "function": "scrape_events",
+        "url": "https://transformpikesvillearmory.org/events",
+        "group_name": "Pikesville Armory Foundation",
+        "orgImageUrl": "https://transformpikesvillearmory.org/wp-content/uploads/2024/01/PA_Temp_Logo_Horizontal_RustWhite_RGB.png",
+        "tags": ["Community", "Culture"],
+    },
+    {
         "module": "baltimore.scrape_redemmas",
         "function": "scrape_events",
         "url": "https://redemmas.org/events/",
