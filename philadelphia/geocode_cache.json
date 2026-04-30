@@ -192,13 +192,19 @@
     "source": "provided"
   },
   "register to see address": {
-    "status": "failed_no_result"
+    "latitude": 39.9527237,
+    "longitude": -75.1635262,
+    "status": "ok",
+    "source": "nominatim"
   },
   "philadelphia, pennsylvania": {
     "status": "failed_no_result"
   },
   "register to see address, philadelphia": {
-    "status": "failed_no_result"
+    "latitude": 39.9527237,
+    "longitude": -75.1635262,
+    "status": "ok",
+    "source": "nominatim"
   },
   "fitler club, 24 s 24th st, philadelphia, pa 19103, usa, pennsylvania": {
     "latitude": 39.953488199999995,
@@ -571,5 +577,23 @@
     "longitude": -75.2104142,
     "status": "ok",
     "source": "provided"
+  },
+  "aloft by marriott philadelphia downtown, 101 n broad st, philadelphia, pa 19107, usa": {
+    "status": "failed_no_result"
+  },
+  "aloft by marriott philadelphia downtown": {
+    "status": "failed_no_result"
+  },
+  "philadelphia, pa": {
+    "latitude": 39.9527237,
+    "longitude": -75.1635262,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "1600 market st.": {
+    "latitude": 39.9527237,
+    "longitude": -75.1635262,
+    "status": "ok",
+    "source": "nominatim"
   }
 }
