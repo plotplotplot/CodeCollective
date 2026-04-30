@@ -3,24 +3,11 @@ VERSION:2.0
 PRODID:-//virtual Tech Events//CodeCollective//
 METHOD:PUBLISH
 BEGIN:VEVENT
-SUMMARY:Feed the Future: ABWIPPM Dallas Community Volunteer Shift
-DTSTART:20260429T210000Z
-DTEND:20260429T184500
-DTSTAMP:20260429T005254Z
-UID:a2fffe00-82a6-4b29-9907-01041150bd8e-1777423974.280652@codecollective
-DESCRIPTION:Event Link: https://www.abwippm.org/events-1/feed-the-future-a
- bwippm-dallas-community-volunteer-shift
-LOCATION:Feed My Starving Children\, 1680 N Glenville Dr #300\, Richardson
- \, TX 75081\, USA\, \,  
-URL:https://www.abwippm.org/events-1/feed-the-future-abwippm-dallas-commun
- ity-volunteer-shift
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:RDU Chapter April Co-Working Session
 DTSTART:20260430T133000Z
 DTEND:20260430T143000
-DTSTAMP:20260429T005254Z
-UID:735adda5-f18b-481f-b1c6-6198501b3e99-1777423974.281028@codecollective
+DTSTAMP:20260430T005235Z
+UID:735adda5-f18b-481f-b1c6-6198501b3e99-1777510355.883179@codecollective
 DESCRIPTION:Event Link: https://www.abwippm.org/events-1/rdu-chapter-april
  -co-working-session
 LOCATION:Juicekeys\, 5011 Falls of Neuse Rd\, Raleigh\, NC 27609\, USA\, \
@@ -32,8 +19,8 @@ SUMMARY:Microsoft Copilot ROI Playbook for Business Leaders: Adoption to I
  mpact
 DTSTART:20260430T140000Z
 DTEND:20260430T120000
-DTSTAMP:20260429T005254Z
-UID:313758309-1777423974.281267@codecollective
+DTSTAMP:20260430T005235Z
+UID:313758309-1777510355.883532@codecollective
 DESCRIPTION:Discover how organizations can move beyond early Copilot pilot
  s to drive real business impact. Learn how leaders are scaling Microsoft 3
  65 Copilot adoption\, identifying high-value opportunities\, and t\n\nEven
@@ -48,8 +35,8 @@ SUMMARY:Practical PM Toolkit: Tools and Techniques You Can Use Immediately
  \, with Cindy Okosun
 DTSTART:20260507T220000Z
 DTEND:20260507T190000
-DTSTAMP:20260429T005254Z
-UID:65dd56cf-0b97-48cc-827c-8029c736f912-1777423974.281954@codecollective
+DTSTAMP:20260430T005235Z
+UID:65dd56cf-0b97-48cc-827c-8029c736f912-1777510355.884116@codecollective
 DESCRIPTION:Strong project leadership requires more than theory. This hand
  s-on session delivers practical tools you can apply immediately to strengt
  hen execution\, communication\, and control.\n\nEvent Link: https://www.ab
@@ -64,8 +51,8 @@ SUMMARY:AI Prompt Engineering Masterclass: Skills\, Strategies & Business
  Impact
 DTSTART:20260512T160000Z
 DTEND:20260512T140000
-DTSTAMP:20260429T005254Z
-UID:314524936-1777423974.282361@codecollective
+DTSTAMP:20260430T005235Z
+UID:314524936-1777510355.884479@codecollective
 DESCRIPTION:AI Prompt Engineering Masterclass: Skills\, Strategies & Busin
  ess Impact\nAI is only as powerful as the prompts behind it and mastering 
  this skill is quickly becoming a competitive advantage. Prompt eng\n\nEven
@@ -79,8 +66,8 @@ BEGIN:VEVENT
 SUMMARY:Agentic AI on Vertex: Unlock self-learning AI with Vertex AI
 DTSTART:20260514T160000Z
 DTEND:20260514T140000
-DTSTAMP:20260429T005254Z
-UID:314401077-1777423974.282951@codecollective
+DTSTAMP:20260430T005235Z
+UID:314401077-1777510355.884948@codecollective
 DESCRIPTION:As AI rapidly evolves\, organizations are moving beyond static
   models toward agentic systems that can independently plan\, make decision
  s\, and take actions.\n\nThis masterclass\, “Agentic AI on Vertex: Unl\n
@@ -94,8 +81,8 @@ BEGIN:VEVENT
 SUMMARY:Presence Under Pressure with Dr. Kyla Vanchieri
 DTSTART:20260519T220000Z
 DTEND:20260519T190000
-DTSTAMP:20260429T005254Z
-UID:db699ba4-73dc-4253-9f08-e9d5daa39740-1777423974.283428@codecollective
+DTSTAMP:20260430T005235Z
+UID:db699ba4-73dc-4253-9f08-e9d5daa39740-1777510355.885341@codecollective
 DESCRIPTION:Event Link: https://www.abwippm.org/events-1/presence-under-pr
  essure-with-dr-kyla-vanchieri
 LOCATION:Zoom\, \,  
@@ -106,8 +93,8 @@ BEGIN:VEVENT
 SUMMARY:Permission To Pivot with Britt Hunter
 DTSTART:20260521T220000Z
 DTEND:20260521T190000
-DTSTAMP:20260429T005254Z
-UID:a3b0557c-0e29-4986-a6e4-e6cc0c4e10d3-1777423974.283688@codecollective
+DTSTAMP:20260430T005235Z
+UID:a3b0557c-0e29-4986-a6e4-e6cc0c4e10d3-1777510355.885523@codecollective
 DESCRIPTION:Failure isn’t the end—it’s your next starting point. Joi
  n Britt Hunter for a powerful session on turning setbacks into momentum us
  ing her PIVOT Framework™️ and walk away ready to move forward with cla
@@ -116,5 +103,35 @@ DESCRIPTION:Failure isn’t the end—it’s your next starting point. Joi
 LOCATION:Zoom\, \,  
 URL:https://www.abwippm.org/events-1/permission-to-pivot-with-britt-hunter
  -1
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Operationalizing Generative AI: From Pilot Projects to Enterprise 
+ Standards
+DTSTART:20260526T160000Z
+DTEND:20260526T140000
+DTSTAMP:20260430T005235Z
+UID:314545242-1777510355.885839@codecollective
+DESCRIPTION:Operationalizing Generative AI on AWS: From Pilot to Enterpris
+ e Standards\n\nAWS’s AI ecosystem—spanning Amazon Bedrock\, SageMaker\
+ , and agentic AI frameworks—is rapidly transforming how organizations bu
+ \n\nEvent Link: https://www.meetup.com/maryland-education-technology-meetu
+ p-group/events/314545242/
+LOCATION:Online event\, \,  
+URL:https://www.meetup.com/maryland-education-technology-meetup-group/even
+ ts/314545242/
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:How To Ace PM Interviews with Veronica White
+DTSTART:20260526T220000Z
+DTEND:20260526T190000
+DTSTAMP:20260430T005235Z
+UID:f51216d5-dfee-4abf-a95a-54293501cf95-1777510355.886293@codecollective
+DESCRIPTION:Land your next project management role with confidence. Join V
+ eronica White to learn how to turn your experience into compelling intervi
+ ew answers and stand out in any PM interview.\n\nEvent Link: https://www.a
+ bwippm.org/events-1/how-to-ace-pm-interviews-with-veronica-white
+LOCATION:Zoom\, \,  
+URL:https://www.abwippm.org/events-1/how-to-ace-pm-interviews-with-veronic
+ a-white
 END:VEVENT
 END:VCALENDAR

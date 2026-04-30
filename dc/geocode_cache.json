@@ -403,23 +403,47 @@
     "latitude": 38.8767488,
     "longitude": -77.0070457,
     "status": "ok",
-    "source": "nominatim"
+    "source": "provided"
   },
   "homewood suites hotel rooftop bar - navy yard": {
     "latitude": 38.8767488,
     "longitude": -77.0070457,
     "status": "ok",
-    "source": "nominatim"
+    "source": "provided"
   },
   "50 m st se, washington, dc 20003, washington dc": {
     "latitude": 38.8767488,
     "longitude": -77.0070457,
     "status": "ok",
-    "source": "nominatim"
+    "source": "provided"
   },
   "dupont circle, washington, dc 20036, usa": {
     "latitude": 38.9124233,
     "longitude": -77.0412512,
+    "status": "ok",
+    "source": "provided"
+  },
+  "the people's garden d.c., washington, district of columbia": {
+    "status": "failed_no_result"
+  },
+  "the people's garden d.c.": {
+    "status": "failed_no_result"
+  },
+  "teaism penn quarter, washington, district of columbia": {
+    "latitude": 38.8949554,
+    "longitude": -77.0231696,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "teaism penn quarter": {
+    "latitude": 38.8949554,
+    "longitude": -77.0231696,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "manhattan, new york, ny, usa": {
+    "latitude": 40.7579554,
+    "longitude": -73.9855319,
     "status": "ok",
     "source": "provided"
   }
