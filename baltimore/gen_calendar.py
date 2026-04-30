@@ -74,14 +74,6 @@ ICS_SOURCES = [
         "recurring": False,
     },
     {
-        "url": "https://www.digitalequitybaltimore.org/general-clean",
-        "ics_url": "https://calendar.google.com/calendar/ical/c_be274545c6e9af174fab0df99319a3c47f1be77a013450babf6d03e90396a064%40group.calendar.google.com/public/basic.ics",
-        "orgImageUrl": "https://static.wixstatic.com/media/8dc51b_7123df01d68e47a1b4b717c89ad4aea7~mv2.png/v1/fill/w_223,h_90,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/BDEC%20(1).png",
-        "tags": ["Economic Development"],
-        "group_name": "Digital Equity Baltimore",
-        "recurring": False,
-    },
-    {
         "url": "https://chesapeakeclimate.org/",
         "ics_url": "https://calendar.google.com/calendar/ical/c_35ce051bfecc3ebd59f7776829ca549d2dd38e8ab2a50b07bd4243cb1c218c72%40group.calendar.google.com/public/basic.ics",
         "orgImageUrl": "https://chesapeakeclimate.org/wp-content/uploads/2022/02/CCAN-Logo-2022-300RGB-wht-e1643743097559.png",
@@ -190,6 +182,14 @@ CUSTOM_SCRAPER_SOURCES = [
         "group_name": "Towson Lodge #79",
         "orgImageUrl": "",
         "tags": ["Community", "Fraternal"],
+    },
+    {
+        "module": "baltimore.scrape_digitalequitybaltimore",
+        "function": "scrape_events",
+        "url": "https://www.digitalequitybaltimore.org/general-clean",
+        "group_name": "Digital Equity Baltimore",
+        "orgImageUrl": "https://static.wixstatic.com/media/8dc51b_7123df01d68e47a1b4b717c89ad4aea7~mv2.png/v1/fill/w_223,h_90,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/BDEC%20(1).png",
+        "tags": ["Economic Development", "Digital Equity"],
     },
     {
         "module": "baltimore.scrape_umventures",
