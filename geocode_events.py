@@ -2,7 +2,7 @@ import argparse
 import os
 
 from geocode_cache import load_geocode_cache, save_geocode_cache
-from genCalendar import geocode_upcoming_events
+from geocode_upcoming import geocode_upcoming_events
 
 
 def parse_args():
@@ -39,7 +39,7 @@ def main():
 
     geocode_cache = load_geocode_cache(cache_path)
     events, cache_updated = geocode_upcoming_events(
-        args.city, geocode_cache, events_path=events_path
+        args.city, geocode_cache, events_path=events_path, dry_run=args.dry_run
     )
 
     if events is None:

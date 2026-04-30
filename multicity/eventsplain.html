@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Upcoming Events</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #111111;
+    --muted: #555555;
+    --link: #000000; /* black links as requested */
+    --card: #f7f7f7;
+    --maxw: 950px;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    line-height: 1.6;
+  }
+  .wrap {
+    width: 100%;
+    padding: 1rem;            /* mobile: full width, modest padding */
+  }
+  @media (min-width: 900px) {
+    .wrap {
+      max-width: var(--maxw); /* desktop: comfy centered column */
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+    }
+  }
+  header.site {
+    margin-bottom: 1.25rem;
+    border-bottom: 2px solid #e4e4e4;
+    padding-bottom: .5rem;
+  }
+  header.site h1 {
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: .2px;
+  }
+  .date-head {
+    margin: 2rem 0 1rem;
+    padding-top: .5rem;
+    border-top: 1px solid #ececec;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .event {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 1rem;
+    margin: .75rem 0;
+  }
+  .event-time {
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: .25rem;
+  }
+  .event-title a {
+    color: var(--link);       /* black link */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+  .event-title a:hover, .event-title a:focus {
+    text-decoration: underline;
+  }
+  .event-desc p {
+    margin: .5rem 0 0;
+  }
+  .location {
+    margin-top: .35rem;
+    font-size: .9rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <h1>Upcoming Events</h1>
+    </header>
+    <h2 class="date-head">Wednesday, May 6, 2026</h2>
+<article class="event">
+  <div class="event-time">10:00 PM</div>
+  <div class="event-title"><a href="https://www.eventbrite.com/e/technically-builders-conference-2026-tickets-1859321884809" target="_blank" rel="noopener">Technical.ly Builders Conference 2026</a></div>
+  <div class="event-desc"><p>Technical.ly Builders Conference 2026</p></div>
+  <div class="location">CYTOPHL - Phila, 2929 Arch Street #Suite 250, Philadelphia, PA 19104</div>
+</article>
+  </div>
+</body>
+</html>

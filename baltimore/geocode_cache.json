@@ -1,26 +1,2813 @@
 {
   "1707 n charles st, baltimore, md 21201, usa": {
     "latitude": 39.3089657,
-    "longitude": -76.6161238
+    "longitude": -76.6161238,
+    "status": "ok",
+    "source": "provided"
   },
   "21 e north ave, baltimore, md 21202, usa": {
     "latitude": 39.310688,
-    "longitude": -76.615836
+    "longitude": -76.615836,
+    "status": "ok"
   },
   "king electric bikes, 502 23rd st nw, washington, dc 20037, usa": {
     "latitude": 38.896483,
-    "longitude": -77.050502
+    "longitude": -77.050502,
+    "status": "ok"
   },
   "united states": {
     "latitude": 39.2908816,
-    "longitude": -76.610759
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
   },
   "https://zoom.us/j/93194733649?pwd=vhmwdhpceufiejfzmldtajjccctszz09": {
     "latitude": 39.2908816,
-    "longitude": -76.610759
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
   },
   "baltimore museum of industry": {
     "latitude": 39.2739402,
-    "longitude": -76.6009214
+    "longitude": -76.6009214,
+    "status": "ok"
+  },
+  "dorsey station dr": {
+    "status": "failed_no_result"
+  },
+  "mosaic christian church": {
+    "status": "failed_no_result"
+  },
+  "dorsey station dr, elkridge, baltimore": {
+    "status": "failed_no_result"
+  },
+  "2549 n howard st": {
+    "latitude": 39.3188096,
+    "longitude": -76.619549,
+    "status": "ok",
+    "source": "provided"
+  },
+  "ottobar": {
+    "latitude": 39.3188096,
+    "longitude": -76.619549,
+    "status": "ok",
+    "source": "provided"
+  },
+  "2549 n howard st, baltimore": {
+    "latitude": 39.3188096,
+    "longitude": -76.619549,
+    "status": "ok",
+    "source": "provided"
+  },
+  "920 lemmon st., baltimore, md, 21223": {
+    "latitude": 39.2864022,
+    "longitude": -76.6327179,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "irish american museum": {
+    "latitude": 39.2864022,
+    "longitude": -76.6327179,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "5928 falls road, baltimore, md, 21209": {
+    "latitude": 39.3699518,
+    "longitude": -76.6493764,
+    "status": "ok",
+    "source": "provided"
+  },
+  "the ivy bookshop": {
+    "latitude": 39.3699518,
+    "longitude": -76.6493764,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1065 south charles st, baltimore, md 21230, baltimore, md, 21230": {
+    "status": "failed_no_result"
+  },
+  "baltimore": {
+    "status": "failed_no_result"
+  },
+  "1 w. pratt st., baltimore, md, 21201": {
+    "latitude": 39.2861717,
+    "longitude": -76.6154108,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "baltimore convention center": {
+    "latitude": 39.2861717,
+    "longitude": -76.6154108,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "400 s conkling st., baltimore, md, 21224": {
+    "latitude": 39.2874575,
+    "longitude": -76.567544,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "the highwire center": {
+    "latitude": 39.2874575,
+    "longitude": -76.567544,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "600 n. charles st., baltimore, md, 21201": {
+    "latitude": 39.296651,
+    "longitude": -76.6161414,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "the walters art museum": {
+    "latitude": 39.296651,
+    "longitude": -76.6161414,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "1100 james street, baltimore, md, 21223": {
+    "latitude": 39.2833065,
+    "longitude": -76.6348037,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "b&o railroad museum": {
+    "latitude": 39.2833065,
+    "longitude": -76.6348037,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "1901 ridgetop road, baltimore, md, 21207": {
+    "latitude": 39.307149,
+    "longitude": -76.6954484,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "carrie murray nature center": {
+    "latitude": 39.307149,
+    "longitude": -76.6954484,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "3601 eastern avenue, baltimore, md, 21211": {
+    "latitude": 39.2862365,
+    "longitude": -76.5667566,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "enoch pratt free library - hampden branch": {
+    "latitude": 39.2862365,
+    "longitude": -76.5667566,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "1350 lancaster st., baltimore, md, 21231": {
+    "latitude": 39.2824611,
+    "longitude": -76.5979203,
+    "status": "ok",
+    "source": "provided"
+  },
+  "keystone korner baltimore": {
+    "latitude": 39.2824611,
+    "longitude": -76.5979203,
+    "status": "ok",
+    "source": "provided"
+  },
+  "409 north charles street, baltimore, md, 21201": {
+    "latitude": 39.2945238,
+    "longitude": -76.6151418,
+    "status": "ok",
+    "source": "provided"
+  },
+  "an die musik": {
+    "latitude": 39.2945238,
+    "longitude": -76.6151418,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1501 wood heights avenue, baltimore, md, 21211": {
+    "latitude": 39.3404894,
+    "longitude": -76.6452354,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "medfield recreation center": {
+    "latitude": 39.3404894,
+    "longitude": -76.6452354,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "406 n. howard st., baltimore, md, 21201": {
+    "latitude": 39.2942059,
+    "longitude": -76.6200944,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "le mondo": {
+    "latitude": 39.2942059,
+    "longitude": -76.6200944,
+    "status": "ok",
+    "source": "provided"
+  },
+  "11 east 33rd street, baltimore, md, 21218": {
+    "latitude": 39.327926,
+    "longitude": -76.616729,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "bird in hand coffee & books": {
+    "latitude": 39.327926,
+    "longitude": -76.616729,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "301 w. 29th st., baltimore, md, 21211": {
+    "latitude": 39.3217348,
+    "longitude": -76.6222928,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "r. house": {
+    "latitude": 39.3217348,
+    "longitude": -76.6222928,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "1500 washington blvd., baltimore, md, 21230": {
+    "latitude": 39.2796939,
+    "longitude": -76.6371301,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "carroll park": {
+    "latitude": 39.2796939,
+    "longitude": -76.6371301,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "751 eastern avenue, baltimore, md, 21202": {
+    "latitude": 39.2848761,
+    "longitude": -76.6033965,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "public works experience": {
+    "latitude": 39.2848761,
+    "longitude": -76.6033965,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "751 eastern ave, baltimore, md, 21202": {
+    "latitude": 39.2848761,
+    "longitude": -76.6033965,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "1827 marshall street, baltimore, md, 21230": {
+    "latitude": 39.2686525,
+    "longitude": -76.6123214,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "mudhouse pottery studio": {
+    "latitude": 39.2686525,
+    "longitude": -76.6123214,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "1425 key highwayrn605-g8, baltimore, md, 21230": {
+    "status": "failed_no_result"
+  },
+  "downtown sailing center": {
+    "status": "failed_no_result"
+  },
+  "1876 mansion house driverndruid hill park, baltimore, md, 21217": {
+    "status": "failed_no_result"
+  },
+  "maryland zoo in baltimore": {
+    "status": "failed_no_result"
+  },
+  "601 light st., baltimore, md, 21230": {
+    "latitude": 39.2815216,
+    "longitude": -76.6121715,
+    "status": "ok",
+    "source": "provided"
+  },
+  "maryland science center": {
+    "latitude": 39.2815216,
+    "longitude": -76.6121715,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1000 hilltop cir., baltimore, md, 21250": {
+    "latitude": 39.252377,
+    "longitude": -76.7089181,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "chesapeake employers insurance arena": {
+    "latitude": 39.252377,
+    "longitude": -76.7089181,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "20 west baltimore streetrnpoe's magic theatre @ the lord baltimore hotel, baltimore, md, 21201": {
+    "status": "failed_no_result"
+  },
+  "the lord baltimore hotel": {
+    "status": "failed_no_result"
+  },
+  "696 belair rd old macy\u2019s parking lot close to mcdonald\u2019s bel air md 21014": {
+    "status": "failed_no_result"
+  },
+  "696 belair rd old macy\u2019s parking lot close to mcdonald\u2019s bel air md 21014, baltimore": {
+    "status": "failed_no_result"
+  },
+  "maryland": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "maryland democratic party event": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "maryland, baltimore": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "601 light street baltimore, md, 21230 united states": {
+    "latitude": 39.2815216,
+    "longitude": -76.6121715,
+    "status": "ok",
+    "source": "provided"
+  },
+  "2700 edmondson ave, baltimore md 21223": {
+    "latitude": 39.2947618,
+    "longitude": -76.6615424,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "2700 edmondson ave": {
+    "latitude": 39.2947618,
+    "longitude": -76.6615424,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "private location": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "6 melvin ave.": {
+    "latitude": 39.2715719,
+    "longitude": -76.7368053,
+    "status": "ok",
+    "source": "provided"
+  },
+  "catonsville united methodist church": {
+    "latitude": 39.2715719,
+    "longitude": -76.7368053,
+    "status": "ok",
+    "source": "provided"
+  },
+  "6 melvin ave., catonsville, baltimore": {
+    "latitude": 39.2715719,
+    "longitude": -76.7368053,
+    "status": "ok",
+    "source": "provided"
+  },
+  "3128 greenmount ave": {
+    "latitude": 39.3269965,
+    "longitude": -76.6099978,
+    "status": "ok",
+    "source": "provided"
+  },
+  "red emma's": {
+    "latitude": 39.3269965,
+    "longitude": -76.6099978,
+    "status": "ok",
+    "source": "provided"
+  },
+  "3128 greenmount ave, baltimore": {
+    "latitude": 39.3269965,
+    "longitude": -76.6099978,
+    "status": "ok",
+    "source": "provided"
+  },
+  "upstairs @ ottobar": {
+    "latitude": 39.3188096,
+    "longitude": -76.619549,
+    "status": "ok",
+    "source": "provided"
+  },
+  "650 south exeter street baltimore, md, 21202 united states": {
+    "latitude": 39.2837084,
+    "longitude": -76.600971,
+    "status": "ok",
+    "source": "provided"
+  },
+  "waterfront partnership of baltimore": {
+    "latitude": 39.2837084,
+    "longitude": -76.600971,
+    "status": "ok",
+    "source": "provided"
+  },
+  "124 market pl": {
+    "latitude": 39.2875658,
+    "longitude": -76.6074329,
+    "status": "ok",
+    "source": "provided"
+  },
+  "baltimore soundstage": {
+    "latitude": 39.2875658,
+    "longitude": -76.6074329,
+    "status": "ok",
+    "source": "provided"
+  },
+  "124 market pl, baltimore": {
+    "latitude": 39.2875658,
+    "longitude": -76.6074329,
+    "status": "ok",
+    "source": "provided"
+  },
+  "406 n howard st": {
+    "latitude": 39.2942059,
+    "longitude": -76.6200944,
+    "status": "ok",
+    "source": "provided"
+  },
+  "406 n howard st, baltimore": {
+    "latitude": 39.2942059,
+    "longitude": -76.6200944,
+    "status": "ok",
+    "source": "provided"
+  },
+  "5407 n charles street, baltimore, md, 21210": {
+    "latitude": 39.361695,
+    "longitude": -76.6238699,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "grace united methodist church": {
+    "latitude": 39.361695,
+    "longitude": -76.6238699,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "1316 park ave., baltimore, md, 21217": {
+    "latitude": 39.3064254,
+    "longitude": -76.6241744,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "brown memorial park avenue presbyterian church": {
+    "latitude": 39.3064254,
+    "longitude": -76.6241744,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "400 s. conkling street, baltimore, md, 21224": {
+    "latitude": 39.2874575,
+    "longitude": -76.567544,
+    "status": "ok",
+    "source": "provided"
+  },
+  "highwire improv": {
+    "latitude": 39.2874575,
+    "longitude": -76.567544,
+    "status": "ok",
+    "source": "provided"
+  },
+  "20 w. baltimore st., baltimore, md, 21201": {
+    "latitude": 39.2897751,
+    "longitude": -76.6161105,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "lord baltimore hotel": {
+    "latitude": 39.2897751,
+    "longitude": -76.6161105,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "2029 monkton rd., monkton, md, 21111": {
+    "latitude": 39.5762544,
+    "longitude": -76.6101941,
+    "status": "ok",
+    "source": "provided"
+  },
+  "manor mill": {
+    "latitude": 39.5762544,
+    "longitude": -76.6101941,
+    "status": "ok",
+    "source": "provided"
+  },
+  "2029 monkton rd., monkton, md, 21111, baltimore": {
+    "latitude": 39.5762544,
+    "longitude": -76.6101941,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1611 guilford ave., baltimore, md, 21202": {
+    "latitude": 39.3084005,
+    "longitude": -76.612048,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "guilford hall brewery": {
+    "latitude": 39.3083025,
+    "longitude": -76.6120638,
+    "status": "ok",
+    "source": "provided"
+  },
+  "3400 n charles st, baltimore, md, 21218": {
+    "latitude": 39.3290586,
+    "longitude": -76.619409,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "shriver hall": {
+    "latitude": 39.3290586,
+    "longitude": -76.619409,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "3301 eastern ave baltimore, md 21224": {
+    "latitude": 39.2863558,
+    "longitude": -76.5698091,
+    "status": "ok",
+    "source": "provided"
+  },
+  "redemption city church": {
+    "latitude": 39.2863558,
+    "longitude": -76.5698091,
+    "status": "ok",
+    "source": "provided"
+  },
+  "3301 eastern ave baltimore united states": {
+    "latitude": 39.2863558,
+    "longitude": -76.5698091,
+    "status": "ok",
+    "source": "provided"
+  },
+  "off-site": {
+    "status": "skipped_low_quality"
+  },
+  "online event": {
+    "status": "skipped_low_quality"
+  },
+  "7100 columbia gateway dr": {
+    "status": "failed_no_result"
+  },
+  "columbia presbyterian church": {
+    "status": "failed_no_result"
+  },
+  "7100 columbia gateway dr, baltimore": {
+    "status": "failed_no_result"
+  },
+  "maryland forward party event": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "prince george's plaza community center, 6600 adelphi rd, hyattsville, md 20782, usa": {
+    "status": "failed_no_result"
+  },
+  "prince george's plaza community center, 6600 adelphi rd, hyattsville, md 20782, usa, baltimore": {
+    "status": "failed_no_result"
+  },
+  "1611 guilford ave": {
+    "latitude": 39.3084005,
+    "longitude": -76.612048,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1611 guilford ave, baltimore": {
+    "latitude": 39.3084005,
+    "longitude": -76.612048,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1350 lancaster street baltimore, md, 21231 united states": {
+    "latitude": 39.2824611,
+    "longitude": -76.5979203,
+    "status": "ok",
+    "source": "provided"
+  },
+  "keystone korner": {
+    "latitude": 39.2824611,
+    "longitude": -76.5979203,
+    "status": "ok",
+    "source": "provided"
+  },
+  "biohub maryland training and education center at montgomery county": {
+    "status": "failed_no_result"
+  },
+  "biohub maryland training and education center at montgomery county, baltimore": {
+    "status": "failed_no_result"
+  },
+  "4 n martin luther king jr blvd, baltimore, md 21201, usa": {
+    "latitude": 39.2892717,
+    "longitude": -76.6283342,
+    "status": "ok",
+    "source": "provided"
+  },
+  "4 n martin luther king jr blvd": {
+    "latitude": 39.2892717,
+    "longitude": -76.6283342,
+    "status": "ok",
+    "source": "provided"
+  },
+  "4 n martin luther king jr blvd, baltimore, md 21201, usa, maryland": {
+    "latitude": 39.2892717,
+    "longitude": -76.6283342,
+    "status": "ok",
+    "source": "provided"
+  },
+  "jeni's splendid ice creams, 1925 14th street nw suite b, washington, dc 20009": {
+    "status": "failed_no_result"
+  },
+  "jeni's splendid ice creams, 1925 14th street nw suite b, washington, dc 20009, baltimore": {
+    "status": "failed_no_result"
+  },
+  "504 washington blvd": {
+    "latitude": 39.2856465,
+    "longitude": -76.6225963,
+    "status": "ok",
+    "source": "provided"
+  },
+  "section 771": {
+    "latitude": 39.2856465,
+    "longitude": -76.6225963,
+    "status": "ok",
+    "source": "provided"
+  },
+  "504 washington blvd, baltimore": {
+    "latitude": 39.2856465,
+    "longitude": -76.6225963,
+    "status": "ok",
+    "source": "provided"
+  },
+  "university of baltimore, 21 w mount royal ave, baltimore, md, 21201, united states": {
+    "latitude": 39.3051217,
+    "longitude": -76.6171648,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "581 himes ave, frederick md 21703": {
+    "status": "failed_no_result"
+  },
+  "581 himes ave": {
+    "status": "failed_no_result"
+  },
+  "581 himes ave, frederick md 21703, baltimore": {
+    "status": "failed_no_result"
+  },
+  "8013 liberty road, milford mill, md, 21244": {
+    "latitude": 39.3523307,
+    "longitude": -76.7553242,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "postnet of windsor mill": {
+    "latitude": 39.3523307,
+    "longitude": -76.7553242,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "8013 liberty road, milford mill, md, 21244, baltimore": {
+    "latitude": 39.3523307,
+    "longitude": -76.7553242,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "10405 o'donnell pl, waldorf md 20603": {
+    "status": "failed_no_result"
+  },
+  "10405 o'donnell pl": {
+    "status": "failed_no_result"
+  },
+  "10405 o'donnell pl, waldorf md 20603, baltimore": {
+    "status": "failed_no_result"
+  },
+  "50 n main st, union bridge md 21791": {
+    "status": "failed_no_result"
+  },
+  "50 n main st": {
+    "status": "failed_no_result"
+  },
+  "50 n main st, union bridge md 21791, baltimore": {
+    "status": "failed_no_result"
+  },
+  "morrell park, maudlin ave south side, 2801 maudlin ave, baltimore, maryland, 21230": {
+    "status": "failed_no_result"
+  },
+  "1707 n charles st": {
+    "latitude": 39.3089657,
+    "longitude": -76.6161238,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1707 n charles st, baltimore, md 21201, usa, maryland": {
+    "latitude": 39.3089657,
+    "longitude": -76.6161238,
+    "status": "ok",
+    "source": "provided"
+  },
+  "801 w baltimore st, baltimore, md 21201, usa": {
+    "latitude": 39.288808,
+    "longitude": -76.629717,
+    "status": "ok",
+    "source": "provided"
+  },
+  "801 w baltimore st": {
+    "latitude": 39.288808,
+    "longitude": -76.629717,
+    "status": "ok",
+    "source": "provided"
+  },
+  "801 w baltimore st, baltimore, md 21201, usa, maryland": {
+    "latitude": 39.288808,
+    "longitude": -76.629717,
+    "status": "ok",
+    "source": "provided"
+  },
+  "9020 amelung street": {
+    "status": "failed_no_result"
+  },
+  "urbana regional library": {
+    "status": "failed_no_result"
+  },
+  "9020 amelung street, frederick, baltimore": {
+    "status": "failed_no_result"
+  },
+  "free school classroom": {
+    "latitude": 39.3269965,
+    "longitude": -76.6099978,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1021 dulaney valley road, towson, md, 21204": {
+    "latitude": 39.4098269,
+    "longitude": -76.5956683,
+    "status": "ok",
+    "source": "provided"
+  },
+  "kraushaar auditorium": {
+    "latitude": 39.4098269,
+    "longitude": -76.5956683,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1021 dulaney valley road, towson, md, 21204, baltimore": {
+    "latitude": 39.4098269,
+    "longitude": -76.5956683,
+    "status": "ok",
+    "source": "provided"
+  },
+  "620 w lexington st, baltimore, maryland": {
+    "latitude": 39.2916956,
+    "longitude": -76.624965,
+    "status": "ok",
+    "source": "provided"
+  },
+  "620 w lexington st": {
+    "latitude": 39.2916956,
+    "longitude": -76.624965,
+    "status": "ok",
+    "source": "provided"
+  },
+  "3315 eastern ave. baltimore": {
+    "latitude": 39.2863313,
+    "longitude": -76.5694494,
+    "status": "ok",
+    "source": "provided"
+  },
+  "city kids": {
+    "latitude": 39.2863313,
+    "longitude": -76.5694494,
+    "status": "ok",
+    "source": "provided"
+  },
+  "11311 mccormick road suite 500, cockeysville, md, 21031": {
+    "status": "failed_no_result"
+  },
+  "11311 mccormick road suite 500, cockeysville, md, 21031, baltimore": {
+    "status": "failed_no_result"
+  },
+  "921 e fort ave": {
+    "latitude": 39.2712069,
+    "longitude": -76.6006837,
+    "status": "ok",
+    "source": "provided"
+  },
+  "copper shark": {
+    "latitude": 39.2712069,
+    "longitude": -76.6006837,
+    "status": "ok",
+    "source": "provided"
+  },
+  "921 e fort ave, baltimore": {
+    "latitude": 39.2712069,
+    "longitude": -76.6006837,
+    "status": "ok",
+    "source": "provided"
+  },
+  "900 e northern pkwy": {
+    "latitude": 39.3647584,
+    "longitude": -76.6032416,
+    "status": "ok",
+    "source": "provided"
+  },
+  "kadampa meditation center maryland": {
+    "latitude": 39.3647584,
+    "longitude": -76.6032416,
+    "status": "ok",
+    "source": "provided"
+  },
+  "900 e northern pkwy, baltimore": {
+    "latitude": 39.3647584,
+    "longitude": -76.6032416,
+    "status": "ok",
+    "source": "provided"
+  },
+  "198 laurel race track road, laurel, md, united states": {
+    "status": "failed_no_result"
+  },
+  "laurel park race track": {
+    "status": "failed_no_result"
+  },
+  "198 laurel race track road, laurel, md, united states, baltimore": {
+    "status": "failed_no_result"
+  },
+  "baltimore, md": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "spark coworking baltimore 8 market place, baltimore, md 21202": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "10100 reisterstown road, owings mills, md, 21117": {
+    "latitude": 39.4131183,
+    "longitude": -76.774758,
+    "status": "ok",
+    "source": "provided"
+  },
+  "10100 reisterstown road, owings mills, md, 21117, baltimore": {
+    "latitude": 39.4131183,
+    "longitude": -76.774758,
+    "status": "ok",
+    "source": "provided"
+  },
+  "505 york rd": {
+    "latitude": 39.4007924,
+    "longitude": -76.6025519,
+    "status": "ok",
+    "source": "provided"
+  },
+  "505 york road, towson, md 21204": {
+    "latitude": 39.4007924,
+    "longitude": -76.6025519,
+    "status": "ok",
+    "source": "provided"
+  },
+  "505 york rd, baltimore": {
+    "latitude": 39.4007924,
+    "longitude": -76.6025519,
+    "status": "ok",
+    "source": "provided"
+  },
+  "505 york road towson, md 21204": {
+    "latitude": 39.4007924,
+    "longitude": -76.6025519,
+    "status": "ok",
+    "source": "provided"
+  },
+  "512 south broadway baltimore, md, 21231 united states": {
+    "latitude": 39.2850908,
+    "longitude": -76.5937447,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "polish home club": {
+    "latitude": 39.2850908,
+    "longitude": -76.5937447,
+    "status": "ok",
+    "source": "provided"
+  },
+  "110 e patrick st, frederick md 21701": {
+    "status": "failed_no_result"
+  },
+  "110 e patrick st": {
+    "status": "failed_no_result"
+  },
+  "110 e patrick st, frederick md 21701, baltimore": {
+    "status": "failed_no_result"
+  },
+  "21677 fdr boulevard, lexington park md 20653": {
+    "status": "failed_no_result"
+  },
+  "21677 fdr boulevard": {
+    "status": "failed_no_result"
+  },
+  "21677 fdr boulevard, lexington park md 20653, baltimore": {
+    "status": "failed_no_result"
+  },
+  "1616 thames street baltimore, md, 21231 united states": {
+    "latitude": 39.28157,
+    "longitude": -76.5943617,
+    "status": "ok",
+    "source": "provided"
+  },
+  "the sound garden": {
+    "latitude": 39.28157,
+    "longitude": -76.5943617,
+    "status": "ok",
+    "source": "provided"
+  },
+  ", largo md 20774": {
+    "status": "failed_no_result"
+  },
+  ", largo md 20774, baltimore": {
+    "status": "failed_no_result"
+  },
+  "union craft brewing": {
+    "latitude": 39.3188096,
+    "longitude": -76.619549,
+    "status": "ok",
+    "source": "provided"
+  },
+  "401 light street baltimore, md, 21202 united states": {
+    "latitude": 39.2846443,
+    "longitude": -76.6129626,
+    "status": "ok",
+    "source": "provided"
+  },
+  "west shore park": {
+    "latitude": 39.2846443,
+    "longitude": -76.6129626,
+    "status": "ok",
+    "source": "provided"
+  },
+  "https://us06web.zoom.us/j/83152149750": {
+    "status": "skipped_low_quality"
+  },
+  "2309 ridge rd, windor mill, md, 21244": {
+    "status": "failed_no_result"
+  },
+  "woodlands golf course": {
+    "status": "failed_no_result"
+  },
+  "2309 ridge rd, windor mill, md, 21244, baltimore": {
+    "status": "failed_no_result"
+  },
+  "morrell park, washington blvd between gable & inverness, 3101 washington boulevard, baltimore, md, 21230, united states": {
+    "status": "failed_no_result"
+  },
+  "640 reisterstown road, pikesville, md, 21208": {
+    "latitude": 39.3703489,
+    "longitude": -76.7192419,
+    "status": "ok",
+    "source": "provided"
+  },
+  "640 reisterstown road, pikesville, md, 21208, baltimore": {
+    "latitude": 39.3703489,
+    "longitude": -76.7192419,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1025 s. potomac st.": {
+    "latitude": 39.2802511,
+    "longitude": -76.5737227,
+    "status": "ok",
+    "source": "provided"
+  },
+  "church on the square": {
+    "latitude": 39.2802511,
+    "longitude": -76.5737227,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1025 s. potomac st., baltimore": {
+    "latitude": 39.2802511,
+    "longitude": -76.5737227,
+    "status": "ok",
+    "source": "provided"
+  },
+  "zoom": {
+    "status": "skipped_low_quality"
+  },
+  "401 e. pratt st, 27th floor, baltimore, md, united states": {
+    "status": "failed_no_result"
+  },
+  "top of the world": {
+    "status": "failed_no_result"
+  },
+  "virtual": {
+    "status": "skipped_low_quality"
+  },
+  "imet, 701 east pratt street, baltimore, maryland, 21202": {
+    "latitude": 39.2855611,
+    "longitude": -76.6053596,
+    "status": "ok",
+    "source": "provided"
+  },
+  "morrell park, washington blvd between gabel & w patapsco, 3101 washington blvd, baltimore, maryland, 21230": {
+    "status": "failed_no_result"
+  },
+  "6 church lane, pikesville, md, 21208": {
+    "latitude": 39.3752217,
+    "longitude": -76.7249669,
+    "status": "ok",
+    "source": "provided"
+  },
+  "6 church lane, pikesville, md, 21208, baltimore": {
+    "latitude": 39.3752217,
+    "longitude": -76.7249669,
+    "status": "ok",
+    "source": "provided"
+  },
+  "231 rio blvd, gaithersburg, md 20878": {
+    "status": "failed_no_result"
+  },
+  "uncle julio": {
+    "status": "failed_no_result"
+  },
+  "231 rio blvd, gaithersburg, md 20878, baltimore": {
+    "status": "failed_no_result"
+  },
+  "505 york rd, towson, md 21204, usa": {
+    "latitude": 39.4007924,
+    "longitude": -76.6025519,
+    "status": "ok",
+    "source": "provided"
+  },
+  "science history institute, 315 chestnut st, philadelphia, pa 19106, usa": {
+    "latitude": 39.9487962,
+    "longitude": -75.1466157,
+    "status": "ok",
+    "source": "provided"
+  },
+  "science history institute": {
+    "latitude": 39.9487962,
+    "longitude": -75.1466157,
+    "status": "ok",
+    "source": "provided"
+  },
+  "science history institute, 315 chestnut st, philadelphia, pa 19106, usa, pennsylvania, baltimore": {
+    "latitude": 39.9487962,
+    "longitude": -75.1466157,
+    "status": "ok",
+    "source": "provided"
+  },
+  "5728 buckeystown pike unit b1": {
+    "status": "failed_no_result"
+  },
+  "common market": {
+    "status": "failed_no_result"
+  },
+  "5728 buckeystown pike unit b1, frederick, baltimore": {
+    "status": "failed_no_result"
+  },
+  "9700 groffs mill drive, owings mills, md, 21117": {
+    "latitude": 39.404934,
+    "longitude": -76.810321,
+    "status": "ok",
+    "source": "provided"
+  },
+  "9700 groffs mill drive, owings mills, md, 21117, baltimore": {
+    "latitude": 39.404934,
+    "longitude": -76.810321,
+    "status": "ok",
+    "source": "provided"
+  },
+  "10705 red run blvd, owings mills, md, 21117": {
+    "latitude": 39.41289,
+    "longitude": -76.797833,
+    "status": "ok",
+    "source": "provided"
+  },
+  "10705 red run blvd, owings mills, md, 21117, baltimore": {
+    "latitude": 39.41289,
+    "longitude": -76.797833,
+    "status": "ok",
+    "source": "provided"
+  },
+  "501 east pratt street baltimore, md, 21202 united states": {
+    "latitude": 39.2847578,
+    "longitude": -76.60769,
+    "status": "ok",
+    "source": "provided"
+  },
+  "national aquarium": {
+    "latitude": 39.2847578,
+    "longitude": -76.60769,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1450 rolling road, halethorpe, maryland, 21227": {
+    "latitude": 39.2347549,
+    "longitude": -76.7142622,
+    "status": "ok",
+    "source": "provided"
+  },
+  "bwtech south campus": {
+    "latitude": 39.2347549,
+    "longitude": -76.7142622,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1450 rolling road, halethorpe, maryland, 21227, baltimore": {
+    "latitude": 39.2347549,
+    "longitude": -76.7142622,
+    "status": "ok",
+    "source": "provided"
+  },
+  "**free parking!": {
+    "status": "failed_no_result"
+  },
+  "maryland tech council 2nd floor conference room 9808 medical center drive rockville, maryland": {
+    "status": "failed_no_result"
+  },
+  "**free parking!, baltimore": {
+    "status": "failed_no_result"
+  },
+  "m&t bank exchange, 401 w fayette st, baltimore, md": {
+    "status": "failed_no_result"
+  },
+  "m&t bank exchange": {
+    "status": "failed_no_result"
+  },
+  "2 loveton circle, sparks glencoe, md, 21152": {
+    "latitude": 39.5213074,
+    "longitude": -76.6451909,
+    "status": "ok",
+    "source": "provided"
+  },
+  "usa lacrosse": {
+    "latitude": 39.5213074,
+    "longitude": -76.6451909,
+    "status": "ok",
+    "source": "provided"
+  },
+  "2 loveton circle, sparks glencoe, md, 21152, baltimore": {
+    "latitude": 39.5213074,
+    "longitude": -76.6451909,
+    "status": "ok",
+    "source": "provided"
+  },
+  "current space": {
+    "latitude": 39.3188096,
+    "longitude": -76.619549,
+    "status": "ok",
+    "source": "provided"
+  },
+  "403 race st, cambridge md 21613": {
+    "status": "failed_no_result"
+  },
+  "403 race st": {
+    "status": "failed_no_result"
+  },
+  "403 race st, cambridge md 21613, baltimore": {
+    "status": "failed_no_result"
+  },
+  "115 e main st, salisbury md 21801": {
+    "status": "failed_no_result"
+  },
+  "115 e main st": {
+    "status": "failed_no_result"
+  },
+  "115 e main st, salisbury md 21801, baltimore": {
+    "status": "failed_no_result"
+  },
+  "stillmeadow community fellowship, 5110 frederick ave, baltimore, md, 21229, united states": {
+    "latitude": 39.2814956,
+    "longitude": -76.6994149,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1555 corbett rd., monkton, md, 21111": {
+    "latitude": 39.5671145,
+    "longitude": -76.6249345,
+    "status": "ok",
+    "source": "provided"
+  },
+  "tree planting event": {
+    "latitude": 39.5671145,
+    "longitude": -76.6249345,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1555 corbett rd., monkton, md, 21111, baltimore": {
+    "latitude": 39.5671145,
+    "longitude": -76.6249345,
+    "status": "ok",
+    "source": "provided"
+  },
+  "3713 old court road, pikesville, md, 21208": {
+    "latitude": 39.3788219,
+    "longitude": -76.7228346,
+    "status": "ok",
+    "source": "provided"
+  },
+  "gourmet girls": {
+    "latitude": 39.3788219,
+    "longitude": -76.7228346,
+    "status": "ok",
+    "source": "provided"
+  },
+  "3713 old court road, pikesville, md, 21208, baltimore": {
+    "latitude": 39.3788219,
+    "longitude": -76.7228346,
+    "status": "ok",
+    "source": "provided"
+  },
+  "101 college parkway, hlsb 100 (health and lifesciences), arnold, md 21012": {
+    "status": "failed_no_result"
+  },
+  "anne arundel community college": {
+    "status": "failed_no_result"
+  },
+  "101 college parkway, hlsb 100 (health and lifesciences), arnold, md 21012, baltimore": {
+    "status": "failed_no_result"
+  },
+  "9764 groffs mill drive, owings mills, md, 21117": {
+    "latitude": 39.4058137,
+    "longitude": -76.8116855,
+    "status": "ok",
+    "source": "provided"
+  },
+  "coffee beanery owings mill": {
+    "latitude": 39.4058137,
+    "longitude": -76.8116855,
+    "status": "ok",
+    "source": "provided"
+  },
+  "9764 groffs mill drive, owings mills, md, 21117, baltimore": {
+    "latitude": 39.4058137,
+    "longitude": -76.8116855,
+    "status": "ok",
+    "source": "provided"
+  },
+  "321 main street, reisterstown, md, 21136": {
+    "latitude": 39.4615873,
+    "longitude": -76.827604,
+    "status": "ok",
+    "source": "provided"
+  },
+  "321 main street, reisterstown, md, 21136, baltimore": {
+    "latitude": 39.4615873,
+    "longitude": -76.827604,
+    "status": "ok",
+    "source": "provided"
+  },
+  "5928 executive boulevard, north bethesda, md 20852, *free parking": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "bethesda north marriott hotel and conference center": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "5928 executive boulevard, north bethesda, md 20852, *free parking, baltimore": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "4 n. martin luther king jr., blvd., ": {
+    "status": "failed_no_result"
+  },
+  "4mlk": {
+    "status": "failed_no_result"
+  },
+  "4 n. martin luther king jr., blvd., , baltimore": {
+    "status": "failed_no_result"
+  },
+  "6751 columbia gateway dr, suite 300, columbia, md 21046": {
+    "status": "failed_no_result"
+  },
+  "maryland innovation center, platinum room": {
+    "status": "failed_no_result"
+  },
+  "6751 columbia gateway dr, suite 300, columbia, md 21046, baltimore": {
+    "status": "failed_no_result"
+  },
+  "la chow, 210 s central ave, baltimore, md 21202, usa": {
+    "latitude": 39.28799970000001,
+    "longitude": -76.5999762,
+    "status": "ok",
+    "source": "provided"
+  },
+  "la chow": {
+    "latitude": 39.28799970000001,
+    "longitude": -76.5999762,
+    "status": "ok",
+    "source": "provided"
+  },
+  "la chow, 210 s central ave, baltimore, md 21202, usa, maryland": {
+    "latitude": 39.28799970000001,
+    "longitude": -76.5999762,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1350 lancaster st baltimore, md, 21202 united states": {
+    "latitude": 39.2824611,
+    "longitude": -76.5979203,
+    "status": "ok",
+    "source": "provided"
+  },
+  "10101 grand central avenue, owings mills, md, 21117": {
+    "latitude": 39.4053438,
+    "longitude": -76.7799626,
+    "status": "ok",
+    "source": "provided"
+  },
+  "marriott owings mills metro centre": {
+    "latitude": 39.4053438,
+    "longitude": -76.7799626,
+    "status": "ok",
+    "source": "provided"
+  },
+  "10101 grand central avenue, owings mills, md, 21117, baltimore": {
+    "latitude": 39.4053438,
+    "longitude": -76.7799626,
+    "status": "ok",
+    "source": "provided"
+  },
+  "carroll watkins park, 5830 flannery ln, baltimore, maryland, 21207, united states": {
+    "status": "failed_no_result"
+  },
+  "3301 eastern avenue baltimore, md, 21224 united states": {
+    "latitude": 39.2863558,
+    "longitude": -76.5698091,
+    "status": "ok",
+    "source": "provided"
+  },
+  "montgomery college, germantown, md 20876": {
+    "status": "failed_no_result"
+  },
+  "bioscience education conference center - room be 151": {
+    "status": "failed_no_result"
+  },
+  "montgomery college, germantown, md 20876, baltimore": {
+    "status": "failed_no_result"
+  },
+  "200 international drive, baltimore, md, united states": {
+    "latitude": 39.28274,
+    "longitude": -76.6024709,
+    "status": "ok",
+    "source": "provided"
+  },
+  "four seasons hotel baltimore": {
+    "latitude": 39.28274,
+    "longitude": -76.6024709,
+    "status": "ok",
+    "source": "provided"
+  },
+  "9121 red branch road, columbia, md, 21045": {
+    "status": "failed_no_result"
+  },
+  "columbia community center": {
+    "status": "failed_no_result"
+  },
+  "9121 red branch road, columbia, md, 21045, baltimore": {
+    "status": "failed_no_result"
+  },
+  "6 herndon avenue, annapolis, md 21403, **free parking.": {
+    "status": "failed_no_result"
+  },
+  "chesapeake bay foundation": {
+    "status": "failed_no_result"
+  },
+  "6 herndon avenue, annapolis, md 21403, **free parking., baltimore": {
+    "status": "failed_no_result"
+  },
+  "737 south broadway baltimore, md, 21231 united states": {
+    "latitude": 39.2826583,
+    "longitude": -76.5929627,
+    "status": "ok",
+    "source": "provided"
+  },
+  "max's taphouse": {
+    "latitude": 39.2826583,
+    "longitude": -76.5929627,
+    "status": "ok",
+    "source": "provided"
+  },
+  "morgan state university, 1700 e cold spring ln baltimore, md 21202": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1417 thames street baltimore, md, 21231 united states": {
+    "latitude": 39.279419,
+    "longitude": -76.5959877,
+    "status": "ok",
+    "source": "provided"
+  },
+  "living classrooms foundation": {
+    "latitude": 39.279419,
+    "longitude": -76.5959877,
+    "status": "ok",
+    "source": "provided"
+  },
+  "400 key highway baltimore, md, 21230 united states": {
+    "latitude": 39.2807079,
+    "longitude": -76.6081717,
+    "status": "ok",
+    "source": "provided"
+  },
+  "inner harbor marina": {
+    "latitude": 39.2807079,
+    "longitude": -76.6081717,
+    "status": "ok",
+    "source": "provided"
+  },
+  "le mondo, 406 n howard st, baltimore, md 21201, usa": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "800 key highway baltimore, md, 21230 united states": {
+    "latitude": 39.2803985,
+    "longitude": -76.6068932,
+    "status": "ok",
+    "source": "provided"
+  },
+  "american visionary art museum": {
+    "latitude": 39.2803985,
+    "longitude": -76.6068932,
+    "status": "ok",
+    "source": "provided"
+  },
+  "201 east pratt street baltimore, md, 21202 united states": {
+    "latitude": 39.2862553,
+    "longitude": -76.610138,
+    "status": "ok",
+    "source": "provided"
+  },
+  "baltimore heritage, inc.": {
+    "latitude": 39.2862553,
+    "longitude": -76.610138,
+    "status": "ok",
+    "source": "provided"
+  },
+  "enoch pratt free library, 400 cathedral street, baltimore, md, 21201, united states": {
+    "latitude": 39.2945237,
+    "longitude": -76.6173559,
+    "status": "ok",
+    "source": "provided"
+  },
+  "thames street baltimore, md, 21231 united states": {
+    "latitude": 39.2813578,
+    "longitude": -76.5942124,
+    "status": "ok",
+    "source": "provided"
+  },
+  "fells point waterfront": {
+    "latitude": 39.2813578,
+    "longitude": -76.5942124,
+    "status": "ok",
+    "source": "provided"
+  },
+  "inner harbor amphitheater": {
+    "latitude": 39.2862553,
+    "longitude": -76.610138,
+    "status": "ok",
+    "source": "provided"
+  },
+  "thames street, baltimore, md, 21231": {
+    "latitude": 39.2813578,
+    "longitude": -76.5942124,
+    "status": "ok",
+    "source": "provided"
+  },
+  "rockville town square, rockville, md 20850, usa": {
+    "status": "failed_no_result"
+  },
+  "rockville town square, rockville, md 20850, usa, baltimore": {
+    "status": "failed_no_result"
+  },
+  "2132 friendsville rd, friendsville md 21531": {
+    "status": "failed_no_result"
+  },
+  "2132 friendsville rd": {
+    "status": "failed_no_result"
+  },
+  "2132 friendsville rd, friendsville md 21531, baltimore": {
+    "status": "failed_no_result"
+  },
+  "920 south broadway baltimore, md, 21231 united states": {
+    "latitude": 39.2814555,
+    "longitude": -76.5931899,
+    "status": "ok",
+    "source": "provided"
+  },
+  "broadway pier": {
+    "latitude": 39.2814555,
+    "longitude": -76.5931899,
+    "status": "ok",
+    "source": "provided"
+  },
+  "10519 marriottsville road, randallstown, md, 21133": {
+    "latitude": 39.3748716,
+    "longitude": -76.8455256,
+    "status": "ok",
+    "source": "provided"
+  },
+  "braglio farms": {
+    "latitude": 39.3748716,
+    "longitude": -76.8455256,
+    "status": "ok",
+    "source": "provided"
+  },
+  "10519 marriottsville road, randallstown, md, 21133, baltimore": {
+    "latitude": 39.3748716,
+    "longitude": -76.8455256,
+    "status": "ok",
+    "source": "provided"
+  },
+  "41 s market st, frederick, md 21701": {
+    "status": "failed_no_result"
+  },
+  "shuckin shack": {
+    "status": "failed_no_result"
+  },
+  "41 s market st, frederick, md 21701, baltimore": {
+    "status": "failed_no_result"
+  },
+  "1310 point street baltimore, md, 21231 united states": {
+    "latitude": 39.2804916,
+    "longitude": -76.5976024,
+    "status": "ok",
+    "source": "provided"
+  },
+  "harbor point central plaza": {
+    "latitude": 39.2804916,
+    "longitude": -76.5976024,
+    "status": "ok",
+    "source": "provided"
+  },
+  "201 key highway baltimore, md, 21230 united states": {
+    "latitude": 39.2805587,
+    "longitude": -76.611076,
+    "status": "ok",
+    "source": "provided"
+  },
+  "rash field park": {
+    "latitude": 39.2805587,
+    "longitude": -76.611076,
+    "status": "ok",
+    "source": "provided"
+  },
+  "9800 medical center dr., rockville, md 20850": {
+    "status": "failed_no_result"
+  },
+  "outdoor courtyard": {
+    "status": "failed_no_result"
+  },
+  "9800 medical center dr., rockville, md 20850, baltimore": {
+    "status": "failed_no_result"
+  },
+  "910 south bond street baltimore, md, 21231 united states": {
+    "latitude": 39.2814794,
+    "longitude": -76.5950588,
+    "status": "ok",
+    "source": "provided"
+  },
+  "bond street wharf": {
+    "latitude": 39.2814794,
+    "longitude": -76.5950588,
+    "status": "ok",
+    "source": "provided"
+  },
+  "rash field park baltimore, md, 21202 united states": {
+    "latitude": 39.2805587,
+    "longitude": -76.611076,
+    "status": "ok",
+    "source": "provided"
+  },
+  "3001 boston street baltimore, md, 21224 united states": {
+    "latitude": 39.276827,
+    "longitude": -76.5699968,
+    "status": "ok",
+    "source": "provided"
+  },
+  "canton waterfront park": {
+    "latitude": 39.276827,
+    "longitude": -76.5699968,
+    "status": "ok",
+    "source": "provided"
+  },
+  "jakes skate park": {
+    "latitude": 39.2805587,
+    "longitude": -76.611076,
+    "status": "ok",
+    "source": "provided"
+  },
+  "washington, dc": {
+    "latitude": 38.8975256,
+    "longitude": -77.0306688,
+    "status": "ok",
+    "source": "provided"
+  },
+  "walter e. washington convention center": {
+    "latitude": 38.8975256,
+    "longitude": -77.0306688,
+    "status": "ok",
+    "source": "provided"
+  },
+  "washington, dc, baltimore": {
+    "latitude": 38.8975256,
+    "longitude": -77.0306688,
+    "status": "ok",
+    "source": "provided"
+  },
+  "venture x fairfax va, 3060 williams dr suite 300, fairfax, va 22031, usa": {
+    "status": "failed_no_result"
+  },
+  "venture x fairfax va, 3060 williams dr suite 300, fairfax, va 22031, usa, baltimore": {
+    "status": "failed_no_result"
+  },
+  "8836 hollow rd, middletown, md 21769": {
+    "status": "failed_no_result"
+  },
+  "maryland national golf course": {
+    "status": "failed_no_result"
+  },
+  "8836 hollow rd, middletown, md 21769, baltimore": {
+    "status": "failed_no_result"
+  },
+  "wyman park dell, north charles st & art museum drive, baltimore, maryland, 21218": {
+    "status": "failed_no_result"
+  },
+  "towson university center for the arts, art lecture hall, room 2032, 7700 osler drive, towson, md 21204": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "towson university center for the arts, art lecture hall, room 2032, 7700 osler drive, towson, md 21204, baltimore": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "409 e lanvale st, baltimore, maryland": {
+    "latitude": 39.3090789,
+    "longitude": -76.6103037,
+    "status": "ok",
+    "source": "provided"
+  },
+  "409 e lanvale st": {
+    "latitude": 39.3090789,
+    "longitude": -76.6103037,
+    "status": "ok",
+    "source": "provided"
+  },
+  "emancipation community park, 320 8th st, laurel, md 20707, usa": {
+    "status": "failed_no_result"
+  },
+  "emancipation community park, 320 8th st, laurel, md 20707, usa, baltimore": {
+    "status": "failed_no_result"
+  },
+  "washington dc": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "washington dc, baltimore": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "howard community college, horowitz visual and performing arts center campus dr, columbia, md 21044 | west parking garage": {
+    "status": "failed_no_result"
+  },
+  "howard community college": {
+    "status": "failed_no_result"
+  },
+  "howard community college, horowitz visual and performing arts center campus dr, columbia, md 21044 | west parking garage, baltimore": {
+    "status": "failed_no_result"
+  },
+  "overlook park, 1300 overbrook rd, baltimore, maryland, 21239": {
+    "status": "failed_no_result"
+  },
+  "veterans plaza, 1 veterans pl, silver spring, md 20910, usa": {
+    "status": "failed_no_result"
+  },
+  "veterans plaza, 1 veterans pl, silver spring, md 20910, usa, baltimore": {
+    "status": "failed_no_result"
+  },
+  "177a thomas johnson drive": {
+    "status": "failed_no_result"
+  },
+  "zipani": {
+    "status": "failed_no_result"
+  },
+  "177a thomas johnson drive, frederick, baltimore": {
+    "status": "failed_no_result"
+  },
+  "1726 reisterstown road, pikesville, md, 21208": {
+    "latitude": 39.3823924,
+    "longitude": -76.7334774,
+    "status": "ok",
+    "source": "provided"
+  },
+  "doubletree by hilton baltimore north-pike": {
+    "latitude": 39.3823924,
+    "longitude": -76.7334774,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1726 reisterstown road, pikesville, md, 21208, baltimore": {
+    "latitude": 39.3823924,
+    "longitude": -76.7334774,
+    "status": "ok",
+    "source": "provided"
+  },
+  "140 w. mt. royal ave., baltimore, md, 21201": {
+    "latitude": 39.305976,
+    "longitude": -76.6182009,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "the lyric": {
+    "latitude": 39.305976,
+    "longitude": -76.6182009,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "1029 benfield blvd, millersville, md 21108, usa": {
+    "status": "failed_no_result"
+  },
+  "1029 benfield blvd, millersville, md 21108, usa, baltimore": {
+    "status": "failed_no_result"
+  },
+  "731 eastern avenue baltimore, md, 21202 united states": {
+    "latitude": 39.283608,
+    "longitude": -76.6042422,
+    "status": "ok",
+    "source": "provided"
+  },
+  "pier six pavilion": {
+    "latitude": 39.283608,
+    "longitude": -76.6042422,
+    "status": "ok",
+    "source": "provided"
+  },
+  "pier six pavilion baltimore, md, 21202 united states": {
+    "latitude": 39.283608,
+    "longitude": -76.6042422,
+    "status": "ok",
+    "source": "provided"
+  },
+  "10705 red run boulevard, owings mills, md, 21117": {
+    "latitude": 39.4134085,
+    "longitude": -76.7997326,
+    "status": "ok",
+    "source": "provided"
+  },
+  "guntry maryland": {
+    "latitude": 39.4134085,
+    "longitude": -76.7997326,
+    "status": "ok",
+    "source": "provided"
+  },
+  "10705 red run boulevard, owings mills, md, 21117, baltimore": {
+    "latitude": 39.4134085,
+    "longitude": -76.7997326,
+    "status": "ok",
+    "source": "provided"
+  },
+  "austin, tx, usa": {
+    "latitude": 30.267152999999997,
+    "longitude": -97.7430608,
+    "status": "ok",
+    "source": "provided"
+  },
+  "austin": {
+    "latitude": 30.267152999999997,
+    "longitude": -97.7430608,
+    "status": "ok",
+    "source": "provided"
+  },
+  "austin, tx, usa, baltimore": {
+    "latitude": 30.267152999999997,
+    "longitude": -97.7430608,
+    "status": "ok",
+    "source": "provided"
+  },
+  ">": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "7002 arundel mills, circle #7777, hanover, md 21076": {
+    "status": "failed_no_result"
+  },
+  "maryland live! casino and hotel in the hall event center": {
+    "status": "failed_no_result"
+  },
+  "7002 arundel mills, circle #7777, hanover, md 21076, baltimore": {
+    "status": "failed_no_result"
+  },
+  "ocean city, md": {
+    "latitude": 38.3378045,
+    "longitude": -75.0828575,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "ocean city": {
+    "latitude": 38.3378045,
+    "longitude": -75.0828575,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "ocean city, md, baltimore": {
+    "latitude": 38.3378045,
+    "longitude": -75.0828575,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "11201 garrison forest road, owings mills, md, 21117": {
+    "latitude": 39.4329704,
+    "longitude": -76.7628584,
+    "status": "ok",
+    "source": "provided"
+  },
+  "irvine nature center": {
+    "latitude": 39.4329704,
+    "longitude": -76.7628584,
+    "status": "ok",
+    "source": "provided"
+  },
+  "11201 garrison forest road, owings mills, md, 21117, baltimore": {
+    "latitude": 39.4329704,
+    "longitude": -76.7628584,
+    "status": "ok",
+    "source": "provided"
+  },
+  "5520 research park drive, baltimore": {
+    "latitude": 39.2479891,
+    "longitude": -76.7145735,
+    "status": "ok",
+    "source": "provided"
+  },
+  "bwtech north": {
+    "latitude": 39.2479891,
+    "longitude": -76.7145735,
+    "status": "ok",
+    "source": "provided"
+  },
+  "725 mount wilson lane, pikesville, md, 21208": {
+    "latitude": 39.381305,
+    "longitude": -76.7646194,
+    "status": "ok",
+    "source": "provided"
+  },
+  "north oaks senior living": {
+    "latitude": 39.381305,
+    "longitude": -76.7646194,
+    "status": "ok",
+    "source": "provided"
+  },
+  "725 mount wilson lane, pikesville, md, 21208, baltimore": {
+    "latitude": 39.381305,
+    "longitude": -76.7646194,
+    "status": "ok",
+    "source": "provided"
+  },
+  "palo alto, ca, usa": {
+    "latitude": 37.4418834,
+    "longitude": -122.14301950000001,
+    "status": "ok",
+    "source": "provided"
+  },
+  "palo alto": {
+    "latitude": 37.4418834,
+    "longitude": -122.14301950000001,
+    "status": "ok",
+    "source": "provided"
+  },
+  "palo alto, ca, usa, california, baltimore": {
+    "latitude": 37.4418834,
+    "longitude": -122.14301950000001,
+    "status": "ok",
+    "source": "provided"
+  },
+  "5750 park heights avenue, baltimore, md, 21215": {
+    "latitude": 39.3535271,
+    "longitude": -76.6862981,
+    "status": "ok",
+    "source": "provided"
+  },
+  "jewish community services": {
+    "latitude": 39.3535271,
+    "longitude": -76.6862981,
+    "status": "ok",
+    "source": "provided"
+  },
+  "2929 arch st suite 250, philadelphia, pa 19104, usa": {
+    "latitude": 39.956945,
+    "longitude": -75.1807481,
+    "status": "ok",
+    "source": "provided"
+  },
+  "2929 arch st suite 250": {
+    "latitude": 39.956945,
+    "longitude": -75.1807481,
+    "status": "ok",
+    "source": "provided"
+  },
+  "the maryland zoo, one safari place, baltimore, md 21217": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "zoom online meeting": {
+    "status": "failed_no_result"
+  },
+  "zoom online meeting, baltimore": {
+    "status": "failed_no_result"
+  },
+  "cathedral nave": {
+    "status": "failed_no_result"
+  },
+  "cathedral nave, baltimore": {
+    "status": "failed_no_result"
+  },
+  "gardner peace chapel": {
+    "status": "failed_no_result"
+  },
+  "gardner peace chapel, baltimore": {
+    "status": "failed_no_result"
+  },
+  "catonsville presbyterian church": {
+    "latitude": 39.2694247,
+    "longitude": -76.7453768,
+    "status": "ok",
+    "source": "provided"
+  },
+  "catonsville presbyterian church, baltimore": {
+    "latitude": 39.2694247,
+    "longitude": -76.7453768,
+    "status": "ok",
+    "source": "provided"
+  },
+  "library & zoom": {
+    "status": "failed_no_result"
+  },
+  "library & zoom, baltimore": {
+    "status": "failed_no_result"
+  },
+  "sanctuary": {
+    "latitude": 39.3197038,
+    "longitude": -76.6099303,
+    "status": "ok",
+    "source": "provided"
+  },
+  "sanctuary, baltimore": {
+    "latitude": 39.3197038,
+    "longitude": -76.6099303,
+    "status": "ok",
+    "source": "provided"
+  },
+  "fellowship hall": {
+    "latitude": 39.3964332,
+    "longitude": -76.4748477,
+    "status": "ok",
+    "source": "provided"
+  },
+  "fellowship hall, baltimore": {
+    "latitude": 39.3964332,
+    "longitude": -76.4748477,
+    "status": "ok",
+    "source": "provided"
+  },
+  "400 s. conkling street, baltimore, md, 21211": {
+    "latitude": 39.2874575,
+    "longitude": -76.567544,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1616 thames st, baltimore, md, 21231": {
+    "latitude": 39.28157,
+    "longitude": -76.5943617,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1616 thames st, fells point": {
+    "latitude": 39.28157,
+    "longitude": -76.5943617,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1226 wicomico st., baltimore, md, 21230": {
+    "latitude": 39.2779511,
+    "longitude": -76.6321574,
+    "status": "ok",
+    "source": "provided"
+  },
+  "the butterfly room at sandtown furniture": {
+    "latitude": 39.2779511,
+    "longitude": -76.6321574,
+    "status": "ok",
+    "source": "provided"
+  },
+  "2507 n. howard st.rnsuite 100, baltimore, md, 21218": {
+    "status": "failed_no_result"
+  },
+  "2507 n. howard st., suite 100, baltimore md 21218": {
+    "status": "failed_no_result"
+  },
+  "699 north charles street, baltimore, md, 21202": {
+    "latitude": 39.296251,
+    "longitude": -76.6155,
+    "status": "ok",
+    "source": "provided"
+  },
+  "mount vernon place & washington monument": {
+    "latitude": 39.296251,
+    "longitude": -76.6155,
+    "status": "ok",
+    "source": "provided"
+  },
+  "3403 gough st, baltimore, md, 21224": {
+    "latitude": 39.2884269,
+    "longitude": -76.5686315,
+    "status": "ok",
+    "source": "provided"
+  },
+  "casa de la cultura": {
+    "latitude": 39.2884269,
+    "longitude": -76.5686315,
+    "status": "ok",
+    "source": "provided"
+  },
+  "813 s broadway, baltimore, md, 21231": {
+    "latitude": 39.2822149,
+    "longitude": -76.5926928,
+    "status": "ok",
+    "source": "provided"
+  },
+  "the port comedy club": {
+    "latitude": 39.2822149,
+    "longitude": -76.5926928,
+    "status": "ok",
+    "source": "provided"
+  },
+  "912 washington blvd, baltimore, md, 21230": {
+    "latitude": 39.2831169,
+    "longitude": -76.6314892,
+    "status": "ok",
+    "source": "provided"
+  },
+  "912 washington blvd": {
+    "latitude": 39.2831169,
+    "longitude": -76.6314892,
+    "status": "ok",
+    "source": "provided"
+  },
+  "2239 kirk avenue, baltimore, md, 21218": {
+    "latitude": 39.3151509,
+    "longitude": -76.6049917,
+    "status": "ok",
+    "source": "provided"
+  },
+  "compound 2239 kirk avenue": {
+    "latitude": 39.3151509,
+    "longitude": -76.6049917,
+    "status": "ok",
+    "source": "provided"
+  },
+  "705 north hammonds ferry road, linthicum heights, md, 21090": {
+    "status": "failed_no_result"
+  },
+  "the olive grove": {
+    "status": "failed_no_result"
+  },
+  "705 north hammonds ferry road, linthicum heights, md, 21090, baltimore": {
+    "status": "failed_no_result"
+  },
+  "855 w 36th street, baltimore, md, 21211": {
+    "latitude": 39.3310202,
+    "longitude": -76.6308382,
+    "status": "ok",
+    "source": "provided"
+  },
+  "baltimore art gallery": {
+    "latitude": 39.3310202,
+    "longitude": -76.6308382,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1711 n charles st, baltimore, md, 21201": {
+    "latitude": 39.3093254,
+    "longitude": -76.6159938,
+    "status": "ok",
+    "source": "provided"
+  },
+  "the charles theater": {
+    "latitude": 39.3093254,
+    "longitude": -76.6159938,
+    "status": "ok",
+    "source": "provided"
+  },
+  "401 w fayette st, baltimore, md, 21201": {
+    "latitude": 39.290314,
+    "longitude": -76.6212,
+    "status": "ok",
+    "source": "provided"
+  },
+  "m&t bank exchange at the france-merrick performing arts center": {
+    "latitude": 39.290314,
+    "longitude": -76.6212,
+    "status": "ok",
+    "source": "provided"
+  },
+  "201 w. baltimore st., baltimore, md, 21201": {
+    "latitude": 39.2886044,
+    "longitude": -76.6187088,
+    "status": "ok",
+    "source": "provided"
+  },
+  "cfg bank arena": {
+    "latitude": 39.2886044,
+    "longitude": -76.6187088,
+    "status": "ok",
+    "source": "provided"
+  },
+  "601 e. pratt st., baltimore, md, 21202": {
+    "latitude": 39.2860594,
+    "longitude": -76.6071214,
+    "status": "ok",
+    "source": "provided"
+  },
+  "hard rock cafe": {
+    "latitude": 39.2860594,
+    "longitude": -76.6071214,
+    "status": "ok",
+    "source": "provided"
+  },
+  "801 n howard st, baltimore, md, 21201": {
+    "latitude": 39.2985435,
+    "longitude": -76.6198216,
+    "status": "ok",
+    "source": "provided"
+  },
+  "chickie and co boutique, 801 n howard st, baltimore md, 21201": {
+    "latitude": 39.2985435,
+    "longitude": -76.6198216,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1212 cathedral st, baltimore, md, 21201": {
+    "latitude": 39.303876,
+    "longitude": -76.6189886,
+    "status": "ok",
+    "source": "provided"
+  },
+  "meyerhoff symphony hall": {
+    "latitude": 39.303876,
+    "longitude": -76.6189886,
+    "status": "ok",
+    "source": "provided"
+  },
+  "529 e. belvedere ave., baltimore, md, 21212": {
+    "latitude": 39.3637847,
+    "longitude": -76.6084491,
+    "status": "ok",
+    "source": "provided"
+  },
+  "belvedere square": {
+    "latitude": 39.3637847,
+    "longitude": -76.6084491,
+    "status": "ok",
+    "source": "provided"
+  },
+  "800 key hwy., baltimore, md, 21230": {
+    "latitude": 39.2803985,
+    "longitude": -76.6068932,
+    "status": "ok",
+    "source": "provided"
+  },
+  "2549 n. howard st., baltimore, md, 21218": {
+    "latitude": 39.3188096,
+    "longitude": -76.619549,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1616 thames street, baltimore, md, 21231": {
+    "latitude": 39.28157,
+    "longitude": -76.5943617,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "400 east 33rd street, baltimore, md, 21218": {
+    "latitude": 39.3286369,
+    "longitude": -76.6106244,
+    "status": "ok",
+    "source": "provided"
+  },
+  "enoch pratt free library - waverly branch": {
+    "latitude": 39.3286369,
+    "longitude": -76.6106244,
+    "status": "ok",
+    "source": "provided"
+  },
+  "512 south broadway, baltimore, md, 21231": {
+    "latitude": 39.2850908,
+    "longitude": -76.5937447,
+    "status": "ok",
+    "source": "provided"
+  },
+  "300 east 29th street, baltimore, md 21218": {
+    "latitude": 39.3237231,
+    "longitude": -76.6121839,
+    "status": "ok",
+    "source": "provided"
+  },
+  "29th street community center": {
+    "latitude": 39.3237231,
+    "longitude": -76.6121839,
+    "status": "ok",
+    "source": "provided"
+  },
+  "737 s. broadway, baltimore, md, 21231": {
+    "latitude": 39.2826583,
+    "longitude": -76.5929627,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1104 w. 36th st., baltimore, md, 21211": {
+    "latitude": 39.3311994,
+    "longitude": -76.6341638,
+    "status": "ok",
+    "source": "provided"
+  },
+  "heartwares by art with a heart": {
+    "latitude": 39.3311994,
+    "longitude": -76.6341638,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1 e. mount vernon pl., baltimore, md, 21202": {
+    "latitude": 39.2970802,
+    "longitude": -76.6152278,
+    "status": "ok",
+    "source": "provided"
+  },
+  "peabody institute of the johns hopkins university": {
+    "latitude": 39.2970802,
+    "longitude": -76.6152278,
+    "status": "ok",
+    "source": "provided"
+  },
+  "326 north charles street, baltimore, md, 21201": {
+    "latitude": 39.2932699,
+    "longitude": -76.6155328,
+    "status": "ok",
+    "source": "provided"
+  },
+  "stem & vine": {
+    "latitude": 39.2932699,
+    "longitude": -76.6155328,
+    "status": "ok",
+    "source": "provided"
+  },
+  "100 church lane, cockeysville, md, 21202": {
+    "latitude": 39.463728,
+    "longitude": -76.6409199,
+    "status": "ok",
+    "source": "provided"
+  },
+  "st. joseph's parish": {
+    "latitude": 39.463728,
+    "longitude": -76.6409199,
+    "status": "ok",
+    "source": "provided"
+  },
+  "100 church lane, cockeysville, md, 21202, baltimore": {
+    "latitude": 39.463728,
+    "longitude": -76.6409199,
+    "status": "ok",
+    "source": "provided"
+  },
+  "401 light street, baltimore, md, 21202": {
+    "latitude": 39.2846453,
+    "longitude": -76.6129596,
+    "status": "ok",
+    "source": "provided"
+  },
+  "west shore park & inner harbor promenade": {
+    "latitude": 39.2846453,
+    "longitude": -76.6129596,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1715 thames st., baltimore, md, 21231": {
+    "latitude": 39.2811103,
+    "longitude": -76.5919083,
+    "status": "ok",
+    "source": "provided"
+  },
+  "pendry baltimore": {
+    "latitude": 39.2811103,
+    "longitude": -76.5919083,
+    "status": "ok",
+    "source": "provided"
+  },
+  "library": {
+    "status": "skipped_low_quality"
+  },
+  "400 e. 31st st": {
+    "latitude": 39.3262963,
+    "longitude": -76.6108084,
+    "status": "ok",
+    "source": "provided"
+  },
+  "st. moses church": {
+    "latitude": 39.3262963,
+    "longitude": -76.6108084,
+    "status": "ok",
+    "source": "provided"
+  },
+  "400 e. 31st st, baltimore": {
+    "latitude": 39.3262963,
+    "longitude": -76.6108084,
+    "status": "ok",
+    "source": "provided"
+  },
+  "bridgeway community church columbia campus": {
+    "status": "failed_no_result"
+  },
+  "bridgeway community church columbia campus, baltimore": {
+    "status": "failed_no_result"
+  },
+  "1500 druid hill ave": {
+    "latitude": 39.3035728,
+    "longitude": -76.6307992,
+    "status": "ok",
+    "source": "provided"
+  },
+  "the garden church": {
+    "latitude": 39.3035728,
+    "longitude": -76.6307992,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1500 druid hill ave, baltimore": {
+    "latitude": 39.3035728,
+    "longitude": -76.6307992,
+    "status": "ok",
+    "source": "provided"
+  },
+  "first presbyterian church of howard county": {
+    "status": "failed_no_result"
+  },
+  "first presbyterian church of howard county, columbia, baltimore": {
+    "status": "failed_no_result"
+  },
+  "11301 red run blvd": {
+    "latitude": 39.426294,
+    "longitude": -76.809735,
+    "status": "ok",
+    "source": "provided"
+  },
+  "bridgeway community church owings mills / reisterstown campus": {
+    "latitude": 39.426294,
+    "longitude": -76.809735,
+    "status": "ok",
+    "source": "provided"
+  },
+  "11301 red run blvd, owings mills, baltimore": {
+    "latitude": 39.426294,
+    "longitude": -76.809735,
+    "status": "ok",
+    "source": "provided"
+  },
+  "unallocated space, 1029 benfield blvd, millersville, md 21108, usa": {
+    "status": "failed_no_result"
+  },
+  "unallocated space, 1029 benfield blvd, millersville, md 21108, usa, baltimore": {
+    "status": "failed_no_result"
+  },
+  "2929 arch st suite 250, philadelphia, pa 19104, usa, pennsylvania, baltimore": {
+    "latitude": 39.956945,
+    "longitude": -75.1807481,
+    "status": "ok",
+    "source": "provided"
+  },
+  "5100 edmondson ave": {
+    "latitude": 39.291686,
+    "longitude": -76.7054384,
+    "status": "ok",
+    "source": "provided"
+  },
+  "hasbuna allahu islamic & community center": {
+    "latitude": 39.291686,
+    "longitude": -76.7054384,
+    "status": "ok",
+    "source": "provided"
+  },
+  "5100 edmondson ave, baltimore": {
+    "latitude": 39.291686,
+    "longitude": -76.7054384,
+    "status": "ok",
+    "source": "provided"
+  },
+  "2601 n howard st, baltimore, maryland": {
+    "latitude": 39.3195185,
+    "longitude": -76.6192611,
+    "status": "ok",
+    "source": "provided"
+  },
+  "2601 n howard st": {
+    "latitude": 39.3195185,
+    "longitude": -76.6192611,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1421 ridgely street, baltimore, md 21230": {
+    "latitude": 39.275747,
+    "longitude": -76.626918,
+    "status": "ok",
+    "source": "provided"
+  },
+  "checkerspot brewing company": {
+    "latitude": 39.275747,
+    "longitude": -76.626918,
+    "status": "ok",
+    "source": "provided"
+  },
+  "101 n haven st, baltimore, md 21224": {
+    "latitude": 39.294276,
+    "longitude": -76.56247400000001,
+    "status": "ok",
+    "source": "provided"
+  },
+  "baltimore underground science space (bugss)": {
+    "latitude": 39.294276,
+    "longitude": -76.56247400000001,
+    "status": "ok",
+    "source": "provided"
+  },
+  "101 n haven st suite 105, baltimore, md 21224": {
+    "latitude": 39.2941023,
+    "longitude": -76.56235900000001,
+    "status": "ok",
+    "source": "provided"
+  },
+  "baltimore under ground science space (bugss)": {
+    "latitude": 39.2941023,
+    "longitude": -76.56235900000001,
+    "status": "ok",
+    "source": "provided"
+  },
+  "7200 graces quarters road, middle river, md 21220": {
+    "latitude": 39.36093580000001,
+    "longitude": -76.3462699,
+    "status": "ok",
+    "source": "provided"
+  },
+  "gunpowder falls state park hammerman area": {
+    "latitude": 39.36093580000001,
+    "longitude": -76.3462699,
+    "status": "ok",
+    "source": "provided"
+  },
+  "101 north haven street suite #105, baltimore, md 21224": {
+    "latitude": 39.2942155,
+    "longitude": -76.56245590000003,
+    "status": "ok",
+    "source": "provided"
+  },
+  "baltimore under ground science space": {
+    "latitude": 39.2942155,
+    "longitude": -76.56245590000003,
+    "status": "ok",
+    "source": "provided"
+  },
+  "10 east north avenue, baltimore, md 21202": {
+    "latitude": 39.31137469999999,
+    "longitude": -76.6156719,
+    "status": "ok",
+    "source": "provided"
+  },
+  "impact hub baltimore": {
+    "latitude": 39.31137469999999,
+    "longitude": -76.6156719,
+    "status": "ok",
+    "source": "provided"
+  },
+  "10 east north avenue #suite 5, baltimore, md 21202": {
+    "latitude": 39.31170789999999,
+    "longitude": -76.61557169999999,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1611 guilford avenue, baltimore, md 21202": {
+    "latitude": 39.3083025,
+    "longitude": -76.6120638,
+    "status": "ok",
+    "source": "provided"
+  },
+  "9755 patuxent woods drive, columbia, md 21046": {
+    "latitude": 39.1760785,
+    "longitude": -76.8514898,
+    "status": "ok",
+    "source": "provided"
+  },
+  "9755 patuxent woods dr": {
+    "latitude": 39.1760785,
+    "longitude": -76.8514898,
+    "status": "ok",
+    "source": "provided"
+  },
+  "6751 columbia gateway drive, columbia, md 21046": {
+    "latitude": 39.1842437,
+    "longitude": -76.8015413,
+    "status": "ok",
+    "source": "provided"
+  },
+  "maryland innovation center": {
+    "latitude": 39.1842437,
+    "longitude": -76.8015413,
+    "status": "ok",
+    "source": "provided"
+  },
+  "701 east pratt street, baltimore, md 21202": {
+    "latitude": 39.2861003,
+    "longitude": -76.6057083,
+    "status": "ok",
+    "source": "provided"
+  },
+  "institute of marine and environmental technology (imet)": {
+    "latitude": 39.2861003,
+    "longitude": -76.6057083,
+    "status": "ok",
+    "source": "provided"
+  },
+  "21 west mount royal avenue, baltimore, md 21201": {
+    "latitude": 39.3051699,
+    "longitude": -76.61716609999999,
+    "status": "ok",
+    "source": "provided"
+  },
+  "21 w mt royal ave": {
+    "latitude": 39.3051699,
+    "longitude": -76.61716609999999,
+    "status": "ok",
+    "source": "provided"
+  },
+  "3400 n charles st, baltimore, md 21218": {
+    "latitude": 39.32811770000001,
+    "longitude": -76.62166739999999,
+    "status": "ok",
+    "source": "provided"
+  },
+  "mergenthaler hall rm 111": {
+    "latitude": 39.32811770000001,
+    "longitude": -76.62166739999999,
+    "status": "ok",
+    "source": "provided"
+  },
+  "9755 patuxent woods drive, columbia, md 21046, baltimore": {
+    "latitude": 39.1760785,
+    "longitude": -76.8514898,
+    "status": "ok",
+    "source": "provided"
+  },
+  ", havre de grace md 21078": {
+    "latitude": 39.5431267,
+    "longitude": -76.0966783,
+    "status": "ok",
+    "source": "provided"
+  },
+  ", havre de grace md 21078, baltimore": {
+    "latitude": 39.5431267,
+    "longitude": -76.0966783,
+    "status": "ok",
+    "source": "provided"
+  },
+  "25 church st, prince frederick md 20678": {
+    "status": "failed_no_result"
+  },
+  "25 church st": {
+    "status": "failed_no_result"
+  },
+  "25 church st, prince frederick md 20678, baltimore": {
+    "status": "failed_no_result"
+  },
+  "122 s division st, salisbury md 21801": {
+    "status": "failed_no_result"
+  },
+  "122 s division st": {
+    "status": "failed_no_result"
+  },
+  "122 s division st, salisbury md 21801, baltimore": {
+    "status": "failed_no_result"
+  },
+  "34 market place baltimore, md, 21202 united states": {
+    "latitude": 39.2895897,
+    "longitude": -76.6072583,
+    "status": "ok",
+    "source": "provided"
+  },
+  "power plant live!": {
+    "latitude": 39.2895897,
+    "longitude": -76.6072583,
+    "status": "ok",
+    "source": "provided"
+  },
+  "6751 columbia gateway drive, columbia, md 21046, baltimore": {
+    "latitude": 39.1842437,
+    "longitude": -76.8015413,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1738 thames street baltimore, md, 21231 united states": {
+    "latitude": 39.2820998,
+    "longitude": -76.5913462,
+    "status": "ok",
+    "source": "provided"
+  },
+  "the point in fells": {
+    "latitude": 39.2820998,
+    "longitude": -76.5913462,
+    "status": "ok",
+    "source": "provided"
+  },
+  "124 market place baltimore, md, 21202 united states": {
+    "latitude": 39.2875658,
+    "longitude": -76.6074329,
+    "status": "ok",
+    "source": "provided"
+  },
+  "power plant live": {
+    "latitude": 39.2895897,
+    "longitude": -76.6072583,
+    "status": "ok",
+    "source": "provided"
+  },
+  "35 market place baltimore, md, 21202 united states": {
+    "latitude": 39.2890365,
+    "longitude": -76.6062838,
+    "status": "ok",
+    "source": "provided"
+  },
+  "port discovery": {
+    "latitude": 39.2890365,
+    "longitude": -76.6062838,
+    "status": "ok",
+    "source": "provided"
+  },
+  "201 west baltimore street, baltimore, md, united states": {
+    "latitude": 39.2886044,
+    "longitude": -76.6187088,
+    "status": "ok",
+    "source": "provided"
+  },
+  "fearless club inside cfg bank arena": {
+    "latitude": 39.2886044,
+    "longitude": -76.6187088,
+    "status": "ok",
+    "source": "provided"
+  },
+  "601 light st. baltimore, md, 21202 united states": {
+    "latitude": 39.2815216,
+    "longitude": -76.6121715,
+    "status": "ok",
+    "source": "provided"
+  },
+  "7200 graces quarters road, middle river, md 21220, baltimore": {
+    "latitude": 39.36093580000001,
+    "longitude": -76.3462699,
+    "status": "ok",
+    "source": "provided"
+  },
+  "3011 montebello terrace, baltimore, md 21214": {
+    "latitude": 39.3391694,
+    "longitude": -76.5721458,
+    "status": "ok",
+    "source": "provided"
+  },
+  "3011 montebello terrace": {
+    "latitude": 39.3391694,
+    "longitude": -76.5721458,
+    "status": "ok",
+    "source": "provided"
+  },
+  "the garden rooftop, 411 n paca st, baltimore, md 21201, usa": {
+    "latitude": 39.2943794,
+    "longitude": -76.62220479999999,
+    "status": "ok",
+    "source": "provided"
+  },
+  "the garden rooftop": {
+    "latitude": 39.2943794,
+    "longitude": -76.62220479999999,
+    "status": "ok",
+    "source": "provided"
+  },
+  "20 south charles street baltimore, md, 21201 united states": {
+    "latitude": 39.2885043,
+    "longitude": -76.6156071,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "downtown partnership of baltimore": {
+    "latitude": 39.2885043,
+    "longitude": -76.6156071,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "647 contees wharf rd, edgewater, md 21037": {
+    "status": "failed_no_result"
+  },
+  "647 contees wharf rd, edgewater, md 21037, baltimore": {
+    "status": "failed_no_result"
+  },
+  "md": {
+    "status": "skipped_low_quality"
+  },
+  "washington blvd & inverness ave, 2938 washington blvd, baltimore, maryland, 21230": {
+    "status": "failed_no_result"
+  },
+  "washington blvd & gabel ave, washington blvd & gabel ave, baltimore, maryland, 21230": {
+    "status": "failed_no_result"
+  },
+  "rising stars room": {
+    "status": "failed_no_result"
+  },
+  "rising stars room, baltimore": {
+    "status": "failed_no_result"
+  },
+  "classrooms": {
+    "latitude": 39.2818694,
+    "longitude": -76.5977532,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "classrooms, baltimore": {
+    "latitude": 39.2818694,
+    "longitude": -76.5977532,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "public service commission of the district of columbia, 1325 g st nw #800, washington, dc 20005, usa": {
+    "status": "failed_no_result"
+  },
+  "public service commission of the district of columbia, 1325 g st nw #800, washington, dc 20005, usa, baltimore": {
+    "status": "failed_no_result"
+  },
+  "wisp resort, 290 marsh hill rd, mchenry, md, 21541, united states": {
+    "status": "failed_no_result"
+  },
+  "wisp resort, 290 marsh hill rd, mchenry, md, 21541, united states, baltimore": {
+    "status": "failed_no_result"
+  },
+  "the garden rooftop, 411 n paca st, baltimore, md 21201, usa, maryland": {
+    "latitude": 39.2943794,
+    "longitude": -76.62220479999999,
+    "status": "ok",
+    "source": "provided"
+  },
+  "historic oak manor, 5430 vantage point rd, columbia, maryland, united states": {
+    "status": "failed_no_result"
+  },
+  "historic oak manor, 5430 vantage point rd, columbia, maryland, united states, baltimore": {
+    "status": "failed_no_result"
+  },
+  "performing arts center at garrett college, 687 mosser rd, mchenry, md, 21541, united states": {
+    "status": "failed_no_result"
+  },
+  "performing arts center at garrett college, 687 mosser rd, mchenry, md, 21541, united states, baltimore": {
+    "status": "failed_no_result"
   }
 }

@@ -1,62 +1,450 @@
 {
   "1818 h st nw, washington, district of columbia": {
     "latitude": 38.8991385,
-    "longitude": -77.0425026
+    "longitude": -77.0425026,
+    "status": "ok"
   },
   "2112 pennsylvania ave nw, washington, district of columbia": {
     "latitude": 38.9014628,
-    "longitude": -77.0480082
+    "longitude": -77.0480082,
+    "status": "ok",
+    "source": "provided"
   },
   "1066 31st st nw, washington, dc 20007, usa": {
     "latitude": 38.9046332,
-    "longitude": -77.06141939999999
+    "longitude": -77.06141939999999,
+    "status": "ok"
   },
   "king electric bikes, 502 23rd st nw, washington, dc 20037, usa": {
     "latitude": 38.896483,
-    "longitude": -77.050502
+    "longitude": -77.050502,
+    "status": "ok"
   },
   "oakland museum of california, 1000 oak st, oakland, ca 94607, usa": {
     "latitude": 37.7987496,
-    "longitude": -122.2633654
+    "longitude": -122.2633654,
+    "status": "ok"
   },
   "oasis coffee dc, 1545 new jersey ave nw, washington, dc 20001, usa": {
     "latitude": 38.910933799999995,
-    "longitude": -77.01639689999999
+    "longitude": -77.01639689999999,
+    "status": "ok"
   },
   "627 h st nw, washington, dc 20001, usa": {
     "latitude": 38.899998,
-    "longitude": -77.0212009
+    "longitude": -77.0212009,
+    "status": "ok"
   },
   "halcyon, 3400 prospect st nw, washington, dc 20007, usa": {
     "latitude": 38.9057748,
-    "longitude": -77.0681299
+    "longitude": -77.0681299,
+    "status": "ok"
   },
   "kata dc, 600 f st nw, washington, dc 20004, usa": {
     "latitude": 38.8971005,
-    "longitude": -77.0200748
+    "longitude": -77.0200748,
+    "status": "ok"
   },
   "upside on moore, 1700 n moore st level m2, arlington, va 22209, usa": {
     "latitude": 38.895173899999996,
-    "longitude": -77.0716837
+    "longitude": -77.0716837,
+    "status": "ok"
   },
   "creative grounds dc, 1822 north capitol st nw, washington, dc 20002, usa": {
     "latitude": 38.914718799999996,
-    "longitude": -77.00931460000001
+    "longitude": -77.00931460000001,
+    "status": "ok"
   },
   "the gathering spot dc, 1720 i st nw, washington, dc 20006, usa": {
     "latitude": 38.901018199999996,
-    "longitude": -77.0404573
+    "longitude": -77.0404573,
+    "status": "ok"
   },
   "aws skills center arlington, 1550-g crystal dr, arlington, va 22202, usa": {
     "latitude": 38.8587925,
-    "longitude": -77.04966189999999
+    "longitude": -77.04966189999999,
+    "status": "ok"
   },
   "2112 pennsylvania ave nw, washington, dc 20037, usa": {
     "latitude": 38.9014337,
-    "longitude": -77.04790109999999
+    "longitude": -77.04790109999999,
+    "status": "ok"
   },
   "mission - navy yard, 1221 van st se, washington, dc 20003, usa": {
     "latitude": 38.8747872,
-    "longitude": -77.00838139999999
+    "longitude": -77.00838139999999,
+    "status": "ok"
+  },
+  "carpool, 900 n glebe rd, arlington, va 22203, usa": {
+    "latitude": 38.8807422,
+    "longitude": -77.1155349,
+    "status": "ok",
+    "source": "provided"
+  },
+  "carpool": {
+    "latitude": 38.8807422,
+    "longitude": -77.1155349,
+    "status": "ok",
+    "source": "provided"
+  },
+  "pubkey, 410 7th st nw, washington, dc 20004, usa": {
+    "latitude": 38.895190899999996,
+    "longitude": -77.02223359999999,
+    "status": "ok",
+    "source": "provided"
+  },
+  "pubkey": {
+    "latitude": 38.895190899999996,
+    "longitude": -77.02223359999999,
+    "status": "ok",
+    "source": "provided"
+  },
+  "washington, dc": {
+    "latitude": 38.8950982,
+    "longitude": -77.0363849,
+    "status": "ok",
+    "source": "provided"
+  },
+  "dc water": {
+    "latitude": 38.8950982,
+    "longitude": -77.0363849,
+    "status": "ok",
+    "source": "provided"
+  },
+  "station dc, 1323 4th st ne suite 200, washington, dc 20002, usa": {
+    "status": "failed_no_result"
+  },
+  "station dc": {
+    "status": "failed_no_result"
+  },
+  "online event": {
+    "status": "skipped_low_quality"
+  },
+  "register to see address": {
+    "latitude": 38.8950982,
+    "longitude": -77.0363849,
+    "status": "ok",
+    "source": "provided"
+  },
+  "kennedy's irish pub, freisch\u00fctzgasse 14, 8004 z\u00fcrich, switzerland": {
+    "status": "failed_no_result"
+  },
+  "kennedy's irish pub": {
+    "status": "failed_no_result"
+  },
+  "martin luther king jr. memorial library, 901 g st nw, washington, dc 20001, usa": {
+    "latitude": 38.8986914,
+    "longitude": -77.0247662,
+    "status": "ok",
+    "source": "provided"
+  },
+  "martin luther king jr. memorial library": {
+    "latitude": 38.8986914,
+    "longitude": -77.0247662,
+    "status": "ok",
+    "source": "provided"
+  },
+  "carpool, 900 n glebe rd, arlington, va 22203, usa, virginia": {
+    "latitude": 38.8807422,
+    "longitude": -77.1155349,
+    "status": "ok",
+    "source": "provided"
+  },
+  "washington, district of columbia": {
+    "latitude": 38.8950982,
+    "longitude": -77.0363849,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1800 marion barry ave. se": {
+    "latitude": 38.8656198,
+    "longitude": -76.9792207,
+    "status": "ok",
+    "source": "provided"
+  },
+  "525 14th st s": {
+    "latitude": 38.8616449,
+    "longitude": -77.0545339,
+    "status": "ok",
+    "source": "provided"
+  },
+  "was19 - amazon jasper": {
+    "latitude": 38.8616449,
+    "longitude": -77.0545339,
+    "status": "ok",
+    "source": "provided"
+  },
+  "525 14th st s, arlington": {
+    "latitude": 38.8616449,
+    "longitude": -77.0545339,
+    "status": "ok",
+    "source": "provided"
+  },
+  "11955 freedom drive, reston; 2nd floor": {
+    "status": "failed_no_result"
+  },
+  "microsoft reston garage": {
+    "status": "failed_no_result"
+  },
+  "el segundo, california": {
+    "latitude": 38.8950982,
+    "longitude": -77.0363849,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1221 connecticut ave nw": {
+    "latitude": 38.906617,
+    "longitude": -77.0411955,
+    "status": "ok",
+    "source": "provided"
+  },
+  "lucky bar": {
+    "latitude": 38.906617,
+    "longitude": -77.0411955,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1221 connecticut ave nw, washington": {
+    "latitude": 38.906617,
+    "longitude": -77.0411955,
+    "status": "ok",
+    "source": "provided"
+  },
+  "woodley park-zoo/adams morgan, washington, district of columbia": {
+    "latitude": 38.9250248,
+    "longitude": -77.0523627,
+    "status": "ok",
+    "source": "provided"
+  },
+  "woodley park-zoo/adams morgan": {
+    "latitude": 38.9250248,
+    "longitude": -77.0523627,
+    "status": "ok",
+    "source": "provided"
+  },
+  "dupont circle": {
+    "latitude": 38.9124233,
+    "longitude": -77.0412512,
+    "status": "ok",
+    "source": "provided"
+  },
+  "dupont circle, washington": {
+    "latitude": 38.9124233,
+    "longitude": -77.0412512,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1337 connecticut avenue northwest": {
+    "latitude": 38.9082613,
+    "longitude": -77.0423275,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "the gryphon": {
+    "latitude": 38.9082613,
+    "longitude": -77.0423275,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "1337 connecticut avenue northwest, washington": {
+    "latitude": 38.9082613,
+    "longitude": -77.0423275,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "2301 l st nw": {
+    "latitude": 38.9039046,
+    "longitude": -77.0509621,
+    "status": "ok",
+    "source": "provided"
+  },
+  "west end neighborhood library": {
+    "latitude": 38.9039046,
+    "longitude": -77.0509621,
+    "status": "ok",
+    "source": "provided"
+  },
+  "2301 l st nw, washington": {
+    "latitude": 38.9039046,
+    "longitude": -77.0509621,
+    "status": "ok",
+    "source": "provided"
+  },
+  "arlington, virginia": {
+    "latitude": 38.8950982,
+    "longitude": -77.0363849,
+    "status": "ok",
+    "source": "provided"
+  },
+  "2112 pennsylvania ave nw": {
+    "latitude": 38.9014628,
+    "longitude": -77.0480082,
+    "status": "ok",
+    "source": "provided"
+  },
+  "greentown labs, 444 somerville ave, somerville, ma 02143, usa": {
+    "status": "failed_no_result"
+  },
+  "greentown labs": {
+    "status": "failed_no_result"
+  },
+  "1340 u st nw": {
+    "latitude": 38.9168268,
+    "longitude": -77.0311753,
+    "status": "ok",
+    "source": "provided"
+  },
+  "sudhouse dc": {
+    "latitude": 38.9168268,
+    "longitude": -77.0311753,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1340 u st nw, washington": {
+    "latitude": 38.9168268,
+    "longitude": -77.0311753,
+    "status": "ok",
+    "source": "provided"
+  },
+  "walter e. washington convention center, washington, district of columbia": {
+    "latitude": 38.9051269,
+    "longitude": -77.0229544,
+    "status": "ok",
+    "source": "provided"
+  },
+  "walter e. washington convention center": {
+    "latitude": 38.9051269,
+    "longitude": -77.0229544,
+    "status": "ok",
+    "source": "provided"
+  },
+  "basecamp coffee roasters, tysons, virginia": {
+    "status": "failed_no_result"
+  },
+  "basecamp coffee roasters": {
+    "status": "failed_no_result"
+  },
+  "4766 bethesda ave": {
+    "latitude": 38.9805292,
+    "longitude": -77.0957952,
+    "status": "ok",
+    "source": "provided"
+  },
+  "chopt creative salad co.": {
+    "latitude": 38.9805292,
+    "longitude": -77.0957952,
+    "status": "ok",
+    "source": "provided"
+  },
+  "virtru, washington, district of columbia": {
+    "status": "failed_no_result"
+  },
+  "virtru": {
+    "status": "failed_no_result"
+  },
+  "agrodolce london, london, england, united kingdom": {
+    "latitude": 51.5198742,
+    "longitude": -0.1365186,
+    "status": "ok",
+    "source": "provided"
+  },
+  "agrodolce london": {
+    "latitude": 51.5198742,
+    "longitude": -0.1365186,
+    "status": "ok",
+    "source": "provided"
+  },
+  "pubkey, 410 7th st nw, washington, dc 20004, usa, district of columbia": {
+    "latitude": 38.895190899999996,
+    "longitude": -77.02223359999999,
+    "status": "ok",
+    "source": "provided"
+  },
+  "taoti creative, washington, district of columbia": {
+    "status": "failed_no_result"
+  },
+  "taoti creative": {
+    "status": "failed_no_result"
+  },
+  "manhattan, new york, new york": {
+    "latitude": 40.7579554,
+    "longitude": -73.9855319,
+    "status": "ok",
+    "source": "provided"
+  },
+  "manhattan": {
+    "latitude": 40.7579554,
+    "longitude": -73.9855319,
+    "status": "ok",
+    "source": "provided"
+  },
+  "virtual": {
+    "status": "skipped_low_quality"
+  },
+  "hybrid": {
+    "status": "skipped_low_quality"
+  },
+  "new york, new york": {
+    "latitude": 38.8950982,
+    "longitude": -77.0363849,
+    "status": "ok",
+    "source": "provided"
+  },
+  "online": {
+    "status": "skipped_low_quality"
+  },
+  "refer eventbrite ticket link": {
+    "status": "failed_no_result"
+  },
+  "refer eventbrite ticket link, washington": {
+    "status": "failed_no_result"
+  },
+  "50 m st se, washington, dc 20003": {
+    "latitude": 38.8767488,
+    "longitude": -77.0070457,
+    "status": "ok",
+    "source": "provided"
+  },
+  "homewood suites hotel rooftop bar - navy yard": {
+    "latitude": 38.8767488,
+    "longitude": -77.0070457,
+    "status": "ok",
+    "source": "provided"
+  },
+  "50 m st se, washington, dc 20003, washington dc": {
+    "latitude": 38.8767488,
+    "longitude": -77.0070457,
+    "status": "ok",
+    "source": "provided"
+  },
+  "dupont circle, washington, dc 20036, usa": {
+    "latitude": 38.9124233,
+    "longitude": -77.0412512,
+    "status": "ok",
+    "source": "provided"
+  },
+  "the people's garden d.c., washington, district of columbia": {
+    "status": "failed_no_result"
+  },
+  "the people's garden d.c.": {
+    "status": "failed_no_result"
+  },
+  "teaism penn quarter, washington, district of columbia": {
+    "latitude": 38.8949554,
+    "longitude": -77.0231696,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "teaism penn quarter": {
+    "latitude": 38.8949554,
+    "longitude": -77.0231696,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "manhattan, new york, ny, usa": {
+    "latitude": 40.7579554,
+    "longitude": -73.9855319,
+    "status": "ok",
+    "source": "provided"
   }
 }

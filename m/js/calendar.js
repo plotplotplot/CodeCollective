@@ -151,8 +151,8 @@
   function processEvents(events) {
     return (events || []).map((e) => ({
       title: e.name,
-      start: toDateSafe(e.startDate)?.toISOString() || '',
-      end: toDateSafe(e.endTime)?.toISOString(),
+      start: e.startDate || '',
+      end: e.endTime || '',
       description: e.description || '',
       location: e.location,
       url: e.url || '',

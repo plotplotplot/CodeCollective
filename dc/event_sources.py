@@ -1,3 +1,5 @@
+from city_source_taxonomy import apply_city_source_taxonomy
+
 sources = [
     {"url": "https://www.meetup.com/dc-area-drone-user-group/", "tags": ["Tech Skills", "Robotics"]},
     {"url": "https://www.meetup.com/ai-performance-engineering-washington-dc/", "tags": ["Tech Skills", "AI", "Cloud & Platform"]},
@@ -23,6 +25,7 @@ sources = [
     {"url": "https://www.eventbrite.com/e/power-shift-a-der-showcase-tickets-1976198206032", "tags": ["Infrastructure"]},
     {"url": "https://www.eventbrite.com/e/healthy-homes-fair-2026-tickets-1975247546584", "tags": ["Infrastructure"]},
     {"url": "https://www.eventbrite.com/e/want-a-healthier-more-efficient-home-get-coached-tickets-1975244953829", "tags": ["Infrastructure"]},
+    {"url": "https://luma.com/climatedraft-community", "group_name": "Climate Draft Community", "orgImageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,width=100,height=100/calendar-covers/0d/0dd0b2e6-0e34-4e4a-ac8a-3ee5ca69efea", "tags": ["Infrastructure", "Community Organizing", "Climate"]},
     {"url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-Kwz0Nj6rc80jQ3D", "group_name": "DC Climate Week", "orgImageUrl": "https://images.lumacdn.com/avatars/ln/f11ce87e-b740-4c3a-9cac-b7398062aa10.png", "tags": ["Infrastructure", "Community Organizing"]},
     {"url": "https://lu.ma/civic-tech-dc", "tags": ["Civic Tech", "Tech Community", "Politics"]},
     {"url": "https://luma.com/FounderSpeakeasy", "tags": ["Business", "Startup"]},
@@ -59,3 +62,4 @@ sources = [
 
 ]
 
+apply_city_source_taxonomy(sources)

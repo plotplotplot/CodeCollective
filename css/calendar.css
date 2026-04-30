@@ -37,6 +37,79 @@
     outline-offset: 2px;
 }
 
+.calendar-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 10px auto 18px;
+    max-width: 720px;
+    flex-wrap: wrap;
+}
+
+.calendar-search label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.calendar-search input {
+    width: min(560px, 92vw);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    padding: 0.48rem 0.8rem;
+    font-size: 1rem;
+}
+
+.calendar-search input::placeholder {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.calendar-search input:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.timezone-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 8px auto 18px;
+    max-width: 720px;
+    flex-wrap: wrap;
+}
+
+.timezone-controls label,
+.timezone-controls span {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.timezone-controls select {
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    padding: 0.4rem 0.75rem;
+    font-size: 1rem;
+    min-width: 250px;
+}
+
+.timezone-controls select:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.timezone-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
 #calendar {
     height: 'auto'
 
@@ -1740,6 +1813,12 @@ h1 {
     margin-bottom: 12px;
 }
 
+.event-hover-location {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    margin-bottom: 14px;
+}
+
 .event-hover-source-icon-wrap {
     width: 34px;
     height: 34px;
@@ -1917,6 +1996,31 @@ h1 {
 
 .event-info-modal-actions {
     margin-top: 20px;
+}
+
+.event-agenda {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.event-agenda h4 {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+}
+
+.event-agenda ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.event-agenda li {
+    margin: 0 0 8px;
+}
+
+.event-agenda-hosts {
+    opacity: 0.82;
+    font-size: 0.88rem;
 }
 
 .event-info-modal-link {

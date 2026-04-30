@@ -11,9 +11,11 @@ import scrape_luma_calendar
 import scrape_luma_user
 import scrape_mtc
 import scrape_gdg
+import scrape_partiful
 import json
 import datetime
 import pytz
+import os
 from bs4 import BeautifulSoup
 import re
 import scrape_eventbrite_org
@@ -24,23 +26,39 @@ import importlib
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import traceback
 import genSimpleCalendar
+from calendar_sources import collect_source_events, write_unmatched_sources
+from calendar_normalize import (
+    normalize_event_start_dates,
+    download_event_images,
+    split_upcoming_events,
+)
+from calendar_dedupe import merge_and_dedupe_events
+from calendar_output import persist_calendar_outputs
 from events_map_generator import generate_events_map_page
+from geocode_upcoming import geocode_upcoming_events
 from geocode_cache import (
     load_geocode_cache,
     save_geocode_cache,
     apply_geocode_cache,
-    normalize_address,
-    is_low_quality_location,
-    build_location_cache_keys,
-    cache_entry_has_coordinates,
 )
-from geopy.geocoders import Nominatim
-from geopy.extra.rate_limiter import RateLimiter
 import unicodedata
 from urllib.parse import parse_qs, urlparse
+from city_determinant import determine_event_city
 
 # Define the timezone for EST
 est_timezone = pytz.timezone("America/New_York")
+utc_timezone = datetime.timezone.utc
+
+CITY_DEFAULT_TIMEZONES = {
+    "baltimore": "America/New_York",
+    "dc": "America/New_York",
+    "pittsburgh": "America/New_York",
+    "philadelphia": "America/New_York",
+    "westvirginia": "America/New_York",
+    "virtual": "UTC",
+    "hawaii": "Pacific/Honolulu",
+    "multicity": "UTC",
+}
 
 SOURCE_KIND_CONCURRENCY = {
     "meetup": 1,
@@ -50,11 +68,24 @@ SOURCE_KIND_CONCURRENCY = {
     "luma_calendar": 2,
     "luma_user": 2,
     "luma_event": 3,
+    "partiful": 3,
     "jotform": 3,
     "google_form": 3,
     "gdg": 3,
     "unknown": 2,
 }
+
+CALENDAR_CITIES = [
+    "baltimore",
+    "westvirginia",
+    "hawaii",
+    "dc",
+    "pittsburgh",
+    "philadelphia",
+    "virtual",
+]
+MULTICITY_BUCKET = "multicity"
+_MULTICITY_SOURCE_CACHE = None
 
 
 def merge_tags(*tag_lists):
@@ -144,6 +175,9 @@ def infer_source_kind(source_url):
     if "jotform.com" in host:
         return "jotform"
 
+    if host == "partiful.com" and path.startswith("/e/"):
+        return "partiful"
+
     if (host == "forms.gle") or (host == "docs.google.com" and "/forms/" in path):
         return "google_form"
 
@@ -151,7 +185,7 @@ def infer_source_kind(source_url):
         return "luma_user"
 
     if host in {"lu.ma", "luma.com"}:
-        if path.startswith("/calendar/"):
+        if path.startswith("/calendar/") or (path and not path.startswith("/")):
             return "luma_calendar"
         if path.startswith("/user/"):
             return "luma_org"
@@ -201,7 +235,10 @@ def apply_source_metadata(events, source):
     normalized_events = coerce_events(events)
     source_url = source.get("url", "")
     source_tags = source.get("tags", [])
-    source_group = source.get("group_name", "")
+    source_group = str(source.get("group_name") or source.get("name") or "").strip()
+    if not source_group and source_url:
+        parsed = urlparse(source_url)
+        source_group = parsed.netloc.replace("www.", "").strip()
     org_image_url = source.get("orgImageUrl") or source.get("org_image_url") or source.get("image_url") or ""
 
     for event in normalized_events:
@@ -211,10 +248,56 @@ def apply_source_metadata(events, source):
             event["source_url"] = source_url
         if source_group:
             event.setdefault("source_group", source_group)
+            # Canonical org display name for downstream consumers.
+            event.setdefault("org_name", source_group)
+            event.setdefault("orgName", source_group)
         if org_image_url:
             event.setdefault("orgImageUrl", org_image_url)
 
     return normalized_events
+
+
+def ensure_org_name_fields(events):
+    for event in events or []:
+        if not isinstance(event, dict):
+            continue
+        candidate = (
+            str(event.get("org_name") or event.get("orgName") or event.get("source_group") or event.get("group_name") or "").strip()
+        )
+        if not candidate:
+            source_url = str(event.get("source") or event.get("source_url") or "").strip()
+            if source_url:
+                parsed = urlparse(source_url)
+                candidate = parsed.netloc.replace("www.", "").strip()
+        if candidate:
+            event["org_name"] = candidate
+            event["orgName"] = candidate
+
+
+def canonicalize_event_branding(events):
+    for event in events or []:
+        if not isinstance(event, dict):
+            continue
+        name = normalize_event_text(event.get("name", ""))
+        source_group = normalize_event_text(event.get("source_group", ""))
+        org_name = normalize_event_text(event.get("orgName") or event.get("org_name") or "")
+        tags = [normalize_event_text(tag) for tag in (event.get("tags") or [])]
+
+        is_code_collective_named = "code collective" in name
+        is_code_collective_tagged = any("code collective" in tag for tag in tags)
+        is_code_collective_sourced = "code collective" in source_group or "code collective" in org_name
+
+        if not (is_code_collective_named or is_code_collective_tagged or is_code_collective_sourced):
+            continue
+
+        # Canonical org identity for Code Collective events, regardless of source importer.
+        event["org_name"] = "Code Collective"
+        event["orgName"] = "Code Collective"
+        event["source_group"] = "Code Collective"
+
+        org_image_url = str(event.get("orgImageUrl") or "").strip().lower()
+        if (not org_image_url) or ("baltimoreindiegames" in org_image_url) or ("big_small" in org_image_url):
+            event["orgImageUrl"] = "/images/codecollective.webp"
 
 
 def source_pattern_details(source):
@@ -226,6 +309,47 @@ def source_pattern_details(source):
         "path": parsed.path,
         "path_segments": segments,
     }
+
+
+def _classify_event_city(event, fallback_city=None):
+    determination = determine_event_city(
+        event,
+        cities=CALENDAR_CITIES,
+        fallback_city=fallback_city,
+    )
+    event["city_determinant"] = determination
+    assigned_city = determination.get("city")
+    if assigned_city:
+        event["city"] = assigned_city
+    return assigned_city
+
+
+def _load_multicity_source_payload():
+    global _MULTICITY_SOURCE_CACHE
+    if _MULTICITY_SOURCE_CACHE is not None:
+        return copy.deepcopy(_MULTICITY_SOURCE_CACHE["events"]), copy.deepcopy(_MULTICITY_SOURCE_CACHE["errors"])
+
+    multicity_events, unmatched_sources, scrape_errors = collect_source_events(
+        MULTICITY_BUCKET,
+        flatten_sources=flatten_sources,
+        fetch_all_sources=fetch_all_sources,
+    )
+    write_unmatched_sources(MULTICITY_BUCKET, unmatched_sources)
+    _MULTICITY_SOURCE_CACHE = {
+        "events": multicity_events,
+        "errors": scrape_errors,
+    }
+    return copy.deepcopy(multicity_events), copy.deepcopy(scrape_errors)
+
+
+def _route_multicity_events_to_city(multicity_events, target_city):
+    routed_events = []
+    for event in multicity_events:
+        event_copy = copy.deepcopy(event)
+        assigned_city = _classify_event_city(event_copy)
+        if assigned_city == target_city:
+            routed_events.append(event_copy)
+    return routed_events
 
 
 def build_error_entry(city, stage, error, source_url=None, source_kind=None, scraper=None, context=None):
@@ -255,54 +379,60 @@ def fetch_events_from_source(source, city):
     unmatched_sources = []
     error_entries = []
 
+    def fetch_meetup():
+        upcoming_page_content = scrape_meetup.fetch_meetup_page(source_url)
+        meetup_token = sanitize_event_name(source_url, max_length=48)
+        meetup_cache_path = os.path.join(
+            "/tmp",
+            f"codecollective_{city}_meetup_upcoming_{meetup_token}.html",
+        )
+        with open(meetup_cache_path, "w+", encoding="utf-8") as f:
+            f.write(upcoming_page_content)
+
+        upcoming_next_data = scrape_meetup.extract_next_data(upcoming_page_content)
+        return scrape_meetup.parse_meetup_events(
+            upcoming_next_data,
+            include_past=False,
+            source_url=source_url,
+        )
+
+    source_fetchers = {
+        "meetup": ("Fetching events from", fetch_meetup),
+        "eventbrite_event": (
+            "Fetching events from",
+            lambda: scrape_eventbrite.parse_eventbrite_event(source_url),
+        ),
+        "eventbrite_org": (
+            "Fetching org events from",
+            lambda: scrape_eventbrite_org.scrape_eventbrite_organizer(source_url),
+        ),
+        "jotform": (
+            "Fetching events from",
+            lambda: scrape_jotform.parse_jotform_event(source_url),
+        ),
+        "luma_event": (
+            "Fetching events from",
+            lambda: scrape_luma.parse_luma_event_page(source_url),
+        ),
+        "partiful": (
+            "Fetching events from",
+            lambda: scrape_partiful.parse_partiful_event(source_url),
+        ),
+        "luma_org": (
+            "Fetching events from",
+            lambda: scrape_luma_orgpage.fetch_and_parse_luma_events(source_url),
+        ),
+        "luma_calendar": (
+            "Fetching events from",
+            lambda: scrape_luma_calendar.scrape(source_url),
+        ),
+        "google_form": (
+            "Fetching events from",
+            lambda: scrape_gform.scrape(source_url),
+        ),
+    }
+
     try:
-        if source_kind == "meetup":
-            print(f"Fetching events from {source_url}")
-            upcoming_page_content = scrape_meetup.fetch_meetup_page(source_url)
-            meetup_token = sanitize_event_name(source_url, max_length=48)
-            meetup_cache_path = os.path.join(
-                "/tmp",
-                f"codecollective_{city}_meetup_upcoming_{meetup_token}.html",
-            )
-            with open(meetup_cache_path, "w+", encoding="utf-8") as f:
-                f.write(upcoming_page_content)
-
-            upcoming_next_data = scrape_meetup.extract_next_data(upcoming_page_content)
-            events = scrape_meetup.parse_meetup_events(
-                upcoming_next_data,
-                include_past=False,
-                source_url=source_url,
-            )
-            return apply_source_metadata(events, source), unmatched_sources, error_entries
-
-        if source_kind == "eventbrite_event":
-            print(f"Fetching events from {source_url}")
-            return apply_source_metadata(
-                scrape_eventbrite.parse_eventbrite_event(source_url),
-                source,
-            ), unmatched_sources, error_entries
-
-        if source_kind == "eventbrite_org":
-            print(f"Fetching org events from {source_url}")
-            return apply_source_metadata(
-                scrape_eventbrite_org.scrape_eventbrite_organizer(source_url),
-                source,
-            ), unmatched_sources, error_entries
-
-        if source_kind == "jotform":
-            print(f"Fetching events from {source_url}")
-            return apply_source_metadata(
-                scrape_jotform.parse_jotform_event(source_url),
-                source,
-            ), unmatched_sources, error_entries
-
-        if source_kind == "luma_event":
-            print(f"Fetching events from {source_url}")
-            return apply_source_metadata(
-                scrape_luma.parse_luma_event_page(source_url),
-                source,
-            ), unmatched_sources, error_entries
-
         if source_kind == "luma_user":
             user_api_id = extract_luma_user_id(source)
             if not user_api_id:
@@ -319,24 +449,6 @@ def fetch_events_from_source(source, city):
                 source,
             ), unmatched_sources, error_entries
 
-        if source_kind == "luma_org":
-            print(f"Fetching events from {source_url}")
-            return apply_source_metadata(
-                scrape_luma_orgpage.fetch_and_parse_luma_events(source_url),
-                source,
-            ), unmatched_sources, error_entries
-
-        if source_kind == "luma_calendar":
-            print(f"Fetching events from {source_url}")
-            return apply_source_metadata(
-                scrape_luma_calendar.scrape(source_url),
-                source,
-            ), unmatched_sources, error_entries
-
-        if source_kind == "google_form":
-            print(f"Fetching events from {source_url}")
-            return apply_source_metadata(scrape_gform.scrape(source_url), source), unmatched_sources, error_entries
-
         if source_kind == "gdg":
             chapter_id = extract_gdg_chapter_id(source)
             if chapter_id is None:
@@ -349,6 +461,12 @@ def fetch_events_from_source(source, city):
                 return [], unmatched_sources, error_entries
             print(f"Fetching GDG Chapter {chapter_id}")
             return apply_source_metadata(scrape_gdg.scrapeChapterID(chapter_id), source), unmatched_sources, error_entries
+
+        fetcher_entry = source_fetchers.get(source_kind)
+        if fetcher_entry:
+            label, fetcher = fetcher_entry
+            print(f"{label} {source_url}")
+            return apply_source_metadata(fetcher(), source), unmatched_sources, error_entries
 
         unmatched_sources.append(
             {
@@ -559,16 +677,40 @@ def normalize_event_text(value):
     return ascii_value
 
 
-def parse_event_start(event):
+def get_city_default_timezone(city=None):
+    timezone_name = CITY_DEFAULT_TIMEZONES.get((city or "").lower(), "UTC")
+    try:
+        return pytz.timezone(timezone_name)
+    except Exception:
+        return pytz.UTC
+
+
+def _event_source_timezone(event, fallback_timezone):
+    timezone_name = (
+        event.get("timezone")
+        or event.get("timeZone")
+        or event.get("source_timezone")
+        or event.get("sourceTimeZone")
+    )
+    if timezone_name:
+        try:
+            return pytz.timezone(str(timezone_name).strip())
+        except Exception:
+            pass
+    return fallback_timezone
+
+
+def parse_event_start(event, fallback_timezone=pytz.UTC):
     start_value = event.get("startDate", "")
     if not start_value:
         return None
     start_dt = parse(start_value)
     if start_dt.tzinfo is None:
-        start_dt = est_timezone.localize(start_dt)
+        source_timezone = _event_source_timezone(event, fallback_timezone)
+        start_dt = source_timezone.localize(start_dt)
     else:
-        start_dt = start_dt.astimezone(est_timezone)
-    return start_dt
+        start_dt = start_dt.astimezone(utc_timezone)
+    return start_dt.astimezone(utc_timezone)
 
 
 def normalize_location_name(event):
@@ -594,6 +736,8 @@ def canonical_event_url_key(event):
     if "eventbrite." in host and path:
         return f"{host}{path}"
     if "meetup.com" in host and path:
+        return f"{host}{path}"
+    if host == "partiful.com" and path:
         return f"{host}{path}"
 
     return ""
@@ -812,6 +956,7 @@ def events_to_ics(events_json, city, output_file="baltimore_tech_events.ics"):
     cal.add('method', 'PUBLISH')
 
     event_count = 0
+    default_timezone = get_city_default_timezone(city)
     
     # Add each event to the calendar
     for event_data in events:
@@ -873,14 +1018,16 @@ def events_to_ics(events_json, city, output_file="baltimore_tech_events.ics"):
                 start_time = parse(start_str)
                 # Make timezone aware if needed
                 if start_time.tzinfo is None:
-                    start_time = est_timezone.localize(start_time)
+                    source_timezone = _event_source_timezone(event_data, default_timezone)
+                    start_time = source_timezone.localize(start_time)
                 
                 event.add('dtstart', start_time)
                 
                 if end_str:
                     end_time = parse(end_str)
                     if end_time.tzinfo is None:
-                        end_time = est_timezone.localize(end_time)
+                        source_timezone = _event_source_timezone(event_data, default_timezone)
+                        end_time = source_timezone.localize(end_time)
                     event.add('dtend', end_time)
                 else:
                     # Default to 2 hours if no end time specified
@@ -915,11 +1062,6 @@ def events_to_ics(events_json, city, output_file="baltimore_tech_events.ics"):
     print(f"Calendar with {event_count} events saved to {output_file}")
     return output_file
 
-
-import os
-import requests
-
-
 def extract_proper_extension(url):
     """Extract proper file extension from URL, handling complex URLs with query parameters"""
     # First get the part before any query parameters
@@ -944,10 +1086,6 @@ def extract_proper_extension(url):
 
     # Default fallback to jpg for Eventbrite images (which are typically JPEG)
     return "jpg"
-
-
-from PIL import Image
-from io import BytesIO
 
 
 def download_image(url, filename):
@@ -975,240 +1113,36 @@ def download_image(url, filename):
         return False
 
 
-def build_geocode_query(location_data, default_city=""):
-    """Construct a geocoding query from the location metadata."""
-    if not location_data:
-        return ""
-
-    address = (location_data.get("address") or "").strip()
-    name = (location_data.get("name") or "").strip()
-    city = (location_data.get("city") or "").strip()
-    state = (location_data.get("state") or "").strip()
-    postal_code = (location_data.get("postalCode") or "").strip()
-    country = (location_data.get("country") or "").strip()
-    default_city = (default_city or "").strip()
-
-    if is_low_quality_location(address) and is_low_quality_location(name):
-        return ""
-
-    parts = []
-    normalized_parts = []
-
-    def append_part(value):
-        trimmed = (value or "").strip()
-        if not trimmed or is_low_quality_location(trimmed):
-            return
-        normalized = normalize_address(trimmed)
-        if any(
-            normalized == existing or normalized in existing or existing in normalized
-            for existing in normalized_parts
-        ):
-            return
-        parts.append(trimmed)
-        normalized_parts.append(normalized)
-
-    append_part(address)
-    if not parts:
-        append_part(name)
-
-    for value in (city, state, postal_code, country):
-        append_part(value)
-
-    if not parts and name:
-        append_part(name)
-
-    append_part(default_city)
-    return ", ".join(parts)
-
-
-def geocode_upcoming_events(city, geocode_cache, events_path=None):
-    """Geocode events stored in upcoming_events.json for the provided city."""
-    events_path = events_path or os.path.join(city, "upcoming_events.json")
-    if not os.path.exists(events_path):
-        print(f"No upcoming_events.json found for {city}; skipping geocoding")
-        return None, False
-
-    try:
-        with open(events_path, "r", encoding="utf-8") as f:
-            events = json.load(f)
-    except Exception as exc:
-        print(f"Unable to read events file for {city}: {exc}")
-        return None, False
-
-    geolocator = Nominatim(user_agent="codecollective-calendar")
-    geocode = RateLimiter(
-        geolocator.geocode,
-        min_delay_seconds=1,
-        max_retries=2,
-        error_wait_seconds=2.0,
-        swallow_exceptions=True,
-    )
-
-    updated_events = 0
-    cache_updated = False
-    events_changed = False
-
-    for event in events:
-        location_data = event.get("location") or {}
-        if not location_data:
-            print(f"[geocode] Skipping '{event.get('name')}' – no location data present.")
-            continue
-
-        lat = location_data.get("latitude")
-        lon = location_data.get("longitude")
-        query = build_geocode_query(location_data, city)
-        cache_keys = build_location_cache_keys(location_data, query=query)
-
-        if lat not in (None, "") and lon not in (None, ""):
-            try:
-                lat_val = float(lat)
-                lon_val = float(lon)
-            except (TypeError, ValueError):
-                print(f"[geocode] '{event.get('name')}' has invalid latitude/longitude values; skipping cache update.")
-                continue
-
-            location_data["latitude"] = lat_val
-            location_data["longitude"] = lon_val
-            location_data["geocode_status"] = "provided"
-            if query:
-                location_data["geocode_query"] = query
-            event["location"] = location_data
-
-            entry = {
-                "latitude": lat_val,
-                "longitude": lon_val,
-                "status": "ok",
-                "source": "provided",
-            }
-            for cache_key in cache_keys:
-                cached = geocode_cache.get(cache_key)
-                if cached != entry:
-                    geocode_cache[cache_key] = dict(entry)
-                    cache_updated = True
-            print(f"[geocode] '{event.get('name')}' already has coordinates; updating cache if needed.")
-            continue
-
-        if not query:
-            print(f"[geocode] Skipping '{event.get('name')}' – could not build geocode query from location data.")
-            if location_data.get("geocode_status") != "skipped_low_quality":
-                location_data["geocode_status"] = "skipped_low_quality"
-                location_data.pop("geocode_query", None)
-                event["location"] = location_data
-                events_changed = True
-            for cache_key in cache_keys:
-                entry = geocode_cache.get(cache_key)
-                negative_entry = {"status": "skipped_low_quality"}
-                if entry != negative_entry:
-                    geocode_cache[cache_key] = dict(negative_entry)
-                    cache_updated = True
-            continue
-
-        coords = None
-        cached_negative_status = ""
-        for cache_key in cache_keys:
-            entry = geocode_cache.get(cache_key)
-            if not entry:
-                continue
-            if cache_entry_has_coordinates(entry):
-                print(f"[geocode] Using cached coordinates for '{event.get('name')}'.")
-                coords = entry
-                break
-            if entry.get("status") and entry.get("status") != "ok":
-                cached_negative_status = entry["status"]
-
-        if coords is None and cached_negative_status:
-            print(f"[geocode] Skipping '{event.get('name')}' – cached status is {cached_negative_status}.")
-            if location_data.get("geocode_status") != cached_negative_status or location_data.get("geocode_query") != query:
-                location_data["geocode_status"] = cached_negative_status
-                location_data["geocode_query"] = query
-                event["location"] = location_data
-                events_changed = True
-            continue
-
-        if coords is None:
-            try:
-                print(f"[geocode] Querying geocoder for '{event.get('name')}': {query}")
-                result = geocode(query)
-            except Exception as exc:
-                print(f"[geocode] Geocoding failed for '{query}': {exc}")
-                continue
-            if result:
-                coords = {
-                    "latitude": result.latitude,
-                    "longitude": result.longitude,
-                    "status": "ok",
-                    "source": "nominatim",
-                }
-            else:
-                print(f"[geocode] No geocode result returned for '{query}'.")
-
-        if not coords:
-            print(f"[geocode] Skipping '{event.get('name')}' – no coordinates available.")
-            negative_entry = {"status": "failed_no_result"}
-            for cache_key in cache_keys:
-                if geocode_cache.get(cache_key) != negative_entry:
-                    geocode_cache[cache_key] = dict(negative_entry)
-                    cache_updated = True
-            if location_data.get("geocode_status") != "failed_no_result" or location_data.get("geocode_query") != query:
-                location_data["geocode_status"] = "failed_no_result"
-                location_data["geocode_query"] = query
-                event["location"] = location_data
-                events_changed = True
-            continue
-
-        try:
-            location_data["latitude"] = float(coords["latitude"])
-            location_data["longitude"] = float(coords["longitude"])
-        except (TypeError, ValueError, KeyError):
-            continue
-
-        location_data["geocode_status"] = "ok"
-        location_data["geocode_query"] = query
-        event["location"] = location_data
-        updated_events += 1
-        events_changed = True
-
-        entry = {
-            "latitude": location_data["latitude"],
-            "longitude": location_data["longitude"],
-            "status": "ok",
-            "source": coords.get("source", "cache"),
-        }
-        for cache_key in cache_keys:
-            if geocode_cache.get(cache_key) != entry:
-                geocode_cache[cache_key] = dict(entry)
-                cache_updated = True
-
-    if updated_events:
-        with open(events_path, "w", encoding="utf-8") as f:
-            json.dump(events, f, indent=4)
-        print(f"Geocoded {updated_events} event(s) for {city}.")
-    elif events_changed:
-        with open(events_path, "w", encoding="utf-8") as f:
-            json.dump(events, f, indent=4)
-        print(f"Updated geocode metadata for {city} without adding new coordinates.")
-    else:
-        print(f"No new geocoding data added for {city}.")
-
-    return events, cache_updated
-
-
 def main(city = "baltimore"):
     newEvents = []
     cache_path = os.path.join(city, "geocode_cache.json")
     geocode_cache = load_geocode_cache(cache_path)
     cache_updated = False
 
-    module = importlib.import_module(f"{city}.event_sources")
-    sources = flatten_sources(module.sources)
-    source_events, unmatched_sources, scrape_errors = fetch_all_sources(sources, city)
+    source_events, unmatched_sources, scrape_errors = collect_source_events(
+        city,
+        flatten_sources=flatten_sources,
+        fetch_all_sources=fetch_all_sources,
+    )
     newEvents += source_events
 
-    unmatched_sources_path = os.path.join(city, "unmatched_source_patterns.json")
-    with open(unmatched_sources_path, "w+", encoding="utf-8") as f:
-        json.dump(unmatched_sources, f, indent=4)
-    if unmatched_sources:
-        print(f"Unmatched source patterns saved to {unmatched_sources_path}")
+    write_unmatched_sources(city, unmatched_sources)
+
+    if city == MULTICITY_BUCKET:
+        for event in newEvents:
+            _classify_event_city(event)
+    elif city in CALENDAR_CITIES:
+        multicity_events, multicity_errors = _load_multicity_source_payload()
+        routed_multicity_events = _route_multicity_events_to_city(multicity_events, city)
+        if routed_multicity_events:
+            print(
+                f"Routed {len(routed_multicity_events)} multicity events into {city} via city determinant."
+            )
+            newEvents += routed_multicity_events
+        if multicity_errors:
+            print(
+                f"Multicity source scrape reported {len(multicity_errors)} error(s); check {MULTICITY_BUCKET}/scrape_errors.json."
+            )
 
     def error_logger(stage, error, source_url=None, source_kind=None, scraper=None, context=None):
         entry = build_error_entry(
@@ -1256,272 +1190,138 @@ def main(city = "baltimore"):
             print(f"Error fetching ABWIPPM events: {e}")
             error_logger("city_collect", e, scraper="virtual.scrape_ABWIPPM")
 
-    invalid_events = []
+    start_dt_cache = {}
+    default_timezone = get_city_default_timezone(city)
 
-    # Convert all datetime strings in newEvents to timezone-aware datetime objects
-    for event in newEvents:
-        if "startDate" in event:
-            try:
-                start_dt = parse(event["startDate"])
-                if start_dt.tzinfo is None:
-                    start_dt = est_timezone.localize(start_dt)
-                event["startDate"] = start_dt.isoformat()
-            except Exception as e:
-                print(f"Error converting datetime for event {event.get('name', 'Unknown')}: {e}")
-                error_logger("normalize_datetime", e, context={"event_name": event.get("name", "Unknown")})
+    def get_start_dt(event):
+        cache_key = id(event)
+        if cache_key in start_dt_cache:
+            return start_dt_cache[cache_key]
 
-    # Download images for each event
-    for event in newEvents:
-        # Download images if available
-        if "imageUrl" in event and event["imageUrl"]:
-            image_url = event["imageUrl"]
+        start_value = event.get("startDate")
+        if not start_value:
+            start_dt_cache[cache_key] = None
+            return None
 
-            safe_event_name = sanitize_event_name(event.get("name"))
-            image_filename = f"event_images/{safe_event_name}.webp"
-
-            # Update event data with local path
-            event["imageUrl"] = "/" + image_filename
-
-            if os.path.exists(image_filename):
-                # print(f"Image already exists: {image_filename}, skipping download.")
-                continue
-
-            try:
-                response = requests.get(image_url, headers=headers, timeout=10)
-                response.raise_for_status()
-
-                # Load image
-                img = Image.open(BytesIO(response.content))
-
-                # Resize while keeping aspect ratio
-                img.thumbnail((400, 400), Image.Resampling.LANCZOS)
-
-                # Save as WebP with high compression
-                img.save(image_filename, "WEBP", quality=80, method=6)
-
-                print(f"Saved image: {image_filename}")
-
-            except Exception as e:
-                print(f"Failed to process image for event {event['name']}: {e}")
-                error_logger(
-                    "image_download",
-                    e,
-                    source_url=image_url,
-                    context={"event_name": event.get("name", "Unknown")},
-                )
-                # revert url
-                event["imageUrl"] = image_url
-
-    nonerror_newevents = []
-    time_now = datetime.datetime.now(est_timezone)
-    today_date = time_now.date()
-
-    for event in newEvents:
-        startDate = event.get("startDate")
-        if not startDate:
-            print(f'{event.get("name")} missing startdate ')
-            event["invalid_reason"] = 'missing startdate'
-            invalid_events += [event]
-            continue
-
-        startDateTime = parse(event["startDate"])
-        # Make startDateTime timezone-aware if it's naive
-        if startDateTime.tzinfo is None:
-            startDateTime = est_timezone.localize(startDateTime)
-
-        if (
-            startDateTime.date() == datetime.date(2025, 6, 28)
-            and "unity" not in event.get("name", "").lower()
-        ):
-            print(f"Skipping event on June 28, 2025: {event['name']}")
-            event["invalid_reason"] = 'UNITY CONFLICT'
-            invalid_events += [event]
-            continue
-
-        if startDateTime.date() >= today_date:
-            nonerror_newevents += [event]
-        else:
-            event["invalid_reason"] = 'Already happened'
-            invalid_events += [event]
-            print(f'{event.get("name")} already happened ')
-
-        if "Casual Coding" in event.get("name", ""):
-            event["recurring"] = True
-
-    def get_event_signature_strict(event):
-        e2 = event.copy()
-        del e2["scrapeTime"]
-        return json.dumps(e2, sort_keys=True)
-
-    def get_event_signature(event):
-        """Creates a unique signature for duplicate detection"""
-        name = normalize_event_text(event.get("name", ""))
-        start_dt = parse_event_start(event)
-        if not start_dt:
-            return name
-        return f"{name}||{start_dt.date().isoformat()}||{start_dt.hour:02d}"
-
-    unique_events = []
-    date_occupied = set()  # Track which dates already have events
-    unique_event_signatures = set()  # Track all unique event signatures
-
-    # --- PHASE 0: mix with existing events
-    # read existing events from file
-    with open(os.path.join(city, "manual_events.json"), "r") as f:
-        existing_events_in_file = json.loads(f.read())
-    upcoming_existing_events_in_file = []
-    for event in existing_events_in_file:
-        startDateTime = parse(event["startDate"])
-        # Make startDateTime timezone-aware if it's naive
-        if startDateTime.tzinfo is None:
-            startDateTime = est_timezone.localize(startDateTime)
-        if startDateTime.date() >= today_date:
-            upcoming_existing_events_in_file += [event]
-
-    existing_sigs = [get_event_signature(e) for e in upcoming_existing_events_in_file]
-    total_events = []
-    for event in nonerror_newevents:
-        sig = get_event_signature(event)
-        existing_duplicate = None
-        if sig in existing_sigs:
-            existing_duplicate = find_existing_duplicate(event, upcoming_existing_events_in_file)
-        else:
-            existing_duplicate = find_existing_duplicate(event, upcoming_existing_events_in_file)
-
-        if existing_duplicate is None:
-            total_events += [event]
-        else:
-            event["invalid_reason"] = "Already exists in manual events"
-            invalid_events += [event]
-
-    total_events += upcoming_existing_events_in_file
-    cache_updated = apply_geocode_cache(total_events, geocode_cache) or cache_updated
-    # --- PHASE 1: Process NON-RECURRING events first ---
-    for event in total_events:
-        # Skip recurring events in first pass
-        if event.get("recurring"):
-            continue
-
-        # Ensure scrapeTime exists
-        if not event.get("scrapeTime"):
-            event["scrapeTime"] = str(datetime.datetime.now())
-
-        # Parse date
         try:
-            event_date = parse(event.get("startDate", "")).date()
-        except:
-            event["invalid_reason"] = "Bad startdate"
-            invalid_events += [event]
-            continue  # Skip if invalid date
-
-        event_sig = get_event_signature(event)
-
-        # Check if this is a duplicate
-        existing_event = find_existing_duplicate(event, unique_events)
-        if existing_event:
-            if get_event_signature_strict(existing_event) != get_event_signature_strict(event):
-                preferred_event, rejected_event = choose_preferred_duplicate(existing_event, event)
-                unique_events.remove(existing_event)
-                unique_events.append(preferred_event)
-                invalid_events += [rejected_event]
+            parsed_start = parse(start_value)
+            if parsed_start.tzinfo is None:
+                source_timezone = _event_source_timezone(event, default_timezone)
+                parsed_start = source_timezone.localize(parsed_start)
             else:
-                event["invalid_reason"] = "Already exists with same normalized content"
-                invalid_events += [event]
-            continue
+                parsed_start = parsed_start.astimezone(utc_timezone)
+            normalized_start = parsed_start.astimezone(utc_timezone)
+            start_dt_cache[cache_key] = normalized_start
+            return normalized_start
+        except Exception:
+            start_dt_cache[cache_key] = None
+            return None
 
-        # If not a duplicate, add it
-        unique_events.append(event)
-        unique_event_signatures.add(event_sig)
-        date_occupied.add(event_date)  # Mark this date as occupied
-
-    # --- PHASE 2: Process RECURRING events ---
-    # Create set of signatures from UNIQUE events (not original list)
-    unique_event_signatures = {get_event_signature(e) for e in unique_events}
-
-    for event in total_events:
-        # Only process recurring events in second pass
-        if not event.get("recurring"):
-            continue
-
-        if "Member Meeting" in event.get("name"):
-            event["invalid_reason"] = "Member meeting"
-            invalid_events += [event]
-            continue
-
-        event_name = event.get("name", "").strip().lower()
-        event_start = event.get("startDate", "")
-
-        # Ensure scrapeTime exists
-        if not event.get("scrapeTime"):
-            event["scrapeTime"] = str(datetime.datetime.now())
-
-        # Parse date
-        try:
-            event_date = parse(event_start).date()
-        except:
-            event["invalid_reason"] = "Invalid date"
-            invalid_events += [event]
-            continue  # Skip if invalid date
-
-        event_sig = get_event_signature(event)
-
-        # Only add if:
-        # 1. No other event exists on this date (strict), AND
-        # 2. This isn't a duplicate of any existing event
-        existing_event = find_existing_duplicate(event, unique_events)
-        if event_date not in date_occupied and existing_event is None:
-            unique_events.append(event)
-            unique_event_signatures.add(event_sig)  # Keep this in sync
-        else:
-            event["invalid_reason"] = "Recurring event removed when a stronger conflicting event is present"
-            invalid_events += [event]
-        #    print(f"Added recurring event: {event_name} on {event_date}")
-        # else:
-        #    print(f"Skipping recurring event: {event_name} (conflict on {event_date})")
-
-    # Sort all events by date
-    unique_events.sort(key=lambda x: est_timezone.localize(parse(x["startDate"])) if parse(x["startDate"]).tzinfo is None else parse(x["startDate"]))
-    # Sort events by startDate
-    sorted_events = sorted(
-        (e for e in unique_events if "startDate" in e),
-        key=lambda e: est_timezone.localize(parse(e["startDate"])) if parse(e["startDate"]).tzinfo is None else parse(e["startDate"]),
+    normalize_event_start_dates(newEvents, get_start_dt=get_start_dt, error_logger=error_logger)
+    download_event_images(
+        newEvents,
+        sanitize_event_name=sanitize_event_name,
+        headers=headers,
+        error_logger=error_logger,
+    )
+    nonerror_newevents, invalid_events, today_date = split_upcoming_events(
+        newEvents,
+        get_start_dt=get_start_dt,
+        reference_timezone=default_timezone,
     )
 
-    # Save upcoming events to a file
-    with open(os.path.join(city, "upcoming_events.json"), "w+", encoding="utf-8") as f:
-        json.dump(sorted_events, f, indent=4)
-        print(f"Upcoming events saved to upcoming_events.json")
+    sorted_events, invalid_events, dedupe_cache_updated = merge_and_dedupe_events(
+        city=city,
+        nonerror_newevents=nonerror_newevents,
+        invalid_events=invalid_events,
+        today_date=today_date,
+        get_start_dt=get_start_dt,
+        normalize_event_text=normalize_event_text,
+        find_existing_duplicate=find_existing_duplicate,
+        choose_preferred_duplicate=choose_preferred_duplicate,
+        apply_geocode_cache=apply_geocode_cache,
+        geocode_cache=geocode_cache,
+    )
+    cache_updated = cache_updated or dedupe_cache_updated
 
-    GEOCODE = False
+    GEOCODE = True
     if GEOCODE:
-        geocoded_payload, geocode_cache_changed = geocode_upcoming_events(city, geocode_cache)
+        geocoded_payload, geocode_cache_changed = geocode_upcoming_events(
+            city,
+            geocode_cache,
+            events=sorted_events,
+        )
         if geocoded_payload is not None:
             sorted_events = geocoded_payload
         cache_updated = cache_updated or geocode_cache_changed
 
-    # Save upcoming events to a file
-    with open(os.path.join(city, "skipped_events.json"), "w+", encoding="utf-8") as f:
-        json.dump(invalid_events, f, indent=4)
-        print(f"Upcoming events saved to skipped_events.json")
+    ensure_org_name_fields(sorted_events)
+    ensure_org_name_fields(invalid_events)
+    canonicalize_event_branding(sorted_events)
+    canonicalize_event_branding(invalid_events)
 
-    scrape_errors_path = os.path.join(city, "scrape_errors.json")
-    with open(scrape_errors_path, "w+", encoding="utf-8") as f:
-        json.dump(scrape_errors, f, indent=4)
-    if scrape_errors:
-        print(f"Scrape errors saved to {scrape_errors_path}")
-
-    events_to_ics(sorted_events, city, output_file=os.path.join(city, "cc_events.ics"))
-    os.system("cp baltimore/cc_events.ics .")
-    os.system("cp baltimore/upcoming_events.json .")
+    persist_calendar_outputs(
+        city=city,
+        sorted_events=sorted_events,
+        invalid_events=invalid_events,
+        scrape_errors=scrape_errors,
+        events_to_ics=events_to_ics,
+    )
     if GEOCODE:
         generate_events_map_page(city)
-        if cache_updated:
-            save_geocode_cache(geocode_cache, cache_path)
+    if cache_updated:
+        save_geocode_cache(geocode_cache, cache_path)
     genSimpleCalendar.main(city)
 
+
+def write_root_aggregate(processed_cities):
+    aggregate_cities = [city for city in processed_cities if city != MULTICITY_BUCKET]
+    aggregate_events = []
+
+    for city in aggregate_cities:
+        city_events_path = os.path.join(city, "upcoming_events.json")
+        if not os.path.exists(city_events_path):
+            print(f"Skipping {city}: missing {city_events_path}")
+            continue
+
+        try:
+            with open(city_events_path, "r", encoding="utf-8") as f:
+                city_events = json.load(f)
+            if isinstance(city_events, list):
+                aggregate_events.extend(city_events)
+            else:
+                print(f"Skipping {city}: {city_events_path} is not a list")
+        except Exception as e:
+            print(f"Skipping {city}: unable to read {city_events_path}: {e}")
+
+    def sort_key(event):
+        if not isinstance(event, dict):
+            return datetime.datetime.max.replace(tzinfo=utc_timezone), ""
+        start_value = event.get("startDate", "")
+        try:
+            parsed_start = parse(start_value) if start_value else datetime.datetime.max
+            if parsed_start.tzinfo is None:
+                parsed_start = parsed_start.replace(tzinfo=utc_timezone)
+            parsed_start = parsed_start.astimezone(utc_timezone)
+            return parsed_start, str(event.get("name", ""))
+        except Exception:
+            return datetime.datetime.max.replace(tzinfo=utc_timezone), str(
+                event.get("name", "")
+            )
+
+    aggregate_events.sort(key=sort_key)
+
+    with open("upcoming_events.json", "w+", encoding="utf-8") as f:
+        json.dump(aggregate_events, f, indent=4)
+    events_to_ics(aggregate_events, "all-cities", output_file="cc_events.ics")
+    print(
+        f"Root aggregate saved from {len(aggregate_cities)} cities to upcoming_events.json and cc_events.ics."
+    )
+
 if __name__ == "__main__":
-    cities = ["baltimore", "westvirginia", "hawaii", "dc", "pittsburgh", "virtual"]
+    cities = [MULTICITY_BUCKET, *CALENDAR_CITIES]
     if len(sys.argv) > 1:
         cities = sys.argv[1:]
     for city in cities:
         main(city)
+    write_root_aggregate(cities)

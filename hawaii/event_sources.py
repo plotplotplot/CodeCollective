@@ -1,3 +1,5 @@
+from city_source_taxonomy import apply_city_source_taxonomy
+
 sources = [
     {"url": "https://www.meetup.com/oahuai/", "tags": ["Tech Skills", "AI"]},
     {"url": "https://www.meetup.com/honolulu-tech-network/", "tags": ["Tech Community"]},
@@ -12,3 +14,5 @@ sources = [
     {"url": "https://www.eventbrite.com/o/58144189063", "tags": ["Tech Community"]},
     
 ]
+
+apply_city_source_taxonomy(sources)

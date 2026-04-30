@@ -1,34 +1,9 @@
 [
     {
-        "id": "314198613",
-        "name": "Coffee and cowork with Write the Docs PGH",
-        "description": "Join other technical communicators for coffee and coworking at the La Colombe coffee bar at Coop de Ville. Come to chat with other technical communicators or just get some work done in the presence of other humans. We'll have sticky notes available to hang on your laptop if you want to focus undisturbed.\n\nCoffee is self-purchase. This is a casual gathering, so come and go as you please. As always, the Write the Docs [code of conduct](https://www.writethedocs.org/code-of-conduct/) applies.",
-        "startDate": "2026-04-29T07:00:00-04:00",
-        "endTime": "2026-04-29T09:00:00-04:00",
-        "url": "https://www.meetup.com/write-the-docs-pittsburgh/events/314198613/",
-        "status": "ACTIVE",
-        "source": "https://www.meetup.com/write-the-docs-pittsburgh/",
-        "location": {
-            "name": "Coop de Ville",
-            "address": "2305 Smallman Street Pittsburgh, PA 15222",
-            "city": "Pittsburgh",
-            "state": "PA",
-            "country": "US"
-        },
-        "imageUrl": "/event_images/Coffee_and_cowork_with_Write_the_Docs_PGH.webp",
-        "tags": [
-            "Tech Skills",
-            "Technical Writing",
-            "Software Development"
-        ],
-        "source_url": "https://www.meetup.com/write-the-docs-pittsburgh/",
-        "scrapeTime": "2026-04-15 00:31:25.713663"
-    },
-    {
         "id": "314217189",
         "name": "Code & Coffee",
         "description": "Every second Saturday, our inclusive coding group Code & Coffee meets at Prototype PGH in Oakland from 1:30pm to 3:30pm! \ud83d\udcbb\u2615\n\nCode & Coffee is a monthly opportunity for you to practice your skills, meet new friends, and get help if you need it. Bring your laptop, your recent projects, and your programming problems! \ud83d\udc69\ud83c\udfff\u200d\ud83d\udcbb\ud83d\udc68\ud83c\udffb\u200d\ud83d\udcbb\ud83d\udc69\ud83c\udffb\u200d\ud83d\udcbb\ud83d\udc69\ud83c\udffd\u200d\ud83d\udcbb\ud83d\udc68\ud83c\udfff\u200d\ud83d\udcbb\ud83d\udc68\ud83c\udffb\u200d\ud83d\udcbb\n\nAll are welcome regardless of skill level or programming language. If you're new to coding, we'll be right there to help you work through your questions as needed. \ud83e\udde0\ud83d\udcf1\ud83d\udcda\n\nCode & Coffee events are relaxed and informal, and are intended as a way for our community to work together while providing each other with ongoing support and feedback. \ud83c\udfae\ud83d\udd79\ufe0f\ud83d\udc7e\n\n\\*\\* GENDER EQUITY \\*\\*\nWhen introducing yourself to others at our events, please also share your pronouns. This practice promotes inclusiveness, diversity, and kindness, all values our organization supports. \ud83c\udff3\ufe0f\u200d\ud83c\udf08\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f",
-        "startDate": "2026-05-09T13:30:00-04:00",
+        "startDate": "2026-05-09T17:30:00+00:00",
         "endTime": "2026-05-09T15:30:00-04:00",
         "url": "https://www.meetup.com/code-and-coffee-pgh/events/314217189/",
         "status": "ACTIVE",
@@ -38,40 +13,122 @@
             "address": "460 Melwood Ave #208",
             "city": "Pittsburgh",
             "state": "PA",
-            "country": "us"
+            "country": "us",
+            "latitude": 40.4556308,
+            "longitude": -79.9528325,
+            "geocode_status": "provided",
+            "geocode_query": "460 Melwood Ave #208, Pittsburgh"
         },
+        "orgImageUrl": null,
         "imageUrl": "/event_images/Code_Coffee.webp",
         "tags": [
             "Tech Skills",
             "Software Development",
-            "Tech Community"
+            "Tech Community",
+            "Growth & Creativity",
+            "Belonging & Culture"
         ],
         "source_url": "https://www.meetup.com/code-and-coffee-pgh/",
-        "scrapeTime": "2026-04-15 00:31:25.712723"
+        "source_group": "meetup.com",
+        "org_name": "meetup.com",
+        "orgName": "meetup.com",
+        "scrapeTime": "2026-04-30 00:51:58.786593"
+    },
+    {
+        "id": "314391658",
+        "name": "Drop-in Resources for Accelerating (Biological) Data Science",
+        "description": "PyData Pittsburgh is excited to host our next event: Drop-in Resources for Accelerating (Biological) Data Science. Join us Tuesday May 12th as Ben Busby from NVIDIA walks us through [rapids.ai,](https://rapids.ai/) a suite of open-source Python libraries designed to accelerate data science workflows on the GPU.\n\n**Topics will include:**\n\n* Vector search\n* Really big graphs\n* Sparse matrices\n* Accelerated random forest and XGBoost\n* RAPIDS Single Cell and related tools\n\n**Doors open: 6:30PM**\n**Talk Starts: 7:00PM**\n\n***About the talk:*** Check out drop in libraries and recipes for everything from rapid data access to traditional machine learning to model tuning! We'll use the biological sciences as an example, but many of these tools are applicable to any data scientist!\n\n***About the speaker:*** Ben Busby is a Global Alliances Manager at NVIDIA where he helps medical research companies apply advanced AI & ML. He also serves as Adjunct Faculty at Carnegie Mellon University in the Computational Biology Department.",
+        "startDate": "2026-05-12T22:30:00+00:00",
+        "endTime": "2026-05-12T20:30:00-04:00",
+        "url": "https://www.meetup.com/pydata-pittsburgh/events/314391658/",
+        "status": "ACTIVE",
+        "source": "https://www.meetup.com/pydata-pittsburgh/",
+        "location": {
+            "name": "Carnegie Mellon University Giant Eagle Auditorium (Baker Hall)",
+            "address": "4909 Frew St, Pittsburgh, PA 15213",
+            "city": "Pittsburgh",
+            "state": "PA",
+            "country": "us",
+            "latitude": 40.4411431,
+            "longitude": -79.9439143,
+            "geocode_status": "provided",
+            "geocode_query": "4909 Frew St, Pittsburgh, PA 15213"
+        },
+        "orgImageUrl": null,
+        "imageUrl": "/event_images/Drop_in_Resources_for_Accelerating_Biological_Data_Science.webp",
+        "tags": [
+            "Tech Skills",
+            "Python",
+            "Data Science",
+            "Growth & Creativity"
+        ],
+        "source_url": "https://www.meetup.com/pydata-pittsburgh/",
+        "source_group": "meetup.com",
+        "org_name": "meetup.com",
+        "orgName": "meetup.com",
+        "scrapeTime": "2026-04-30 00:51:58.787234"
+    },
+    {
+        "id": "314000198",
+        "name": "Science, Technology & Sci-Fi - Pennsylvania",
+        "description": "We're based in south central Pennsylvania. At this time we're mostly meeting online, but some of us who live near each other get together in person. For our next online Meetup on the fourth Wednesday of the month, 7:00 pm - 8:30 pm, you can participate either by webcam or telephone call. The link will be sent by early evening to everyone who has RSVPd, and we will check for late RSVPs by 6:00 pm that day.\n\nWe recommend that you RSVP from the Events page:\nhttps://www.meetup.com/sci-fi-and-sci/\n\nIf you don't see the link in your Inbox by 6:00 pm that day, check your spam folder, or send a note directly to the organizer https://www.meetup.com/sci-and-sci-fi/members/?op=leaders\n\nFeel free to bring up any aspect of science & society, or science fiction. Topics can include either: (a) natural sciences, social sciences, philosophy, philosophy of science, technology, industry, science & society; or (b) science fiction (movies, novels, TV shows, etc. Also, you might have suggestions for some upcoming group activities, such as going to a movie, museum, or other event, as a group. New members might want to tell a bit about their interests.",
+        "startDate": "2026-05-27T23:00:00+00:00",
+        "endTime": "2026-05-27T20:30:00-04:00",
+        "url": "https://www.meetup.com/sci-and-sci-fi/events/314000198/",
+        "status": "ACTIVE",
+        "source": " https://www.meetup.com/sci-and-sci-fi/",
+        "location": {
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "geocode_status": "skipped_low_quality"
+        },
+        "orgImageUrl": null,
+        "imageUrl": "/event_images/Science_Technology_Sci_Fi_Pennsylvania.webp",
+        "tags": [
+            "Tech Community",
+            "Community Organizing",
+            "Software Development",
+            "Belonging & Culture",
+            "Purpose & Service",
+            "Growth & Creativity"
+        ],
+        "source_url": " https://www.meetup.com/sci-and-sci-fi/",
+        "source_group": "meetup.com",
+        "org_name": "meetup.com",
+        "orgName": "meetup.com",
+        "scrapeTime": "2026-04-30 00:51:58.788146"
     },
     {
         "id": "313869572",
         "name": "PyData London 2026",
         "description": "PyData London 2026 brings together data scientists, engineers, and researchers from around the world for three days of insightful talks, tutorials, and community connection. Hosted in one of Europe\u2019s leading tech hubs, the event highlights the latest developments in Python, machine learning, and data science. Attendees can expect a mix of cutting-edge research, real-world applications, and opportunities to network with industry leaders. Whether you're a beginner or an expert, PyData London offers something for every level of the data science community.\n\n**THIS IS NOT A TICKET- TICKETS MUST BE PURCHASED ON CONFERENCE WEBSITE.**\n\nhttps://pydata.org/london2026",
-        "startDate": "2026-06-05T03:00:00-04:00",
+        "startDate": "2026-06-05T07:00:00+00:00",
         "endTime": "2026-06-07T12:00:00-04:00",
         "url": "https://www.meetup.com/pydata-pittsburgh/events/313869572/",
         "status": "ACTIVE",
         "source": "https://www.meetup.com/pydata-pittsburgh/",
+        "orgImageUrl": null,
         "imageUrl": "/event_images/PyData_London_2026.webp",
         "tags": [
             "Tech Skills",
             "Python",
-            "Data Science"
+            "Data Science",
+            "Growth & Creativity"
         ],
         "source_url": "https://www.meetup.com/pydata-pittsburgh/",
-        "scrapeTime": "2026-04-15 00:31:25.714115"
+        "source_group": "meetup.com",
+        "org_name": "meetup.com",
+        "orgName": "meetup.com",
+        "scrapeTime": "2026-04-30 00:51:58.787649"
     },
     {
         "id": "314217191",
         "name": "Code & Coffee",
         "description": "Every second Saturday, our inclusive coding group Code & Coffee meets at Prototype PGH in Oakland from 1:30pm to 3:30pm! \ud83d\udcbb\u2615\n\nCode & Coffee is a monthly opportunity for you to practice your skills, meet new friends, and get help if you need it. Bring your laptop, your recent projects, and your programming problems! \ud83d\udc69\ud83c\udfff\u200d\ud83d\udcbb\ud83d\udc68\ud83c\udffb\u200d\ud83d\udcbb\ud83d\udc69\ud83c\udffb\u200d\ud83d\udcbb\ud83d\udc69\ud83c\udffd\u200d\ud83d\udcbb\ud83d\udc68\ud83c\udfff\u200d\ud83d\udcbb\ud83d\udc68\ud83c\udffb\u200d\ud83d\udcbb\n\nAll are welcome regardless of skill level or programming language. If you're new to coding, we'll be right there to help you work through your questions as needed. \ud83e\udde0\ud83d\udcf1\ud83d\udcda\n\nCode & Coffee events are relaxed and informal, and are intended as a way for our community to work together while providing each other with ongoing support and feedback. \ud83c\udfae\ud83d\udd79\ufe0f\ud83d\udc7e\n\n\\*\\* GENDER EQUITY \\*\\*\nWhen introducing yourself to others at our events, please also share your pronouns. This practice promotes inclusiveness, diversity, and kindness, all values our organization supports. \ud83c\udff3\ufe0f\u200d\ud83c\udf08\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f",
-        "startDate": "2026-06-13T13:30:00-04:00",
+        "startDate": "2026-06-13T17:30:00+00:00",
         "endTime": "2026-06-13T15:30:00-04:00",
         "url": "https://www.meetup.com/code-and-coffee-pgh/events/314217191/",
         "status": "ACTIVE",
@@ -81,22 +138,65 @@
             "address": "460 Melwood Ave #208",
             "city": "Pittsburgh",
             "state": "PA",
-            "country": "us"
+            "country": "us",
+            "latitude": 40.4556308,
+            "longitude": -79.9528325,
+            "geocode_status": "provided",
+            "geocode_query": "460 Melwood Ave #208, Pittsburgh"
         },
+        "orgImageUrl": null,
         "imageUrl": "/event_images/Code_Coffee.webp",
         "tags": [
             "Tech Skills",
             "Software Development",
-            "Tech Community"
+            "Tech Community",
+            "Growth & Creativity",
+            "Belonging & Culture"
         ],
         "source_url": "https://www.meetup.com/code-and-coffee-pgh/",
-        "scrapeTime": "2026-04-15 00:31:25.712826"
+        "source_group": "meetup.com",
+        "org_name": "meetup.com",
+        "orgName": "meetup.com",
+        "scrapeTime": "2026-04-30 00:51:58.786597"
+    },
+    {
+        "id": "314000200",
+        "name": "Science, Technology & Sci-Fi - Pennsylvania",
+        "description": "We're based in south central Pennsylvania. At this time we're mostly meeting online, but some of us who live near each other get together in person. For our next online Meetup on the fourth Wednesday of the month, 7:00 pm - 8:30 pm, you can participate either by webcam or telephone call. The link will be sent by early evening to everyone who has RSVPd, and we will check for late RSVPs by 6:00 pm that day.\n\nWe recommend that you RSVP from the Events page:\nhttps://www.meetup.com/sci-fi-and-sci/\n\nIf you don't see the link in your Inbox by 6:00 pm that day, check your spam folder, or send a note directly to the organizer https://www.meetup.com/sci-and-sci-fi/members/?op=leaders\n\nFeel free to bring up any aspect of science & society, or science fiction. Topics can include either: (a) natural sciences, social sciences, philosophy, philosophy of science, technology, industry, science & society; or (b) science fiction (movies, novels, TV shows, etc. Also, you might have suggestions for some upcoming group activities, such as going to a movie, museum, or other event, as a group. New members might want to tell a bit about their interests.",
+        "startDate": "2026-06-24T23:00:00+00:00",
+        "endTime": "2026-06-24T20:30:00-04:00",
+        "url": "https://www.meetup.com/sci-and-sci-fi/events/314000200/",
+        "status": "ACTIVE",
+        "source": " https://www.meetup.com/sci-and-sci-fi/",
+        "location": {
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "geocode_status": "skipped_low_quality"
+        },
+        "orgImageUrl": null,
+        "imageUrl": "/event_images/Science_Technology_Sci_Fi_Pennsylvania.webp",
+        "tags": [
+            "Tech Community",
+            "Community Organizing",
+            "Software Development",
+            "Belonging & Culture",
+            "Purpose & Service",
+            "Growth & Creativity"
+        ],
+        "source_url": " https://www.meetup.com/sci-and-sci-fi/",
+        "source_group": "meetup.com",
+        "org_name": "meetup.com",
+        "orgName": "meetup.com",
+        "scrapeTime": "2026-04-30 00:51:58.788758"
     },
     {
         "id": "zqsqvtyjckbpb",
         "name": "Code & Coffee",
         "description": "Every second Saturday, our inclusive coding group Code & Coffee meets at Prototype PGH in Oakland from 1:30pm to 3:30pm! \ud83d\udcbb\u2615\n\nCode & Coffee is a monthly opportunity for you to practice your skills, meet new friends, and get help if you need it. Bring your laptop, your recent projects, and your programming problems! \ud83d\udc69\ud83c\udfff\u200d\ud83d\udcbb\ud83d\udc68\ud83c\udffb\u200d\ud83d\udcbb\ud83d\udc69\ud83c\udffb\u200d\ud83d\udcbb\ud83d\udc69\ud83c\udffd\u200d\ud83d\udcbb\ud83d\udc68\ud83c\udfff\u200d\ud83d\udcbb\ud83d\udc68\ud83c\udffb\u200d\ud83d\udcbb\n\nAll are welcome regardless of skill level or programming language. If you're new to coding, we'll be right there to help you work through your questions as needed. \ud83e\udde0\ud83d\udcf1\ud83d\udcda\n\nCode & Coffee events are relaxed and informal, and are intended as a way for our community to work together while providing each other with ongoing support and feedback. \ud83c\udfae\ud83d\udd79\ufe0f\ud83d\udc7e\n\n\\*\\* GENDER EQUITY \\*\\*\nWhen introducing yourself to others at our events, please also share your pronouns. This practice promotes inclusiveness, diversity, and kindness, all values our organization supports. \ud83c\udff3\ufe0f\u200d\ud83c\udf08\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f",
-        "startDate": "2026-07-11T13:30:00-04:00",
+        "startDate": "2026-07-11T17:30:00+00:00",
         "endTime": "2026-07-11T15:30:00-04:00",
         "url": "https://www.meetup.com/code-and-coffee-pgh/events/zqsqvtyjckbpb/",
         "status": "ACTIVE",
@@ -106,22 +206,65 @@
             "address": "460 Melwood Ave #208",
             "city": "Pittsburgh",
             "state": "PA",
-            "country": "us"
+            "country": "us",
+            "latitude": 40.4556308,
+            "longitude": -79.9528325,
+            "geocode_status": "provided",
+            "geocode_query": "460 Melwood Ave #208, Pittsburgh"
         },
+        "orgImageUrl": null,
         "imageUrl": "/event_images/Code_Coffee.webp",
         "tags": [
             "Tech Skills",
             "Software Development",
-            "Tech Community"
+            "Tech Community",
+            "Growth & Creativity",
+            "Belonging & Culture"
         ],
         "source_url": "https://www.meetup.com/code-and-coffee-pgh/",
-        "scrapeTime": "2026-04-15 00:31:25.713017"
+        "source_group": "meetup.com",
+        "org_name": "meetup.com",
+        "orgName": "meetup.com",
+        "scrapeTime": "2026-04-30 00:51:58.786726"
+    },
+    {
+        "id": "314000203",
+        "name": "Science, Technology & Sci-Fi - Pennsylvania",
+        "description": "We're based in south central Pennsylvania. At this time we're mostly meeting online, but some of us who live near each other get together in person. For our next online Meetup on the fourth Wednesday of the month, 7:00 pm - 8:30 pm, you can participate either by webcam or telephone call. The link will be sent by early evening to everyone who has RSVPd, and we will check for late RSVPs by 6:00 pm that day.\n\nWe recommend that you RSVP from the Events page:\nhttps://www.meetup.com/sci-fi-and-sci/\n\nIf you don't see the link in your Inbox by 6:00 pm that day, check your spam folder, or send a note directly to the organizer https://www.meetup.com/sci-and-sci-fi/members/?op=leaders\n\nFeel free to bring up any aspect of science & society, or science fiction. Topics can include either: (a) natural sciences, social sciences, philosophy, philosophy of science, technology, industry, science & society; or (b) science fiction (movies, novels, TV shows, etc. Also, you might have suggestions for some upcoming group activities, such as going to a movie, museum, or other event, as a group. New members might want to tell a bit about their interests.",
+        "startDate": "2026-07-22T23:00:00+00:00",
+        "endTime": "2026-07-22T20:30:00-04:00",
+        "url": "https://www.meetup.com/sci-and-sci-fi/events/314000203/",
+        "status": "ACTIVE",
+        "source": " https://www.meetup.com/sci-and-sci-fi/",
+        "location": {
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "geocode_status": "skipped_low_quality"
+        },
+        "orgImageUrl": null,
+        "imageUrl": "/event_images/Science_Technology_Sci_Fi_Pennsylvania.webp",
+        "tags": [
+            "Tech Community",
+            "Community Organizing",
+            "Software Development",
+            "Belonging & Culture",
+            "Purpose & Service",
+            "Growth & Creativity"
+        ],
+        "source_url": " https://www.meetup.com/sci-and-sci-fi/",
+        "source_group": "meetup.com",
+        "org_name": "meetup.com",
+        "orgName": "meetup.com",
+        "scrapeTime": "2026-04-30 00:51:58.789464"
     },
     {
         "id": "zqsqvtyjclblb",
         "name": "Code & Coffee",
         "description": "Every second Saturday, our inclusive coding group Code & Coffee meets at Prototype PGH in Oakland from 1:30pm to 3:30pm! \ud83d\udcbb\u2615\n\nCode & Coffee is a monthly opportunity for you to practice your skills, meet new friends, and get help if you need it. Bring your laptop, your recent projects, and your programming problems! \ud83d\udc69\ud83c\udfff\u200d\ud83d\udcbb\ud83d\udc68\ud83c\udffb\u200d\ud83d\udcbb\ud83d\udc69\ud83c\udffb\u200d\ud83d\udcbb\ud83d\udc69\ud83c\udffd\u200d\ud83d\udcbb\ud83d\udc68\ud83c\udfff\u200d\ud83d\udcbb\ud83d\udc68\ud83c\udffb\u200d\ud83d\udcbb\n\nAll are welcome regardless of skill level or programming language. If you're new to coding, we'll be right there to help you work through your questions as needed. \ud83e\udde0\ud83d\udcf1\ud83d\udcda\n\nCode & Coffee events are relaxed and informal, and are intended as a way for our community to work together while providing each other with ongoing support and feedback. \ud83c\udfae\ud83d\udd79\ufe0f\ud83d\udc7e\n\n\\*\\* GENDER EQUITY \\*\\*\nWhen introducing yourself to others at our events, please also share your pronouns. This practice promotes inclusiveness, diversity, and kindness, all values our organization supports. \ud83c\udff3\ufe0f\u200d\ud83c\udf08\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f",
-        "startDate": "2026-08-08T13:30:00-04:00",
+        "startDate": "2026-08-08T17:30:00+00:00",
         "endTime": "2026-08-08T15:30:00-04:00",
         "url": "https://www.meetup.com/code-and-coffee-pgh/events/zqsqvtyjclblb/",
         "status": "ACTIVE",
@@ -131,15 +274,58 @@
             "address": "460 Melwood Ave #208",
             "city": "Pittsburgh",
             "state": "PA",
-            "country": "us"
+            "country": "us",
+            "latitude": 40.4556308,
+            "longitude": -79.9528325,
+            "geocode_status": "provided",
+            "geocode_query": "460 Melwood Ave #208, Pittsburgh"
         },
+        "orgImageUrl": null,
         "imageUrl": "/event_images/Code_Coffee.webp",
         "tags": [
             "Tech Skills",
             "Software Development",
-            "Tech Community"
+            "Tech Community",
+            "Growth & Creativity",
+            "Belonging & Culture"
         ],
         "source_url": "https://www.meetup.com/code-and-coffee-pgh/",
-        "scrapeTime": "2026-04-15 00:31:25.713309"
+        "source_group": "meetup.com",
+        "org_name": "meetup.com",
+        "orgName": "meetup.com",
+        "scrapeTime": "2026-04-30 00:51:58.786929"
+    },
+    {
+        "id": "qsqnwtyjclbjc",
+        "name": "Science, Technology & Sci-Fi - Pennsylvania",
+        "description": "We're based in south central Pennsylvania. At this time we're mostly meeting online, but some of us who live near each other get together in person. For our next online Meetup on the fourth Wednesday of the month, 7:00 pm - 8:30 pm, you can participate either by webcam or telephone call. The link will be sent by early evening to everyone who has RSVPd, and we will check for late RSVPs by 6:00 pm that day.\n\nWe recommend that you RSVP from the Events page:\nhttps://www.meetup.com/sci-fi-and-sci/\n\nIf you don't see the link in your Inbox by 6:00 pm that day, check your spam folder, or send a note directly to the organizer https://www.meetup.com/sci-and-sci-fi/members/?op=leaders\n\nFeel free to bring up any aspect of science & society, or science fiction. Topics can include either: (a) natural sciences, social sciences, philosophy, philosophy of science, technology, industry, science & society; or (b) science fiction (movies, novels, TV shows, etc. Also, you might have suggestions for some upcoming group activities, such as going to a movie, museum, or other event, as a group. New members might want to tell a bit about their interests.",
+        "startDate": "2026-08-26T23:00:00+00:00",
+        "endTime": "2026-08-26T20:30:00-04:00",
+        "url": "https://www.meetup.com/sci-and-sci-fi/events/qsqnwtyjclbjc/",
+        "status": "ACTIVE",
+        "source": " https://www.meetup.com/sci-and-sci-fi/",
+        "location": {
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "geocode_status": "skipped_low_quality"
+        },
+        "orgImageUrl": null,
+        "imageUrl": "/event_images/Science_Technology_Sci_Fi_Pennsylvania.webp",
+        "tags": [
+            "Tech Community",
+            "Community Organizing",
+            "Software Development",
+            "Belonging & Culture",
+            "Purpose & Service",
+            "Growth & Creativity"
+        ],
+        "source_url": " https://www.meetup.com/sci-and-sci-fi/",
+        "source_group": "meetup.com",
+        "org_name": "meetup.com",
+        "orgName": "meetup.com",
+        "scrapeTime": "2026-04-30 00:51:58.790257"
     }
 ]
