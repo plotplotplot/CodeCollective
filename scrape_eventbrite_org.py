@@ -11,6 +11,7 @@ from datetime import datetime, timezone, timedelta
 from typing import List, Dict, Optional, Any
 from urllib.parse import urlparse
 import logging
+from zoneinfo import ZoneInfo
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -22,11 +23,13 @@ class EventbriteScraper:
     
     def __init__(self):
         self.session = requests.Session()
+        self.page_fallback_image_url: Optional[str] = None
         self.session.headers.update({
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
-            'Accept-Encoding': 'gzip, deflate, br',
+            # Avoid requesting Brotli here; requests may not decode br in all envs.
+            'Accept-Encoding': 'gzip, deflate',
             'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1'
         })
@@ -58,8 +61,13 @@ class EventbriteScraper:
             raise Exception(f"Failed to fetch page: {str(e)}")
     
     def _parse_events_from_html(self, html_content: str) -> List[Dict[str, Any]]:
-        """Parse events from HTML content"""
-        # Extract __SERVER_DATA__ using regex
+        """Parse events from HTML content (supports Next.js and legacy payloads)."""
+        self.page_fallback_image_url = self._extract_page_fallback_image(html_content)
+        next_data_events = self._extract_events_from_next_data(html_content)
+        if next_data_events is not None:
+            return next_data_events
+
+        # Legacy fallback: __SERVER_DATA__
         server_data_match = re.search(
             r'window\.__SERVER_DATA__\s*=\s*({.*?});',
             html_content,
@@ -75,6 +83,238 @@ class EventbriteScraper:
             raise Exception(f"Failed to parse __SERVER_DATA__ JSON: {str(e)}")
         
         return self._extract_events_from_server_data(server_data)
+
+    def _extract_page_fallback_image(self, html_content: str) -> Optional[str]:
+        candidates = []
+        for pattern in [
+            r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']',
+            r'<meta[^>]+name=["\']twitter:image["\'][^>]+content=["\']([^"\']+)["\']',
+        ]:
+            match = re.search(pattern, html_content, re.IGNORECASE)
+            if match:
+                url = (match.group(1) or "").strip()
+                if url:
+                    if url.startswith("//"):
+                        url = f"https:{url}"
+                    elif url.startswith("http://"):
+                        url = "https://" + url[len("http://"):]
+                    candidates.append(url)
+        return candidates[0] if candidates else None
+
+    def _extract_events_from_next_data(self, html_content: str) -> Optional[List[Dict[str, Any]]]:
+        next_data_match = re.search(
+            r'<script[^>]*id=["\']__NEXT_DATA__["\'][^>]*>(.*?)</script>',
+            html_content,
+            re.DOTALL,
+        )
+        if not next_data_match:
+            return None
+
+        try:
+            next_data = json.loads(next_data_match.group(1))
+        except json.JSONDecodeError:
+            return None
+
+        page_props = (next_data.get("props") or {}).get("pageProps") or {}
+        upcoming_events = page_props.get("upcomingEvents")
+        if not isinstance(upcoming_events, list):
+            single_event = self._extract_single_event_from_next_data(next_data)
+            if single_event is not None:
+                return single_event
+            return None
+
+        events = []
+        for raw_event in upcoming_events:
+            formatted = self._format_next_data_event(raw_event)
+            if formatted:
+                events.append(formatted)
+
+        events.sort(key=lambda x: self._parse_datetime(x['startDate']))
+        logger.info(f"Found {len(events)} upcoming events")
+        return events
+
+    def _extract_single_event_from_next_data(self, next_data: Dict[str, Any]) -> Optional[List[Dict[str, Any]]]:
+        page_props = (next_data.get("props") or {}).get("pageProps") or {}
+        context = page_props.get("context") or {}
+        basic_info = context.get("basicInfo") or {}
+        if not isinstance(basic_info, dict) or not basic_info.get("name"):
+            return None
+
+        start_info = basic_info.get("startDate") or {}
+        end_info = basic_info.get("endDate") or {}
+        timezone_name = start_info.get("timezone") or "UTC"
+        event_url = page_props.get("canonicalUrl") or basic_info.get("url")
+
+        image_data = basic_info.get("image") or {}
+        event_image = image_data.get("url") if isinstance(image_data, dict) else None
+        if not event_image:
+            event_image = self.page_fallback_image_url
+
+        main_event = {
+            "name": basic_info.get("name", "Unknown Event"),
+            "description": basic_info.get("summary") or basic_info.get("name", "Unknown Event"),
+            "startDate": start_info.get("utc") or start_info.get("local"),
+            "endTime": end_info.get("utc") or end_info.get("local"),
+            "url": event_url,
+            "status": "ACTIVE",
+            "location": self._format_context_location(basic_info.get("venue"), bool(basic_info.get("isOnline"))),
+            "imageUrl": event_image,
+            "orgImageUrl": self.page_fallback_image_url,
+        }
+
+        agenda_days = self._extract_agenda_days(
+            context=context,
+            event_name=main_event["name"],
+            event_url=event_url,
+            timezone_name=timezone_name,
+            fallback_location=main_event["location"],
+            fallback_image=event_image,
+            base_start=main_event["startDate"],
+        )
+        if agenda_days:
+            events = [event for event in agenda_days if event.get("startDate")]
+            events.sort(key=lambda x: self._parse_datetime(x["startDate"]))
+            logger.info(f"Found single Eventbrite event page with {len(events)} agenda day blocks")
+            return events
+
+        return [main_event] if main_event.get("startDate") else None
+
+    def _extract_agenda_days(
+        self,
+        context: Dict[str, Any],
+        event_name: str,
+        event_url: Optional[str],
+        timezone_name: str,
+        fallback_location: Dict[str, Any],
+        fallback_image: Optional[str],
+        base_start: Optional[str] = None,
+    ) -> List[Dict[str, Any]]:
+        agenda = (((context.get("structuredContent") or {}).get("widgets") or {}).get("agenda") or {})
+        tabs = agenda.get("tabs") if isinstance(agenda, dict) else None
+        if not isinstance(tabs, list) or not tabs:
+            return []
+
+        try:
+            tz = ZoneInfo(timezone_name) if timezone_name else timezone.utc
+        except Exception:
+            tz = timezone.utc
+
+        base_year = datetime.now(tz).year
+        if base_start:
+            try:
+                base_year = self._parse_datetime(base_start).astimezone(tz).year
+            except Exception:
+                pass
+
+        day_events: List[Dict[str, Any]] = []
+        for tab in tabs:
+            day_name = str((tab or {}).get("name") or "").strip()
+            slots = (tab or {}).get("slots") or []
+            if not day_name or not isinstance(slots, list):
+                continue
+            day_date = self._parse_agenda_day(day_name, base_year)
+            if day_date is None:
+                continue
+
+            agenda_items = []
+            for idx, slot in enumerate(slots):
+                title = str((slot or {}).get("title") or "").strip()
+                start_hhmm = str((slot or {}).get("startTime") or "").strip()
+                end_hhmm = str((slot or {}).get("endTime") or "").strip()
+                if not title or not start_hhmm:
+                    continue
+
+                start_hhmm, end_hhmm = self._normalize_agenda_times(start_hhmm, end_hhmm, title)
+
+                start_iso = self._combine_day_and_time(day_date, start_hhmm, tz)
+                if not start_iso:
+                    continue
+                end_iso = self._combine_day_and_time(day_date, end_hhmm, tz) if end_hhmm else None
+                if end_iso and self._parse_datetime(end_iso) < self._parse_datetime(start_iso):
+                    end_iso = self._combine_day_and_time(day_date + timedelta(days=1), end_hhmm, tz)
+
+                hosts = (slot or {}).get("hosts") or []
+                host_names = [str(h.get("name", "")).strip() for h in hosts if isinstance(h, dict) and h.get("name")]
+                description = str((slot or {}).get("description") or "").strip()
+                agenda_items.append({
+                    "title": title,
+                    "description": description,
+                    "startDate": start_iso,
+                    "endTime": end_iso or start_iso,
+                    "hosts": host_names,
+                    "order": idx,
+                })
+
+            if not agenda_items:
+                continue
+
+            day_start = datetime.combine(day_date, datetime.min.time(), tzinfo=tz).isoformat()
+            day_end = datetime.combine(day_date, datetime.max.time().replace(microsecond=0), tzinfo=tz).isoformat()
+
+            day_events.append({
+                "name": event_name,
+                "description": f"{event_name} ({day_name})",
+                "startDate": day_start,
+                "endTime": day_end,
+                "url": event_url,
+                "status": "ACTIVE",
+                "location": fallback_location,
+                "imageUrl": fallback_image,
+                "orgImageUrl": self.page_fallback_image_url,
+                "agenda": {
+                    "day": day_name,
+                    "sessions": agenda_items,
+                },
+            })
+
+        return day_events
+
+    def _parse_agenda_day(self, day_name: str, base_year: int):
+        cleaned = re.sub(r"\s+", " ", day_name).strip()
+        for year in [base_year, base_year + 1, base_year - 1]:
+            for pattern in ("%A %B %d %Y", "%a %B %d %Y", "%A %b %d %Y", "%a %b %d %Y"):
+                try:
+                    return datetime.strptime(f"{cleaned} {year}", pattern).date()
+                except ValueError:
+                    continue
+        return None
+
+    def _combine_day_and_time(self, day_date, hhmm: str, tzinfo) -> Optional[str]:
+        match = re.match(r"^(\d{1,2}):(\d{2})$", hhmm)
+        if not match:
+            return None
+        hour = int(match.group(1))
+        minute = int(match.group(2))
+        if hour > 23 or minute > 59:
+            return None
+        dt = datetime.combine(day_date, datetime.min.time(), tzinfo=tzinfo).replace(hour=hour, minute=minute)
+        return dt.isoformat()
+
+    def _normalize_agenda_times(self, start_hhmm: str, end_hhmm: str, title: str) -> (str, str):
+        """
+        Eventbrite agenda payloads occasionally encode noon sessions as 00:xx.
+        For conference-style sessions, treat 00:xx as 12:xx when the paired end
+        time is clearly daytime or the title strongly implies daytime.
+        """
+        if not re.match(r"^\d{1,2}:\d{2}$", start_hhmm):
+            return start_hhmm, end_hhmm
+        start_hour = int(start_hhmm.split(":", 1)[0])
+        if start_hour != 0:
+            return start_hhmm, end_hhmm
+
+        end_hour = None
+        if re.match(r"^\d{1,2}:\d{2}$", end_hhmm or ""):
+            end_hour = int(end_hhmm.split(":", 1)[0])
+        title_l = (title or "").lower()
+        daytime_title = any(token in title_l for token in ["lunch", "breakfast", "opening", "remarks", "networking"])
+        clearly_daytime_range = end_hour is not None and end_hour >= 11
+
+        if daytime_title or clearly_daytime_range:
+            start_hhmm = f"12:{start_hhmm.split(':', 1)[1]}"
+            if end_hhmm and end_hour == 0:
+                end_hhmm = f"12:{end_hhmm.split(':', 1)[1]}"
+
+        return start_hhmm, end_hhmm
     
     def _extract_events_from_server_data(self, server_data: Dict[str, Any]) -> List[Dict[str, Any]]:
         """Extract events from server data"""
@@ -135,7 +375,7 @@ class EventbriteScraper:
         """Format a single event into the required structure"""
         try:
             location = self._format_location(event_data.get('location', {}))
-            image_url = event_data.get('image')
+            image_url = event_data.get('image') or self.page_fallback_image_url
             
             return {
                 'name': event_data.get('name', 'Unknown Event'),
@@ -145,11 +385,123 @@ class EventbriteScraper:
                 'url': event_data.get('url'),
                 'status': 'ACTIVE',
                 'location': location,
-                'imageUrl': image_url
+                'imageUrl': image_url,
+                'orgImageUrl': self.page_fallback_image_url
             }
         except Exception as e:
             logger.warning(f"Failed to format event {event_data.get('name', 'Unknown')}: {str(e)}")
             return None
+
+    def _format_next_data_event(self, event_data: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        try:
+            start_date = str(event_data.get("start_date") or "").strip()
+            start_time = str(event_data.get("start_time") or "").strip()
+            end_date = str(event_data.get("end_date") or "").strip()
+            end_time = str(event_data.get("end_time") or "").strip()
+            timezone_name = str(event_data.get("timezone") or "UTC").strip()
+
+            start_iso = self._build_iso_datetime(start_date, start_time, timezone_name)
+            end_iso = self._build_iso_datetime(end_date or start_date, end_time, timezone_name)
+            if not start_iso:
+                return None
+
+            end_for_filter = self._parse_datetime(end_iso) if end_iso else self._parse_datetime(start_iso)
+            if end_for_filter <= datetime.now(timezone.utc):
+                return None
+
+            is_online = bool(event_data.get("is_online_event"))
+            image_data = event_data.get("image") or {}
+            event_image = image_data.get('url') if isinstance(image_data, dict) else None
+            event_image = event_image or self.page_fallback_image_url
+
+            return {
+                'name': event_data.get('name', 'Unknown Event'),
+                'description': event_data.get('summary') or event_data.get('name', 'Unknown Event'),
+                'startDate': start_iso,
+                'endTime': end_iso,
+                'url': event_data.get('url'),
+                'status': 'ACTIVE',
+                'location': self._format_next_data_location(event_data, is_online=is_online),
+                'imageUrl': event_image,
+                'orgImageUrl': self.page_fallback_image_url
+            }
+        except Exception as e:
+            logger.warning(f"Failed to format Next.js event payload: {e}")
+            return None
+
+    def _format_next_data_location(self, event_data: Dict[str, Any], is_online: bool) -> Dict[str, Any]:
+        if is_online:
+            return {
+                'name': 'Online Event',
+                'address': 'Online',
+                'city': '',
+                'state': '',
+                'country': '',
+            }
+
+        venue = event_data.get("primary_venue") or {}
+        address = venue.get("address") or {}
+        return {
+            'name': venue.get('name', 'Unknown Location'),
+            'address': address.get('localized_address_display') or address.get('address_1') or 'Unknown Address',
+            'city': address.get('city', ''),
+            'state': address.get('region', ''),
+            'postalCode': address.get('postal_code', ''),
+            'country': address.get('country', ''),
+            'latitude': address.get('latitude'),
+            'longitude': address.get('longitude'),
+        }
+
+    def _format_context_location(self, venue: Optional[Dict[str, Any]], is_online: bool) -> Dict[str, Any]:
+        if is_online:
+            return {
+                'name': 'Online Event',
+                'address': 'Online',
+                'city': '',
+                'state': '',
+                'country': '',
+            }
+        venue = venue or {}
+        address = venue.get("address") or {}
+        multiline = address.get("localizedMultiLineAddressDisplay") or []
+        if isinstance(multiline, list):
+            address_line = ", ".join([part for part in multiline if part])
+        else:
+            address_line = ""
+        return {
+            'name': venue.get('name', 'Unknown Location'),
+            'address': address_line or address.get('localizedAddressDisplay') or 'Unknown Address',
+            'city': address.get('city', ''),
+            'state': address.get('region', ''),
+            'postalCode': address.get('postalCode', ''),
+            'country': address.get('country', ''),
+            'latitude': address.get('latitude'),
+            'longitude': address.get('longitude'),
+        }
+
+    def _build_iso_datetime(self, date_value: str, time_value: str, timezone_name: str) -> Optional[str]:
+        if not date_value:
+            return None
+        try:
+            dt_date = datetime.strptime(date_value, "%Y-%m-%d").date()
+        except ValueError:
+            return None
+
+        parsed_time = datetime.min.time()
+        if time_value:
+            for pattern in ("%H:%M:%S", "%H:%M"):
+                try:
+                    parsed_time = datetime.strptime(time_value, pattern).time()
+                    break
+                except ValueError:
+                    continue
+
+        try:
+            tz = ZoneInfo(timezone_name) if timezone_name else timezone.utc
+        except Exception:
+            tz = timezone.utc
+        dt = datetime.combine(dt_date, parsed_time, tzinfo=tz)
+        return dt.isoformat()
     
     def _format_location(self, location_data: Dict[str, Any]) -> Dict[str, str]:
         """Format location information"""

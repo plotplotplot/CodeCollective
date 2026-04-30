@@ -317,9 +317,9 @@
     <nav class="main-nav" aria-label="Main Navigation">
       <div class="navbar dark-mode">
         <a href="/#main">Home</a>
-        <a href="/balticonomy/">Balticonomy</a>
+        <a href="/platform.html">Platform</a>
         <a href="/calendar.html?city=baltimore">Calendar</a>
-        <a href="/newsletter/">Newsletter</a>
+        <a href="/projects.html">Projects</a>
       </div>
     </nav>
     <div class="wrap">
@@ -363,6 +363,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+    <script type="module" src="/js/reusableComponents.js"></script>
 
     <script>
       /* ---------- Date helpers ---------- */
@@ -554,6 +555,7 @@
         "hawaii",
         "dc",
         "pittsburgh",
+        "philadelphia",
         "virtual"
       ];
       const CITY_DISPLAY_NAMES = window.CALENDAR_CITY_DISPLAY_NAMES || {
@@ -562,6 +564,7 @@
         hawaii: "Hawaii",
         dc: "Washington, D.C.",
         pittsburgh: "Pittsburgh",
+        philadelphia: "Philadelphia",
         virtual: "Virtual",
       };
       function getCityDisplayName(city) {

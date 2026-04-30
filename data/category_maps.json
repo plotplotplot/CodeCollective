@@ -1,6 +1,65 @@
 {
-  "default_map": "maslow_needs",
+  "default_map": "lenses",
   "maps": [
+    {
+      "id": "lenses",
+      "label": "Lenses",
+      "other": {
+        "label": "Other",
+        "color": "#6b7280",
+        "text_color": "#ffffff"
+      },
+      "categories": [
+        {
+          "label": "Community",
+          "color": "#7c3aed",
+          "text_color": "#ffffff",
+          "matches": ["Community", "Community Organizing", "Belonging & Culture", "Code Collective & Partners", "Tech Community", "Religion", "Faith & Spirituality"]
+        },
+        {
+          "label": "Education",
+          "color": "#2563eb",
+          "text_color": "#ffffff",
+          "matches": ["Tech Skills", "Growth & Creativity", "Software Development", "Web Development", "JavaScript", "Python", "Ruby", "Open Source", "Technical Writing", "Product", "UX", "Career Growth"]
+        },
+        {
+          "label": "Health",
+          "color": "#dc2626",
+          "text_color": "#ffffff",
+          "matches": ["Health", "Survival & Health", "Wellness", "Food"]
+        },
+        {
+          "label": "Arts & Culture",
+          "color": "#d946ef",
+          "text_color": "#ffffff",
+          "matches": ["Culture", "Growth & Creativity", "Game Development"]
+        },
+        {
+          "label": "Housing",
+          "color": "#475569",
+          "text_color": "#ffffff",
+          "matches": ["Housing", "Shelter + Habitat"]
+        },
+        {
+          "label": "Public Safety",
+          "color": "#f59e0b",
+          "text_color": "#ffffff",
+          "matches": ["Public Safety", "Safety & Stability", "Cybersecurity", "Politics", "Policy", "Civic Tech", "Purpose & Service", "Infrastructure"]
+        },
+        {
+          "label": "Environment",
+          "color": "#16a34a",
+          "text_color": "#ffffff",
+          "matches": ["Water", "Water & Environment", "Climate & Energy", "Energy", "Infrastructure"]
+        },
+        {
+          "label": "Economy",
+          "color": "#0d9488",
+          "text_color": "#ffffff",
+          "matches": ["Economics", "Economic Development", "Esteem & Opportunity", "Finance", "Crypto & Web3", "Entrepreneurship", "Business", "Startup", "Professional Networking", "AI", "Data Science", "Cloud & Platform", "DevOps", "Makerspace", "Robotics"]
+        }
+      ]
+    },
     {
       "id": "maslow_needs",
       "label": "Maslow Needs",
@@ -82,52 +141,46 @@
       },
       "categories": [
         {
-          "label": "Technology",
-          "color": "#2563eb",
-          "text_color": "#ffffff",
-          "matches": ["Tech Skills", "Growth & Creativity", "AI", "Data Science", "Cybersecurity", "Cloud & Platform", "DevOps", "Software Development", "Web Development", "JavaScript", "Python", "Ruby", "Product", "UX", "Game Development", "Technical Writing", "Open Source", "Tech Community"]
-        },
-        {
-          "label": "Business & Startups",
-          "color": "#ca8a04",
-          "text_color": "#111827",
-          "matches": ["Business", "Economic Development", "Startup", "Career Growth", "Professional Networking", "Esteem & Opportunity"]
-        },
-        {
-          "label": "Finance & Crypto",
+          "label": "Community",
           "color": "#7c3aed",
           "text_color": "#ffffff",
-          "matches": ["Finance", "Crypto & Web3"]
+          "matches": ["Community", "Community Organizing", "Belonging & Culture", "Code Collective & Partners", "Tech Community", "Religion", "Faith & Spirituality"]
         },
         {
-          "label": "Civics & Policy",
+          "label": "Education",
+          "color": "#2563eb",
+          "text_color": "#ffffff",
+          "matches": ["Tech Skills", "Growth & Creativity", "Software Development", "Web Development", "JavaScript", "Python", "Ruby", "Open Source", "Technical Writing", "Product", "UX", "Career Growth"]
+        },
+        {
+          "label": "Health",
           "color": "#dc2626",
           "text_color": "#ffffff",
-          "matches": ["Politics", "Civic Tech", "Policy", "Purpose & Service"]
+          "matches": ["Health", "Survival & Health", "Wellness", "Food"]
         },
         {
-          "label": "Community & Culture",
-          "color": "#db2777",
+          "label": "Arts & Culture",
+          "color": "#d946ef",
           "text_color": "#ffffff",
-          "matches": ["Culture", "Belonging & Culture", "Community", "Community Organizing", "Code Collective & Partners", "Tech Community"]
+          "matches": ["Culture", "Growth & Creativity", "Game Development"]
         },
         {
-          "label": "Faith",
-          "color": "#7c2d12",
+          "label": "Housing",
+          "color": "#475569",
           "text_color": "#ffffff",
-          "matches": ["Religion", "Faith & Spirituality"]
+          "matches": ["Housing", "Shelter + Habitat"]
         },
         {
-          "label": "Water & Environment",
-          "color": "#0f766e",
+          "label": "Public Safety",
+          "color": "#f59e0b",
+          "text_color": "#ffffff",
+          "matches": ["Public Safety", "Safety & Stability", "Cybersecurity", "Politics", "Policy", "Civic Tech", "Purpose & Service", "Infrastructure"]
+        },
+        {
+          "label": "Environment",
+          "color": "#16a34a",
           "text_color": "#ffffff",
           "matches": ["Water", "Water & Environment", "Climate & Energy", "Energy", "Infrastructure"]
-        },
-        {
-          "label": "Makerspace & Robotics",
-          "color": "#ea580c",
-          "text_color": "#ffffff",
-          "matches": ["Makerspace", "Robotics"]
         }
       ]
     },

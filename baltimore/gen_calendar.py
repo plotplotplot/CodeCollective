@@ -1,6 +1,7 @@
 import importlib
 from pathlib import Path
 import sys
+from urllib.parse import urlparse
 
 CITY_DIR = Path(__file__).resolve().parent
 ROOT_DIR = CITY_DIR.parent
@@ -73,18 +74,10 @@ ICS_SOURCES = [
         "recurring": False,
     },
     {
-        "url": "https://www.digitalequitybaltimore.org/general-clean",
-        "ics_url": "https://calendar.google.com/calendar/ical/c_be274545c6e9af174fab0df99319a3c47f1be77a013450babf6d03e90396a064%40group.calendar.google.com/public/basic.ics",
-        "orgImageUrl": "https://static.wixstatic.com/media/8dc51b_7123df01d68e47a1b4b717c89ad4aea7~mv2.png/v1/fill/w_223,h_90,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/BDEC%20(1).png",
-        "tags": ["Economic Development"],
-        "group_name": "Digital Equity Baltimore",
-        "recurring": False,
-    },
-    {
-        "url": "https://calendar.google.com/calendar/u/0/r?cid=c_35ce051bfecc3ebd59f7776829ca549d2dd38e8ab2a50b07bd4243cb1c218c72@group.calendar.google.com",
+        "url": "https://chesapeakeclimate.org/",
         "ics_url": "https://calendar.google.com/calendar/ical/c_35ce051bfecc3ebd59f7776829ca549d2dd38e8ab2a50b07bd4243cb1c218c72%40group.calendar.google.com/public/basic.ics",
         "orgImageUrl": "https://chesapeakeclimate.org/wp-content/uploads/2022/02/CCAN-Logo-2022-300RGB-wht-e1643743097559.png",
-        "tags": ["Climate", "Environment", "Activism"],
+        "tags": ["Climate & Energy", "Water & Environment"],
         "group_name": "CCAN Baltimore",
         "recurring": False,
     },
@@ -183,12 +176,36 @@ CUSTOM_SCRAPER_SOURCES = [
         "tags": ["Economic Development", "Community", "Education"],
     },
     {
+        "module": "baltimore.scrape_baltimoreorg",
+        "function": "scrape_events",
+        "url": "https://baltimore.org/events/",
+        "group_name": "Visit Baltimore",
+        "orgImageUrl": "https://baltimore.org/wp-content/uploads/2024/06/visit-baltimore-logo.svg",
+        "tags": ["Community", "Culture"],
+    },
+    {
         "module": "baltimore.scrape_towsonlodge",
         "function": "scrape_events",
         "url": "https://towsonlodge.us/calendar-%26-events",
         "group_name": "Towson Lodge #79",
         "orgImageUrl": "",
         "tags": ["Community", "Fraternal"],
+    },
+    {
+        "module": "baltimore.scrape_digitalequitybaltimore",
+        "function": "scrape_events",
+        "url": "https://www.digitalequitybaltimore.org/general-clean",
+        "group_name": "Digital Equity Baltimore",
+        "orgImageUrl": "https://static.wixstatic.com/media/8dc51b_7123df01d68e47a1b4b717c89ad4aea7~mv2.png/v1/fill/w_223,h_90,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/BDEC%20(1).png",
+        "tags": ["Economic Development", "Digital Equity"],
+    },
+    {
+        "module": "baltimore.scrape_umventures",
+        "function": "scrape_events",
+        "url": "https://www.umventures.org/events",
+        "group_name": "UM Ventures",
+        "orgImageUrl": "https://www.umventures.org/sites/default/files/inline-images/UMVentures-Logo_0.png",
+        "tags": ["Business", "Startup", "Economic Development"],
     },
 ]
 def merge_tags(*tag_lists):
@@ -211,6 +228,10 @@ def apply_source_tags(events, source_url, source_tags, source_group="", org_imag
     if not events:
         return []
 
+    normalized_group = str(source_group or "").strip()
+    if not normalized_group and source_url:
+        normalized_group = urlparse(source_url).netloc.replace("www.", "").strip()
+
     normalized_events = events if isinstance(events, list) else [events]
     for event in normalized_events:
         if not isinstance(event, dict):
@@ -219,8 +240,10 @@ def apply_source_tags(events, source_url, source_tags, source_group="", org_imag
         if source_url:
             event.setdefault("source", source_url)
             event["source_url"] = source_url
-        if source_group:
-            event.setdefault("source_group", source_group)
+        if normalized_group:
+            event.setdefault("source_group", normalized_group)
+            event.setdefault("org_name", normalized_group)
+            event.setdefault("orgName", normalized_group)
         if org_image_url:
             event.setdefault("orgImageUrl", org_image_url)
 
@@ -251,11 +274,11 @@ def fetch_cached_ics_source(source):
 def collect_events(city="baltimore", error_logger=None):
     new_events = []
 
-    def log_error(message, error, source_url=None, scraper=None):
+    def log_error(message, error, source_url=None, scraper=None, stage="city_collect"):
         print(f"{message}: {error}")
         if error_logger:
             error_logger(
-                stage="city_collect",
+                stage=stage,
                 error=error,
                 source_url=source_url,
                 scraper=scraper,
@@ -421,19 +444,32 @@ def collect_events(city="baltimore", error_logger=None):
         try:
             scraper_module = importlib.import_module(source["module"])
             scraper_fn = getattr(scraper_module, source["function"])
+            scraped_events = scraper_fn()
+            if not scraped_events:
+                log_error(
+                    "Custom scraper returned zero events",
+                    RuntimeError("ZERO_EVENTS_PARSED"),
+                    source["url"],
+                    source["module"],
+                    stage="ZERO_EVENTS_PARSED",
+                )
+                continue
+
             new_events += apply_source_tags(
-                scraper_fn(),
+                scraped_events,
                 source["url"],
                 source.get("tags", []),
                 source.get("group_name", ""),
                 source.get("orgImageUrl", ""),
             )
         except Exception as e:
+            error_stage = getattr(e, "log_stage", "city_collect")
             log_error(
                 f"Error fetching {source.get('group_name', source['url'])} events",
                 e,
                 source["url"],
                 source["module"],
+                stage=error_stage,
             )
 
     try:

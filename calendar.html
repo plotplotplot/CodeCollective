@@ -37,13 +37,19 @@
   <!-- Scripts -->
   <script>
     (function () {
-      const DEFAULT_CITY_OPTIONS = ['baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh', 'virtual'];
+      window.CALENDAR_DEFAULT_CATEGORY_MAP = 'lenses';
+      window.CALENDAR_CATEGORY_MAPS_INDEX_URL = '/data/category_maps/index.json';
+      window.CALENDAR_LENSES_SCHEMA_URL = '/data/category_maps/lenses.json';
+      window.CALENDAR_COMMUNITY_SECTORS_SCHEMA_URL = '/data/category_maps/community_sectors.json';
+
+      const DEFAULT_CITY_OPTIONS = ['baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh', 'philadelphia', 'virtual'];
       const DEFAULT_CITY_DISPLAY_NAMES = {
         baltimore: 'Baltimore',
         westvirginia: 'West Virginia',
         hawaii: 'Hawaii',
         dc: 'Washington, D.C.',
         pittsburgh: 'Pittsburgh',
+        philadelphia: 'Philadelphia',
         virtual: 'Virtual',
       };
 
@@ -187,6 +193,23 @@
           <label for="city-select">Show events for:</label>
           <select id="city-select" aria-label="Select a city for the calendar"></select>
         </div>
+        <div class="calendar-search">
+          <label for="calendar-search-input">Search events:</label>
+          <input
+            id="calendar-search-input"
+            type="search"
+            placeholder="Title, tag, org, description, location..."
+            aria-label="Search events"
+          />
+        </div>
+        <div class="timezone-controls">
+          <label class="timezone-toggle" for="use-local-time-checkbox">
+            <input id="use-local-time-checkbox" type="checkbox" checked />
+            <span>Use Local Time</span>
+          </label>
+          <label for="timezone-select">Timezone:</label>
+          <select id="timezone-select" aria-label="Select timezone for calendar display"></select>
+        </div>
           <a href="#"
           data-ics-template="https://calendar.google.com/calendar/u/0/r?cid=http://codecollective.us/{city}/cc_events.ics"
           class="download-button" target="_blank" rel="noopener noreferrer">
@@ -212,6 +235,7 @@
       </section>
     </section>
 
+    <script src="/js/calendarFilterUtils.js"></script>
     <script src="/js/calendar.js"></script>
     </section>
 

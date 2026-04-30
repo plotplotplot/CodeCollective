@@ -36,46 +36,12 @@ jobs:
           fi
 
       - name: Commit and push changes
-        if: always()
+        if: ${{ success() }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add \
-            baltimore/cc_events.ics \
-            baltimore/eventsplain.html \
-            baltimore/scrape_errors.json \
-            baltimore/unmatched_source_patterns.json \
-            baltimore/upcoming_events.json \
-            dc/cc_events.ics \
-            dc/eventsplain.html \
-            dc/scrape_errors.json \
-            dc/unmatched_source_patterns.json \
-            dc/upcoming_events.json \
-            hawaii/cc_events.ics \
-            hawaii/eventsplain.html \
-            hawaii/scrape_errors.json \
-            hawaii/unmatched_source_patterns.json \
-            hawaii/upcoming_events.json \
-            pittsburgh/cc_events.ics \
-            pittsburgh/eventsplain.html \
-            pittsburgh/scrape_errors.json \
-            pittsburgh/unmatched_source_patterns.json \
-            pittsburgh/upcoming_events.json \
-            virtual/cc_events.ics \
-            virtual/eventsplain.html \
-            virtual/scrape_errors.json \
-            virtual/unmatched_source_patterns.json \
-            virtual/upcoming_events.json \
-            westvirginia/cc_events.ics \
-            westvirginia/eventsplain.html \
-            westvirginia/scrape_errors.json \
-            westvirginia/unmatched_source_patterns.json \
-            westvirginia/upcoming_events.json \
-            cc_events.ics \
-            event_images \
-            upcoming_events.json \
-            usa/data/usajobs-lite.json.gz
+          git add -A
           git commit -m "Update calendar" || echo "No changes to commit"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git

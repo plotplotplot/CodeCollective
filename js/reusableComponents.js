@@ -4,9 +4,9 @@ class OurHeader extends HTMLElement {
             <nav class="main-nav" aria-label="Main Navigation">
                 <div class="navbar dark-mode">
                 <a href="/#main">Home</a>
-                <a href="/balticonomy/">Balticonomy</a>
-                <a href="/#get-involved">Join Us</a>
-                <a href="/newsletter/">Newsletter</a>
+                <a href="/platform.html">Platform</a>
+                <a href="/calendar.html?city=baltimore">Calendar</a>
+                <a href="/projects.html">Projects</a>
                 </div>
             </nav>
         `
@@ -129,7 +129,7 @@ class CalendarLegend extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
             <aside class="calendar-legend" aria-label="Event category filters">
-                <div class="legend-title">Filter by category:</div>
+                <div class="legend-title">Filter by lenses:</div>
                 <div class="legend-items" id="calendar-legend-items"></div>
             </aside>
             <button type="button" id="legend-visibility-toggle" class="legend-toggle-button" aria-expanded="true">
@@ -139,10 +139,43 @@ class CalendarLegend extends HTMLElement {
     }
 }
 
+const STANDARD_NAV_LINKS = [
+    { href: '/#main', label: 'Home' },
+    { href: '/platform.html', label: 'Platform' },
+    { href: '/calendar.html?city=baltimore', label: 'Calendar' },
+    { href: '/projects.html', label: 'Projects' },
+];
+
+function normalizeMainNavs() {
+    const navbars = document.querySelectorAll('.main-nav .navbar');
+
+    navbars.forEach((navbar) => {
+        if (navbar.dataset.navConsistent === 'skip') {
+            return;
+        }
+
+        const preservedNodes = Array.from(navbar.children).filter((child) => child.tagName !== 'A');
+        navbar.innerHTML = '';
+
+        STANDARD_NAV_LINKS.forEach(({ href, label }) => {
+            const link = document.createElement('a');
+            link.href = href;
+            link.textContent = label;
+            navbar.appendChild(link);
+        });
+
+        preservedNodes.forEach((node) => navbar.appendChild(node));
+    });
+}
+
 function addDonateShortcut() {
     const navs = document.querySelectorAll('.main-nav');
 
     navs.forEach((nav) => {
+        if (nav.dataset.hideDonate === 'true') {
+            return;
+        }
+
         if (nav.querySelector('.donate-shortcut')) {
             return;
         }
@@ -167,4 +200,7 @@ customElements.define('our-footer', OurFooter)
 customElements.define('our-slack-link', OurSocials)
 customElements.define('calendar-legend', CalendarLegend)
 
-document.addEventListener('DOMContentLoaded', addDonateShortcut);
+document.addEventListener('DOMContentLoaded', () => {
+    normalizeMainNavs();
+    addDonateShortcut();
+});

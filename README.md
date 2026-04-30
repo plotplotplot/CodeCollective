@@ -5,6 +5,31 @@ The main branch here is hosted directly as:
 https://codecollective.us/  
 using GitHub pages
 
+## Deployment split
+
+- `codecollective.us` static site remains on your existing AWS S3 + CloudFront deployment.
+- `portal/` is now an independent submodule (`OrgPortal`) and should be deployed separately.
+- Use:
+
+```bash
+./scripts/deploy_portal.sh
+```
+
+Optional env file for portal deploy settings:
+
+```bash
+cp env.portal.example .env.portal
+```
+
+## Calendar feed to org-backend
+
+`update-calendar.yml` can now push newly generated events + organizations into the org backend ingest endpoint.
+
+Configure these repository secrets in `CodeCollective`:
+
+- `ORG_BACKEND_INGEST_URL` (example: `https://org.arkavo.org/api/network/ingest/calendar`)
+- `ORG_BACKEND_INGEST_TOKEN` (must match `ORG_INGEST_TOKEN` in the org-backend runtime)
+
 ## Contributing to the Project
 
 Thank you for your interest in contributing to the Code Collective website! Below are instructions to help you get started with testing your changes locally, creating pull requests, and ensuring your contributions follow our guidelines.

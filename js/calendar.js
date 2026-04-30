@@ -12,67 +12,22 @@ let calendarDisplayEvents = [];
 let hoverPreviewPanel = null;
 let eventInfoModal = null;
 let showExcludedEvents = false;
+let textSearchQuery = '';
+let searchUrlSyncTimer = null;
+let useLocalTime = true;
+let selectedTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+const TIMEZONE_PREFS_KEY = 'calendarTimezonePrefs';
+const filterUtils = window.CalendarFilterUtils || null;
+const SEARCH_QUERY_PARAM = 'q';
 const FEATURED_SOURCE_URLS = new Set([
   'https://luma.com/codecollective',
   'https://lu.ma/codecollective'
 ]);
-const CATEGORY_MAPS_INDEX_URL = '/data/category_maps/index.json';
+const CATEGORY_MAPS_INDEX_URL = window.CALENDAR_CATEGORY_MAPS_INDEX_URL || '/data/category_maps/index.json';
+const DEFAULT_CATEGORY_MAP_ID = window.CALENDAR_DEFAULT_CATEGORY_MAP || 'lenses';
 const LEGEND_PREFS_KEY = 'calendarLegendPrefs';
-const FALLBACK_CATEGORY_MAP_CONFIG = {
-  default_map: 'community_sectors',
-  maps: [
-    {
-      id: 'maslow_needs',
-      label: 'Maslow Needs',
-      categories: [
-        { label: 'Food', color: '#ca8a04', text_color: '#ffffff', matches: ['Food'] },
-        { label: 'Water', color: '#0f766e', text_color: '#ffffff', matches: ['Water', 'Water & Environment'] },
-        { label: 'Shelter + Habitat', color: '#475569', text_color: '#ffffff', matches: ['Housing', 'Shelter + Habitat'] },
-        { label: 'Clothing', color: '#7c3aed', text_color: '#ffffff', matches: ['Clothing'] },
-        { label: 'Survival & Health', color: '#059669', text_color: '#ffffff', matches: ['Survival & Health', 'Wellness', 'Health'] },
-        { label: 'Safety & Stability', color: '#1d4ed8', text_color: '#ffffff', matches: ['Safety & Stability', 'Infrastructure', 'Finance'] },
-        { label: 'Belonging & Culture', color: '#9333ea', text_color: '#ffffff', matches: ['Belonging & Culture', 'Culture', 'Religion', 'Community'] },
-        { label: 'Esteem & Opportunity', color: '#b45309', text_color: '#ffffff', matches: ['Esteem & Opportunity', 'Economic Development', 'Business'] },
-        { label: 'Growth & Creativity', color: '#db2777', text_color: '#ffffff', matches: ['Growth & Creativity', 'Tech Skills', 'Makerspace'] },
-        { label: 'Purpose & Service', color: '#b91c1c', text_color: '#ffffff', matches: ['Purpose & Service', 'Politics'] },
-        { label: 'Other', color: '#6b7280', text_color: '#ffffff', matches: [] }
-      ]
-    },
-    {
-      id: 'community_sectors',
-      label: 'Community Sectors',
-      categories: [
-        { label: 'Technology', color: '#2563eb', text_color: '#ffffff', matches: ['Tech Skills', 'AI', 'Data Science', 'Cybersecurity', 'Cloud & Platform', 'DevOps', 'Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Product', 'UX', 'Game Development', 'Technical Writing', 'Open Source', 'Tech Community'] },
-        { label: 'Business & Startups', color: '#ca8a04', text_color: '#111827', matches: ['Business', 'Economic Development', 'Startup', 'Career Growth', 'Professional Networking'] },
-        { label: 'Finance & Crypto', color: '#7c3aed', text_color: '#ffffff', matches: ['Finance', 'Crypto & Web3'] },
-        { label: 'Civics & Policy', color: '#dc2626', text_color: '#ffffff', matches: ['Politics', 'Civic Tech', 'Policy', 'Purpose & Service'] },
-        { label: 'Community & Culture', color: '#db2777', text_color: '#ffffff', matches: ['Culture', 'Belonging & Culture', 'Community', 'Community Organizing', 'Code Collective & Partners', 'Tech Community'] },
-        { label: 'Faith', color: '#7c2d12', text_color: '#ffffff', matches: ['Religion', 'Faith & Spirituality'] },
-        { label: 'Water & Environment', color: '#0f766e', text_color: '#ffffff', matches: ['Water', 'Water & Environment', 'Climate & Energy', 'Energy', 'Infrastructure'] },
-        { label: 'Makerspace & Robotics', color: '#ea580c', text_color: '#ffffff', matches: ['Makerspace', 'Robotics'] },
-        { label: 'Other', color: '#6b7280', text_color: '#ffffff', matches: [] }
-      ]
-    },
-    {
-      id: 'tech_only',
-      label: 'Tech Meetups',
-      categories: [
-        { label: 'AI & ML', color: '#7c3aed', text_color: '#ffffff', matches: ['AI'] },
-        { label: 'Data & Analytics', color: '#0891b2', text_color: '#ffffff', matches: ['Data Science'] },
-        { label: 'Cybersecurity', color: '#dc2626', text_color: '#ffffff', matches: ['Cybersecurity'] },
-        { label: 'Cloud & DevOps', color: '#2563eb', text_color: '#ffffff', matches: ['Cloud & Platform', 'DevOps'] },
-        { label: 'Software Development', color: '#4f46e5', text_color: '#ffffff', matches: ['Software Development', 'Web Development', 'JavaScript', 'Python', 'Ruby', 'Open Source', 'Technical Writing', 'Game Development'] },
-        { label: 'Design & Product', color: '#db2777', text_color: '#ffffff', matches: ['UX', 'Product'] },
-        { label: 'Crypto & Web3', color: '#a16207', text_color: '#ffffff', matches: ['Crypto & Web3'] },
-        { label: 'Makerspace & Robotics', color: '#ea580c', text_color: '#ffffff', matches: ['Makerspace', 'Robotics'] },
-        { label: 'Tech Meetups', color: '#16a34a', text_color: '#ffffff', matches: ['Tech Community', 'Code Collective & Partners'] },
-        { label: 'General Tech', color: '#475569', text_color: '#ffffff', matches: [] }
-      ]
-    }
-  ]
-};
-let categoryMapConfig = FALLBACK_CATEGORY_MAP_CONFIG;
-let activeCategoryMap = FALLBACK_CATEGORY_MAP_CONFIG.maps[0];
+let categoryMapConfig = { default_map: DEFAULT_CATEGORY_MAP_ID, maps: [] };
+let activeCategoryMap = null;
 
 async function loadCategoryMapConfig() {
   try {
@@ -81,9 +36,7 @@ async function loadCategoryMapConfig() {
 
     const indexData = await indexResponse.json();
     const mapRefs = Array.isArray(indexData.maps) ? indexData.maps : [];
-    if (mapRefs.length === 0) {
-      return FALLBACK_CATEGORY_MAP_CONFIG;
-    }
+    if (mapRefs.length === 0) throw new Error('Category map index has no maps');
 
     const loadedMaps = await Promise.all(
       mapRefs.map(async (ref) => {
@@ -100,17 +53,15 @@ async function loadCategoryMapConfig() {
     );
 
     const maps = loadedMaps.filter(Boolean);
-    if (maps.length === 0) {
-      return FALLBACK_CATEGORY_MAP_CONFIG;
-    }
+    if (maps.length === 0) throw new Error('No category maps could be loaded');
 
     return {
       default_map: indexData.default_map || maps[0].id,
       maps
     };
   } catch (error) {
-    console.warn('Falling back to built-in category maps:', error);
-    return FALLBACK_CATEGORY_MAP_CONFIG;
+    console.error('Failed to load category maps:', error);
+    throw error;
   }
 }
 
@@ -121,15 +72,160 @@ function getTodayStart() {
   return today;
 }
 
+function getDefaultUserTimeZone() {
+  return Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+}
+
+function getActiveTimeZone() {
+  return useLocalTime ? getDefaultUserTimeZone() : selectedTimeZone;
+}
+
+function getDatePartsInTimeZone(dateInput, timeZone = getActiveTimeZone()) {
+  const date = dateInput instanceof Date ? dateInput : new Date(dateInput);
+  if (isNaN(date)) return null;
+  const formatter = new Intl.DateTimeFormat('en-CA', {
+    timeZone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  });
+  const parts = formatter.formatToParts(date);
+  const values = {};
+  parts.forEach(part => {
+    if (part.type !== 'literal') values[part.type] = part.value;
+  });
+  if (!values.year || !values.month || !values.day) return null;
+  return values;
+}
+
+function getDateKeyInTimeZone(dateInput, timeZone = getActiveTimeZone()) {
+  const values = getDatePartsInTimeZone(dateInput, timeZone);
+  if (!values) return '';
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+function formatDateWithTimeZone(dateInput, options) {
+  const date = dateInput instanceof Date ? dateInput : new Date(dateInput);
+  if (isNaN(date)) return '';
+  const formatOptions = { ...options };
+  if (!useLocalTime) {
+    formatOptions.timeZone = selectedTimeZone;
+  }
+  return new Intl.DateTimeFormat('en-US', formatOptions).format(date);
+}
+
+function saveTimezonePrefs() {
+  const payload = {
+    useLocalTime: useLocalTime !== false,
+    selectedTimeZone: selectedTimeZone || getDefaultUserTimeZone()
+  };
+  try {
+    localStorage.setItem(TIMEZONE_PREFS_KEY, JSON.stringify(payload));
+  } catch (error) {
+    // Ignore storage failures.
+  }
+}
+
+function loadTimezonePrefs() {
+  const fallback = {
+    useLocalTime: true,
+    selectedTimeZone: getDefaultUserTimeZone()
+  };
+  try {
+    const stored = localStorage.getItem(TIMEZONE_PREFS_KEY);
+    if (!stored) return fallback;
+    const parsed = JSON.parse(stored);
+    return {
+      useLocalTime: parsed.useLocalTime !== false,
+      selectedTimeZone: String(parsed.selectedTimeZone || fallback.selectedTimeZone)
+    };
+  } catch (error) {
+    return fallback;
+  }
+}
+
+function getTimezoneOptions() {
+  const defaults = [
+    'UTC',
+    'America/New_York',
+    'America/Chicago',
+    'America/Denver',
+    'America/Los_Angeles',
+    'Pacific/Honolulu',
+    'America/Phoenix',
+    'Europe/London',
+    'Europe/Paris',
+    'Europe/Berlin',
+    'Asia/Tokyo',
+    'Asia/Kolkata',
+    'Australia/Sydney'
+  ];
+  const dynamic = (typeof Intl.supportedValuesOf === 'function')
+    ? Intl.supportedValuesOf('timeZone')
+    : [];
+  const merged = new Set([...defaults, getDefaultUserTimeZone(), ...dynamic]);
+  return Array.from(merged).sort((a, b) => a.localeCompare(b));
+}
+
+function refreshCalendarForTimezoneChange() {
+  if (!allEvents.length) return;
+  applyTagFilters();
+  if (!isMobile) {
+    destroyCalendar();
+    initializeCalendar(calendarDisplayEvents);
+    addTodayStyles();
+    highlightToday();
+  }
+}
+
+function setupTimezoneControls() {
+  const checkbox = document.getElementById('use-local-time-checkbox');
+  const select = document.getElementById('timezone-select');
+  if (!checkbox || !select) return;
+
+  const prefs = loadTimezonePrefs();
+  useLocalTime = prefs.useLocalTime;
+  selectedTimeZone = prefs.selectedTimeZone || getDefaultUserTimeZone();
+
+  const timezoneOptions = getTimezoneOptions();
+  select.innerHTML = timezoneOptions.map(tz => `<option value="${tz}">${tz}</option>`).join('');
+  if (!timezoneOptions.includes(selectedTimeZone)) {
+    const option = document.createElement('option');
+    option.value = selectedTimeZone;
+    option.textContent = selectedTimeZone;
+    select.appendChild(option);
+  }
+
+  checkbox.checked = useLocalTime;
+  select.value = selectedTimeZone;
+  select.disabled = useLocalTime;
+
+  checkbox.addEventListener('change', () => {
+    useLocalTime = checkbox.checked;
+    select.disabled = useLocalTime;
+    saveTimezonePrefs();
+    refreshCalendarForTimezoneChange();
+  });
+
+  select.addEventListener('change', () => {
+    selectedTimeZone = select.value || getDefaultUserTimeZone();
+    saveTimezonePrefs();
+    if (!useLocalTime) {
+      refreshCalendarForTimezoneChange();
+    }
+  });
+}
+
 // Compare only the calendar date so events stay visible all day
 function isEventOnOrAfterToday(dateInput, todayStart = getTodayStart()) {
   if (!dateInput) return false;
 
   const eventDate = new Date(dateInput);
   if (isNaN(eventDate)) return false;
-
-  eventDate.setHours(0, 0, 0, 0);
-  return eventDate >= todayStart;
+  const todayKey = getDateKeyInTimeZone(todayStart, getActiveTimeZone());
+  const eventKey = getDateKeyInTimeZone(eventDate, getActiveTimeZone());
+  if (!todayKey || !eventKey) return false;
+  return eventKey >= todayKey;
 }
 
 // Check if device is mobile
@@ -192,6 +288,24 @@ function getPreferredEventImage(eventLike) {
 
   const extendedProps = eventLike.extendedProps || {};
   return extendedProps.imageUrl || extendedProps.orgImageUrl || '';
+}
+
+function getPreferredOrgImage(eventLike) {
+  if (!eventLike) return '';
+  const extendedProps = eventLike.extendedProps || {};
+  const title = String(eventLike.title || eventLike.name || '').toLowerCase();
+  const orgName = String(extendedProps.orgName || extendedProps.org_name || extendedProps.sourceGroup || '').toLowerCase();
+  const source = String(extendedProps.source || extendedProps.source_url || '').toLowerCase();
+  const orgImage = String(extendedProps.orgImageUrl || eventLike.orgImageUrl || '');
+
+  const codeCollectiveSignal =
+    title.includes('code collective') ||
+    orgName.includes('code collective') ||
+    source.includes('codecollective');
+  if (codeCollectiveSignal) {
+    return '/images/codecollective.webp';
+  }
+  return orgImage;
 }
 
 function sanitizeHtmlFragment(htmlString) {
@@ -300,6 +414,7 @@ function ensureHoverPreviewPanel() {
           </div>
           <div class="event-hover-source"></div>
         </div>
+        <div class="event-hover-location" hidden></div>
         <div class="event-hover-tags"></div>
         <div class="event-hover-description"></div>
       </div>
@@ -325,7 +440,7 @@ function showHoverPreview(eventInfo, mouseEvent) {
   const sourceUrl = event.extendedProps?.source || event.url || '';
   const sourceLabel = formatSourceLabel(sourceUrl, event.extendedProps?.sourceGroup || event.extendedProps?.group || 'Unknown source');
   const imageUrl = safeUrl(getPreferredEventImage(event));
-  const orgImageUrl = safeUrl(event.extendedProps?.orgImageUrl || '');
+  const orgImageUrl = safeUrl(getPreferredOrgImage(event));
   const mediaWrap = panel.querySelector('.event-hover-media-wrap');
   const media = panel.querySelector('.event-hover-media');
   const kicker = panel.querySelector('.event-hover-kicker');
@@ -333,9 +448,17 @@ function showHoverPreview(eventInfo, mouseEvent) {
   const source = panel.querySelector('.event-hover-source');
   const sourceIconWrap = panel.querySelector('.event-hover-source-icon-wrap');
   const sourceIcon = panel.querySelector('.event-hover-source-icon');
+  const location = panel.querySelector('.event-hover-location');
   const tags = panel.querySelector('.event-hover-tags');
   const description = panel.querySelector('.event-hover-description');
   const rawTags = Array.isArray(event.extendedProps?.tags) ? event.extendedProps.tags : [];
+  const eventLocation = event.extendedProps?.location || event.location || null;
+  const locationText = [
+    eventLocation?.name,
+    eventLocation?.address
+  ]
+    .filter(Boolean)
+    .join(' · ');
 
   kicker.textContent = formatEventDate(event.start, event.end);
   title.textContent = event.title || 'Untitled';
@@ -348,6 +471,13 @@ function showHoverPreview(eventInfo, mouseEvent) {
     sourceIconWrap.hidden = true;
     sourceIcon.removeAttribute('src');
     sourceIcon.alt = '';
+  }
+  if (locationText) {
+    location.hidden = false;
+    location.textContent = locationText;
+  } else {
+    location.hidden = true;
+    location.textContent = '';
   }
   tags.innerHTML = rawTags.map(tag => {
     const mapped = getMappedCategoriesForTags([tag])[0];
@@ -379,7 +509,7 @@ function hideHoverPreview() {
 }
 
 function getCategoryMapById(mapId) {
-  return (categoryMapConfig.maps || []).find(map => map.id === mapId) || (categoryMapConfig.maps || [])[0] || FALLBACK_CATEGORY_MAP_CONFIG.maps[0];
+  return (categoryMapConfig.maps || []).find(map => map.id === mapId) || (categoryMapConfig.maps || [])[0] || null;
 }
 
 function normalizeMapCategory(category) {
@@ -417,6 +547,10 @@ function getDirectMappedCategoriesForTags(tags, categoryMap = activeCategoryMap)
 }
 
 function isTechOnlyEvent(tags) {
+  if (filterUtils?.isTechOnlyEvent) {
+    return filterUtils.isTechOnlyEvent(tags);
+  }
+
   const normalizedTags = new Set((Array.isArray(tags) ? tags : []).map(slugifyTag).filter(Boolean));
   if (normalizedTags.size === 0) return false;
 
@@ -617,6 +751,9 @@ function buildMaslowLegendList(categories, activeSlugs) {
 
 function buildLegend(categoryMap, options = {}) {
   activeCategoryMap = categoryMap || getCategoryMapById(categoryMapConfig.default_map);
+  if (!activeCategoryMap) {
+    return;
+  }
   let prefs = getLegendPrefs(activeCategoryMap);
   if (!options.lockMapId && prefs.mapId && prefs.mapId !== activeCategoryMap.id) {
     activeCategoryMap = getCategoryMapById(prefs.mapId);
@@ -643,7 +780,7 @@ function buildLegend(categoryMap, options = {}) {
     .join('');
   controls.innerHTML = `
     <label class="legend-map-picker">
-      <span class="legend-text">Map</span>
+      <span class="legend-text">Lenses</span>
       <select id="legend-map-select">${mapOptions}</select>
     </label>
     <label class="legend-map-picker">
@@ -794,6 +931,15 @@ function updateActiveTagsFromLegend() {
 }
 
 function eventMatchesTags(tags) {
+  if (filterUtils?.eventMatchesTags) {
+    return filterUtils.eventMatchesTags({
+      tags,
+      categoryMap: activeCategoryMap,
+      activeTagSlugs,
+      showExcludedEvents,
+    });
+  }
+
   const mappedCategories = getEffectiveMappedCategories(tags);
   if (mappedCategories.length === 0) {
     return showExcludedEvents;
@@ -810,25 +956,123 @@ function filterRawEventsByTags(events) {
   return events.filter(event => eventMatchesTags(event.tags));
 }
 
+function normalizeSearchText(value) {
+  return String(value || '').toLowerCase().trim();
+}
+
+function getCalendarEventSearchBlob(event) {
+  const tags = Array.isArray(event?.extendedProps?.tags) ? event.extendedProps.tags : [];
+  const location = event?.extendedProps?.location || event?.location || {};
+  const agenda = event?.extendedProps?.agenda || event?.agenda || null;
+  return [
+    event?.title,
+    event?.extendedProps?.description,
+    location?.name,
+    location?.address,
+    event?.extendedProps?.source,
+    event?.extendedProps?.sourceGroup,
+    event?.extendedProps?.group,
+    agenda?.day,
+    ...(Array.isArray(agenda?.sessions)
+      ? agenda.sessions.flatMap(session => [session?.title, session?.description, ...(Array.isArray(session?.hosts) ? session.hosts : [])])
+      : []),
+    ...tags
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+}
+
+function getRawEventSearchBlob(event) {
+  const tags = Array.isArray(event?.tags) ? event.tags : [];
+  const location = event?.location || {};
+  const agenda = event?.agenda || null;
+  return [
+    event?.name,
+    event?.description,
+    location?.name,
+    location?.address,
+    event?.source,
+    event?.source_group,
+    event?.org_name,
+    event?.orgName,
+    agenda?.day,
+    ...(Array.isArray(agenda?.sessions)
+      ? agenda.sessions.flatMap(session => [session?.title, session?.description, ...(Array.isArray(session?.hosts) ? session.hosts : [])])
+      : []),
+    ...tags
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+}
+
+function filterEventsBySearch(events) {
+  const query = normalizeSearchText(textSearchQuery);
+  if (!query) return events;
+  return events.filter(event => getCalendarEventSearchBlob(event).includes(query));
+}
+
+function filterRawEventsBySearch(events) {
+  const query = normalizeSearchText(textSearchQuery);
+  if (!query) return events;
+  return events.filter(event => getRawEventSearchBlob(event).includes(query));
+}
+
+function setupTextSearch() {
+  const searchInput = document.getElementById('calendar-search-input');
+  if (!searchInput) return;
+
+  const initialQuery = getSearchQueryFromUrl();
+  searchInput.value = initialQuery;
+  textSearchQuery = initialQuery;
+
+  const applySearch = () => {
+    textSearchQuery = searchInput.value || '';
+    applyTagFilters();
+    clearTimeout(searchUrlSyncTimer);
+    searchUrlSyncTimer = setTimeout(() => {
+      syncSearchQueryToUrl(textSearchQuery);
+    }, 120);
+  };
+
+  searchInput.addEventListener('input', applySearch);
+  searchInput.addEventListener('search', applySearch);
+
+  window.addEventListener('popstate', () => {
+    const nextQuery = getSearchQueryFromUrl();
+    if (searchInput.value === nextQuery) return;
+    searchInput.value = nextQuery;
+    textSearchQuery = nextQuery;
+    applyTagFilters();
+  });
+}
+
 function applyTagFilters() {
   const tagFilteredEvents = filterEventsByTags(allEvents);
-  calendarDisplayEvents = tagFilteredEvents;
+  const filteredByLegendAndSearch = filterEventsBySearch(tagFilteredEvents);
+  calendarDisplayEvents = filteredByLegendAndSearch;
 
   if (isMobile) {
-    initializeMobileCards(tagFilteredEvents);
+    initializeMobileCards(filteredByLegendAndSearch);
   } else if (calendar) {
     calendar.removeAllEvents();
-    calendar.addEventSource(tagFilteredEvents);
+    calendar.addEventSource(filteredByLegendAndSearch);
     calendar.render();
   } else {
-    initializeCalendar(tagFilteredEvents);
+    initializeCalendar(filteredByLegendAndSearch);
   }
 
-  populateCodeCollectiveEvents(filterRawEventsByTags(rawEvents));
+  const rawFilteredByLegendAndSearch = filterRawEventsBySearch(filterRawEventsByTags(rawEvents));
+  populateCodeCollectiveEvents(rawFilteredByLegendAndSearch);
   saveLegendPrefs();
 }
 
 function getEffectiveMappedCategories(tags, categoryMap = activeCategoryMap) {
+  if (filterUtils?.getEffectiveMappedCategories) {
+    return filterUtils.getEffectiveMappedCategories(tags, categoryMap);
+  }
+
   if (categoryMap?.id === 'tech_only' && !isTechOnlyEvent(tags)) {
     return [];
   }
@@ -836,6 +1080,10 @@ function getEffectiveMappedCategories(tags, categoryMap = activeCategoryMap) {
 }
 
 function isExcludedFromActiveMap(tags) {
+  if (filterUtils?.isExcludedFromActiveMap) {
+    return filterUtils.isExcludedFromActiveMap(tags, activeCategoryMap);
+  }
+
   if (activeCategoryMap?.id === 'tech_only' && !isTechOnlyEvent(tags)) {
     return true;
   }
@@ -851,17 +1099,54 @@ function getEventDataFromCalendarEvent(event) {
   return {
     id: event.id || '',
     name: event.title || '',
-    startDate: event.start ? event.start.toISOString() : '',
-    endTime: event.end ? event.end.toISOString() : '',
+    startDate: event.startStr || (event.start ? event.start.toISOString() : ''),
+    endTime: event.endStr || (event.end ? event.end.toISOString() : ''),
     description: event.extendedProps?.description || event.description || '',
     location: event.extendedProps?.location || event.location || null,
     url: event.url || '',
     imageUrl: event.extendedProps?.imageUrl || '',
     orgImageUrl: event.extendedProps?.orgImageUrl || '',
+    agenda: event.extendedProps?.agenda || null,
     tags: Array.isArray(event.extendedProps?.tags) ? event.extendedProps.tags : [],
     source: event.extendedProps?.source || '',
     source_group: event.extendedProps?.sourceGroup || event.extendedProps?.group || ''
   };
+}
+
+function buildAgendaSummaryText(agenda) {
+  if (!agenda || !Array.isArray(agenda.sessions) || agenda.sessions.length === 0) return '';
+  const dayLabel = agenda.day ? `Agenda (${agenda.day})` : 'Agenda';
+  const lines = agenda.sessions.map(session => {
+    const title = String(session?.title || '').trim();
+    const start = session?.startDate ? formatEventTime(new Date(session.startDate)) : '';
+    const end = session?.endTime ? formatEventTime(new Date(session.endTime)) : '';
+    const time = start && end ? `${start}-${end}` : start || '';
+    const hosts = Array.isArray(session?.hosts) && session.hosts.length ? ` [${session.hosts.join(', ')}]` : '';
+    return `${time ? `${time} ` : ''}${title}${hosts}`.trim();
+  }).filter(Boolean);
+  return lines.length ? `${dayLabel}\n${lines.join('\n')}` : '';
+}
+
+function buildAgendaHtml(agenda) {
+  if (!agenda || !Array.isArray(agenda.sessions) || agenda.sessions.length === 0) return '';
+  const dayLabel = agenda.day ? `Agenda: ${agenda.day}` : 'Agenda';
+  const items = agenda.sessions.map(session => {
+    const title = escapeHtml(session?.title || '');
+    const start = session?.startDate ? formatEventTime(new Date(session.startDate)) : '';
+    const end = session?.endTime ? formatEventTime(new Date(session.endTime)) : '';
+    const time = start && end ? `${start}-${end}` : (start || '');
+    const hosts = Array.isArray(session?.hosts) && session.hosts.length
+      ? `<div class="event-agenda-hosts">${escapeHtml(session.hosts.join(', '))}</div>`
+      : '';
+    return `<li><div class="event-agenda-line">${time ? `<strong>${escapeHtml(time)}</strong> ` : ''}${title}</div>${hosts}</li>`;
+  }).join('');
+  return `<div class="event-agenda"><h4>${escapeHtml(dayLabel)}</h4><ul>${items}</ul></div>`;
+}
+
+function buildEventDisplayDescription(eventData) {
+  const base = String(eventData?.description || '').trim();
+  const agendaText = buildAgendaSummaryText(eventData?.agenda);
+  return [base, agendaText].filter(Boolean).join('\n\n');
 }
 
 async function copyTextToClipboard(text) {
@@ -931,7 +1216,9 @@ function showEventInfoModal(eventData) {
     const textColor = mapped?.textColor || '#ffffff';
     return `<span class="event-hover-tag" style="--tag-chip-bg: ${escapeAttr(background)}; --tag-chip-fg: ${escapeAttr(textColor)};">${escapeHtml(tag)}</span>`;
   }).join('');
-  modal.querySelector('.event-info-modal-description').innerHTML = renderRichText(eventData.description || '');
+  const combinedDescription = buildEventDisplayDescription(eventData);
+  const agendaHtml = buildAgendaHtml(eventData.agenda);
+  modal.querySelector('.event-info-modal-description').innerHTML = `${renderRichText(combinedDescription || '')}${agendaHtml}`;
   const link = modal.querySelector('.event-info-modal-link');
   if (eventData.url) {
     link.href = eventData.url;
@@ -1013,7 +1300,7 @@ function prefetchImages(urls) {
 
 
 function getCityOptions() {
-  return window.CALENDAR_CITY_OPTIONS || ['baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh', 'virtual'];
+  return window.CALENDAR_CITY_OPTIONS || ['baltimore', 'westvirginia', 'hawaii', 'dc', 'pittsburgh', 'philadelphia', 'virtual'];
 }
 
 // Function to get city from URL parameters
@@ -1022,6 +1309,25 @@ function getCityFromUrl() {
   const city = urlParams.get('city');
   const cityOptions = getCityOptions();
   return cityOptions.includes(city) ? city : 'baltimore'; // Default to baltimore if no city specified
+}
+
+function getSearchQueryFromUrl() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(SEARCH_QUERY_PARAM) || '';
+}
+
+function syncSearchQueryToUrl(rawQuery) {
+  if (!window.history || typeof window.history.replaceState !== 'function') return;
+
+  const query = String(rawQuery || '').trim();
+  const url = new URL(window.location.href);
+  if (query) {
+    url.searchParams.set(SEARCH_QUERY_PARAM, query);
+  } else {
+    url.searchParams.delete(SEARCH_QUERY_PARAM);
+  }
+
+  window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
 }
 
 function shouldStayOnCalendarView() {
@@ -1039,6 +1345,7 @@ function shouldStayOnCalendarView() {
 // Fetch and parse event data
 document.addEventListener('DOMContentLoaded', function () {
   forceCardView = Boolean(window.FORCE_CALENDAR_CARDS);
+  setupTimezoneControls();
   const stayOnCalendar = shouldStayOnCalendarView();
   const mobileViewport = isMobileDevice();
   isMobile = forceCardView ? true : (mobileViewport && !stayOnCalendar);
@@ -1080,6 +1387,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       filteredEvents = [...allEvents]; // Make a copy for filtering
 
+      setupTextSearch();
       buildLegend(activeCategoryMap);
       applyTagFilters();
 
@@ -1205,7 +1513,10 @@ function createEventCard(event) {
   });
 
   // Prepare description with markdown support
-  const rawDescription = event.description || '';
+  const rawDescription = buildEventDisplayDescription({
+    description: event.description || '',
+    agenda: event.extendedProps?.agenda || null
+  });
   const description = rawDescription.trim();
   const maxDescLength = 100;
   const needsMore = description.length > maxDescLength;
@@ -1353,6 +1664,7 @@ function processEvents(eventsData) {
       description: event.description,
       location: event.location,
       url: event.url,
+      agenda: event.agenda || null,
       extendedProps: {
         group: groupName,
         sourceGroup: event.source_group || '',
@@ -1360,6 +1672,7 @@ function processEvents(eventsData) {
         location: event.location || null,
         imageUrl: event.imageUrl,
         orgImageUrl: event.orgImageUrl || '',
+        agenda: event.agenda || null,
         tags: Array.isArray(event.tags) ? event.tags : [],
         source: event.source || ''
       },
@@ -1373,39 +1686,21 @@ function processEvents(eventsData) {
 // Format event time to display like "3PM"
 function formatEventTime(date) {
   if (!date) return '';
-
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-
-  // Determine AM/PM
-  const period = hours >= 12 ? 'PM' : 'AM';
-
-  // Convert to 12-hour format
-  const displayHours = hours % 12 || 12; // 0 should be displayed as 12
-
-  // Only show minutes if not on the hour
-  const timeString = minutes === 0 ?
-    `${displayHours}${period}` :
-    `${displayHours}:${minutes.toString().padStart(2, '0')}${period}`;
-
-  return timeString;
+  return formatDateWithTimeZone(date, {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true
+  }).replace(' ', '');
 }
 
 // Get the latest event with an image for a specific day (desktop only)
 function getLatestEventWithImageForDay(events, date) {
   if (isMobile) return null;
-
-  // Format the date to YYYY-MM-DD using local timezone
-  const dateStr = date.getFullYear() + '-' +
-    String(date.getMonth() + 1).padStart(2, '0') + '-' +
-    String(date.getDate()).padStart(2, '0');
+  const dateStr = getDateKeyInTimeZone(date, getActiveTimeZone());
 
   // Filter events that are on this day and have an image
   const dayEvents = events.filter(event => {
-    const eventDate = new Date(event.start);
-    const eventDateStr = eventDate.getFullYear() + '-' +
-      String(eventDate.getMonth() + 1).padStart(2, '0') + '-' +
-      String(eventDate.getDate()).padStart(2, '0');
+    const eventDateStr = getDateKeyInTimeZone(event.start, getActiveTimeZone());
     return eventDateStr === dateStr && getPreferredEventImage(event);
   });
 
@@ -1422,18 +1717,11 @@ function getLatestEventWithImageForDay(events, date) {
 // Get a random event with an image for a specific day (desktop only)
 function getRandomImageForDay(events, date) {
   if (isMobile) return null;
-  
-  // Format the date to YYYY-MM-DD using local timezone
-  const dateStr = date.getFullYear() + '-' +
-    String(date.getMonth() + 1).padStart(2, '0') + '-' +
-    String(date.getDate()).padStart(2, '0');
+  const dateStr = getDateKeyInTimeZone(date, getActiveTimeZone());
   
   // Filter events that are on this day and have an image
   const dayEvents = events.filter(event => {
-    const eventDate = new Date(event.start);
-    const eventDateStr = eventDate.getFullYear() + '-' +
-      String(eventDate.getMonth() + 1).padStart(2, '0') + '-' +
-      String(eventDate.getDate()).padStart(2, '0');
+    const eventDateStr = getDateKeyInTimeZone(event.start, getActiveTimeZone());
     return eventDateStr === dateStr && getPreferredEventImage(event);
   });
   
@@ -1450,31 +1738,12 @@ function initializeCalendar(events) {
   if (isMobile) return;
   calendarDisplayEvents = events;
 
-  // Filter events to show only next 4 weeks starting from today
+  // Date gating for desktop is handled by FullCalendar's validRange.
   const today = getTodayStart();
-
-  const fourWeeksFromNow = new Date(today);
-  fourWeeksFromNow.setDate(today.getDate() + 28); // 4 weeks = 28 days
-  fourWeeksFromNow.setHours(23, 59, 59, 999); // End of the day
-
-  const filteredEvents = events.filter(event => {
-    const eventDate = new Date(event.start);
-    if (isNaN(eventDate)) return false;
-    return isEventOnOrAfterToday(event.start, today) && eventDate <= fourWeeksFromNow;
-  });
-
-  // Calculate the start of current week (Sunday)
-  const startOfWeek = new Date(today);
-  const dayOfWeek = startOfWeek.getDay(); // 0 = Sunday, 1 = Monday, etc.
-  startOfWeek.setDate(startOfWeek.getDate() - dayOfWeek);
-  startOfWeek.setHours(0, 0, 0, 0);
-
-  // Calculate end of 4th week (current week + 3 weeks after)
-  const endOf4Weeks = new Date(startOfWeek);
-  endOf4Weeks.setDate(startOfWeek.getDate() + 29); // 4 weeks + 1 day (since end is exclusive)
 
   const calendarEl = document.getElementById('calendar');
   calendar = new FullCalendar.Calendar(calendarEl, {
+    timeZone: useLocalTime ? 'local' : selectedTimeZone,
     initialView: 'dayGridFourWeek',
     views: {
       dayGridFourWeek: {
@@ -1683,7 +1952,7 @@ function formatEventDate(start, end) {
     minute: '2-digit'
   };
 
-  return startDate.toLocaleDateString('en-US', options);
+  return formatDateWithTimeZone(startDate, options);
 }
 
 // Close popup when clicking outside the content
@@ -1716,13 +1985,13 @@ function populateCodeCollectiveEvents(events) {
 
   codeCollectiveEvents.forEach((event, index) => {
     const startDate = new Date(event.startDate);
-    const formattedDate = startDate.toLocaleDateString('en-US', {
+    const formattedDate = formatDateWithTimeZone(startDate, {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
       day: 'numeric'
     });
-    const formattedTime = startDate.toLocaleTimeString('en-US', {
+    const formattedTime = formatDateWithTimeZone(startDate, {
       hour: 'numeric',
       minute: '2-digit',
       hour12: true

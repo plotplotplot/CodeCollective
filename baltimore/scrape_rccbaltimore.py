@@ -8,7 +8,7 @@ from dateutil.parser import parse
 
 
 SOURCE_URL = "https://www.rccbaltimore.org/events-1"
-DEFAULT_IMAGE = "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1518921092755-Q3BHQ50E6B0K34KM278Q/logo+only.png?format=1500w"
+DEFAULT_IMAGE = "https://images.squarespace-cdn.com/content/v1/602ff95edc8bf42c73c4d24a/1613761191516-ZS3SFQ3ZW3CV61C4P0RF/Redemption+City+Church-FF.png?format=1500w"
 
 
 def scrape_events(url: str = SOURCE_URL) -> List[Dict]:

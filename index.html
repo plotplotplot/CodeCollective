@@ -74,6 +74,12 @@
       <a href="/platform.html">Platform</a>
       <a href="/calendar.html?city=baltimore">Calendar</a>
       <a href="/projects.html">Projects</a>
+      <a
+        id="portal-login-button"
+        href="/p/"
+        data-pidp-base="https://pidp.arkavo.org"
+        aria-label="Log in to the portal"
+      >Login</a>
     </div>
   </nav>
 
@@ -244,5 +250,16 @@
 <script type="module" src="/js/reusableComponents.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  (function configurePortalLogin() {
+    const loginButton = document.getElementById("portal-login-button");
+    if (!loginButton) return;
+
+    const pidpBase = loginButton.getAttribute("data-pidp-base") || "https://pidp.arkavo.org";
+    const nextUrl = `${window.location.origin}/p/constituent/dashboard`;
+    const loginUrl = `${pidpBase.replace(/\/+$/, "")}/auth/google/login?next=${encodeURIComponent(nextUrl)}`;
+    loginButton.setAttribute("href", loginUrl);
+  }());
+</script>
 
 </html>

@@ -1,15 +1,6 @@
+from city_source_taxonomy import apply_city_source_taxonomy
+
 sources = [
-    {
-        "name": "Code Collective (Meetup)",
-        "url": "https://www.meetup.com/code-collective/events/",
-        "group_name": "Code Collective",
-        "orgImageUrl": "/images/codecollective.webp",
-        "tags": [
-            "Code Collective & Partners",
-            "Tech Community",
-            "Community Organizing",
-        ],
-    },
     {
         "name": "Baltimore Tech Meetup",
         "url": "https://www.meetup.com/baltimore-tech/events/",
@@ -133,7 +124,7 @@ sources = [
     {
         "name": "Bmore Ethical",
         "url": "https://www.meetup.com/bmorethical/",
-        "tags": ["Religion"],
+        "tags": ["Religion", "Economic Development"],
     },
     {
         "name": "Meditation Modern Buddhism Canton",
@@ -331,10 +322,10 @@ sources = [
         "tags": ["Economic Development"],
     },
     {
-        "name": "Code Collective (Luma)",
+        "name": "Code Collective",
         "url": "https://luma.com/codecollective",
         "group_name": "Code Collective",
-        "orgImageUrl": "/images/codecollective.webp",
+        "orgImageUrl": "/images/general_encircled.png",
         "tags": [
             "Code Collective & Partners",
             "Tech Community",
@@ -409,6 +400,11 @@ sources = [
         "tags": ["Tech Community"],
     },
     {
+        "name": "Collide Capital @ JHU (Partiful)",
+        "url": "https://partiful.com/e/IjvnMmmJOBBvkAIsYjTN",
+        "tags": ["Business", "Startup", "Tech Community"],
+    },
+    {
         "name": "Google Form Submission",
         "url": "http://docs.google.com/forms/d/e/1FAIpQLSfAHwexta7vxLto1xmvBxFNawicAUtRrjTKqN0jHs25RjLCQg/viewform",
         "tags": ["Business"],
@@ -428,5 +424,19 @@ sources = [
         "name": "Greater Baltimore Urban League",
         "url": "https://www.eventbrite.com/o/2103730749",
         "tags": ["Business", "Economic Development"],
-    },
+    }
 ]
+
+
+def _derive_group_name(source: dict) -> str:
+    name = str(source.get("group_name") or source.get("name") or "").strip()
+    if name:
+        return name
+    url = str(source.get("url") or "").strip()
+    if "://" in url:
+        host = url.split("://", 1)[1].split("/", 1)[0].replace("www.", "").strip()
+        if host:
+            return host
+    return "Organization"
+
+apply_city_source_taxonomy(sources)

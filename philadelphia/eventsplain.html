@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Upcoming Events</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #111111;
+    --muted: #555555;
+    --link: #000000; /* black links as requested */
+    --card: #f7f7f7;
+    --maxw: 950px;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    line-height: 1.6;
+  }
+  .wrap {
+    width: 100%;
+    padding: 1rem;            /* mobile: full width, modest padding */
+  }
+  @media (min-width: 900px) {
+    .wrap {
+      max-width: var(--maxw); /* desktop: comfy centered column */
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+    }
+  }
+  header.site {
+    margin-bottom: 1.25rem;
+    border-bottom: 2px solid #e4e4e4;
+    padding-bottom: .5rem;
+  }
+  header.site h1 {
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: .2px;
+  }
+  .date-head {
+    margin: 2rem 0 1rem;
+    padding-top: .5rem;
+    border-top: 1px solid #ececec;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .event {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 1rem;
+    margin: .75rem 0;
+  }
+  .event-time {
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: .25rem;
+  }
+  .event-title a {
+    color: var(--link);       /* black link */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+  .event-title a:hover, .event-title a:focus {
+    text-decoration: underline;
+  }
+  .event-desc p {
+    margin: .5rem 0 0;
+  }
+  .location {
+    margin-top: .35rem;
+    font-size: .9rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <h1>Upcoming Events</h1>
+    </header>
+    <h2 class="date-head">Thursday, April 30, 2026</h2>
+<article class="event">
+  <div class="event-time">5:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/tqt31mon" target="_blank" rel="noopener">Intro to Sentry Live Demo</a></div>
+  <div class="event-desc"></div>
+  
+</article>
+<article class="event">
+  <div class="event-time">5:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/knvg9q1y" target="_blank" rel="noopener">Prompt to Prod: Debug Your Full Supabase Stack with Sentry</a></div>
+  <div class="event-desc"></div>
+  
+</article>
+<article class="event">
+  <div class="event-time">10:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/i5ackta7" target="_blank" rel="noopener">PhilaCon Valley: Vibe Coding Workshop - Build Your Portfolio Live!</a></div>
+  <div class="event-desc"><p>PhilaCon Valley: Vibe Coding Workshop - Build Your Portfolio Live!</p></div>
+  <div class="location">Pennovation Center, Pennovation Center, Philadelphia, Pennsylvania</div>
+</article>
+<h2 class="date-head">Friday, May 1, 2026</h2>
+<article class="event">
+  <div class="event-time">12:00 AM</div>
+  <div class="event-title"><a href="https://www.meetup.com/code-coffee-philly/events/314156148/" target="_blank" rel="noopener">Debug &amp; Decaf</a></div>
+  <div class="event-desc"><p>Where:<br>**Mad Anthony Wayne Cafe**<br>**135 N Wayne Ave, Wayne, PA 19087**</p><p>When your inbox finally shuts up, we gather for Debug &amp; Decaf... a late-evening meetup for creators who know building in isolation sucks.</p><p>Hit a wall? Solved something worth sharing? Need feedback on a new feature?</p><p>**What Happens:**</p><p>* Grab a cup of coffee, gelato, or snack.<br>* Share what your stuck on...product decisions, technical challenges, go-to-market questions, whatever&#x27;s keeping you up at night.<br>* The group actively debugs together (or separate). Direct feedback, alternative approaches, solutions from different perspectives.</p><p>Please make sure to support the cafe through buying a cup of coffee, gelato, or snacks. They&#x27;ve got a lot of good stuff - including their genorsity in hosting us in a cozy spot right off the Wayne train station (super convenient for anyone traveling via SEPTA from the city).</p><p>**The Vibe:**<br>Less networking event in business attire, more late night office hours in sweats. Coffee&#x27;s flowing. Feedback is direct and helpful. Nobody&#x27;s selling anything. Open laptops, real conversation, actual problem-solving.<br>**Dress code:** Super casual. Leave the button-downs at home.</p></div>
+  <div class="location">Mad Anthony wayne, 135 N wayne Ave</div>
+</article>
+<article class="event">
+  <div class="event-time">4:00 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/code-coffee-philly/events/314460760/" target="_blank" rel="noopener">SimSense Workshop: Build for any screen</a></div>
+  <div class="event-desc"><p>**Use Agents to Build for the Real World with SimSense.**<br>You know how you ask Claude to build something cool and then... it just lives in the chat? **[SimSense](https://simsense.ai)** gives your Agent a space in the real world. Ask Claude for something, push it to any screen — a tablet, a TV, a browser on your phone, and it lives there. No hosting. No deployment. No Vercel project you&#x27;ll forget about in a month.<br>**What to Expect:**</p><p>* **Lunch:** Sponsored by SimSense!<br>* **Guided WorkShop Session:** Come hang out, bring your weirdest ideas, and walk away having built something that&#x27;s actually running on a screen somewhere with guidance from the SimSense technical team.</p><p>**📅 When:** Friday, May 1st, 2026<br>**🕒 Time:** 12:00PM-2:00PM<br>**📍 Where:** BlockSpace, 215 Broad Street (5 minute walk from City Hall)<br>**About the Group:** Our workshops are meant to share knowledge and feedback on tools that companies in our industry are building, and most importantly, build something fun!<br>**Who Should Join:**</p><p>* **Non-Technical People:** If you&#x27;ve tried creating a visualization of something, and want to see it on something other than your own screen, get some hands on guidance from us!<br>* **Software Engineers:** Explore new tools that make it easier for people at all levels to create their vision and translate it into the real world.</p><p>**See you there!**<br>Links:<br>Site: [codephilly.com](http://codephilly.com)<br>Donate: [https://hcb.hackclub.com/donations/start/code-and-coffee-philadelphia](https://hcb.hackclub.com/donations/start/code-and-coffee-philadelphia)<br>Merch: [https://nol-kky-shop.fourthwall.com/](https://nol-kky-shop.fourthwall.com/)<br>LinkedIn: [https://www.linkedin.com/company/code-coffee-philadelphia](https://www.linkedin.com/company/code-coffee-philadelphia)<br>Instagram: [https://www.instagram.com/philly_codes/](https://www.instagram.com/philly_codes/)</p></div>
+  <div class="location">Blockspace Community Coworking!, 215 S Broad St, Philadelphia, PA 19107</div>
+</article>
+<article class="event">
+  <div class="event-time">6:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/ppbvcs9c" target="_blank" rel="noopener">费城 | Karl 单口喜剧主打秀 率性之谓</a></div>
+  <div class="event-desc"><p>费城 | Karl 单口喜剧主打秀 率性之谓</p></div>
+  <div class="location">Creese Student Center, Creese Student Center, Philadelphia, Pennsylvania</div>
+</article>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/jm9wjff0" target="_blank" rel="noopener">顶好开放麦</a></div>
+  <div class="event-desc"><p>顶好开放麦</p></div>
+  <div class="location">Somerville Music Spaces, Somerville Music Spaces, Somerville, Massachusetts</div>
+</article>
+<h2 class="date-head">Saturday, May 2, 2026</h2>
+<article class="event">
+  <div class="event-time">4:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/5ix07atw" target="_blank" rel="noopener">handquilting with siena faughn</a></div>
+  <div class="event-desc"></div>
+  <div class="location">915 Spring Garden St, 915 Spring Garden St, Philadelphia, PA 19123, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">5:00 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/code-coffee-philly/events/314142505/" target="_blank" rel="noopener">Composio Saturdays! Let your AI agents orchestrate your many apps in 3 hours!</a></div>
+  <div class="event-desc"><p>### 🚀 **Composio Sundays — Build, Share &amp; Connect!**</p><p>Welcome to **Composio Sundays**, a relaxed weekly meetup for developers, builders, and AI enthusiasts who are exploring the future of AI agents and integrations with **Composio.dev** — the platform that empowers AI agents and LLMs to interact with real-world tools and workflows.<br>Whether you’re just getting started or shipping production-ready agents, this event is your space to learn, create, share, and collaborate with others in the ecosystem.<br>**What to Expect:**<br>✨ **Show &amp; Tell** – Demo what you’ve built with Composio or tools that work alongside it.<br>🛠 **Hands-On Sessions** – Pair up to build integrations, troubleshoot toolchains, and explore new agent workflows.<br>💡 **Knowledge Exchange** – Tips, tricks, and best practices for integrating AI agents into real-world apps.<br>🤝 **Community Networking** – Meet fellow builders, share ideas, and find collaborators for your next project.<br>**Who Should Join:**<br>Developers, architects, product builders, and anyone curious about agentic AI, automation, and practical integrations with platforms like Composio.<br>**Why Attend:**<br>Composio makes connecting intelligent agents to external tools simpler and more reliable — and Composio Sundays is your weekly chance to level up with peers. Whether you&#x27;re automating workflows or crafting production-ready systems, this meetup helps you turn ideas into action.</p></div>
+  <div class="location">Turkish Brew, 1444 N 7th St, Philadelphia, PA 19122</div>
+</article>
+<article class="event">
+  <div class="event-time">6:30 PM</div>
+  <div class="event-title"><a href="https://lu.ma/4d1bc0al" target="_blank" rel="noopener">Self Defense Class</a></div>
+  <div class="event-desc"></div>
+  <div class="location">The Jiu Jitsu Company, The Jiu Jitsu Company, 31 S 2nd St 2nd floor Unit C-5, Philadelphia, PA 19106, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">8:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/2vkxajrn" target="_blank" rel="noopener">handbuilidng clay with angelique scott</a></div>
+  <div class="event-desc"></div>
+  <div class="location">915 Spring Garden St, 915 Spring Garden St, Philadelphia, PA 19123, USA</div>
+</article>
+<h2 class="date-head">Sunday, May 3, 2026</h2>
+<article class="event">
+  <div class="event-time">2:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/jlx75nn3" target="_blank" rel="noopener">slow-fashion mending &amp; swap: plus size with lisa ha</a></div>
+  <div class="event-desc"></div>
+  <div class="location">915 Spring Garden St, 915 Spring Garden St, Philadelphia, PA 19123, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">4:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/wk82htff" target="_blank" rel="noopener">Mother’s Day Cooking Class For The Youth</a></div>
+  <div class="event-desc"><p>Mother’s Day Cooking Class For The Youth</p></div>
+  <div class="location">2946 W Dauphin St, 2946 W Dauphin St, Philadelphia, Pennsylvania</div>
+</article>
+<article class="event">
+  <div class="event-time">5:00 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/code-coffee-philly/events/314266017/" target="_blank" rel="noopener">Coding on Localhost; Connecting the Community</a></div>
+  <div class="event-desc"><p>A fun and light code session where tech friends get together in a Game Lounge, and Code! It&#x27;s a great opportunity to ask questions, share ongoing projects, help each other out, and meet other awesome coders. We&#x27;re all about the code, we hope to make a space for people who like to build.</p><p>**Notes to keep in mind:**</p><p>* BYO Food/Bev is ok, just no alcoholic items.<br>* The $5.40 tabletop fee will cover use of the Retro Lounge space for 1-4PM and is to be paid individually at the front desk as attendees check-in.<br>* Power and guest wireless internet access is available, use of extra monitors is possible but not guaranteed. Attendees will ask venue staff for availability/assistance as it&#x27;s subject to change with weekend events/business volume.</p><p>Come out and work, help, or just hang out!</p><p>**Links:**<br>**Site:** https://www.codephiladelphia.com/<br>**Donate:** https://hcb.hackclub.com/donations/start/code-and-coffee-philadelphia<br>**Merch:** https://nol-kky-shop.fourthwall.com/<br>**LinkedIn:** https://www.linkedin.com/company/code-coffee-philadelphia<br>**Instagram:** https://www.instagram.com/philly_codes/</p></div>
+  <div class="location">Localhost (Philly), 401 N Broad St</div>
+</article>
+<h2 class="date-head">Monday, May 4, 2026</h2>
+<article class="event">
+  <div class="event-time">1:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/g2ppfvv3" target="_blank" rel="noopener">IP to Impact 2026</a></div>
+  <div class="event-desc"></div>
+  
+</article>
+<article class="event">
+  <div class="event-time">9:00 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/phillybricks-philadelphia-databricks-user-group/events/314507484/" target="_blank" rel="noopener">Lakebase for the Lakehouse &amp; an AI-Ready Lakehouse for Precision Diagnostics</a></div>
+  <div class="event-desc"><p># **About this event**</p><p>🎉 Our kickoff event!<br>**Agenda**</p><p>* 5:00 – 5:30 PM — Doors open, networking<br>* 5:30 – 5:40 PM — Welcome &amp; kickoff: organizer introduction and a few words from our Title Sponsor, Lumenalta<br>* 5:40 – 6:25 PM — Talk 1: *Lakebase: Fully Managed Postgres for the Lakehouse* — Ayman El-Ghazali<br>* 6:25 – 6:40 PM — Break, food, and mingling<br>* 6:40 – 7:10 PM — Talk 2: *From Legacy Lab Sprawl to Algorithm* — Jim Havrilla<br>* 7:10 – 8:00 PM — Networking<br>* 8:00 PM — Doors close</p><p>Food and beverages will be catered.</p><p>**RSVP** at https://usergroups.databricks.com/events/details/databricks-user-groups-phillybricks-philadelphia-databricks-user-group-presents-lakebase-for-the-lakehouse-amp-an-ai-ready-lakehouse-for-precision-diagnostics/</p><p>**Talk 1 — Lakebase: Fully Managed Postgres for the Lakehouse**<br>*Ayman El-Ghazali · Senior Solutions Architect, Databricks*<br>Lakebase is a fully managed, Postgres-compatible OLTP database engine for Databricks that seamlessly supports reverse ETL patterns — syncing curated Lakehouse analytics directly into operational Postgres tables for instant use in applications, AI/BI dashboards, and feature stores.<br>This architecture lets developers build data-driven apps with millisecond latency and transactional reliability, while also activating ML-powered insights in real time — all without custom pipelines or complicated ETL development.<br>In this session, Ayman will walk through key capabilities, example use cases, and how Lakebase simplifies infrastructure while unlocking new possibilities for AI and analytics.<br>**Talk 2 — From Legacy Lab Sprawl to Algorithm: Building an AI-Ready Lakehouse for Precision Diagnostics**<br>*Jim Havrilla, PhD*<br>A precision diagnostics lab — specializing in rapid pooled antibiotic susceptibility testing for complicated UTIs — inherited a decade of fragmented data: aging SQL instances, LIS/RCM CSVs, and R&amp;D spreadsheets never meant for analytics.<br>This talk walks through:</p><p>* The decision to build a Medallion-architecture lakehouse on Databricks with Unity Catalog<br>* The Lakeflow Connect integration that unified Salesforce with lab data<br>* The patent-pending ML model now predicting antibiotic susceptibility from PCR and demographic inputs ahead of phenotypic results</p><p>**About this event**<br>Welcome to the launch of **PhillyBricks** — the Greater Philadelphia area&#x27;s first dedicated Databricks User Group, and a practitioner-led community for data engineers, architects, analytics and ML engineers, and platform leaders building on the Databricks Data Intelligence Platform.<br>Philly&#x27;s tech scene is thriving, with deep benches in fintech, healthcare, life sciences, and enterprise technology — but there has been no dedicated space for Databricks practitioners to go deep on architecture, governance, and real-world implementation. PhillyBricks fills that gap.<br>For our inaugural meetup, we&#x27;ve lined up two talks that span the full arc of what&#x27;s possible on Databricks today — from the newest platform capabilities straight from Databricks, to a real-world lakehouse modernization story from a Philadelphia-area precision diagnostics innovator. Come for the talks, stay for the food and conversation, and help us kick off what we hope will be a long-running home for the region&#x27;s Databricks community.<br>A huge thank you to our Founding **Title Sponsor, Lumenalta**, for backing this inaugural event, and to **Microsoft** for hosting us at their Malvern office.</p><p>**RSVP** at https://usergroups.databricks.com/events/details/databricks-user-groups-phillybricks-philadelphia-databricks-user-group-presents-lakebase-for-the-lakehouse-amp-an-ai-ready-lakehouse-for-precision-diagnostics/</p><p>**Important — please read before arriving**</p><p>* RSVPs are first-come, first-served. Please cancel if your plans change so we can release your seat to someone on the waitlist.<br>* **All guests must be on the attendee list for entry.**<br>* Please bring a **government-issued photo ID** — you&#x27;ll receive a pre-printed badge upon arrival.<br>* **Security passes must be returned upon exit.**</p><p>**Organized by** Dilorom Abdullah — Databricks MVP \| Databricks Practice Director\, Lumenalta</p></div>
+  <div class="location">Microsoft Corporation, 45 Liberty Boulevard</div>
+</article>
+<article class="event">
+  <div class="event-time">10:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/jyz65j6o" target="_blank" rel="noopener">Tech &amp; Tonic (Without the Tech)</a></div>
+  <div class="event-desc"><p>Tech &amp; Tonic (Without the Tech)</p></div>
+  <div class="location">1099 Germantown Ave, 1099 Germantown Ave, Philadelphia, Pennsylvania</div>
+</article>
+<article class="event">
+  <div class="event-time">10:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/k46okw60" target="_blank" rel="noopener">🌅 Sunset Slow Flow 🧘🏽‍♀️</a></div>
+  <div class="event-desc"><p>🌅 Sunset Slow Flow 🧘🏽‍♀️</p></div>
+  <div class="location">Philadelphia, Pennsylvania, Register to See Address</div>
+</article>
+<article class="event">
+  <div class="event-time">10:30 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/decentralized-philly/events/314506108/" target="_blank" rel="noopener"> Fixing Token Launches Fixes Crypto w/ Nate from Token Dynamics</a></div>
+  <div class="event-desc"><p>**Speaker:** Nate \| eatsleepcrypto\, Token Dynamics &amp; Punk\.fun<br>​**Talk:** Putting the fun in fundamentals: How fair token launches fix crypto</p><p>​Join Decentralized Philly for a practical session on token design with Nate of [Token Dynamics](https://tokendynamics.xyz/) and [Punk.fun](https://punk.fun). Nate is the founder of Token Dynamics, a crypto OG, and token economist, writing about censorship-resistant protocol design, tokenomics, and economic security since 2017.</p><p>​This talk will focus on why fair launches matter if we want crypto systems to be durable, usable, and worth participating in. Expect a grounded conversation for builders, founders, and anyone trying to understand what separates short-term hype from sustainable crypto coordination.<br>​<br>**What you&#x27;ll learn:**</p><p>* Why fair token launches matter for long-term ecosystem health.<br>* How token distribution shapes market structure and creates crypto&#x27;s exaggerated bull and bear market cycles.<br>* What kinds of projects will succeed in the next bull market, and what to dxpect.</p><p>​**Who should attend:**</p><p>* ​Founders and builders working on web3 products or token-enabled networks.<br>* ​Investors, analysts, and community members who want a clearer tokenomics lens.<br>* ​Anyone curious about launch design, protocol incentives, and sustainable crypto growth.</p></div>
+  <div class="location">Blockspace Philly, 215 South Broad Street</div>
+</article>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/il7tp4pw" target="_blank" rel="noopener">charm club: pill organizers</a></div>
+  <div class="event-desc"></div>
+  <div class="location">915 Spring Garden St, 915 Spring Garden St, Philadelphia, PA 19123, USA</div>
+</article>
+<h2 class="date-head">Tuesday, May 5, 2026</h2>
+<article class="event">
+  <div class="event-time">2:00 PM</div>
+  <div class="event-title"><a href="https://lu.ma/vj0mr1ep" target="_blank" rel="noopener">Women Invested - Philly Tech Week</a></div>
+  <div class="event-desc"></div>
+  <div class="location">Fitler Club, Fitler Club, 24 S 24th St, Philadelphia, PA 19103, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">5:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/w9rsrnc7" target="_blank" rel="noopener">admin club w becky @ free library of philadelphia</a></div>
+  <div class="event-desc"></div>
+  <div class="location">Parkway Central Library, Parkway Central Library, 1901 Vine St, Philadelphia, PA 19103, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">8:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/https://www.linkedin.com/posts/philly-biotech-connect_two-weeks-to-go-until-our-first-event-and-activity-7452698577862287360-qNg_?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAAGQun4YBP8qHTUayqeesfYQMn9RrXRyjUC0" target="_blank" rel="noopener">Philly Biotech Connect: beyond Capital</a></div>
+  <div class="event-desc"></div>
+  <div class="location">3675 Market St 5th floor, 3675 Market St 5th floor, Philadelphia, PA 19104, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">10:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/vr1q6uz0" target="_blank" rel="noopener">PhilaCon Valley: Ship It! Agency Launch + Open Source Exhibition</a></div>
+  <div class="event-desc"><p>PhilaCon Valley: Ship It! Agency Launch + Open Source Exhibition</p></div>
+  <div class="location">Braid Mill, Braid Mill, Philadelphia, Pennsylvania</div>
+</article>
+<article class="event">
+  <div class="event-time">10:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/9ikw4plb" target="_blank" rel="noopener">Break Point LIVE! A Cinco de Mayo Developer Edition Presented by Sentry | Previously Known As: CTRL + ALT PHILLY</a></div>
+  <div class="event-desc"></div>
+  <div class="location">Indy Hall Clubhouse at 709 N 2nd St, Indy Hall Clubhouse at 709 N 2nd St, 709 N 2nd St 3rd Floor, Philadelphia, PA 19123, USA</div>
+</article>
+<h2 class="date-head">Wednesday, May 6, 2026</h2>
+<article class="event">
+  <div class="event-time">5:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/axybyqjx" target="_blank" rel="noopener">Building with Bots - Agent Monitoring in Sentry</a></div>
+  <div class="event-desc"></div>
+  
+</article>
+<article class="event">
+  <div class="event-time">5:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/startupsummit" target="_blank" rel="noopener">1PHL Startup Summit</a></div>
+  <div class="event-desc"></div>
+  <div class="location">Ballers, Ballers, 1325 N Beach St, Philadelphia, PA 19125, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">9:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/https://www.meetup.com/dataphilly/events/314048460/" target="_blank" rel="noopener">DataPhilly Presents: Philly Sports Analytics Summit - Philly Tech Week 2026</a></div>
+  <div class="event-desc"></div>
+  <div class="location">2401 Walnut Street</div>
+</article>
+<article class="event">
+  <div class="event-time">10:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/maymargs" target="_blank" rel="noopener">The Ground Floor: PTW Rooftop</a></div>
+  <div class="event-desc"><p>The Ground Floor: PTW Rooftop</p></div>
+  <div class="location">Philadelphia, Pennsylvania, Register to See Address</div>
+</article>
+<article class="event">
+  <div class="event-time">10:00 PM</div>
+  <div class="event-title"><a href="https://www.eventbrite.com/e/technically-builders-conference-2026-tickets-1859321884809" target="_blank" rel="noopener">Technical.ly Builders Conference 2026</a></div>
+  <div class="event-desc"><p>Technical.ly Builders Conference 2026</p></div>
+  <div class="location">CYTOPHL - Phila, 2929 Arch Street #Suite 250, Philadelphia, PA 19104</div>
+</article>
+<article class="event">
+  <div class="event-time">10:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/8swtxdwp" target="_blank" rel="noopener">collage club: collective visioning with forbidden fruit</a></div>
+  <div class="event-desc"></div>
+  <div class="location">uCity Square, uCity Square, 3701 Filbert St, Philadelphia, PA 19104, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">10:45 PM</div>
+  <div class="event-title"><a href="https://luma.com/1phlPlayground" target="_blank" rel="noopener">1PHL Playground</a></div>
+  <div class="event-desc"></div>
+  <div class="location">Ballers, Ballers, 1325 N Beach St, Philadelphia, PA 19125, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/philadelphia-linux-user-group-meetup/events/314323832/" target="_blank" rel="noopener">PLUG Central - Jitsi Meet: 7-9PM; Speaker from 7:30-8:30PM</a></div>
+  <div class="event-desc"><p>Please join us for PLUG Central. During the pandemic we meet on-line at Jitsi Meet, beginning at 7pm. RSVPs are optional. Anyone interested in Linux and Free and Open Source software is welcome to attend. We welcome all levels of expertise, whether you&#x27;re just curious, a hobbyist, or a professional.</p><p>Jitsi Meet agenda:</p><p>Q&amp;A with emcee CJ Fearnley from 7-7:30PM. Bring your Linux (and related) questions for a group exploration.</p><p>The main presentation from 7:30-8:30PM: TBD.</p><p>Q&amp;A continued from 8:30-9PM.</p><p>After the pandemic dissipates, we plan to again meet in Lecture Hall A in Griffith Hall at USP in Philadelphia. We plan to revert to the original speaker slot from 8-9PM with Q&amp;A at the beginning to better support travel constraints.</p><p>After the presentation some of us adjourn to Clarkville (http://www.clarkvillephilly.com/) a nearby pizza and craft beer restaurant.</p><p>University of the Sciences in Philadelphia (USP)<br>Griffith Hall (Room &quot;A&quot; or &quot;C&quot;, look for the signs)<br>600 South 43rd Street<br>Philadelphia, PA 19104-4495</p><p>USP is located in University City. Driving directions are available at http://www.phillylinux.org/locations/usp.html, or http://www.usip.edu/directions, both of which have an aerial view of the campus buildings. USP is also easily accessible by public transportation.</p><p>Often, the door to Griffith Hall is locked at 7PM. If you find the door locked, please contact the security guard (usually in the booth in the parking lot) and tell them that the monthly PLUG (Philadelphia Linux User Group) meeting in Griffith Hall is tonight. If there is no one in the booth you can call UCS&#x27;s public safety number at 215.895.1117 and they will radio personnel to unlock the door. Our sponsor is Zhiwei Liu in the Chemistry department. Security knows this and will almost always open the door for you and have it unlocked so other participants can enter without issue.</p></div>
+  <div class="location">Online event</div>
+</article>
+<h2 class="date-head">Thursday, May 7, 2026</h2>
+<article class="event">
+  <div class="event-time">12:30 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/philly-ai-connect/events/314152743/" target="_blank" rel="noopener">(Co)nnect Philly AI Ecosystem Summit</a></div>
+  <div class="event-desc"><p>**Join us for (Co)nnect: Philly&#x27;s AI Ecosystem Summit, a full-day Philly Tech Week gathering designed to bring together the people building, supporting, and growing AI and tech across Philadelphia.**</p><p>The idea behind **(Co)** is simple: **community, collaboration, and connection**.<br>Philadelphia&#x27;s AI ecosystem is growing quickly. Founders are building. Researchers are innovating. Operators are applying AI in real business settings. Investors, institutions, and ecosystem leaders are helping shape what comes next. What is often missing is shared space to learn from each other, build relationships, and see the full picture more clearly.<br>That is what **(Co)nnect** is built to do.</p><p>This summit brings together the people shaping AI in Philadelphia for a full day of keynotes, fireside conversations, lightning sessions, demos, and networking at Pennovation Works. The goal is to spotlight the strength, creativity, and momentum already present across Philly&#x27;s AI and tech scene while creating real opportunities for new connection and collaboration.<br>Whether you are a founder, builder, researcher, investor, operator, student, or simply someone who wants to better understand where AI in Philadelphia is headed, this event is designed to help you connect with the ecosystem in a meaningful way.</p><p>### What to expect</p><p>At **(Co)nnect**, you can expect:</p><p>* A full-day summit during Philly Tech Week<br>* A strong mix of ecosystem insight and practical learning<br>* Keynote conversations on Philadelphia&#x27;s opportunity in AI and tech<br>* Fireside chats on capital, builders&#x27; journeys, talent, infrastructure, and long-term ecosystem growth<br>* Lightning sessions and demos from people building in the region<br>* Networking throughout the day with founders, researchers, investors, operators, and community leaders<br>* A chance to better understand who is shaping Philly&#x27;s AI future and where new opportunities are emerging</p><p>### Basic agenda</p><p>**8:30 AM to 9:30 AM**<br>Arrival, check-in, light refreshments, and networking<br>**9:30 AM to 10:25 AM**<br>Opening welcome and keynote<br>**10:30 AM to 11:20 AM**<br>Fireside chat and lightning session, round one<br>**11:30 AM to 12:20 PM**<br>Fireside chat and lightning session, round two<br>**12:30 PM to 1:30 PM**<br>Lunch and networking<br>**1:30 PM to 2:20 PM**<br>Fireside chat and lightning session, round three<br>**2:30 PM to 3:30 PM**<br>Closing keynote or panel discussion<br>**3:30 PM to 5:30 PM**<br>Happy hour, networking, and close</p><p>### Who should attend</p><p>This event is for people who are building, backing, studying, or shaping the future of AI and technology in Philadelphia, including:</p><p>* Founders and startup teams<br>* AI builders, developers, and technologists<br>* Researchers and educators<br>* Investors and innovation leaders<br>* Operators and enterprise professionals<br>* Community builders and ecosystem partners<br>* Students and curious professionals looking to get more connected to Philly&#x27;s AI scene</p><p>### Why attend</p><p>If you want a clearer view of Philadelphia&#x27;s AI ecosystem, stronger local connections, and more insight into where the region is headed next, this is a room worth being in.<br>You will leave with:</p><p>* A better understanding of the people and organizations shaping AI in Philly<br>* New relationships across sectors and disciplines<br>* Fresh perspective on where opportunity is growing<br>* A stronger sense of how you can plug into the ecosystem</p><p>### About the venue</p><p>**Pennovation Works** is one of Philadelphia&#x27;s most exciting hubs for innovation and entrepreneurship, making it a fitting home for a summit centered on community, collaboration, and the future of AI in Philly.</p><p>### Speaker note</p><p>Speaker announcements are coming soon. We are curating a lineup of founders, builders, researchers, investors, operators, and community leaders who reflect the range and momentum of Philadelphia&#x27;s AI and tech ecosystem.</p><p>### Registration</p><p>Space is limited, and advance registration is encouraged.<br>Come be part of the conversations, ideas, and relationships shaping what comes next for AI in Philadelphia.</p></div>
+  <div class="location">Pennovation Center, 3401 Grays Ferry Ave, (adjacent to University of Pennsylvania campus), Philadelphia, PA, 19146</div>
+</article>
+<article class="event">
+  <div class="event-time">5:00 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/producttank-philadelphia/events/314163608/" target="_blank" rel="noopener">From PRD to Prototype: Hands-On Vibe Coding for the Product Team</a></div>
+  <div class="event-desc"><p>**The Problem We&#x27;re Solving**<br>Based on Product Tank’s recent survey, most PMs are stuck at &quot;ChatGPT writes my PRD&quot; - only a handful are actually building anything with AI. There&#x27;s a massive gap between using AI as a writing assistant and using it to create working prototypes.</p><p>This workshop bridges that gap. Attendees will go from a Product Requirements Document to a live prototype they built themselves - in less than 90 minutes.</p><p>**What Attendees Will Build**<br>Attendees will pick a project that adds value to their day-to-day. Below is a list of starter options, but feel free to bring your own idea.</p><p>1. **Product landing page** — explain a feature or concept, collect interest (featured/recommended)<br>2. **Interactive prototype** — a clickable multi-step flow or onboarding sequence<br>3. **User feedback collector** — submit feedback, tag by theme, see it displayed<br>4. **Feature voting board** — ranked list of ideas your team can interact with</p><p>**Every attendee leaves with:**</p><p>* A PRD they’ve developed themselves<br>* A live website URL they can share<br>* The actual code and files they can modify later<br>* Proof they can build working prototypes, not just documents</p><p>**Why This Approach Works**</p><p>**We&#x27;re teaching real vibe coding** \- the same professional workflow using Claude Code\- not just drag\-and\-drop tools like Webflow or Wix\. This means:</p><p>* **Unlimited creative freedom** \- Build anything you can imagine\, not just pre\-built templates<br>* **Transferable skills** \- Learn professional skills that work for any project</p><p>Key insight: **PMs who can prototype their own ideas move faster and communicate more effectively with engineering teams**. This isn&#x27;t about becoming a developer - it&#x27;s about removing the dependency on scarce engineering resources for early validation.</p><p>**What Attendees Need**</p><p>* Laptop (Mac or Windows)<br>* Wifi/internet connection<br>* Claude code for desktop<br>* No coding experience required.</p><p>**Quick note:** This is being held at the Pennovation Center during their [(Co)nnect: Philly AI Ecosystem Summit](https://luma.com/xdwih64h). In addition to registering here, be sure to [also register at this link](https://luma.com/xdwih64h) for building access where you can join other AI-related sessions they have during the day.</p><p>**Convince the Boss You Should Go!**<br>Since this is one of our first ProductTank events during workday hours, we wanted to give you a little help if you need to convince the boss. Here are two, almost ready statements you can use on Slack or Email/when you talk to them!</p><p>**Manager-Facing (Email or Direct Ask)**<br>Hi [Manager], I came across a free 90-minute workshop on May 7 called [From PRD to Prototype: Hands-On Vibe Coding for the Product Team](https://www.meetup.com/producttank-philadelphia/events/314163608/), and I’d like to attend. It’s focused on using AI tools to quickly turn product ideas into working prototypes—not just writing PRDs.</p><p>This feels especially relevant as we look to move faster on validation and reduce back-and-forth with engineering on early concepts. The session is very hands-on, and I’d leave with a working prototype plus skills I can immediately apply to our current projects. Since it’s free and relatively short, it seems like a high-value way to build capability in an area that’s becoming increasingly important for PMs.</p><p>This is exactly the work we want to be doing, so I’d like to use part of my workday on DATE to attend. I’ll come back with a working prototype and new skills to bring back to the team.</p><p>**Short Slack / Quick Message Version**<br>Hey — there’s a free 90-min workshop on May 7th on using AI to turn PRDs into actual working prototypes. It’s very hands-on, and I’d come back with something built + skills we could use right away to speed up early validation.</p><p>This is part of my work day and I’ll get us a lot of value back at the office. Any concerns if I block time to attend?</p></div>
+  <div class="location">Pennovation Center, 3401 Grays Ferry Ave</div>
+</article>
+<article class="event">
+  <div class="event-time">6:00 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/techinmotionphilly/events/314320001/" target="_blank" rel="noopener">Agentic AI Tools in Action</a></div>
+  <div class="event-desc"><p>**[Register here to save your spot!](https://ctrly.io/YFbot )**</p><p>**Build, deploy, &amp; scale AI agents in *real* w*orkflows*, not just theory.**</p><p>This multi-session webinar blends strategic context, live engineering demos, and applied enterprise use cases to show how agentic workflows are designed, deployed, and operated in the real world.</p><p>By the end of the workshop, participants will understand how to architect, build, and evaluate agentic AI workflows that integrate with real tools, services, and infrastructure — skills directly applicable to modern production environments.</p><p>**What you&#x27;ll learn**</p><p>* How to design agentic workflows that interact with real tools and APIs<br>* How AI agents change the way software gets built<br>* Where agents break—and how to work around limitations<br>* How to evaluate tools like MindStudio for real-world use<br>* Patterns for integrating agents into existing systems and processes</p><p>**Session Highlights**</p><p>2:00 PM ET<br>**The AI Imperative​: Competitive Pressure Meets Implementation Reality​**<br>A strategic, high‑level exploration of what this moment truly demands from leaders. This session frames AI as a structural transformation that spans strategy, operating models, governance, and value creation.<br>*Hosted by: Wade Erickson &amp; Richard Taubin (Motion Consulting Group, a Kelly Company)*</p><p>2:15 PM ET<br>**Modernizing Enterprise Systems with Agentic AI**<br>Explore how organizations are integrating AI agents into existing systems to automate workflows, reduce manual overhead, and unlock new efficiencies—without starting from scratch.<br>*Hosted by: Amit Tank (Kelly Science, Engineering, Technology &amp; Telecom)*</p><p>2:45 PM ET<br>**The Future of Programming: Building with AI Agents**<br>AI agents are rapidly changing how software gets built. This session explores this shift, using Remy by MindStudio as a lens into what programming looks like in an agent-driven world. We’ll cover how agents are reshaping development workflows, where they fall short, and what comes next for builders and teams.<br>*Hosted by: Dmitry Shapiro (MindStudio)*</p></div>
+  <div class="location">Online event</div>
+</article>
+<article class="event">
+  <div class="event-time">8:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/https://www.eventbrite.com/e/think-out-loud-happy-hour-ai-agent-showcase-tickets-1986340215054" target="_blank" rel="noopener">Think Out loud Happy Hour: AI Agent Showcase</a></div>
+  <div class="event-desc"></div>
+  <div class="location">1315 Walnut Street, 2nd Floor, Philadelphia, PA 19107</div>
+</article>
+<article class="event">
+  <div class="event-time">9:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/4cm7kh2w" target="_blank" rel="noopener">Diversitech Connect: Philly Tech Week Edition</a></div>
+  <div class="event-desc"></div>
+  <div class="location">Ballers, Ballers, 1325 N Beach St, Philadelphia, PA 19125, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/https://forms.gle/S2Q64rRSw4jcFRZx7" target="_blank" rel="noopener">Philly Game Mechanics May 2026 Playtest Night</a></div>
+  <div class="event-desc"></div>
+  
+</article>
+<h2 class="date-head">Friday, May 8, 2026</h2>
+<article class="event">
+  <div class="event-time">1:00 AM</div>
+  <div class="event-title"><a href="https://luma.com/0oriil3t" target="_blank" rel="noopener">BLK HAUS (All Black Attire Event)</a></div>
+  <div class="event-desc"></div>
+  <div class="location">Aloft by Marriott Philadelphia Downtown, Aloft by Marriott Philadelphia Downtown, 101 N Broad St, Philadelphia, PA 19107, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">3:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/jruv1d0i" target="_blank" rel="noopener">Reset Lab: A guided mind &amp; body reset</a></div>
+  <div class="event-desc"></div>
+  <div class="location">The Lawn at uCity Square, The Lawn at uCity Square, 3701 Filbert St, Philadelphia, PA 19104, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">9:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/ptw26party" target="_blank" rel="noopener">PTW2026 Closing Party</a></div>
+  <div class="event-desc"></div>
+  <div class="location">Gather Food Hall &amp; Bulletin Bar, Gather Food Hall &amp; Bulletin Bar, 3025 Market St, Philadelphia, PA 19104, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">9:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/f9dyrcmg" target="_blank" rel="noopener">Sketch Club: Still Life Flowers</a></div>
+  <div class="event-desc"><p>Sketch Club: Still Life Flowers</p></div>
+  <div class="location">Utility Works - Art Studios &amp; Maker Space, Utility Works - Art Studios &amp; Maker Space, Lansdowne, Pennsylvania</div>
+</article>
+<h2 class="date-head">Saturday, May 9, 2026</h2>
+<article class="event">
+  <div class="event-time">9:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/xy4ybf77" target="_blank" rel="noopener">charm club: pendant workshop with shaina selvaraju</a></div>
+  <div class="event-desc"></div>
+  <div class="location">915 Spring Garden St, 915 Spring Garden St, Philadelphia, PA 19123, USA</div>
+</article>
+<h2 class="date-head">Sunday, May 10, 2026</h2>
+<article class="event">
+  <div class="event-time">2:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/7kohp9e7" target="_blank" rel="noopener">slow-fashion mending &amp; swap: straight-size with lisa ha</a></div>
+  <div class="event-desc"></div>
+  <div class="location">915 Spring Garden St, 915 Spring Garden St, Philadelphia, PA 19123, USA</div>
+</article>
+<h2 class="date-head">Tuesday, May 12, 2026</h2>
+<article class="event">
+  <div class="event-time">9:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/07wvgnkt" target="_blank" rel="noopener">H+H x HOKA | Hot Hunny Walk Series 🔥🍯👟</a></div>
+  <div class="event-desc"><p>H+H x HOKA | Hot Hunny Walk Series 🔥🍯👟</p></div>
+  <div class="location">Philadelphia Runner, Philadelphia Runner, Philadelphia, Pennsylvania</div>
+</article>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/philadelphia-linux-user-group-meetup/events/314427392/" target="_blank" rel="noopener">PLUG North - Discussion and informative talks.</a></div>
+  <div class="event-desc"><p>Please join us at our next PLUG North meeting, which will be held online<br>For remote meetings, we typically begin at 7pm. Feel free to join early to socialize!</p><p>Information about PLUG can also be found on our website:</p><p>http://www.phillylinux.org/meetings.html</p></div>
+  <div class="location">Coredial, 751 Arbor Way, Suite 150</div>
+</article>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/pbwx546k" target="_blank" rel="noopener">craft for juntos!</a></div>
+  <div class="event-desc"></div>
+  <div class="location">915 Spring Garden St, 915 Spring Garden St, Philadelphia, PA 19123, USA</div>
+</article>
+<h2 class="date-head">Wednesday, May 13, 2026</h2>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/u2s2qx8n" target="_blank" rel="noopener">craft club: fairy doors</a></div>
+  <div class="event-desc"></div>
+  <div class="location">915 Spring Garden St, 915 Spring Garden St, Philadelphia, PA 19123, USA</div>
+</article>
+<h2 class="date-head">Thursday, May 14, 2026</h2>
+<article class="event">
+  <div class="event-time">1:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/https://web.cvent.com/event/ea47fe1c-1762-4f9f-8a85-8487a8062a10/summary" target="_blank" rel="noopener">The Penn State Bio-Inspired Innovation Exchange: From Nature to Market</a></div>
+  <div class="event-desc"></div>
+  <div class="location">CYTOPHL - Phila, CYTOPHL - Phila, 2929 Arch St Suite 250, Philadelphia, PA 19104, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">5:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/tc9fk3up" target="_blank" rel="noopener">Intro to Sentry Live Demo</a></div>
+  <div class="event-desc"></div>
+  
+</article>
+<article class="event">
+  <div class="event-time">10:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/nv0yaws3" target="_blank" rel="noopener">felt cat hats @ get a gato</a></div>
+  <div class="event-desc"></div>
+  <div class="location">Get A Gato, Get A Gato, 638 Christian St, Philadelphia, PA 19147, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/1or9g84p" target="_blank" rel="noopener">Margs on the Move</a></div>
+  <div class="event-desc"><p>Margs on the Move</p></div>
+  <div class="location">Loco Pez, Loco Pez, Philadelphia, Pennsylvania</div>
+</article>
+<h2 class="date-head">Saturday, May 16, 2026</h2>
+<article class="event">
+  <div class="event-time">4:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/https://www.eventbrite.com/e/the-ave-flea-market-a-taste-of-philly-food-truck-fest-tickets-1987258057345" target="_blank" rel="noopener">LA21 Food Truck Fest</a></div>
+  <div class="event-desc"></div>
+  <div class="location">The Lawn at uCity Square, The Lawn at uCity Square, 3701 Filbert St, Philadelphia, PA 19104, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">4:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/hfy6f9cx" target="_blank" rel="noopener">charm club: bag charms with yuuka univerise</a></div>
+  <div class="event-desc"></div>
+  <div class="location">915 Spring Garden St, 915 Spring Garden St, Philadelphia, PA 19123, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">5:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/zr9t3653" target="_blank" rel="noopener">Painting in the Park</a></div>
+  <div class="event-desc"><p>Painting in the Park</p></div>
+  <div class="location">Philadelphia, Pennsylvania, Register to See Address</div>
+</article>
+<article class="event">
+  <div class="event-time">7:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/q8ogtc8q" target="_blank" rel="noopener">sun print workshop with lauren fiasconaro</a></div>
+  <div class="event-desc"></div>
+  <div class="location">915 Spring Garden St, 915 Spring Garden St, Philadelphia, PA 19123, USA</div>
+</article>
+<h2 class="date-head">Sunday, May 17, 2026</h2>
+<article class="event">
+  <div class="event-time">3:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/hpa2nje2" target="_blank" rel="noopener">No-Phones Monthly Hiking in Philadelphia</a></div>
+  <div class="event-desc"></div>
+  <div class="location">5102 Rochelle Ave, 5102 Rochelle Ave, Philadelphia, PA 19128, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">4:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/o87dx2dc" target="_blank" rel="noopener">craft club: vegan taxidermy</a></div>
+  <div class="event-desc"></div>
+  <div class="location">915 Spring Garden St, 915 Spring Garden St, Philadelphia, PA 19123, USA</div>
+</article>
+<h2 class="date-head">Tuesday, May 19, 2026</h2>
+<article class="event">
+  <div class="event-time">9:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/https://www.pintofscience.us/event/truth-beauty-and-breakthrough-science/" target="_blank" rel="noopener">Pint of Science</a></div>
+  <div class="event-desc"></div>
+  <div class="location">Two Locals Brewing, Two Locals Brewing, 3675 Market St Suite 100, Philadelphia, PA 19104, USA</div>
+</article>
+<h2 class="date-head">Wednesday, May 20, 2026</h2>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/vpjmrx34" target="_blank" rel="noopener">charm club: heated rivalry shrinky dinks</a></div>
+  <div class="event-desc"></div>
+  <div class="location">915 Spring Garden St, 915 Spring Garden St, Philadelphia, PA 19123, USA</div>
+</article>
+<h2 class="date-head">Thursday, May 21, 2026</h2>
+<article class="event">
+  <div class="event-time">5:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/1ltsxcmj" target="_blank" rel="noopener">Debugging Next.js best practices: Logs and Tracing</a></div>
+  <div class="event-desc"></div>
+  
+</article>
+<article class="event">
+  <div class="event-time">8:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/xnioyed2" target="_blank" rel="noopener">Monthly Innovation Exchange: Connected Communities</a></div>
+  <div class="event-desc"></div>
+  <div class="location">3675 Market St, 3675 Market St, Philadelphia, PA 19104, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/gehopwtj" target="_blank" rel="noopener">platonic love club: friend dating (21-29)</a></div>
+  <div class="event-desc"></div>
+  <div class="location">At My House, At My House, 760 S 4th St, Philadelphia, PA 19147, USA</div>
+</article>
+<h2 class="date-head">Friday, May 22, 2026</h2>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/fd1k48kh" target="_blank" rel="noopener">platonic love club: friend dating (30+)</a></div>
+  <div class="event-desc"></div>
+  <div class="location">At My House, At My House, 760 S 4th St, Philadelphia, PA 19147, USA</div>
+</article>
+<h2 class="date-head">Saturday, May 23, 2026</h2>
+<article class="event">
+  <div class="event-time">10:00 PM</div>
+  <div class="event-title"><a href="https://lu.ma/ixyaklrq" target="_blank" rel="noopener">Black Lesbian Listening Room</a></div>
+  <div class="event-desc"></div>
+  
+</article>
+<h2 class="date-head">Sunday, May 24, 2026</h2>
+<article class="event">
+  <div class="event-time">4:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/getvqtff" target="_blank" rel="noopener">clay club: plant markers w/ babyface studio</a></div>
+  <div class="event-desc"></div>
+  <div class="location">BabyFace Studio, BabyFace Studio, 4249 Main St, Philadelphia, PA 19127, USA</div>
+</article>
+<h2 class="date-head">Monday, May 25, 2026</h2>
+<article class="event">
+  <div class="event-time">12:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/gearup" target="_blank" rel="noopener">Gear Up for Tech Week 2026</a></div>
+  <div class="event-desc"></div>
+  <div class="location">Arc&#x27;teryx Queen Street, Arc&#x27;teryx Queen Street, 339 Queen St W, Toronto, ON M5V 2A4, Canada</div>
+</article>
+<article class="event">
+  <div class="event-time">3:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/u43ppsil" target="_blank" rel="noopener">Movement that Matters 👟</a></div>
+  <div class="event-desc"><p>Movement that Matters 👟</p></div>
+  <div class="location">Philadelphia, PA, Register to See Address</div>
+</article>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/kleps37c" target="_blank" rel="noopener">craft club: felt crowns</a></div>
+  <div class="event-desc"></div>
+  <div class="location">915 Spring Garden St, 915 Spring Garden St, Philadelphia, PA 19123, USA</div>
+</article>
+<h2 class="date-head">Tuesday, May 26, 2026</h2>
+<article class="event">
+  <div class="event-time">9:30 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/ai-philly/events/314541362/" target="_blank" rel="noopener">AI Philly Hack Night</a></div>
+  <div class="event-desc"><p>Join us for AI Hack Night, a monthly gathering where AI builders, developers, and enthusiasts come together to present projects, share ideas, and collaborate on open source AI software. Whether you&#x27;re showcasing your latest creation, seeking feedback, or looking for collaborators, this is your chance to connect with an engaged community of AI innovators. *Bring your laptop, ideas, and curiosity, and let’s build the future of AI together!*</p><p>**What to Expect:**</p><p>* **Discover New Tools:** Learn more about AI-apps like [Rork](https://rork.com/?ref=ai-philly).<br>* **Project Demos:** Share your AI project or get inspired by others.<br>* **Collaborative Feedback:** Share and receive constructive insights. Find support from peers.<br>* **Networking Opportunities:** Connect with like-minded builders and industry enthusiasts.</p><p>*AI Philly events are $5 to attend to help ensure we have an accurate RSVP count, engaged attendees, and pizza.*</p></div>
+  <div class="location">Blockspace Philly, 215 South Broad Street</div>
+</article>
+<h2 class="date-head">Wednesday, May 27, 2026</h2>
+<article class="event">
+  <div class="event-time">1:00 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/mid-atlantic-computational-chemistry-macc/events/314388428/" target="_blank" rel="noopener"> Mapping GPCR Allostery: Translating PDB Insights into Design Decisions</a></div>
+  <div class="event-desc"></div>
+  
+</article>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/gdg-philly/events/313509006/" target="_blank" rel="noopener">GDG Philly Monthly Event</a></div>
+  <div class="event-desc"><p>Monthly GDG virtual event</p><p>Agenda</p><p>---</p><p>Hosts</p><p>Arpit Mathur - Comcast (Principal Engineer)</p><p>Filip Risteski - events.com (Principal Engineer)</p><p>Complete your event RSVP here: https://gdg.community.dev/events/details/google-gdg-philadelphia-presents-gdg-philly-monthly-event-2026-05-27/.</p></div>
+  <div class="location">Online event</div>
+</article>
+<h2 class="date-head">Thursday, May 28, 2026</h2>
+<article class="event">
+  <div class="event-time">5:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/i0zg4tqk" target="_blank" rel="noopener">Intro to Sentry Live Demo</a></div>
+  <div class="event-desc"></div>
+  
+</article>
+<h2 class="date-head">Saturday, May 30, 2026</h2>
+<article class="event">
+  <div class="event-time">2:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/cbshowcasespr26" target="_blank" rel="noopener">Coded by: Spring 2026 Innovator Celebration</a></div>
+  <div class="event-desc"></div>
+  <div class="location">Quorum, Quorum, 3675 Market St #200, Philadelphia, PA 19104, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">4:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/ror1pxt9" target="_blank" rel="noopener">junk journal club</a></div>
+  <div class="event-desc"></div>
+  <div class="location">915 Spring Garden St, 915 Spring Garden St, Philadelphia, PA 19123, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">11:30 PM</div>
+  <div class="event-title"><a href="https://lu.ma/9hy5p6pn" target="_blank" rel="noopener">Mama Africa Listening Hour</a></div>
+  <div class="event-desc"></div>
+  <div class="location">5231 Germantown Ave, 5231 Germantown Ave, Philadelphia, PA 19144, USA</div>
+</article>
+<h2 class="date-head">Sunday, May 31, 2026</h2>
+<article class="event">
+  <div class="event-time">4:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/whozgoe0" target="_blank" rel="noopener">Open House: Free Barber &amp; Cosmetology Classes</a></div>
+  <div class="event-desc"><p>Open House: Free Barber &amp; Cosmetology Classes</p></div>
+  <div class="location">3901 Main St, 3901 Main St, Philadelphia, Pennsylvania</div>
+</article>
+<h2 class="date-head">Wednesday, June 3, 2026</h2>
+<article class="event">
+  <div class="event-time">9:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/wcpzdfak" target="_blank" rel="noopener">The Ground Floor</a></div>
+  <div class="event-desc"><p>The Ground Floor</p></div>
+  <div class="location">Tactix Real Estate Advisors, Tactix Real Estate Advisors, Philadelphia, Pennsylvania</div>
+</article>
+<article class="event">
+  <div class="event-time">10:00 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/philly-hardware/events/314558760/" target="_blank" rel="noopener">13th Philly Hardware Meetup @ BFTP!</a></div>
+  <div class="event-desc"><p>Join us for the 13th Philadelphia Hardware Meetup! Come join us to hear from our guest speakers as well as share what’s on your desk. We always have time for an open mic.</p><p>***[Please click here to RSVP on Luma!](https://luma.com/fvfwpcjy)***</p><p>​​​This time, we&#x27;ll be at **Ben Franklin Technology Partners** new office at 1600 Market Street. Check in with security to be directed to the event space.<br>​<br>*Hardware Meetups happen across 30+ cities monthly and help bring together different professionals to connect and meet each other.*<br>​​<br>**We will have a great set of featured speakers for the evening - to be announced shortly!**</p><p>​**And pizza! Thanks to our host and sponsor, Ben Franklin Technology Partners. Drinks courtesy of Solid Product Design.**</p><p>​​​**Agenda**</p><p>* ​​​6:00-6:30pm: Arrive, mingle, grab some food and a beverage<br>* ​​​6:30-6:45pm: Opening remarks<br>* ​​​6:45-7:30pm: Guest Speakers + Q&amp;A with the audience<br>* ​​​7:30-8:00pm: Open Mic. Anyone in attendance can give a demo or short presentation on their hardware product, startup, or project.<br>* ​​​8:00-8:30pm: Mix, mingle, and close out the night.</p><p>​​​<br>**Thank you to our partners:**</p><p>**​[Ben Franklin Technology Partners](https://benfranklin.org/)**, our food sponsor for the evening. BFTP creates and retains highly paid, sustainable jobs by investing in and linking early-stage technology firms and established manufacturers with experts, universities, follow-on funding, and other resources to help them prosper through innovation.</p><p>**[Solid Product Design](https://solidpd.com/)** is a Philadelphia-based hardware product design and development firm. We help companies ship products faster by combining deep research, first principles thinking, and a user-centered development approach. Our experienced team anticipates challenges early, helping clients identify and solve problems before they arise - so ideas move smoothly from concept to commercialization.</p></div>
+  <div class="location">1600 Market St., Philadelphia, PA</div>
+</article>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/philadelphia-linux-user-group-meetup/events/swqvtryjcjbfb/" target="_blank" rel="noopener">PLUG Central - Jitsi Meet: 7-9PM; Speaker from 7:30-8:30PM</a></div>
+  <div class="event-desc"><p>Please join us for PLUG Central. During the pandemic we meet on-line at Jitsi Meet, beginning at 7pm. RSVPs are optional. Anyone interested in Linux and Free and Open Source software is welcome to attend. We welcome all levels of expertise, whether you&#x27;re just curious, a hobbyist, or a professional.</p><p>Jitsi Meet agenda:</p><p>Q&amp;A with emcee CJ Fearnley from 7-7:30PM. Bring your Linux (and related) questions for a group exploration.</p><p>The main presentation from 7:30-8:30PM: TBD.</p><p>Q&amp;A continued from 8:30-9PM.</p><p>After the pandemic dissipates, we plan to again meet in Lecture Hall A in Griffith Hall at USP in Philadelphia. We plan to revert to the original speaker slot from 8-9PM with Q&amp;A at the beginning to better support travel constraints.</p><p>After the presentation some of us adjourn to Clarkville (http://www.clarkvillephilly.com/) a nearby pizza and craft beer restaurant.</p><p>University of the Sciences in Philadelphia (USP)<br>Griffith Hall (Room &quot;A&quot; or &quot;C&quot;, look for the signs)<br>600 South 43rd Street<br>Philadelphia, PA 19104-4495</p><p>USP is located in University City. Driving directions are available at http://www.phillylinux.org/locations/usp.html, or http://www.usip.edu/directions, both of which have an aerial view of the campus buildings. USP is also easily accessible by public transportation.</p><p>Often, the door to Griffith Hall is locked at 7PM. If you find the door locked, please contact the security guard (usually in the booth in the parking lot) and tell them that the monthly PLUG (Philadelphia Linux User Group) meeting in Griffith Hall is tonight. If there is no one in the booth you can call UCS&#x27;s public safety number at 215.895.1117 and they will radio personnel to unlock the door. Our sponsor is Zhiwei Liu in the Chemistry department. Security knows this and will almost always open the door for you and have it unlocked so other participants can enter without issue.</p></div>
+  <div class="location">Online event</div>
+</article>
+<h2 class="date-head">Saturday, June 6, 2026</h2>
+<article class="event">
+  <div class="event-time">9:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/tszdp4y2" target="_blank" rel="noopener">No-Phones &amp; Singles&#x27; Hike (25-35 years old)</a></div>
+  <div class="event-desc"></div>
+  <div class="location">5102 Rochelle Ave, 5102 Rochelle Ave, Philadelphia, PA 19128, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://lu.ma/485z6qas" target="_blank" rel="noopener">Soul Fly Club Fundrasier</a></div>
+  <div class="event-desc"></div>
+  <div class="location">5231 Germantown Ave, 5231 Germantown Ave, Philadelphia, PA 19144, USA</div>
+</article>
+<h2 class="date-head">Sunday, June 7, 2026</h2>
+<article class="event">
+  <div class="event-time">10:00 PM</div>
+  <div class="event-title"><a href="https://lu.ma/bkvogumo" target="_blank" rel="noopener">Black Art Book Swap</a></div>
+  <div class="event-desc"></div>
+  <div class="location">5231 Germantown Ave, 5231 Germantown Ave, Philadelphia, PA 19144, USA</div>
+</article>
+<h2 class="date-head">Monday, June 8, 2026</h2>
+<article class="event">
+  <div class="event-time">4:01 AM</div>
+  <div class="event-title"><a href="https://luma.com/9xmf5qk0" target="_blank" rel="noopener">The 28-Day Digital Habit Shift Program: Reclaim Your Attention, Energy, and Time from Tech</a></div>
+  <div class="event-desc"></div>
+  
+</article>
+<h2 class="date-head">Tuesday, June 9, 2026</h2>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/philadelphia-linux-user-group-meetup/events/dqpnnsyjcjbmb/" target="_blank" rel="noopener">PLUG North - Discussion and informative talks.</a></div>
+  <div class="event-desc"><p>Please join us at our next PLUG North meeting, which will be held online<br>For remote meetings, we typically begin at 7pm. Feel free to join early to socialize!</p><p>Information about PLUG can also be found on our website:</p><p>http://www.phillylinux.org/meetings.html</p></div>
+  <div class="location">Coredial, 751 Arbor Way, Suite 150</div>
+</article>
+<h2 class="date-head">Thursday, June 11, 2026</h2>
+<article class="event">
+  <div class="event-time">11:30 PM</div>
+  <div class="event-title"><a href="https://lu.ma/7lhzcbte" target="_blank" rel="noopener">Fela Kuti Listening Hour</a></div>
+  <div class="event-desc"></div>
+  <div class="location">5231 Germantown Ave, 5231 Germantown Ave, Philadelphia, PA 19144, USA</div>
+</article>
+<h2 class="date-head">Saturday, June 13, 2026</h2>
+<article class="event">
+  <div class="event-time">3:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/vl4dqifm" target="_blank" rel="noopener">Park Hangs: Inner Child Fun and Relaxation!</a></div>
+  <div class="event-desc"></div>
+  
+</article>
+<h2 class="date-head">Sunday, June 14, 2026</h2>
+<article class="event">
+  <div class="event-time">1:00 AM</div>
+  <div class="event-title"><a href="https://lu.ma/jaebtyv6" target="_blank" rel="noopener">Black Lesbian Listening Room</a></div>
+  <div class="event-desc"></div>
+  <div class="location">1157 Myrtle Ave, 1157 Myrtle Ave, Brooklyn, NY 11206, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">3:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/mn1oc6xo" target="_blank" rel="noopener">No-Phones Monthly Hiking in Philadelphia</a></div>
+  <div class="event-desc"></div>
+  <div class="location">5102 Rochelle Ave, 5102 Rochelle Ave, Philadelphia, PA 19128, USA</div>
+</article>
+<h2 class="date-head">Monday, June 15, 2026</h2>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/mid-atlantic-computational-chemistry-macc/events/313867095/" target="_blank" rel="noopener">2026 International Society of Quantum Biology and Pharmacology (ISQBP) meeting</a></div>
+  <div class="event-desc"></div>
+  
+</article>
+<h2 class="date-head">Friday, June 19, 2026</h2>
+<article class="event">
+  <div class="event-time">3:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/qe1uihk4" target="_blank" rel="noopener">Reset Lab: A guided mind &amp; body reset</a></div>
+  <div class="event-desc"></div>
+  <div class="location">The Lawn at uCity Square, The Lawn at uCity Square, 3701 Filbert St, Philadelphia, PA 19104, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://lu.ma/wa4u4urq" target="_blank" rel="noopener">Black Lesbian Listening Room</a></div>
+  <div class="event-desc"></div>
+  <div class="location">6350 Germantown Ave, 6350 Germantown Ave, Philadelphia, PA 19144, USA</div>
+</article>
+<h2 class="date-head">Sunday, June 21, 2026</h2>
+<article class="event">
+  <div class="event-time">6:00 PM</div>
+  <div class="event-title"><a href="https://lu.ma/6n4rup5y" target="_blank" rel="noopener">Park Craft</a></div>
+  <div class="event-desc"></div>
+  <div class="location">Clark Park, Clark Park, 4300-4398 Baltimore Ave, Philadelphia, PA 19104, USA</div>
+</article>
+<h2 class="date-head">Wednesday, June 24, 2026</h2>
+<article class="event">
+  <div class="event-time">10:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/xu4spmgf" target="_blank" rel="noopener">Innovate &amp; Impact: A Design Thinking Townhall</a></div>
+  <div class="event-desc"><p>Innovate &amp; Impact: A Design Thinking Townhall</p></div>
+  <div class="location">440 N Broad St, 440 N Broad St, Philadelphia, Pennsylvania</div>
+</article>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://www.meetup.com/gdg-philly/events/313509011/" target="_blank" rel="noopener">GDG Philly Monthly Event</a></div>
+  <div class="event-desc"><p>Monthly GDG virtual event</p><p>Agenda</p><p>---</p><p>Hosts</p><p>Arpit Mathur - Comcast (Principal Engineer)</p><p>Filip Risteski - events.com (Principal Engineer)</p><p>Complete your event RSVP here: https://gdg.community.dev/events/details/google-gdg-philadelphia-presents-gdg-philly-monthly-event-2026-06-24/.</p></div>
+  <div class="location">Online event</div>
+</article>
+<h2 class="date-head">Friday, June 26, 2026</h2>
+<article class="event">
+  <div class="event-time">10:00 PM</div>
+  <div class="event-title"><a href="https://lu.ma/3jfycf9f" target="_blank" rel="noopener">Open Studio</a></div>
+  <div class="event-desc"></div>
+  <div class="location">5231 Germantown Ave, 5231 Germantown Ave, Philadelphia, PA 19144, USA</div>
+</article>
+<h2 class="date-head">Wednesday, July 1, 2026</h2>
+<article class="event">
+  <div class="event-time">9:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/ntpydmx0" target="_blank" rel="noopener">The Ground Floor</a></div>
+  <div class="event-desc"><p>The Ground Floor</p></div>
+  <div class="location">Tactix Real Estate Advisors, Tactix Real Estate Advisors, Philadelphia, Pennsylvania</div>
+</article>
+<h2 class="date-head">Friday, July 10, 2026</h2>
+<article class="event">
+  <div class="event-time">3:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/5jhiz1vy" target="_blank" rel="noopener">Reset Lab: A guided mind &amp; body reset</a></div>
+  <div class="event-desc"></div>
+  <div class="location">The Lawn at uCity Square, The Lawn at uCity Square, 3701 Filbert St, Philadelphia, PA 19104, USA</div>
+</article>
+<article class="event">
+  <div class="event-time">11:00 PM</div>
+  <div class="event-title"><a href="https://lu.ma/c1l4j0q1" target="_blank" rel="noopener">Vinyl Swap</a></div>
+  <div class="event-desc"></div>
+  <div class="location">5231 Germantown Ave, 5231 Germantown Ave, Philadelphia, PA 19144, USA</div>
+</article>
+<h2 class="date-head">Sunday, July 26, 2026</h2>
+<article class="event">
+  <div class="event-time">3:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/cq58v51w" target="_blank" rel="noopener">No-Phones Monthly Hiking in Philadelphia</a></div>
+  <div class="event-desc"></div>
+  <div class="location">5102 Rochelle Ave, 5102 Rochelle Ave, Philadelphia, PA 19128, USA</div>
+</article>
+<h2 class="date-head">Sunday, August 23, 2026</h2>
+<article class="event">
+  <div class="event-time">3:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/60co1rri" target="_blank" rel="noopener">No-Phones Monthly Hiking in Philadelphia</a></div>
+  <div class="event-desc"></div>
+  <div class="location">5102 Rochelle Ave, 5102 Rochelle Ave, Philadelphia, PA 19128, USA</div>
+</article>
+<h2 class="date-head">Thursday, September 10, 2026</h2>
+<article class="event">
+  <div class="event-time">10:00 PM</div>
+  <div class="event-title"><a href="https://luma.com/yyi1cnpq" target="_blank" rel="noopener">THE TECHTRITIONIST™ MEETUP</a></div>
+  <div class="event-desc"><p>THE TECHTRITIONIST™ MEETUP</p></div>
+  <div class="location">Philadelphia, PA, Register to See Address</div>
+</article>
+<h2 class="date-head">Sunday, September 20, 2026</h2>
+<article class="event">
+  <div class="event-time">3:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/efrhd47k" target="_blank" rel="noopener">No-Phones Monthly Hiking in Philadelphia</a></div>
+  <div class="event-desc"></div>
+  <div class="location">5102 Rochelle Ave, 5102 Rochelle Ave, Philadelphia, PA 19128, USA</div>
+</article>
+<h2 class="date-head">Sunday, October 18, 2026</h2>
+<article class="event">
+  <div class="event-time">3:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/smjympcx" target="_blank" rel="noopener">No-Phones Monthly Hiking in Philadelphia</a></div>
+  <div class="event-desc"></div>
+  <div class="location">5102 Rochelle Ave, 5102 Rochelle Ave, Philadelphia, PA 19128, USA</div>
+</article>
+<h2 class="date-head">Sunday, November 15, 2026</h2>
+<article class="event">
+  <div class="event-time">4:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/z9h4mfnr" target="_blank" rel="noopener">No-Phones Monthly Hiking in Philadelphia</a></div>
+  <div class="event-desc"></div>
+  <div class="location">5102 Rochelle Ave, 5102 Rochelle Ave, Philadelphia, PA 19128, USA</div>
+</article>
+<h2 class="date-head">Sunday, December 13, 2026</h2>
+<article class="event">
+  <div class="event-time">4:30 PM</div>
+  <div class="event-title"><a href="https://luma.com/97cmo3ax" target="_blank" rel="noopener">No-Phones Monthly Hiking in Philadelphia</a></div>
+  <div class="event-desc"></div>
+  <div class="location">5102 Rochelle Ave, 5102 Rochelle Ave, Philadelphia, PA 19128, USA</div>
+</article>
+  </div>
+</body>
+</html>
