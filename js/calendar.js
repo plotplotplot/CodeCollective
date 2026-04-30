@@ -14,8 +14,12 @@ let eventInfoModal = null;
 let showExcludedEvents = false;
 let textSearchQuery = '';
 let searchUrlSyncTimer = null;
+let filterApplyTimer = null;
 let useLocalTime = true;
 let selectedTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+let dayImageByDate = new Map();
+const calendarSearchBlobCache = new WeakMap();
+const rawSearchBlobCache = new WeakMap();
 const TIMEZONE_PREFS_KEY = 'calendarTimezonePrefs';
 const filterUtils = window.CalendarFilterUtils || null;
 const SEARCH_QUERY_PARAM = 'q';
@@ -26,6 +30,7 @@ const FEATURED_SOURCE_URLS = new Set([
 const CATEGORY_MAPS_INDEX_URL = window.CALENDAR_CATEGORY_MAPS_INDEX_URL || '/data/category_maps/index.json';
 const DEFAULT_CATEGORY_MAP_ID = window.CALENDAR_DEFAULT_CATEGORY_MAP || 'lenses';
 const LEGEND_PREFS_KEY = 'calendarLegendPrefs';
+const IMAGE_PREFETCH_LIMIT = 24;
 let categoryMapConfig = { default_map: DEFAULT_CATEGORY_MAP_ID, maps: [] };
 let activeCategoryMap = null;
 
@@ -961,10 +966,13 @@ function normalizeSearchText(value) {
 }
 
 function getCalendarEventSearchBlob(event) {
+  if (calendarSearchBlobCache.has(event)) {
+    return calendarSearchBlobCache.get(event);
+  }
   const tags = Array.isArray(event?.extendedProps?.tags) ? event.extendedProps.tags : [];
   const location = event?.extendedProps?.location || event?.location || {};
   const agenda = event?.extendedProps?.agenda || event?.agenda || null;
-  return [
+  const blob = [
     event?.title,
     event?.extendedProps?.description,
     location?.name,
@@ -981,13 +989,18 @@ function getCalendarEventSearchBlob(event) {
     .filter(Boolean)
     .join(' ')
     .toLowerCase();
+  calendarSearchBlobCache.set(event, blob);
+  return blob;
 }
 
 function getRawEventSearchBlob(event) {
+  if (rawSearchBlobCache.has(event)) {
+    return rawSearchBlobCache.get(event);
+  }
   const tags = Array.isArray(event?.tags) ? event.tags : [];
   const location = event?.location || {};
   const agenda = event?.agenda || null;
-  return [
+  const blob = [
     event?.name,
     event?.description,
     location?.name,
@@ -1005,6 +1018,8 @@ function getRawEventSearchBlob(event) {
     .filter(Boolean)
     .join(' ')
     .toLowerCase();
+  rawSearchBlobCache.set(event, blob);
+  return blob;
 }
 
 function filterEventsBySearch(events) {
@@ -1029,7 +1044,12 @@ function setupTextSearch() {
 
   const applySearch = () => {
     textSearchQuery = searchInput.value || '';
-    applyTagFilters();
+    if (filterApplyTimer) {
+      clearTimeout(filterApplyTimer);
+    }
+    filterApplyTimer = setTimeout(() => {
+      applyTagFilters();
+    }, 120);
     clearTimeout(searchUrlSyncTimer);
     searchUrlSyncTimer = setTimeout(() => {
       syncSearchQueryToUrl(textSearchQuery);
@@ -1052,13 +1072,13 @@ function applyTagFilters() {
   const tagFilteredEvents = filterEventsByTags(allEvents);
   const filteredByLegendAndSearch = filterEventsBySearch(tagFilteredEvents);
   calendarDisplayEvents = filteredByLegendAndSearch;
+  dayImageByDate = buildDayImageIndex(filteredByLegendAndSearch);
 
   if (isMobile) {
     initializeMobileCards(filteredByLegendAndSearch);
   } else if (calendar) {
     calendar.removeAllEvents();
     calendar.addEventSource(filteredByLegendAndSearch);
-    calendar.render();
   } else {
     initializeCalendar(filteredByLegendAndSearch);
   }
@@ -1278,24 +1298,25 @@ async function handleEventActivation(eventData, triggerEvent) {
 }
 // Generic image prefetching function (with unique URLs only)
 function prefetchImages(urls) {
-  if (!window.Promise || !window.fetch) return; // Skip if browser doesn't support
+  if (!Array.isArray(urls) || urls.length === 0) return;
 
-  const uniqueUrls = Array.from(new Set(urls)); // Remove duplicates
+  // Best-practice: only prefetch a small, above-the-fold subset and do it during idle time.
+  const uniqueUrls = Array.from(new Set(urls)).slice(0, IMAGE_PREFETCH_LIMIT);
+  const prefetchTask = () => {
+    uniqueUrls.forEach(url => {
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.as = 'image';
+      link.href = url;
+      document.head.appendChild(link);
+    });
+  };
 
-  uniqueUrls.forEach(url => {
-    // Create link preload for important above-the-fold images
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = url;
-    document.head.appendChild(link);
-
-    // Fetch all images to cache them
-    fetch(url, {
-      mode: 'no-cors',
-      cache: 'force-cache'
-    }).catch(() => { }); // Silent fail is okay for prefetch
-  });
+  if (typeof window.requestIdleCallback === 'function') {
+    window.requestIdleCallback(prefetchTask, { timeout: 2000 });
+  } else {
+    setTimeout(prefetchTask, 0);
+  }
 }
 
 
@@ -1656,7 +1677,7 @@ function processEvents(eventsData) {
     eventGroups.add(groupName);
 
     // Return the event in FullCalendar format
-    return {
+    const calendarEvent = {
       id: event.id,
       title: event.name,
       start: event.startDate,
@@ -1680,6 +1701,8 @@ function processEvents(eventsData) {
       borderColor: "#0f0f0f0",
       textColor: "#000"
     };
+    calendarSearchBlobCache.set(calendarEvent, getCalendarEventSearchBlob(calendarEvent));
+    return calendarEvent;
   });
 }
 
@@ -1718,25 +1741,30 @@ function getLatestEventWithImageForDay(events, date) {
 function getRandomImageForDay(events, date) {
   if (isMobile) return null;
   const dateStr = getDateKeyInTimeZone(date, getActiveTimeZone());
-  
-  // Filter events that are on this day and have an image
-  const dayEvents = events.filter(event => {
-    const eventDateStr = getDateKeyInTimeZone(event.start, getActiveTimeZone());
-    return eventDateStr === dateStr && getPreferredEventImage(event);
-  });
-  
-  // If no events with images for this day, return null
-  if (dayEvents.length === 0) return null;
-  
-  // Return a random event instead of the latest one
-  const randomIndex = Math.floor(Math.random() * dayEvents.length);
-  return dayEvents[randomIndex];
+  const event = dayImageByDate.get(dateStr) || null;
+  return event;
+}
+
+function buildDayImageIndex(events) {
+  const index = new Map();
+  const todayKey = getDateKeyInTimeZone(getTodayStart(), getActiveTimeZone());
+  if (!Array.isArray(events) || !todayKey) return index;
+
+  for (const event of events) {
+    const imageUrl = getPreferredEventImage(event);
+    if (!imageUrl) continue;
+    const eventDateKey = getDateKeyInTimeZone(event.start, getActiveTimeZone());
+    if (!eventDateKey || eventDateKey < todayKey || index.has(eventDateKey)) continue;
+    index.set(eventDateKey, event);
+  }
+  return index;
 }
 
 // Initialize the FullCalendar (desktop only)
 function initializeCalendar(events) {
   if (isMobile) return;
   calendarDisplayEvents = events;
+  dayImageByDate = buildDayImageIndex(events);
 
   // Date gating for desktop is handled by FullCalendar's validRange.
   const today = getTodayStart();
@@ -1797,7 +1825,7 @@ function initializeCalendar(events) {
         return;
       }
 
-      // Get the latest event with an image for this day
+      // Resolve from precomputed date->event lookup to avoid scanning all events per cell.
       const latestEvent = getRandomImageForDay(calendarDisplayEvents, info.date);
 
       const backgroundImageUrl = getPreferredEventImage(latestEvent);
