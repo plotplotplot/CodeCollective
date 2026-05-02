@@ -207,6 +207,14 @@ CUSTOM_SCRAPER_SOURCES = [
         "orgImageUrl": "https://www.umventures.org/sites/default/files/inline-images/UMVentures-Logo_0.png",
         "tags": ["Business", "Startup", "Economic Development"],
     },
+    {
+        "module": "baltimore.scrape_ccdgroup",
+        "function": "scrape_events",
+        "url": "https://www.ccdgroup.org/connect",
+        "group_name": "Community Co-op Development",
+        "orgImageUrl": "https://static.wixstatic.com/media/1eb3be_6b8180d9b60847a1b9a614acdf9afe6f~mv2.png/v1/fill/w_348,h_348,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CCD%20Inc%20logo%20(white%20bkgrnd%20large)_PNG.png",
+        "tags": ["Economic Development", "Community Organizing", "Food Security"],
+    },
 ]
 def merge_tags(*tag_lists):
     merged = []
