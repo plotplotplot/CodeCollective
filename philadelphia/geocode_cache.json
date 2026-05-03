@@ -598,5 +598,32 @@
     "longitude": -75.1635262,
     "status": "ok",
     "source": "provided"
+  },
+  "bok, philadelphia, pennsylvania": {
+    "latitude": 39.9252213,
+    "longitude": -75.1600783,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "bok": {
+    "latitude": 39.9252213,
+    "longitude": -75.1600783,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "perkins center for the arts, 30 irvin ave, collingswood, nj 08108, usa": {
+    "status": "failed_no_result"
+  },
+  "perkins center for the arts": {
+    "status": "failed_no_result"
+  },
+  "perkins center for the arts, 30 irvin ave, collingswood, nj 08108, usa, philadelphia": {
+    "status": "failed_no_result"
+  },
+  "rittenhouse square, 1800 walnut st, philadelphia, pa 19103, usa": {
+    "status": "failed_no_result"
+  },
+  "rittenhouse square": {
+    "status": "failed_no_result"
   }
 }

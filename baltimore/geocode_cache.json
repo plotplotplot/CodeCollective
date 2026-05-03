@@ -333,7 +333,7 @@
     "latitude": 39.2908816,
     "longitude": -76.610759,
     "status": "ok",
-    "source": "nominatim"
+    "source": "provided"
   },
   "maryland, baltimore": {
     "latitude": 39.2908816,
@@ -2847,19 +2847,19 @@
     "latitude": 39.3679409,
     "longitude": -76.7221898,
     "status": "ok",
-    "source": "nominatim"
+    "source": "provided"
   },
   "pikesville armory": {
     "latitude": 39.3679409,
     "longitude": -76.7221898,
     "status": "ok",
-    "source": "nominatim"
+    "source": "provided"
   },
   "610 reisterstown road, pikesville, md 21208, baltimore": {
     "latitude": 39.3679409,
     "longitude": -76.7221898,
     "status": "ok",
-    "source": "nominatim"
+    "source": "provided"
   },
   "751 eastern avenue baltimore, md, 21202 united states": {
     "latitude": 39.2848761,
@@ -2913,6 +2913,87 @@
     "status": "failed_no_result"
   },
   "5616 spectrum dr, frederick, baltimore": {
+    "status": "failed_no_result"
+  },
+  "snf parkway theatre, 5 west north ave, baltimore, md 21201": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "motor house, 120 w north ave, baltimore, md 21201": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "impact hub baltimore, 10 e north ave, baltimore, md 21202": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "the club car, 12 w north ave, baltimore md 21201": {
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
+  },
+  "9055 tamar dr, columbia md 21045": {
+    "status": "failed_no_result"
+  },
+  "9055 tamar dr": {
+    "status": "failed_no_result"
+  },
+  "9055 tamar dr, columbia md 21045, baltimore": {
+    "status": "failed_no_result"
+  },
+  "3932 frederick ave, baltimore, md 21229, usa": {
+    "latitude": 39.2820077,
+    "longitude": -76.6817362,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "3932 frederick ave": {
+    "latitude": 39.2820077,
+    "longitude": -76.6817362,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "1991 e joppa rd 18, parkville md 21234": {
+    "latitude": 39.3975646,
+    "longitude": -76.5437794,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "1991 e joppa rd 18": {
+    "latitude": 39.3975646,
+    "longitude": -76.5437794,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "1991 e joppa rd 18, parkville md 21234, baltimore": {
+    "latitude": 39.3975646,
+    "longitude": -76.5437794,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "8 w 5th st, frederick md 21701": {
+    "status": "failed_no_result"
+  },
+  "8 w 5th st": {
+    "status": "failed_no_result"
+  },
+  "8 w 5th st, frederick md 21701, baltimore": {
+    "status": "failed_no_result"
+  },
+  "7246 cradlerock way, columbia md 21045": {
+    "status": "failed_no_result"
+  },
+  "7246 cradlerock way": {
+    "status": "failed_no_result"
+  },
+  "7246 cradlerock way, columbia md 21045, baltimore": {
     "status": "failed_no_result"
   }
 }
