@@ -111,7 +111,7 @@
     "latitude": 39.2874575,
     "longitude": -76.567544,
     "status": "ok",
-    "source": "nominatim"
+    "source": "provided"
   },
   "600 n. charles st., baltimore, md, 21201": {
     "latitude": 39.296651,
@@ -303,13 +303,13 @@
     "latitude": 39.252377,
     "longitude": -76.7089181,
     "status": "ok",
-    "source": "nominatim"
+    "source": "provided"
   },
   "chesapeake employers insurance arena": {
     "latitude": 39.252377,
     "longitude": -76.7089181,
     "status": "ok",
-    "source": "nominatim"
+    "source": "provided"
   },
   "20 west baltimore streetrnpoe's magic theatre @ the lord baltimore hotel, baltimore, md, 21201": {
     "status": "failed_no_result"
@@ -2841,7 +2841,10 @@
     "source": "provided"
   },
   "online": {
-    "status": "skipped_low_quality"
+    "latitude": 39.2908816,
+    "longitude": -76.610759,
+    "status": "ok",
+    "source": "provided"
   },
   "610 reisterstown road, pikesville, md 21208": {
     "latitude": 39.3679409,
@@ -2952,13 +2955,13 @@
     "latitude": 39.2820077,
     "longitude": -76.6817362,
     "status": "ok",
-    "source": "nominatim"
+    "source": "provided"
   },
   "3932 frederick ave": {
     "latitude": 39.2820077,
     "longitude": -76.6817362,
     "status": "ok",
-    "source": "nominatim"
+    "source": "provided"
   },
   "1991 e joppa rd 18, parkville md 21234": {
     "latitude": 39.3975646,
@@ -2994,6 +2997,342 @@
     "status": "failed_no_result"
   },
   "7246 cradlerock way, columbia md 21045, baltimore": {
+    "status": "failed_no_result"
+  },
+  "333 w camden st, baltimore, md, 21201": {
+    "latitude": 39.2837313,
+    "longitude": -76.6203345,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "oriole park at camden yards": {
+    "latitude": 39.2837313,
+    "longitude": -76.6203345,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "7200 sollers point road, baltimore, md, 21222": {
+    "latitude": 39.2656001,
+    "longitude": -76.5120479,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "lloyd college center- john e. ravekes theatre": {
+    "latitude": 39.2656001,
+    "longitude": -76.5120479,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "140 west mount royal avenue, baltimore, md, 21201": {
+    "latitude": 39.305976,
+    "longitude": -76.6182009,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "lyric baltimore": {
+    "latitude": 39.305976,
+    "longitude": -76.6182009,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "2601-a e. baltimore st., baltimore, md, 21224": {
+    "latitude": 39.2921104,
+    "longitude": -76.5790143,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "patterson park": {
+    "latitude": 39.2921104,
+    "longitude": -76.5790143,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "301 e cromwell street, baltimore, md, 21230": {
+    "latitude": 39.2640006,
+    "longitude": -76.6059521,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "rye street park": {
+    "latitude": 39.2640006,
+    "longitude": -76.6059521,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "1421 ridgley st., baltimore, md, 21230": {
+    "latitude": 39.275747,
+    "longitude": -76.626918,
+    "status": "ok",
+    "source": "provided"
+  },
+  "1700 north charles street, baltimore, md, 21201": {
+    "latitude": 39.3089147,
+    "longitude": -76.6167916,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "metro baltimore": {
+    "latitude": 39.3089147,
+    "longitude": -76.6167916,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "606 s ann st, baltimore, md, 21231": {
+    "latitude": 39.2841983,
+    "longitude": -76.5915546,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "library nineteen": {
+    "latitude": 39.2841983,
+    "longitude": -76.5915546,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "400 s. conkling st, baltimore, md, 21224": {
+    "latitude": 39.2874575,
+    "longitude": -76.567544,
+    "status": "ok",
+    "source": "provided"
+  },
+  "baltimore, md, 21224": {
+    "latitude": 39.2802511,
+    "longitude": -76.5737227,
+    "status": "ok",
+    "source": "provided"
+  },
+  "140 w mt royal ave, baltimore, md, 21201": {
+    "latitude": 39.305976,
+    "longitude": -76.6182009,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "the lyric baltimore": {
+    "latitude": 39.305976,
+    "longitude": -76.6182009,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "7002 arundel mills cir.rn#7777, hanover, md, 21076": {
+    "status": "failed_no_result"
+  },
+  "the hall at live! casino & hotel maryland": {
+    "status": "failed_no_result"
+  },
+  "7002 arundel mills cir.rn#7777, hanover, md, 21076, baltimore": {
+    "status": "failed_no_result"
+  },
+  "12 n. eutaw st., baltimore, md, 21201": {
+    "latitude": 39.2898019,
+    "longitude": -76.6209092,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "france-merrick performing arts center": {
+    "latitude": 39.2898019,
+    "longitude": -76.6209092,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "401 light st, baltimore, md, 21202": {
+    "latitude": 39.2846443,
+    "longitude": -76.6129626,
+    "status": "ok",
+    "source": "provided"
+  },
+  "4915 greenspring ave., baltimore, md, 21209": {
+    "latitude": 39.3531897,
+    "longitude": -76.6541946,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "cylburn arboretum": {
+    "latitude": 39.3531897,
+    "longitude": -76.6541946,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "harbor point, baltimore, md, 21201, baltimore, md, 21201": {
+    "status": "failed_no_result"
+  },
+  "harbor point": {
+    "status": "failed_no_result"
+  },
+  "610 park ave., baltimore, md, 21201": {
+    "latitude": 39.2965511,
+    "longitude": -76.6186764,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "maryland center for history and culture": {
+    "latitude": 39.2965511,
+    "longitude": -76.6186764,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "remington, baltimore, md, 21211": {
+    "latitude": 39.3208495,
+    "longitude": -76.6227297,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "remington, baltimore city": {
+    "latitude": 39.3208495,
+    "longitude": -76.6227297,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "700 n. calvert st., baltimore, md, 21202": {
+    "latitude": 39.298003,
+    "longitude": -76.6132548,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "baltimore center stage": {
+    "latitude": 39.298003,
+    "longitude": -76.6132548,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "830 e. pratt st., baltimore, md, 21202": {
+    "latitude": 39.287524,
+    "longitude": -76.6039205,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "reginald f. lewis museum of maryland african american history & culture": {
+    "latitude": 39.287524,
+    "longitude": -76.6039205,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "4615 hollins ferry rd.rna, halethorpe, md, 21227": {
+    "status": "failed_no_result"
+  },
+  "heavy seas brewery": {
+    "status": "failed_no_result"
+  },
+  "4615 hollins ferry rd.rna, halethorpe, md, 21227, baltimore": {
+    "status": "failed_no_result"
+  },
+  "709 n howard st, baltimore, md, 21201": {
+    "latitude": 39.2980067,
+    "longitude": -76.6197818,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "making space bmore": {
+    "latitude": 39.2980067,
+    "longitude": -76.6197818,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "1900 st paul st, baltimore, md, 21218": {
+    "latitude": 39.3119934,
+    "longitude": -76.6152176,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "st. mark's lutheran church": {
+    "latitude": 39.3119934,
+    "longitude": -76.6152176,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "4 w. university parkway, baltimore, md, 21218": {
+    "latitude": 39.3340113,
+    "longitude": -76.6196719,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "inn at the colonnade double tree by hilton": {
+    "latitude": 39.3340113,
+    "longitude": -76.6196719,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "610 park ave, baltimore, md, 21201": {
+    "latitude": 39.2965511,
+    "longitude": -76.6186764,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "5001 washington blvd., halethorpe, md, 21227": {
+    "latitude": 39.2263855,
+    "longitude": -76.6941296,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "guinness open gate brewery & barrel house": {
+    "latitude": 39.2263855,
+    "longitude": -76.6941296,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "5001 washington blvd., halethorpe, md, 21227, baltimore": {
+    "latitude": 39.2263855,
+    "longitude": -76.6941296,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "34 market pl., baltimore, md, 21202": {
+    "latitude": 39.2895897,
+    "longitude": -76.6072583,
+    "status": "ok",
+    "source": "provided"
+  },
+  "3300 clipper mill road, baltimore, md, 21211": {
+    "latitude": 39.3274597,
+    "longitude": -76.6385458,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "true chesapeake": {
+    "latitude": 39.3274597,
+    "longitude": -76.6385458,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "3803 boston st, baltimore, md, 21224": {
+    "latitude": 39.2768122,
+    "longitude": -76.5641537,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "the greene turtle": {
+    "latitude": 39.2768122,
+    "longitude": -76.5641537,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "815 hollins st, baltimore, md, 21201": {
+    "latitude": 39.2877302,
+    "longitude": -76.6289554,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "union square soir\u00e9e": {
+    "latitude": 39.2877302,
+    "longitude": -76.6289554,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "1212 cathedral street, baltimore, md, 21021": {
+    "latitude": 39.303876,
+    "longitude": -76.6189886,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "the joseph meyerhoff symphony hall": {
+    "latitude": 39.303876,
+    "longitude": -76.6189886,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "10 art museum drivern10 art museum dr., baltimore, md, 21218": {
+    "status": "failed_no_result"
+  },
+  "the baltimore museum of art": {
     "status": "failed_no_result"
   }
 }
