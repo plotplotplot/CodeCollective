@@ -47,6 +47,46 @@ sources = [
         "tags": ["Tech Skills", "Data Science"],
     },
     {
+        "name": "Baltimore Veg Vegan Meetup",
+        "url": "https://www.meetup.com/baltimoreveg-vegan/",
+        "tags": ["Food", "Health", "Culture"],
+    },
+    {
+        "name": "Charm City Eats",
+        "url": "https://www.meetup.com/charmcityeats/",
+        "tags": ["Food", "Culture", "Community"],
+    },
+    {
+        "name": "Farmers Market Supper Club",
+        "url": "https://www.meetup.com/the-farmers-market-supper-club/",
+        "tags": ["Food", "Community", "Culture"],
+    },
+    {
+        "name": "Whole Food for Optimal Health Baltimore",
+        "url": "https://www.meetup.com/whole-food-for-optimal-health-potluck/",
+        "tags": ["Community", "Food"],
+    },
+    {
+        "name": "Baltimore Foodies on a Budget",
+        "url": "https://www.meetup.com/meetup-group-SNifIHBM/",
+        "tags": ["Community", "Food"],
+    },
+    {
+        "name": "Plant-Based Baltimore",
+        "url": "https://www.meetup.com/plant-based-recipes-exchange/",
+        "tags": ["Community", "Food"],
+    },
+    {
+        "name": "DMV Affordable Housing Meetup",
+        "url": "https://www.meetup.com/dmv-affordable-housing-meetup/",
+        "tags": ["Shelter", "Politics", "Community"],
+    },
+    {
+        "name": "Cohousing of Greater Baltimore",
+        "url": "https://www.meetup.com/cohousing-of-greater-baltimore/",
+        "tags": ["Shelter", "Community", "Culture"],
+    },
+    {
         "name": "Baltimore Bitcoin",
         "url": "https://www.meetup.com/baltimorebitcoin/events/",
         "tags": ["Finance", "Crypto & Web3"],
@@ -55,6 +95,26 @@ sources = [
         "name": "Maryland Blockchain Association Meetup",
         "url": "https://www.meetup.com/www-marylandblockchainassociation-org/",
         "tags": ["Finance", "Crypto & Web3", "Tech Community"],
+    },
+    {
+        "name": "LFDT Maryland",
+        "url": "https://www.meetup.com/lfdt-maryland/",
+        "tags": ["Crypto & Web3", "Tech Community"],
+    },
+    {
+        "name": "Distributed Computing Maryland",
+        "url": "https://www.meetup.com/distributedcomputingmd/",
+        "tags": ["Crypto & Web3", "Tech Community"],
+    },
+    {
+        "name": "Fintech Maryland",
+        "url": "https://www.meetup.com/fintech-maryland/",
+        "tags": ["Finance", "Tech Community"],
+    },
+    {
+        "name": "Essex Bitcoin for Beginners",
+        "url": "https://www.meetup.com/essex-bitcoin-for-beginners-meetup-group/",
+        "tags": ["Finance", "Crypto & Web3"],
     },
     {
         "name": "Python Frederick",
@@ -447,7 +507,7 @@ sources = [
     },
     {
         "name": "UMMC Community Health Outreach",
-        "url": "https://www.umms.org/ummc/community",
+        "url": "https://www.umms.org/ummc/community/events",
         "tags": ["Health", "Wellness", "Community"],
     },
     {
@@ -483,7 +543,7 @@ sources = [
     },
     {
         "name": "Farm Alliance Field Day Workshops",
-        "url": "https://farmalliancebaltimore.org/bbufa/field-day-workshops/",
+        "url": "https://www.eventbrite.com/o/farm-alliance-of-baltimore-33824037405",
         "tags": ["Environment", "Food", "Growth", "Belonging"],
     },
     {
@@ -575,22 +635,22 @@ sources = [
     # Phase 4 remaining Maslow gaps
     {
         "name": "BUILD Baltimore",
-        "url": "https://www.buildiaf.org/",
+        "url": "https://www.buildiaf.org/calendar/events/",
         "tags": ["Culture", "Politics", "Shelter", "Purpose", "Safety"],
     },
     {
         "name": "House of Ruth Maryland Fundraising Events",
-        "url": "https://hruth.org/fundraising-events/",
+        "url": "https://hruth.org/get-involved/fundraising-events/",
         "tags": ["Health", "Culture", "Shelter", "Safety", "Purpose"],
     },
     {
         "name": "My Sisters Place Womens Center",
-        "url": "https://cc-md.org/programs/my-sisters-place/",
+        "url": "https://cc-md.org/get-involved/events/",
         "tags": ["Health", "Culture", "Shelter", "Safety", "Belonging"],
     },
     {
         "name": "Changing Lives Baltimore Coat Drive",
-        "url": "https://changinglivesinitiativ.org/coat-drive-free-store/",
+        "url": "https://changinglivesinitiativ.org/events/",
         "tags": ["Culture", "Clothing", "Safety", "Belonging", "Purpose"],
     },
     {
@@ -600,32 +660,32 @@ sources = [
     },
     {
         "name": "Maryland Food Bank Baltimore Office",
-        "url": "https://mdfoodbank.org/about/locations/baltimore-office/",
+        "url": "https://mdfoodbank.org/events/",
         "tags": ["Culture", "Food", "Safety", "Belonging"],
     },
     {
         "name": "Maryland Food Bank Volunteer and Access Programs",
-        "url": "https://mdfoodbank.org/ways-to-give/volunteer/",
+        "url": "https://mdfoodbank.org/events/",
         "tags": ["Culture", "Food", "Safety", "Belonging"],
     },
     {
         "name": "Maryland Food Bank Pantry on the Go",
-        "url": "https://mdfoodbank.org/hunger-in-maryland/programs/pantry-on-the-go/",
+        "url": "https://mdfoodbank.org/events/",
         "tags": ["Culture", "Food", "Safety", "Belonging"],
     },
     {
         "name": "Moveable Feast Volunteer and Meal Access",
-        "url": "https://www.mfeast.org/become-a-volunteer/",
+        "url": "https://www.mfeast.org/events-calendar/",
         "tags": ["Health", "Food", "Safety", "Belonging"],
     },
     {
         "name": "Baltimore Hunger Project",
-        "url": "https://www.baltimorehungerproject.org/",
+        "url": "https://www.baltimorehungerproject.org/events/today/",
         "tags": ["Culture", "Food", "Safety", "Belonging"],
     },
     {
         "name": "Hunger Free Zone Baltimore",
-        "url": "https://hungerfreezone.org/",
+        "url": "https://hungerfreezone.org/schedule/",
         "tags": ["Culture", "Food", "Safety", "Belonging"],
     },
     {

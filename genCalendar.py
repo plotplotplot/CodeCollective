@@ -12,6 +12,7 @@ import scrape_luma_user
 import scrape_mtc
 import scrape_gdg
 import scrape_partiful
+import scrape_web_events
 import json
 import datetime
 import pytz
@@ -196,6 +197,18 @@ def infer_source_kind(source_url):
 
     if "gdg.community.dev" in host:
         return "gdg"
+
+    lower_path = path.lower()
+    segment_calendar_like = any(
+        re.search(r"(event|calendar|schedule|whatson|what-s-on)", segment.lower())
+        for segment in segments
+    )
+    calendar_like_path = segment_calendar_like or any(
+        marker in lower_path
+        for marker in ["/events", "/event", "/calendar", "eventcalendar", "whatson", "/schedule"]
+    )
+    if calendar_like_path:
+        return "web_events_page"
 
     return None
 
@@ -429,6 +442,10 @@ def fetch_events_from_source(source, city):
         "google_form": (
             "Fetching events from",
             lambda: scrape_gform.scrape(source_url),
+        ),
+        "web_events_page": (
+            "Fetching events from",
+            lambda: scrape_web_events.parse_web_events_page(source_url),
         ),
     }
 
@@ -675,6 +692,52 @@ def normalize_event_text(value):
     ascii_value = normalized.encode("ascii", "ignore").decode("ascii")
     ascii_value = re.sub(r"\s+", " ", ascii_value).strip().lower()
     return ascii_value
+
+
+def enrich_event_tags_by_content(events):
+    """Add high-signal tags from event text when sources under-tag events."""
+    if not isinstance(events, list):
+        return
+
+    food_patterns = [
+        r"\bfarmers?\s+market\b",
+        r"\bfood\s+bank\b",
+        r"\bfood\s+pantry\b",
+        r"\bhunger\b",
+        r"\bsoup\s+kitchen\b",
+        r"\bmeal(s)?\b",
+        r"\bbrunch\b",
+        r"\bbreakfast\b",
+        r"\blunch\b",
+        r"\bdinner\b",
+        r"\bbuffet\b",
+        r"\bcooking\b",
+        r"\bchef\b",
+        r"\bvegan\b",
+        r"\bfeast\b",
+        r"\bkamayan\b",
+    ]
+
+    for event in events:
+        if not isinstance(event, dict):
+            continue
+        tags = list(event.get("tags") or [])
+        tag_set = set(tags)
+        text_blob = " ".join(
+            [
+                str(event.get("name") or ""),
+                str(event.get("description") or ""),
+                str((event.get("location") or {}).get("name") or ""),
+            ]
+        ).lower()
+
+        if any(re.search(pattern, text_blob, re.IGNORECASE) for pattern in food_patterns):
+            if "Food" not in tag_set:
+                tags.append("Food")
+                tag_set.add("Food")
+
+        if tags != list(event.get("tags") or []):
+            event["tags"] = tags
 
 
 def get_city_default_timezone(city=None):
@@ -1257,6 +1320,8 @@ def main(city = "baltimore"):
 
     ensure_org_name_fields(sorted_events)
     ensure_org_name_fields(invalid_events)
+    enrich_event_tags_by_content(sorted_events)
+    enrich_event_tags_by_content(invalid_events)
     canonicalize_event_branding(sorted_events)
     canonicalize_event_branding(invalid_events)
 

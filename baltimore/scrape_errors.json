@@ -1,86 +1,146 @@
 [
     {
-        "timestamp": "2026-05-04T23:46:56.541474-04:00",
+        "timestamp": "2026-05-05T00:46:17.418170-04:00",
         "city": "baltimore",
         "stage": "source_fetch",
         "error": "404 Client Error: Not Found for url: https://luma.com/blk-tech-connect-baltimore",
         "source_url": "https://luma.com/blk-tech-connect-baltimore",
         "source_kind": "luma_org",
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 469, in fetch_events_from_source\n    return apply_source_metadata(fetcher(), source), unmatched_sources, error_entries\n                                 ^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 423, in <lambda>\n    lambda: scrape_luma_orgpage.fetch_and_parse_luma_events(source_url),\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/scrape_luma_orgpage.py\", line 41, in fetch_and_parse_luma_events\n    response.raise_for_status()  # Raise an exception for bad status codes\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://luma.com/blk-tech-connect-baltimore\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/genCalendar.py\", line 486, in fetch_events_from_source\n    return apply_source_metadata(fetcher(), source), unmatched_sources, error_entries\n                                 ^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/genCalendar.py\", line 436, in <lambda>\n    lambda: scrape_luma_orgpage.fetch_and_parse_luma_events(source_url),\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/scrape_luma_orgpage.py\", line 42, in fetch_and_parse_luma_events\n    response.raise_for_status()  # Raise an exception for bad status codes\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://luma.com/blk-tech-connect-baltimore\n"
     },
     {
-        "timestamp": "2026-05-04T23:46:57.040454-04:00",
+        "timestamp": "2026-05-05T00:46:22.244072-04:00",
         "city": "baltimore",
         "stage": "source_fetch",
         "error": "'event'",
         "source_url": "https://lu.ma/mtechumd",
         "source_kind": "luma_event",
         "error_type": "KeyError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 469, in fetch_events_from_source\n    return apply_source_metadata(fetcher(), source), unmatched_sources, error_entries\n                                 ^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 415, in <lambda>\n    lambda: scrape_luma.parse_luma_event_page(source_url),\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/scrape_luma.py\", line 28, in parse_luma_event_page\n    'name': event_data['event']['name'],\n            ~~~~~~~~~~^^^^^^^^^\nKeyError: 'event'\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/genCalendar.py\", line 486, in fetch_events_from_source\n    return apply_source_metadata(fetcher(), source), unmatched_sources, error_entries\n                                 ^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/genCalendar.py\", line 428, in <lambda>\n    lambda: scrape_luma.parse_luma_event_page(source_url),\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/scrape_luma.py\", line 29, in parse_luma_event_page\n    'name': event_data['event']['name'],\n            ~~~~~~~~~~^^^^^^^^^\nKeyError: 'event'\n"
     },
     {
-        "timestamp": "2026-05-04T23:46:58.672417-04:00",
+        "timestamp": "2026-05-05T00:46:38.400419-04:00",
         "city": "baltimore",
         "stage": "source_fetch",
         "error": "404 Client Error: Not Found for url: https://luma.com/SGLang-meetups",
         "source_url": "https://luma.com/SGLang-meetups",
         "source_kind": "luma_org",
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 469, in fetch_events_from_source\n    return apply_source_metadata(fetcher(), source), unmatched_sources, error_entries\n                                 ^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 423, in <lambda>\n    lambda: scrape_luma_orgpage.fetch_and_parse_luma_events(source_url),\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/scrape_luma_orgpage.py\", line 41, in fetch_and_parse_luma_events\n    response.raise_for_status()  # Raise an exception for bad status codes\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://luma.com/SGLang-meetups\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/genCalendar.py\", line 486, in fetch_events_from_source\n    return apply_source_metadata(fetcher(), source), unmatched_sources, error_entries\n                                 ^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/genCalendar.py\", line 436, in <lambda>\n    lambda: scrape_luma_orgpage.fetch_and_parse_luma_events(source_url),\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/scrape_luma_orgpage.py\", line 42, in fetch_and_parse_luma_events\n    response.raise_for_status()  # Raise an exception for bad status codes\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://luma.com/SGLang-meetups\n"
     },
     {
-        "timestamp": "2026-05-04T23:46:58.664901-04:00",
+        "timestamp": "2026-05-05T00:46:34.151592-04:00",
         "city": "baltimore",
         "stage": "source_fetch",
         "error": "'NoneType' object has no attribute 'group'",
         "source_url": "https://www.eventbrite.com/b/md--baltimore/health/medical/",
         "source_kind": "eventbrite_event",
         "error_type": "AttributeError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 469, in fetch_events_from_source\n    return apply_source_metadata(fetcher(), source), unmatched_sources, error_entries\n                                 ^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/genCalendar.py\", line 403, in <lambda>\n    lambda: scrape_eventbrite.parse_eventbrite_event(source_url),\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/scrape_eventbrite.py\", line 29, in parse_eventbrite_event\n    event_id = re.search(r'tickets-(\\d+)', url).group(1)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'group'\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/genCalendar.py\", line 486, in fetch_events_from_source\n    return apply_source_metadata(fetcher(), source), unmatched_sources, error_entries\n                                 ^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/genCalendar.py\", line 416, in <lambda>\n    lambda: scrape_eventbrite.parse_eventbrite_event(source_url),\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/scrape_eventbrite.py\", line 30, in parse_eventbrite_event\n    event_id = re.search(r'tickets-(\\d+)', url).group(1)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'group'\n"
     },
     {
-        "timestamp": "2026-05-04T23:47:26.596785-04:00",
+        "timestamp": "2026-05-05T00:46:40.798522-04:00",
+        "city": "baltimore",
+        "stage": "source_fetch",
+        "error": "404 Client Error: Not Found for url: https://www.baltimorecity.gov/dhcd/events/list",
+        "source_url": "https://dhcd.baltimorecity.gov/events/list",
+        "source_kind": "web_events_page",
+        "error_type": "HTTPError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/genCalendar.py\", line 486, in fetch_events_from_source\n    return apply_source_metadata(fetcher(), source), unmatched_sources, error_entries\n                                 ^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/genCalendar.py\", line 448, in <lambda>\n    lambda: scrape_web_events.parse_web_events_page(source_url),\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/scrape_web_events.py\", line 105, in parse_web_events_page\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://www.baltimorecity.gov/dhcd/events/list\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:46:48.710578-04:00",
+        "city": "baltimore",
+        "stage": "source_fetch",
+        "error": "403 Client Error: Forbidden for url: https://makerspace.jhu.edu/events/",
+        "source_url": "https://makerspace.jhu.edu/events/",
+        "source_kind": "web_events_page",
+        "error_type": "HTTPError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/genCalendar.py\", line 486, in fetch_events_from_source\n    return apply_source_metadata(fetcher(), source), unmatched_sources, error_entries\n                                 ^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/genCalendar.py\", line 448, in <lambda>\n    lambda: scrape_web_events.parse_web_events_page(source_url),\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/scrape_web_events.py\", line 105, in parse_web_events_page\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://makerspace.jhu.edu/events/\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:46:11.371808-04:00",
+        "city": "baltimore",
+        "stage": "source_fetch",
+        "error": "Blocked by robots.txt policy: https://gdg.community.dev/api/event_slim/for_chapter/3047/",
+        "source_url": "https://gdg.community.dev/chapter/3047",
+        "source_kind": "gdg",
+        "error_type": "PermissionError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/genCalendar.py\", line 480, in fetch_events_from_source\n    return apply_source_metadata(scrape_gdg.scrapeChapterID(chapter_id), source), unmatched_sources, error_entries\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/scrape_gdg.py\", line 222, in scrapeChapterID\n    return scrape(cfg)\n           ^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/scrape_gdg.py\", line 227, in scrape\n    events.extend(fetch_events(cfg, \"Live\"))\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/scrape_gdg.py\", line 178, in fetch_events\n    resp = polite_get(session, endpoint, params=params, timeout=cfg.timeout_s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/http_client.py\", line 187, in polite_get\n    _enforce_robots(\n  File \"/home/julian/Documents/CodeCollective/http_client.py\", line 140, in _enforce_robots\n    raise PermissionError(f\"Blocked by robots.txt policy: {url}\")\nPermissionError: Blocked by robots.txt policy: https://gdg.community.dev/api/event_slim/for_chapter/3047/\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:48:07.352590-04:00",
+        "city": "baltimore",
+        "stage": "city_collect",
+        "error": "Blocked by robots.txt policy: https://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics",
+        "source_url": "https://baltimorenode.org/events/",
+        "scraper": "scrape_ics.fetch_calendar_events",
+        "error_type": "PermissionError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/baltimore/gen_calendar.py\", line 305, in collect_events\n    fetch_ics_source(source, city),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/baltimore/gen_calendar.py\", line 262, in fetch_ics_source\n    return scrape_ics.fetch_calendar_events(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/scrape_ics.py\", line 87, in fetch_calendar_events\n    r = polite_get(session, ICS_URL, timeout=30, allow_redirects=True)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/http_client.py\", line 187, in polite_get\n    _enforce_robots(\n  File \"/home/julian/Documents/CodeCollective/http_client.py\", line 140, in _enforce_robots\n    raise PermissionError(f\"Blocked by robots.txt policy: {url}\")\nPermissionError: Blocked by robots.txt policy: https://www.google.com/calendar/ical/baltimorenode.org_5jbobahkshgj11vut3cndhppoo%40group.calendar.google.com/public/basic.ics\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:48:08.429833-04:00",
+        "city": "baltimore",
+        "stage": "city_collect",
+        "error": "Blocked by robots.txt policy: https://calendar.google.com/calendar/ical/daraltaqwamd%40gmail.com/public/basic.ics",
+        "source_url": "https://taqwa.net/events/",
+        "scraper": "scrape_ics.fetch_calendar_events",
+        "error_type": "PermissionError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/baltimore/gen_calendar.py\", line 305, in collect_events\n    fetch_ics_source(source, city),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/baltimore/gen_calendar.py\", line 262, in fetch_ics_source\n    return scrape_ics.fetch_calendar_events(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/scrape_ics.py\", line 87, in fetch_calendar_events\n    r = polite_get(session, ICS_URL, timeout=30, allow_redirects=True)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/http_client.py\", line 187, in polite_get\n    _enforce_robots(\n  File \"/home/julian/Documents/CodeCollective/http_client.py\", line 140, in _enforce_robots\n    raise PermissionError(f\"Blocked by robots.txt policy: {url}\")\nPermissionError: Blocked by robots.txt policy: https://calendar.google.com/calendar/ical/daraltaqwamd%40gmail.com/public/basic.ics\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:48:09.617827-04:00",
         "city": "baltimore",
         "stage": "city_collect",
         "error": "Downloaded payload is not a valid ICS calendar: ",
         "source_url": "https://jagganathtemple.org/events/",
         "scraper": "scrape_ics.fetch_calendar_events",
         "error_type": "ValueError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/gen_calendar.py\", line 305, in collect_events\n    fetch_ics_source(source, city),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/gen_calendar.py\", line 262, in fetch_ics_source\n    return scrape_ics.fetch_calendar_events(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/scrape_ics.py\", line 122, in fetch_calendar_events\n    raise ValueError(f\"Downloaded payload is not a valid ICS calendar: {excerpt}\")\nValueError: Downloaded payload is not a valid ICS calendar: \n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/baltimore/gen_calendar.py\", line 305, in collect_events\n    fetch_ics_source(source, city),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/baltimore/gen_calendar.py\", line 262, in fetch_ics_source\n    return scrape_ics.fetch_calendar_events(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/scrape_ics.py\", line 111, in fetch_calendar_events\n    raise ValueError(f\"Downloaded payload is not a valid ICS calendar: {excerpt}\")\nValueError: Downloaded payload is not a valid ICS calendar: \n"
     },
     {
-        "timestamp": "2026-05-04T23:47:35.753207-04:00",
+        "timestamp": "2026-05-05T00:48:10.320929-04:00",
+        "city": "baltimore",
+        "stage": "city_collect",
+        "error": "Blocked by robots.txt policy: https://calendar.google.com/calendar/ical/unallocatedspacehq@gmail.com/public/basic.ics",
+        "source_url": "https://www.unallocatedspace.org/events/",
+        "scraper": "scrape_ics.fetch_calendar_events",
+        "error_type": "PermissionError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/baltimore/gen_calendar.py\", line 305, in collect_events\n    fetch_ics_source(source, city),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/baltimore/gen_calendar.py\", line 262, in fetch_ics_source\n    return scrape_ics.fetch_calendar_events(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/scrape_ics.py\", line 87, in fetch_calendar_events\n    r = polite_get(session, ICS_URL, timeout=30, allow_redirects=True)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/http_client.py\", line 187, in polite_get\n    _enforce_robots(\n  File \"/home/julian/Documents/CodeCollective/http_client.py\", line 140, in _enforce_robots\n    raise PermissionError(f\"Blocked by robots.txt policy: {url}\")\nPermissionError: Blocked by robots.txt policy: https://calendar.google.com/calendar/ical/unallocatedspacehq@gmail.com/public/basic.ics\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:48:11.322935-04:00",
+        "city": "baltimore",
+        "stage": "city_collect",
+        "error": "Blocked by robots.txt policy: https://calendar.google.com/calendar/ical/c_35ce051bfecc3ebd59f7776829ca549d2dd38e8ab2a50b07bd4243cb1c218c72%40group.calendar.google.com/public/basic.ics",
+        "source_url": "https://chesapeakeclimate.org/",
+        "scraper": "scrape_ics.fetch_calendar_events",
+        "error_type": "PermissionError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/baltimore/gen_calendar.py\", line 305, in collect_events\n    fetch_ics_source(source, city),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/baltimore/gen_calendar.py\", line 262, in fetch_ics_source\n    return scrape_ics.fetch_calendar_events(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/scrape_ics.py\", line 87, in fetch_calendar_events\n    r = polite_get(session, ICS_URL, timeout=30, allow_redirects=True)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/http_client.py\", line 187, in polite_get\n    _enforce_robots(\n  File \"/home/julian/Documents/CodeCollective/http_client.py\", line 140, in _enforce_robots\n    raise PermissionError(f\"Blocked by robots.txt policy: {url}\")\nPermissionError: Blocked by robots.txt policy: https://calendar.google.com/calendar/ical/c_35ce051bfecc3ebd59f7776829ca549d2dd38e8ab2a50b07bd4243cb1c218c72%40group.calendar.google.com/public/basic.ics\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:48:17.894098-04:00",
         "city": "baltimore",
         "stage": "city_collect",
         "error": "404 Client Error: Not Found for url: https://rccbaltimore.org/events-1",
         "source_url": "https://www.rccbaltimore.org/events-1",
         "scraper": "baltimore.scrape_rccbaltimore",
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/gen_calendar.py\", line 350, in collect_events\n    scrape_rccbaltimore.scrape_events(),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/scrape_rccbaltimore.py\", line 16, in scrape_events\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://rccbaltimore.org/events-1\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/baltimore/gen_calendar.py\", line 350, in collect_events\n    scrape_rccbaltimore.scrape_events(),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/baltimore/scrape_rccbaltimore.py\", line 16, in scrape_events\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://rccbaltimore.org/events-1\n"
     },
     {
-        "timestamp": "2026-05-04T23:47:38.119486-04:00",
+        "timestamp": "2026-05-05T00:48:19.927740-04:00",
         "city": "baltimore",
         "stage": "city_collect",
         "error": "Unknown string format: May 05 2026 7:30 AM - 7:45 AM",
         "source_url": "https://www.mtzionbaltimore.org/events/",
         "scraper": "baltimore.scrape_mtzion",
         "error_type": "ParserError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/gen_calendar.py\", line 394, in collect_events\n    scrape_mtzion.scrape_events(),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/scrape_mtzion.py\", line 51, in scrape_events\n    start_dt = _infer_start(date_parts[1], date_parts[0], time_text)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/scrape_mtzion.py\", line 24, in _infer_start\n    candidate = parse(f\"{month_text} {day_text} {now.year} {time_text}\")\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/dateutil/parser/_parser.py\", line 1368, in parse\n    return DEFAULTPARSER.parse(timestr, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/dateutil/parser/_parser.py\", line 643, in parse\n    raise ParserError(\"Unknown string format: %s\", timestr)\ndateutil.parser._parser.ParserError: Unknown string format: May 05 2026 7:30 AM - 7:45 AM\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/baltimore/gen_calendar.py\", line 394, in collect_events\n    scrape_mtzion.scrape_events(),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/baltimore/scrape_mtzion.py\", line 51, in scrape_events\n    start_dt = _infer_start(date_parts[1], date_parts[0], time_text)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/baltimore/scrape_mtzion.py\", line 24, in _infer_start\n    candidate = parse(f\"{month_text} {day_text} {now.year} {time_text}\")\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/dateutil/parser/_parser.py\", line 1368, in parse\n    return DEFAULTPARSER.parse(timestr, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/dateutil/parser/_parser.py\", line 643, in parse\n    raise ParserError(\"Unknown string format: %s\", timestr)\ndateutil.parser._parser.ParserError: Unknown string format: May 05 2026 7:30 AM - 7:45 AM\n"
     },
     {
-        "timestamp": "2026-05-04T23:48:13.393562-04:00",
-        "city": "baltimore",
-        "stage": "city_collect",
-        "error": "Couldn't find a tree builder with the features you requested: xml. Do you need to install a parser library?",
-        "source_url": "https://powerplantlive.com/events-and-entertainment/events",
-        "scraper": "baltimore.scrape_powerplantlive",
-        "error_type": "FeatureNotFound",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/gen_calendar.py\", line 455, in collect_events\n    scraped_events = scraper_fn()\n                     ^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/scrape_powerplantlive.py\", line 65, in scrape_events\n    for event_url in _event_urls_from_sitemap():\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/scrape_powerplantlive.py\", line 32, in _event_urls_from_sitemap\n    soup = BeautifulSoup(response.text, \"xml\")\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/bs4/__init__.py\", line 366, in __init__\n    raise FeatureNotFound(\nbs4.exceptions.FeatureNotFound: Couldn't find a tree builder with the features you requested: xml. Do you need to install a parser library?\n"
-    },
-    {
-        "timestamp": "2026-05-04T23:48:30.589648-04:00",
+        "timestamp": "2026-05-05T00:49:20.184118-04:00",
         "city": "baltimore",
         "stage": "ZERO_EVENTS_PARSED",
         "error": "ZERO_EVENTS_PARSED",
@@ -90,99 +150,269 @@
         "traceback": "NoneType: None\n"
     },
     {
-        "timestamp": "2026-05-04T23:48:31.900774-04:00",
-        "city": "baltimore",
-        "stage": "ZERO_EVENTS_PARSED",
-        "error": "ZERO_EVENTS_PARSED",
-        "source_url": "https://www.ccdgroup.org/connect",
-        "scraper": "baltimore.scrape_ccdgroup",
-        "error_type": "RuntimeError",
-        "traceback": "NoneType: None\n"
-    },
-    {
-        "timestamp": "2026-05-04T23:48:43.689007-04:00",
+        "timestamp": "2026-05-05T00:49:33.046733-04:00",
         "city": "baltimore",
         "stage": "city_collect",
         "error": "[Errno 2] No such file or directory: 'maryland-stem-festival-96ecc18ef7d.ics'",
         "source_url": "https://marylandstemfestival.org/events/month/",
         "scraper": "scrape_ics.processICS",
         "error_type": "FileNotFoundError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/gen_calendar.py\", line 495, in collect_events\n    fetch_cached_ics_source(source),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/baltimore/gen_calendar.py\", line 273, in fetch_cached_ics_source\n    return scrape_ics.processICS(\n           ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/CodeCollective/CodeCollective/scrape_ics.py\", line 186, in processICS\n    with open(CACHE_FILENAME, \"rb\") as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'maryland-stem-festival-96ecc18ef7d.ics'\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/baltimore/gen_calendar.py\", line 495, in collect_events\n    fetch_cached_ics_source(source),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/baltimore/gen_calendar.py\", line 273, in fetch_cached_ics_source\n    return scrape_ics.processICS(\n           ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/Documents/CodeCollective/scrape_ics.py\", line 175, in processICS\n    with open(CACHE_FILENAME, \"rb\") as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: 'maryland-stem-festival-96ecc18ef7d.ics'\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:19.902625-04:00",
+        "timestamp": "2026-05-05T00:50:03.592189-04:00",
         "city": "baltimore",
         "stage": "image_download",
-        "error": "403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2025/05/medium_image-1649953967882.jpg",
+        "error": "No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-24/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"",
+        "source_url": "{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-24/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}",
+        "context": {
+            "event_name": "American Radical by Michael Fowle"
+        },
+        "error_type": "InvalidSchema",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 37, in download_event_images\n    response = requests.get(image_url, headers=headers, timeout=10)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 73, in get\n    return request(\"get\", url, params=params, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 697, in send\n    adapter = self.get_adapter(url=request.url)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 792, in get_adapter\n    raise InvalidSchema(f\"No connection adapters were found for {url!r}\")\nrequests.exceptions.InvalidSchema: No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-24/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:03.593105-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-25/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"",
+        "source_url": "{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-25/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}",
+        "context": {
+            "event_name": "American Radical by Michael Fowle"
+        },
+        "error_type": "InvalidSchema",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 37, in download_event_images\n    response = requests.get(image_url, headers=headers, timeout=10)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 73, in get\n    return request(\"get\", url, params=params, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 697, in send\n    adapter = self.get_adapter(url=request.url)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 792, in get_adapter\n    raise InvalidSchema(f\"No connection adapters were found for {url!r}\")\nrequests.exceptions.InvalidSchema: No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-25/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:03.593551-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-26/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"",
+        "source_url": "{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-26/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}",
+        "context": {
+            "event_name": "American Radical by Michael Fowle"
+        },
+        "error_type": "InvalidSchema",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 37, in download_event_images\n    response = requests.get(image_url, headers=headers, timeout=10)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 73, in get\n    return request(\"get\", url, params=params, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 697, in send\n    adapter = self.get_adapter(url=request.url)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 792, in get_adapter\n    raise InvalidSchema(f\"No connection adapters were found for {url!r}\")\nrequests.exceptions.InvalidSchema: No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-26/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:03.594076-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-24/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"",
+        "source_url": "{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-24/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}",
+        "context": {
+            "event_name": "American Radical by Michael Fowle"
+        },
+        "error_type": "InvalidSchema",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 37, in download_event_images\n    response = requests.get(image_url, headers=headers, timeout=10)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 73, in get\n    return request(\"get\", url, params=params, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 697, in send\n    adapter = self.get_adapter(url=request.url)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 792, in get_adapter\n    raise InvalidSchema(f\"No connection adapters were found for {url!r}\")\nrequests.exceptions.InvalidSchema: No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-24/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:03.594466-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-25/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"",
+        "source_url": "{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-25/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}",
+        "context": {
+            "event_name": "American Radical by Michael Fowle"
+        },
+        "error_type": "InvalidSchema",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 37, in download_event_images\n    response = requests.get(image_url, headers=headers, timeout=10)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 73, in get\n    return request(\"get\", url, params=params, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 697, in send\n    adapter = self.get_adapter(url=request.url)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 792, in get_adapter\n    raise InvalidSchema(f\"No connection adapters were found for {url!r}\")\nrequests.exceptions.InvalidSchema: No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-25/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:03.594857-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-26/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"",
+        "source_url": "{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-26/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}",
+        "context": {
+            "event_name": "American Radical by Michael Fowle"
+        },
+        "error_type": "InvalidSchema",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 37, in download_event_images\n    response = requests.get(image_url, headers=headers, timeout=10)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 73, in get\n    return request(\"get\", url, params=params, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 697, in send\n    adapter = self.get_adapter(url=request.url)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 792, in get_adapter\n    raise InvalidSchema(f\"No connection adapters were found for {url!r}\")\nrequests.exceptions.InvalidSchema: No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-26/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:03.595267-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-24/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"",
+        "source_url": "{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-24/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}",
+        "context": {
+            "event_name": "American Radical by Michael Fowle"
+        },
+        "error_type": "InvalidSchema",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 37, in download_event_images\n    response = requests.get(image_url, headers=headers, timeout=10)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 73, in get\n    return request(\"get\", url, params=params, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 697, in send\n    adapter = self.get_adapter(url=request.url)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 792, in get_adapter\n    raise InvalidSchema(f\"No connection adapters were found for {url!r}\")\nrequests.exceptions.InvalidSchema: No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-24/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:03.595645-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-25/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"",
+        "source_url": "{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-25/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}",
+        "context": {
+            "event_name": "American Radical by Michael Fowle"
+        },
+        "error_type": "InvalidSchema",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 37, in download_event_images\n    response = requests.get(image_url, headers=headers, timeout=10)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 73, in get\n    return request(\"get\", url, params=params, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 697, in send\n    adapter = self.get_adapter(url=request.url)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 792, in get_adapter\n    raise InvalidSchema(f\"No connection adapters were found for {url!r}\")\nrequests.exceptions.InvalidSchema: No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-25/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:03.596035-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-26/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"",
+        "source_url": "{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-26/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}",
+        "context": {
+            "event_name": "American Radical by Michael Fowle"
+        },
+        "error_type": "InvalidSchema",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 37, in download_event_images\n    response = requests.get(image_url, headers=headers, timeout=10)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 73, in get\n    return request(\"get\", url, params=params, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 697, in send\n    adapter = self.get_adapter(url=request.url)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 792, in get_adapter\n    raise InvalidSchema(f\"No connection adapters were found for {url!r}\")\nrequests.exceptions.InvalidSchema: No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-26/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:03.596573-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-24/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"",
+        "source_url": "{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-24/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}",
+        "context": {
+            "event_name": "American Radical by Michael Fowle"
+        },
+        "error_type": "InvalidSchema",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 37, in download_event_images\n    response = requests.get(image_url, headers=headers, timeout=10)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 73, in get\n    return request(\"get\", url, params=params, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 697, in send\n    adapter = self.get_adapter(url=request.url)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 792, in get_adapter\n    raise InvalidSchema(f\"No connection adapters were found for {url!r}\")\nrequests.exceptions.InvalidSchema: No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-24/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:03.597159-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-25/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"",
+        "source_url": "{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-25/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}",
+        "context": {
+            "event_name": "American Radical by Michael Fowle"
+        },
+        "error_type": "InvalidSchema",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 37, in download_event_images\n    response = requests.get(image_url, headers=headers, timeout=10)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 73, in get\n    return request(\"get\", url, params=params, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 697, in send\n    adapter = self.get_adapter(url=request.url)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 792, in get_adapter\n    raise InvalidSchema(f\"No connection adapters were found for {url!r}\")\nrequests.exceptions.InvalidSchema: No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-25/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:03.597804-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-26/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"",
+        "source_url": "{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-26/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}",
+        "context": {
+            "event_name": "American Radical by Michael Fowle"
+        },
+        "error_type": "InvalidSchema",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 37, in download_event_images\n    response = requests.get(image_url, headers=headers, timeout=10)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 73, in get\n    return request(\"get\", url, params=params, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/api.py\", line 59, in request\n    return session.request(method=method, url=url, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 589, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 697, in send\n    adapter = self.get_adapter(url=request.url)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/sessions.py\", line 792, in get_adapter\n    raise InvalidSchema(f\"No connection adapters were found for {url!r}\")\nrequests.exceptions.InvalidSchema: No connection adapters were found for \"{'@type': 'ImageObject', 'inLanguage': 'en-US', '@id': 'https://mdfoodbank.org/event/american-radical-by-michael-fowle/2026-04-26/#primaryimage', 'url': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'contentUrl': 'https://mdfoodbank.org/wp-content/uploads/2026/03/event-American-Radical-written-by-Michael-Fowle.jpg', 'width': 800, 'height': 450, 'caption': 'American Radical written by Michael Fowle'}\"\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:03.919750-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "cannot identify image file <_io.BytesIO object at 0x78c22c2ee200>",
+        "source_url": "https://ggwo.org/wp-content/uploads/2024/02/RL-Slide.jpg",
+        "context": {
+            "event_name": "Redeem Life Recovery"
+        },
+        "error_type": "UnidentifiedImageError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x78c22c2ee200>\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:04.212504-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "cannot identify image file <_io.BytesIO object at 0x78c22c2ed990>",
+        "source_url": "https://ggwo.org/wp-content/uploads/2025/08/Mark-1920-x-1080-px.jpg",
+        "context": {
+            "event_name": "Women's Connection Study | Monday Evenings"
+        },
+        "error_type": "UnidentifiedImageError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x78c22c2ed990>\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:04.502559-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "cannot identify image file <_io.BytesIO object at 0x78c24fa78040>",
+        "source_url": "https://ggwo.org/wp-content/uploads/2026/05/GGCA-2025-Spring-Concert-.jpg",
+        "context": {
+            "event_name": "GGCA Spring Concert | 2026"
+        },
+        "error_type": "UnidentifiedImageError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x78c24fa78040>\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:04.806012-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "cannot identify image file <_io.BytesIO object at 0x78c22c2ee340>",
         "source_url": "https://ggwo.org/wp-content/uploads/2025/05/medium_image-1649953967882.jpg",
         "context": {
             "event_name": "Soccer Camp (2026)"
         },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2025/05/medium_image-1649953967882.jpg\n"
+        "error_type": "UnidentifiedImageError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x78c22c2ee340>\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:20.422461-04:00",
+        "timestamp": "2026-05-05T00:50:05.093197-04:00",
         "city": "baltimore",
         "stage": "image_download",
-        "error": "403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2025/05/basketball.jpg",
+        "error": "cannot identify image file <_io.BytesIO object at 0x78c22c2ee200>",
         "source_url": "https://ggwo.org/wp-content/uploads/2025/05/basketball.jpg",
         "context": {
             "event_name": "Basketball Camp (2026)"
         },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2025/05/basketball.jpg\n"
+        "error_type": "UnidentifiedImageError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x78c22c2ee200>\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:20.940497-04:00",
+        "timestamp": "2026-05-05T00:50:05.380548-04:00",
         "city": "baltimore",
         "stage": "image_download",
-        "error": "403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2026/03/Miss-Tea-26-Screen.jpg",
+        "error": "cannot identify image file <_io.BytesIO object at 0x78c22c2efc90>",
         "source_url": "https://ggwo.org/wp-content/uploads/2026/03/Miss-Tea-26-Screen.jpg",
         "context": {
             "event_name": "Ladies Missionary Tea | 2026"
         },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2026/03/Miss-Tea-26-Screen.jpg\n"
+        "error_type": "UnidentifiedImageError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x78c22c2efc90>\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:21.462226-04:00",
+        "timestamp": "2026-05-05T00:50:05.676651-04:00",
         "city": "baltimore",
         "stage": "image_download",
-        "error": "403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2026/01/iCon-26-Web-logo@300x-80-scaled.jpg",
+        "error": "cannot identify image file <_io.BytesIO object at 0x78c24fa78040>",
         "source_url": "https://ggwo.org/wp-content/uploads/2026/01/iCon-26-Web-logo@300x-80-scaled.jpg",
         "context": {
             "event_name": "Convention | 2026"
         },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2026/01/iCon-26-Web-logo@300x-80-scaled.jpg\n"
+        "error_type": "UnidentifiedImageError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x78c24fa78040>\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:22.004664-04:00",
+        "timestamp": "2026-05-05T00:50:05.978031-04:00",
         "city": "baltimore",
         "stage": "image_download",
-        "error": "403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2018/11/ggwo-logo-with-world-wide-local-church-800-162-png1.png",
+        "error": "cannot identify image file <_io.BytesIO object at 0x78c22c2ed490>",
         "source_url": "https://ggwo.org/wp-content/uploads/2018/11/ggwo-logo-with-world-wide-local-church-800-162-png1.png",
         "context": {
             "event_name": "Camp Life 2026"
         },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2018/11/ggwo-logo-with-world-wide-local-church-800-162-png1.png\n"
+        "error_type": "UnidentifiedImageError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x78c22c2ed490>\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:22.534183-04:00",
+        "timestamp": "2026-05-05T00:50:06.267663-04:00",
         "city": "baltimore",
         "stage": "image_download",
-        "error": "403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2026/03/medium_image-1774279268348.jpeg",
+        "error": "cannot identify image file <_io.BytesIO object at 0x78c22c2ec860>",
         "source_url": "https://ggwo.org/wp-content/uploads/2026/03/medium_image-1774279268348.jpeg",
         "context": {
             "event_name": "Pastoral Leadership Retreat | 2026"
         },
-        "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://ggwo.org/wp-content/uploads/2026/03/medium_image-1774279268348.jpeg\n"
+        "error_type": "UnidentifiedImageError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x78c22c2ec860>\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:22.882640-04:00",
+        "timestamp": "2026-05-05T00:50:06.575587-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -191,10 +421,10 @@
             "event_name": "Noon Eucharist"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:23.092584-04:00",
+        "timestamp": "2026-05-05T00:50:06.668584-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -203,10 +433,10 @@
             "event_name": "Christian Meditation"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:23.138557-04:00",
+        "timestamp": "2026-05-05T00:50:06.748953-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -215,10 +445,10 @@
             "event_name": "Taize Eucharist and Potluck"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:23.354317-04:00",
+        "timestamp": "2026-05-05T00:50:06.833914-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -227,10 +457,10 @@
             "event_name": "8am Eucharist"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:23.564031-04:00",
+        "timestamp": "2026-05-05T00:50:06.919915-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -239,10 +469,10 @@
             "event_name": "Sunday School"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:23.606225-04:00",
+        "timestamp": "2026-05-05T00:50:07.012114-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -251,10 +481,10 @@
             "event_name": "11am Holy Eucharist"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:23.812194-04:00",
+        "timestamp": "2026-05-05T00:50:07.110096-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -263,10 +493,10 @@
             "event_name": "Noon Eucharist"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:23.850089-04:00",
+        "timestamp": "2026-05-05T00:50:07.191012-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -275,10 +505,10 @@
             "event_name": "Christian Meditation"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:24.054273-04:00",
+        "timestamp": "2026-05-05T00:50:07.284263-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -287,10 +517,10 @@
             "event_name": "Taize Eucharist and Potluck"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:24.278691-04:00",
+        "timestamp": "2026-05-05T00:50:07.381289-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -299,10 +529,10 @@
             "event_name": "8am Eucharist"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:24.496031-04:00",
+        "timestamp": "2026-05-05T00:50:07.483492-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -311,10 +541,10 @@
             "event_name": "Sunday School"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:24.551584-04:00",
+        "timestamp": "2026-05-05T00:50:07.571470-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -323,10 +553,10 @@
             "event_name": "11am Holy Eucharist"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:24.592400-04:00",
+        "timestamp": "2026-05-05T00:50:07.655650-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -335,10 +565,10 @@
             "event_name": "Noon Eucharist"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:24.800201-04:00",
+        "timestamp": "2026-05-05T00:50:07.738861-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -347,10 +577,10 @@
             "event_name": "Christian Meditation"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:25.007466-04:00",
+        "timestamp": "2026-05-05T00:50:07.819820-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -359,10 +589,10 @@
             "event_name": "Taize Eucharist and Potluck"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:25.211246-04:00",
+        "timestamp": "2026-05-05T00:50:07.899174-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -371,10 +601,10 @@
             "event_name": "8am Eucharist"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:25.259487-04:00",
+        "timestamp": "2026-05-05T00:50:07.987939-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -383,10 +613,10 @@
             "event_name": "Sunday School"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:25.497311-04:00",
+        "timestamp": "2026-05-05T00:50:08.081450-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -395,10 +625,10 @@
             "event_name": "11am Holy Eucharist"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:25.540714-04:00",
+        "timestamp": "2026-05-05T00:50:08.171331-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -407,10 +637,10 @@
             "event_name": "Noon Eucharist"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:25.743137-04:00",
+        "timestamp": "2026-05-05T00:50:08.249400-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -419,10 +649,10 @@
             "event_name": "Christian Meditation"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:25.783108-04:00",
+        "timestamp": "2026-05-05T00:50:08.352209-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -431,10 +661,10 @@
             "event_name": "Taize Eucharist and Potluck"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:25.819436-04:00",
+        "timestamp": "2026-05-05T00:50:08.435411-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -443,10 +673,10 @@
             "event_name": "8am Eucharist"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:25.853889-04:00",
+        "timestamp": "2026-05-05T00:50:08.527442-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -455,10 +685,10 @@
             "event_name": "Sunday School"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:25.900571-04:00",
+        "timestamp": "2026-05-05T00:50:08.618884-04:00",
         "city": "baltimore",
         "stage": "image_download",
         "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
@@ -467,66 +697,138 @@
             "event_name": "11am Holy Eucharist"
         },
         "error_type": "HTTPError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/requests/models.py\", line 1028, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:26.306702-04:00",
+        "timestamp": "2026-05-05T00:50:08.715908-04:00",
         "city": "baltimore",
         "stage": "image_download",
-        "error": "cannot identify image file <_io.BytesIO object at 0x7f8d80974e50>",
+        "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
+        "source_url": "https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
+        "context": {
+            "event_name": "Noon Eucharist"
+        },
+        "error_type": "HTTPError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:08.808731-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
+        "source_url": "https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
+        "context": {
+            "event_name": "Christian Meditation"
+        },
+        "error_type": "HTTPError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:08.891974-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
+        "source_url": "https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
+        "context": {
+            "event_name": "Sunday School"
+        },
+        "error_type": "HTTPError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:08.988083-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
+        "source_url": "https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
+        "context": {
+            "event_name": "Noon Eucharist"
+        },
+        "error_type": "HTTPError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:09.078054-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
+        "source_url": "https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
+        "context": {
+            "event_name": "Christian Meditation"
+        },
+        "error_type": "HTTPError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:09.156584-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
+        "source_url": "https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png",
+        "context": {
+            "event_name": "Sunday School"
+        },
+        "error_type": "HTTPError",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 38, in download_event_images\n    response.raise_for_status()\n  File \"/home/julian/global/lib/python3.12/site-packages/requests/models.py\", line 1026, in raise_for_status\n    raise HTTPError(http_error_msg, response=self)\nrequests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://incarnationbmore.org/wp-content/uploads/2022/09/Incarnation-Logo-Words-Color.png\n"
+    },
+    {
+        "timestamp": "2026-05-05T00:50:09.464641-04:00",
+        "city": "baltimore",
+        "stage": "image_download",
+        "error": "cannot identify image file <_io.BytesIO object at 0x78c20d422890>",
         "source_url": "https://www.chesapeakewea.org/images/top-logo-new.svg",
         "context": {
             "event_name": "2026 WEFMAX Pittsburgh, Pennsylvania"
         },
         "error_type": "UnidentifiedImageError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3711, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7f8d80974e50>\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x78c20d422890>\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:26.663774-04:00",
+        "timestamp": "2026-05-05T00:50:09.625182-04:00",
         "city": "baltimore",
         "stage": "image_download",
-        "error": "cannot identify image file <_io.BytesIO object at 0x7f8d83a65490>",
+        "error": "cannot identify image file <_io.BytesIO object at 0x78c20d422890>",
         "source_url": "https://www.chesapeakewea.org/images/top-logo-new.svg",
         "context": {
             "event_name": "Chesapeake WEA Board Nominations Deadline"
         },
         "error_type": "UnidentifiedImageError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3711, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7f8d83a65490>\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x78c20d422890>\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:27.042412-04:00",
+        "timestamp": "2026-05-05T00:50:09.783404-04:00",
         "city": "baltimore",
         "stage": "image_download",
-        "error": "cannot identify image file <_io.BytesIO object at 0x7f8d80974e50>",
+        "error": "cannot identify image file <_io.BytesIO object at 0x78c20d420ea0>",
         "source_url": "https://www.chesapeakewea.org/images/top-logo-new.svg",
         "context": {
             "event_name": "Chesapeake WEA Board Meeting"
         },
         "error_type": "UnidentifiedImageError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3711, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7f8d80974e50>\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x78c20d420ea0>\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:27.489716-04:00",
+        "timestamp": "2026-05-05T00:50:09.951050-04:00",
         "city": "baltimore",
         "stage": "image_download",
-        "error": "cannot identify image file <_io.BytesIO object at 0x7f8d83a65da0>",
+        "error": "cannot identify image file <_io.BytesIO object at 0x78c20d422890>",
         "source_url": "https://www.chesapeakewea.org/images/top-logo-new.svg",
         "context": {
             "event_name": "Chesapeake WEA Call for Write-In Nominations for 2026/27 Board"
         },
         "error_type": "UnidentifiedImageError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3711, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7f8d83a65da0>\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x78c20d422890>\n"
     },
     {
-        "timestamp": "2026-05-04T23:49:27.806254-04:00",
+        "timestamp": "2026-05-05T00:50:10.115056-04:00",
         "city": "baltimore",
         "stage": "image_download",
-        "error": "cannot identify image file <_io.BytesIO object at 0x7f8d80974e50>",
+        "error": "cannot identify image file <_io.BytesIO object at 0x78c20d420ea0>",
         "source_url": "https://www.chesapeakewea.org/images/top-logo-new.svg",
         "context": {
             "event_name": "2026 WEFMAX Bend, Oregon"
         },
         "error_type": "UnidentifiedImageError",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/CodeCollective/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/PIL/Image.py\", line 3711, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7f8d80974e50>\n"
+        "traceback": "Traceback (most recent call last):\n  File \"/home/julian/Documents/CodeCollective/calendar_normalize.py\", line 40, in download_event_images\n    img = Image.open(BytesIO(response.content))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/julian/global/lib/python3.12/site-packages/PIL/Image.py\", line 3579, in open\n    raise UnidentifiedImageError(msg)\nPIL.UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x78c20d420ea0>\n"
     }
 ]
