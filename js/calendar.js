@@ -23,16 +23,100 @@ const rawSearchBlobCache = new WeakMap();
 const TIMEZONE_PREFS_KEY = 'calendarTimezonePrefs';
 const filterUtils = window.CalendarFilterUtils || null;
 const SEARCH_QUERY_PARAM = 'q';
+const LEGEND_MAP_QUERY_PARAM = 'lm';
+const LEGEND_TAGS_QUERY_PARAM = 'lt';
+const LEGEND_EXCLUDED_QUERY_PARAM = 'lx';
+const LEGEND_HIDDEN_QUERY_PARAM = 'lh';
+const LEGEND_TAG_COLORS_QUERY_PARAM = 'lc';
+const LEGEND_DAY_IMAGES_QUERY_PARAM = 'li';
+const LEGEND_CLICK_ACTION_QUERY_PARAM = 'la';
+const LEGEND_TAGS_SEPARATOR = '.';
 const FEATURED_SOURCE_URLS = new Set([
   'https://luma.com/codecollective',
   'https://lu.ma/codecollective'
 ]);
 const CATEGORY_MAPS_INDEX_URL = window.CALENDAR_CATEGORY_MAPS_INDEX_URL || '/data/category_maps/index.json';
-const DEFAULT_CATEGORY_MAP_ID = window.CALENDAR_DEFAULT_CATEGORY_MAP || 'lenses';
+const DEFAULT_CATEGORY_MAP_ID = window.CALENDAR_DEFAULT_CATEGORY_MAP || 'community_sectors';
 const LEGEND_PREFS_KEY = 'calendarLegendPrefs';
 const IMAGE_PREFETCH_LIMIT = 24;
 let categoryMapConfig = { default_map: DEFAULT_CATEGORY_MAP_ID, maps: [] };
 let activeCategoryMap = null;
+
+function parseBooleanQueryFlag(value) {
+  if (value == null) return null;
+  const normalized = String(value).trim().toLowerCase();
+  if (normalized === '1' || normalized === 'true' || normalized === 'yes' || normalized === 'on') return true;
+  if (normalized === '0' || normalized === 'false' || normalized === 'no' || normalized === 'off') return false;
+  return null;
+}
+
+function parseCompactTagList(rawValue) {
+  if (!rawValue) return [];
+  return String(rawValue)
+    .split(LEGEND_TAGS_SEPARATOR)
+    .map(value => value.trim())
+    .filter(Boolean);
+}
+
+function serializeCompactTagList(tags) {
+  return Array.isArray(tags) ? tags.filter(Boolean).join(LEGEND_TAGS_SEPARATOR) : '';
+}
+
+function getLegendQueryStateFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const clickAction = (params.get(LEGEND_CLICK_ACTION_QUERY_PARAM) || '').trim();
+  return {
+    mapId: (params.get(LEGEND_MAP_QUERY_PARAM) || '').trim() || null,
+    selectedTags: parseCompactTagList(params.get(LEGEND_TAGS_QUERY_PARAM)),
+    showExcludedEvents: parseBooleanQueryFlag(params.get(LEGEND_EXCLUDED_QUERY_PARAM)),
+    hidden: parseBooleanQueryFlag(params.get(LEGEND_HIDDEN_QUERY_PARAM)),
+    useTagColors: parseBooleanQueryFlag(params.get(LEGEND_TAG_COLORS_QUERY_PARAM)),
+    showDayBackgrounds: parseBooleanQueryFlag(params.get(LEGEND_DAY_IMAGES_QUERY_PARAM)),
+    eventClickAction: clickAction || null
+  };
+}
+
+function syncLegendStateToUrl(state) {
+  if (!window.history || typeof window.history.replaceState !== 'function') return;
+  const url = new URL(window.location.href);
+  const nextState = state || {};
+
+  if (nextState.mapId) url.searchParams.set(LEGEND_MAP_QUERY_PARAM, String(nextState.mapId));
+  else url.searchParams.delete(LEGEND_MAP_QUERY_PARAM);
+
+  const tagList = serializeCompactTagList(nextState.selectedTags || []);
+  if (tagList) url.searchParams.set(LEGEND_TAGS_QUERY_PARAM, tagList);
+  else url.searchParams.delete(LEGEND_TAGS_QUERY_PARAM);
+
+  if (typeof nextState.showExcludedEvents === 'boolean') {
+    url.searchParams.set(LEGEND_EXCLUDED_QUERY_PARAM, nextState.showExcludedEvents ? '1' : '0');
+  } else {
+    url.searchParams.delete(LEGEND_EXCLUDED_QUERY_PARAM);
+  }
+
+  if (typeof nextState.hidden === 'boolean') {
+    url.searchParams.set(LEGEND_HIDDEN_QUERY_PARAM, nextState.hidden ? '1' : '0');
+  } else {
+    url.searchParams.delete(LEGEND_HIDDEN_QUERY_PARAM);
+  }
+
+  if (typeof nextState.useTagColors === 'boolean') {
+    url.searchParams.set(LEGEND_TAG_COLORS_QUERY_PARAM, nextState.useTagColors ? '1' : '0');
+  } else {
+    url.searchParams.delete(LEGEND_TAG_COLORS_QUERY_PARAM);
+  }
+
+  if (typeof nextState.showDayBackgrounds === 'boolean') {
+    url.searchParams.set(LEGEND_DAY_IMAGES_QUERY_PARAM, nextState.showDayBackgrounds ? '1' : '0');
+  } else {
+    url.searchParams.delete(LEGEND_DAY_IMAGES_QUERY_PARAM);
+  }
+
+  if (nextState.eventClickAction) url.searchParams.set(LEGEND_CLICK_ACTION_QUERY_PARAM, String(nextState.eventClickAction));
+  else url.searchParams.delete(LEGEND_CLICK_ACTION_QUERY_PARAM);
+
+  window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
+}
 
 async function loadCategoryMapConfig() {
   try {
@@ -659,22 +743,35 @@ function getLegendPrefs(categoryMap) {
     mapId: categoryMap?.id || categoryMapConfig.default_map
   };
 
+  let prefs = defaults;
   try {
     const stored = localStorage.getItem(LEGEND_PREFS_KEY);
-    if (!stored) return defaults;
-    const parsed = JSON.parse(stored);
-    return {
-      hidden: Boolean(parsed.hidden),
-      useTagColors: parsed.useTagColors !== false,
-      showDayBackgrounds: parsed.showDayBackgrounds !== false,
-      showExcludedEvents: parsed.showExcludedEvents === true,
-      eventClickAction: parsed.eventClickAction || defaults.eventClickAction,
-      selectedTags: Array.isArray(parsed.selectedTags) ? parsed.selectedTags : defaultTags,
-      mapId: parsed.mapId || defaults.mapId
-    };
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      prefs = {
+        hidden: Boolean(parsed.hidden),
+        useTagColors: parsed.useTagColors !== false,
+        showDayBackgrounds: parsed.showDayBackgrounds !== false,
+        showExcludedEvents: parsed.showExcludedEvents === true,
+        eventClickAction: parsed.eventClickAction || defaults.eventClickAction,
+        selectedTags: Array.isArray(parsed.selectedTags) ? parsed.selectedTags : defaultTags,
+        mapId: parsed.mapId || defaults.mapId
+      };
+    }
   } catch (error) {
-    return defaults;
+    prefs = defaults;
   }
+
+  const queryState = getLegendQueryStateFromUrl();
+  if (queryState.mapId) prefs.mapId = queryState.mapId;
+  if (Array.isArray(queryState.selectedTags) && queryState.selectedTags.length > 0) prefs.selectedTags = queryState.selectedTags;
+  if (typeof queryState.hidden === 'boolean') prefs.hidden = queryState.hidden;
+  if (typeof queryState.useTagColors === 'boolean') prefs.useTagColors = queryState.useTagColors;
+  if (typeof queryState.showDayBackgrounds === 'boolean') prefs.showDayBackgrounds = queryState.showDayBackgrounds;
+  if (typeof queryState.showExcludedEvents === 'boolean') prefs.showExcludedEvents = queryState.showExcludedEvents;
+  if (queryState.eventClickAction) prefs.eventClickAction = queryState.eventClickAction;
+
+  return prefs;
 }
 
 function getValidSelectedTags(selectedTags, categoryMap) {
@@ -706,6 +803,7 @@ function saveLegendPrefs() {
   } catch (error) {
     // Ignore storage failures silently.
   }
+  syncLegendStateToUrl(prefs);
 }
 
 function buildLegendItem(category, isChecked) {
@@ -1061,9 +1159,11 @@ function setupTextSearch() {
 
   window.addEventListener('popstate', () => {
     const nextQuery = getSearchQueryFromUrl();
-    if (searchInput.value === nextQuery) return;
-    searchInput.value = nextQuery;
-    textSearchQuery = nextQuery;
+    if (searchInput.value !== nextQuery) {
+      searchInput.value = nextQuery;
+      textSearchQuery = nextQuery;
+    }
+    buildLegend(activeCategoryMap);
     applyTagFilters();
   });
 }

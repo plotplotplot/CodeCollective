@@ -39,6 +39,10 @@ jobs:
         run: |
           python fetch_mdbills_hearings_cache.py
 
+      - name: Refresh Maryland bill votes cache
+        run: |
+          python fetch_mdbills_votes_cache.py
+
       - name: Refresh Baltimore testimony cache
         run: |
           if [ "${{ steps.baltimore_images.outputs.refresh_profile_images }}" = "true" ]; then
@@ -67,6 +71,7 @@ jobs:
             baltimore/testimony/data/city_council_testimony.json \
             baltimore/testimony/images \
             data/maryland_bills_2026.json \
-            data/maryland_bill_hearings_2026.json
+            data/maryland_bill_hearings_2026.json \
+            data/maryland_bill_votes_2026.json
           git commit -m "Update legislative data" || echo "No changes to commit"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git

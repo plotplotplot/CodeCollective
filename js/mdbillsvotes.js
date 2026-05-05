@@ -23,6 +23,8 @@
   const upcomingOnlyToggle = document.getElementById('upcoming-only-toggle');
   const houseOnlyToggle = document.getElementById('house-only-toggle');
   const senateOnlyToggle = document.getElementById('senate-only-toggle');
+  const passedOnlyToggle = document.getElementById('passed-only-toggle');
+  const notPassedOnlyToggle = document.getElementById('not-passed-only-toggle');
   const searchClearButtons = [...document.querySelectorAll('.search-clear')];
   const sponsorTableBody = document.getElementById('sponsor-table-body');
   const categoryTableBody = document.getElementById('category-table-body');
@@ -53,6 +55,8 @@
   let showUpcomingOnly = false;
   let showHouseBills = true;
   let showSenateBills = true;
+  let showPassedBills = true;
+  let showNotPassedBills = true;
 
   const COLUMN_FONT_SIZE_CONFIG = {
     sponsor: { min: 10, max: 20, step: 1, default: 14, storageKey: 'mdbillsFontSizeSponsor' },
@@ -148,7 +152,9 @@
           categories: [],
           upcomingOnly: false,
           showHouseBills: true,
-          showSenateBills: true
+          showSenateBills: true,
+          showPassedBills: true,
+          showNotPassedBills: true
         };
       }
       const parsed = JSON.parse(raw);
@@ -163,7 +169,9 @@
         categories: [...new Set(parsedCategories)],
         upcomingOnly: parsed.upcomingOnly === true || parsed.upcomingOnly === 'true',
         showHouseBills: parsed.showHouseBills !== false,
-        showSenateBills: parsed.showSenateBills !== false
+        showSenateBills: parsed.showSenateBills !== false,
+        showPassedBills: parsed.showPassedBills !== false,
+        showNotPassedBills: parsed.showNotPassedBills !== false
       };
     } catch {
       return {
@@ -174,7 +182,9 @@
         categories: [],
         upcomingOnly: false,
         showHouseBills: true,
-        showSenateBills: true
+        showSenateBills: true,
+        showPassedBills: true,
+        showNotPassedBills: true
       };
     }
   }
@@ -188,7 +198,9 @@
       categories: activeCategories,
       upcomingOnly: showUpcomingOnly,
       showHouseBills,
-      showSenateBills
+      showSenateBills,
+      showPassedBills,
+      showNotPassedBills
     }));
   }
 
@@ -435,8 +447,139 @@
     return '';
   }
 
+  function didBillPass(bill) {
+    const status = String(bill?.Status || '').toLowerCase();
+    if (!status) {
+      return false;
+    }
+    if (/\b(not passed|failed|withdrawn|vetoed)\b/.test(status)) {
+      return false;
+    }
+    return /\b(approved by the governor|enacted|returned passed|passed)\b/.test(status);
+  }
+
+  function normalizeVotePersonName(value) {
+    return String(value || '')
+      .toLowerCase()
+      .replace(/\b(senator|delegate|del\.?|sen\.?)\b/g, '')
+      .replace(/[^a-z0-9,\s-]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function findVoteValueField(record) {
+    const keys = ['vote', 'votecast', 'vote_cast', 'position', 'decision', 'result', 'votevalue', 'vote_value'];
+    for (const key of keys) {
+      if (record && record[key] !== undefined && record[key] !== null && String(record[key]).trim()) {
+        return String(record[key]).trim();
+      }
+    }
+    return '';
+  }
+
+  function findNameField(record) {
+    const keys = ['name', 'member', 'membername', 'member_name', 'legislator', 'legislatorname', 'legislator_name', 'voter', 'votername', 'voter_name'];
+    for (const key of keys) {
+      if (record && record[key] !== undefined && record[key] !== null && String(record[key]).trim()) {
+        return String(record[key]).trim();
+      }
+    }
+    return '';
+  }
+
+  function extractVoteEntries(voteRecord) {
+    if (!voteRecord || typeof voteRecord !== 'object') {
+      return [];
+    }
+    if (voteRecord.latest_member_votes && typeof voteRecord.latest_member_votes === 'object') {
+      return Object.entries(voteRecord.latest_member_votes)
+        .map(([name, vote]) => ({ name: String(name || '').trim(), vote: String(vote || '').trim() }))
+        .filter((entry) => entry.name && entry.vote);
+    }
+    const out = [];
+    const stack = [voteRecord];
+    const seen = new Set();
+    while (stack.length) {
+      const current = stack.pop();
+      if (!current || typeof current !== 'object' || seen.has(current)) {
+        continue;
+      }
+      seen.add(current);
+      if (Array.isArray(current)) {
+        for (const item of current) {
+          stack.push(item);
+        }
+        continue;
+      }
+      const name = findNameField(current);
+      const vote = findVoteValueField(current);
+      if (name && vote) {
+        out.push({ name, vote });
+      }
+      for (const value of Object.values(current)) {
+        if (value && typeof value === 'object') {
+          stack.push(value);
+        }
+      }
+    }
+    return out;
+  }
+
+  function getVoteRecordForBill(bill) {
+    const billNumber = String(bill?.BillNumber || '').trim().toUpperCase();
+    return billNumber ? (billVotesByNumber.get(billNumber) || null) : null;
+  }
+
+  function classifyVoteChoice(voteValueRaw) {
+    const voteValue = String(voteValueRaw || '').toLowerCase();
+    if (!voteValue) {
+      return 'No vote data';
+    }
+    if (/\b(yea|yes|for|favorable|pass)\b/.test(voteValue)) {
+      return 'Voted For';
+    }
+    if (/\b(nay|no|against|unfavorable)\b/.test(voteValue)) {
+      return 'Voted Against';
+    }
+    if (/\b(absent|excused|abstain|not voting|did not vote)\b/.test(voteValue)) {
+      return 'Did Not Vote';
+    }
+    return `Vote: ${voteValueRaw}`;
+  }
+
+  function getSelectedSponsorVoteLabel(bill) {
+    const selected = String(activeSponsor || '').trim();
+    if (!selected) {
+      return '';
+    }
+    if (!billVotesByNumber.size) {
+      return 'Vote data unavailable';
+    }
+    const voteRecord = getVoteRecordForBill(bill);
+    if (!voteRecord) {
+      return 'No roll-call record';
+    }
+    const selectedNameCandidates = new Set(expandNameCandidates(selected).map(normalizeVotePersonName));
+    if (!selectedNameCandidates.size) {
+      return 'No vote match';
+    }
+    const entries = extractVoteEntries(voteRecord);
+    if (!entries.length) {
+      return 'No individual vote detail';
+    }
+    for (const entry of entries) {
+      const candidateNames = expandNameCandidates(entry.name).map(normalizeVotePersonName);
+      if (candidateNames.some((name) => selectedNameCandidates.has(name))) {
+        return classifyVoteChoice(entry.vote);
+      }
+    }
+    return 'No vote match';
+  }
+
   function createBillRowMarkup(entry) {
     const { bill, index } = entry;
+    const passed = didBillPass(bill);
+    const selectedVoteLabel = getSelectedSponsorVoteLabel(bill);
     return `
       <tr>
         <td class="bill-number-cell" data-bill-index="${index}">${escapeHtml(bill.BillNumber || 'N/A')}</td>
@@ -457,6 +600,10 @@
           </button>
         </td>
         <td>${escapeHtml(bill.Status || 'Status unavailable')}</td>
+        <td>
+          <span class="bill-status-cell ${passed ? 'bill-status-passed' : 'bill-status-not-passed'}">${passed ? 'Yes' : 'No'}</span>
+          ${selectedVoteLabel ? `<span class="bill-selected-vote">${escapeHtml(selectedVoteLabel)}</span>` : ''}
+        </td>
         <td>${escapeHtml(formatHearingDate(bill) || 'N/A')}</td>
       </tr>
     `;
@@ -1120,6 +1267,8 @@
         return String(bill.SponsorPrimary || '').toLowerCase();
       case 'status':
         return String(bill.Status || '').toLowerCase();
+      case 'passed':
+        return didBillPass(bill) ? 1 : 0;
       case 'hearingDate': {
         const hearingDate = getEarliestHearingDate(bill);
         return hearingDate ? toDateOnlyTimestamp(hearingDate) : Number.POSITIVE_INFINITY;
@@ -1195,6 +1344,10 @@
         }
         return true;
       })
+      .filter((entry) => {
+        const passed = didBillPass(entry.bill);
+        return (passed && showPassedBills) || (!passed && showNotPassedBills);
+      })
       .filter((entry) => !query || entry.searchText.includes(query));
 
     filteredEntries = sortEntries(filteredEntries, sortColumn, sortDirection);
@@ -1206,7 +1359,7 @@
 
     billsTableBody.innerHTML = filteredEntries.length
       ? filteredEntries.map(createBillRowMarkup).join('')
-      : '<tr><td colspan="5">No bills matched that filter.</td></tr>';
+      : '<tr><td colspan="6">No bills matched that filter.</td></tr>';
   }
 
   function resetFilters() {
@@ -1220,6 +1373,8 @@
     showUpcomingOnly = false;
     showHouseBills = true;
     showSenateBills = true;
+    showPassedBills = true;
+    showNotPassedBills = true;
     if (upcomingOnlyToggle) {
       upcomingOnlyToggle.checked = false;
     }
@@ -1228,6 +1383,12 @@
     }
     if (senateOnlyToggle) {
       senateOnlyToggle.checked = true;
+    }
+    if (passedOnlyToggle) {
+      passedOnlyToggle.checked = true;
+    }
+    if (notPassedOnlyToggle) {
+      notPassedOnlyToggle.checked = true;
     }
     clearPersistedFilters();
     updateSortIndicators();
@@ -1276,6 +1437,23 @@
         console.warn('Hearing testimony cache unavailable:', hearingErr);
       }
 
+      try {
+        const votesResp = await fetch(VOTES_DATA_URL, { cache: 'no-store' });
+        if (votesResp.ok) {
+          const votesPayload = await votesResp.json();
+          const records = votesPayload && typeof votesPayload === 'object' ? votesPayload.records : null;
+          if (records && typeof records === 'object') {
+            billVotesByNumber = new Map(
+              Object.entries(records).map(([billNumber, record]) => [String(billNumber || '').trim().toUpperCase(), record])
+            );
+          } else {
+            billVotesByNumber = new Map();
+          }
+        }
+      } catch (votesErr) {
+        console.warn('Vote cache unavailable:', votesErr);
+      }
+
       // Load sponsor directory data for richer sponsor modal details.
       try {
         const sponsorResp = await fetch(SPONSOR_DIRECTORY_URL, { cache: 'no-store' });
@@ -1301,11 +1479,19 @@
       }
       showHouseBills = persisted.showHouseBills !== false;
       showSenateBills = persisted.showSenateBills !== false;
+      showPassedBills = persisted.showPassedBills !== false;
+      showNotPassedBills = persisted.showNotPassedBills !== false;
       if (houseOnlyToggle) {
         houseOnlyToggle.checked = showHouseBills;
       }
       if (senateOnlyToggle) {
         senateOnlyToggle.checked = showSenateBills;
+      }
+      if (passedOnlyToggle) {
+        passedOnlyToggle.checked = showPassedBills;
+      }
+      if (notPassedOnlyToggle) {
+        notPassedOnlyToggle.checked = showNotPassedBills;
       }
       activeSponsor = persisted.sponsor;
       activeCategories = persisted.categories;
@@ -1363,6 +1549,20 @@
   if (senateOnlyToggle) {
     senateOnlyToggle.addEventListener('change', () => {
       showSenateBills = senateOnlyToggle.checked;
+      persistFilters();
+      renderBills();
+    });
+  }
+  if (passedOnlyToggle) {
+    passedOnlyToggle.addEventListener('change', () => {
+      showPassedBills = passedOnlyToggle.checked;
+      persistFilters();
+      renderBills();
+    });
+  }
+  if (notPassedOnlyToggle) {
+    notPassedOnlyToggle.addEventListener('change', () => {
+      showNotPassedBills = notPassedOnlyToggle.checked;
       persistFilters();
       renderBills();
     });

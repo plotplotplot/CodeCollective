@@ -1912,10 +1912,16 @@
 
             if (imageUrl) {
                 mediaWrap.hidden = false;
-                media.src = imageUrl;
                 media.alt = evt.name || 'Event image';
+                const fallbackImage = evt?.orgImageUrl && evt.orgImageUrl !== imageUrl ? evt.orgImageUrl : '';
+                media.onerror = fallbackImage ? () => {
+                    media.onerror = null;
+                    media.src = fallbackImage;
+                } : null;
+                media.src = imageUrl;
             } else {
                 mediaWrap.hidden = true;
+                media.onerror = null;
                 media.removeAttribute('src');
                 media.alt = '';
             }

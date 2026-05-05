@@ -22,6 +22,8 @@
   const upcomingOnlyToggle = document.getElementById('upcoming-only-toggle');
   const houseOnlyToggle = document.getElementById('house-only-toggle');
   const senateOnlyToggle = document.getElementById('senate-only-toggle');
+  const passedOnlyToggle = document.getElementById('passed-only-toggle');
+  const notPassedOnlyToggle = document.getElementById('not-passed-only-toggle');
   const searchClearButtons = [...document.querySelectorAll('.search-clear')];
   const sponsorTableBody = document.getElementById('sponsor-table-body');
   const categoryTableBody = document.getElementById('category-table-body');
@@ -51,6 +53,8 @@
   let showUpcomingOnly = false;
   let showHouseBills = true;
   let showSenateBills = true;
+  let showPassedBills = true;
+  let showNotPassedBills = true;
 
   const COLUMN_FONT_SIZE_CONFIG = {
     sponsor: { min: 10, max: 20, step: 1, default: 14, storageKey: 'mdbillsFontSizeSponsor' },
@@ -146,7 +150,9 @@
           categories: [],
           upcomingOnly: false,
           showHouseBills: true,
-          showSenateBills: true
+          showSenateBills: true,
+          showPassedBills: true,
+          showNotPassedBills: true
         };
       }
       const parsed = JSON.parse(raw);
@@ -161,7 +167,9 @@
         categories: [...new Set(parsedCategories)],
         upcomingOnly: parsed.upcomingOnly === true || parsed.upcomingOnly === 'true',
         showHouseBills: parsed.showHouseBills !== false,
-        showSenateBills: parsed.showSenateBills !== false
+        showSenateBills: parsed.showSenateBills !== false,
+        showPassedBills: parsed.showPassedBills !== false,
+        showNotPassedBills: parsed.showNotPassedBills !== false
       };
     } catch {
       return {
@@ -172,7 +180,9 @@
         categories: [],
         upcomingOnly: false,
         showHouseBills: true,
-        showSenateBills: true
+        showSenateBills: true,
+        showPassedBills: true,
+        showNotPassedBills: true
       };
     }
   }
@@ -186,7 +196,9 @@
       categories: activeCategories,
       upcomingOnly: showUpcomingOnly,
       showHouseBills,
-      showSenateBills
+      showSenateBills,
+      showPassedBills,
+      showNotPassedBills
     }));
   }
 
@@ -433,8 +445,20 @@
     return '';
   }
 
+  function didBillPass(bill) {
+    const status = String(bill?.Status || '').toLowerCase();
+    if (!status) {
+      return false;
+    }
+    if (/\b(not passed|failed|withdrawn|vetoed)\b/.test(status)) {
+      return false;
+    }
+    return /\b(approved by the governor|enacted|returned passed|passed)\b/.test(status);
+  }
+
   function createBillRowMarkup(entry) {
     const { bill, index } = entry;
+    const passed = didBillPass(bill);
     return `
       <tr>
         <td class="bill-number-cell" data-bill-index="${index}">${escapeHtml(bill.BillNumber || 'N/A')}</td>
@@ -455,6 +479,7 @@
           </button>
         </td>
         <td>${escapeHtml(bill.Status || 'Status unavailable')}</td>
+        <td><span class="bill-status-cell ${passed ? 'bill-status-passed' : 'bill-status-not-passed'}">${passed ? 'Yes' : 'No'}</span></td>
         <td>${escapeHtml(formatHearingDate(bill) || 'N/A')}</td>
       </tr>
     `;
@@ -1118,6 +1143,8 @@
         return String(bill.SponsorPrimary || '').toLowerCase();
       case 'status':
         return String(bill.Status || '').toLowerCase();
+      case 'passed':
+        return didBillPass(bill) ? 1 : 0;
       case 'hearingDate': {
         const hearingDate = getEarliestHearingDate(bill);
         return hearingDate ? toDateOnlyTimestamp(hearingDate) : Number.POSITIVE_INFINITY;
@@ -1193,6 +1220,10 @@
         }
         return true;
       })
+      .filter((entry) => {
+        const passed = didBillPass(entry.bill);
+        return (passed && showPassedBills) || (!passed && showNotPassedBills);
+      })
       .filter((entry) => !query || entry.searchText.includes(query));
 
     filteredEntries = sortEntries(filteredEntries, sortColumn, sortDirection);
@@ -1204,7 +1235,7 @@
 
     billsTableBody.innerHTML = filteredEntries.length
       ? filteredEntries.map(createBillRowMarkup).join('')
-      : '<tr><td colspan="5">No bills matched that filter.</td></tr>';
+      : '<tr><td colspan="6">No bills matched that filter.</td></tr>';
   }
 
   function resetFilters() {
@@ -1218,6 +1249,8 @@
     showUpcomingOnly = false;
     showHouseBills = true;
     showSenateBills = true;
+    showPassedBills = true;
+    showNotPassedBills = true;
     if (upcomingOnlyToggle) {
       upcomingOnlyToggle.checked = false;
     }
@@ -1226,6 +1259,12 @@
     }
     if (senateOnlyToggle) {
       senateOnlyToggle.checked = true;
+    }
+    if (passedOnlyToggle) {
+      passedOnlyToggle.checked = true;
+    }
+    if (notPassedOnlyToggle) {
+      notPassedOnlyToggle.checked = true;
     }
     clearPersistedFilters();
     updateSortIndicators();
@@ -1299,11 +1338,19 @@
       }
       showHouseBills = persisted.showHouseBills !== false;
       showSenateBills = persisted.showSenateBills !== false;
+      showPassedBills = persisted.showPassedBills !== false;
+      showNotPassedBills = persisted.showNotPassedBills !== false;
       if (houseOnlyToggle) {
         houseOnlyToggle.checked = showHouseBills;
       }
       if (senateOnlyToggle) {
         senateOnlyToggle.checked = showSenateBills;
+      }
+      if (passedOnlyToggle) {
+        passedOnlyToggle.checked = showPassedBills;
+      }
+      if (notPassedOnlyToggle) {
+        notPassedOnlyToggle.checked = showNotPassedBills;
       }
       activeSponsor = persisted.sponsor;
       activeCategories = persisted.categories;
@@ -1361,6 +1408,20 @@
   if (senateOnlyToggle) {
     senateOnlyToggle.addEventListener('change', () => {
       showSenateBills = senateOnlyToggle.checked;
+      persistFilters();
+      renderBills();
+    });
+  }
+  if (passedOnlyToggle) {
+    passedOnlyToggle.addEventListener('change', () => {
+      showPassedBills = passedOnlyToggle.checked;
+      persistFilters();
+      renderBills();
+    });
+  }
+  if (notPassedOnlyToggle) {
+    notPassedOnlyToggle.addEventListener('change', () => {
+      showNotPassedBills = notPassedOnlyToggle.checked;
       persistFilters();
       renderBills();
     });

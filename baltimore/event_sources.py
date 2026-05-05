@@ -52,6 +52,11 @@ sources = [
         "tags": ["Finance", "Crypto & Web3"],
     },
     {
+        "name": "Maryland Blockchain Association Meetup",
+        "url": "https://www.meetup.com/www-marylandblockchainassociation-org/",
+        "tags": ["Finance", "Crypto & Web3", "Tech Community"],
+    },
+    {
         "name": "Python Frederick",
         "url": "https://www.meetup.com/python-frederick/events/",
         "tags": ["Tech Skills", "Python", "Software Development"],
@@ -157,6 +162,31 @@ sources = [
         "tags": ["Finance"],
     },
     {
+        "name": "GRID Baltimore",
+        "url": "https://www.meetup.com/grid-baltimore/",
+        "tags": ["Finance", "Professional Networking"],
+    },
+    {
+        "name": "Baltimore Real Estate Investing Meetup Group",
+        "url": "https://www.meetup.com/baltimore-real-estate-investing-meetup-group/",
+        "tags": ["Finance", "Professional Networking"],
+    },
+    {
+        "name": "Baltimore Investors Meetup",
+        "url": "https://www.meetup.com/baltimoreinvestors/",
+        "tags": ["Finance", "Professional Networking"],
+    },
+    {
+        "name": "BetterInvesting Maryland",
+        "url": "https://www.meetup.com/betterinvesting-maryland-stock-investing-education/",
+        "tags": ["Finance", "Education"],
+    },
+    {
+        "name": "Cash-Flow Breakfast Club Baltimore",
+        "url": "https://www.meetup.com/the-cash-flow-breakfast-club-baltimore-md-rei/",
+        "tags": ["Finance", "Professional Networking"],
+    },
+    {
         "name": "Baltimore Black Techies",
         "url": "https://www.meetup.com/baltimore-black-techies-meetup/",
         "tags": ["Economic Development", "Tech Community", "Community Organizing"],
@@ -213,6 +243,11 @@ sources = [
         "name": "Eventbrite Baltimore Collection",
         "url": "https://www.eventbrite.com/cc/baltimore-4326703",
         "tags": ["Business"],
+    },
+    {
+        "name": "Maryland Blockchain Association Monthly Virtual Meetups",
+        "url": "https://www.eventbrite.com/e/maryland-blockchain-association-monthly-virtual-meet-ups-tickets-1134555268349",
+        "tags": ["Finance", "Crypto & Web3", "Tech Community"],
     },
     {
         "name": "Impact Hub Baltimore",
@@ -398,6 +433,205 @@ sources = [
         "name": "Luma User 2eWBPcn6lj9Dzqz",
         "url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-2eWBPcn6lj9Dzqz",
         "tags": ["Tech Community"],
+    },
+    # Medical / Wellness sources
+    {
+        "name": "NAMI Metro Baltimore Events",
+        "url": "https://namibaltimore.org/get-involved/events/",
+        "tags": ["Health", "Wellness", "Community", "Community Organizing"],
+    },
+    {
+        "name": "Baltimore City Health Department Events",
+        "url": "https://health.baltimorecity.gov/events",
+        "tags": ["Health", "Community", "Community Organizing"],
+    },
+    {
+        "name": "UMMC Community Health Outreach",
+        "url": "https://www.umms.org/ummc/community",
+        "tags": ["Health", "Wellness", "Community"],
+    },
+    {
+        "name": "Baltimore Eventbrite Medical Events",
+        "url": "https://www.eventbrite.com/b/md--baltimore/health/medical/",
+        "tags": ["Health", "Wellness", "Community"],
+    },
+    {
+        "name": "Central Maryland Fibromyalgia Support Group",
+        "url": "https://www.vitality101.com/node/2919",
+        "tags": ["Health", "Wellness", "Community"],
+    },
+    {
+        "name": "Meetup Fibromyalgia Support Groups",
+        "url": "https://www.meetup.com/topics/fibromyalgia-support-groups/",
+        "tags": ["Health", "Wellness", "Community"],
+    },
+    # Phase 2 direct source expansion (non-platform)
+    {
+        "name": "Maryland Food Bank Events",
+        "url": "https://mdfoodbank.org/events/category/foodworks/",
+        "tags": ["Culture", "Food", "Safety", "Belonging"],
+    },
+    {
+        "name": "Moveable Feast Events",
+        "url": "https://www.mfeast.org/events/",
+        "tags": ["Health", "Food", "Safety", "Belonging"],
+    },
+    {
+        "name": "Baltimore Free Farm Events",
+        "url": "https://www.baltimorefreefarm.org/events/",
+        "tags": ["Culture", "Food", "Growth", "Belonging"],
+    },
+    {
+        "name": "Farm Alliance Field Day Workshops",
+        "url": "https://farmalliancebaltimore.org/bbufa/field-day-workshops/",
+        "tags": ["Environment", "Food", "Growth", "Belonging"],
+    },
+    {
+        "name": "St Ambrose Housing Aid Center Events",
+        "url": "https://www.stambros.org/support-our-mission/events-calendar/",
+        "tags": ["Culture", "Shelter", "Safety", "Belonging"],
+    },
+    {
+        "name": "Baltimore DHCD Events",
+        "url": "https://dhcd.baltimorecity.gov/events/list",
+        "tags": ["Politics", "Shelter", "Safety", "Purpose"],
+    },
+    {
+        "name": "Blue Water Baltimore Events",
+        "url": "https://bluewaterbaltimore.org/events/photo/",
+        "tags": ["Environment", "Water", "Safety", "Purpose"],
+    },
+    {
+        "name": "Waterfront Partnership Waterfront Week",
+        "url": "https://www.waterfrontpartnership.org/waterfrontweek",
+        "tags": ["Environment", "Water", "Belonging", "Purpose"],
+    },
+    {
+        "name": "Parks and People Events",
+        "url": "https://www.parksandpeople.org/events",
+        "tags": ["Environment", "Safety", "Belonging", "Growth"],
+    },
+    {
+        "name": "Sheppard Pratt Events",
+        "url": "https://www.sheppardpratt.org/events/",
+        "tags": ["Health", "Safety", "Belonging", "Growth"],
+    },
+    {
+        "name": "UMMC Community Events",
+        "url": "https://www.umms.org/ummc/community/events",
+        "tags": ["Health", "Safety", "Belonging", "Growth"],
+    },
+    # Phase 3 sector gap expansion
+    {
+        "name": "CFA Society Baltimore Upcoming Events",
+        "url": "https://community.cfainstitute.org/baltimore/society-events/upcoming-events",
+        "tags": ["Finance", "Education", "Esteem", "Growth"],
+    },
+    {
+        "name": "Maryland Bankers Association Events",
+        "url": "https://www.mdbankers.com/education-events/calendar/conferences-seminars-schools/",
+        "tags": ["Finance", "Education", "Esteem", "Growth"],
+    },
+    {
+        "name": "Makerspace at Johns Hopkins Events",
+        "url": "https://makerspace.jhu.edu/events/",
+        "tags": ["Makerspace", "Technology", "Growth", "Belonging"],
+    },
+    {
+        "name": "Open Works Class and Workshop Schedule",
+        "url": "https://www.openworksbmore.org/schedule/",
+        "tags": ["Makerspace", "Education", "Growth", "Belonging"],
+    },
+    {
+        "name": "League of Women Voters Baltimore City Events",
+        "url": "https://www.lwv-baltimorecity.org/events",
+        "tags": ["Politics", "Culture", "Purpose", "Belonging"],
+    },
+    {
+        "name": "League of Women Voters Baltimore County Events",
+        "url": "https://www.lwvbaltimorecounty.org/",
+        "tags": ["Politics", "Culture", "Purpose", "Belonging"],
+    },
+    {
+        "name": "Baltimore Unity Hall Civic Calendar",
+        "url": "https://www.baltimoreunityhall.org/calendar",
+        "tags": ["Politics", "Culture", "Purpose", "Belonging"],
+    },
+    {
+        "name": "Beth El Congregation Calendar",
+        "url": "https://bethelbalto.com/calendar/",
+        "tags": ["Faith", "Culture", "Belonging", "Purpose"],
+    },
+    {
+        "name": "Chizuk Amuno Congregation Programs and Events",
+        "url": "https://www.chizukamuno.org/",
+        "tags": ["Faith", "Culture", "Belonging", "Growth"],
+    },
+    {
+        "name": "Zion Church Baltimore Calendar",
+        "url": "https://www.zionbaltimore.org/",
+        "tags": ["Faith", "Culture", "Belonging", "Purpose"],
+    },
+    # Phase 4 remaining Maslow gaps
+    {
+        "name": "BUILD Baltimore",
+        "url": "https://www.buildiaf.org/",
+        "tags": ["Culture", "Politics", "Shelter", "Purpose", "Safety"],
+    },
+    {
+        "name": "House of Ruth Maryland Fundraising Events",
+        "url": "https://hruth.org/fundraising-events/",
+        "tags": ["Health", "Culture", "Shelter", "Safety", "Purpose"],
+    },
+    {
+        "name": "My Sisters Place Womens Center",
+        "url": "https://cc-md.org/programs/my-sisters-place/",
+        "tags": ["Health", "Culture", "Shelter", "Safety", "Belonging"],
+    },
+    {
+        "name": "Changing Lives Baltimore Coat Drive",
+        "url": "https://changinglivesinitiativ.org/coat-drive-free-store/",
+        "tags": ["Culture", "Clothing", "Safety", "Belonging", "Purpose"],
+    },
+    {
+        "name": "Pratt Compassion Clothing Closet",
+        "url": "https://calendar.prattlibrary.org/event/compassion-clothing-closet",
+        "tags": ["Culture", "Clothing", "Safety", "Belonging"],
+    },
+    {
+        "name": "Maryland Food Bank Baltimore Office",
+        "url": "https://mdfoodbank.org/about/locations/baltimore-office/",
+        "tags": ["Culture", "Food", "Safety", "Belonging"],
+    },
+    {
+        "name": "Maryland Food Bank Volunteer and Access Programs",
+        "url": "https://mdfoodbank.org/ways-to-give/volunteer/",
+        "tags": ["Culture", "Food", "Safety", "Belonging"],
+    },
+    {
+        "name": "Maryland Food Bank Pantry on the Go",
+        "url": "https://mdfoodbank.org/hunger-in-maryland/programs/pantry-on-the-go/",
+        "tags": ["Culture", "Food", "Safety", "Belonging"],
+    },
+    {
+        "name": "Moveable Feast Volunteer and Meal Access",
+        "url": "https://www.mfeast.org/become-a-volunteer/",
+        "tags": ["Health", "Food", "Safety", "Belonging"],
+    },
+    {
+        "name": "Baltimore Hunger Project",
+        "url": "https://www.baltimorehungerproject.org/",
+        "tags": ["Culture", "Food", "Safety", "Belonging"],
+    },
+    {
+        "name": "Hunger Free Zone Baltimore",
+        "url": "https://hungerfreezone.org/",
+        "tags": ["Culture", "Food", "Safety", "Belonging"],
+    },
+    {
+        "name": "Blue Water Baltimore Volunteer Opportunities",
+        "url": "https://bluewaterbaltimore.org/volunteer-opportunities-baltimore/",
+        "tags": ["Environment", "Water", "Safety", "Purpose", "Belonging"],
     },
     {
         "name": "Collide Capital @ JHU (Partiful)",

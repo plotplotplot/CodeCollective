@@ -623,14 +623,28 @@
 
     .bill-status-cell {
       font-weight: 700;
+      color: #f8fafc;
+      border-radius: 6px;
+      padding: 6px 8px;
+      display: inline-block;
+      min-width: 42px;
+      text-align: center;
     }
 
     .bill-status-passed {
-      color: #22c55e;
+      background: #14532d;
     }
 
     .bill-status-not-passed {
-      color: #fda4af;
+      background: #991b1b;
+    }
+
+    .bill-selected-vote {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.85em;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
     }
 
     .hover-card {
@@ -1123,6 +1137,14 @@
                   <input id="upcoming-only-toggle" type="checkbox" />
                   Upcoming only
                 </label>
+                <label class="header-check" for="passed-only-toggle">
+                  <input id="passed-only-toggle" type="checkbox" checked />
+                  Passed
+                </label>
+                <label class="header-check" for="not-passed-only-toggle">
+                  <input id="not-passed-only-toggle" type="checkbox" checked />
+                  Not Passed
+                </label>
               </div>
             </div>
             <div class="search-wrap">
@@ -1137,11 +1159,12 @@
                     <th class="sortable resizable" data-sort="title" tabindex="0" role="button" aria-label="Sort by title">Title <span class="sort-indicator"></span><span class="resize-handle"></span></th>
                     <th class="sortable resizable" data-sort="sponsor" tabindex="0" role="button" aria-label="Sort by sponsor">Primary Sponsor <span class="sort-indicator"></span><span class="resize-handle"></span></th>
                     <th class="sortable resizable" data-sort="status" tabindex="0" role="button" aria-label="Sort by status">Status <span class="sort-indicator"></span><span class="resize-handle"></span></th>
+                    <th class="sortable resizable" data-sort="passed" tabindex="0" role="button" aria-label="Sort by pass status">Passed <span class="sort-indicator"></span><span class="resize-handle"></span></th>
                     <th class="sortable resizable" data-sort="hearingDate" tabindex="0" role="button" aria-label="Sort by hearing date">Hearing Date <span class="sort-indicator"></span></th>
                   </tr>
                 </thead>
                 <tbody id="bills-table-body">
-                  <tr><td colspan="5">Loading bills...</td></tr>
+                  <tr><td colspan="6">Loading bills...</td></tr>
                 </tbody>
               </table>
             </section>
