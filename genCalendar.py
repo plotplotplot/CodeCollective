@@ -198,6 +198,16 @@ def infer_source_kind(source_url):
     if "gdg.community.dev" in host:
         return "gdg"
 
+    if host in {"baltimorecancersupportgroup.org", "www.baltimorecancersupportgroup.org"}:
+        if parse_qs(parsed.query).get("page_id") == ["53"]:
+            return "web_events_page"
+
+    if host == "www.managefibromyalgia.org" and "supportgroup" in path.lower():
+        return "web_events_page"
+
+    if host == "www.vitality101.com" and path.startswith("/node/"):
+        return "web_events_page"
+
     lower_path = path.lower()
     segment_calendar_like = any(
         re.search(r"(event|calendar|schedule|whatson|what-s-on)", segment.lower())

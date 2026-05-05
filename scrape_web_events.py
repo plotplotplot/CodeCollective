@@ -1,8 +1,10 @@
 import json
+import re
 from typing import Any, Dict, List
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
+from dateutil.parser import parse as parse_date
 
 from http_client import build_session, polite_get
 
@@ -99,6 +101,62 @@ def _extract_events_from_jsonld_payload(payload: Any, source_url: str) -> List[D
     return events
 
 
+def _extract_simple_dated_events(soup: BeautifulSoup, source_url: str) -> List[Dict[str, Any]]:
+    lines = [
+        line.strip()
+        for line in soup.get_text("\n").splitlines()
+        if line.strip()
+    ]
+    date_pattern = re.compile(
+        r"^(January|February|March|April|May|June|July|August|September|October|November|December)\s+"
+        r"\d{1,2}(?:\s*-\s*\d{1,2})?,\s+\d{4}$"
+    )
+    skip_titles = {
+        "click for more info",
+        "register",
+        "registration",
+        "become a member",
+        "contact us",
+        "event categories",
+        "general",
+        "meeting",
+        "special events",
+    }
+
+    events: List[Dict[str, Any]] = []
+    for index, line in enumerate(lines):
+        if not date_pattern.match(line):
+            continue
+        title = ""
+        for candidate in lines[index + 1 : index + 5]:
+            normalized = candidate.strip().lower()
+            if normalized in skip_titles or date_pattern.match(candidate) or normalized.isdigit():
+                continue
+            title = candidate.strip()
+            break
+        if not title:
+            continue
+        try:
+            start_text = re.sub(r"\s*-\s*\d{1,2}", "", line).strip()
+            start = parse_date(start_text, fuzzy=False)
+        except (TypeError, ValueError, OverflowError):
+            continue
+        events.append(
+            {
+                "name": title,
+                "description": "",
+                "startDate": start.isoformat(),
+                "endTime": "",
+                "url": source_url,
+                "status": "ACTIVE",
+                "location": {"name": "", "address": ""},
+                "imageUrl": "",
+                "source": source_url,
+            }
+        )
+    return events
+
+
 def parse_web_events_page(source_url: str) -> List[Dict[str, Any]]:
     session = build_session()
     response = polite_get(session, source_url, timeout=30)
@@ -122,4 +180,10 @@ def parse_web_events_page(source_url: str) -> List[Dict[str, Any]]:
                 continue
             seen.add(key)
             events.append(evt)
+    for evt in _extract_simple_dated_events(soup, source_url):
+        key = (evt.get("name", "").strip().lower(), evt.get("startDate", ""))
+        if key in seen:
+            continue
+        seen.add(key)
+        events.append(evt)
     return events

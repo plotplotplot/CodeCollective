@@ -521,6 +521,46 @@ sources = [
         "tags": ["Health", "Wellness", "Community"],
     },
     {
+        "name": "The Chronically ChILL Meetup Group",
+        "url": "https://www.meetup.com/the-chronically-chill-meetup-group/",
+        "tags": ["Health", "Belonging"],
+    },
+    {
+        "name": "Chronic Illness Outdoors Club",
+        "url": "https://www.meetup.com/chronic-illness-outdoors-club/",
+        "tags": ["Health", "Belonging"],
+    },
+    {
+        "name": "Baltimore Cancer Support Group Calendar",
+        "url": "https://baltimorecancersupportgroup.org/?page_id=53",
+        "tags": ["Health", "Belonging"],
+    },
+    {
+        "name": "HopeWell Cancer Support Program Events",
+        "url": "https://www.hopewellcancersupport.org/programs/programevents",
+        "tags": ["Health", "Belonging"],
+    },
+    {
+        "name": "American Lung Association Better Breathers Baltimore",
+        "url": "https://www.lung.org/get-involved/events/find-an-event/26578-bbc-baltimore-md",
+        "tags": ["Health", "Belonging"],
+    },
+    {
+        "name": "LifeBridge Grace Medical Community Calendar",
+        "url": "https://www.lifebridgehealth.org/events/community-calendar",
+        "tags": ["Health", "Growth"],
+    },
+    {
+        "name": "Baltimore County Diabetes Support Group",
+        "url": "https://www.baltimorecountymd.gov/departments/aging/events/diabetes-support-group",
+        "tags": ["Health", "Belonging"],
+    },
+    {
+        "name": "Fibromyalgia Association Support and Education Group",
+        "url": "https://www.managefibromyalgia.org/supportgroup",
+        "tags": ["Health", "Belonging"],
+    },
+    {
         "name": "Meetup Fibromyalgia Support Groups",
         "url": "https://www.meetup.com/topics/fibromyalgia-support-groups/",
         "tags": ["Health", "Wellness", "Community"],
