@@ -754,6 +754,62 @@ sources = [
         "url": "https://www.meetup.com/wordpress-frederick/",
         "tags": ["Tech Community", "Software Development"],
     },
+    # Phase 5 Maryland and local government source expansion
+    {
+        "name": "Maryland Department of the Environment Events",
+        "url": "https://mde.maryland.gov/Pages/default.aspx",
+        "tags": ["MarylandGov", "Politics", "Environment", "Water", "Purpose"],
+    },
+    {
+        "name": "Maryland Department of Natural Resources Events",
+        "url": "https://dnr.maryland.gov/Pages/default.aspx",
+        "tags": ["MarylandGov", "Politics", "Environment", "Water", "Community"],
+    },
+    {
+        "name": "Maryland Department of Planning Events",
+        "url": "https://planning.maryland.gov/Pages/default.aspx",
+        "tags": ["MarylandGov", "Politics", "Economic Development", "Infrastructure", "Purpose"],
+    },
+    {
+        "name": "Maryland Department of Housing and Community Development Events",
+        "url": "https://dhcd.maryland.gov/Pages/default.aspx",
+        "tags": ["MarylandGov", "Politics", "Shelter", "Community", "Safety"],
+    },
+    {
+        "name": "Maryland Commission on Civil Rights Events",
+        "url": "https://mccr.maryland.gov/Pages/Events.aspx",
+        "tags": ["MarylandGov", "Politics", "Community Organizing", "Belonging", "Purpose"],
+    },
+    {
+        "name": "Baltimore City Council Legislative Calendar",
+        "url": "https://baltimore.legistar.com/Calendar.aspx",
+        "tags": ["MarylandGov", "Politics", "Community", "Purpose"],
+    },
+    {
+        "name": "Harford County Government Calendar",
+        "url": "https://www.harfordcountymd.gov/calendar.aspx",
+        "tags": ["MarylandGov", "Politics", "Community", "Education", "Purpose"],
+    },
+    {
+        "name": "Howard County Government Workforce Events Calendar",
+        "url": "https://www.howardcountymd.gov/workforce-development/events-calendar",
+        "tags": ["MarylandGov", "Community", "Education", "Belonging", "Growth"],
+    },
+    {
+        "name": "Prince George's Parks Events",
+        "url": "https://www.pgparks.com/events",
+        "tags": ["MarylandGov", "Politics", "Community", "Economic Development", "Purpose"],
+    },
+    {
+        "name": "Enoch Pratt Free Library Events",
+        "url": "https://www.prattlibrary.org/events",
+        "tags": ["MarylandGov", "Politics", "Community", "Infrastructure", "Purpose"],
+    },
+    {
+        "name": "Montgomery County Council Legislative Calendar",
+        "url": "https://montgomerycountymd.legistar.com/Calendar.aspx",
+        "tags": ["MarylandGov", "Politics", "Infrastructure", "Economic Development", "Purpose"],
+    },
     {
         "name": "Greater Baltimore Urban League",
         "url": "https://www.eventbrite.com/o/2103730749",

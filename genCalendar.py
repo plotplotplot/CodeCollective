@@ -13,6 +13,7 @@ import scrape_mtc
 import scrape_gdg
 import scrape_partiful
 import scrape_web_events
+import scrape_legistar
 import json
 import datetime
 import pytz
@@ -197,6 +198,12 @@ def infer_source_kind(source_url):
 
     if "gdg.community.dev" in host:
         return "gdg"
+
+    if "legistar.com" in host and ("calendar.aspx" in path.lower() or "view.ashx" in path.lower()):
+        return "legistar"
+
+    if host.endswith(".maryland.gov") and path.lower().startswith("/pages/"):
+        return "web_events_page"
 
     if host in {"baltimorecancersupportgroup.org", "www.baltimorecancersupportgroup.org"}:
         if parse_qs(parsed.query).get("page_id") == ["53"]:
@@ -456,6 +463,10 @@ def fetch_events_from_source(source, city):
         "web_events_page": (
             "Fetching events from",
             lambda: scrape_web_events.parse_web_events_page(source_url),
+        ),
+        "legistar": (
+            "Fetching events from",
+            lambda: scrape_legistar.scrape(source_url),
         ),
     }
 
