@@ -1,188 +1,5 @@
 [
     {
-        "name": "IP to Impact 2026",
-        "description": "",
-        "startDate": "2026-05-04T13:00:00+00:00",
-        "endTime": "2026-05-04T17:00:00.000Z",
-        "url": "https://luma.com/g2ppfvv3",
-        "status": "ACTIVE",
-        "location": {
-            "name": "",
-            "address": "",
-            "geocode_status": "skipped_low_quality"
-        },
-        "imageUrl": "/event_images/IP_to_Impact_2026.webp",
-        "orgImageUrl": "https://images.lumacdn.com/event-covers/yn/8ac36f47-3dc9-431e-8d34-d4200313f7f3.png",
-        "source": "https://luma.com/ucitysquare",
-        "tags": [
-            "Business",
-            "Startup",
-            "Professional Networking",
-            "Entrepreneurship",
-            "Esteem & Opportunity"
-        ],
-        "source_url": "https://luma.com/ucitysquare",
-        "source_group": "luma.com",
-        "org_name": "luma.com",
-        "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.524278"
-    },
-    {
-        "id": "314507484",
-        "name": "Lakebase for the Lakehouse & an AI-Ready Lakehouse for Precision Diagnostics",
-        "description": "# **About this event**\n\n\ud83c\udf89 Our kickoff event!\n**Agenda**\n\n* 5:00 \u2013 5:30 PM \u2014 Doors open, networking\n* 5:30 \u2013 5:40 PM \u2014 Welcome & kickoff: organizer introduction and a few words from our Title Sponsor, Lumenalta\n* 5:40 \u2013 6:25 PM \u2014 Talk 1: *Lakebase: Fully Managed Postgres for the Lakehouse* \u2014 Ayman El-Ghazali\n* 6:25 \u2013 6:40 PM \u2014 Break, food, and mingling\n* 6:40 \u2013 7:10 PM \u2014 Talk 2: *From Legacy Lab Sprawl to Algorithm* \u2014 Jim Havrilla\n* 7:10 \u2013 8:00 PM \u2014 Networking\n* 8:00 PM \u2014 Doors close\n\nFood and beverages will be catered.\n\n**RSVP** at https://usergroups.databricks.com/events/details/databricks-user-groups-phillybricks-philadelphia-databricks-user-group-presents-lakebase-for-the-lakehouse-amp-an-ai-ready-lakehouse-for-precision-diagnostics/\n\n**Talk 1 \u2014 Lakebase: Fully Managed Postgres for the Lakehouse**\n*Ayman El-Ghazali \u00b7 Senior Solutions Architect, Databricks*\nLakebase is a fully managed, Postgres-compatible OLTP database engine for Databricks that seamlessly supports reverse ETL patterns \u2014 syncing curated Lakehouse analytics directly into operational Postgres tables for instant use in applications, AI/BI dashboards, and feature stores.\nThis architecture lets developers build data-driven apps with millisecond latency and transactional reliability, while also activating ML-powered insights in real time \u2014 all without custom pipelines or complicated ETL development.\nIn this session, Ayman will walk through key capabilities, example use cases, and how Lakebase simplifies infrastructure while unlocking new possibilities for AI and analytics.\n**Talk 2 \u2014 From Legacy Lab Sprawl to Algorithm: Building an AI-Ready Lakehouse for Precision Diagnostics**\n*Jim Havrilla, PhD*\nA precision diagnostics lab \u2014 specializing in rapid pooled antibiotic susceptibility testing for complicated UTIs \u2014 inherited a decade of fragmented data: aging SQL instances, LIS/RCM CSVs, and R&D spreadsheets never meant for analytics.\nThis talk walks through:\n\n* The decision to build a Medallion-architecture lakehouse on Databricks with Unity Catalog\n* The Lakeflow Connect integration that unified Salesforce with lab data\n* The patent-pending ML model now predicting antibiotic susceptibility from PCR and demographic inputs ahead of phenotypic results\n\n**About this event**\nWelcome to the launch of **PhillyBricks** \u2014 the Greater Philadelphia area's first dedicated Databricks User Group, and a practitioner-led community for data engineers, architects, analytics and ML engineers, and platform leaders building on the Databricks Data Intelligence Platform.\nPhilly's tech scene is thriving, with deep benches in fintech, healthcare, life sciences, and enterprise technology \u2014 but there has been no dedicated space for Databricks practitioners to go deep on architecture, governance, and real-world implementation. PhillyBricks fills that gap.\nFor our inaugural meetup, we've lined up two talks that span the full arc of what's possible on Databricks today \u2014 from the newest platform capabilities straight from Databricks, to a real-world lakehouse modernization story from a Philadelphia-area precision diagnostics innovator. Come for the talks, stay for the food and conversation, and help us kick off what we hope will be a long-running home for the region's Databricks community.\nA huge thank you to our Founding **Title Sponsor, Lumenalta**, for backing this inaugural event, and to **Microsoft** for hosting us at their Malvern office.\n\n**RSVP** at https://usergroups.databricks.com/events/details/databricks-user-groups-phillybricks-philadelphia-databricks-user-group-presents-lakebase-for-the-lakehouse-amp-an-ai-ready-lakehouse-for-precision-diagnostics/\n\n**Important \u2014 please read before arriving**\n\n* RSVPs are first-come, first-served. Please cancel if your plans change so we can release your seat to someone on the waitlist.\n* **All guests must be on the attendee list for entry.**\n* Please bring a **government-issued photo ID** \u2014 you'll receive a pre-printed badge upon arrival.\n* **Security passes must be returned upon exit.**\n\n**Organized by** Dilorom Abdullah \u2014 Databricks MVP \\| Databricks Practice Director\\, Lumenalta",
-        "startDate": "2026-05-04T21:00:00+00:00",
-        "endTime": "2026-05-04T20:00:00-04:00",
-        "url": "https://www.meetup.com/phillybricks-philadelphia-databricks-user-group/events/314507484/",
-        "status": "ACTIVE",
-        "source": "https://www.meetup.com/phillybricks-philadelphia-databricks-user-group",
-        "location": {
-            "name": "Microsoft Corporation",
-            "address": "45 Liberty Boulevard",
-            "city": "Malvern",
-            "state": "PA",
-            "country": "US",
-            "geocode_status": "failed_no_result",
-            "geocode_query": "45 Liberty Boulevard, philadelphia"
-        },
-        "orgImageUrl": null,
-        "imageUrl": "/event_images/Lakebase_for_the_Lakehouse_an_AI_Ready_Lakehouse_for_Precision_Diagnostics.webp",
-        "tags": [
-            "Tech Skills",
-            "Data Science",
-            "Growth & Creativity"
-        ],
-        "source_url": "https://www.meetup.com/phillybricks-philadelphia-databricks-user-group",
-        "source_group": "meetup.com",
-        "org_name": "meetup.com",
-        "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.405153"
-    },
-    {
-        "name": "Tech & Tonic (Without the Tech)",
-        "description": "Tech & Tonic (Without the Tech)",
-        "startDate": "2026-05-04T22:00:00+00:00",
-        "endTime": "2026-05-04T21:00:00.000-04:00",
-        "url": "https://luma.com/jyz65j6o",
-        "status": "ACTIVE",
-        "location": {
-            "name": "1099 Germantown Ave",
-            "address": "1099 Germantown Ave, Philadelphia, Pennsylvania",
-            "latitude": 39.96792,
-            "longitude": -75.139699,
-            "geocode_status": "provided",
-            "geocode_query": "1099 Germantown Ave, Philadelphia, Pennsylvania"
-        },
-        "imageUrl": "/event_images/Tech_Tonic_Without_the_Tech.webp",
-        "orgImageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,anim=false,background=white,quality=75,width=500,height=500/event-covers/za/a4bb9230-daa1-47c3-a411-b64d624475eb.png",
-        "source": "https://luma.com/globaltechtritionistalliance",
-        "tags": [
-            "Tech Community",
-            "Wellness",
-            "Belonging & Culture",
-            "Survival & Health"
-        ],
-        "source_url": "https://luma.com/globaltechtritionistalliance",
-        "source_group": "luma.com",
-        "org_name": "luma.com",
-        "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.429761"
-    },
-    {
-        "name": "\ud83c\udf05 Sunset Slow Flow \ud83e\uddd8\ud83c\udffd\u200d\u2640\ufe0f",
-        "description": "\ud83c\udf05 Sunset Slow Flow \ud83e\uddd8\ud83c\udffd\u200d\u2640\ufe0f",
-        "startDate": "2026-05-04T22:00:00+00:00",
-        "endTime": "2026-05-04T19:15:00.000-04:00",
-        "url": "https://luma.com/k46okw60",
-        "status": "ACTIVE",
-        "location": {
-            "name": "Philadelphia, Pennsylvania",
-            "address": "Register to See Address",
-            "latitude": 39.9527237,
-            "longitude": -75.1635262,
-            "geocode_status": "provided",
-            "geocode_query": "Register to See Address, philadelphia"
-        },
-        "imageUrl": "/event_images/Sunset_Slow_Flow.webp",
-        "orgImageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,anim=false,background=white,quality=75,width=500,height=500/event-covers/o9/3c2b4d8a-4489-4ce6-bd0b-c8548d2b7ccc.png",
-        "source": "https://luma.com/hikeandheal",
-        "tags": [
-            "Wellness",
-            "Community",
-            "Survival & Health",
-            "Belonging & Culture"
-        ],
-        "source_url": "https://luma.com/hikeandheal",
-        "source_group": "luma.com",
-        "org_name": "luma.com",
-        "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.507531"
-    },
-    {
-        "id": "314506108",
-        "name": " Fixing Token Launches Fixes Crypto w/ Nate from Token Dynamics",
-        "description": "**Speaker:** Nate \\| eatsleepcrypto\\, Token Dynamics & Punk\\.fun\n\u200b**Talk:** Putting the fun in fundamentals: How fair token launches fix crypto\n\n\u200bJoin Decentralized Philly for a practical session on token design with Nate of [Token Dynamics](https://tokendynamics.xyz/) and [Punk.fun](https://punk.fun). Nate is the founder of Token Dynamics, a crypto OG, and token economist, writing about censorship-resistant protocol design, tokenomics, and economic security since 2017.\n\n\u200bThis talk will focus on why fair launches matter if we want crypto systems to be durable, usable, and worth participating in. Expect a grounded conversation for builders, founders, and anyone trying to understand what separates short-term hype from sustainable crypto coordination.\n\u200b\n**What you'll learn:**\n\n* Why fair token launches matter for long-term ecosystem health.\n* How token distribution shapes market structure and creates crypto's exaggerated bull and bear market cycles.\n* What kinds of projects will succeed in the next bull market, and what to dxpect.\n\n\u200b**Who should attend:**\n\n* \u200bFounders and builders working on web3 products or token-enabled networks.\n* \u200bInvestors, analysts, and community members who want a clearer tokenomics lens.\n* \u200bAnyone curious about launch design, protocol incentives, and sustainable crypto growth.",
-        "startDate": "2026-05-04T22:30:00+00:00",
-        "endTime": "2026-05-04T20:30:00-04:00",
-        "url": "https://www.meetup.com/decentralized-philly/events/314506108/",
-        "status": "ACTIVE",
-        "source": "https://www.meetup.com/decentralized-philly/",
-        "location": {
-            "name": "Blockspace Philly",
-            "address": "215 South Broad Street",
-            "city": "Philadelphia",
-            "state": "PA",
-            "country": "us",
-            "latitude": 36.7277134,
-            "longitude": -76.5940757,
-            "geocode_status": "provided",
-            "geocode_query": "215 South Broad Street, Philadelphia"
-        },
-        "orgImageUrl": null,
-        "imageUrl": "/event_images/Fixing_Token_Launches_Fixes_Crypto_w_Nate_from_Token_Dynamics.webp",
-        "tags": [
-            "Finance",
-            "Crypto & Web3",
-            "Tech Community",
-            "Safety & Stability",
-            "Belonging & Culture"
-        ],
-        "source_url": "https://www.meetup.com/decentralized-philly/",
-        "source_group": "meetup.com",
-        "org_name": "meetup.com",
-        "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.423075"
-    },
-    {
-        "name": "charm club: pill organizers",
-        "description": "",
-        "startDate": "2026-05-04T23:00:00+00:00",
-        "endTime": "2026-05-05T01:00:00.000Z",
-        "url": "https://luma.com/il7tp4pw",
-        "status": "ACTIVE",
-        "location": {
-            "name": "915 Spring Garden St",
-            "address": "915 Spring Garden St, Philadelphia, PA 19123, USA",
-            "latitude": 39.9621393,
-            "longitude": -75.1533935,
-            "geocode_status": "provided",
-            "geocode_query": "915 Spring Garden St, Philadelphia, PA 19123, USA"
-        },
-        "imageUrl": "/event_images/charm_club_pill_organizers.webp",
-        "orgImageUrl": "https://images.lumacdn.com/event-covers/e6/bfb90cb6-6b4a-412f-a1a9-c3d227e24ace.jpg",
-        "source": "https://luma.com/letmeknowclub",
-        "tags": [
-            "Culture",
-            "Community",
-            "Belonging & Culture"
-        ],
-        "source_url": "https://luma.com/letmeknowclub",
-        "source_group": "luma.com",
-        "org_name": "luma.com",
-        "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.569416"
-    },
-    {
         "id": "ceb51f3bd0a5a3d2",
         "name": "Women Invested - Philly Tech Week",
         "startDate": "2026-05-05T14:00:00+00:00",
@@ -203,7 +20,7 @@
         },
         "imageUrl": "/event_images/Women_Invested_Philly_Tech_Week.webp",
         "recurring": false,
-        "scrapeTime": "2026-05-04 00:52:19.292875",
+        "scrapeTime": "2026-05-05 00:48:24.217702",
         "tags": [
             "Tech Community",
             "Professional Networking",
@@ -245,7 +62,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.575865"
+        "scrapeTime": "2026-05-05 00:48:46.153763"
     },
     {
         "name": "Philly Biotech Connect: beyond Capital",
@@ -274,7 +91,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.529558"
+        "scrapeTime": "2026-05-05 00:48:46.097478"
     },
     {
         "name": "PhilaCon Valley: Ship It! Agency Launch + Open Source Exhibition",
@@ -306,7 +123,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.424986"
+        "scrapeTime": "2026-05-05 00:48:45.981741"
     },
     {
         "name": "Break Point LIVE! A Cinco de Mayo Developer Edition Presented by Sentry | Previously Known As: CTRL + ALT PHILLY",
@@ -336,7 +153,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.439999"
+        "scrapeTime": "2026-05-05 00:48:45.993988"
     },
     {
         "id": "314305919",
@@ -368,7 +185,37 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.415568"
+        "scrapeTime": "2026-05-05 00:48:45.972842"
+    },
+    {
+        "id": "314629207",
+        "name": "(CS)\u00b2AI Online\u2122 Replay: Demystifying Patching in OT Cybersecurity",
+        "description": "This is an airing of an event held live in February2025 on the often confusing challenges of patching in ICS/OT environments.\nRegister now: [https://events.zoom.us/ev/Aovc9dKAz82IX3AwHcdR-FwFgCfLk5FtiO5J7A3YZViGvd_gzzD3~AsnDnSKakLGK9vutxmN6w8sTs2yg9gvzYvK3cWq0kKxLD_ybfZ05UMlDBmqCR9-po9HfB-j6ExhGwIh8JEg8aHrWUw](https://events.zoom.us/ev/Aovc9dKAz82IX3AwHcdR-FwFgCfLk5FtiO5J7A3YZViGvd_gzzD3~AsnDnSKakLGK9vutxmN6w8sTs2yg9gvzYvK3cWq0kKxLD_ybfZ05UMlDBmqCR9-po9HfB-j6ExhGwIh8JEg8aHrWUw)\n\n\u26a1 **Rolling Power: Cybersecurity of Electric Vehicles & Automation** \u26a1\nAs electric vehicles (EVs) and automation rapidly reshape the future of transportation and energy, cybersecurity has become a critical pillar of resilience and trust. From charging infrastructure and connected fleets to autonomous driving systems and smart grids, each innovation brings both opportunity and new attack surfaces.\nJoin industry leaders, security experts, and innovators as we explore the evolving threat landscape and solutions for safeguarding EVs, their digital ecosystems, and the infrastructure that powers them.\n\ud83d\udd11 **Key Topics Include:**\n\n* Securing EV charging networks and supply chains\n* Protecting autonomous and connected vehicle systems\n* Cyber-physical risks across smart mobility and energy integration\n* Building resilience in transportation infrastructure\n* Emerging standards, policies, and global collaboration efforts\n\nWhether you\u2019re in automotive, energy, cybersecurity, or policy, this event is your gateway to understanding the challenges and opportunities driving the next era of mobility security.\n\nClick to register now:\n[https://events.zoom.us/ev/Aovc9dKAz82IX3AwHcdR-FwFgCfLk5FtiO5J7A3YZViGvd_gzzD3~AsnDnSKakLGK9vutxmN6w8sTs2yg9gvzYvK3cWq0kKxLD_ybfZ05UMlDBmqCR9-po9HfB-j6ExhGwIh8JEg8aHrWUw](https://events.zoom.us/ev/Aovc9dKAz82IX3AwHcdR-FwFgCfLk5FtiO5J7A3YZViGvd_gzzD3~AsnDnSKakLGK9vutxmN6w8sTs2yg9gvzYvK3cWq0kKxLD_ybfZ05UMlDBmqCR9-po9HfB-j6ExhGwIh8JEg8aHrWUw)\n\n\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\n***Becoming a paid member is quick and easy (and helps us keep offering these free educational opportunities!). Please join now!*** [[[https://www.cs2ai.org/plans-pricing](https://www.cs2ai.org/plans-pricing)]\n\nAll past seminars and symposiums are available to paid [CS2AI.ORG](https://www.cs2ai.org) members. Check out the Resources area of our website in the Members Portal [[[https://www.cs2ai.org/](https://www.cs2ai.org/)]\n\nCertificates for Professional Development/Continuing Education Units \\(PDUs/CEUs\\) are available for all registered individuals who attend at least one hour of the event\\.\\[\\[https://www\\.cs2ai\\.org/get\\-involved\\]\\(\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\- Becoming a paid member is quick and easy \\(and helps us keep offering these educational opportunities\\!\\)\\. Please join now\\! \\[[https://www.cs2ai.org/plans-pricing](https://www.cs2ai.org/plans-pricing)](https://www.cs2ai.org/plans-pricing%5D(https://www.cs2ai.org/plans-pricing)) All past seminars and symposiums are available to paid CS2AI.ORG members. Check out the Resources area of our website in the Members Portal [[https://www.cs2ai.org/](https://www.cs2ai.org/)](https://www.cs2ai.org/%5D(https://www.cs2ai.org/)) Certificates for Professional Development/Continuing Education Units (PDUs/CEUs) are available for all registered individuals who attend at least one hour of the event.[https://www.cs2ai.org/get-involved](https://www.cs2ai.org/get-involved)](https://www.cs2ai.org/get-involved%5D(https://www.cs2ai.org/get-involved)) \\*Please note that (CS)\u00b2AI Online\u2122 events are provided free of charge as educational career development content through the support of our paid members and the generous contributions of our corporate Strategic Alliance Partners. Contact information used in registering for our directly supported seminars may be shared with sponsors funding those specific events. Unless noted on our Zoom Event registration page, all events are open for direct funding support.)]\n\n\\*Please note that (CS)\u00b2AI Online\u2122 events are provided free of charge as educational career development content through the support of our paid members and the generous contributions of our corporate Strategic Alliance Partners. Contact information used in registering for our directly supported seminars may be shared with sponsors funding those specific events. Unless noted on our Zoom Event registration page, all events are open for direct funding support.",
+        "startDate": "2026-05-06T17:00:00+00:00",
+        "endTime": "2026-05-06T14:30:00-04:00",
+        "url": "https://www.meetup.com/philadelphia-cyber-security-for-control-systems/events/314629207/",
+        "status": "ACTIVE",
+        "source": "https://www.meetup.com/Philadelphia-Cyber-Security-for-Control-Systems",
+        "location": {
+            "name": "Online event",
+            "address": "",
+            "city": "",
+            "state": "",
+            "country": "",
+            "geocode_status": "skipped_low_quality"
+        },
+        "orgImageUrl": null,
+        "imageUrl": "/event_images/CS_2AI_OnlineTM_Replay_Demystifying_Patching_in_OT_Cybersecurity.webp",
+        "tags": [
+            "Tech Skills",
+            "Cybersecurity",
+            "Growth & Creativity"
+        ],
+        "source_url": "https://www.meetup.com/Philadelphia-Cyber-Security-for-Control-Systems",
+        "source_group": "meetup.com",
+        "org_name": "meetup.com",
+        "orgName": "meetup.com",
+        "scrapeTime": "2026-05-05 00:48:45.960281"
     },
     {
         "id": "314564584",
@@ -403,7 +250,7 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.417714"
+        "scrapeTime": "2026-05-05 00:48:45.975402"
     },
     {
         "name": "Building with Bots - Agent Monitoring in Sentry",
@@ -432,7 +279,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.444779"
+        "scrapeTime": "2026-05-05 00:48:45.998020"
     },
     {
         "name": "1PHL Startup Summit",
@@ -462,7 +309,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.459476"
+        "scrapeTime": "2026-05-05 00:48:46.023347"
     },
     {
         "name": "DataPhilly Presents: Philly Sports Analytics Summit - Philly Tech Week 2026",
@@ -494,7 +341,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.464014"
+        "scrapeTime": "2026-05-05 00:48:46.028721"
     },
     {
         "name": "The Ground Floor: PTW Rooftop",
@@ -525,7 +372,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.692312"
+        "scrapeTime": "2026-05-05 00:48:46.288658"
     },
     {
         "name": "Technical.ly Builders Conference 2026",
@@ -580,7 +427,7 @@
             ]
         },
         "city": "philadelphia",
-        "scrapeTime": "2026-05-04 00:52:41.903733"
+        "scrapeTime": "2026-05-05 00:48:46.538721"
     },
     {
         "name": "collage club: collective visioning with forbidden fruit",
@@ -607,7 +454,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.584261"
+        "scrapeTime": "2026-05-05 00:48:46.162114"
     },
     {
         "name": "1PHL Playground",
@@ -637,7 +484,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.469850"
+        "scrapeTime": "2026-05-05 00:48:46.035126"
     },
     {
         "id": "314323832",
@@ -668,7 +515,7 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.409360"
+        "scrapeTime": "2026-05-05 00:48:45.965344"
     },
     {
         "id": "314152743",
@@ -703,7 +550,7 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.408412"
+        "scrapeTime": "2026-05-05 00:48:45.964033"
     },
     {
         "id": "314163608",
@@ -737,7 +584,7 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.413778"
+        "scrapeTime": "2026-05-05 00:48:45.970592"
     },
     {
         "id": "314320001",
@@ -769,7 +616,7 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.404943"
+        "scrapeTime": "2026-05-05 00:48:45.960070"
     },
     {
         "name": "Think Out loud Happy Hour: AI Agent Showcase",
@@ -799,7 +646,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.475044"
+        "scrapeTime": "2026-05-05 00:48:46.041014"
     },
     {
         "name": "Diversitech Connect: Philly Tech Week Edition",
@@ -829,7 +676,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.480006"
+        "scrapeTime": "2026-05-05 00:48:46.046839"
     },
     {
         "name": "Philly Game Mechanics May 2026 Playtest Night",
@@ -858,7 +705,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.485351"
+        "scrapeTime": "2026-05-05 00:48:46.053070"
     },
     {
         "name": "BLK HAUS (All Black Attire Event)",
@@ -888,7 +735,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.491061"
+        "scrapeTime": "2026-05-05 00:48:46.059719"
     },
     {
         "name": "Reset Lab: A guided mind & body reset",
@@ -917,7 +764,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.536698"
+        "scrapeTime": "2026-05-05 00:48:46.104529"
     },
     {
         "name": "PTW2026 Closing Party",
@@ -947,7 +794,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.495634"
+        "scrapeTime": "2026-05-05 00:48:46.064969"
     },
     {
         "name": "Sketch Club: Still Life Flowers",
@@ -974,7 +821,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.794530"
+        "scrapeTime": "2026-05-05 00:48:46.409195"
     },
     {
         "id": "312970857",
@@ -1009,7 +856,7 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.420028"
+        "scrapeTime": "2026-05-05 00:48:45.978231"
     },
     {
         "name": "charm club: pendant workshop with shaina selvaraju",
@@ -1038,7 +885,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.593185"
+        "scrapeTime": "2026-05-05 00:48:46.172404"
     },
     {
         "id": "314373509",
@@ -1070,7 +917,7 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.421416"
+        "scrapeTime": "2026-05-05 00:48:45.979842"
     },
     {
         "name": "slow-fashion mending & swap: straight-size with lisa ha",
@@ -1099,7 +946,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.599070"
+        "scrapeTime": "2026-05-05 00:48:46.179229"
     },
     {
         "name": "H+H x HOKA | Hot Hunny Walk Series \ud83d\udd25\ud83c\udf6f\ud83d\udc5f",
@@ -1129,7 +976,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.512355"
+        "scrapeTime": "2026-05-05 00:48:46.078929"
     },
     {
         "id": "314427392",
@@ -1161,7 +1008,7 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.410612"
+        "scrapeTime": "2026-05-05 00:48:45.967009"
     },
     {
         "name": "craft for juntos!",
@@ -1190,7 +1037,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.604645"
+        "scrapeTime": "2026-05-05 00:48:46.185827"
     },
     {
         "name": "craft club: fairy doors",
@@ -1219,7 +1066,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.610330"
+        "scrapeTime": "2026-05-05 00:48:46.192191"
     },
     {
         "name": "The Penn State Bio-Inspired Innovation Exchange: From Nature to Market",
@@ -1251,7 +1098,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.500502"
+        "scrapeTime": "2026-05-05 00:48:46.070458"
     },
     {
         "name": "Intro to Sentry Live Demo",
@@ -1280,7 +1127,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.449098"
+        "scrapeTime": "2026-05-05 00:48:46.002729"
     },
     {
         "name": "felt cat hats @ get a gato",
@@ -1307,7 +1154,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.616440"
+        "scrapeTime": "2026-05-05 00:48:46.199201"
     },
     {
         "name": "Margs on the Move",
@@ -1336,7 +1183,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.786508"
+        "scrapeTime": "2026-05-05 00:48:46.399770"
     },
     {
         "name": "LA21 Food Truck Fest",
@@ -1365,7 +1212,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.542623"
+        "scrapeTime": "2026-05-05 00:48:46.111217"
     },
     {
         "name": "charm club: bag charms with yuuka univerise",
@@ -1394,7 +1241,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.622267"
+        "scrapeTime": "2026-05-05 00:48:46.205993"
     },
     {
         "name": "Painting in the Park",
@@ -1423,7 +1270,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.804134"
+        "scrapeTime": "2026-05-05 00:48:46.420301"
     },
     {
         "name": "sun print workshop with lauren fiasconaro",
@@ -1452,7 +1299,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.628043"
+        "scrapeTime": "2026-05-05 00:48:46.212856"
     },
     {
         "name": "\u9876\u597d\u5f00\u653e\u9ea6",
@@ -1479,7 +1326,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.428007"
+        "scrapeTime": "2026-05-05 00:48:45.984507"
     },
     {
         "name": "BeWellPhilly Fest",
@@ -1509,7 +1356,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.516229"
+        "scrapeTime": "2026-05-05 00:48:46.083399"
     },
     {
         "name": "No-Phones Monthly Hiking in Philadelphia",
@@ -1539,7 +1386,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.812565"
+        "scrapeTime": "2026-05-05 00:48:46.430157"
     },
     {
         "name": "craft club: vegan taxidermy",
@@ -1568,7 +1415,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.634130"
+        "scrapeTime": "2026-05-05 00:48:46.219968"
     },
     {
         "name": "Pint of Science",
@@ -1597,7 +1444,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.547022"
+        "scrapeTime": "2026-05-05 00:48:46.116295"
     },
     {
         "name": "charm club: heated rivalry shrinky dinks",
@@ -1626,7 +1473,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.640548"
+        "scrapeTime": "2026-05-05 00:48:46.227556"
     },
     {
         "name": "Debugging Next.js best practices: Logs and Tracing",
@@ -1655,7 +1502,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.451426"
+        "scrapeTime": "2026-05-05 00:48:46.005237"
     },
     {
         "name": "Monthly Innovation Exchange: Connected Communities",
@@ -1686,7 +1533,36 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.551222"
+        "scrapeTime": "2026-05-05 00:48:46.121178"
+    },
+    {
+        "name": "Stay Flossy: Embroidery Workshop",
+        "description": "",
+        "startDate": "2026-05-21T21:00:00+00:00",
+        "endTime": "2026-05-21T22:00:00.000Z",
+        "url": "https://luma.com/1kon3hga",
+        "status": "ACTIVE",
+        "location": {
+            "name": "3675 Market St 2nd floor",
+            "address": "3675 Market St 2nd floor, Philadelphia, PA 19104, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "3675 Market St 2nd floor, Philadelphia, PA 19104, USA"
+        },
+        "imageUrl": "/event_images/Stay_Flossy_Embroidery_Workshop.webp",
+        "orgImageUrl": "https://images.unsplash.com/photo-1651177571506-6d38447d987b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwyNnx8ZW1icm9pZGVyeXxlbnwwfHx8fDE3NzQwMzEwNDV8Mg&ixlib=rb-4.1.0&q=80&w=1080",
+        "source": "https://luma.com/ucitysquare",
+        "tags": [
+            "Business",
+            "Startup",
+            "Professional Networking",
+            "Entrepreneurship",
+            "Esteem & Opportunity"
+        ],
+        "source_url": "https://luma.com/ucitysquare",
+        "source_group": "luma.com",
+        "org_name": "luma.com",
+        "orgName": "luma.com",
+        "scrapeTime": "2026-05-05 00:48:46.126431"
     },
     {
         "name": "platonic love club: friend dating (21-29)",
@@ -1713,7 +1589,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.646755"
+        "scrapeTime": "2026-05-05 00:48:46.234984"
     },
     {
         "name": "platonic love club: friend dating (30+)",
@@ -1740,7 +1616,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.652993"
+        "scrapeTime": "2026-05-05 00:48:46.242505"
     },
     {
         "id": "8cd253da69aeb9f7",
@@ -1762,7 +1638,7 @@
         },
         "imageUrl": "/event_images/Black_Lesbian_Listening_Room.webp",
         "recurring": false,
-        "scrapeTime": "2026-05-04 00:52:19.254820",
+        "scrapeTime": "2026-05-05 00:48:24.089158",
         "tags": [
             "Culture",
             "Community",
@@ -1799,7 +1675,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.659288"
+        "scrapeTime": "2026-05-05 00:48:46.250057"
     },
     {
         "name": "Gear Up for Tech Week 2026",
@@ -1829,7 +1705,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.453835"
+        "scrapeTime": "2026-05-05 00:48:46.007845"
     },
     {
         "name": "Movement that Matters \ud83d\udc5f",
@@ -1859,7 +1735,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.520134"
+        "scrapeTime": "2026-05-05 00:48:46.087835"
     },
     {
         "name": "craft club: felt crowns",
@@ -1888,7 +1764,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.665472"
+        "scrapeTime": "2026-05-05 00:48:46.257296"
     },
     {
         "id": "314541362",
@@ -1923,7 +1799,7 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.407309"
+        "scrapeTime": "2026-05-05 00:48:45.962900"
     },
     {
         "id": "314388428",
@@ -1945,7 +1821,7 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.406028"
+        "scrapeTime": "2026-05-05 00:48:45.961509"
     },
     {
         "id": "313509006",
@@ -1976,7 +1852,7 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.405377"
+        "scrapeTime": "2026-05-05 00:48:45.960793"
     },
     {
         "name": "Intro to Sentry Live Demo",
@@ -2005,7 +1881,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.456536"
+        "scrapeTime": "2026-05-05 00:48:46.010757"
     },
     {
         "name": "Coded by: Spring 2026 Innovator Celebration",
@@ -2035,7 +1911,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.504096"
+        "scrapeTime": "2026-05-05 00:48:46.074816"
     },
     {
         "name": "junk journal club",
@@ -2064,7 +1940,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.672119"
+        "scrapeTime": "2026-05-05 00:48:46.265026"
     },
     {
         "name": "matcha cafe: platonic love club with lamcha",
@@ -2091,7 +1967,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.678540"
+        "scrapeTime": "2026-05-05 00:48:46.272513"
     },
     {
         "id": "1daa15d5c8d2e42b",
@@ -2114,7 +1990,7 @@
         },
         "imageUrl": "/event_images/Mama_Africa_Listening_Hour.webp",
         "recurring": false,
-        "scrapeTime": "2026-05-04 00:52:19.254851",
+        "scrapeTime": "2026-05-05 00:48:24.089189",
         "tags": [
             "Culture",
             "Community",
@@ -2151,7 +2027,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.685364"
+        "scrapeTime": "2026-05-05 00:48:46.280287"
     },
     {
         "name": "Open House: Free Barber & Cosmetology Classes",
@@ -2184,7 +2060,67 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.564596"
+        "scrapeTime": "2026-05-05 00:48:46.147846"
+    },
+    {
+        "name": "\ud83c\udf05 Sunset Slow Flow \ud83e\uddd8\ud83c\udffd\u200d\u2640\ufe0f",
+        "description": "\ud83c\udf05 Sunset Slow Flow \ud83e\uddd8\ud83c\udffd\u200d\u2640\ufe0f",
+        "startDate": "2026-06-01T22:30:00+00:00",
+        "endTime": "2026-06-01T19:45:00.000-04:00",
+        "url": "https://luma.com/rrsj4wn9",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Philadelphia, PA",
+            "address": "Register to See Address",
+            "latitude": 39.9527237,
+            "longitude": -75.1635262,
+            "geocode_status": "provided",
+            "geocode_query": "Register to See Address, philadelphia"
+        },
+        "imageUrl": "/event_images/Sunset_Slow_Flow.webp",
+        "orgImageUrl": "https://images.lumacdn.com/cdn-cgi/image/format=auto,fit=cover,dpr=2,anim=false,background=white,quality=75,width=500,height=500/event-covers/o9/3c2b4d8a-4489-4ce6-bd0b-c8548d2b7ccc.png",
+        "source": "https://luma.com/hikeandheal",
+        "tags": [
+            "Wellness",
+            "Community",
+            "Survival & Health",
+            "Belonging & Culture"
+        ],
+        "source_url": "https://luma.com/hikeandheal",
+        "source_group": "luma.com",
+        "org_name": "luma.com",
+        "orgName": "luma.com",
+        "scrapeTime": "2026-05-05 00:48:46.092650"
+    },
+    {
+        "name": "Break Point LIVE! Developer Meetup Presented by Sentry | Previously Known As: CTRL + ALT PHILLY",
+        "description": "",
+        "startDate": "2026-06-02T22:00:00+00:00",
+        "endTime": "2026-06-03T00:30:00.000Z",
+        "url": "https://luma.com/d1e8lz4d",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Indy Hall Clubhouse at 709 N 2nd St",
+            "address": "Indy Hall Clubhouse at 709 N 2nd St, 709 N 2nd St 3rd Floor, Philadelphia, PA 19123, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "Indy Hall Clubhouse at 709 N 2nd St, 709 N 2nd St 3rd Floor, Philadelphia, PA 19123, USA"
+        },
+        "imageUrl": "/event_images/Break_Point_LIVE_Developer_Meetup_Presented_by_Sentry_Previously_Known_As_CTRL_A.webp",
+        "orgImageUrl": "https://images.lumacdn.com/event-covers/af/ef905a66-773c-4b60-b4c9-d445d2f02fc6.png",
+        "source": "https://luma.com/getsentry",
+        "tags": [
+            "Tech Skills",
+            "Software Development",
+            "DevOps",
+            "Tech Community",
+            "Growth & Creativity",
+            "Belonging & Culture"
+        ],
+        "source_url": "https://luma.com/getsentry",
+        "source_group": "luma.com",
+        "org_name": "luma.com",
+        "orgName": "luma.com",
+        "scrapeTime": "2026-05-05 00:48:46.013912"
     },
     {
         "name": "The Ground Floor",
@@ -2213,7 +2149,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.702381"
+        "scrapeTime": "2026-05-05 00:48:46.300244"
     },
     {
         "id": "314558760",
@@ -2246,7 +2182,7 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.404952"
+        "scrapeTime": "2026-05-05 00:48:45.960080"
     },
     {
         "id": "swqvtryjcjbfb",
@@ -2277,7 +2213,7 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.411487"
+        "scrapeTime": "2026-05-05 00:48:45.968039"
     },
     {
         "name": "No-Phones & Singles' Hike (25-35 years old)",
@@ -2307,7 +2243,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.821339"
+        "scrapeTime": "2026-05-05 00:48:46.440371"
     },
     {
         "id": "84c187959f0524a8",
@@ -2330,7 +2266,7 @@
         },
         "imageUrl": "/event_images/Soul_Fly_Club_Fundrasier.webp",
         "recurring": false,
-        "scrapeTime": "2026-05-04 00:52:19.254860",
+        "scrapeTime": "2026-05-05 00:48:24.089198",
         "tags": [
             "Culture",
             "Community",
@@ -2363,7 +2299,7 @@
         },
         "imageUrl": "/event_images/Black_Art_Book_Swap.webp",
         "recurring": false,
-        "scrapeTime": "2026-05-04 00:52:19.254867",
+        "scrapeTime": "2026-05-05 00:48:24.089206",
         "tags": [
             "Culture",
             "Community",
@@ -2400,7 +2336,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.829344"
+        "scrapeTime": "2026-05-05 00:48:46.449844"
     },
     {
         "id": "dqpnnsyjcjbmb",
@@ -2432,7 +2368,7 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.412751"
+        "scrapeTime": "2026-05-05 00:48:45.969391"
     },
     {
         "id": "6ab29cbd17bb5163",
@@ -2455,7 +2391,7 @@
         },
         "imageUrl": "/event_images/Fela_Kuti_Listening_Hour.webp",
         "recurring": false,
-        "scrapeTime": "2026-05-04 00:52:19.254874",
+        "scrapeTime": "2026-05-05 00:48:24.089213",
         "tags": [
             "Culture",
             "Community",
@@ -2492,7 +2428,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.837656"
+        "scrapeTime": "2026-05-05 00:48:46.459464"
     },
     {
         "id": "fb44b64b2c6d35b4",
@@ -2515,7 +2451,7 @@
         },
         "imageUrl": "/event_images/Black_Lesbian_Listening_Room.webp",
         "recurring": false,
-        "scrapeTime": "2026-05-04 00:52:19.254880",
+        "scrapeTime": "2026-05-05 00:48:24.089220",
         "tags": [
             "Culture",
             "Community",
@@ -2555,7 +2491,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.845769"
+        "scrapeTime": "2026-05-05 00:48:46.468944"
     },
     {
         "id": "313867095",
@@ -2577,7 +2513,7 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.406762"
+        "scrapeTime": "2026-05-05 00:48:45.962249"
     },
     {
         "name": "Reset Lab: A guided mind & body reset",
@@ -2606,7 +2542,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.555788"
+        "scrapeTime": "2026-05-05 00:48:46.131941"
     },
     {
         "id": "146bc903a40847cb",
@@ -2629,7 +2565,7 @@
         },
         "imageUrl": "/event_images/Black_Lesbian_Listening_Room.webp",
         "recurring": false,
-        "scrapeTime": "2026-05-04 00:52:19.254887",
+        "scrapeTime": "2026-05-05 00:48:24.089227",
         "tags": [
             "Culture",
             "Community",
@@ -2662,7 +2598,7 @@
         },
         "imageUrl": "/event_images/Park_Craft.webp",
         "recurring": false,
-        "scrapeTime": "2026-05-04 00:52:19.254894",
+        "scrapeTime": "2026-05-05 00:48:24.089235",
         "tags": [
             "Culture",
             "Community",
@@ -2702,7 +2638,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.432291"
+        "scrapeTime": "2026-05-05 00:48:45.986422"
     },
     {
         "id": "313509011",
@@ -2733,7 +2669,7 @@
         "source_group": "meetup.com",
         "org_name": "meetup.com",
         "orgName": "meetup.com",
-        "scrapeTime": "2026-05-04 00:52:41.405674"
+        "scrapeTime": "2026-05-05 00:48:45.961106"
     },
     {
         "id": "d328b5a1ffaa41f1",
@@ -2756,7 +2692,7 @@
         },
         "imageUrl": "/event_images/Open_Studio.webp",
         "recurring": false,
-        "scrapeTime": "2026-05-04 00:52:19.254901",
+        "scrapeTime": "2026-05-05 00:48:24.089241",
         "tags": [
             "Culture",
             "Community",
@@ -2795,7 +2731,37 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.709193"
+        "scrapeTime": "2026-05-05 00:48:46.308335"
+    },
+    {
+        "name": "Break Point LIVE! Developer Meetup by Sentry",
+        "description": "",
+        "startDate": "2026-07-07T22:00:00+00:00",
+        "endTime": "2026-07-08T00:30:00.000Z",
+        "url": "https://luma.com/q7gs3hsj",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Indy Hall Clubhouse at 709 N 2nd St",
+            "address": "Indy Hall Clubhouse at 709 N 2nd St, 709 N 2nd St 3rd Floor, Philadelphia, PA 19123, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "Indy Hall Clubhouse at 709 N 2nd St, 709 N 2nd St 3rd Floor, Philadelphia, PA 19123, USA"
+        },
+        "imageUrl": "/event_images/Break_Point_LIVE_Developer_Meetup_by_Sentry.webp",
+        "orgImageUrl": "https://images.lumacdn.com/event-covers/af/ef905a66-773c-4b60-b4c9-d445d2f02fc6.png",
+        "source": "https://luma.com/getsentry",
+        "tags": [
+            "Tech Skills",
+            "Software Development",
+            "DevOps",
+            "Tech Community",
+            "Growth & Creativity",
+            "Belonging & Culture"
+        ],
+        "source_url": "https://luma.com/getsentry",
+        "source_group": "luma.com",
+        "org_name": "luma.com",
+        "orgName": "luma.com",
+        "scrapeTime": "2026-05-05 00:48:46.017311"
     },
     {
         "name": "Reset Lab: A guided mind & body reset",
@@ -2824,7 +2790,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.560149"
+        "scrapeTime": "2026-05-05 00:48:46.137120"
     },
     {
         "id": "3be62f33f3c013a2",
@@ -2847,7 +2813,7 @@
         },
         "imageUrl": "/event_images/Vinyl_Swap.webp",
         "recurring": false,
-        "scrapeTime": "2026-05-04 00:52:19.254907",
+        "scrapeTime": "2026-05-05 00:48:24.089248",
         "tags": [
             "Culture",
             "Community",
@@ -2887,7 +2853,66 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.854382"
+        "scrapeTime": "2026-05-05 00:48:46.479095"
+    },
+    {
+        "name": "Break Point LIVE! Developer Meetup by Sentry",
+        "description": "",
+        "startDate": "2026-08-04T22:00:00+00:00",
+        "endTime": "2026-08-05T00:30:00.000Z",
+        "url": "https://luma.com/v9tdz7ma",
+        "status": "ACTIVE",
+        "location": {
+            "name": "Indy Hall Clubhouse at 709 N 2nd St",
+            "address": "Indy Hall Clubhouse at 709 N 2nd St, 709 N 2nd St 3rd Floor, Philadelphia, PA 19123, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "Indy Hall Clubhouse at 709 N 2nd St, 709 N 2nd St 3rd Floor, Philadelphia, PA 19123, USA"
+        },
+        "imageUrl": "/event_images/Break_Point_LIVE_Developer_Meetup_by_Sentry.webp",
+        "orgImageUrl": "https://images.lumacdn.com/event-covers/af/ef905a66-773c-4b60-b4c9-d445d2f02fc6.png",
+        "source": "https://luma.com/getsentry",
+        "tags": [
+            "Tech Skills",
+            "Software Development",
+            "DevOps",
+            "Tech Community",
+            "Growth & Creativity",
+            "Belonging & Culture"
+        ],
+        "source_url": "https://luma.com/getsentry",
+        "source_group": "luma.com",
+        "org_name": "luma.com",
+        "orgName": "luma.com",
+        "scrapeTime": "2026-05-05 00:48:46.020280"
+    },
+    {
+        "name": "Reset Lab: A guided mind & body reset",
+        "description": "",
+        "startDate": "2026-08-14T15:30:00+00:00",
+        "endTime": "2026-08-14T16:30:00.000Z",
+        "url": "https://luma.com/d1gaejc5",
+        "status": "ACTIVE",
+        "location": {
+            "name": "The Lawn at uCity Square",
+            "address": "The Lawn at uCity Square, 3701 Filbert St, Philadelphia, PA 19104, USA",
+            "geocode_status": "failed_no_result",
+            "geocode_query": "The Lawn at uCity Square, 3701 Filbert St, Philadelphia, PA 19104, USA"
+        },
+        "imageUrl": "/event_images/Reset_Lab_A_guided_mind_body_reset.webp",
+        "orgImageUrl": "https://images.unsplash.com/photo-1499946981954-e7f4b234d7fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjQyMjF8MHwxfHNlYXJjaHwzfHxtaW5kZnVsbmVzc3xlbnwwfHx8fDE3NzQ0NzIxNDh8Mg&ixlib=rb-4.1.0&q=80&w=1080",
+        "source": "https://luma.com/ucitysquare",
+        "tags": [
+            "Business",
+            "Startup",
+            "Professional Networking",
+            "Entrepreneurship",
+            "Esteem & Opportunity"
+        ],
+        "source_url": "https://luma.com/ucitysquare",
+        "source_group": "luma.com",
+        "org_name": "luma.com",
+        "orgName": "luma.com",
+        "scrapeTime": "2026-05-05 00:48:46.142466"
     },
     {
         "name": "No-Phones Monthly Hiking in Philadelphia",
@@ -2917,7 +2942,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.862396"
+        "scrapeTime": "2026-05-05 00:48:46.488646"
     },
     {
         "name": "THE TECHTRITIONIST\u2122 MEETUP",
@@ -2947,7 +2972,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.434417"
+        "scrapeTime": "2026-05-05 00:48:45.988621"
     },
     {
         "name": "No-Phones Monthly Hiking in Philadelphia",
@@ -2977,7 +3002,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.870482"
+        "scrapeTime": "2026-05-05 00:48:46.498817"
     },
     {
         "name": "No-Phones Monthly Hiking in Philadelphia",
@@ -3007,7 +3032,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.878676"
+        "scrapeTime": "2026-05-05 00:48:46.508674"
     },
     {
         "name": "No-Phones Monthly Hiking in Philadelphia",
@@ -3037,7 +3062,7 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.886906"
+        "scrapeTime": "2026-05-05 00:48:46.518694"
     },
     {
         "name": "No-Phones Monthly Hiking in Philadelphia",
@@ -3067,6 +3092,6 @@
         "source_group": "luma.com",
         "org_name": "luma.com",
         "orgName": "luma.com",
-        "scrapeTime": "2026-05-04 00:52:41.895286"
+        "scrapeTime": "2026-05-05 00:48:46.528661"
     }
 ]
