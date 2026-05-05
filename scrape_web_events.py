@@ -1,10 +1,12 @@
 import json
 import re
-from typing import Any, Dict, List
-from urllib.parse import urljoin
+from datetime import datetime, timedelta
+from typing import Any, Dict, List, Set, Tuple
+from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
 from dateutil.parser import parse as parse_date
+from icalendar import Calendar
 
 from http_client import build_session, polite_get
 
@@ -157,14 +159,73 @@ def _extract_simple_dated_events(soup: BeautifulSoup, source_url: str) -> List[D
     return events
 
 
-def parse_web_events_page(source_url: str) -> List[Dict[str, Any]]:
-    session = build_session()
-    response = polite_get(session, source_url, timeout=30)
-    response.raise_for_status()
-    soup = BeautifulSoup(response.text, "html.parser")
+def _event_key(event: Dict[str, Any]) -> Tuple[str, str]:
+    return (
+        str(event.get("name", "")).strip().lower(),
+        str(event.get("startDate", "")).strip(),
+    )
 
+
+def _normalize_dt_for_output(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, datetime):
+        if value.tzinfo is None:
+            return value.isoformat()
+        return value.isoformat()
+    return str(value)
+
+
+def _parse_ics_events(ics_bytes: bytes, source_url: str) -> List[Dict[str, Any]]:
     events: List[Dict[str, Any]] = []
-    seen = set()
+    try:
+        calendar = Calendar.from_ical(ics_bytes)
+    except Exception:
+        return events
+
+    now = datetime.utcnow()
+    past_cutoff = now - timedelta(days=30)
+    for component in calendar.walk():
+        if component.name != "VEVENT":
+            continue
+        try:
+            summary = str(component.get("summary") or "").strip()
+            dtstart_prop = component.get("dtstart")
+            if not summary or dtstart_prop is None:
+                continue
+
+            dtstart = getattr(dtstart_prop, "dt", dtstart_prop)
+            dtend_prop = component.get("dtend")
+            dtend = getattr(dtend_prop, "dt", dtend_prop) if dtend_prop else None
+            start_dt = parse_date(str(dtstart))
+            if start_dt < past_cutoff:
+                continue
+
+            event_url = str(component.get("url") or "").strip() or source_url
+            location_text = str(component.get("location") or "").strip()
+            description = str(component.get("description") or "").strip()
+
+            events.append(
+                {
+                    "name": summary,
+                    "description": description,
+                    "startDate": _normalize_dt_for_output(dtstart),
+                    "endTime": _normalize_dt_for_output(dtend),
+                    "url": event_url,
+                    "status": "ACTIVE",
+                    "location": {"name": location_text, "address": location_text},
+                    "imageUrl": "",
+                    "source": source_url,
+                }
+            )
+        except Exception:
+            continue
+    return events
+
+
+def _extract_events_from_page(soup: BeautifulSoup, source_url: str) -> List[Dict[str, Any]]:
+    events: List[Dict[str, Any]] = []
+    seen: Set[Tuple[str, str]] = set()
     for script in soup.find_all("script", attrs={"type": "application/ld+json"}):
         raw = script.string or script.get_text() or ""
         raw = raw.strip()
@@ -175,15 +236,127 @@ def parse_web_events_page(source_url: str) -> List[Dict[str, Any]]:
         except json.JSONDecodeError:
             continue
         for evt in _extract_events_from_jsonld_payload(payload, source_url):
-            key = (evt.get("name", "").strip().lower(), evt.get("startDate", ""))
+            key = _event_key(evt)
             if key in seen:
                 continue
             seen.add(key)
             events.append(evt)
     for evt in _extract_simple_dated_events(soup, source_url):
-        key = (evt.get("name", "").strip().lower(), evt.get("startDate", ""))
+        key = _event_key(evt)
         if key in seen:
             continue
         seen.add(key)
         events.append(evt)
+    return events
+
+
+def _is_probable_ics_url(url: str) -> bool:
+    lower = (url or "").lower()
+    return lower.startswith("webcal://") or ".ics" in lower or "ical=" in lower or "icalendar" in lower
+
+
+def _looks_like_ics_payload(payload: bytes) -> bool:
+    if not payload:
+        return False
+    sample = payload[:2048].decode("utf-8", errors="ignore").upper()
+    return "BEGIN:VCALENDAR" in sample
+
+
+def _extract_candidate_links(soup: BeautifulSoup, source_url: str) -> Tuple[List[str], List[str]]:
+    parsed_source = urlparse(source_url)
+    source_host = (parsed_source.netloc or "").lower()
+    event_links: List[str] = []
+    feed_links: List[str] = []
+    seen_events: Set[str] = set()
+    seen_feeds: Set[str] = set()
+
+    for anchor in soup.select("a[href]"):
+        href = (anchor.get("href") or "").strip()
+        if not href:
+            continue
+        absolute = urljoin(source_url, href)
+        parsed = urlparse(absolute)
+        if parsed.scheme not in {"http", "https", "webcal"}:
+            continue
+        host = (parsed.netloc or "").lower()
+        if source_host and host and host != source_host:
+            if not _is_probable_ics_url(absolute):
+                continue
+
+        text = " ".join(anchor.get_text(" ", strip=True).split()).lower()
+        path_lower = (parsed.path or "").lower()
+        full_lower = absolute.lower()
+
+        if _is_probable_ics_url(absolute) or "add to calendar" in text or "calendar feed" in text:
+            if absolute not in seen_feeds:
+                seen_feeds.add(absolute)
+                feed_links.append(absolute)
+            continue
+
+        is_eventish = (
+            "event" in text
+            or "upcoming" in text
+            or "/event" in path_lower
+            or "/events" in path_lower
+            or "/article/" in path_lower
+            or "/articles/" in path_lower
+            or "/hc/en-us/articles/" in full_lower
+        )
+        if is_eventish and absolute not in seen_events:
+            seen_events.add(absolute)
+            event_links.append(absolute)
+
+    return event_links, feed_links
+
+
+def parse_web_events_page(source_url: str) -> List[Dict[str, Any]]:
+    session = build_session()
+    response = polite_get(session, source_url, timeout=30, allow_redirects=True)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    events: List[Dict[str, Any]] = []
+    seen: Set[Tuple[str, str]] = set()
+
+    for evt in _extract_events_from_page(soup, source_url):
+        key = _event_key(evt)
+        if key in seen:
+            continue
+        seen.add(key)
+        events.append(evt)
+
+    event_links, feed_links = _extract_candidate_links(soup, source_url)
+
+    for feed_url in feed_links:
+        fetch_url = feed_url.replace("webcal://", "https://")
+        try:
+            feed_response = polite_get(session, fetch_url, timeout=30, allow_redirects=True)
+            feed_response.raise_for_status()
+            if not _looks_like_ics_payload(feed_response.content):
+                continue
+            for evt in _parse_ics_events(feed_response.content, feed_url):
+                key = _event_key(evt)
+                if key in seen:
+                    continue
+                seen.add(key)
+                events.append(evt)
+        except Exception:
+            continue
+
+    # Follow a bounded set of likely event/article links for sites that list events on child pages.
+    for link in event_links[:20]:
+        try:
+            child_response = polite_get(session, link, timeout=30, allow_redirects=True)
+            if child_response.status_code >= 400:
+                continue
+            child_soup = BeautifulSoup(child_response.text, "html.parser")
+            for evt in _extract_events_from_page(child_soup, link):
+                key = _event_key(evt)
+                if key in seen:
+                    continue
+                seen.add(key)
+                events.append(evt)
+        except Exception:
+            continue
+
     return events

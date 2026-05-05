@@ -806,6 +806,11 @@ sources = [
         "tags": ["MarylandGov", "Politics", "Community", "Infrastructure", "Purpose"],
     },
     {
+        "name": "Thread Baltimore Upcoming Events",
+        "url": "https://my.thread.org/api/v2/help_center/en-us/categories/360005554572/articles.json",
+        "tags": ["Education", "Community", "Belonging", "Purpose"],
+    },
+    {
         "name": "Montgomery County Council Legislative Calendar",
         "url": "https://montgomerycountymd.legistar.com/Calendar.aspx",
         "tags": ["MarylandGov", "Politics", "Infrastructure", "Economic Development", "Purpose"],

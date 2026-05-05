@@ -14,6 +14,7 @@ import scrape_gdg
 import scrape_partiful
 import scrape_web_events
 import scrape_legistar
+import scrape_thread_helpcenter
 import json
 import datetime
 import pytz
@@ -204,6 +205,9 @@ def infer_source_kind(source_url):
 
     if host.endswith(".maryland.gov") and path.lower().startswith("/pages/"):
         return "web_events_page"
+
+    if host == "my.thread.org" and path.startswith("/api/v2/help_center/") and "articles.json" in path:
+        return "thread_helpcenter_api"
 
     if host in {"baltimorecancersupportgroup.org", "www.baltimorecancersupportgroup.org"}:
         if parse_qs(parsed.query).get("page_id") == ["53"]:
@@ -467,6 +471,10 @@ def fetch_events_from_source(source, city):
         "legistar": (
             "Fetching events from",
             lambda: scrape_legistar.scrape(source_url),
+        ),
+        "thread_helpcenter_api": (
+            "Fetching events from",
+            lambda: scrape_thread_helpcenter.scrape_thread_helpcenter_events(source_url),
         ),
     }
 
