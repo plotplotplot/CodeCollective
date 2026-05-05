@@ -156,7 +156,7 @@ CUSTOM_SCRAPER_SOURCES = [
         "function": "scrape_events",
         "url": "https://www.greaterbaltimorechamber.org/calendarandevents/eventcalendar",
         "group_name": "Greater Baltimore Chamber",
-        "orgImageUrl": "",
+        "orgImageUrl": "https://www.google.com/s2/favicons?domain=www.greaterbaltimorechamber.org&sz=256",
         "tags": ["Business", "Economic Development"],
     },
     {
@@ -188,7 +188,7 @@ CUSTOM_SCRAPER_SOURCES = [
         "function": "scrape_events",
         "url": "https://towsonlodge.us/calendar-%26-events",
         "group_name": "Towson Lodge #79",
-        "orgImageUrl": "",
+        "orgImageUrl": "https://www.google.com/s2/favicons?domain=towsonlodge.us&sz=256",
         "tags": ["Community", "Fraternal"],
     },
     {

@@ -1,4 +1,5 @@
 from city_source_taxonomy import apply_city_source_taxonomy
+from urllib.parse import urlparse
 
 sources = [
     {
@@ -808,6 +809,7 @@ sources = [
     {
         "name": "Thread Baltimore Upcoming Events",
         "url": "https://my.thread.org/api/v2/help_center/en-us/categories/360005554572/articles.json",
+        "orgImageUrl": "https://www.thread.org/wp-content/uploads/2021/01/thread-official-trademarked-logo.png",
         "tags": ["Education", "Community", "Belonging", "Purpose"],
     },
     {
@@ -834,4 +836,19 @@ def _derive_group_name(source: dict) -> str:
             return host
     return "Organization"
 
+
+def _ensure_org_image_urls(source_list: list[dict]) -> None:
+    for source in source_list:
+        if source.get("orgImageUrl"):
+            continue
+        url = str(source.get("url") or "").strip()
+        if not url:
+            continue
+        host = urlparse(url).netloc.replace("www.", "").strip()
+        if not host:
+            continue
+        source["orgImageUrl"] = f"https://www.google.com/s2/favicons?domain={host}&sz=256"
+
+
+_ensure_org_image_urls(sources)
 apply_city_source_taxonomy(sources)
