@@ -4,6 +4,7 @@ sources = [
     {
         "url": "https://www.eventbrite.com/o/techconnect-west-virginia-111407937521",
         "group_name": "TechConnect West Virginia",
+        "orgImageUrl": "https://www.google.com/s2/favicons?domain=eventbrite.com&sz=256",
         "tags": ["Tech Community", "Tech Skills"],
     },
 ]

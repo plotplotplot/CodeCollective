@@ -108,6 +108,13 @@ def merge_tags(*tag_lists):
 
 
 def normalize_source_entry(entry, legacy_kind=None):
+    def _fallback_org_image_url(source_url):
+        parsed = urlparse(str(source_url or "").strip())
+        host = parsed.netloc.replace("www.", "").strip().lower()
+        if not host:
+            return ""
+        return f"https://www.google.com/s2/favicons?domain={host}&sz=256"
+
     if isinstance(entry, dict):
         normalized = dict(entry)
         normalized.setdefault("url", "")
@@ -116,33 +123,46 @@ def normalize_source_entry(entry, legacy_kind=None):
             normalized.get("orgImageUrl")
             or normalized.get("org_image_url")
             or normalized.get("image_url")
-            or ""
+            or _fallback_org_image_url(normalized.get("url"))
         )
         normalized["tags"] = list(normalized.get("tags") or [])
         return normalized
 
     if legacy_kind == "Luma Users" and isinstance(entry, str) and not entry.startswith("http"):
+        source_url = f"https://api.lu.ma/user/profile/events-hosting?user_api_id={entry}"
         return {
-            "url": f"https://api.lu.ma/user/profile/events-hosting?user_api_id={entry}",
+            "url": source_url,
             "tags": [],
             "group_name": "",
-            "orgImageUrl": "",
+            "orgImageUrl": _fallback_org_image_url(source_url),
             "user_api_id": entry,
         }
 
     if isinstance(entry, str):
-        return {"url": entry, "tags": [], "group_name": "", "orgImageUrl": ""}
-
-    if isinstance(entry, int) and legacy_kind == "GDGChapters":
         return {
-            "url": f"https://gdg.community.dev/chapter/{entry}",
+            "url": entry,
             "tags": [],
             "group_name": "",
-            "orgImageUrl": "",
+            "orgImageUrl": _fallback_org_image_url(entry),
+        }
+
+    if isinstance(entry, int) and legacy_kind == "GDGChapters":
+        source_url = f"https://gdg.community.dev/chapter/{entry}"
+        return {
+            "url": source_url,
+            "tags": [],
+            "group_name": "",
+            "orgImageUrl": _fallback_org_image_url(source_url),
             "chapter_id": entry,
         }
 
-    return {"url": str(entry), "tags": [], "group_name": "", "orgImageUrl": ""}
+    source_url = str(entry)
+    return {
+        "url": source_url,
+        "tags": [],
+        "group_name": "",
+        "orgImageUrl": _fallback_org_image_url(source_url),
+    }
 
 
 def flatten_sources(raw_sources):
@@ -274,6 +294,11 @@ def apply_source_metadata(events, source):
         parsed = urlparse(source_url)
         source_group = parsed.netloc.replace("www.", "").strip()
     org_image_url = source.get("orgImageUrl") or source.get("org_image_url") or source.get("image_url") or ""
+    if not org_image_url and source_url:
+        parsed = urlparse(source_url)
+        host = parsed.netloc.replace("www.", "").strip().lower()
+        if host:
+            org_image_url = f"https://www.google.com/s2/favicons?domain={host}&sz=256"
 
     for event in normalized_events:
         event["tags"] = merge_tags(source_tags, event.get("tags"))
@@ -285,8 +310,8 @@ def apply_source_metadata(events, source):
             # Canonical org display name for downstream consumers.
             event.setdefault("org_name", source_group)
             event.setdefault("orgName", source_group)
-        if org_image_url:
-            event.setdefault("orgImageUrl", org_image_url)
+        if org_image_url and not str(event.get("orgImageUrl") or "").strip():
+            event["orgImageUrl"] = org_image_url
 
     return normalized_events
 
