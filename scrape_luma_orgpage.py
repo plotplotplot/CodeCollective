@@ -1,8 +1,8 @@
 import json
 import re
-import requests
 from bs4 import BeautifulSoup
 from typing import List, Dict, Any, Optional
+from http_client import build_session, polite_get
 
 
 def _normalize_image_url(url: str) -> str:
@@ -37,7 +37,8 @@ def fetch_and_parse_luma_events(url: str) -> List[Dict[str, Any]]:
     }
     
     # Fetch the URL
-    response = requests.get(url, headers=headers, timeout=30)
+    session = build_session()
+    response = polite_get(session, url, headers=headers, timeout=30)
     response.raise_for_status()  # Raise an exception for bad status codes
     
     # Parse the HTML content

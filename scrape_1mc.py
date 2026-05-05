@@ -1,8 +1,8 @@
-import requests
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 import hashlib
 import json
+from http_client import build_session, polite_get
 
 BASE_URL = "https://www.1millioncups.com"
 EVENTS_PATH = "/s/events?community=baltimore"
@@ -24,7 +24,8 @@ def parse_event_time(text):
         return None
 
 def scrape():
-    response = requests.get(BASE_URL + EVENTS_PATH, verify=False)
+    session = build_session()
+    response = polite_get(session, BASE_URL + EVENTS_PATH, timeout=20)
     response.raise_for_status()
     print("DEBUG - Raw HTML response length:", len(response.text))  # Debug output
     # Print first 1000 chars to inspect structure
@@ -51,7 +52,7 @@ def scrape():
         end = start + timedelta(hours=1)
 
         # Fetch the event detail page for description
-        detail_html = requests.get(link, verify=False).text
+        detail_html = polite_get(session, link, timeout=20).text
         detail_soup = BeautifulSoup(detail_html, "html.parser")
         desc_el = detail_soup.select_one(".event-description, .description")
         desc_html = desc_el.decode_contents() if desc_el else ""

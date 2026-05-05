@@ -6,12 +6,12 @@ Extracts upcoming events from any Eventbrite organizer page
 
 import re
 import json
-import requests
 from datetime import datetime, timezone, timedelta
 from typing import List, Dict, Optional, Any
 from urllib.parse import urlparse
 import logging
 from zoneinfo import ZoneInfo
+from http_client import build_session, polite_get
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -22,7 +22,7 @@ class EventbriteScraper:
     """Scraper for Eventbrite organizer pages"""
     
     def __init__(self):
-        self.session = requests.Session()
+        self.session = build_session()
         self.page_fallback_image_url: Optional[str] = None
         self.session.headers.update({
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
@@ -54,10 +54,10 @@ class EventbriteScraper:
     def _fetch_page(self, url: str) -> str:
         """Fetch HTML content from URL"""
         try:
-            response = self.session.get(url, timeout=10)
+            response = polite_get(self.session, url, timeout=10)
             response.raise_for_status()
             return response.text
-        except requests.RequestException as e:
+        except Exception as e:
             raise Exception(f"Failed to fetch page: {str(e)}")
     
     def _parse_events_from_html(self, html_content: str) -> List[Dict[str, Any]]:

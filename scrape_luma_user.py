@@ -1,7 +1,7 @@
-import requests
 import json
 from datetime import datetime
 import hashlib
+from http_client import build_session, polite_get
 
 def generate_event_id(event_name, start_date):
     """Generate a unique ID based on event name and start date"""
@@ -93,7 +93,8 @@ def fetch_and_convert_luma_events(user_api_id="usr-tYdFPQYBiZY4T6B", fallback_ur
     try:
         # Make the API request
         print("Fetching data from Luma API...")
-        response = requests.get(url, params=params)
+        session = build_session()
+        response = polite_get(session, url, params=params)
         response.raise_for_status()
         
         # Parse JSON response
@@ -109,7 +110,7 @@ def fetch_and_convert_luma_events(user_api_id="usr-tYdFPQYBiZY4T6B", fallback_ur
         
         return converted_events
         
-    except requests.exceptions.RequestException as e:
+    except Exception as e:
         print(f"Error fetching data from API: {e}")
         return []
     except json.JSONDecodeError as e:

@@ -1,4 +1,3 @@
-import requests
 import json
 from bs4 import BeautifulSoup
 import datetime
@@ -6,6 +5,7 @@ import re
 import pytz
 import markdown
 from html import escape
+from http_client import build_session, polite_get
 
 # Define the timezone for EST
 utc_timezone = pytz.timezone("UTC")
@@ -85,14 +85,15 @@ def _pick_best_image_url(candidates):
 
 def fetch_meetup_page(url):
     """Fetches the HTML content of the Meetup page."""
+    session = build_session()
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
     }
     try:
-        response = requests.get(url, headers=headers, timeout=10)
+        response = polite_get(session, url, headers=headers, timeout=10)
         response.raise_for_status()
         return response.text
-    except requests.RequestException as e:
+    except Exception as e:
         raise Exception(f"Failed to retrieve page: {e}")
 
 def extract_next_data(html_content):

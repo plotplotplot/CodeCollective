@@ -1,9 +1,10 @@
-import requests
+from http_client import build_session, polite_get
 import json
 
 url = "https://ecobot.ecomap.dev/api/events?id=257"
 
-response = requests.get(url)
+session = build_session()
+response = polite_get(session, url, timeout=30)
 response.raise_for_status()
 
 events = response.json()

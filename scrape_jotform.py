@@ -1,8 +1,8 @@
 import re
 from bs4 import BeautifulSoup
-import requests
 import json
 from datetime import datetime
+from http_client import build_session, polite_get
 
 def parse_jotform_event(url=None, html_content=None):
     """
@@ -17,7 +17,8 @@ def parse_jotform_event(url=None, html_content=None):
     """
     # Get the HTML content either from URL or direct input
     if url and not html_content:
-        response = requests.get(url)
+        session = build_session()
+        response = polite_get(session, url)
         if response.status_code != 200:
             return {"error": f"Failed to retrieve page: {response.status_code}"}
         html_content = response.text

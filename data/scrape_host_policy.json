@@ -1,0 +1,23 @@
+{
+  "defaults": {
+    "min_interval_seconds": 1.0,
+    "robots_preflight": true
+  },
+  "hosts": {
+    "meetup.com": {
+      "min_interval_seconds": 2.0
+    },
+    "eventbrite.com": {
+      "min_interval_seconds": 2.0
+    },
+    "api.lu.ma": {
+      "min_interval_seconds": 1.5
+    },
+    "luma.com": {
+      "min_interval_seconds": 1.5
+    },
+    "lu.ma": {
+      "min_interval_seconds": 1.5
+    }
+  }
+}

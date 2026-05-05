@@ -15,8 +15,7 @@ import re, urllib.parse
 
 
 import re
-from urllib3.util.retry import Retry
-from requests.adapters import HTTPAdapter
+from http_client import build_session, polite_get
 
 
 def _looks_like_ics_bytes(payload):
@@ -66,41 +65,31 @@ def fetch_calendar_events(ICS_URL, city, imageURL="https://www.unallocatedspace.
     if fetch_from_web:
         print("🔄 Downloading new .ics file from URL...")
 
-        # Session with headers + retries
-        session = requests.Session()
+        session = build_session(
+            user_agent="CodeCollectiveBot/1.0 (+https://github.com/juliancoy/CodeCollective)",
+            retries=3,
+            backoff_factor=1.0,
+        )
         session.headers.update({
-            # A common, modern desktop UA string (fine to hardcode)
-            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
             "Accept": "text/calendar, text/plain, */*",
-            "Accept-Language": "en-US,en;q=0.9",
-            # Referer helps with some WAFs that block 'direct' hotlinks to feeds
+            # Referer helps with some WAFs that block direct hotlinks to feeds
             "Referer": "https://wvbusinesslink.com/events/month/?hide_subsequent_recurrences=1",
         })
-        retry = Retry(
-            total=3,
-            backoff_factor=1,
-            status_forcelist=[403, 429, 500, 502, 503, 504],
-            allowed_methods=["GET", "HEAD"],
-            raise_on_status=False,
-        )
-        adapter = HTTPAdapter(max_retries=retry)
-        session.mount("https://", adapter)
-        session.mount("http://", adapter)
 
         # Warm-up visit to set cookies (HTML page, not the ICS endpoint)
         try:
             warmup_url = "https://wvbusinesslink.com/events/month/?hide_subsequent_recurrences=1"
-            session.get(warmup_url, timeout=15, allow_redirects=True)
+            polite_get(session, warmup_url, timeout=15, allow_redirects=True)
         except Exception as e:
             print(f"⚠️ Warm-up fetch failed (continuing): {e}")
 
         # Now fetch the ICS
-        r = session.get(ICS_URL, timeout=30, allow_redirects=True)
+        r = polite_get(session, ICS_URL, timeout=30, allow_redirects=True)
         if r.status_code == 403:
             # One more try without the Referer (some configs flip this)
             headers_no_ref = session.headers.copy()
             headers_no_ref.pop("Referer", None)
-            r = session.get(ICS_URL, timeout=30, allow_redirects=True, headers=headers_no_ref)
+            r = polite_get(session, ICS_URL, timeout=30, allow_redirects=True, headers=headers_no_ref)
 
         # If still blocked, surface helpful debug info
         if r.status_code >= 400:

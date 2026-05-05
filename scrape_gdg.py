@@ -21,6 +21,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
 import requests
+from http_client import polite_get, build_session
 
 
 BASE = "https://gdg.community.dev"
@@ -161,7 +162,7 @@ def fetch_events(cfg: ScrapeConfig, status_in: str) -> List[Dict[str, Any]]:
     out_status = "ACTIVE" if status_in.lower() == "live" else "COMPLETED"
     scrape_time = _now_scrape_time_str()
 
-    session = requests.Session()
+    session = build_session()
     session.headers.update(_headers())
 
     all_items: List[Dict[str, Any]] = []
@@ -170,11 +171,11 @@ def fetch_events(cfg: ScrapeConfig, status_in: str) -> List[Dict[str, Any]]:
 
     while True:
         if next_url:
-            resp = session.get(next_url, timeout=cfg.timeout_s)
+            resp = polite_get(session, next_url, timeout=cfg.timeout_s)
         else:
             params = dict(params_base)
             params["page"] = page
-            resp = session.get(endpoint, params=params, timeout=cfg.timeout_s)
+            resp = polite_get(session, endpoint, params=params, timeout=cfg.timeout_s)
 
         # Raise helpful error if blocked
         if resp.status_code == 406:

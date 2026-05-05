@@ -1,8 +1,8 @@
 import re
 from bs4 import BeautifulSoup
-import requests
 import json
 from datetime import datetime
+from http_client import build_session, polite_get
 
 def parse_eventbrite_event(url):
     """
@@ -15,7 +15,8 @@ def parse_eventbrite_event(url):
         dict: Dictionary containing event details
     """
     # Make request to the event page
-    response = requests.get(url)
+    session = build_session()
+    response = polite_get(session, url)
     if response.status_code != 200:
         print(f"Failed to retrieve page: {response.status_code}")
         return []

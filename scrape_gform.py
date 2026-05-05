@@ -1,9 +1,9 @@
-import requests
 from bs4 import BeautifulSoup
 import json
 import re
 from datetime import datetime
 from urllib.parse import urljoin, urlparse
+from http_client import build_session, polite_get
 
 def scrape_google_form(url):
     """
@@ -14,7 +14,8 @@ def scrape_google_form(url):
     }
     
     try:
-        response = requests.get(url, headers=headers)
+        session = build_session()
+        response = polite_get(session, url, headers=headers)
         response.raise_for_status()
         
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -50,7 +51,7 @@ def scrape_google_form(url):
         
         return [event]  # Return as list to match the requested format
         
-    except requests.RequestException as e:
+    except Exception as e:
         print(f"Error fetching URL: {e}")
         return []
     except Exception as e:

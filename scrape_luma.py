@@ -1,10 +1,11 @@
 from bs4 import BeautifulSoup
 import json
 import re
-import requests
+from http_client import build_session, polite_get
 
 def parse_luma_event_page(url):
-    response = requests.get(url)
+    session = build_session()
+    response = polite_get(session, url)
     if response.status_code != 200:
         return {"error": f"Failed to retrieve page: {response.status_code}"}
     html_content = response.text

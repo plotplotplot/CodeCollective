@@ -1,10 +1,10 @@
-import requests
 from bs4 import BeautifulSoup
 import json
 import hashlib
 from datetime import datetime, timezone
 import pytz
 import re
+from http_client import build_session, polite_get
 
 def generate_event_id(name, start_date):
     """Generate a unique event ID based on name and start date"""
@@ -119,8 +119,9 @@ def scrape_baltimore_indie_games():
     url = "https://baltimoreindiegames.com/events/"
     
     try:
+        session = build_session()
         # Send GET request
-        response = requests.get(url)
+        response = polite_get(session, url, timeout=30)
         response.raise_for_status()
         
         # Parse HTML

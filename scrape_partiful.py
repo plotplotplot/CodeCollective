@@ -1,8 +1,8 @@
 import json
 from urllib.parse import urlparse
 
-import requests
 from bs4 import BeautifulSoup
+from http_client import build_session, polite_get
 
 
 def _extract_event_id(url: str) -> str:
@@ -86,11 +86,12 @@ def _status_from_schema(schema_status: str, next_status: str):
 
 
 def _fetch_html(url: str, headers: dict):
+    session = build_session()
     try:
-        response = requests.get(url, headers=headers, timeout=30)
+        response = polite_get(session, url, headers=headers, timeout=30)
         response.raise_for_status()
         return response.text
-    except requests.RequestException:
+    except Exception:
         return ""
 
 

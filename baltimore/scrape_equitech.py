@@ -1,15 +1,16 @@
-import requests
 from bs4 import BeautifulSoup
 import json
 import uuid
 from datetime import datetime, timedelta, date
+from http_client import build_session, polite_get
 
 def scrape_equitech_tuesday():
     # URL to scrape
     url = "https://upsurgebaltimore.com/equitech-tuesday/"
     
     # Send a GET request to the URL
-    response = requests.get(url)
+    session = build_session()
+    response = polite_get(session, url, timeout=30)
     
     # Check if the request was successful
     if response.status_code != 200:

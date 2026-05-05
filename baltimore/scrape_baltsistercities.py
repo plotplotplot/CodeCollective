@@ -3,7 +3,7 @@ import re
 import uuid
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
-import requests
+from http_client import build_session, polite_get
 
 def extract_meridiem(time_str):
     match = re.search(r'\b([ap])\s*\.?\s*m\.?\b', time_str, re.IGNORECASE)
@@ -243,7 +243,8 @@ def scrape_baltimore_events(html_content=None, url="https://baltimoresistercitie
     print("Scraping Sister Cities")
     """Scrape events from Baltimore Sister Cities events page"""
     if html_content is None and url:
-        response = requests.get(url)
+        session = build_session()
+        response = polite_get(session, url, timeout=30)
         html_content = response.text
     
     soup = BeautifulSoup(html_content, 'html.parser')

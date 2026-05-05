@@ -1,15 +1,16 @@
-import requests
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime
 from typing import List, Dict, Optional
 import time
+from http_client import build_session, polite_get
 
 class LumaCalendarScraper:
     def __init__(self):
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         }
+        self.session = build_session()
     
     def scrape_calendar(self, calendar_url: str) -> List[Dict]:
         """
@@ -22,7 +23,7 @@ class LumaCalendarScraper:
             List of event dictionaries in the specified format
         """
         try:
-            response = requests.get(calendar_url, headers=self.headers)
+            response = polite_get(self.session, calendar_url, headers=self.headers)
             response.raise_for_status()
             
             soup = BeautifulSoup(response.text, 'html.parser')
@@ -77,7 +78,7 @@ class LumaCalendarScraper:
         
         try:
             print(f"Scraping {event_url}")
-            response = requests.get(event_url, headers=self.headers)
+            response = polite_get(self.session, event_url, headers=self.headers)
             response.raise_for_status()
             
             soup = BeautifulSoup(response.text, 'html.parser')
