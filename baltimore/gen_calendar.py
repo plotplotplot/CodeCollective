@@ -89,6 +89,14 @@ ICS_SOURCES = [
         "group_name": "Maryland GOP",
         "preface": "",
     },
+    {
+        "url": "https://maryland-dmmp.com/events/",
+        "ics_url": "https://maryland-dmmp.com/events/list/?ical=1",
+        "orgImageUrl": "https://maryland-dmmp.com/wp-content/uploads/2022/12/cropped-favicon-32x32.png",
+        "tags": ["MarylandGov", "Economic Development", "Infrastructure", "Water"],
+        "group_name": "Maryland Port Administration (DMMP)",
+        "preface": "",
+    },
 ]
 
 PROCESS_ICS_SOURCES = [
@@ -214,6 +222,30 @@ CUSTOM_SCRAPER_SOURCES = [
         "group_name": "Community Co-op Development",
         "orgImageUrl": "https://static.wixstatic.com/media/1eb3be_6b8180d9b60847a1b9a614acdf9afe6f~mv2.png/v1/fill/w_348,h_348,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CCD%20Inc%20logo%20(white%20bkgrnd%20large)_PNG.png",
         "tags": ["Economic Development", "Community Organizing", "Food Security"],
+    },
+    {
+        "module": "baltimore.scrape_mpa_port_commission",
+        "function": "scrape_events",
+        "url": "https://mpa.maryland.gov/Pages/port-commission.aspx",
+        "group_name": "Maryland Port Commission",
+        "orgImageUrl": "https://mpa.maryland.gov/_catalogs/masterpage/images/favicon.ico",
+        "tags": ["MarylandGov", "Politics", "Economic Development", "Infrastructure"],
+    },
+    {
+        "module": "baltimore.scrape_baltimoreportalliance",
+        "function": "scrape_events",
+        "url": "https://www.baltimoreportalliance.org/career-expo/2026-highlights",
+        "group_name": "Baltimore Port Alliance",
+        "orgImageUrl": "https://www.google.com/s2/favicons?domain=www.baltimoreportalliance.org&sz=256",
+        "tags": ["Economic Development", "Workforce", "Infrastructure"],
+    },
+    {
+        "module": "baltimore.scrape_baltimorecounty_dewd",
+        "function": "scrape_events",
+        "url": "https://www.baltimorecountymd.gov/departments/economic-and-workforce-development",
+        "group_name": "Baltimore County DEWD",
+        "orgImageUrl": "https://www.google.com/s2/favicons?domain=baltimorecountymd.gov&sz=256",
+        "tags": ["MarylandGov", "Economic Development", "Workforce"],
     },
 ]
 def merge_tags(*tag_lists):
