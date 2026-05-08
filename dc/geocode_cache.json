@@ -555,5 +555,17 @@
   },
   "balc\u00f3n": {
     "status": "failed_no_result"
+  },
+  "4100 fairfax dr, arlington, va 22203, usa": {
+    "latitude": 38.882149,
+    "longitude": -77.109676,
+    "status": "ok",
+    "source": "nominatim"
+  },
+  "4100 fairfax dr": {
+    "latitude": 38.882149,
+    "longitude": -77.109676,
+    "status": "ok",
+    "source": "nominatim"
   }
 }
