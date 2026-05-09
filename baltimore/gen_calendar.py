@@ -192,6 +192,22 @@ CUSTOM_SCRAPER_SOURCES = [
         "tags": ["Community", "Culture"],
     },
     {
+        "module": "baltimore.scrape_orioles",
+        "function": "scrape_events",
+        "url": "https://www.mlb.com/orioles/schedule",
+        "group_name": "Baltimore Orioles",
+        "orgImageUrl": "https://www.mlbstatic.com/team-logos/team-cap-on-dark/110.svg",
+        "tags": ["Culture", "Community", "Economic Development"],
+    },
+    {
+        "module": "baltimore.scrape_bccenter",
+        "function": "scrape_events",
+        "url": "https://www.bccenter.org/events/",
+        "group_name": "Baltimore Convention Center",
+        "orgImageUrl": "https://www.bccenter.org/images/logo.png",
+        "tags": ["Culture", "Community", "Economic Development"],
+    },
+    {
         "module": "baltimore.scrape_towsonlodge",
         "function": "scrape_events",
         "url": "https://towsonlodge.us/calendar-%26-events",

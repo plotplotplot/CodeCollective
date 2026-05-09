@@ -24,9 +24,11 @@ def _normalize_event_schema(item: Dict[str, Any], source_url: str) -> Dict[str, 
         return None
     item_type = item.get("@type")
     if isinstance(item_type, list):
-        is_event = "Event" in item_type
+        lowered = {str(value or "").strip().lower() for value in item_type}
+        is_event = any(value.endswith("event") for value in lowered)
     else:
-        is_event = str(item_type or "").lower() == "event"
+        normalized_type = str(item_type or "").strip().lower()
+        is_event = normalized_type == "event" or normalized_type.endswith("event")
     if not is_event:
         return None
 

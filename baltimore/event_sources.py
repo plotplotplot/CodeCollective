@@ -467,6 +467,26 @@ sources = [
         "tags": ["Community", "Tech Community"],
     },
     {
+        "name": "Baltimore Orioles Schedule",
+        "url": "https://www.mlb.com/orioles/schedule",
+        "tags": ["Culture", "Community", "Economic Development"],
+    },
+    {
+        "name": "Baltimore Ravens Schedule",
+        "url": "https://www.baltimoreravens.com/schedule/",
+        "tags": ["Culture", "Community", "Economic Development"],
+    },
+    {
+        "name": "CFG Bank Arena Events",
+        "url": "https://cfgbankarena.com/events/",
+        "tags": ["Culture", "Community", "Economic Development"],
+    },
+    {
+        "name": "Baltimore Convention Center Events",
+        "url": "https://www.bccenter.org/events/",
+        "tags": ["Culture", "Community", "Economic Development"],
+    },
+    {
         "name": "Web3 Maryland",
         "url": "https://api.lu.ma/user/profile/events-hosting?user_api_id=usr-A83YmR5Onz1uMdp",
         "group_name": "Web3 Maryland",
