@@ -3,37 +3,11 @@ VERSION:2.0
 PRODID:-//dc Tech Events//CodeCollective//
 METHOD:PUBLISH
 BEGIN:VEVENT
-SUMMARY:DC Tech Meetup #96: AI From Demo to Deployment
-DTSTART:20260508T180000Z
-DTEND:20260508T200000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.869495@codecollective
-DESCRIPTION:Event Link: https://luma.com/dctm96
-LOCATION:Walter E. Washington Convention Center\, Walter E. Washington Con
- vention Center\, 801 Allen Y. Lew Place NW\, Washington\, DC 20001\, USA\,
-  \,  
-URL:https://luma.com/dctm96
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:AIConnect: Global Virtual Job & Career Networking Event for AI Spe
- cialists
-DTSTART:20260508T210000Z
-DTEND:20260508T190000
-DTSTAMP:20260508T005822Z
-UID:314354865-1778201902.869867@codecollective
-DESCRIPTION:Are you an AI engineer\, data scientist\, machine learning res
- earcher\, or aspiring innovator in the world of artificial intelligence? A
- IConnect is your dynamic AI networking event online designed to fos\n\nEve
- nt Link: https://www.meetup.com/openanalyticsdc/events/314354865/
-LOCATION:Online event\, \,  
-URL:https://www.meetup.com/openanalyticsdc/events/314354865/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:Coffee & Bitcoin VA: Tysons
 DTSTART:20260509T143000Z
 DTEND:20260509T163000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.870695@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.020125@codecollective
 DESCRIPTION:Event Link: https://luma.com/r7rx8afk
 LOCATION:Basecamp Coffee Roasters\, Basecamp Coffee Roasters\, 8461 Leesbu
  rg Pike\, Tysons\, VA 22182\, USA\, \,  
@@ -43,8 +17,8 @@ BEGIN:VEVENT
 SUMMARY:Professionals ROOFTOP Networking HourS
 DTSTART:20260509T210000Z
 DTEND:20260509T190000
-DTSTAMP:20260508T005822Z
-UID:314355678-1778201902.870929@codecollective
+DTSTAMP:20260509T005938Z
+UID:314355678-1778288378.0205@codecollective
 DESCRIPTION:All professionals in the DMV and MidAtlantic area are invited!
  \n\nThis event is to every and each professional in different industry\, s
  ector and specialization to grow\, interact\, and learn from each oth\n\nE
@@ -57,8 +31,8 @@ BEGIN:VEVENT
 SUMMARY:Ted Talk Discussion: The Path to Governing AI
 DTSTART:20260510T190000Z
 DTEND:20260510T163000
-DTSTAMP:20260508T005822Z
-UID:314027411-1778201902.871523@codecollective
+DTSTAMP:20260509T005938Z
+UID:314027411-1778288378.021244@codecollective
 DESCRIPTION:No one truly understands AI\, not even experts\, says Helen To
  ner\, an AI policy researcher and former board member of OpenAI. But that 
  doesn't mean we can't govern it. She shows how we can make smart po\n\nEve
@@ -68,26 +42,12 @@ LOCATION:Panera Bread\, 7201 Wisconsin Ave.\, Bethesda\, MD us
 URL:https://www.meetup.com/bethesda-growth-mindset-salon/events/314027411/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Social Sunday (Vegan + Eastern European Booze)
-DTSTART:20260510T230000Z
-DTEND:20260510T220000
-DTSTAMP:20260508T005822Z
-UID:194594062-1778201902.872064@codecollective
-DESCRIPTION:To secure your spot\, purchase your ticket from the Eventbrite
-  link (https://www.eventbrite.com/e/vegan-dinner-and-social-tickets-157258
- 248655). RSVPing only on the Meetup Page doesn't allow you to att\n\nEvent
-  Link: https://www.meetup.com/dcprofessonals/events/194594062/
-LOCATION:Refer Eventbrite Ticket Link\, Refer Eventbrite Ticket Link\, Was
- hington\, dc us
-URL:https://www.meetup.com/dcprofessonals/events/194594062/
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:Enabling Anyone to Build and Operate Decentralized Networks with H
  iero
 DTSTART:20260511T160000Z
 DTEND:20260511T130000
-DTSTAMP:20260508T005822Z
-UID:313873115-1778201902.872706@codecollective
+DTSTAMP:20260509T005938Z
+UID:313873115-1778288378.021822@codecollective
 DESCRIPTION:Join us for a meetup exploring Hiero (https://github.com/hiero
  -ledger)\, an open-source\, vendor-neutral distributed ledger technology (
  DLT) stack that powers the Hedera Network. In this session\, Hendri\n\nEve
@@ -96,11 +56,24 @@ LOCATION:Online event\, \,
 URL:https://www.meetup.com/lfdt-washington-dc/events/313873115/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:Lead Free DC Quarterly Virtual Community Meeting/Webinar
+DTSTART:20260511T230000Z
+DTEND:20260512T010000Z
+DTSTAMP:20260509T005938Z
+UID:3f3e864b74bb624d-1778288378.022277@codecollective
+DESCRIPTION:Losing the Lead Without Losing Your Yard\nJoin via Teams: bit.
+ ly/LFDCFY26Q3\n\nEvent Link: https://www.dcwater.com/events/lead-free-dc-q
+ uarterly-virtual-community-meetingwebinar
+LOCATION:DC Water\, Washington\, DC\, \,  
+URL:https://www.dcwater.com/events/lead-free-dc-quarterly-virtual-communit
+ y-meetingwebinar
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:STATION DC Energy Dominance Open Roundtable
 DTSTART:20260512T140000Z
 DTEND:20260512T160000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.873157@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.022591@codecollective
 DESCRIPTION:Event Link: https://luma.com/rjlvripv
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -111,8 +84,8 @@ SUMMARY:AI Prompt Engineering Masterclass: Skills\, Strategies & Business
  Impact
 DTSTART:20260512T160000Z
 DTEND:20260512T140000
-DTSTAMP:20260508T005822Z
-UID:314524975-1778201902.873376@codecollective
+DTSTAMP:20260509T005938Z
+UID:314524975-1778288378.022845@codecollective
 DESCRIPTION:AI Prompt Engineering Masterclass: Skills\, Strategies & Busin
  ess Impact\nAI is only as powerful as the prompts behind it and mastering 
  this skill is quickly becoming a competitive advantage. Prompt eng\n\nEven
@@ -124,8 +97,8 @@ BEGIN:VEVENT
 SUMMARY:Meet the Pods: Energy & Climate
 DTSTART:20260512T204500Z
 DTEND:20260512T233000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.874119@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.023406@codecollective
 DESCRIPTION:Event Link: https://luma.com/gng7y0m0
 LOCATION:Martin Luther King Jr. Memorial Library\, Martin Luther King Jr. 
  Memorial Library\, 901 G St NW\, Washington\, DC 20001\, USA\, \,  
@@ -135,8 +108,8 @@ BEGIN:VEVENT
 SUMMARY:DC Chapter Zero Waste Committee Meeting
 DTSTART:20260512T223000Z
 DTEND:20260512T203000
-DTSTAMP:20260508T005822Z
-UID:314426624-1778201902.874347@codecollective
+DTSTAMP:20260509T005938Z
+UID:314426624-1778288378.023636@codecollective
 DESCRIPTION:We welcome new members. Please RSVP to this event at least a d
  ay before the meeting to receive the Zoom link. You can register on our we
  bsite calendar at http://dc.sierraclub.org/calendar Thank you!\n\n\n\nEven
@@ -149,8 +122,8 @@ SUMMARY:Webinar with Alastria: ISBE - Regulated Blockchain Infrastructure
  on Besu
 DTSTART:20260513T140000Z
 DTEND:20260513T110000
-DTSTAMP:20260508T005822Z
-UID:314587772-1778201902.874777@codecollective
+DTSTAMP:20260509T005938Z
+UID:314587772-1778288378.024072@codecollective
 DESCRIPTION:Join us for a webinar with Alastria\, an LFDT associate member
  \, for an inside look at ISBE (Infraestructura de Servicios Blockchain de 
  España). As Europe’s first national\, public-permissioned blockchai\n\n
@@ -163,8 +136,8 @@ SUMMARY:Applied AI Ethics MonthlyMixer - Where Innovation Meets Responsibi
  lity
 DTSTART:20260513T210000Z
 DTEND:20260513T190000
-DTSTAMP:20260508T005822Z
-UID:314445753-1778201902.875213@codecollective
+DTSTAMP:20260509T005938Z
+UID:314445753-1778288378.024529@codecollective
 DESCRIPTION:Join a global\, open-format gathering for those building and q
  uestioning AI — from real-world use cases to critical conversations arou
  nd ethics\, bias\, and transparency.\nEvery month\, we create space for\n\
@@ -177,8 +150,8 @@ SUMMARY:Hot Takes & Happy Hour - Hosted By DC DAO\, Stand With Crypto and
  Virginia Blockchain Council
 DTSTART:20260513T210000Z
 DTEND:20260513T230000Z
-DTSTAMP:20260508T005822Z
-UID:debdfac29e6ea23f-1778201902.875906@codecollective
+DTSTAMP:20260509T005938Z
+UID:debdfac29e6ea23f-1778288378.02524@codecollective
 DESCRIPTION:Event Link: https://lu.ma/qkeyoyb7
 LOCATION:Roofers Union\, Roofers Union\, 2446 18th St NW\, Washington\, DC
   20009\, USA\, Washington\, District of Columbia United States
@@ -188,8 +161,8 @@ BEGIN:VEVENT
 SUMMARY:(CS)²AI Online™ : OT Cyber Prioritization Under Fire
 DTSTART:20260513T220000Z
 DTEND:20260513T193000
-DTSTAMP:20260508T005822Z
-UID:314664808-1778201902.876127@codecollective
+DTSTAMP:20260509T005938Z
+UID:314664808-1778288378.025476@codecollective
 DESCRIPTION:Reserve a seat to join the discussion: https://events.zoom.us/
  ev/AkoaiMg-bHYv_TEkcpEffEb26h4cFeCIkbFmXAPVwweA9Q6IMUyB~AsTgHiu757xZ4LG-_g
  4cABRV_H7k5EkY4szDpRblMeCTlLxGt_yxPBBzfNSHJYGoGp-9-n8mRiTpTHuMvY\n\nEvent 
@@ -203,8 +176,8 @@ BEGIN:VEVENT
 SUMMARY:Project Night at Virtru
 DTSTART:20260513T220000Z
 DTEND:20260514T003000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.876768@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.026117@codecollective
 DESCRIPTION:Event Link: https://luma.com/kfs3cotc
 LOCATION:Virtru\, Virtru\, 1801 Pennsylvania Ave NW 5th Floor\, Washington
  \, DC 20036\, USA\, \,  
@@ -214,8 +187,8 @@ BEGIN:VEVENT
 SUMMARY:AI Fundamentals - Four Part Series
 DTSTART:20260514T150000Z
 DTEND:20260514T170000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.876989@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.026347@codecollective
 DESCRIPTION:Event Link: https://luma.com/https://dclibrary.libnet.info/eve
  nts?term=AI+Fundamentals&r=range&start=2026-05-01&end=2026-07-30
 LOCATION:Martin Luther King Jr. Memorial Library\, Martin Luther King Jr. 
@@ -227,8 +200,8 @@ BEGIN:VEVENT
 SUMMARY:Agentic AI on Vertex: Unlock self-learning AI with Vertex AI
 DTSTART:20260514T160000Z
 DTEND:20260514T140000
-DTSTAMP:20260508T005822Z
-UID:314416449-1778201902.877141@codecollective
+DTSTAMP:20260509T005938Z
+UID:314416449-1778288378.0265@codecollective
 DESCRIPTION:As AI rapidly evolves\, organizations are moving beyond static
   models toward agentic systems that can independently plan\, make decision
  s\, and take actions.\n\nThis masterclass\, “Agentic AI on Vertex: Unl\n
@@ -242,8 +215,8 @@ SUMMARY:From Prompt to Prototype: Building your Professional Website befor
  e lunch with AJ Bubb
 DTSTART:20260514T160000Z
 DTEND:20260514T180000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.877604@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.026995@codecollective
 DESCRIPTION:Event Link: https://luma.com/34k2k55y
 LOCATION:Refraction Innovation Hub\, Refraction Innovation Hub\, 7950 Jone
  s Branch Drive\, North 8th Floor\, McLean\, VA 22102\, USA\, \,  
@@ -254,8 +227,8 @@ SUMMARY:How to watch the watcher: Investigating vulnerability scanner repo
  rts 101
 DTSTART:20260514T170000Z
 DTEND:20260514T134500
-DTSTAMP:20260508T005822Z
-UID:314472632-1778201902.877849@codecollective
+DTSTAMP:20260509T005938Z
+UID:314472632-1778288378.027227@codecollective
 DESCRIPTION:While teams are overwhelmed by vulnerability assessments\, the
  y rarely understand how popular vulnerability scanners arrive at these det
  erminations. Using popular container scanning tools for illustrat\n\nEvent
@@ -269,8 +242,8 @@ BEGIN:VEVENT
 SUMMARY:Data Viz DC: Generative User Interfaces with Prefab
 DTSTART:20260514T220000Z
 DTEND:20260515T000000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.878287@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.02785@codecollective
 DESCRIPTION:Event Link: https://luma.com/b4qfsjpl
 LOCATION:2112 Pennsylvania Ave NW\, 2112 Pennsylvania Ave NW\, Washington\
  , DC 20037\, USA\, \,  
@@ -281,8 +254,8 @@ SUMMARY:Lead by Design: Navigating Hard Decisions & Managing Your Energy a
  s a Leader
 DTSTART:20260515T130000Z
 DTEND:20260515T143000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.878505@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.028075@codecollective
 DESCRIPTION:Event Link: https://luma.com/eaucmdui
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -292,8 +265,8 @@ BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - May
 DTSTART:20260515T180000Z
 DTEND:20260515T190000Z
-DTSTAMP:20260508T005822Z
-UID:12bba8dae3507a3d-1778201902.878746@codecollective
+DTSTAMP:20260509T005938Z
+UID:12bba8dae3507a3d-1778288378.028297@codecollective
 DESCRIPTION:Event Link: https://lu.ma/hvvtjl54
 LOCATION:\,  
 URL:https://lu.ma/hvvtjl54
@@ -302,8 +275,8 @@ BEGIN:VEVENT
 SUMMARY:Professionals Networking HourS
 DTSTART:20260515T210000Z
 DTEND:20260515T190000
-DTSTAMP:20260508T005822Z
-UID:313416583-1778201902.878957@codecollective
+DTSTAMP:20260509T005938Z
+UID:313416583-1778288378.028515@codecollective
 DESCRIPTION:All professionals in the DMV and MidAtlantic area are invited!
  \n\nThis event is to every and each professional in different industry\, s
  ector and specialization to grow\, interact\, and learn from each oth\n\nE
@@ -312,11 +285,11 @@ LOCATION:Lucky bar\, 1221 Connecticut ave NW\, Washington\, DC us
 URL:https://www.meetup.com/dcprofessonals/events/313416583/
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Pod Sprint & Hackathon: Energy & Climate
-DTSTART:20260516T123000Z
-DTEND:20260516T220000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.879525@codecollective
+SUMMARY:Idea to Prototype: A Climate & Energy Hackathon
+DTSTART:20260516T130000Z
+DTEND:20260516T203000Z
+DTSTAMP:20260509T005938Z
+UID:-1778288378.029131@codecollective
 DESCRIPTION:Event Link: https://luma.com/c02-podsprint
 LOCATION:\,  
 URL:https://luma.com/c02-podsprint
@@ -325,8 +298,8 @@ BEGIN:VEVENT
 SUMMARY:Girlies in Tech Dinner <3 | London\, UK Edition | West End
 DTSTART:20260516T170000Z
 DTEND:20260516T183000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.879787@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.029356@codecollective
 DESCRIPTION:Event Link: https://luma.com/xfy0hz1u
 LOCATION:Agrodolce London\, Agrodolce London\, 67 Charlotte St.\, London W
  1T 4PH\, UK\, \,  
@@ -336,8 +309,8 @@ BEGIN:VEVENT
 SUMMARY:Anacostia River Festival
 DTSTART:20260516T180000Z
 DTEND:20260516T200000Z
-DTSTAMP:20260508T005822Z
-UID:e0e744629ee42c0a-1778201902.880003@codecollective
+DTSTAMP:20260509T005938Z
+UID:e0e744629ee42c0a-1778288378.029572@codecollective
 DESCRIPTION:Payment Plan Incentive\n: provides a credit back of 50% of the
   last 3 payments made. Eligible participants are residential customers who
   have had an outstanding balance for 60 days or greater and with \n\nEvent
@@ -349,8 +322,8 @@ BEGIN:VEVENT
 SUMMARY:DC Pros Dance Soirée @ The French Embassy
 DTSTART:20260516T233000Z
 DTEND:20260516T223000
-DTSTAMP:20260508T005822Z
-UID:314499332-1778201902.880332@codecollective
+DTSTAMP:20260509T005938Z
+UID:314499332-1778288378.02992@codecollective
 DESCRIPTION:To secure your spot\, please purchase your ticket from the Eve
  ntbrite link ( https://www.eventbrite.com/e/dance-soiree-the-french-embass
  y-alors-on-danse-tickets-24295172515 ).\n\nWe are invited by The Co\n\nEve
@@ -360,11 +333,25 @@ LOCATION:Embassy of France (La Maison Francaise)\, 4101 Reservoir Road\, N
 URL:https://www.meetup.com/dcprofessonals/events/314499332/
 END:VEVENT
 BEGIN:VEVENT
+SUMMARY:Doggie Social and You Mix
+DTSTART:20260517T220000Z
+DTEND:20260517T210000
+DTSTAMP:20260509T005938Z
+UID:296540095-1778288378.030502@codecollective
+DESCRIPTION:To secure your spot\, purchase your ticket from the Eventbrite
+  link (https://www.eventbrite.com/e/doggie-social-and-basic-training-ticke
+ ts-723541160087). RSVPing only on the Meetup Page doesn't allow y\n\nEvent
+  Link: https://www.meetup.com/dcprofessonals/events/296540095/
+LOCATION:Refer Eventbrite Ticket Link\, Refer Eventbrite Ticket Link\, Was
+ hington\, dc us
+URL:https://www.meetup.com/dcprofessonals/events/296540095/
+END:VEVENT
+BEGIN:VEVENT
 SUMMARY:Microsoft AI-Powered Security Masterclass for Nonprofits
 DTSTART:20260518T140000Z
 DTEND:20260518T120000
-DTSTAMP:20260508T005822Z
-UID:314559742-1778201902.880933@codecollective
+DTSTAMP:20260509T005938Z
+UID:314559742-1778288378.031096@codecollective
 DESCRIPTION:Nonprofits today operate in an increasingly complex threat lan
  dscape\, where protecting sensitive data and maintaining trust is critical
  . Organizations that adopt intelligent\, AI-driven security are be\n\nEven
@@ -376,8 +363,8 @@ BEGIN:VEVENT
 SUMMARY:GPU\, CUDA\, and PyTorch Performance Optimizations
 DTSTART:20260518T160000Z
 DTEND:20260518T130000
-DTSTAMP:20260508T005822Z
-UID:313297566-1778201902.881481@codecollective
+DTSTAMP:20260509T005938Z
+UID:313297566-1778288378.031646@codecollective
 DESCRIPTION:Zoom link: https://us02web.zoom.us/j/82308186562\n\nTalk #0: I
  ntroductions and Meetup Updates\nby Chris Fregly and Antje Barth\n\nTalk #
  1: GPU\, PyTorch\, and CUDA Performance Optimizations\n\nTalk #2: GPU\, Py
@@ -391,8 +378,8 @@ BEGIN:VEVENT
 SUMMARY:Vibe Code & Sip: DC
 DTSTART:20260518T220000Z
 DTEND:20260519T010000Z
-DTSTAMP:20260508T005822Z
-UID:553ad960466ef83a-1778201902.881918@codecollective
+DTSTAMP:20260509T005938Z
+UID:553ad960466ef83a-1778288378.03208@codecollective
 DESCRIPTION:Event Link: https://lu.ma/mfznr868
 LOCATION:Pubkey\, Pubkey\, 410 7th St NW\, Washington\, DC 20004\, USA\, W
  ashington\, District of Columbia United States
@@ -402,8 +389,8 @@ BEGIN:VEVENT
 SUMMARY:STATION DC Bio Economy Open Roundtable
 DTSTART:20260519T140000Z
 DTEND:20260519T160000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.882137@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.03236@codecollective
 DESCRIPTION:Event Link: https://luma.com/eg6pthbr
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -413,8 +400,8 @@ BEGIN:VEVENT
 SUMMARY:Problem Solving on the Hill: A Bipartisan Conversation
 DTSTART:20260519T143000Z
 DTEND:20260519T160000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.882348@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.032584@codecollective
 DESCRIPTION:Event Link: https://luma.com/zzwav6s9
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -425,8 +412,8 @@ SUMMARY:𝗠𝗮𝘀𝘁𝗲𝗿 𝗔𝗜 𝗟𝗲𝗮𝗱𝗲𝗿𝘀𝗵
  𝗶𝗽 𝘄𝗶𝘁𝗵 𝗣𝗠𝗜-𝗖𝗣𝗠𝗔𝗜
 DTSTART:20260519T170000Z
 DTEND:20260519T140000
-DTSTAMP:20260508T005822Z
-UID:314630628-1778201902.882555@codecollective
+DTSTAMP:20260509T005938Z
+UID:314630628-1778288378.032826@codecollective
 DESCRIPTION:Struggling to turn your AI strategy into real execution? \n\nL
  earn how structured frameworks like PMI-CPM AI enable professionals to man
  age AI projects effectively—from planning to execution. Discover h\n\nEv
@@ -438,8 +425,8 @@ BEGIN:VEVENT
 SUMMARY:Less noise\, more signal: SBOMs + Agentic Observability
 DTSTART:20260519T213000Z
 DTEND:20260519T233000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.883181@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.033369@codecollective
 DESCRIPTION:Event Link: https://luma.com/2pby448z
 LOCATION:4100 Fairfax Dr\, 4100 Fairfax Dr\, Arlington\, VA 22203\, USA\, 
  \,  
@@ -449,8 +436,8 @@ BEGIN:VEVENT
 SUMMARY:DC Chapter Clean Energy Committee Meeting
 DTSTART:20260519T223000Z
 DTEND:20260519T203000
-DTSTAMP:20260508T005822Z
-UID:314363592-1778201902.883404@codecollective
+DTSTAMP:20260509T005938Z
+UID:314363592-1778288378.03359@codecollective
 DESCRIPTION:Please RSVP to this event on our website calendar for meeting 
  details\, thank you! http://dc.sierraclub.org/calendar\n\nOur Clean Energy
   Committee is dedicated to increasing energy efficiency and promoti\n\nEve
@@ -462,8 +449,8 @@ BEGIN:VEVENT
 SUMMARY:DMV Women & Bitcoin: Policy\, Power\, and the Future of Money
 DTSTART:20260519T223000Z
 DTEND:20260520T003000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.883819@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.034011@codecollective
 DESCRIPTION:Event Link: https://luma.com/js1373j3
 LOCATION:Pubkey\, Pubkey\, 410 7th St NW\, Washington\, DC 20004\, USA\, \
  ,  
@@ -473,8 +460,8 @@ BEGIN:VEVENT
 SUMMARY:Defense & Venture Reception at SOF Week
 DTSTART:20260519T230000Z
 DTEND:20260520T020000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.884034@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.034251@codecollective
 DESCRIPTION:Event Link: https://luma.com/defenseventureSOFweek
 LOCATION:\,  
 URL:https://luma.com/defenseventureSOFweek
@@ -483,8 +470,8 @@ BEGIN:VEVENT
 SUMMARY:Lead Fee DC at Senior Fest Block Party
 DTSTART:20260520T143000Z
 DTEND:20260520T163000Z
-DTSTAMP:20260508T005822Z
-UID:e3c7d87ec6f23dc4-1778201902.884243@codecollective
+DTSTAMP:20260509T005938Z
+UID:e3c7d87ec6f23dc4-1778288378.034471@codecollective
 DESCRIPTION:Gateway DC Pavilion\n2700 Martin Luther King Jr Ave SE\n\nEven
  t Link: https://www.dcwater.com/events/lead-fee-dc-senior-fest-block-party
 LOCATION:DC Water\, Washington\, DC\, \,  
@@ -494,8 +481,8 @@ BEGIN:VEVENT
 SUMMARY:Agentic AI Multimodal MonthlyMixer - Where Agents Minds Meet
 DTSTART:20260520T210000Z
 DTEND:20260520T190000
-DTSTAMP:20260508T005822Z
-UID:314566659-1778201902.884539@codecollective
+DTSTAMP:20260509T005938Z
+UID:314566659-1778288378.03479@codecollective
 DESCRIPTION:Join the global gathering of AI builders\, researchers\, and e
  nthusiasts pushing the boundaries of agentic systems and multimodal intell
  igence.\nConnect every month for organic networking\, 1-on-1 video c\n\nEv
@@ -508,8 +495,8 @@ SUMMARY:(CS)²AI Online™- Outpaced: Defending CI Against Rapidly Evolvin
  g Threats
 DTSTART:20260520T210000Z
 DTEND:20260520T183000
-DTSTAMP:20260508T005822Z
-UID:314665014-1778201902.88522@codecollective
+DTSTAMP:20260509T005938Z
+UID:314665014-1778288378.035448@codecollective
 DESCRIPTION:Reserve a seat to join the discussion: https://events.zoom.us/
  ev/AklCAhvRz-zrdAhax75wR_HJxnr5c_-VUirnHL_sACEY1dTonirp~AkMq9tokJx6dKRIc7L
  ThVHQcvs6_sBJbbjsGXGW0KkXEUyMzzmNROc80mG6Mg7VhRFIQR2vOTDpShdUZUs\n\nEvent 
@@ -523,8 +510,8 @@ BEGIN:VEVENT
 SUMMARY:Social & Fundraising Kick-off
 DTSTART:20260520T221500Z
 DTEND:20260521T000000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.885889@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.036117@codecollective
 DESCRIPTION:Event Link: https://luma.com/rds9qwzo
 LOCATION:Balcón\, Balcón\, 1280 4th St NE\, Washington\, DC 20002\, USA\
  , \,  
@@ -534,8 +521,8 @@ BEGIN:VEVENT
 SUMMARY:DC Chapter Clean Water Committee Meeting
 DTSTART:20260520T223000Z
 DTEND:20260520T203000
-DTSTAMP:20260508T005822Z
-UID:314567888-1778201902.886108@codecollective
+DTSTAMP:20260509T005938Z
+UID:314567888-1778288378.036404@codecollective
 DESCRIPTION:Please RSVP to this event on our website calendar for meeting 
  details\, thank you! http://dc.sierraclub.org/calendar\n\nOur Clean Water 
  Committee advocates for fishable and swimmable waterways in the Dis\n\nEve
@@ -547,8 +534,8 @@ BEGIN:VEVENT
 SUMMARY:STATION DC Drones Open Roundtable
 DTSTART:20260521T140000Z
 DTEND:20260521T160000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.8865@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.036906@codecollective
 DESCRIPTION:Event Link: https://luma.com/j6q7fqtd
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -558,8 +545,8 @@ BEGIN:VEVENT
 SUMMARY:Hiero Heka: A Ready-To-Use Decentralized Identity Solution
 DTSTART:20260521T150000Z
 DTEND:20260521T123000
-DTSTAMP:20260508T005822Z
-UID:314285113-1778201902.886744@codecollective
+DTSTAMP:20260509T005938Z
+UID:314285113-1778288378.037131@codecollective
 DESCRIPTION:The Heka Identity Platform is a ready-to-use decentralized ide
  ntity (aka Self-Sovereign Identity or SSI) solution for the Hiero ecosyste
  m. The project delivers a complete set of applications and tools\n\nEvent 
@@ -571,8 +558,8 @@ BEGIN:VEVENT
 SUMMARY:AI Fundamentals - Four Part Series
 DTSTART:20260521T150000Z
 DTEND:20260521T170000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.887177@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.03757@codecollective
 DESCRIPTION:Event Link: https://luma.com/https://dclibrary.libnet.info/eve
  nts?term=AI+Fundamentals&r=range&start=2026-05-01&end=2026-07-30
 LOCATION:Martin Luther King Jr. Memorial Library\, Martin Luther King Jr. 
@@ -585,8 +572,8 @@ SUMMARY:Human Resources & Labor Relations Committee Meeting w/Union Presid
  ents
 DTSTART:20260521T150000Z
 DTEND:20260521T170000Z
-DTSTAMP:20260508T005822Z
-UID:6da96642a42064a6-1778201902.88733@codecollective
+DTSTAMP:20260509T005938Z
+UID:6da96642a42064a6-1778288378.037754@codecollective
 DESCRIPTION:via Microsoft Teams\n\nEvent Link: https://www.dcwater.com/eve
  nts/human-resources-labor-relations-committee-meeting-wunion-presidents-1
 LOCATION:DC Water\, Washington\, DC\, \,  
@@ -597,8 +584,8 @@ BEGIN:VEVENT
 SUMMARY:How platform engineering unlocks CRA readiness
 DTSTART:20260521T170000Z
 DTEND:20260521T140000
-DTSTAMP:20260508T005822Z
-UID:314214971-1778201902.887627@codecollective
+DTSTAMP:20260509T005938Z
+UID:314214971-1778288378.03806@codecollective
 DESCRIPTION:The EU's Cyber Resilience Act (CRA) is one of the most signifi
  cant regulatory shifts for software manufacturers in recent history - and 
  the clock is ticking. With mandatory reporting obligations kicki\n\nEvent 
@@ -612,8 +599,8 @@ BEGIN:VEVENT
 SUMMARY:MAY - VC in DC's Third Thursdays
 DTSTART:20260521T210000Z
 DTEND:20260521T230000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.888084@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.038505@codecollective
 DESCRIPTION:Event Link: https://luma.com/VCDC-TT-MAY26
 LOCATION:\,  
 URL:https://luma.com/VCDC-TT-MAY26
@@ -622,8 +609,8 @@ BEGIN:VEVENT
 SUMMARY:Outdoor Discussion Walk: OpenClaw and Autonomous Agents
 DTSTART:20260523T190000Z
 DTEND:20260523T210000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.8883@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.038767@codecollective
 DESCRIPTION:Event Link: https://luma.com/uk22t7r2
 LOCATION:The People's Garden D.C.\, The People's Garden D.C.\, 12th St SW\
  , Washington\, DC 20560\, USA\, \,  
@@ -633,8 +620,8 @@ BEGIN:VEVENT
 SUMMARY:Defense Tech DC 015
 DTSTART:20260526T213000Z
 DTEND:20260526T233000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.888512@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.038986@codecollective
 DESCRIPTION:Event Link: https://luma.com/dtdc015
 LOCATION:\,  
 URL:https://luma.com/dtdc015
@@ -644,8 +631,8 @@ SUMMARY:Your Evals Are Bad And You Should Feel Bad: Evaluation and the Mod
  el Development Lifecycle
 DTSTART:20260526T220000Z
 DTEND:20260527T000000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.888747@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.039197@codecollective
 DESCRIPTION:Event Link: https://luma.com/27ja5gwl
 LOCATION:2112 Pennsylvania Ave NW\, 2112 Pennsylvania Ave NW\, Washington\
  , DC 20037\, USA\, \,  
@@ -655,8 +642,8 @@ BEGIN:VEVENT
 SUMMARY:The sirens of IT Ops want to drown your platform crew
 DTSTART:20260527T170000Z
 DTEND:20260527T134500
-DTSTAMP:20260508T005822Z
-UID:314472500-1778201902.88896@codecollective
+DTSTAMP:20260509T005938Z
+UID:314472500-1778288378.039407@codecollective
 DESCRIPTION:The sirens of IT Ops are seductive. With familiar processes\, 
  existing tooling\, the comfort of a queue. But they'll wreck your platform
   team on the rocks. In this fireside chat\, we get real about what \n\nEve
@@ -670,8 +657,8 @@ BEGIN:VEVENT
 SUMMARY:Project Night at Taoti
 DTSTART:20260527T220000Z
 DTEND:20260528T003000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.889476@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.039943@codecollective
 DESCRIPTION:Event Link: https://luma.com/be8kjf6n
 LOCATION:Taoti Creative\, Taoti Creative\, 507 8th St SE\, Washington\, DC
   20003\, USA\, \,  
@@ -682,8 +669,8 @@ SUMMARY:The Government Relations Playbook: Navigating Legislation & Regula
  tion
 DTSTART:20260528T130000Z
 DTEND:20260528T150000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.889718@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.040164@codecollective
 DESCRIPTION:Event Link: https://luma.com/edimusfh
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -693,8 +680,8 @@ BEGIN:VEVENT
 SUMMARY:AI Fundamentals - Four Part Series
 DTSTART:20260528T150000Z
 DTEND:20260528T170000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.889929@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.040386@codecollective
 DESCRIPTION:Event Link: https://luma.com/https://dclibrary.libnet.info/eve
  nts?term=AI+Fundamentals&r=range&start=2026-05-01&end=2026-07-30
 LOCATION:Martin Luther King Jr. Memorial Library\, Martin Luther King Jr. 
@@ -707,8 +694,8 @@ SUMMARY:AIDataTech Connect: Global Virtual Networking Event for AI\, Data
  & Tech Pros
 DTSTART:20260528T210000Z
 DTEND:20260528T190000
-DTSTAMP:20260508T005822Z
-UID:313483860-1778201902.890077@codecollective
+DTSTAMP:20260509T005938Z
+UID:313483860-1778288378.040536@codecollective
 DESCRIPTION:Are you working in artificial intelligence\, data science\, or
   machine learning? Whether you're a developer\, researcher\, startup found
  er\, or aspiring tech enthusiast — AIDataTech Connect is your go-to A\n\
@@ -720,8 +707,8 @@ BEGIN:VEVENT
 SUMMARY:Incorruptible: A Conversation with Eric Ries at STATION DC
 DTSTART:20260528T213000Z
 DTEND:20260528T233000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.890747@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.041205@codecollective
 DESCRIPTION:Event Link: https://luma.com/cs48vtxz
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -731,8 +718,8 @@ BEGIN:VEVENT
 SUMMARY:Bitcoin Book Club: The Fourth Turning
 DTSTART:20260528T223000Z
 DTEND:20260529T000000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.890965@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.041419@codecollective
 DESCRIPTION:Event Link: https://luma.com/y4x28eun
 LOCATION:Teaism Penn Quarter\, Teaism Penn Quarter\, 400 8th St NW\, Washi
  ngton\, DC 20004\, USA\, \,  
@@ -742,8 +729,8 @@ BEGIN:VEVENT
 SUMMARY:The New Arsenal - #NYTechWeek
 DTSTART:20260601T200000Z
 DTEND:20260601T220000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.891241@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.041631@codecollective
 DESCRIPTION:Event Link: https://luma.com/https://partiful.com/e/n5uCUeAb1z
  W9pXNEqsg3
 LOCATION:Manhattan\, Manhattan\, New York\, NY\, USA\, \,  
@@ -753,8 +740,8 @@ BEGIN:VEVENT
 SUMMARY:STATION DC Chess Club
 DTSTART:20260601T210000Z
 DTEND:20260601T230000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.89139@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.04181@codecollective
 DESCRIPTION:Event Link: https://luma.com/abvfd7im
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -764,8 +751,8 @@ BEGIN:VEVENT
 SUMMARY:Volunteer Onboarding
 DTSTART:20260601T230000Z
 DTEND:20260602T000000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.8916@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.042021@codecollective
 DESCRIPTION:Event Link: https://luma.com/emouq186
 LOCATION:\,  
 URL:https://luma.com/emouq186
@@ -774,8 +761,8 @@ BEGIN:VEVENT
 SUMMARY:PGP Demo Event #2
 DTSTART:20260602T013000Z
 DTEND:20260602T033000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.891836@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.042241@codecollective
 DESCRIPTION:Event Link: https://luma.com/fnj09zrh
 LOCATION:virtual\, \,  
 URL:https://luma.com/fnj09zrh
@@ -784,8 +771,8 @@ BEGIN:VEVENT
 SUMMARY:STATION DC Robotics Open Roundtable
 DTSTART:20260602T140000Z
 DTEND:20260602T160000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.892043@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.042491@codecollective
 DESCRIPTION:Event Link: https://luma.com/sgs0z5zj
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -796,8 +783,8 @@ SUMMARY:Demystifying the U.S. Air Force: How Business Development Mercenar
  ies Win & Deploy Tech To The Warfighter
 DTSTART:20260602T190000Z
 DTEND:20260602T210000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.892249@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.042727@codecollective
 DESCRIPTION:Event Link: https://luma.com/i32ag9zh
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -807,8 +794,8 @@ BEGIN:VEVENT
 SUMMARY:No More Tickets: AI & IT Leaders Happy Hour
 DTSTART:20260602T210000Z
 DTEND:20260602T230000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.892462@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.04294@codecollective
 DESCRIPTION:Event Link: https://luma.com/p9wzpn3o
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -818,8 +805,8 @@ BEGIN:VEVENT
 SUMMARY:OpenAI Tech Workshop: Building with AI Agents
 DTSTART:20260603T130000Z
 DTEND:20260603T153000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.892688@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.043155@codecollective
 DESCRIPTION:Event Link: https://luma.com/o6e82fnq
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -829,8 +816,8 @@ BEGIN:VEVENT
 SUMMARY:I KNOW A GUY
 DTSTART:20260603T200000Z
 DTEND:20260603T223000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.892901@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.043361@codecollective
 DESCRIPTION:Event Link: https://luma.com/exvxq3s7
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -840,8 +827,8 @@ BEGIN:VEVENT
 SUMMARY:vcIQ: Dual-Use Founder Session
 DTSTART:20260604T140000Z
 DTEND:20260604T153000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.893109@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.043565@codecollective
 DESCRIPTION:Event Link: https://luma.com/vcIQ-FORGE
 LOCATION:\,  
 URL:https://luma.com/vcIQ-FORGE
@@ -850,8 +837,8 @@ BEGIN:VEVENT
 SUMMARY:Quantum Threat Landscape: Where We Stand and How to Prepare
 DTSTART:20260604T150000Z
 DTEND:20260604T120000
-DTSTAMP:20260508T005822Z
-UID:314584688-1778201902.893313@codecollective
+DTSTAMP:20260509T005938Z
+UID:314584688-1778288378.043799@codecollective
 DESCRIPTION:Quantum computing is no longer a distant threat. Improvements 
  in hardware design\, new algorithmic breakthroughs\, and expert surveys no
  w put a cryptographically-relevant quantum computer sooner than th\n\nEven
@@ -863,8 +850,8 @@ BEGIN:VEVENT
 SUMMARY:RideFlow DC: Spoke and Seek
 DTSTART:20260605T210000Z
 DTEND:20260606T013000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.893801@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.044255@codecollective
 DESCRIPTION:Event Link: https://luma.com/cingdte1
 LOCATION:Dupont Circle\, Dupont Circle\, Washington\, DC 20036\, USA\, \, 
   
@@ -874,8 +861,8 @@ BEGIN:VEVENT
 SUMMARY:Outdoor Discussion Walk: WALL-E and Future of AI
 DTSTART:20260606T190000Z
 DTEND:20260606T210000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.894015@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.044536@codecollective
 DESCRIPTION:Event Link: https://luma.com/78bfskyi
 LOCATION:Open Road Rosslyn\, Open Road Rosslyn\, 1201 Wilson Blvd Suite 21
  3\, Arlington\, VA 22209\, USA\, \,  
@@ -885,8 +872,8 @@ BEGIN:VEVENT
 SUMMARY:Meet the Projects: Energy & Climate
 DTSTART:20260609T204500Z
 DTEND:20260609T233000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.894222@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.044782@codecollective
 DESCRIPTION:Event Link: https://luma.com/7gdvgw57
 LOCATION:Martin Luther King Jr. Memorial Library\, Martin Luther King Jr. 
  Memorial Library\, 901 G St NW\, Washington\, DC 20001\, USA\, \,  
@@ -896,8 +883,8 @@ BEGIN:VEVENT
 SUMMARY:DC Chapter Zero Waste Committee Meeting
 DTSTART:20260609T223000Z
 DTEND:20260609T203000
-DTSTAMP:20260508T005822Z
-UID:smhztsyjcjbmb-1778201902.894436@codecollective
+DTSTAMP:20260509T005938Z
+UID:smhztsyjcjbmb-1778288378.044994@codecollective
 DESCRIPTION:We welcome new members. Please RSVP to this event at least a d
  ay before the meeting to receive the Zoom link. You can register on our we
  bsite calendar at http://dc.sierraclub.org/calendar Thank you!\n\n\n\nEven
@@ -909,8 +896,8 @@ BEGIN:VEVENT
 SUMMARY:STATION DC AI Open Roundtable
 DTSTART:20260610T140000Z
 DTEND:20260610T160000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.894858@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.045394@codecollective
 DESCRIPTION:Event Link: https://luma.com/ncw10we6
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -920,8 +907,8 @@ BEGIN:VEVENT
 SUMMARY:How We Win 2.0: Munitions
 DTSTART:20260610T180000Z
 DTEND:20260610T230000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.895071@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.045611@codecollective
 DESCRIPTION:Event Link: https://luma.com/t7v7hyxw
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -931,8 +918,8 @@ BEGIN:VEVENT
 SUMMARY:Congressional Data Task Force
 DTSTART:20260611T190000Z
 DTEND:20260611T160000
-DTSTAMP:20260508T005822Z
-UID:2026-06-11-CDTF-1778201902.89528@codecollective
+DTSTAMP:20260509T005938Z
+UID:2026-06-11-CDTF-1778288378.045852@codecollective
 DESCRIPTION:The Congressional Data Task Force will hold a public meeting o
  n Thursday\, June 11\, 2026\, from 2:00 PM to 4:00 PM ET.\n\nEvent Link: h
  ttps://usgpo.github.io/innovation/events/2026-06-11-CDTF/
@@ -943,8 +930,8 @@ BEGIN:VEVENT
 SUMMARY:M&A Readiness: Preparing for an Exit (Before You Need It)
 DTSTART:20260615T130000Z
 DTEND:20260615T140000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.895667@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.046227@codecollective
 DESCRIPTION:Event Link: https://luma.com/vkq4f1ow
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -954,8 +941,8 @@ BEGIN:VEVENT
 SUMMARY:GPU\, CUDA\, and PyTorch Performance Optimizations
 DTSTART:20260615T160000Z
 DTEND:20260615T130000
-DTSTAMP:20260508T005822Z
-UID:313297578-1778201902.895888@codecollective
+DTSTAMP:20260509T005938Z
+UID:313297578-1778288378.046441@codecollective
 DESCRIPTION:Zoom link: https://us02web.zoom.us/j/82308186562\n\nTalk #0: I
  ntroductions and Meetup Updates\nby Chris Fregly and Antje Barth\n\nTalk #
  1: GPU\, PyTorch\, and CUDA Performance Optimizations\n\nTalk #2: GPU\, Py
@@ -969,8 +956,8 @@ BEGIN:VEVENT
 SUMMARY:STATION DC Transportation and Infrastructure Open Roundtable
 DTSTART:20260616T140000Z
 DTEND:20260616T160000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.896314@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.046883@codecollective
 DESCRIPTION:Event Link: https://luma.com/wg6wh2c0
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -980,8 +967,8 @@ BEGIN:VEVENT
 SUMMARY:Mastering Storytelling for Personal Brand
 DTSTART:20260618T210000Z
 DTEND:20260618T220000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.896527@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.047102@codecollective
 DESCRIPTION:Event Link: https://luma.com/magi6ogo
 LOCATION:\,  
 URL:https://luma.com/magi6ogo
@@ -990,33 +977,18 @@ BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - June
 DTSTART:20260619T180000Z
 DTEND:20260619T190000Z
-DTSTAMP:20260508T005822Z
-UID:fc7b955790c9bc29-1778201902.896764@codecollective
+DTSTAMP:20260509T005938Z
+UID:fc7b955790c9bc29-1778288378.047311@codecollective
 DESCRIPTION:Event Link: https://lu.ma/01uejl6b
 LOCATION:\,  
 URL:https://lu.ma/01uejl6b
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Lead Free DC at Capital Pride Block and Festival
-DTSTART:20260620T190000Z
-DTEND:20260620T210000Z
-DTSTAMP:20260508T005822Z
-UID:4e132946fbea8464-1778201902.896974@codecollective
-DESCRIPTION:Payment Plan Incentive\n: provides a credit back of 50% of the
-  last 3 payments made. Eligible participants are residential customers who
-  have had an outstanding balance for 60 days or greater and with \n\nEvent
-  Link: https://www.dcwater.com/events/lead-free-dc-capital-pride-block-and
- -festival
-LOCATION:DC Water\, Washington\, DC\, \,  
-URL:https://www.dcwater.com/events/lead-free-dc-capital-pride-block-and-fe
- stival
-END:VEVENT
-BEGIN:VEVENT
 SUMMARY:STATION DC Hypersonics Open Roundtable
 DTSTART:20260623T140000Z
 DTEND:20260623T160000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.897283@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.04752@codecollective
 DESCRIPTION:Event Link: https://luma.com/b377rerk
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -1026,8 +998,8 @@ BEGIN:VEVENT
 SUMMARY:Defense Tech DC 016
 DTSTART:20260623T213000Z
 DTEND:20260623T233000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.897498@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.047761@codecollective
 DESCRIPTION:Event Link: https://luma.com/dtdc016
 LOCATION:\,  
 URL:https://luma.com/dtdc016
@@ -1036,8 +1008,8 @@ BEGIN:VEVENT
 SUMMARY:Small Group Networking - Q3 2026
 DTSTART:20260701T190000Z
 DTEND:20260701T200000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.897734@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.047971@codecollective
 DESCRIPTION:Event Link: https://luma.com/9kdrlru7
 LOCATION:\,  
 URL:https://luma.com/9kdrlru7
@@ -1046,8 +1018,8 @@ BEGIN:VEVENT
 SUMMARY:PGP Demo Event #3
 DTSTART:20260702T013000Z
 DTEND:20260702T033000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.897945@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.048179@codecollective
 DESCRIPTION:Event Link: https://luma.com/qiibsef6
 LOCATION:virtual\, \,  
 URL:https://luma.com/qiibsef6
@@ -1056,8 +1028,8 @@ BEGIN:VEVENT
 SUMMARY:STATION DC Chess Club
 DTSTART:20260706T210000Z
 DTEND:20260706T230000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.898215@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.048388@codecollective
 DESCRIPTION:Event Link: https://luma.com/vbs3iy0l
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -1067,8 +1039,8 @@ BEGIN:VEVENT
 SUMMARY:Volunteer Onboarding
 DTSTART:20260706T230000Z
 DTEND:20260707T000000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.89843@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.048597@codecollective
 DESCRIPTION:Event Link: https://luma.com/zidrtlu1
 LOCATION:\,  
 URL:https://luma.com/zidrtlu1
@@ -1077,8 +1049,8 @@ BEGIN:VEVENT
 SUMMARY:Upskilling Summit #2
 DTSTART:20260714T203000Z
 DTEND:20260715T003000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.898661@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.048828@codecollective
 DESCRIPTION:Event Link: https://luma.com/ye23l1an
 LOCATION:Martin Luther King Jr. Memorial Library\, Martin Luther King Jr. 
  Memorial Library\, 901 G St NW\, Washington\, DC 20001\, USA\, \,  
@@ -1088,8 +1060,8 @@ BEGIN:VEVENT
 SUMMARY:➡️Green Happy Hour
 DTSTART:20260715T230000Z
 DTEND:20260715T220000
-DTSTAMP:20260508T005822Z
-UID:253166574-1778201902.898878@codecollective
+DTSTAMP:20260509T005938Z
+UID:253166574-1778288378.049035@codecollective
 DESCRIPTION:Let us get together for a green Convo\, with half-priced appet
  izers\, glass of wine and rail drinks. This is mainly a social event. Howe
  ver\, we invite guest speakers on our Happy Hours\, from time to tim\n\nEv
@@ -1101,8 +1073,8 @@ BEGIN:VEVENT
 SUMMARY:JULY - VC in DC's Third Thursdays
 DTSTART:20260716T210000Z
 DTEND:20260716T230000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.899256@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.049414@codecollective
 DESCRIPTION:Event Link: https://luma.com/VCDC-TT-JULY26
 LOCATION:\,  
 URL:https://luma.com/VCDC-TT-JULY26
@@ -1111,8 +1083,8 @@ BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - July
 DTSTART:20260717T180000Z
 DTEND:20260717T190000Z
-DTSTAMP:20260508T005822Z
-UID:e18a4513bcbb16e4-1778201902.899476@codecollective
+DTSTAMP:20260509T005938Z
+UID:e18a4513bcbb16e4-1778288378.049629@codecollective
 DESCRIPTION:Event Link: https://lu.ma/zkdjact1
 LOCATION:\,  
 URL:https://lu.ma/zkdjact1
@@ -1121,8 +1093,8 @@ BEGIN:VEVENT
 SUMMARY:GPU\, CUDA\, and PyTorch Performance Optimizations
 DTSTART:20260720T160000Z
 DTEND:20260720T130000
-DTSTAMP:20260508T005822Z
-UID:313297583-1778201902.899714@codecollective
+DTSTAMP:20260509T005938Z
+UID:313297583-1778288378.049866@codecollective
 DESCRIPTION:Zoom link: https://us02web.zoom.us/j/82308186562\n\nTalk #0: I
  ntroductions and Meetup Updates\nby Chris Fregly and Antje Barth\n\nTalk #
  1: GPU\, PyTorch\, and CUDA Performance Optimizations\n\nTalk #2: GPU\, Py
@@ -1136,8 +1108,8 @@ BEGIN:VEVENT
 SUMMARY:Defense Tech DC 017
 DTSTART:20260728T213000Z
 DTEND:20260728T233000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.900125@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.050271@codecollective
 DESCRIPTION:Event Link: https://luma.com/dtdc017
 LOCATION:\,  
 URL:https://luma.com/dtdc017
@@ -1146,8 +1118,8 @@ BEGIN:VEVENT
 SUMMARY:STATION DC Health Tech Open Roundtable
 DTSTART:20260730T140000Z
 DTEND:20260730T160000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.90036@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.050484@codecollective
 DESCRIPTION:Event Link: https://luma.com/na6e6iis
 LOCATION:STATION DC\, STATION DC\, 1323 4th St NE Suite 200\, Washington\,
   DC 20002\, USA\, \,  
@@ -1157,8 +1129,8 @@ BEGIN:VEVENT
 SUMMARY:GPU\, CUDA\, and PyTorch Performance Optimizations
 DTSTART:20260817T160000Z
 DTEND:20260817T130000
-DTSTAMP:20260508T005822Z
-UID:nhvnttyjclbwb-1778201902.900589@codecollective
+DTSTAMP:20260509T005938Z
+UID:nhvnttyjclbwb-1778288378.050717@codecollective
 DESCRIPTION:Zoom link: https://us02web.zoom.us/j/82308186562\n\nTalk #0: I
  ntroductions and Meetup Updates\nby Chris Fregly and Antje Barth\n\nTalk #
  1: GPU\, PyTorch\, and CUDA Performance Optimizations\n\nTalk #2: GPU\, Py
@@ -1172,8 +1144,8 @@ BEGIN:VEVENT
 SUMMARY:[BREAKFAST] AUGUST - VC in DC's Third Thursdays
 DTSTART:20260820T130000Z
 DTEND:20260820T150000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.901021@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.051131@codecollective
 DESCRIPTION:Event Link: https://luma.com/VCDC-TT-AUG26
 LOCATION:\,  
 URL:https://luma.com/VCDC-TT-AUG26
@@ -1182,8 +1154,8 @@ BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - August
 DTSTART:20260821T180000Z
 DTEND:20260821T190000Z
-DTSTAMP:20260508T005822Z
-UID:2c18fff6de378d2b-1778201902.90125@codecollective
+DTSTAMP:20260509T005938Z
+UID:2c18fff6de378d2b-1778288378.051347@codecollective
 DESCRIPTION:Event Link: https://lu.ma/2t76ncmw
 LOCATION:\,  
 URL:https://lu.ma/2t76ncmw
@@ -1192,8 +1164,8 @@ BEGIN:VEVENT
 SUMMARY:Girlies in Tech Dinner pt. 11 <3 | NYC Edition | NoMad
 DTSTART:20260902T230000Z
 DTEND:20260903T003000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.901472@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.05161@codecollective
 DESCRIPTION:Event Link: https://luma.com/i3whlzeq
 LOCATION:\,  
 URL:https://luma.com/i3whlzeq
@@ -1202,8 +1174,8 @@ BEGIN:VEVENT
 SUMMARY:SEPTEMBER - VC in DC's Third Thursdays
 DTSTART:20260917T210000Z
 DTEND:20260917T230000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.90171@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.051924@codecollective
 DESCRIPTION:Event Link: https://luma.com/VCDC-TT-SEPT26
 LOCATION:\,  
 URL:https://luma.com/VCDC-TT-SEPT26
@@ -1212,8 +1184,8 @@ BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - September
 DTSTART:20260918T180000Z
 DTEND:20260918T190000Z
-DTSTAMP:20260508T005822Z
-UID:20a92daa36d3b8e2-1778201902.901928@codecollective
+DTSTAMP:20260509T005938Z
+UID:20a92daa36d3b8e2-1778288378.052144@codecollective
 DESCRIPTION:Event Link: https://lu.ma/i0320ymf
 LOCATION:\,  
 URL:https://lu.ma/i0320ymf
@@ -1222,8 +1194,8 @@ BEGIN:VEVENT
 SUMMARY:Small Group Networking - Q4 2026
 DTSTART:20261007T190000Z
 DTEND:20261007T200000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.902138@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.052356@codecollective
 DESCRIPTION:Event Link: https://luma.com/e9eicdwc
 LOCATION:\,  
 URL:https://luma.com/e9eicdwc
@@ -1232,8 +1204,8 @@ BEGIN:VEVENT
 SUMMARY:Squadra AUSA Social
 DTSTART:20261013T203000Z
 DTEND:20261013T233000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.902348@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.052564@codecollective
 DESCRIPTION:Event Link: https://luma.com/SquadraAUSA26
 LOCATION:\,  
 URL:https://luma.com/SquadraAUSA26
@@ -1242,8 +1214,8 @@ BEGIN:VEVENT
 SUMMARY:[BREAKFAST] OCTOBER - VC in DC's Third Thursdays
 DTSTART:20261015T130000Z
 DTEND:20261015T150000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.902554@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.052802@codecollective
 DESCRIPTION:Event Link: https://luma.com/VCDC-TT-OCT26
 LOCATION:\,  
 URL:https://luma.com/VCDC-TT-OCT26
@@ -1252,8 +1224,8 @@ BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - October
 DTSTART:20261016T180000Z
 DTEND:20261016T190000Z
-DTSTAMP:20260508T005822Z
-UID:3f6fa2f809fcb82b-1778201902.90279@codecollective
+DTSTAMP:20260509T005938Z
+UID:3f6fa2f809fcb82b-1778288378.053011@codecollective
 DESCRIPTION:Event Link: https://lu.ma/yi17uy3d
 LOCATION:\,  
 URL:https://lu.ma/yi17uy3d
@@ -1262,8 +1234,8 @@ BEGIN:VEVENT
 SUMMARY:NOVEMBER - VC in DC's Third Thursdays
 DTSTART:20261119T220000Z
 DTEND:20261120T000000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.903001@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.053217@codecollective
 DESCRIPTION:Event Link: https://luma.com/VCDC-TT-NOV26
 LOCATION:\,  
 URL:https://luma.com/VCDC-TT-NOV26
@@ -1272,8 +1244,8 @@ BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - November
 DTSTART:20261120T210000Z
 DTEND:20261120T220000Z
-DTSTAMP:20260508T005822Z
-UID:f1159b04cc132efd-1778201902.903206@codecollective
+DTSTAMP:20260509T005938Z
+UID:f1159b04cc132efd-1778288378.053423@codecollective
 DESCRIPTION:Event Link: https://lu.ma/39mmm70h
 LOCATION:\,  
 URL:https://lu.ma/39mmm70h
@@ -1282,8 +1254,8 @@ BEGIN:VEVENT
 SUMMARY:Congressional Data Task Force
 DTSTART:20261203T190000Z
 DTEND:20261203T160000
-DTSTAMP:20260508T005822Z
-UID:2026-12-03-CDTF-1778201902.903411@codecollective
+DTSTAMP:20260509T005938Z
+UID:2026-12-03-CDTF-1778288378.053629@codecollective
 DESCRIPTION:The Congressional Data Task Force will hold a public meeting o
  n Thursday\, December 3\, 2026\, from 2:00 PM to 4:00 PM ET.\n\nEvent Link
  : https://usgpo.github.io/innovation/events/2026-12-03-CDTF/
@@ -1294,8 +1266,8 @@ BEGIN:VEVENT
 SUMMARY:DECEMBER - VC in DC's Third Thursdays
 DTSTART:20261217T220000Z
 DTEND:20261218T000000Z
-DTSTAMP:20260508T005822Z
-UID:-1778201902.903811@codecollective
+DTSTAMP:20260509T005938Z
+UID:-1778288378.054033@codecollective
 DESCRIPTION:Event Link: https://luma.com/VCDC-TT-DEC26
 LOCATION:\,  
 URL:https://luma.com/VCDC-TT-DEC26
@@ -1304,8 +1276,8 @@ BEGIN:VEVENT
 SUMMARY:District Angels Monthly Deal Room - December
 DTSTART:20261218T210000Z
 DTEND:20261218T220000Z
-DTSTAMP:20260508T005822Z
-UID:03572bd8e4c62793-1778201902.904034@codecollective
+DTSTAMP:20260509T005938Z
+UID:03572bd8e4c62793-1778288378.05425@codecollective
 DESCRIPTION:Event Link: https://lu.ma/v9nw6ebv
 LOCATION:\,  
 URL:https://lu.ma/v9nw6ebv
@@ -1315,8 +1287,8 @@ SUMMARY:Green\, Sustainable Dev't & Environment HH[FREE BUT RSVP IS REQ'RD
   ON EVENTBRITE]
 DTSTART:20270125T230000Z
 DTEND:20270125T190000
-DTSTAMP:20260508T005822Z
-UID:277526783-1778201902.90424@codecollective
+DTSTAMP:20260509T005938Z
+UID:277526783-1778288378.054466@codecollective
 DESCRIPTION:To secure your spot\, purchase your ticket from the Eventbrite
   link (https://www.eventbrite.com/e/green-sustainable-energy-environment-v
  irtual-hour-tickets-150586158253). RSVPing only on the Meetup pag\n\nEvent
@@ -1328,8 +1300,8 @@ BEGIN:VEVENT
 SUMMARY:A Night At The Embassy of The European Union
 DTSTART:20290324T220000Z
 DTEND:20290324T200000
-DTSTAMP:20260508T005822Z
-UID:291754830-1778201902.904721@codecollective
+DTSTAMP:20260509T005938Z
+UID:291754830-1778288378.054965@codecollective
 DESCRIPTION:To secure your spot\, purchase your ticket from the link (http
  s://www.eventbrite.com/e/a-night-at-the-european-union-embassydelegation-t
  ickets-544451849137). RSVPing only on the Meetup Page doesn't all\n\nEvent
