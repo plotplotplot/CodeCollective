@@ -679,6 +679,11 @@ sources = [
         "tags": ["Politics", "Culture", "Purpose", "Belonging"],
     },
     {
+        "name": "Baltimore Neighborhood Indicators Community Change Events",
+        "url": "https://bniajfi.org/currentprojects/baltimore-community-change-events/",
+        "tags": ["Politics", "Community Organizing", "Purpose", "Belonging"],
+    },
+    {
         "name": "Beth El Congregation Calendar",
         "url": "https://bethelbalto.com/calendar/",
         "tags": ["Faith", "Culture", "Belonging", "Purpose"],
