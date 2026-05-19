@@ -735,12 +735,45 @@
     "latitude": 39.9327039,
     "longitude": -75.1602348,
     "status": "ok",
-    "source": "nominatim"
+    "source": "provided"
   },
   "cartesian brewing": {
     "latitude": 39.9327039,
     "longitude": -75.1602348,
     "status": "ok",
-    "source": "nominatim"
+    "source": "provided"
+  },
+  "6135 germantown ave, philadelphia, pa 19144, usa": {
+    "latitude": 40.0416114,
+    "longitude": -75.17939249999999,
+    "status": "ok",
+    "source": "provided"
+  },
+  "6135 germantown ave": {
+    "latitude": 40.0416114,
+    "longitude": -75.17939249999999,
+    "status": "ok",
+    "source": "provided"
+  },
+  "6135 germantown ave, philadelphia, pa 19144, usa, pennsylvania": {
+    "latitude": 40.0416114,
+    "longitude": -75.17939249999999,
+    "status": "ok",
+    "source": "provided"
+  },
+  "deli@dwell, 1301 n american st, philadelphia, pa 19122, usa": {
+    "status": "failed_no_result"
+  },
+  "deli@dwell": {
+    "status": "failed_no_result"
+  },
+  "headroom hi-fi lounge, 50 thomson pl second floor, boston, ma 02210, usa": {
+    "status": "failed_no_result"
+  },
+  "headroom hi-fi lounge": {
+    "status": "failed_no_result"
+  },
+  "headroom hi-fi lounge, 50 thomson pl second floor, boston, ma 02210, usa, philadelphia": {
+    "status": "failed_no_result"
   }
 }
