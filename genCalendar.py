@@ -15,6 +15,7 @@ import scrape_partiful
 import scrape_web_events
 import scrape_legistar
 import scrape_thread_helpcenter
+import scrape_bniajfi
 import json
 import datetime
 import pytz
@@ -228,6 +229,9 @@ def infer_source_kind(source_url):
 
     if host == "my.thread.org" and path.startswith("/api/v2/help_center/") and "articles.json" in path:
         return "thread_helpcenter_api"
+
+    if host in {"bniajfi.org", "www.bniajfi.org"} and path.startswith("/currentprojects/baltimore-community-change-events/"):
+        return "bniajfi_community_change_events"
 
     if host in {"baltimorecancersupportgroup.org", "www.baltimorecancersupportgroup.org"}:
         if parse_qs(parsed.query).get("page_id") == ["53"]:
@@ -500,6 +504,10 @@ def fetch_events_from_source(source, city):
         "thread_helpcenter_api": (
             "Fetching events from",
             lambda: scrape_thread_helpcenter.scrape_thread_helpcenter_events(source_url),
+        ),
+        "bniajfi_community_change_events": (
+            "Fetching events from",
+            lambda: scrape_bniajfi.scrape_bniajfi_community_change_events(source_url),
         ),
     }
 
