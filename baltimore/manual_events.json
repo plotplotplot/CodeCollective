@@ -70,6 +70,13 @@
     "source_url": "https://columbiacommunitycare.org/",
     "source_group": "Columbia Community Care",
     "recurring": true,
+    "recurrence": {
+      "freq": "weekly",
+      "interval": 1,
+      "byweekday": [
+        "SA"
+      ]
+    },
     "scrapeTime": "2026-05-22 00:00:00"
   }
 ]

@@ -6,6 +6,29 @@ from dateutil.parser import parse
 
 
 RECURRING_MANUAL_LOOKAHEAD_DAYS = 366
+WEEKDAY_NAME_TO_INDEX = {
+    "MO": 0,
+    "MON": 0,
+    "MONDAY": 0,
+    "TU": 1,
+    "TUE": 1,
+    "TUESDAY": 1,
+    "WE": 2,
+    "WED": 2,
+    "WEDNESDAY": 2,
+    "TH": 3,
+    "THU": 3,
+    "THURSDAY": 3,
+    "FR": 4,
+    "FRI": 4,
+    "FRIDAY": 4,
+    "SA": 5,
+    "SAT": 5,
+    "SATURDAY": 5,
+    "SU": 6,
+    "SUN": 6,
+    "SUNDAY": 6,
+}
 
 
 def _nth_weekday_of_month(year, month, weekday, n):
@@ -56,54 +79,143 @@ def us_bank_holidays_10(year):
     }
 
 
+def _normalize_weekday(value):
+    if isinstance(value, int) and 0 <= value <= 6:
+        return value
+
+    if isinstance(value, str):
+        normalized = value.strip().upper()
+        return WEEKDAY_NAME_TO_INDEX.get(normalized)
+
+    return None
+
+
+def _coerce_positive_int(value, default):
+    try:
+        coerced = int(value)
+    except (TypeError, ValueError):
+        return default
+    return coerced if coerced > 0 else default
+
+
+def _parse_recurrence_until(value):
+    if not value:
+        return None
+    try:
+        parsed = parse(str(value))
+    except Exception:
+        return None
+    return parsed.date()
+
+
+def _event_duration(event, base_start):
+    end_raw = event.get("endTime")
+    if not end_raw:
+        return datetime.timedelta(hours=2)
+
+    parsed_end = parse(end_raw)
+    if parsed_end.tzinfo is None:
+        parsed_end = parsed_end.replace(tzinfo=base_start.tzinfo)
+    return parsed_end - base_start
+
+
+def _normalize_recurrence_config(event, base_start):
+    recurrence = event.get("recurrence")
+    if not recurrence and event.get("recurring"):
+        recurrence = {"freq": "weekly"}
+
+    if not isinstance(recurrence, dict):
+        return None
+
+    freq = str(recurrence.get("freq") or "weekly").strip().lower()
+    if freq != "weekly":
+        return None
+
+    byweekday_raw = recurrence.get("byweekday") or [base_start.weekday()]
+    byweekday = []
+    for value in byweekday_raw:
+        normalized = _normalize_weekday(value)
+        if normalized is not None and normalized not in byweekday:
+            byweekday.append(normalized)
+    if not byweekday:
+        byweekday = [base_start.weekday()]
+
+    exclude_dates = set()
+    for value in recurrence.get("exclude_dates", []) or []:
+        parsed = _parse_recurrence_until(value)
+        if parsed is not None:
+            exclude_dates.add(parsed)
+
+    return {
+        "freq": freq,
+        "interval": _coerce_positive_int(recurrence.get("interval"), 1),
+        "byweekday": byweekday,
+        "until": _parse_recurrence_until(recurrence.get("until")),
+        "skip_bank_holidays": bool(recurrence.get("skip_bank_holidays")),
+        "exclude_dates": exclude_dates,
+    }
+
+
+def _build_manual_recurrence_instances(event, today_date, end_date):
+    start_raw = event.get("startDate")
+    if not start_raw:
+        return [event]
+
+    try:
+        base_start = parse(start_raw)
+        if base_start.tzinfo is None:
+            return [event]
+
+        recurrence = _normalize_recurrence_config(event, base_start)
+        if recurrence is None:
+            return [event]
+
+        duration = _event_duration(event, base_start)
+        until_date = recurrence["until"] or end_date
+        window_end = min(until_date, end_date)
+        if window_end < today_date:
+            return []
+
+        week_anchor = base_start.date() - datetime.timedelta(days=base_start.weekday())
+        window_start = max(today_date, base_start.date())
+        candidate_date = window_start
+        expanded = []
+        while candidate_date <= window_end:
+            weeks_since_anchor = (candidate_date - week_anchor).days // 7
+            if (
+                candidate_date >= base_start.date()
+                and candidate_date.weekday() in recurrence["byweekday"]
+                and weeks_since_anchor % recurrence["interval"] == 0
+                and candidate_date not in recurrence["exclude_dates"]
+            ):
+                if recurrence["skip_bank_holidays"] and candidate_date in us_bank_holidays_10(candidate_date.year):
+                    candidate_date += datetime.timedelta(days=1)
+                    continue
+
+                instance_start = datetime.datetime.combine(candidate_date, base_start.timetz())
+                instance = dict(event)
+                if event.get("id"):
+                    instance["id"] = f"{event['id']}__{candidate_date.isoformat()}"
+                instance["startDate"] = instance_start.isoformat()
+                instance["endTime"] = (instance_start + duration).isoformat()
+                instance["recurring"] = True
+                expanded.append(instance)
+            candidate_date += datetime.timedelta(days=1)
+        return expanded
+    except Exception:
+        return [event]
+
+
 def expand_manual_recurring_events(existing_events, today_date):
     expanded = []
     end_date = today_date + datetime.timedelta(days=RECURRING_MANUAL_LOOKAHEAD_DAYS)
 
     for event in existing_events:
-        if not event.get("recurring"):
+        if not event.get("recurring") and not event.get("recurrence"):
             expanded.append(event)
             continue
 
-        start_raw = event.get("startDate")
-        if not start_raw:
-            expanded.append(event)
-            continue
-
-        try:
-            base_start = parse(start_raw)
-            if base_start.tzinfo is None:
-                expanded.append(event)
-                continue
-
-            end_raw = event.get("endTime")
-            if end_raw:
-                parsed_end = parse(end_raw)
-                if parsed_end.tzinfo is None:
-                    parsed_end = parsed_end.replace(tzinfo=base_start.tzinfo)
-                duration = parsed_end - base_start
-            else:
-                duration = datetime.timedelta(hours=2)
-
-            cursor = base_start
-            if cursor.date() < today_date:
-                days_forward = (today_date - cursor.date()).days
-                weeks_forward = days_forward // 7
-                cursor = cursor + datetime.timedelta(days=weeks_forward * 7)
-                while cursor.date() < today_date:
-                    cursor = cursor + datetime.timedelta(days=7)
-
-            while cursor.date() <= end_date:
-                candidate_date = cursor.date()
-                holiday_set = us_bank_holidays_10(candidate_date.year)
-                if candidate_date not in holiday_set:
-                    instance = dict(event)
-                    instance["startDate"] = cursor.isoformat()
-                    instance["endTime"] = (cursor + duration).isoformat()
-                    expanded.append(instance)
-                cursor = cursor + datetime.timedelta(days=7)
-        except Exception:
-            expanded.append(event)
+        expanded.extend(_build_manual_recurrence_instances(event, today_date, end_date))
 
     return expanded
 
