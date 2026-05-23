@@ -2,6 +2,111 @@ import datetime
 import json
 import os
 
+from dateutil.parser import parse
+
+
+RECURRING_MANUAL_LOOKAHEAD_DAYS = 366
+
+
+def _nth_weekday_of_month(year, month, weekday, n):
+    first = datetime.date(year, month, 1)
+    offset = (weekday - first.weekday()) % 7
+    return first + datetime.timedelta(days=offset + (n - 1) * 7)
+
+
+def _last_weekday_of_month(year, month, weekday):
+    if month == 12:
+        next_month_first = datetime.date(year + 1, 1, 1)
+    else:
+        next_month_first = datetime.date(year, month + 1, 1)
+    last = next_month_first - datetime.timedelta(days=1)
+    offset = (last.weekday() - weekday) % 7
+    return last - datetime.timedelta(days=offset)
+
+
+def _observed_holiday(day):
+    if day.weekday() == 5:  # Saturday
+        return day - datetime.timedelta(days=1)
+    if day.weekday() == 6:  # Sunday
+        return day + datetime.timedelta(days=1)
+    return day
+
+
+def us_bank_holidays_10(year):
+    # Classic 10 U.S. bank holidays (excludes Juneteenth).
+    new_year = datetime.date(year, 1, 1)
+    independence = datetime.date(year, 7, 4)
+    veterans = datetime.date(year, 11, 11)
+    christmas = datetime.date(year, 12, 25)
+    return {
+        new_year,
+        _observed_holiday(new_year),
+        _nth_weekday_of_month(year, 1, 0, 3),                     # MLK Day
+        _nth_weekday_of_month(year, 2, 0, 3),                     # Presidents Day
+        _last_weekday_of_month(year, 5, 0),                       # Memorial Day
+        independence,
+        _observed_holiday(independence),
+        _nth_weekday_of_month(year, 9, 0, 1),                     # Labor Day
+        _nth_weekday_of_month(year, 10, 0, 2),                    # Columbus Day
+        veterans,
+        _observed_holiday(veterans),
+        _nth_weekday_of_month(year, 11, 3, 4),                    # Thanksgiving
+        christmas,
+        _observed_holiday(christmas),
+    }
+
+
+def expand_manual_recurring_events(existing_events, today_date):
+    expanded = []
+    end_date = today_date + datetime.timedelta(days=RECURRING_MANUAL_LOOKAHEAD_DAYS)
+
+    for event in existing_events:
+        if not event.get("recurring"):
+            expanded.append(event)
+            continue
+
+        start_raw = event.get("startDate")
+        if not start_raw:
+            expanded.append(event)
+            continue
+
+        try:
+            base_start = parse(start_raw)
+            if base_start.tzinfo is None:
+                expanded.append(event)
+                continue
+
+            end_raw = event.get("endTime")
+            if end_raw:
+                parsed_end = parse(end_raw)
+                if parsed_end.tzinfo is None:
+                    parsed_end = parsed_end.replace(tzinfo=base_start.tzinfo)
+                duration = parsed_end - base_start
+            else:
+                duration = datetime.timedelta(hours=2)
+
+            cursor = base_start
+            if cursor.date() < today_date:
+                days_forward = (today_date - cursor.date()).days
+                weeks_forward = days_forward // 7
+                cursor = cursor + datetime.timedelta(days=weeks_forward * 7)
+                while cursor.date() < today_date:
+                    cursor = cursor + datetime.timedelta(days=7)
+
+            while cursor.date() <= end_date:
+                candidate_date = cursor.date()
+                holiday_set = us_bank_holidays_10(candidate_date.year)
+                if candidate_date not in holiday_set:
+                    instance = dict(event)
+                    instance["startDate"] = cursor.isoformat()
+                    instance["endTime"] = (cursor + duration).isoformat()
+                    expanded.append(instance)
+                cursor = cursor + datetime.timedelta(days=7)
+        except Exception:
+            expanded.append(event)
+
+    return expanded
+
 
 def merge_and_dedupe_events(
     city,
@@ -32,6 +137,8 @@ def merge_and_dedupe_events(
 
     with open(os.path.join(city, "manual_events.json"), "r", encoding="utf-8") as f:
         existing_events_in_file = json.load(f)
+
+    existing_events_in_file = expand_manual_recurring_events(existing_events_in_file, today_date)
 
     upcoming_existing_events_in_file = []
     for event in existing_events_in_file:

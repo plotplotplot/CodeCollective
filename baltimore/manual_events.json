@@ -46,5 +46,30 @@
     "imageUrl": "https://bniajfi.org/wp-content/uploads/2021/02/bnia_logo_new.png",
     "recurring": false,
     "scrapeTime": "2026-05-14 21:00:00"
+  },
+  {
+    "id": "manual_columbia_community_care_weekly_food_distribution_cloudleap",
+    "name": "Columbia Community Care Weekly Food Distribution",
+    "startDate": "2026-05-23T09:00:00-04:00",
+    "endTime": "2026-05-23T11:00:00-04:00",
+    "description": "Weekly recurring community food distribution and service opportunity hosted by Columbia Community Care every Saturday from 9:00 AM to 11:00 AM.",
+    "url": "https://columbiacommunitycare.org/programs-events/",
+    "status": "ACTIVE",
+    "location": {
+      "name": "Columbia Community Care",
+      "address": "8775 Cloudleap Ct #107, Columbia, MD"
+    },
+    "imageUrl": "https://columbiacommunitycare.org/wp-content/uploads/2025/11/8x4-1-cover-1024x575.jpg",
+    "orgName": "Columbia Community Care",
+    "orgImageUrl": "https://columbiacommunitycare.org/wp-content/uploads/2025/06/Organizational.webp",
+    "tags": [
+      "Food",
+      "Service/Obligation"
+    ],
+    "source": "https://columbiacommunitycare.org/",
+    "source_url": "https://columbiacommunitycare.org/",
+    "source_group": "Columbia Community Care",
+    "recurring": true,
+    "scrapeTime": "2026-05-22 00:00:00"
   }
 ]
