@@ -14,7 +14,10 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
-DEFAULT_USER_AGENT = "CodeCollectiveBot/1.0 (+https://github.com/juliancoy/CodeCollective)"
+DEFAULT_USER_AGENT = (
+    "Mozilla/5.0 (compatible; CodeCollectiveBot/1.0; "
+    "+https://github.com/juliancoy/CodeCollective)"
+)
 DEFAULT_TIMEOUT = 30
 DEFAULT_MIN_INTERVAL_SECONDS = 1.0
 DEFAULT_ROBOTS_TTL_SECONDS = 3600

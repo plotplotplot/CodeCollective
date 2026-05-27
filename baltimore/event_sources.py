@@ -467,6 +467,11 @@ sources = [
         "tags": ["Community", "Tech Community"],
     },
     {
+        "name": "Backwater Books Events",
+        "url": "https://backwaterbooks.com/events",
+        "tags": ["Culture", "Community", "Lifelong Learning"],
+    },
+    {
         "name": "Baltimore Orioles Schedule",
         "url": "https://www.mlb.com/orioles/schedule",
         "tags": ["Culture", "Community", "Economic Development"],
